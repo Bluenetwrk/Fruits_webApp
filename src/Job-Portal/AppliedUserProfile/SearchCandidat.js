@@ -28,11 +28,6 @@ const responsive = {
   }
 };
 
-
-// import { useSnapCarousel } from 'react-snap-carousel';
-// import AutoplaySlider from 'react-awesome-slider'
-// import Slider from "react-slick";
-
 function SearchCandidate() {
   let params = useParams()
   let navigate = useNavigate()
@@ -81,11 +76,7 @@ function SearchCandidate() {
     setActive([])
     setJobTagsIds([])
 
-    // let userid = JSON.parse(localStorage.getItem("EmpIdG"))
-    // const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("EmpLog"))) };
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
-
-    // await axios.get("StudentProfile/getAllJobseekers", { headers })
     await axios.get(`/StudentProfile/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
 
       .then((res) => {
@@ -98,11 +89,6 @@ function SearchCandidate() {
         setFilCandidate(sortedate)
       })
   }
-
-  // useEffect(() => {
-  //   getAllJobSeekers()
-  // }, [])
-
       useEffect(() => {
         if (jobTagsIds.length < 1) {
       getAllJobSeekers()
@@ -129,7 +115,6 @@ function SearchCandidate() {
     }
   }
 
-  // const [status, setstatus] = useState({select})
   async function search(e) {
     let key = e.target.value
     setsearchKey(key)
@@ -151,7 +136,6 @@ function SearchCandidate() {
   }
 
   function CheckProfile(StudID) {
-    // navigate(`/Check-Profile/${StudID}`)
     window.open(`/Check-Profile/${StudID}`, '_blank')
   }
 
@@ -254,7 +238,7 @@ return(
 )
     })
     if(isIndex<0){
-    var updatedActive = [...Active, key]; // Add the new key to the array
+    var updatedActive = [...Active, key]; 
     setActive(updatedActive);
     }else{
       const IndexId=Active.findIndex((present)=>{
@@ -269,20 +253,6 @@ return(
     }
     changeTags()
   }}
-  //   if(Candidate.length>0){
-  //        let removedItems = Candidate.filter((tags)=>{
-  //           return( 
-  //             !tags.Tags.map((value)=>{
-  //               return(
-  //               value.value
-  //               )
-  //             }).includes(key)    
-  //       )
-  //     }) 
-  //     setCandidate(removedItems)
-  //     return false
-  //   }
-  // }
 
   async function changeTags(key){
 
@@ -295,37 +265,13 @@ return(
         let sortedate = result.sort((a, b) => {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
-        setJobTagsIds(sortedate)
-    //     let elements=  sortedate.flatMap(element => {
-    //       setCandidate(oldArray => [...oldArray,element] )
-    //  });
-        // setCandidate(sortedate)
+    
       })
   }
 
       
-
-  // async function filterByJobTitle(key) {
-  //   setNoPageFilter(true)
-  //   setFiltereredjobs(key)
-  //   setActive(key)
-  //   await axios.get(`/StudentProfile/getSkillTags/${key}`)
-  //     .then((res) => {
-  //       let result = (res.data)
-  //       let sortedate = result.sort((a, b) => {
-  //         return new Date(b.createdAt) - new Date(a.createdAt);
-  //       });
-  //       setCandidate(sortedate)
-  //     })
-  // }
-  // .........Notice Period sorting....
   function NoticeAscendingOrder() {
     let newjob = [...FilCandidate]
-    // const descend = newjob.sort(function (a, b) {
-    //   return (
-    //     b.experiance - a.experiance
-    //   )
-    // })
     const collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base'
@@ -537,13 +483,7 @@ return(
               }
               </div>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            {/* {nopageFilter ?
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying Candidates with with following matching tags
-               <span style={{ color: "blue" }}>{Filtereredjobs}</span></p>
-              :
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest Candidates</p>
-            } */}
-              
+          
 {nopageFilter ?
               <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>
                 {uniqueList.length} </span>Jobs with following matching tags:
@@ -699,9 +639,6 @@ return(
               </button>
             </div>
             </div>
-            {/* <div style={{marginTop:"180px", position:"sticky", bottom:0}}>
-          <Footer/>
-        </div> */}
 
         </>
         :
@@ -747,11 +684,7 @@ return(
                         className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
                         tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
                         styles.TagHeading: styles.MobJobtitleFilter} 
-                      // checked={Active.findIndex(  (present)=>{
-                      //     return(
-                      //       present===tags.value
-                      //     )
-                      //         }) >=0}
+                    
                         type= "radio" name="filter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
                    
                       )

@@ -81,15 +81,7 @@ function AllJobs(props) {
   // const npage = Math.ceil(jobs.length / recordsPerPage) // last page
   const npage = Math.ceil(totalCount / recordsPerPage) // last page
 
-  // let menuRef = useRef();
-  // let imgRef = useRef();
-
-  // window.addEventListener("click", (e) => {
-  //   if (e.target !== menuRef.current) {
-  //     setshowPosteddateJobs(false)
-  //     console.log(menuRef.current)
-  //   }
-  // })
+  
   async function gettotalcount() {
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
     await axios.get("/jobpost/getTotalCount", { headers })
@@ -164,19 +156,7 @@ function AllJobs(props) {
     // }, 5000)
   }
 
-  // async function search(e) {
-  //   let key = e.target.value
-
-  //   await axios.get(`/jobpost/searchJob/${key}`)
-  //     .then((res) => {
-  //       if (key) {
-  //         setJobs(res.data)
-  //       } else {
-  //         getjobs()
-
-  //       }
-  //     })
-  // }
+ 
 
   const [searchKey, setsearchKey] = useState()
   // const [jobs, setJobs] = useState([])  
@@ -237,11 +217,7 @@ function AllJobs(props) {
 
   function SdescendingOrder() {
     let newJobs = [...jobs]
-    // const desendSort = newJobs.sort(function (a, b) {
-    //   return (
-    //     b.salaryRange - a.salaryRange
-    //   )
-    // })
+   
     const collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base'
@@ -254,11 +230,7 @@ function AllJobs(props) {
 
   function SascendingOrder() {
     let newJObs = [...jobs]
-    // const AscendSort = newJObs.sort(function (a, b) {
-    //   return (
-    //     a.salaryRange - b.salaryRange
-    //   )
-    // })
+    
     const collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base'
@@ -271,11 +243,7 @@ function AllJobs(props) {
 
   function EdescendingOrder() {
     let newjob = [...jobs]
-    // const descend = newjob.sort(function (a, b) {
-    //   return (
-    //     b.experiance - a.experiance
-    //   )
-    // })
+   
     const collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base'
@@ -289,12 +257,7 @@ function AllJobs(props) {
 
   function EascendingOrder() {
     let newjob = [...jobs]
-    // const Ascend = newjob.sort(function (a, b) {
-    //   return (
-    //     a.experiance - b.experiance
-    //   )
-    // })
-    // setJobs(Ascend)
+    
     const collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base'
@@ -365,12 +328,6 @@ function AllJobs(props) {
   }
 
 
-  // function checkEmpHalf(empId) {
-  //   navigate(`CheckEmpHalfProfile/${empId}`)
-  // }
-
-
-  // const number = [...Array(npage + 1).keys()].slice(1)
 
   function firstPage(id) {
     setCurrentPage(1)
@@ -490,15 +447,7 @@ function AllJobs(props) {
         getjobs()
         return false
       }
-      // if(jobs.length>0){
-      //      let removedItems = jobs.filter((tags)=>{
-      //         return( 
-      //           !tags.Tags.includes(key)   
-      //     )
-      //   }) 
-      //   setJobs(removedItems)
-      //   return false
-      // }
+     
       changeTags()
       // console.log("in change",Active)
     }}
@@ -519,12 +468,7 @@ function AllJobs(props) {
         // getTagId(sortedate)
 
         let elements = sortedate.flatMap(element => {
-          // setJobs(oldArray => [...oldArray,element] )
-          // let comingTagid=element._id
-          // if(!presentIds.includes(comingTagid)){
-          //   setJobs(oldArray => [...oldArray,element] )
-          //   setjobTagIds(oldArray => [...oldArray,element] )
-          //   }
+         
         });
       })
   }
@@ -844,10 +788,6 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
 
           </div>
 
-          {/* <div style={{marginTop:"200px", position:"sticky", bottom:0}}>
-          <Footer/>
-          */}
-          {/* </div>  */}
 
         </>
         :
@@ -862,19 +802,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
 
             : ""
           }
-{/* 
-<div className={styles.MobLocationFilterWrapperLogin}>
-                {
-                  JobLocationTags.map((location, i) => {
-                    return (
-                      <label> <input className={styles.MobJobtitleFilter} checked type="radio" disabled={location == "Chennai" || location == "Hyderabad" || location == "Mumbai" || location == "Delhi"} name="filter" onClick={() => { getLocation(location.toLowerCase()) }} />{location}</label>
 
-                    )
-                  })
-                }
-              </div> */}
-
-          {/* ...................... All Filter for Mobile */}
           <Carousel
             swipeable={true}
             draggable={false}
@@ -903,11 +831,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                         tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
                         styles.TagHeading: styles.MobJobtitleFilter} 
                       checked={tags.value==="Javascript"}
-                      // {Active.findIndex( (present)=>{
-                      //     return(
-                      //       present===tags.value
-                      //     )
-                      //         })>=0}
+                      
                         type= "radio" name="Rfilter"  onClick={() => { filterByJobTitle(tags.value) }} />{tags.value}</label>
                    
                       )

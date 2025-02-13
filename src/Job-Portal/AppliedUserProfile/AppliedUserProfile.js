@@ -25,8 +25,6 @@ function AppliedUserProfile() {
     const [Filtereredjobs, setFiltereredjobs] = useState([])
     const [nopageFilter, setNoPageFilter] = useState(false)
 
-    // const [status, setstatus] = useState({select})
-
     async function getAppliedUserIds(OId) {
         setPageLoader(true)
 
@@ -138,16 +136,9 @@ function AppliedUserProfile() {
                 alert("server error occured")
             })
     }
-    // Noice Period sort
-    // const [AppliedUser, setAppliedUser] = useState([])
 
     function NoticeAscendingOrder() {
         let newjob = [...AppliedUser]
-        // const descend = newjob.sort(function (a, b) {
-        //   return (
-        //     b.experiance - a.experiance
-        //   )
-        // })
         const collator = new Intl.Collator(undefined, {
             numeric: true,
             sensitivity: 'base'
@@ -478,28 +469,6 @@ function AppliedUserProfile() {
                                                     )
                                                 })
                                             }
-
-                                            {/* {Applieduser.status==="selected"?
-                            <>
-                        <button style={{marginLeft:"2%", background:"rgb(24, 175, 24)", color:"white",
-                         border:"solid",width:"75%", height:"30px", fontWeight:"bold"}}>Selected<span style={{ fontSize: '16px' }}>&#10004;</span></button><br></br></>
-                       :
-                       <> <button style={{marginLeft:"2%", background:"rgb(40, 4, 99)", color:"white",border:"solid",width:"75%", height:"30px", fontWeight:"bold"}} onClick={()=>{Select(Applieduser._id, "selected")}}>Select</button><br></br></>
-                    }
-                      {Applieduser.status==="Rejected"?
-                            <>
-                        <button style={{marginLeft:"2%", background:"red", color:"white",
-                         border:"solid",width:"75%", height:"30px", fontWeight:"bold"}}>Rejected<span style={{ fontSize: '16px' }}>&#10004;</span></button><br></br></>
-                       :                       
-                        <><button style={{marginLeft:"2%", background:"rgb(40, 4, 99)", color:"white",border:"solid",width:"75%", height:"30px", fontWeight:"bold"}} onClick={()=>{Reject(Applieduser._id, "Rejected")}}>Reject</button><br></br></>
-                }
-                {Applieduser.status==="OhHold"?
-                            <>
-                        <button style={{marginLeft:"2%", background:"blue", color:"white",
-                         border:"solid",width:"75%", height:"30px", fontWeight:"bold"}}>OnHold<span style={{ fontSize: '16px' }}>&#10004;</span></button><br></br></>
-                       : 
-                        <> <button style={{marginLeft:"2%", background:"rgb(40, 4, 99)", color:"white",border:"solid",width:"75%", height:"30px", fontWeight:"bold"}} onClick={()=>{onHold(Applieduser._id, "OhHold")}}>OnHold</button><br></br></>
-            } */}
                                         </div>
                                     </li>
 

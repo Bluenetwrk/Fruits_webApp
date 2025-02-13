@@ -1,5 +1,4 @@
 import React from 'react'
-// import './footer.css'
 import Styles from "./footer.module.css"
 import { Link, useNavigate, BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Itwalkinlogo from "../img/ItwalkInLogo.jpg"
@@ -26,7 +25,6 @@ function Footer() {
             </div>
             <div className={Styles.brands}>
               <a> <i className='fa-brands fa-facebook-square'></i> </a>
-              {/* <a> <i className='fa-brands fa-instagram-square'></i> </a> */}
               <a> <i className='fa-brands fa-twitter-square'></i> </a>
               <a onClick={Linkedin}> <i class='fa-brands fa-linkedin'></i> </a>
             </div>

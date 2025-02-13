@@ -28,13 +28,6 @@ const responsive = {
   }
 };
 
-
-
-
-// import { useSnapCarousel } from 'react-snap-carousel';
-// import AutoplaySlider from 'react-awesome-slider'
-// import Slider from "react-slick";
-
 function SearchCandidate() {
   let params = useParams()
   let navigate = useNavigate()
@@ -67,9 +60,6 @@ function SearchCandidate() {
   const records = Candidate.slice(firstIndex, lastIndex)//0,5
   const npage = Math.ceil(totalCount / recordsPerPage) // last page
 
-  // const number = [...Array(npage + 1).keys()].slice(1)
-
-
   async function gettotalcount() {
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
     await axios.get("/StudentProfile/getTotalCount", { headers })
@@ -81,16 +71,12 @@ function SearchCandidate() {
       })
   }
    
-  // let jobSeekerId = JSON.parse(localStorage.getItem("StudId"))
-
   async function getAllJobSeekers() {
     setCount(1)
     setActive([])
     setJobTagsIds([])
 
     setNoPageFilter(false)
-    // let userid = JSON.parse(localStorage.getItem("EmpIdG"))
-    // const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("EmpLog"))) };
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
     // await axios.get("StudentProfile/getAllJobseekers", { headers })
     await axios.get(`/StudentProfile/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
@@ -106,10 +92,6 @@ function SearchCandidate() {
         setFilCandidate(sortedate)
       })
   }
-
-  // useEffect(() => {
-  //   getAllJobSeekers()
-  // }, [])
 
     useEffect(() => {
       if (jobTagsIds.length < 1) {
@@ -255,7 +237,7 @@ return(
 )
     })
     if(isIndex<0){
-    var updatedActive = [...Active, key]; // Add the new key to the array
+    var updatedActive = [...Active, key]; 
     setActive(updatedActive);
     }else{
       const IndexId=Active.findIndex((present)=>{
@@ -270,20 +252,6 @@ return(
     }
     changeTags()
   }}
-  //   if(Candidate.length>0){
-  //        let removedItems = Candidate.filter((tags)=>{
-  //           return( 
-  //             !tags.Tags.map((value)=>{
-  //               return(
-  //               value.value
-  //               )
-  //             }).includes(key)    
-  //       )
-  //     }) 
-  //     setCandidate(removedItems)
-  //     return false
-  //   }
-  // }
 
   async function changeTags(key){
 
@@ -297,10 +265,6 @@ return(
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
         setJobTagsIds(sortedate)
-    //     let elements=  sortedate.flatMap(element => {
-    //       setCandidate(oldArray => [...oldArray,element] )
-    //  });
-        // setCandidate(sortedate)
       })
   }
 
@@ -309,15 +273,10 @@ return(
     // navigate(`/Check-Profile/${StudID}`)
     window.open(`/Check-Profile/${StudID}`, '_blank')
   }
-  //  notice period sort
+
 
   function NoticeAscendingOrder (){
     let newjob = [...FilCandidate]
-    // const descend = newjob.sort(function (a, b) {
-    //   return (
-    //     b.experiance - a.experiance
-    //   )
-    // })
     const collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base'
@@ -502,7 +461,6 @@ return(
         </>
         : ""
       }
-      {/* 9797640137 */}
      
       {screenSize.width > 850 ?
         <>
@@ -700,10 +658,6 @@ return(
               </button>
             </div>
           </div>
-
-          {/* <div style={{marginTop:"200px", position:"sticky", bottom:0}}>
-          <Footer/>
-        </div> */}
 
         </>
         :

@@ -52,14 +52,6 @@ function Blogs() {
 
   let adminLogin = localStorage.getItem("AdMLog")
 
-
-  // let AgeTags = [
- 
-  // let jobTags = [
-
-    
-  //   ]
-
   let JobLocationTags = ["Bangalore"]
 
   let EmployeeAuth = localStorage.getItem("EmpLog")
@@ -68,26 +60,6 @@ function Blogs() {
 
 
   let navigate = useNavigate()
-
-  // useEffect(() => {
-  //   let EmployeeAuth = localStorage.getItem("EmpLog")
-  //   if (EmployeeAuth) {
-  //     navigate("/postedjobs")
-  //   }
-  // }, [])
-
-  // useEffect(() => {
-  //   let studentAuth = localStorage.getItem("StudLog")
-  //   if (studentAuth) {
-  //     navigate("/alljobs")
-  //   }
-  // }, [])
-  // useEffect(() => {
-  //   let adminLogin = localStorage.getItem("AdMLog")
-  //   if (adminLogin) {
-  //     navigate("/BIAddmin@Profile")
-  //   }
-  // }, [])
 
   let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
 
@@ -126,27 +98,12 @@ function Blogs() {
 
   async function applyforJob(id) {
     navigate("/JobSeekerLogin", { state: { Jid: id } })
-    // window.open(`${Link}`)
+    
   }
   async function applyforOtherJob(Link) {
-    // navigate("/JobSeekerLogin", { state: { Jid: id } })
+
     window.open(`${Link}`)
   }
-
-  // ...................search..........
-
-  // async function search(e) {
-  //   let key = e.target.value
-
-  //   await axios.get(`https://itwalkin-backend.onrender.com/jobpost/searchJob/${key}`)
-  //     .then((res) => {
-  //       if (key) {
-  //         setJobs(res.data)        
-  //       } else {
-  //         getjobs()
-  //       }
-  //     })
-  // }
 
   const [searchKey, setsearchKey] = useState()
   // const [jobs, setJobs] = useState([])  
@@ -211,11 +168,7 @@ function Blogs() {
 
   function SdescendingOrder() {
     let newJobs = [...jobs]
-    // const desendSort = newJobs.sort(function (a, b) {
-    //   return (
-    //     b.salaryRange - a.salaryRange
-    //   )
-    // })
+  
     const collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base'
@@ -228,11 +181,7 @@ function Blogs() {
 
   function SascendingOrder() {
     let newJObs = [...jobs]
-    // const AscendSort = newJObs.sort(function (a, b) {
-    //   return (
-    //     a.salaryRange - b.salaryRange
-    //   )
-    // })
+    
     const collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base'
@@ -245,11 +194,7 @@ function Blogs() {
 
   function EdescendingOrder() {
     let newjob = [...jobs]
-    // const descend = newjob.sort(function (a, b) {
-    //   return (
-    //     b.experiance - a.experiance
-    //   )
-    // })
+    
     const collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base'
@@ -263,12 +208,7 @@ function Blogs() {
 
   function EascendingOrder() {
     let newjob = [...jobs]
-    // const Ascend = newjob.sort(function (a, b) {
-    //   return (
-    //     a.experiance - b.experiance
-    //   )
-    // })
-    // setJobs(Ascend)
+    
     const collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base'
@@ -285,10 +225,9 @@ function Blogs() {
   }
 
 
-  // const [jobTitle, setjobTitle] = useState("")
+  
   const [jobLocation, setjobLocation] = useState("AllL")
   const [jobTitle, setjobTitle] = useState("")
-  // const [getJobTitle, setgetJobTitle] = useState(true)
 
   async function getjobTitleAll(all) {
     await axios.get("/jobpost/getjobs")
@@ -402,11 +341,7 @@ return(
          let removedItems = jobs.filter((tags)=>{
             return( 
               !tags.Tags.includes(key)
-              // !tags.Tags.map((value)=>{
-              //   return(
-              //   value.value
-              //   )
-              // }).includes(key)    
+                
         )
       }) 
       setJobs(removedItems)
@@ -477,7 +412,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
     if (checkedid < 0) {
       setCheckBoxValue([...checkBoxValue, id])
     } else {
-      // checkBoxValue.splice(checkedid, 1)
+     
       let removeId=checkBoxValue.filter((foundId)=>{
         return(
           foundId!==id
@@ -533,11 +468,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
 
 {checkBoxValue.length > 0 ?
           <>
-              {/* <button style={{
-                backgroundColor: "blue", border: "none", color: "white",
-                padding: "5px 10px", fontWeight: "bold", cursor: "pointer"
-              }} onClick={()=>{ArchiveCheckBoxArray()}}>Archive</button> */}
-
+             
               <button style={{
                 backgroundColor: "red", border: "none", color: "white", marginLeft:"5px",
                 padding: "5px 10px", fontWeight: "bold", cursor: "pointer"
@@ -548,7 +479,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
 
       {screenSize.width > 850 ?
         <>
-        {/* <p style={{ color: " red", marginLeft: "4%" , zIndex: "100",}}>Note: this website is under development process</p> */}
+      
         <h2 style={{marginLeft:"10px", fontWeight:"800", marginTop:"15px", marginBottom:"-15px"}}> Blogs  </h2>
 
 
@@ -601,20 +532,12 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
           </div>
           <div style={{ marginBottom: "5px", marginTop: "0", marginLeft: "10px" }}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
-              {/* <option value={""}>{recordsPerPage}</option> */}
               <option selected={lastIndex === 10} value={10}>10</option>
               <option selected={lastIndex === 25} value={25}>25</option>
               <option selected={lastIndex === 50} value={50}>50</option>
               <option selected={lastIndex === 100} value={100}>100</option>
             </select>  jobs per page
           </div>
-          {/* <button >Previous</button>
-          { number.map((job,index)=>{
-              return(
-                <button onClick={()=>{changeCurrent(job)}}>{job}</button>
-              )
-            })      }
-          <button >Next</button>  */}
 
           <div className={styles.Uiwarpper}>
             <ul className={styles.ul} style={{ color: 'white', fontWeight: "bold" }}>
@@ -629,28 +552,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   <i onClick={sortbyOldjobs} className={`${styles.arrow} ${styles.down}`}></i>
                 </p>
               </li>
-              {/* <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Location}`}>Location</li>
-
-              <li style={{ backgroundColor: " rgb(40, 4, 99)", }} className={`${styles.li} ${styles.Package}`}>CTC
-                <p className={styles.arrowWrapper}>
-
-                  <i onClick={SdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
-                  <i onClick={SascendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-                </p>
-              </li>
-
-              <li style={{ backgroundColor: " rgb(40, 4, 99)", }} className={`${styles.li} ${styles.experiance}`}>Experience
-                <p className={styles.arrowWrapper}>
-
-                  <i onClick={EdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
-                  <i onClick={EascendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-                </p>
-              </li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.qualification}`}>Qualification</li>
-
-
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Skills}`}>Skills Required</li>
-              */}
+              
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.BlogApply}`}>Read/Answer</li>
 
               {                  adminLogin?
@@ -691,14 +593,6 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                             </li>
                           
 
-                      {/* <li className={`${styles.li} ${styles.BlogDescription}`}>
-                          {
-    items.jobDescription? HTMLReactParser(items.jobDescription.slice(0,150).toString()) :""
-                          }  
-                          <span onClick={() => navigate(`/Blogdetails/${btoa(items._id)}`)} className={styles.seeMore}>
-                            ...read more
-                          </span>
-                        </li> */}
                       <li className={`${styles.li} ${styles.Blogdate}`}>
                         {new Date(items.createdAt).toLocaleString(
                           "en-US",
@@ -709,12 +603,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                           }
                         )}
                       </li>
-                      {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li>
-                      <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
-                      <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
-                      <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
-                      <li className={`${styles.li} ${styles.Skills}`}>{items.skills} </li> */}
-
+                      
                       <li className={`${styles.li} ${styles.BlogApply}`}>
                       {
                           items.question?
@@ -763,15 +652,6 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                           
                             {items.name}</li>
          
-                      {/* <li className={`${styles.li} ${styles.BlogDescription}`}>
-                          {
-    items.jobDescription? HTMLReactParser(items.jobDescription.slice(0,150).toString()) :""
-                          }
-  
-                          <span onClick={() => navigate(`/Blogdetails/${btoa(items._id)}`)} className={styles.seeMore}>
-                            ...read more
-                          </span>
-                        </li> */}
                       <li className={`${styles.li} ${styles.Blogdate}`}>
                         {new Date(items.createdAt).toLocaleString(
                           "en-US",
@@ -782,12 +662,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                           }
                         )}
                       </li>
-                      {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li>
-                      <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
-                      <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
-                      <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
-                      <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li> */}
-
+                      
                       <li className={`${styles.li} ${styles.BlogApply}`}>
                         {
                           items.question?
@@ -839,10 +714,6 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
             </div>
 
           </div>
-{/*           
-          <div style={{marginTop:"200px", position:"sticky", bottom:0}}>
-          <Footer/>
-        </div> */}
 
         </>
         // Mobile View
@@ -939,7 +810,6 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
               </div>
             </div>
 
-            {/* ....up to here is 1st div i.e button in 1st display and now from down here is 2nd div..i.e 2nd display..................................... */}
             <div style={{ display: "flex" }}>
               <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
@@ -1124,7 +994,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
               </div>
             </div>
 
-            {/* ....ufrom down here is 6th div..i.e 6th display..................................... */}
+          
             <div style={{ display: "flex" }}>
               <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
@@ -1169,7 +1039,6 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 }
               </div>
             </div>
-            {/* ....from down here is 7th div..i.e 7th display..................................... */}
             <div style={{ display: "flex" }}>
               <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
@@ -1214,7 +1083,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 }
               </div>
             </div>
-            {/* .................from down here is 8th div..i.e 8th display....................... */}
+      
             <div style={{ display: "flex" }}>
               <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
@@ -1259,7 +1128,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 }
               </div>
             </div>
-            {/* .................from down here is 9th div..i.e 9th display....................... */}
+          
 
             <div style={{ display: "flex" }}>
               
@@ -1308,7 +1177,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
               </div>
             </div>
 
-            {/* ....from down here is 10th div..i.e 10th display..................................... */}
+            
             <div style={{ display: "flex" }}>
               <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
@@ -1353,7 +1222,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 }
               </div>
             </div>
-            {/* ....from down here is 11th div..i.e 11th display..................................... */}
+            
             <div style={{ display: "flex" }}>
               <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
@@ -1401,27 +1270,6 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
 
             
           </Carousel>
-          {/* <div style={{ display: "flex", marginLeft: "18px" }}>
-          
-            <div >
-              <label> <input type="radio" name="location" checked={jobLocation === 'AllL'} onClick={() => { getjobsAllLoc(); setjobLocation("AllL") }} />All</label><br></br>
-              <label> <input type="radio" name="location" checked={jobLocation === 'banglore'} onClick={() => { getLocation("banglore"); setjobLocation('banglore') }} />Banglore</label><br></br>
-              <label> <input type="radio" name="location" disabled checked={jobLocation === 'chennai'} onClick={() => { getLocation("chennai"); setjobLocation('chennai') }} />Chennai</label><br></br>
-              <label> <input type="radio" name="location" disabled checked={jobLocation === 'hyderabad'} onClick={() => { getLocation("hyderabad"); setjobLocation('hyderabad') }} />Hyderabad</label><br></br>
-              <label> <input type="radio" name="location" disabled checked={jobLocation === 'mumbai'} onClick={() => { getLocation("mumbai"); setjobLocation('mumbai') }} />Mumbai</label><br></br>
-              <label> <input type="radio" name="location" disabled checked={jobLocation === 'delhi'} onClick={() => { getLocation("delhi"); setjobLocation('delhi') }} />Delhi</label>
-            </div>
-            <br></br>
-
-            <div >
-              <label><input type="radio" name="jobtitle" onClick={() => { getjobTitleAll('all'); setjobTitle("all") }} />All</label>            <br></br>
-              <label><input type="radio" name="jobtitle" onClick={() => { { jobLocation !== "AllL" ? getBothFiltered('java') : JobtitleFilter('java') } }} />Java developer</label> <br></br>
-              <label><input type="radio" name="jobtitle" onClick={() => { { jobLocation !== "AllL" ? getBothFiltered('full') : JobtitleFilter('full') } }} />Full Stack Developer</label> <br></br>
-              <label><input type="radio" name="jobtitle" onClick={() => { { jobLocation !== "AllL" ? getBothFiltered('front') : JobtitleFilter('front') } }} />Frontend Developer</label><br></br>
-              <label><input type="radio" name="jobtitle" onClick={() => { { jobLocation !== "AllL" ? getBothFiltered('back') : JobtitleFilter('back') } }} />Backend developer</label> <br></br>
-              <label><input type="radio" name="jobtitle" onClick={() => { { jobLocation !== "AllL" ? getBothFiltered('python') : JobtitleFilter('python') } }} />Python Developer</label>
-            </div>
-          </div> */}
 
 
           {PageLoader ?
@@ -1470,7 +1318,6 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
 
                         </div>
 
-                        {/* <br></br> */}
                         <div className={styles.companyNameLocationWrapper}   >
                           <img className={styles.logo} src={job.Logo} />
 
@@ -1525,32 +1372,3 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
 }
 
 export default Blogs
-
-// .......cards.......
-
-{/* <div className={styles.carwrapper}>
-              {jobs.map((items, i) => {
-                return (
-                  <div className={styles.card}>
-                    <div className={styles.AlltexWrapper}>
-                      <p className={styles.text}>Job Title :{items.jobTitle}</p>
-                      <p className={styles.text}>Job Location:</p><a>{items.jobLocation.toUpperCase()}</a>
-                      <p className={styles.text}> Package : {items.salaryRange}</p>
-                      <p className={styles.text}> Experiance Required :{items.experiance}</p>
-                      <p className={styles.text}> Skills Required :{items.skills}</p>
-                      <div className={styles.descriptionAndApply}>
-                        <p className={styles.description}>
-                          ......... {items.jobDescription} ........
-                          {items.jobDescription.slice(0, 60)}
-                          <span onClick={() => navigate(`/Jobdetails/${items._id}`)} className={styles.seeMore}>
-                            ...read more
-                          </span>
-                        </p>
-                        <button className={styles.button} onClick={applyforJob}>Apply </button>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })
-              }
-            </div> */}

@@ -31,8 +31,7 @@ function Answerdetails(props) {
     await axios.get(`/StudentProfile/getProfile/${userId}`, {headers})
         .then((res) => {
             let result = res.data.result
-            // console.log(result.name)
-            // localStorage.setItem("Snm", JSON.stringify(btoa(result.name)))
+           
             setCommentName(result.name)
         }).catch((err) => {
             // alert("some thing went wrong")
@@ -80,13 +79,6 @@ function changeComments(e){
     setcomments({ ...comments, comment: e.target.value, name:CommentName})
 }
 
-// async function deletecom(){
-//   await axios.put(`/BlogRoutes/deleteComment`)
-//   .then((res)=>{
-//     console.log(res)
-//   })
-
-// }
 
 async function handleComment(){
   if(!userid){
@@ -161,53 +153,8 @@ async function deletComment(id){
       {screenSize.width>850 ?
 
         <>
-       
-    {/* <div style={{display:"flex"}}>
-
-        <div style={{marginTop:"20px", marginLeft:"30px"}}>
-        <img className={styles.imageV} src={jobs.Logo?jobs.Logo : profileDp}/>
-        
-        </div>
-        <div>
-       
-          <table>
-          <tr>
-    <td colSpan={2} style={{backgroundColor:" rgb(40, 4, 99)"}}>
-    <div style={{textAlign:"center", color:"white", fontWeight:"550"}}>{jobs.jobTitle ? jobs.jobTitle[0].toUpperCase()+jobs.jobTitle.slice(1)
-    : <li style={{ display: "inline-block" }}>Blog Title</li>}</div>
-    </td>
-  </tr>
-       
-  <tr>
-    <th>Company Name</th>
-    <td>{jobs.companyName ? jobs.companyName : <li style={{ display: "inline-block" }}>Company name</li>}</td>
-  </tr>
-  <tr>
-    <th>Posted by</th>
-    <td>{jobs.name ? jobs.name : <li style={{ display: "inline-block" }}>Name</li>}</td>
-  </tr>
-  <tr>
-    <th>Tags</th>
-    <td>{jobs.skills ? jobs.skills : <li style={{ display: "inline-block" }} >Tags</li>}</td>
-  </tr>
-  <tr>
-    <th>Posted Date</th>
-    <td>
-    {jobs.updatedAt ? new Date(jobs.updatedAt).toLocaleString(
-                  "en-US",
-                  {
-                    month: "short",
-                    day: "2-digit",
-                    year: "numeric",
-                  }
-                ) : <li style={{ display: "inline-block" }}>Date</li>
-                }
-    </td>
-  </tr>
-  </table>
-  </div>
-  </div>         */}
-  {/* <h1 style={{textAlign:"center", fontSize:"xx-large"}}>{jobs.jobTitle[0].toUpperCase()+jobs.jobTitle.slice(1)}</h1> */}
+    
+  
   <h1 style={{textAlign:"center", fontSize:"xx-large"}}>{jobs.jobTitle}</h1>
 <div style={{marginLeft:"30px"}}>
   <span>Posted by {jobs.name}</span> |  

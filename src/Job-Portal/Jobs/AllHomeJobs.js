@@ -56,7 +56,6 @@ function Home() {
   let adminLogin = localStorage.getItem("AdMLog")
 
   useEffect(() => {
-    // let studentAuth = localStorage.getItem("StudLog")
     let EmployeeAuth = localStorage.getItem("EmpLog")
     if (EmployeeAuth) {
       navigate("/Search-Candidate")
@@ -76,15 +75,14 @@ function Home() {
   const [currentPage, setCurrentPage] = useState(1)
   const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage ? recordsperpage : 10)
 
-  // console.log(recordsPerPage)
+
 
   const lastIndex = currentPage * recordsPerPage //10
   const firstIndex = lastIndex - recordsPerPage //5
   const records = jobs.slice(firstIndex, lastIndex)//0,5
 
-  // const npage = Math.ceil(jobs.length / recordsPerPage) // last page
   const npage = Math.ceil(totalCount / recordsPerPage) // last page
-  // const number = [...Array(npage + 1).keys()].slice(1)
+  
 
   async function gettotalcount() {
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
@@ -114,7 +112,7 @@ function Home() {
         let sortedate = result.sort(function (a, b) {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
-        // console.log("result from backend", sortedate)
+      
         setJobs(sortedate)
         setFilterjobs(sortedate)
         setPageLoader(false)
@@ -136,28 +134,13 @@ function Home() {
 
   async function applyforJob(id) {
     navigate("/JobSeekerLogin", { state: { Jid: id } })
-    // window.open(`${Link}`)
+   
   }
   async function applyforOtherJob(Link) {
-    // navigate("/JobSeekerLogin", { state: { Jid: id } })
+    
     window.open(`${Link}`)
   }
 
-  // ...................search..........
-  // 5350
-
-  // async function search(e) {
-  //   let key = e.target.value
-
-  //   await axios.get(`https://itwalkin-backend.onrender.com/jobpost/searchJob/${key}`)
-  //     .then((res) => {
-  //       if (key) {
-  //         setJobs(res.data)        
-  //       } else {
-  //         getjobs()
-  //       }
-  //     })
-  // }
 
   const [searchKey, setsearchKey] = useState()
   // const [jobs, setJobs] = useState([])  
@@ -222,11 +205,7 @@ function Home() {
 
   function SdescendingOrder() {
     let newJobs = [...jobs]
-    // const desendSort = newJobs.sort(function (a, b) {
-    //   return (
-    //     b.salaryRange - a.salaryRange
-    //   )
-    // })
+  
     const collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base'
@@ -239,11 +218,7 @@ function Home() {
 
   function SascendingOrder() {
     let newJObs = [...jobs]
-    // const AscendSort = newJObs.sort(function (a, b) {
-    //   return (
-    //     a.salaryRange - b.salaryRange
-    //   )
-    // })
+    
     const collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base'
@@ -256,11 +231,7 @@ function Home() {
 
   function EdescendingOrder() {
     let newjob = [...jobs]
-    // const descend = newjob.sort(function (a, b) {
-    //   return (
-    //     b.experiance - a.experiance
-    //   )
-    // })
+    
     const collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base'
@@ -274,12 +245,7 @@ function Home() {
 
   function EascendingOrder() {
     let newjob = [...jobs]
-    // const Ascend = newjob.sort(function (a, b) {
-    //   return (
-    //     a.experiance - b.experiance
-    //   )
-    // })
-    // setJobs(Ascend)
+    
     const collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: 'base'
@@ -296,11 +262,10 @@ function Home() {
   }
 
 
-  // const [jobTitle, setjobTitle] = useState("")
+  
   const [jobLocation, setjobLocation] = useState("AllL")
   const [jobTitle, setjobTitle] = useState("")
-  // const [getJobTitle, setgetJobTitle] = useState(true)
-
+  
   async function getjobTitleAll(all) {
     await axios.get("/jobpost/getjobs")
       .then((res) => {
@@ -331,7 +296,7 @@ function Home() {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
         setJobs(sortedate)
-        // setPageLoader(false)
+        
       }).catch((err) => {
         alert("some thing went wrong")
       })
@@ -347,7 +312,7 @@ function Home() {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
         setJobs(sortedate)
-        // setPageLoader(false)
+        
       }).catch((err) => {
         alert("some thing went wrong")
       })
@@ -386,7 +351,7 @@ function Home() {
   const [jobTagIds, setjobTagIds] = useState([])
 
   const [jobTagsIds, setJobTagsIds] = useState([])
-  // console.log("all dublicate ids", jobTagsIds)
+
 
   useEffect(() => {
     if (jobTagsIds.length > 0) {
@@ -406,7 +371,7 @@ function Home() {
       params: { currentPage, recordsPerPage }
     })
       .then((res) => {
-        // console.log("data from uique id's",res.data)
+        
         let result = res.data
         let sortedate = result.sort((a, b) => {
           return new Date(b.createdAt) - new Date(a.createdAt);
@@ -438,9 +403,9 @@ function Home() {
       )
     })
     if (isIndex < 0) {
-      // setActive([...Active, key])
       
-      var updatedActive = [...Active, key]; // Add the new key to the array
+      
+      var updatedActive = [...Active, key]; 
       setActive(updatedActive);
 
     } else {
@@ -458,20 +423,19 @@ function Home() {
       changeTags()
     }}
     async function changeTags(key){
-      // console.log("in APi",Active)
+     
 
     setNoPageFilter(true)
     setFiltereredjobs(key)
     await axios.get(`/jobpost/getTagsJobs/${Active}`)
       .then((res) => {
         let result = (res.data)
-        // console.log("the total id's are", result)
+        
         let sortedate = result.sort((a, b) => {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
         setJobTagsIds(sortedate)
-        // let elements = sortedate.flatMap(element => {
-        // });
+        
       })
   }
 
@@ -488,7 +452,7 @@ function Home() {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
         setJobs(sortedate)
-        // setPageLoader(false)
+      
       }).catch((err) => {
         alert("some thing went wrong")
       })
@@ -538,7 +502,7 @@ function Home() {
     if (checkedid < 0) {
       setCheckBoxValue([...checkBoxValue, id])
     } else {
-      // checkBoxValue.splice(checkedid, 1)
+      
       let removeId = checkBoxValue.filter((foundId) => {
         return (
           foundId !== id
@@ -551,8 +515,7 @@ function Home() {
   return (
     <>
       {screenSize.width > 850 ?
-        // adminLogin?""
-        // :
+
         <>
           <div className={adminLogin ? styles.HomeNavConetenetWrapperAdmin : styles.HomeNavConetenetWrapper}>
             <div className={styles.LocationFilterWrapper}>
@@ -599,7 +562,7 @@ function Home() {
 
       {screenSize.width > 850 ?
         <>
-          {/* <p style={{ color: " red", marginLeft: "4%", zIndex: "100", }}>Note: this website is under development process</p> */}
+         
 
 
           <div className={styles.JobtitleFilterWrapper}>
@@ -652,20 +615,14 @@ function Home() {
           </div>
           <div style={{ marginBottom: "5px", marginTop: "0", marginLeft: "10px" }}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
-              {/* <option value={""}>{recordsPerPage}</option> */}
+             
               <option selected={lastIndex === 10} value={10}>10</option>
               <option selected={lastIndex === 25} value={25}>25</option>
               <option selected={lastIndex === 50} value={50}>50</option>
               <option selected={lastIndex === 100} value={100}>100</option>
             </select>  jobs per page
           </div>
-          {/* <button >Previous</button>
-          { number.map((job,index)=>{
-              return(
-                <button onClick={()=>{changeCurrent(job)}}>{job}</button>
-              )
-            })      }
-          <button >Next</button>  */}
+         
           <div className={styles.Uiwarpper}>
             <ul className={styles.ul} style={{ color: 'white', fontWeight: "bold" }}>
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Jtitle}`}>Job Title</li>
@@ -680,7 +637,7 @@ function Home() {
                   <i onClick={sortbyOldjobs} className={`${styles.arrow} ${styles.down}`}></i>
                 </p>
               </li>
-              {/* style={{ position:"absolute", display:"block"}} */}
+              
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Location}`}>Location</li>
 
               <li style={{ backgroundColor: " rgb(40, 4, 99)", }} className={`${styles.li} ${styles.Package}`}>CTC
@@ -727,46 +684,22 @@ function Home() {
                             <li style={{ cursor: "pointer", textDecoration: "underline" }} className={`${styles.li} ${styles.CompanyName}`}
                               onClick={(e) => { checkEmpHalf(btoa(items.empId)) }}  >
 
-                              {/* {items.Logo ?
-                              < img style={{ width: "38px", height: "38px" }} src={items.Logo} />
-                              : ""} 
-                              <br></br>
-                              */}
+                             
                               {items.companyName}</li>
                             :
                             <a style={{ cursor: "pointer", textDecoration: "underline" }} className={`${styles.li} ${styles.CompanyName}`} href={items.SourceLink} target="_blank" >
-                              {/* {items.Logo ?
-                              < img style={{ width: "38px", height: "38px" }} src={items.Logo} />
-                              : ""}<br></br> */}
+                             
                               {items.Source}
 
                             </a>
 
                         }
 
-                        {/* {items.Source ?
-                        <a className={`${styles.li} ${styles.Source}`} href={items.SourceCompanyLink} target="_blank">{items.Source}</a>
-                        :                         */}
+                       
 
                         <li className={`${styles.li} ${styles.JobType}`}>{items.jobtype}</li>
 
-                        {/* <li className={`${styles.li} ${styles.liDescription}`}>
-                          {
-                            items.jobDescription.map((descrip, di) => {
-                              return (
-                                <>
-                                  {
-                                    descrip.text.slice(0,50)
-                                  }
-                                </>
-                              )
-                            }).slice(0, 1)
-                          }
-  
-                          <span onClick={() => navigate(`/Jobdetails/${items._id}`)} className={styles.seeMore}>
-                            ...read more
-                          </span>
-                        </li> */}
+                        
                         <li className={`${styles.li} ${styles.date}`}>
                           {new Date(items.createdAt).toLocaleString(
                             "en-US",
@@ -787,15 +720,11 @@ function Home() {
                         <li className={`${styles.li} ${styles.Apply}`}>
                           {
                             adminLogin ?
-                              // <input type='checkbox'/>
+                              
                               <input type="checkbox" onClick={() => { checkBoxforDelete(items._id) }} />
 
                               :
-                              // items.SourceLink ?
-                              //   <button title='this will take to Source page' className={styles.Applybutton} onClick={() => {
-                              //     applyforOtherJob(items.SourceLink)
-                              //   }}>Apply</button>
-                              //   :
+                            
                                 <button className={styles.Applybutton} onClick={() => { applyforJob(items._id) }}>Apply</button>
 
                           }
@@ -834,10 +763,7 @@ function Home() {
             </div>
 
           </div>
-          {/*           
-          <div style={{marginTop:"200px", position:"sticky", bottom:0}}>
-          <Footer/>
-        </div> */}
+         
 
         </>
         // Mobile View
@@ -853,7 +779,7 @@ function Home() {
           }
           {/* ...................... All Filter for Mobile */}
           <div className={styles.MobLocationFilterWrapper}>
-            {/* <label> <input className={styles.MobJobtitleFilter} type="radio" name="filter" onClick={() => { getjobs() }} />All</label> */}
+            
             {
               JobLocationTags.map((location, i) => {
                 return (
@@ -1393,29 +1319,7 @@ function Home() {
 
 
           </Carousel>
-          {/* <div style={{ display: "flex", marginLeft: "18px" }}>
           
-            <div >
-              <label> <input type="radio" name="location" checked={jobLocation === 'AllL'} onClick={() => { getjobsAllLoc(); setjobLocation("AllL") }} />All</label><br></br>
-              <label> <input type="radio" name="location" checked={jobLocation === 'banglore'} onClick={() => { getLocation("banglore"); setjobLocation('banglore') }} />Banglore</label><br></br>
-              <label> <input type="radio" name="location" disabled checked={jobLocation === 'chennai'} onClick={() => { getLocation("chennai"); setjobLocation('chennai') }} />Chennai</label><br></br>
-              <label> <input type="radio" name="location" disabled checked={jobLocation === 'hyderabad'} onClick={() => { getLocation("hyderabad"); setjobLocation('hyderabad') }} />Hyderabad</label><br></br>
-              <label> <input type="radio" name="location" disabled checked={jobLocation === 'mumbai'} onClick={() => { getLocation("mumbai"); setjobLocation('mumbai') }} />Mumbai</label><br></br>
-              <label> <input type="radio" name="location" disabled checked={jobLocation === 'delhi'} onClick={() => { getLocation("delhi"); setjobLocation('delhi') }} />Delhi</label>
-            </div>
-            <br></br>
-
-            <div >
-              <label><input type="radio" name="jobtitle" onClick={() => { getjobTitleAll('all'); setjobTitle("all") }} />All</label>            <br></br>
-              <label><input type="radio" name="jobtitle" onClick={() => { { jobLocation !== "AllL" ? getBothFiltered('java') : JobtitleFilter('java') } }} />Java developer</label> <br></br>
-              <label><input type="radio" name="jobtitle" onClick={() => { { jobLocation !== "AllL" ? getBothFiltered('full') : JobtitleFilter('full') } }} />Full Stack Developer</label> <br></br>
-              <label><input type="radio" name="jobtitle" onClick={() => { { jobLocation !== "AllL" ? getBothFiltered('front') : JobtitleFilter('front') } }} />Frontend Developer</label><br></br>
-              <label><input type="radio" name="jobtitle" onClick={() => { { jobLocation !== "AllL" ? getBothFiltered('back') : JobtitleFilter('back') } }} />Backend developer</label> <br></br>
-              <label><input type="radio" name="jobtitle" onClick={() => { { jobLocation !== "AllL" ? getBothFiltered('python') : JobtitleFilter('python') } }} />Python Developer</label>
-            </div>
-          </div> */}
-
-
           {PageLoader ?
             <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "40%", marginTop: "50px" }} />
             : ""
@@ -1448,14 +1352,14 @@ function Home() {
 
                         </div>
 
-                        {/* <br></br> */}
+                       
                         <div className={styles.companyNameLocationWrapper}   >
                           <img className={styles.logo} src={job.Logo} />
                           {!job.Source ?
 
                             <> <span className={styles.companyName} onClick={() => { checkEmpHalf(btoa(job.empId)) }} >{job.companyName} </span><br></br></>
                             :
-                            //  <> <span className={styles.companyName} onClick={()=>{checkEmpHalf(job.empId)}} >{job.companyName} </span><br></br></>
+                            
                             <> <a className={`${styles.companyName}`} href={job.SourceLink} target="_blank">{job.Source}</a><br></br> </>
                           }
                         </div>
@@ -1480,11 +1384,7 @@ function Home() {
                         <div className={styles.ApplyPackage}>
                           <p className={styles.salaryRange}><span>&#8377;</span>{job.salaryRange}L</p>
                           {
-                          // job.SourceLink ?
-                          //   <button className={styles.ApplyMobile} onClick={() => {
-                          //     applyforOtherJob(job.SourceLink)
-                          //   }}>Apply</button>
-                          //   :
+                          
                             <button className={styles.ApplyMobile} onClick={() => { navigate("/JobSeekerLogin") }}><b>Apply</b></button>
                           }
                         </div>
@@ -1526,32 +1426,3 @@ function Home() {
 }
 
 export default Home
-
-// .......cards.......
-
-{/* <div className={styles.carwrapper}>
-              {jobs.map((items, i) => {
-                return (
-                  <div className={styles.card}>
-                    <div className={styles.AlltexWrapper}>
-                      <p className={styles.text}>Job Title :{items.jobTitle}</p>
-                      <p className={styles.text}>Job Location:</p><a>{items.jobLocation.toUpperCase()}</a>
-                      <p className={styles.text}> Package : {items.salaryRange}</p>
-                      <p className={styles.text}> Experiance Required :{items.experiance}</p>
-                      <p className={styles.text}> Skills Required :{items.skills}</p>
-                      <div className={styles.descriptionAndApply}>
-                        <p className={styles.description}>
-                          ......... {items.jobDescription} ........
-                          {items.jobDescription.slice(0, 60)}
-                          <span onClick={() => navigate(`/Jobdetails/${items._id}`)} className={styles.seeMore}>
-                            ...read more
-                          </span>
-                        </p>
-                        <button className={styles.button} onClick={applyforJob}>Apply </button>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })
-              }
-            </div> */}

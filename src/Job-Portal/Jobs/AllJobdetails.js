@@ -127,67 +127,7 @@ const [Loader, setLoader] = useState(false)
         
         </div>
           
-          {/* <table>
-          <tr>
-    <td colSpan={2} style={{backgroundColor:" rgb(40, 4, 99)"}}>
-
-    <div style={{marginLeft:"48%", color:"white", fontWeight:"550"}}>{jobs.jobTitle ? jobs.jobTitle[0].toUpperCase()+jobs.jobTitle.slice(1)
-    : <li style={{ display: "inline-block" }}>job Title</li>}</div>
-
-    </td>
-  </tr>
-  <tr>
-    <th>Company Name</th>
-    <td>{jobs.companyName ? jobs.companyName : <li style={{ display: "inline-block" }}>Company name</li>}</td>
-  </tr>
-
-  <tr>
-    <th>Location</th>
-    <td>{jobs.jobLocation ? jobs.jobLocation : <li style={{ display: "inline-block" }}>job Location</li>}</td>
-  </tr>
-  <tr>
-    <th>Package</th>
-    <td>{jobs.salaryRange ? jobs.salaryRange+"L" : <li style={{ display: "inline-block" }}>Salary Range</li>}</td>
-  </tr>
-  <tr>
-    <th>Experience Required</th>
-    <td>
-    {jobs.experiance ? jobs.experiance+"Y" : <li style={{ display: "inline-block" }} >Experiance</li>}
-    </td>
-  </tr>
-  <tr>
-    <th>Skills Required</th>
-    <td>{jobs.skills ? jobs.skills : <li style={{ display: "inline-block" }} >Skills</li>}</td>
-  </tr>
-  <tr>
-    <th>Posted Date</th>
-    <td>
-    {jobs.updatedAt ? new Date(jobs.updatedAt).toLocaleString(
-                  "en-US",
-                  {
-                    month: "short",
-                    day: "2-digit",
-                    year: "numeric",
-                  }
-                ) : <li style={{ display: "inline-block" }}>Date</li>
-                }
-    </td>
-  </tr>
-  <tr>
-    <td colSpan={2} style={{backgroundColor:" rgb(40, 4, 99)"}}>
-    <div  style={{marginLeft:"49%", color:"white", fontWeight:"550"}}>Description</div>
-    </td>
-  </tr>
-  <tr>
-    <td colSpan={2} style={{backgroundColor:"white", width:"10%"}} >
-    {
-    jobdescription? HTMLReactParser(jobdescription.toString()) :""
-             } 
-    </td>
-
-  </tr>
-
-</table> */}
+          
 
 <h1 style={{textAlign:"center", fontSize:"xx-large"}}>{jobs.jobTitle}</h1>
 <div style={{marginLeft:"30px"}}>
@@ -205,9 +145,7 @@ const [Loader, setLoader] = useState(false)
   &nbsp; <span>Job Type : {jobs.jobtype}</span>&nbsp; |  
   &nbsp; <span>Qualification : {jobs.qualification}</span>&nbsp; |  
   &nbsp; <span>Salary : {jobs.salaryRange}</span> 
-  {/* <span>Posted by {jobs.qualification}</span> |   */}
-  {/* <span>Posted by {jobs.qualification}</span> |   */}
-
+  
   
 <p>Skills : {jobs.skills} </p>
 </div>

@@ -23,19 +23,17 @@ function Answerdetails(props) {
 
   const [CommentName, setCommentName] = useState("")
   const [CommentID, setCommentID] = useState()
-  // let CommentName = atob(JSON.parse(localStorage.getItem("Snm")))
-
+  
   async function getProfile() {
     let userId = JSON.parse(localStorage.getItem("StudId"))
     const headers = { authorization: userId +" "+ atob(JSON.parse(localStorage.getItem("StudLog"))) };
     await axios.get(`/StudentProfile/getProfile/${userId}`, {headers})
         .then((res) => {
             let result = res.data.result
-            // console.log(result.name)
-            // localStorage.setItem("Snm", JSON.stringify(btoa(result.name)))
+            
             setCommentName(result.name)
         }).catch((err) => {
-            // alert("some thing went wrong")
+           
         })
 }
 let empId = JSON.parse(localStorage.getItem("EmpIdG"))
@@ -44,12 +42,12 @@ async function getEmpProfile() {
   await axios.get(`/EmpProfile/getProfile/${empId}`, {headers})
       .then((res) => {
           let result = res.data.result
-          // console.log(result.name)
+          
           setCommentName(result.name)
-          // localStorage.setItem("Snm", JSON.stringify(btoa(result.name)))
+          
 
       }).catch((err) => {
-          // alert("some thing went wrong")
+          
       })
 }
 
@@ -60,7 +58,7 @@ useEffect(() => {
     getProfile()
   }
 }, [])
-  // let empId = JSON.parse(localStorage.getItem("EmpIdG"))
+  
   const [jobdescription, setjobdescription] = useState([])
   const [jobseekerid, setjobSeekerId] = useState([])
   const [isReadMore, setIsReadMore] = useState(true)
@@ -76,17 +74,11 @@ const [Loader, setLoader] = useState(false)
   const [clickedJobId, setclickedJobId] = useState() //for single job loader
 
 function changeComments(e){
-  // setcomments(comments.comment=e.target.value)
+  
     setcomments({ ...comments, comment: e.target.value, name:CommentName})
 }
 
-// async function deletecom(){
-//   await axios.put(`/BlogRoutes/deleteComment`)
-//   .then((res)=>{
-//     console.log(res)
-//   })
 
-// }
   const navigate = useNavigate()
 
   let params = useParams();
@@ -116,8 +108,7 @@ function changeComments(e){
         <h2 style={{marginLeft:"10px", fontWeight:"800", marginTop:"15px", marginBottom:"-15px"}}> Blogs  </h2>
 
     <div style={{display:"flex", marginTop:"20px"}}>
-                            {/* <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
-             width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} /> */}
+                            
              <button style={{  color:"grey", marginTop:"10px", marginLeft:"8%", cursor:"pointer",}} 
              onClick={()=>{navigate(-1)}}>Back</button>
               
@@ -127,51 +118,7 @@ function changeComments(e){
 
         <>
        
-    {/* <div style={{display:"flex"}}>
-
-        <div style={{marginTop:"20px", marginLeft:"30px"}}>
-        <img className={styles.imageV} src={jobs.Logo?jobs.Logo : profileDp}/>
-        
-        </div>
-        <div>
-       
-          <table>
-          <tr>
-    <td colSpan={2} style={{backgroundColor:" rgb(40, 4, 99)"}}>
-    <div style={{textAlign:"center", color:"white", fontWeight:"550"}}>{jobs.jobTitle ? jobs.jobTitle[0].toUpperCase()+jobs.jobTitle.slice(1)
-    : <li style={{ display: "inline-block" }}>Blog Title</li>}</div>
-    </td>
-  </tr>
-       
-  <tr>
-    <th>Company Name</th>
-    <td>{jobs.companyName ? jobs.companyName : <li style={{ display: "inline-block" }}>Company name</li>}</td>
-  </tr>
-  <tr>
-    <th>Posted by</th>
-    <td>{jobs.name ? jobs.name : <li style={{ display: "inline-block" }}>Name</li>}</td>
-  </tr>
-  <tr>
-    <th>Tags</th>
-    <td>{jobs.skills ? jobs.skills : <li style={{ display: "inline-block" }} >Tags</li>}</td>
-  </tr>
-  <tr>
-    <th>Posted Date</th>
-    <td>
-    {jobs.updatedAt ? new Date(jobs.updatedAt).toLocaleString(
-                  "en-US",
-                  {
-                    month: "short",
-                    day: "2-digit",
-                    year: "numeric",
-                  }
-                ) : <li style={{ display: "inline-block" }}>Date</li>
-                }
-    </td>
-  </tr>
-  </table>
-  </div>
-  </div>         */}
+  
   {/* <h1 style={{textAlign:"center", fontSize:"xx-large"}}>{jobs.jobTitle[0].toUpperCase()+jobs.jobTitle.slice(1)}</h1> */}
   <h1 style={{textAlign:"center", fontSize:"xx-large"}}>{jobs.jobTitle}</h1>
 <div style={{marginLeft:"30px"}}>

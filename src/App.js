@@ -10,21 +10,13 @@ import Styles from "./Job-Portal/NaveBar/nav.module.css"
 import Cancel from "./Job-Portal/img/icons8-cross-50.png"
 import NavIcon from "./Job-Portal/img/icons8-menu-50.png"
 
-
-// .......importing components......//
-// import  from "./SidebarNav"
-
-// import SidebarNav from "./Job-Portal/NaveBar/SidebarNav";
 import StudentLogin from "./Job-Portal/Login/StudLogin";
 import EmployeeLogin from "./Job-Portal/Login/EmpLogin"
 import NewRegistered from "./Job-Portal/Profile/NewRegistration";
 import StuNewRegistered from "./Job-Portal/Profile/StudentRegistration";
-import StudentSignUp from "./Job-Portal/SignUp/StudSignin";
-import EmployeeSignUp from "./Job-Portal/SignUp/EmplSign";
 import StudPrivate from "./Job-Portal/Private/OutletStud";
 import PostedJobsbyEmp from "./Job-Portal/Jobs/mypostedjobs";
 import BlogpostedByEmp from "./Job-Portal/Jobs/mypostedBlogs";
-import PostedJobsByAdmin from "./Job-Portal/Jobs/AdminPostedJobs";
 import PostedCareerJobs from "./Job-Portal/Jobs/myPostedCaereerjobs";
 import EmpPrivate from "./Job-Portal/Private/OuletEmp";
 import PostJobs from "./Job-Portal/PostJobs/postJobs";
@@ -46,61 +38,31 @@ import UpdatePostedBlogs from "./Job-Portal/PostJobs/updatePostedBlogs";
 import MyAppliedJobs from "./Job-Portal/Jobs/MyAppliedJobs"
 import CareerAppliedJobs from "./Job-Portal/Jobs/MyCareerAppliedJobs"
 import AppliedUserProfile from "./Job-Portal/AppliedUserProfile/AppliedUserProfile";
-import AppliedUserForAdminJobs from "./Job-Portal/AppliedUserProfile/AdminJobsAppliedUser";
-import AppliedUserForCareerJobs from "./Job-Portal/AppliedUserProfile/AdminCareerJobsAppliedUser ";
 import CheckStudentProfiel from "./Job-Portal/Profile/CheckStudentProfiel";
 import CheckEmpHalfProfile from "./Job-Portal/Profile/CheckEmpHalfProf";
-// admin
-import AdminLogin from "./Job-Portal/Login/AdminLogin"
-import AdminAccess from "./Job-Portal/Admin/AdminAccess"
 // import SearchParams from "./Job-Portal/Login/SearchParams";
 import SearchParams from "./Job-Portal/Login/SearchParams ";
 import SearchParamsEmp from "./Job-Portal/Login/SearchParamsEmp";
 import SearchParamsDub from "./Job-Portal/Login/SearchParamsDupStuD";
 import SearchParamsDubEmp from "./Job-Portal/Login/SearchParamsDupEmp";
-import AdminProfile from "./Job-Portal/Admin/AdminProfile"
-import AllJobsForAdmin from "./Job-Portal/Admin/AllJobsForAdmin"
-import ArchiveJobs from "./Job-Portal/Admin/ArchiveJobs";
-import DeletedJobs from "./Job-Portal/Admin/DeletedJobs";
-import DeletedBlogs from "./Job-Portal/Admin/DeletedBlogs";
-import AllJobSeekers from "./Job-Portal/Admin/AllJobSeekers"
-import AllEmployees from "./Job-Portal/Admin/AllEmployees"
 import CheckEmpProfileForAdmin from "./Job-Portal/Profile/CheckEmplProfileForAdmin";
 import CheckStudentProfileForAdmin from "./Job-Portal/Profile/CheckStuForAdmin";
 import CheckArchivedJobSeeker from "./Job-Portal/Profile/CheckArchivedStud";
 import SearchCandidate from "./Job-Portal/AppliedUserProfile/SearchCandidat";
 import SearchCandHome from "./Job-Portal/AppliedUserProfile/SearchCandHome";
-import AdminUpdate from "./Job-Portal/Admin/AdminUpdate"
-import AdminPostJobs from "./Job-Portal/Admin/AdminJobPosts";
-import AllIds from "./Job-Portal/Admin/Allid'sStudent";
-import ArchivedUser from "./Job-Portal/Admin/ArchiveJobSeekers";
-import AdminCareerPostJobs from "./Job-Portal/Admin/AdminCareerJobPosts";
 import AllCareerJobs from "./Job-Portal/Jobs/AllCareerJobs";
-
 import Blogs from "./Job-Portal/Jobs/AllBlogs";
-
 import AboutUs from "./Job-Portal/AboutUs"
 import Contact from "./Job-Portal/Contact"
 import Services from "./Job-Portal/Services"
 import TermsAndCondition from "./Job-Portal/TermsAndConditions"
 import Footer from "./Job-Portal/Footer/Footer";
-import Payment from "./Job-Portal/Payment"
 import socketIO from 'socket.io-client';
 import SidebarNav from "./Job-Portal/BigSideNav";
 import useScreenSize from '../src/Job-Portal/SizeHook';
 import AskQuestion from "./Job-Portal/PostJobs/postQuesion";
-// axios.defaults.baseURL = "http://localhost:8080" 
-
-// simillry i want to show table on months condition if i select  yearly only 1 input column and 3 rows should be displayed and if  i select quarterly jan -march , april-jun , july-sep, oct-dec should be displayed and if i select half yearly then jan-jun, and july to dec shouldbe displayed and if i select monthly then all months from jan to dec should be displayed
-// axios.defaults.baseURL = "https://i-twalkin-backend-testrelease-2-0-1-0824-zdnu.vercel.app" // new vercel
-
-// axios.defaults.baseURL = "https://i-twalkin-backend-testrelease-2-0-1-0824.vercel.app"  // vercel Test
 
 axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
-
-// Vercel Main Live 
-//  axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824.onrender.com";
-// .. not available now and company & 
 
 function App() {
 
@@ -108,10 +70,6 @@ function App() {
   let size = screenSize.width;
 
   const [ShowSideNave, setShowSideNave] = useState(false)
-
-  // let jobSeekerId = JSON.parse(localStorage.getItem("StudId"))
-  // let empId = JSON.parse(localStorage.getItem("EmpIdG"))
- 
 
   return (
     <>
@@ -150,39 +108,10 @@ function App() {
               <Route path="/MyCareer-Applied-Jobs" element={<CareerAppliedJobs url={axios.defaults.baseURL} />} />
             </Route>
             <Route path="/AllCareerJobs" element={<AllCareerJobs />} />
-            <Route path="/BIAdd@Applied-User-Profile/:jid" element={<AppliedUserForAdminJobs url={axios.defaults.baseURL} />} />
-            <Route path="/BIAdd@Applied-CareerUser-Profile/:jid" element={<AppliedUserForCareerJobs url={axios.defaults.baseURL} />} />
-            <Route path="/BIAdd@PostedCareerJobs" element={<PostedCareerJobs url={axios.defaults.baseURL} />} />
-            <Route path="/BIAdd@AdminPostedJobs" element={<PostedJobsByAdmin url={axios.defaults.baseURL} />} />
-            <Route path="/BIAdd@Logg" element={<AdminLogin />} />
-            <Route path="/BIAddAdminAccess" element={<AdminAccess />} />
-            <Route path="/BIAdd@Gmail" element={<SearchParams />} />
-            <Route path="/BIAdd@GmailEmp" element={<SearchParamsEmp />} />
-            <Route path="/BIAdd@Gmaill" element={<SearchParamsDub />} />
-            <Route path="/BIAdd@Gmaile" element={<SearchParamsDubEmp />} />
-            <Route path="/BIAddmin@Profile" element={<AdminProfile />} />
-            <Route path="/BIAddmin@AllJobs" element={<AllJobsForAdmin />} />
-            <Route path="/BIAddmin@ArchiveJobs" element={<ArchiveJobs />} />
-            <Route path="/BIAddmin@DeletedJobs" element={<DeletedJobs />} />
-            <Route path="/BIAddmin@DeletedBlogs" element={<DeletedBlogs />} />
-            <Route path="/BIAddmin@AllJobSeekers" element={<AllJobSeekers />} />
-            <Route path="/BIAddmin@AllEmployees" element={<AllEmployees />} />
-            <Route path="/BIAddmin@CheckEmpProfile/:CP" element={<CheckEmpProfileForAdmin />} />
-            <Route path="/BIAddmin@CheckStudentProfile/:CP" element={<CheckStudentProfileForAdmin />} />
-            <Route path="/BIAddmin@CheckStudentArchived/:CP" element={<CheckArchivedJobSeeker />} />
-            <Route path="/BIAddmin@AdminUpdate" element={<AdminUpdate />} />
-            <Route path="/BIAddmin@PostJob" element={<AdminPostJobs />} />
-            <Route path="/BIAddmin@UpdateCareer postedjobs" element={<UpdateCareerPostedJobs url={axios.defaults.baseURL} />} />
-
-            <Route path="/BIAddmin@AdminCareerPostJobs" element={<AdminCareerPostJobs />} />
-            <Route path="/BIAddmin@AllIds" element={<AllIds />} />
-            <Route path="/BIAddmin@ArchivedUser" element={<ArchivedUser />} />
             <Route path="/JobSeekerLogin" element={<StudentLogin />} />
             <Route path="/New-Registration" element={<NewRegistered />} />
             <Route path="/Jobseeker-New-Registration" element={<StuNewRegistered />} />
             <Route path="/EmployeeLogin" element={<EmployeeLogin />} />
-            <Route path="/JobSeekerSignUp" element={<StudentSignUp />} />
-            <Route path="/EmployeeSignUp" element={<EmployeeSignUp />} />
             <Route path="/JobDetails/:id" element={<Jobdetails />} />
             <Route path="/Blogdetails/:id" element={<Blogdetails />} />
             <Route path="/Answerdetails/:id" element={<Answerdetails />} />
@@ -190,9 +119,6 @@ function App() {
             <Route path="/CheckEmpHalfProfile/:empId" element={<CheckEmpHalfProfile />} />
 
             <Route path="/Search-Candidate-Home" element={<SearchCandHome url={axios.defaults.baseURL} />} />
-
-            <Route path="/payment" element={<Payment />} />
-
             <Route path="/AboutUs" element={<AboutUs />} />
             <Route path="/Services" element={<Services />} />
             <Route path="/Contact" element={<Contact />} />
