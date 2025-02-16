@@ -170,7 +170,7 @@ const [Loader, setLoader] = useState(false)
               <>
                 <div className={styles.JobCard} >
                 <div className={styles.JobTitleDateWrapper}>
-        <p className={styles.jobTitle} >{jobs.jobTitle}</p>
+        <p className={styles.jobTitle} >{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
         <p className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {

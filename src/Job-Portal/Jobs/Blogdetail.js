@@ -190,7 +190,7 @@ async function deletComment(id){
               <>
                 <div className={styles.JobCard} >
                 <div className={styles.JobTitleDateWrapper}>
-        <p className={styles.QuestionjobTitle} >{jobs.jobTitle}</p>
+        <p className={styles.QuestionjobTitle} >{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
         <p className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {

@@ -1294,14 +1294,14 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                                   top: 0
                                 })
                             navigate(`/Answerdetails/${btoa(job._id)}`)
-                          }} >{job.jobTitle.toUpperCase()} </p>
+                          }} >{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
                               :
                               <p className={styles.jobTitle} onClick={() => {
                                 window.scrollTo({
                                   top: 0
                                 })
                             navigate(`/Blogdetails/${btoa(job._id)}`)
-                          }} >{job.jobTitle.toUpperCase()} </p>
+                          }} >{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
                             }
                             
 
