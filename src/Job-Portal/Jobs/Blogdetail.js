@@ -155,7 +155,7 @@ async function deletComment(id){
         <>
     
   
-  <h1 style={{textAlign:"center", fontSize:"xx-large"}}>{jobs.jobTitle}</h1>
+  <h1 style={{textAlign:"center", fontSize:"xx-large"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</h1>
 <div style={{marginLeft:"30px"}}>
   <span>Posted by {jobs.name}</span> |  
   <span> Posted on : {new Date(jobs.createdAt).toLocaleString(
