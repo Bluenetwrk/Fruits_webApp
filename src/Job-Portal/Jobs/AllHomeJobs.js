@@ -545,7 +545,7 @@ function Home() {
         </>
         : ""
       }
-      <h1>Nikita is working on this development</h1>
+      {/* <h1>Nikita is working on this development</h1> */}
       {checkBoxValue.length > 0 ?
         <>
           <button style={{
@@ -676,7 +676,7 @@ function Home() {
                       <ul className={styles.ul} key={i}>
                         {/* } */}
 
-                        <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle}</li>
+                        <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li>
                         <li className={`${styles.li} ${styles.Source}`} >Itwalkin</li>
 
                         {

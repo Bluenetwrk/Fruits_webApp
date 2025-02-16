@@ -575,9 +575,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                       {/* } */}  
                       {
                           items.question?
-                          <li className={`${styles.li} ${styles.BlogJtitle}`} onClick={() => navigate(`/Answerdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.slice(0,120)}</li>
+                          <li className={`${styles.li} ${styles.BlogJtitle}`} onClick={() => navigate(`/Answerdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.slice(0,120).charAt(0).toUpperCase()+items.jobTitle.slice(1,120)}</li>
                           :
-                          <li className={`${styles.li} ${styles.BlogJtitle}`} onClick={() => navigate(`/Blogdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle}</li>
+                          <li className={`${styles.li} ${styles.BlogJtitle}`} onClick={() => navigate(`/Blogdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li>
                         }                  
                       
                        <li className={`${styles.li} ${styles.BlogSource}`} >Itwalkin</li>
