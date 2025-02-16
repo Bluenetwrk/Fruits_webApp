@@ -1340,7 +1340,7 @@ function Home() {
                               top: 0
                             })
                             navigate(`/Jobdetails/${btoa(job._id)}`)
-                          }} >{job.jobTitle.toUpperCase()} </p>
+                          }} >{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
                           <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
