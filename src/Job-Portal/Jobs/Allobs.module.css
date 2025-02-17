@@ -1,4 +1,29 @@
+/* ---------------Job Details starts------------- */
+.jobdetailBtnContainer{
+    /* background-color: blue; */
+}
+.jobdetailBackBtn{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.0rem; 
+    margin-left: 120px;
+}
+.jobdetailBackBtn:hover{
+    background-color: white;
+    color: rgb(40, 4, 99);
+    border: 2px solid  rgb(40, 4, 99);
+}
 
+
+
+
+/* ---------------Job Details Ends------------- */
 .HomeNavConetenetWrapperAdmin{
     display: flex;
     /* margin-top: -47.5px; */
@@ -63,6 +88,9 @@
     .BlogNavConetenetWrapper{
         margin-left: 30%;
     }
+    .jobdetailBackBtn{
+        margin-left: 80px;
+    }
 }
 @media (max-width:986px) {
 .NavConetenetWrapper{
@@ -90,6 +118,9 @@
 }
 .HomeNavConetenetWrapper{
     width:48%;
+}
+.jobdetailBackBtn{
+    margin-left: 80px;
 }
 }
 
@@ -663,6 +694,9 @@ table {
 .MobLocationFilterWrapper{
     margin-left: 53%;
 }
+.jobdetailBackBtn{
+    margin-left: 20px;
+}
 }
 @media (max-width:360px){
 .MobLocationFilterWrapper{
@@ -673,11 +707,15 @@ table {
 .MobLocationFilterWrapper{
     margin-left: 56%;
 }
+.jobdetailBackBtn{
+    margin-left: 20px;
+}
 }
 @media (max-width:307px){
 .MobLocationFilterWrapper{
     margin-left: 57.5%;
 }
+
 }
 /* @media (max-width:297px){
 .MobLocationFilterWrapper{
@@ -766,7 +804,7 @@ table {
 }
 .QuestionjobTitle{
     font-weight: 600;
-    font-size:medium;
+    font-size:22px;
     display: inline;
     /* text-decoration: underline; */
     width:90%;
