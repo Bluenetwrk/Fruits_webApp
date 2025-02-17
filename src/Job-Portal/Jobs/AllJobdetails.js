@@ -113,9 +113,10 @@ const [Loader, setLoader] = useState(false)
 
   return (
     <>
-    <div style={{display:"flex"}}>
-                            <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
-             width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} />
+    <div class={styles.jobdetailBtnContainer} style={{display:"flex"}}>
+      <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
+                            {/* <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
+             width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} /> */}
     {/* <p style={{marginLeft:"30%"}}><b>Full Job Description</b></p> */}
     </div>
 
