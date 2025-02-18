@@ -145,8 +145,9 @@ async function deletComment(id){
     <div style={{display:"flex", marginTop:"20px"}}>
                             {/* <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
              width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} /> */}
-             <button style={{  color:"grey", marginTop:"10px", marginLeft:"8%", cursor:"pointer",}} 
-             onClick={()=>{navigate(-1)}}>Back</button>
+             {/* <button style={{  color:"grey", marginTop:"10px", marginLeft:"8%", cursor:"pointer",}} 
+             onClick={()=>{navigate(-1)}}>Back</button> */}
+             <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
               
     </div>
 
