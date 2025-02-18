@@ -20,10 +20,87 @@
     border: 2px solid  rgb(40, 4, 99);
 }
 
-
-
-
 /* ---------------Job Details Ends------------- */
+
+/* ------------------Blog Answer page starts------------------ */
+.blogHeading{
+    margin-left: 120px;
+}
+.blogButtonContainer{
+    margin-left: 120px;
+    /* background-color: red; */
+}
+.blogBackButton{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.0rem; 
+    margin-left: 120px; 
+}
+.blogBackButton:hover{
+background-color: white;
+    color: rgb(40, 4, 99);
+    border: 2px solid  rgb(40, 4, 99);
+}
+.answerTitle{
+    margin-left: 120px;
+    width: 70%;
+}
+.ansPostedDetails{
+    margin-left: 120px;
+    width: 70%;
+    text-align: start;  
+}
+.submittedAnsdiv{
+    background-color: #fff;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1), 
+                0 -2px 10px rgba(0, 0, 0, 0.1);
+
+    margin-bottom: 15px;
+    width: 70%;
+    margin-left: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+.submittedAnsDetail{
+    font-size: 1.1rem;
+
+}
+.ansCommentSection{
+    width:75%;
+    margin-left: 120px;
+    border-radius: 10px;
+    margin-bottom: 100px;
+    margin-top: 50px;
+}
+.ansBtn{
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px 25px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    
+}
+.ansBtn:hover{
+    background-color: white;
+    color:  #28a745;
+    border: 2px solid #28a745 ;
+}
+
+/* ------------------Blog Answer page ends------------------ */
 .HomeNavConetenetWrapperAdmin{
     display: flex;
     /* margin-top: -47.5px; */
@@ -667,6 +744,12 @@ table {
     .MobLocationFilterWrapperLogin{
         margin-left: 62%;
     }
+    .blogHeading{
+        margin-left: 20px;
+    }
+    .blogButtonContainer{
+        margin-left: 20px;
+    }
     }
 @media (max-width:430px){
     .MobLocationFilterWrapperLogin{
@@ -710,6 +793,13 @@ table {
 .jobdetailBackBtn{
     margin-left: 20px;
 }
+.blogHeading{
+    margin-left: 20px;
+}
+.blogButtonContainer{
+    margin-left: 20px;
+}
+
 }
 @media (max-width:307px){
 .MobLocationFilterWrapper{
