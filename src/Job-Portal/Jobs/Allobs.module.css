@@ -4,6 +4,7 @@
     display: flex;
     justify-content: space-between;
 
+
 }
 .jobdetailBackBtn{
     background-color: rgb(40, 4, 99);
@@ -15,7 +16,7 @@
     margin-top: 10px;
     font-weight: 500;
     font-size: 1.0rem; 
-    margin-left: 120px;
+    margin-left: 20px;
 }
 .jobdetailBackBtn:hover{
     background-color: white;
@@ -23,9 +24,9 @@
     border: 2px solid  rgb(40, 4, 99);
 }
 .jobdetailApplyBtn{
-    position: absolute;
+    /* position: absolute;
     right:0px;
-    top:60px;
+    top:60px; */
     background-color: rgb(40, 4, 99);
     color: white;
     border: none;
@@ -35,7 +36,7 @@
     margin-top: 10px;
     font-weight: 500;
     font-size: 1.0rem; 
-    margin-right: 120px;
+    margin-right: 20px;
 }
 .jobdetailApplyBtn:hover{
     background-color: white;
@@ -44,13 +45,34 @@
 }
 .jobDetailsHeading{
     display: flex;
+    
 }
 .jobDetailContainer{
     background-color: white;
-    margin-left: 200px;
-    border: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
-    width:74%;
+    margin-left: 120px;
+    border: 2px solid black;
+    border-radius: 10px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.75); */
+    width:85%;
+    margin-bottom: 50px;
+    margin-top: 35px;
+}
+.jobDetailImage{
+    height:100px;
+    width:100px;
+    border-radius: 180%;
+    margin-left: 7%;
+    margin-top: 10px;
+}
+.jobDetailImageMobile{
+    height:30px;
+    width:30px;
+    border-radius: 180%;
+    /* margin-top:-20px; */
+}
+.jobDetailsPosterDesc{
+    margin-left: 120px;
+    margin-top: -30px;
 }
 
 /* ---------------Job Details Ends------------- */
@@ -204,6 +226,12 @@ background-color: white;
     .jobDetailContainer{
            margin-left:100px;
            margin-top: 20px;
+    }
+    .jobdetailBackBtn{
+        margin-left: 20px;
+    }
+    .jobDetailsPosterDesc{
+        margin-left: 20px;
     }
 }
 @media (max-width:986px) {
@@ -958,7 +986,8 @@ table {
     font-weight: 400;
     text-decoration: underline;  
     font-size: medium;
-    width:100%
+    width:100%;
+    
 }
 
 .jobLocation{

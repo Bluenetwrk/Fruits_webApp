@@ -113,24 +113,29 @@ const [Loader, setLoader] = useState(false)
 
   return (
     <>
-    <div class={styles.jobdetailBtnContainer} style={{display:"flex"}}>
-      <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
+    {/* <div class={styles.jobdetailBtnContainer} style={{display:"flex"}}> */}
+      {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
       
                             {/* <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
              width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} /> */}
     {/* <p style={{marginLeft:"30%"}}><b>Full Job Description</b></p> */}
-    </div>
+    {/* </div> */}
 
       {screenSize.width>850 ?
 
         <>
-        <button class={styles.jobdetailApplyBtn}>Apply</button>
-        <div class={styles.jobDetailContainer}>
-        <div class={styles.jobDetailsHeading}>
-        <div class={styles.jobDetailsImage}>
-        <img className={styles.imageV} src={jobs.Logo?jobs.Logo : profileDp}/>
         
+        <div class={styles.jobDetailContainer}>
+
+        <div class={styles.jobdetailBtnContainer} style={{display:"flex"}}>
+           <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
+           <button class={styles.jobdetailApplyBtn}>Apply</button>
         </div>
+        <div class={styles.jobDetailsHeading}>
+             <div class={styles.jobDetailsImage}>
+            {/* <img className={styles.imageV} src={jobs.Logo?jobs.Logo : profileDp}/> */}
+              <img className={styles.jobDetailImage} src="/company.avif" />
+            </div>
           
           
 <div class={styles.jobDetailsPosterDesc}>
@@ -178,6 +183,7 @@ const [Loader, setLoader] = useState(false)
 
 
               <>
+              <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
                 <div className={styles.JobCard} >
                 <div className={styles.JobTitleDateWrapper}>
         <p className={styles.jobTitle} >{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
@@ -191,7 +197,8 @@ const [Loader, setLoader] = useState(false)
         )} </p></div>
 
         <div className={styles.companyNameLocationWrapper}   >
-          <img className={styles.logo} src={jobs.Logo} />
+          {/* <img className={styles.logo} src={jobs.Logo} /> */}
+          <img className={styles.jobDetailImageMobile} src="/company.avif" />
           {!jobs.Source ?
 
           <span className={styles.companyName} >{jobs.companyName}  </span> 
