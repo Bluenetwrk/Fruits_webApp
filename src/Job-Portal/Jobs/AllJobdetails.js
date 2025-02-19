@@ -115,6 +115,7 @@ const [Loader, setLoader] = useState(false)
     <>
     <div class={styles.jobdetailBtnContainer} style={{display:"flex"}}>
       <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
+      
                             {/* <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
              width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} /> */}
     {/* <p style={{marginLeft:"30%"}}><b>Full Job Description</b></p> */}
@@ -123,13 +124,16 @@ const [Loader, setLoader] = useState(false)
       {screenSize.width>850 ?
 
         <>
-        <div>
+        <button class={styles.jobdetailApplyBtn}>Apply</button>
+        <div class={styles.jobDetailContainer}>
+        <div class={styles.jobDetailsHeading}>
+        <div class={styles.jobDetailsImage}>
         <img className={styles.imageV} src={jobs.Logo?jobs.Logo : profileDp}/>
         
         </div>
           
           
-
+<div class={styles.jobDetailsPosterDesc}>
 <h1 style={{textAlign:"center", fontSize:"xx-large"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading...."}</h1>
 <div style={{marginLeft:"30px"}}>
   <span>Posted by : {jobs.companyName}</span> &nbsp;|  
@@ -150,6 +154,9 @@ const [Loader, setLoader] = useState(false)
   
 <p>Skills : {jobs.skills} </p>
 </div>
+</div>
+</div>
+
 
   <table className={styles.tableDesWrapper} style={{marginLeft:"6px", marginTop:"0px", flexWrap:"wrap", width:"98.8%", borderCollapse: "collapse",border:"none"}}>         
   
@@ -162,6 +169,8 @@ const [Loader, setLoader] = useState(false)
 
   </tr>
   </table>
+  </div>
+  
           </>
           :
           <>
