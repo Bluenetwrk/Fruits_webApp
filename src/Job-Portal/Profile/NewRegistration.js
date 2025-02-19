@@ -441,22 +441,22 @@ setCompanyCIN("")
         {/* <h3 style={{color:"rgb(40, 4, 99)", marginLeft:"2%"}}>Update your Profi</h3> */}
 
 
-          <div className={styles.EmpimageViewWrapper}>
-            {file?"":<img className={styles.EmpimageView} src={image ? image : Companylogo} />}
-            {file?<img className={styles.EmpfileView} src={file} />:""}
+          {/* <div className={styles.EmpimageViewWrapper}> */}
+            {/* {file?"":<img className={styles.EmpimageView} src={image ? image : Companylogo} />}
+            {file?<img className={styles.EmpfileView} src={file} />:""} */}
 
-            <div className={styles.EmpaddfileDiconwrapper}>
+            {/* <div className={styles.EmpaddfileDiconwrapper}>
               <input className={`${styles.addfile} ${styles.EmpaddfileD}`} type="file" accept='.png, .jpg, .jpeg' onChange={prevewImage} />
-              <div className={styles.Emploader}> {loader ? <TailSpin height={"40px"} /> : ""} </div>
+              <div className={styles.Emploader}> {loader ? <TailSpin height={"40px"} /> : ""} </div> */}
 
               {/* <img style ={{color:"blue" , marginTop:"4px", width:"15%"}} src={delet} onClick={deletePic}/> */}
-            </div>
+            {/* </div> */}
 
-          </div>
-          <div className={styles.saveDelete}>
+          {/* </div> */}
+          {/* <div className={styles.saveDelete}>
             {file && !loader ? <button className={styles.EmpsaveImage} onClick={uploadImage}>Save</button> : ""}
             {immage ? <button className={styles.EmpDeleteImage} onClick={deletePic}>Delete</button> : ""}
-          </div>
+          </div> */}
 
           <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
 {screenSize.width>850?
