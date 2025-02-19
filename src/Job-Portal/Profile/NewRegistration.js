@@ -432,8 +432,12 @@ setCompanyCIN("")
       <div className={styles.EntireFullWrapper}>
 
         <div className={styles.EntireWrapper}>
-        <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
-             width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} />
+        {/* <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
+             width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} /> */}
+             
+             <button class={styles.empRegBackButton} style={{cursor:"pointer",}} 
+             onClick={()=>{navigate(-1)}}>Back</button>
+
         {/* <h3 style={{color:"rgb(40, 4, 99)", marginLeft:"2%"}}>Update your Profi</h3> */}
 
 
