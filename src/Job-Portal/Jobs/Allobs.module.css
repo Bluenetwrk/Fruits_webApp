@@ -1,3 +1,18 @@
+/* ---------------Home Page starts------------- */
+.homePageCompanyLogo{
+    height:32px;
+    width:32px;
+    border-radius: 180%;
+    /* margin-top:-20px; */
+}
+
+
+
+
+
+
+/* ---------------Home Page ends------------- */
+
 /* ---------------Job Details starts------------- */
 .jobdetailBtnContainer{
     /* background-color: blue; */
