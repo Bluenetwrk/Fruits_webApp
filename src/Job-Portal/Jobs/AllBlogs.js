@@ -1285,8 +1285,17 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   return (
                     <>
                       <div className={styles.JobCard} key={i}>
-
-                        <div className={styles.JobTitleDateWrapper}>
+                      <p className={`${styles.Date} ${styles.readPageDate}`}>{new Date(job.createdAt).toLocaleString(
+                            "en-US",
+                            {
+                              day: "2-digit",
+                              month: "short",
+                              year: "numeric",
+                            }
+                          )
+                          } </p>
+                         
+                        <div className={styles.JobTitleDateWrapper} style={{marginTop:"-20px"}}>
                    
                             {
                               job.question?
@@ -1302,12 +1311,12 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                                   top: 0
                                 })
                             navigate(`/Blogdetails/${btoa(job._id)}`)
-                          }} >{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
+                          }} style={{width:"100%", whiteSpace:"normal"}} >{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
                             }
                             
 
 
-                          <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
+                          {/* <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
                               day: "2-digit",
@@ -1315,7 +1324,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                               year: "numeric",
                             }
                           )
-                          } </p>
+                          } </p> */}
 
                         </div>
 
