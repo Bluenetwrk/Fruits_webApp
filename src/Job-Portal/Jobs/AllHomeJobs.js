@@ -1333,15 +1333,7 @@ function Home() {
                   return (
                     <>
                       <div className={styles.JobCard} key={i}>
-
-                        <div className={styles.JobTitleDateWrapper}>
-                          <p className={styles.jobTitle} onClick={() => {
-                            window.scrollTo({
-                              top: 0
-                            })
-                            navigate(`/Jobdetails/${btoa(job._id)}`)
-                          }} >{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
-                          <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
+                      <p className={styles.readPageDate}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
                               day: "2-digit",
@@ -1350,20 +1342,40 @@ function Home() {
                             }
                           )
                           } </p>
+                          <div style={{marginTop:"-24px"}}>
+                        <div className={styles.JobTitleDateWrapper}>
+                          <p className={styles.jobTitle} onClick={() => {
+                            window.scrollTo({
+                              top: 0
+                            })
+                            navigate(`/Jobdetails/${btoa(job._id)}`)
+                          }} style={{width:"100%", whiteSpace:"normal"}}>{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
+                          {/* <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
+                            "en-US",
+                            {
+                              day: "2-digit",
+                              month: "short",
+                              year: "numeric",
+                            }
+                          )
+                          } </p> */}
 
                         </div>
-
+                         
                        
-                        <div className={styles.companyNameLocationWrapper}   >
+                        <div className={styles.JobPagecompanyNameLocationWrapper}   >
                           {/* <img className={styles.logo} src={job.Logo} /> */}
                           <img className={styles.homePageCompanyLogo} src="/company.avif" />
-                          {!job.Source ?
 
+                          <div class={styles.jobTitleCompanyName}>
+                          {!job.Source ?
+                            
                             <> <span className={styles.companyName} onClick={() => { checkEmpHalf(btoa(job.empId)) }} >{job.companyName} </span><br></br></>
                             :
                             
                             <> <a className={`${styles.companyName}`} href={job.SourceLink} target="_blank">{job.Source}</a><br></br> </>
                           }
+                          </div>
                         </div>
                         <  img className={styles.jobLocationImage} src={location} />
                         <span className={styles.jobLocation}>{job.jobLocation[0].toUpperCase() + job.jobLocation.slice(1)} ,</span>
@@ -1407,6 +1419,7 @@ function Home() {
                         </p>
 
 
+                      </div>
                       </div>
                     </>
                   )
