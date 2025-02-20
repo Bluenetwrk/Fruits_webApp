@@ -801,7 +801,9 @@ function AllJobs(props) {
         :
         // Mobile View
         <>
-    <p style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>ITwalkin Career</p>
+    {/* <p style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>ITwalkin Career</p>
+   */}
+   <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>ITwalkin Career</h2>
   
           <div className={styles.searchBoth}>
             <p className={styles.p}>Search </p>
