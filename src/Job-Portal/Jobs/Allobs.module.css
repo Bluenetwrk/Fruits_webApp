@@ -996,6 +996,13 @@ width:100%;
 .companyNameLocationWrapper{
     margin-left: 15px;
 }
+.JobPagecompanyNameLocationWrapper{
+    margin-left: 15px;
+    display: flex;
+}
+.jobTitleCompanyName{
+margin-top: 7px;
+}
 .logo{
     width:25px;
     height:20px;
