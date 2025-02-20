@@ -1355,7 +1355,8 @@ function Home() {
 
                        
                         <div className={styles.companyNameLocationWrapper}   >
-                          <img className={styles.logo} src={job.Logo} />
+                          {/* <img className={styles.logo} src={job.Logo} /> */}
+                          <img className={styles.homePageCompanyLogo} src="/company.avif" />
                           {!job.Source ?
 
                             <> <span className={styles.companyName} onClick={() => { checkEmpHalf(btoa(job.empId)) }} >{job.companyName} </span><br></br></>
