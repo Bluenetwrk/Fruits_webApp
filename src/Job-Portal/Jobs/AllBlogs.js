@@ -1294,7 +1294,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                                   top: 0
                                 })
                             navigate(`/Answerdetails/${btoa(job._id)}`)
-                          }} >{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
+                          }}style={{fontSize:"15px", fontWeight:"500"}} >{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
                               :
                               <p className={styles.jobTitle} onClick={() => {
                                 window.scrollTo({

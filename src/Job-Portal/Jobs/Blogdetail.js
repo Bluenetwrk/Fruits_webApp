@@ -156,7 +156,7 @@ async function deletComment(id){
         <>
     
   
-  <h1 style={{textAlign:"center", fontSize:"xx-large"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</h1>
+  <h1 style={{textAlign:"center", fontSize:"40px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</h1>
 <div style={{marginLeft:"30px"}}>
   <span>Posted by {jobs.name}</span> |  
   <span> Posted on : {new Date(jobs.createdAt).toLocaleString(
@@ -190,16 +190,25 @@ async function deletComment(id){
 
               <>
                 <div className={styles.JobCard} >
-                <div className={styles.JobTitleDateWrapper}>
-        <p className={styles.QuestionjobTitle} >{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
-        <p className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
+                <p className={`${styles.Date} ${styles.readPageDate}`}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {
             month: "short",
             day: "2-digit",
             year: "numeric",
           }
-        )} </p></div>
+        )} </p>
+                <div className={styles.JobTitleDateWrapper}>
+        <p className={styles.QuestionjobTitle} style={{fontSize:"26px", width:"100%" , marginTop:"2px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
+        {/* <p className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
+          "en-US",
+          {
+            month: "short",
+            day: "2-digit",
+            year: "numeric",
+          }
+        )} </p> */}
+        </div>
      
      <table style={{marginLeft:"6px", marginTop:"0px", width:"95.5%"}}>         
   
