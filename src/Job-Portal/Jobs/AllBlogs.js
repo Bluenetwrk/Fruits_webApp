@@ -719,7 +719,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
         // Mobile View
         :
         <>
-    <p style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Blogs</p>
+    {/* <p style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Blogs</p> */}
+    <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Blogs</h2>
 
           <div className={styles.searchBoth}>
             <p className={styles.p}>Search </p>
