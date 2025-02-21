@@ -24,6 +24,7 @@ function Jobdetails() {
   const [isReadMore, setIsReadMore] = useState(true)
 const screenSize = useScreenSize();
 const [Loader, setLoader] = useState(false)
+const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
   const [clickedJobId, setclickedJobId] = useState() //for single job loader
   let jobSeekerId = JSON.parse(localStorage.getItem("StudId"))
@@ -56,6 +57,21 @@ const [Loader, setLoader] = useState(false)
   }, [])
   function showless() {
     navigate(-1)
+  }
+
+   useEffect(() => {
+      let studentAuth = localStorage.getItem("StudLog")
+      if (studentAuth) {
+        setJobSeekerLogin(true)
+      }
+    }, [])
+
+  async function applyforJobasjobseeker(id,link) {
+    if(JobSeekerLogin)
+      window.open(`${link}`)
+    else
+     navigate("/JobSeekerLogin", { state: { Jid: id } })
+   
   }
 
   async function applyforOtherJob(Link) {
@@ -129,7 +145,7 @@ const [Loader, setLoader] = useState(false)
 
         <div class={styles.jobdetailBtnContainer} style={{display:"flex"}}>
            <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
-           <button class={styles.jobdetailApplyBtn}>Apply</button>
+           <button class={styles.jobdetailApplyBtn} onClick={()=>applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>Apply</button>
         </div>
         <div class={styles.jobDetailsHeading}>
              <div class={styles.jobDetailsImage}>
@@ -185,20 +201,30 @@ const [Loader, setLoader] = useState(false)
               <>
               <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
                 <div className={styles.JobCard} >
-                <div className={styles.JobTitleDateWrapper}>
-        <p className={styles.jobTitle} >{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
-        <p className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
+                <p className={styles.readPageDate}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {
             month: "short",
             day: "2-digit",
             year: "numeric",
           }
-        )} </p></div>
+        )} </p>
+                <div className={styles.JobTitleDateWrapper} style={{marginTop: "-20px"}}>
+        <p style={{ width:"100%" ,whiteSpace:"normal", marginRight: "5px" }}className={styles.jobTitle} >{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
+        {/* <p className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
+          "en-US",
+          {
+            month: "short",
+            day: "2-digit",
+            year: "numeric",
+          }
+        )} </p> */}
+        </div>
 
-        <div className={styles.companyNameLocationWrapper}   >
+        <div className={styles.JobPagecompanyNameLocationWrapper}   >
           {/* <img className={styles.logo} src={jobs.Logo} /> */}
           <img className={styles.jobDetailImageMobile} src="/company.avif" />
+          <div class={styles.jobTitleCompanyName} style={{marginLeft: "5px"}}>
           {!jobs.Source ?
 
           <span className={styles.companyName} >{jobs.companyName}  </span> 
@@ -207,6 +233,7 @@ const [Loader, setLoader] = useState(false)
 
 
 }  
+</div>
 
         </div>
         <  img className={styles.jobLocationImage} src={location}  /> 
@@ -247,7 +274,8 @@ const [Loader, setLoader] = useState(false)
   // job .isApproved?
 
     :
-  <button className={styles.ApplyMobile} onClick={() => { applyforJob(jobs._id) }}>Apply
+  // <button className={styles.ApplyMobile} onClick={() => { applyforJob(jobs._id) }}>Apply
+  <button className={styles.ApplyMobile} onClick={()=>applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>Apply
     <span className={styles.Loader} >{Loader && jobs._id == clickedJobId ?
       <TailSpin color="white" height={20} />
       : ""}</span></button>
@@ -263,8 +291,8 @@ const [Loader, setLoader] = useState(false)
                </div>
         // </div>
         :  jobs.SourceLink?
-        <button  className={styles.ApplyMobile} onClick={() => {
-          applyforOtherJob(jobs.SourceLink) }}>Apply</button>
+        <button  className={styles.ApplyMobile} onClick={() =>
+          applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>Apply</button>
           :
       <button className={styles.ApplyMobile} onClick={() => { navigate("/JobSeekerLogin") }}><b>Apply</b></button>
       

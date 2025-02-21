@@ -620,7 +620,7 @@ function AllJobs(props) {
                       <ul className={styles.ul} key={i}>
 
 <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}`)} 
-style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.toUpperCase()}</li>
+style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li>
                           <li className={`${styles.li} ${styles.Source}`} >Itwalkin</li>
                         {
                           !items.Source ?
@@ -1345,25 +1345,35 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                   return (
                     <>
                       <div className={styles.JobCard} key={i}>
-                        <div className={styles.JobTitleDateWrapper}>
-                          <p className={styles.jobTitle} onClick={() => {
-                            window.scrollTo({
-                              top: 0
-                            })
-                            navigate(`/Jobdetails/${btoa(job._id)}`)
-                          }} >{job.jobTitle.toUpperCase()}</p>
-                          <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
+                      <p className={styles.readPageDate}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
                               month: "short",
                               day: "2-digit",
                               year: "numeric",
                             }
-                          )} </p></div>
+                          )} </p>
+                        <div className={styles.JobTitleDateWrapper} style={{marginTop:"-22px"}}>
+                          <p className={styles.jobTitle} onClick={() => {
+                            window.scrollTo({
+                              top: 0
+                            })
+                            navigate(`/Jobdetails/${btoa(job._id)}`)
+                          }}style={{ width:"100%",whiteSpace:"normal"}} >{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)}</p>
+                          {/* <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
+                            "en-US",
+                            {
+                              month: "short",
+                              day: "2-digit",
+                              year: "numeric",
+                            }
+                          )} </p> */}
+                          </div>
                         {/* <br></br> */}
-                        <div className={styles.companyNameLocationWrapper}  >
-                          <img className={styles.logo} src={job.Logo} />
-
+                        <div className={styles.JobPagecompanyNameLocationWrapper} >
+                          {/* <img className={styles.logo} src={job.Logo} /> */}
+                          <img className={styles.homePageCompanyLogo} src="/company.avif" />
+                          <div class={styles.jobTitleCompanyName}>
                           {!job.Source ?
 
                             <> <span className={styles.companyName} onClick={() => { navigate(`/CheckEmpHalfProfile/${btoa(job.empId)}`) }} >{job.companyName} </span><br></br></>
@@ -1371,6 +1381,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                             //  <> <span className={styles.companyName} onClick={()=>{checkEmpHalf(job.empId)}} >{job.companyName} </span><br></br></>
                             <> <a className={`${styles.companyName}`} href={job.SourceLink} target="_blank">{job.Source}</a><br></br> </>
                           }
+                          </div>
 
                         </div>
 
