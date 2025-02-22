@@ -14,6 +14,8 @@ import Arrowimage from '../img/icons8-arrow-left-48.png'
 import profileDp from "../img/user_3177440.png"
 import "./Allobs.module.css"
 import HTMLReactParser from 'html-react-parser'
+import Down from '../img/icons8-down-button-24.png'
+import Up from '../img/icons8-arrow-button-24.png'
 
 
 function Jobdetails() {
@@ -127,8 +129,20 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
     }, 1000)
   }
 
+  function goUp(){
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    })
+  }
+  function goDown(){
+    window.scrollTo(50,5000000)
+
+    }
   return (
     <>
+     
+
     {/* <div class={styles.jobdetailBtnContainer} style={{display:"flex"}}> */}
       {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
       
@@ -140,7 +154,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
       {screenSize.width>850 ?
 
         <>
-        
+        <img style={{marginLeft:"50%", height: "30px"}}  onClick={()=>{goDown()}} src={Down}/>
         <div class={styles.jobDetailContainer}>
 
         <div class={styles.jobdetailBtnContainer} style={{display:"flex"}}>
@@ -191,6 +205,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
   </tr>
   </table>
   </div>
+  <img style={{height:"30px",marginLeft:"50%",marginBottom:"50px"}}  onClick={()=>{goUp()}} src={Up}/> 
   
           </>
           :
@@ -199,7 +214,10 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
 
               <>
+              <div style={{display:"flex"}}>
               <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
+              <img style={{marginLeft:"25%", marginTop:"0px", height:"24px"}}  onClick={()=>{goDown()}} src={Down}/>
+              </div>
                 <div className={styles.JobCard} >
                 <p className={styles.readPageDate}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
@@ -311,7 +329,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
               </>
 
             </div>
-
+            <img style={{height:"24px",marginLeft:"45%",marginBottom:"40px"}}  onClick={()=>{goUp()}} src={Up}/>
           </>
 
 
