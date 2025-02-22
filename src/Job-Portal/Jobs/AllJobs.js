@@ -1333,15 +1333,44 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
           </Carousel>
 
 
-          {PageLoader ?
+          
+          
+          <div style={{ marginBottom: "5px", marginTop: "10px", marginLeft: "10px" }}>
+            Show  <select onChange={(e) => { handleRecordchange(e) }}>
+              <option selected={lastIndex === 10} value={10}>10</option>
+              <option selected={lastIndex === 25} value={25}>25</option>
+              <option selected={lastIndex === 50} value={50}>50</option>
+              <option selected={lastIndex === 100} value={100}>100</option>
+            </select>  jobs per page
+          </div>
+          <div className={styles.navigationWrapper} style={{textAlign:"left"}}>
+              <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
+                <i class='fas fa-step-backward'></i>
+              </button>
+              <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={previous}>
+                <i class='fas fa-caret-square-left'></i>
+              </button>
+              <span>{currentPage}</span>
+              <button disabled={currentPage === npage} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={next}>
+                <i class='fas fa-caret-square-right'></i>
+              </button>
+              <button disabled={currentPage === npage} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={last}>
+                <i class='fas fa-step-forward'></i>
+              </button>
+            </div>
+
+            {PageLoader ?
             <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "40%", marginTop: "50px" }} />
             : ""
           }
+
           <div id={styles.JobCardWrapper} >
 
             {
-              jobs.length > 0 ?
-                jobs.map((job, i) => {
+              // jobs.length > 0 ?
+              //   jobs.map((job, i) => {
+                records.length > 0 ?
+                records.map((job, i) => {
                   return (
                     <>
                       <div className={styles.JobCard} key={i}>
