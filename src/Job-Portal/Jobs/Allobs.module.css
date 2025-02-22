@@ -994,7 +994,8 @@ table {
     /* background-color: rgb(204, 103, 103); */
     border-radius: 10px;
     /* margin-left: 40px;     */
-    width:90%
+    width:90%;
+    margin-top: -26px;
 }
 
 .JobCard {
