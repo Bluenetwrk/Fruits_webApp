@@ -214,7 +214,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
 
               <>
-              <div style={{display:"flex"}}>
+              <div style={{display:"flex",marginTop:"25px"}}>
               <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
               <img style={{marginLeft:"25%", marginTop:"0px", height:"24px"}}  onClick={()=>{goDown()}} src={Down}/>
               </div>
@@ -241,13 +241,13 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
         <div className={styles.JobPagecompanyNameLocationWrapper}   >
           {/* <img className={styles.logo} src={jobs.Logo} /> */}
-          <img className={styles.jobDetailImageMobile} src="/company.avif" />
-          <div class={styles.jobTitleCompanyName} style={{marginLeft: "5px"}}>
+          <img className={styles.jobDetailImageMobile} src="/company-logo.png" />
+          <div class={styles.jobDetailTitleCompanyName} style={{marginLeft: "5px"}}>
           {!jobs.Source ?
 
           <span className={styles.companyName} >{jobs.companyName}  </span> 
           :
-  <> <a className={`${styles.skills}`} href={jobs.SourceLink} target="_blank">{jobs.Source}</a><br></br> </>
+  <> <a style={{ fontSize:"18px"}}className={`${styles.skills}`} href={jobs.SourceLink} target="_blank">{jobs.Source}</a><br></br> </>
 
 
 }  

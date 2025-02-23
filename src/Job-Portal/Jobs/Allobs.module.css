@@ -1,9 +1,9 @@
 /* ---------------Home Page starts------------- */
 .homePageCompanyLogo{
-    height:32px;
-    width:32px;
+    height:45px;
+    width:45px;
     border-radius: 180%;
-    /* margin-top:-20px; */
+    margin-left:-10px;
 }
 
 
@@ -80,10 +80,10 @@
     margin-top: 10px;
 }
 .jobDetailImageMobile{
-    height:30px;
-    width:30px;
+    height:45px;
+    width:45px;
     border-radius: 180%;
-    /* margin-top:-20px; */
+    margin-left:-10px;
 }
 .jobDetailsPosterDesc{
     margin-left: 80px;
@@ -134,7 +134,7 @@
 }
 .mobileReadTopbtnsContainer{
     display: flex;
-    margin-top: -5px;
+    margin-top: 12px;
     
 }
 
@@ -1056,9 +1056,25 @@ width:100%;
 .JobPagecompanyNameLocationWrapper{
     margin-left: 15px;
     display: flex;
+    margin-top: -12px;
+    margin-bottom: -6px;
+}
+.blogNameLocationWrapper{
+    margin-left: 5px;
+    display: flex;
+    margin-top: -16px;
+    margin-bottom: -2px;
+}
+.blogCompanyName{
+    margin-top: 20px;
+    font-size: 17px;
 }
 .jobTitleCompanyName{
-margin-top: 7px;
+margin-top: 11px;
+}
+.jobDetailTitleCompanyName{
+    margin-top: 11px; 
+    /* font-size: 20px; */
 }
 .logo{
     width:25px;

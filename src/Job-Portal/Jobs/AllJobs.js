@@ -1401,7 +1401,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                         {/* <br></br> */}
                         <div className={styles.JobPagecompanyNameLocationWrapper} >
                           {/* <img className={styles.logo} src={job.Logo} /> */}
-                          <img className={styles.homePageCompanyLogo} src="/company.avif" />
+                          <img className={styles.homePageCompanyLogo} src="/company-logo.png" />
                           <div class={styles.jobTitleCompanyName}>
                           {!job.Source ?
 
