@@ -536,7 +536,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
               <option selected={lastIndex === 25} value={25}>25</option>
               <option selected={lastIndex === 50} value={50}>50</option>
               <option selected={lastIndex === 100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  blogs per page
           </div>
 
           <div className={styles.Uiwarpper}>
@@ -694,7 +694,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 <option selected={lastIndex === 25} value={25}>25</option>
                 <option selected={lastIndex === 50} value={50}>50</option>
                 <option selected={lastIndex === 100} value={100}>100</option>
-              </select>  jobs per page
+              </select>  blogs per page
             </div>
 
             <div className={styles.navigationWrapper}>
@@ -1280,7 +1280,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
               <option selected={lastIndex === 25} value={25}>25</option>
               <option selected={lastIndex === 50} value={50}>50</option>
               <option selected={lastIndex === 100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  blogs per page
           </div>
           <div className={styles.navigationWrapper} style={{textAlign:"left"}}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
@@ -1355,15 +1355,16 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
 
                         </div>
 
-                        <div className={styles.companyNameLocationWrapper}   >
-                          <img className={styles.logo} src={job.Logo} />
+                        <div className={styles.blogNameLocationWrapper}   >
+                          {/* <img className={styles.logo} src={job.Logo} /> */}
+                          <img style={{height:"40px",width:"40px",marginTop:"10px"}}className={styles.logo} src="/company-logo.png" />
 
-                             <span className={styles.companyName} onClick={() => { navigate(`/Blogdetails/${btoa(job._id)}`) }} >{job.companyName} </span>
-
+                             <span className={styles.blogCompanyName} onClick={() => { navigate(`/Blogdetails/${btoa(job._id)}`) }} >{job.companyName} </span>
+                          </div>
                              <span className={styles.jobtypeAndDate}>Posted by</span> :
                              <> <span className={styles.skills}>{job.name}</span><br></br></>                          
 
-                        </div>
+                        
                              <span className={styles.jobtypeAndDate}>Source</span> :
 <> <span className={styles.skills}>ItWalkin</span><br></br></>                          
 {
@@ -1403,7 +1404,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
               <option selected={lastIndex === 25} value={25}>25</option>
               <option selected={lastIndex === 50} value={50}>50</option>
               <option selected={lastIndex === 100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  blogs per page
           </div>
           <div className={styles.navigationWrapper} style={{textAlign:"left"}}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>

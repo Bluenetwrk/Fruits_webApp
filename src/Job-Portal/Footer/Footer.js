@@ -24,9 +24,10 @@ function Footer() {
              <img className={Styles.MobIwalkinLogologo} style={{width:"140px"}} src={Itwalkinlogo} />
             </div>
             <div className={Styles.brands}>
-              <a> <i className='fa-brands fa-facebook-square'></i> </a>
+              {/* <a> <i className='fa-brands fa-facebook-square'></i> </a>
               <a> <i className='fa-brands fa-twitter-square'></i> </a>
-              <a onClick={Linkedin}> <i class='fa-brands fa-linkedin'></i> </a>
+              <a onClick={Linkedin}> <i class='fa-brands fa-linkedin'></i> </a> */}
+               <i className="fa-brands fa-linkedin" style={{ fontSize: "xx-large", marginBottom: "30px" }}  onClick={Linkedin}></i>
             </div>
             </div>
 
