@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-
+import CompanyLogo from '../img/company-logo.png'
 import styles from "./Allobs.module.css"
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -74,7 +74,7 @@ function Home() {
 
   const [currentPage, setCurrentPage] = useState(1)
   const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage ? recordsperpage : 10)
-
+  const[jobsPerPageValue,setJobsPerPageValue]=useState(10);
 
 
   const lastIndex = currentPage * recordsPerPage //10
@@ -343,6 +343,7 @@ function Home() {
   function handleRecordchange(e) {
     sessionStorage.setItem("recordsperpageHome", JSON.stringify(e.target.value));
     let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
+    setJobsPerPageValue(Number(e.target.value));
     setrecordsPerPage(recordsperpage)
     setCurrentPage(1)
   }
@@ -616,11 +617,15 @@ function Home() {
           </div>
           <div style={{ marginBottom: "5px", marginTop: "0", marginLeft: "10px" }}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
-             
-              <option selected={lastIndex === 10} value={10}>10</option>
+    
+              {/* <option selected={lastIndex === 10} value={10}>10</option>
               <option selected={lastIndex === 25} value={25}>25</option>
               <option selected={lastIndex === 50} value={50}>50</option>
-              <option selected={lastIndex === 100} value={100}>100</option>
+              <option selected={lastIndex === 100} value={100}>100</option> */}
+              <option selected={jobsPerPageValue==10} value={10}>10</option>
+              <option selected={jobsPerPageValue==25} value={25}>25</option>
+              <option selected={jobsPerPageValue==50} value={50}>50</option>
+              <option selected={jobsPerPageValue==100} value={100}>100</option>
             </select>  jobs per page
           </div>
          
@@ -740,10 +745,14 @@ function Home() {
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div style={{ marginTop: "14px", marginLeft: "10px" }} >
               Show  <select onChange={(e) => { handleRecordchange(e) }}>
-                <option selected={lastIndex === 10} value={10}>10</option>
+                {/* <option selected={lastIndex === 10} value={10}>10</option>
                 <option selected={lastIndex === 25} value={25}>25</option>
-                <option selected={lastIndex === 50} value={50}>50</option>
-                <option selected={lastIndex === 100} value={100}>100</option>
+                <option selected={lastIndex ==
+                <option selected={lastIndex === 100} value={100}>100</option> */}
+                <option selected={jobsPerPageValue==10} value={10}>10</option>
+              <option selected={jobsPerPageValue==25} value={25}>25</option>
+              <option selected={jobsPerPageValue==50} value={50}>50</option>
+              <option selected={jobsPerPageValue==100} value={100}>100</option>
               </select>  jobs per page
             </div>
 
@@ -1327,10 +1336,14 @@ function Home() {
           <div style={{ marginBottom: "5px", marginTop: "0", marginLeft: "10px" }}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
              
-              <option selected={lastIndex === 10} value={10}>10</option>
+              {/* <option selected={lastIndex === 10} value={10}>10</option>
               <option selected={lastIndex === 25} value={25}>25</option>
               <option selected={lastIndex === 50} value={50}>50</option>
-              <option selected={lastIndex === 100} value={100}>100</option>
+              <option selected={lastIndex === 100} value={100}>100</option> */}
+              <option selected={jobsPerPageValue==10} value={10}>10</option>
+              <option selected={jobsPerPageValue==25} value={25}>25</option>
+              <option selected={jobsPerPageValue==50} value={50}>50</option>
+              <option selected={jobsPerPageValue==100} value={100}>100</option>
             </select>  jobs per page
           </div>
           
@@ -1394,7 +1407,8 @@ function Home() {
                        
                         <div className={styles.JobPagecompanyNameLocationWrapper}   >
                           {/* <img className={styles.logo} src={job.Logo} /> */}
-                          <img className={styles.homePageCompanyLogo} src="/company-logo.png" />
+                          {/* {console.log("home obj",job)} */}
+                          <img className={styles.homePageCompanyLogo} src={ CompanyLogo} />
 
                           <div class={styles.jobTitleCompanyName}>
                           {!job.Source ?
@@ -1462,10 +1476,14 @@ function Home() {
           <div style={{ marginBottom: "5px", marginTop: "0", marginLeft: "10px" }}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
              
-              <option selected={lastIndex === 10} value={10}>10</option>
+              {/* <option selected={lastIndex === 10} value={10}>10</option>
               <option selected={lastIndex === 25} value={25}>25</option>
               <option selected={lastIndex === 50} value={50}>50</option>
-              <option selected={lastIndex === 100} value={100}>100</option>
+              <option selected={lastIndex === 100} value={100}>100</option> */}
+              <option selected={jobsPerPageValue==10} value={10}>10</option>
+              <option selected={jobsPerPageValue==25} value={25}>25</option>
+              <option selected={jobsPerPageValue==50} value={50}>50</option>
+              <option selected={jobsPerPageValue==100} value={100}>100</option>
             </select>  jobs per page
           </div>
           

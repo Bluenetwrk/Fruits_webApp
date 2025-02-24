@@ -16,7 +16,7 @@ import "./Allobs.module.css"
 import HTMLReactParser from 'html-react-parser'
 import Down from '../img/icons8-down-button-24.png'
 import Up from '../img/icons8-arrow-button-24.png'
-
+import CompanyLogo from '../img/company-logo.png'
 
 function Jobdetails() {
   const [jobs, setJobs] = useState([])
@@ -164,7 +164,8 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
         <div class={styles.jobDetailsHeading}>
              <div class={styles.jobDetailsImage}>
             {/* <img className={styles.imageV} src={jobs.Logo?jobs.Logo : profileDp}/> */}
-              <img className={styles.jobDetailImage} src="/company.avif" />
+            {/* {console.log("jobs",jobs)} */}
+              <img className={styles.jobDetailImage} src={CompanyLogo} />
             </div>
           
           
@@ -193,7 +194,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 </div>
 
 
-  <table className={styles.tableDesWrapper} style={{marginLeft:"6px", marginTop:"0px", flexWrap:"wrap", width:"98.8%", borderCollapse: "collapse",border:"none"}}>         
+  <table className={styles.tableDesWrapper} style={{marginLeft:"6px", marginTop:"-40px", flexWrap:"wrap", width:"98.8%", borderCollapse: "collapse",border:"none"}}>         
   
   <tr style={{border:"none"}}>
     <td colSpan={2} style={{border:"none"}}>
@@ -241,7 +242,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
         <div className={styles.JobPagecompanyNameLocationWrapper}   >
           {/* <img className={styles.logo} src={jobs.Logo} /> */}
-          <img className={styles.jobDetailImageMobile} src="/company-logo.png" />
+          <img className={styles.jobDetailImageMobile} src={CompanyLogo} />
           <div class={styles.jobDetailTitleCompanyName} style={{marginLeft: "5px"}}>
           {!jobs.Source ?
 

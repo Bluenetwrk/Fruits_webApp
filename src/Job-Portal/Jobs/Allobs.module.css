@@ -73,8 +73,8 @@
     margin-top: 10px;
 }
 .jobDetailImage{
-    height:100px;
-    width:100px;
+    height:150px;
+    width:150px;
     border-radius: 180%;
     margin-left: 7%;
     margin-top: 10px;
@@ -86,7 +86,7 @@
     margin-left:-10px;
 }
 .jobDetailsPosterDesc{
-    margin-left: 80px;
+    margin-left: 40px;
     margin-top: -60px;
 }
 

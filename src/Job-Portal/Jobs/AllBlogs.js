@@ -13,7 +13,7 @@ import 'react-multi-carousel/lib/styles.css';
 import Footer from '../Footer/Footer';
 import {jobTags} from '../Tags'
 import HTMLReactParser from 'html-react-parser'
-
+import CompanyLogo from '../img/company-logo.png'
 
 const responsive = {
   desktop: {
@@ -65,6 +65,7 @@ function Blogs() {
 
   const [currentPage, setCurrentPage] = useState(1)
   const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage ? recordsperpage : 10)
+  const[jobsPerPageValue,setJobsPerPageValue]=useState(10);
 
   const lastIndex = currentPage * recordsPerPage //10
   const firstIndex = lastIndex - recordsPerPage //5
@@ -306,6 +307,7 @@ function Blogs() {
   function handleRecordchange(e) {
     sessionStorage.setItem("recordsperpageHome", JSON.stringify(e.target.value));
     let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
+    setJobsPerPageValue(Number(e.target.value));
     setrecordsPerPage(recordsperpage)
     setCurrentPage(1)
   }
@@ -532,10 +534,14 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
           </div>
           <div style={{ marginBottom: "5px", marginTop: "0", marginLeft: "10px" }}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
-              <option selected={lastIndex === 10} value={10}>10</option>
+              {/* <option selected={lastIndex === 10} value={10}>10</option>
               <option selected={lastIndex === 25} value={25}>25</option>
               <option selected={lastIndex === 50} value={50}>50</option>
-              <option selected={lastIndex === 100} value={100}>100</option>
+              <option selected={lastIndex === 100} value={100}>100</option> */}
+              <option selected={jobsPerPageValue==10} value={10}>10</option>
+              <option selected={jobsPerPageValue==25} value={25}>25</option>
+              <option selected={jobsPerPageValue==50} value={50}>50</option>
+              <option selected={jobsPerPageValue==100} value={100}>100</option>
             </select>  blogs per page
           </div>
 
@@ -690,10 +696,14 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div style={{ marginTop: "14px", marginLeft: "10px" }} >
               Show  <select onChange={(e) => { handleRecordchange(e) }}>
-                <option selected={lastIndex === 10} value={10}>10</option>
+                {/* <option selected={lastIndex === 10} value={10}>10</option>
                 <option selected={lastIndex === 25} value={25}>25</option>
                 <option selected={lastIndex === 50} value={50}>50</option>
-                <option selected={lastIndex === 100} value={100}>100</option>
+                <option selected={lastIndex === 100} value={100}>100</option> */}
+                <option selected={jobsPerPageValue==10} value={10}>10</option>
+              <option selected={jobsPerPageValue==25} value={25}>25</option>
+              <option selected={jobsPerPageValue==50} value={50}>50</option>
+              <option selected={jobsPerPageValue==100} value={100}>100</option>
               </select>  blogs per page
             </div>
 
@@ -1276,10 +1286,14 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
          
           <div style={{ marginBottom: "5px", marginTop: "10px", marginLeft: "10px" }}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
-              <option selected={lastIndex === 10} value={10}>10</option>
+              {/* <option selected={lastIndex === 10} value={10}>10</option>
               <option selected={lastIndex === 25} value={25}>25</option>
               <option selected={lastIndex === 50} value={50}>50</option>
-              <option selected={lastIndex === 100} value={100}>100</option>
+              <option selected={lastIndex === 100} value={100}>100</option> */}
+              <option selected={jobsPerPageValue==10} value={10}>10</option>
+              <option selected={jobsPerPageValue==25} value={25}>25</option>
+              <option selected={jobsPerPageValue==50} value={50}>50</option>
+              <option selected={jobsPerPageValue==100} value={100}>100</option>
             </select>  blogs per page
           </div>
           <div className={styles.navigationWrapper} style={{textAlign:"left"}}>
@@ -1357,7 +1371,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
 
                         <div className={styles.blogNameLocationWrapper}   >
                           {/* <img className={styles.logo} src={job.Logo} /> */}
-                          <img style={{height:"40px",width:"40px",marginTop:"10px"}}className={styles.logo} src="/company-logo.png" />
+                          <img style={{height:"40px",width:"40px",marginTop:"10px"}}className={styles.logo} src={ CompanyLogo} />
 
                              <span className={styles.blogCompanyName} onClick={() => { navigate(`/Blogdetails/${btoa(job._id)}`) }} >{job.companyName} </span>
                           </div>
@@ -1400,10 +1414,14 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
           </div>
           <div style={{ marginBottom: "5px", marginTop: "10px", marginLeft: "10px" }}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
-              <option selected={lastIndex === 10} value={10}>10</option>
+              {/* <option selected={lastIndex === 10} value={10}>10</option>
               <option selected={lastIndex === 25} value={25}>25</option>
               <option selected={lastIndex === 50} value={50}>50</option>
-              <option selected={lastIndex === 100} value={100}>100</option>
+              <option selected={lastIndex === 100} value={100}>100</option> */}
+              <option selected={jobsPerPageValue==10} value={10}>10</option>
+              <option selected={jobsPerPageValue==25} value={25}>25</option>
+              <option selected={jobsPerPageValue==50} value={50}>50</option>
+              <option selected={jobsPerPageValue==100} value={100}>100</option>
             </select>  blogs per page
           </div>
           <div className={styles.navigationWrapper} style={{textAlign:"left"}}>
