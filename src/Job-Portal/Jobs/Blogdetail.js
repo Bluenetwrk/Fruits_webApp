@@ -18,6 +18,8 @@ import StProfile from "../Profile/StudentProfile"
 import EMpProfile from "../Profile/EmployeeProfile"
 import Down from '../img/icons8-down-button-24.png'
 import Up from '../img/icons8-arrow-button-24.png'
+import Linkedinlogo from '../img/linkedin-logo.png'
+
 
 function Answerdetails(props) {
   
@@ -25,8 +27,11 @@ function Answerdetails(props) {
 
   const [CommentName, setCommentName] = useState("")
   const [CommentID, setCommentID] = useState()
+  const [shareClicked, setShareClicked] = useState(false)
   // let CommentName = atob(JSON.parse(localStorage.getItem("Snm")))
-
+  const updateClick=()=>{
+    setShareClicked((currenvalue)=>!currenvalue)
+  }
   async function getProfile() {
     let userId = JSON.parse(localStorage.getItem("StudId"))
     const headers = { authorization: userId +" "+ atob(JSON.parse(localStorage.getItem("StudLog"))) };
@@ -146,7 +151,13 @@ async function deletComment(id){
   function goDown(){
     window.scrollTo(50,5000000)
 
-    }      
+    }  
+    
+   
+     
+      const url = encodeURIComponent("https://www.itwalkin.com/Blogs");
+       const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
+    
   
   return (
     <>
@@ -173,9 +184,16 @@ async function deletComment(id){
            <button class={styles.readPageBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
      
               <h1 style={{textAlign:"center", fontSize:"40px", whiteSpace:"no", marginTop:"10px",marginRight:"120px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</h1>
-           
-           {/* <button class={styles.readPageBackBtn} onClick={()=>{navigate(-1)}} style={{display:"none"}}>Share</button> */}
-
+           <div style={{display:" flex",flexDirection:"column"}}>
+           <button style={{ marginRight:"4px"}}class={styles.readPageBackBtn} onClick={updateClick} >Share</button>
+           <a
+        href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img class={styles.linkedinLogoDesktop} src={Linkedinlogo} style={{visibility:shareClicked?"visible":"hidden"}}/>
+      </a>
+      </div>
       </div>    
               <div style={{marginLeft:"12px"}}>
                 <span>Posted by {jobs.name}</span> |  
@@ -189,6 +207,14 @@ async function deletComment(id){
                 )}</span> . 
               
      </div>
+     {/* <a
+        href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img class={styles.linkedinLogoDesktop} src={Linkedinlogo} style={{visibility:shareClicked?"visible":"hidden"}}/>
+      </a> */}
+
 
 
   <table style={{marginLeft:"6px", marginTop:"0px", width:"98.8%", borderCollapse: "collapse",border:"none"}}>         
@@ -214,7 +240,26 @@ async function deletComment(id){
               <div class={styles.mobileReadTopbtnsContainer}>
               <button class={styles.readPageBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
               <img style={{marginLeft:"20%",height:"30px",marginTop:"10px" }}  onClick={()=>{goDown()}} src={Down}/>
+              <div style={{display:"flex",marginLeft:"20px"}}>
+                 <a
+        href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img class={styles.linkedinLogoMobile} src={Linkedinlogo} style={{visibility:shareClicked?"visible":"hidden"}}/>
+      </a>
+                <button  class={styles.readPageBackBtn} onClick={updateClick}>Share</button>
+             
               </div>
+              </div>
+              {/* <a
+        href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img class={styles.linkedinLogoMobile} src={Linkedinlogo} style={{visibility:shareClicked?"visible":"hidden"}}/>
+      </a> */}
+
                 <div className={styles.JobCard} >
                 <p className={`${styles.Date} ${styles.readPageDate}`}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",

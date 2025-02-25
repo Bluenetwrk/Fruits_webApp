@@ -101,9 +101,10 @@
 }
 .ReadPageBtnTitleContainer{
     display: flex;
-    /* justify-content: space-between;   */
-    gap: 80px;
-    
+    justify-content: space-between;  
+    /* gap: 80px; */
+        /* justify-content: space-around; */
+    gap: 5px;
 }
 .readPageBackBtn{
     background-color: rgb(40, 4, 99);
@@ -133,6 +134,18 @@
     margin-top: 12px;
     
 }
+.linkedinLogoDesktop{
+    height: 35px;
+    width: auto;
+    margin-top:10px; 
+    margin-left:18px;   
+}
+.linkedinLogoMobile{
+    height: 20px;
+    width: auto;
+    margin-top: 15px;
+}
+
 
 
 /* ------------------Blog Read Page ends-------------------- */
