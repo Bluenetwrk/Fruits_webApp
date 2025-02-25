@@ -132,18 +132,19 @@
 .mobileReadTopbtnsContainer{
     display: flex;
     margin-top: 12px;
-    
+    justify-content: space-between;
 }
 .linkedinLogoDesktop{
     height: 35px;
     width: auto;
     margin-top:10px; 
-    margin-left:18px;   
+    margin-right:5px;   
 }
 .linkedinLogoMobile{
-    height: 20px;
+    height: 30px;
     width: auto;
     margin-top: 15px;
+    margin-right:0px;
 }
 
 

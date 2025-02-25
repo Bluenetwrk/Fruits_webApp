@@ -184,16 +184,16 @@ async function deletComment(id){
            <button class={styles.readPageBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
      
               <h1 style={{textAlign:"center", fontSize:"40px", whiteSpace:"no", marginTop:"10px",marginRight:"120px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</h1>
-           <div style={{display:" flex",flexDirection:"column"}}>
-           <button style={{ marginRight:"4px"}}class={styles.readPageBackBtn} onClick={updateClick} >Share</button>
+           {/* <div style={{display:" flex",flexDirection:"column"}}> */}
+           {/* <button style={{ marginRight:"4px"}}class={styles.readPageBackBtn} onClick={updateClick} >Share</button> */}
            <a
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img class={styles.linkedinLogoDesktop} src={Linkedinlogo} style={{visibility:shareClicked?"visible":"hidden"}}/>
+        <img  class={styles.linkedinLogoDesktop} src={Linkedinlogo} />
       </a>
-      </div>
+      {/* </div> */}
       </div>    
               <div style={{marginLeft:"12px"}}>
                 <span>Posted by {jobs.name}</span> |  
@@ -239,18 +239,18 @@ async function deletComment(id){
               <>
               <div class={styles.mobileReadTopbtnsContainer}>
               <button class={styles.readPageBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
-              <img style={{marginLeft:"20%",height:"30px",marginTop:"10px" }}  onClick={()=>{goDown()}} src={Down}/>
-              <div style={{display:"flex",marginLeft:"20px"}}>
+              <img style={{marginLeft:"-7%",height:"30px",marginTop:"10px" }}  onClick={()=>{goDown()}} src={Down}/>
+              {/* <div style={{display:"flex",marginLeft:"20px"}}> */}
                  <a
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img class={styles.linkedinLogoMobile} src={Linkedinlogo} style={{visibility:shareClicked?"visible":"hidden"}}/>
+        <img class={styles.linkedinLogoMobile} src={Linkedinlogo} />
       </a>
-                <button  class={styles.readPageBackBtn} onClick={updateClick}>Share</button>
+                {/* <button  class={styles.readPageBackBtn} onClick={updateClick}>Share</button> */}
              
-              </div>
+              {/* </div> */}
               </div>
               {/* <a
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
