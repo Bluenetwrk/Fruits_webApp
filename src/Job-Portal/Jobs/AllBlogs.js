@@ -757,7 +757,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
               :""
               }
 
-          <Carousel
+          {/* <Carousel
             swipeable={true}
             draggable={false}
             responsive={responsive}
@@ -769,9 +769,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
             containerClass="carousel-container"
             infinite={true}
             removeArrowOnDeviceType={["tablet", "mobile"]}
-          >
+          > */}
 
-            <div style={{ display: "flex" }}>
+            {/* <div style={{ display: "flex" }}>
               
 
               <div className={styles.MobFilterJobTitleWrapper}>
@@ -789,9 +789,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                       )
                   }).slice(0, 4)
                 }
-              </div>
+              </div> */}
 
-              <div className={styles.MobFilterJobTitleWrapper}>
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -804,8 +804,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(4, 9)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -819,9 +819,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 }).slice(9, 14)
                 }
               </div>
-            </div>
+            </div> */}
 
-            <div style={{ display: "flex" }}>
+            {/* <div style={{ display: "flex" }}>
               <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
@@ -835,8 +835,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(14, 19)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -849,8 +849,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(19, 24)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -864,9 +864,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 }).slice(24, 29)
                 }
               </div>
-            </div>
+            </div> */}
             {/* ....from down here is 3rd div..i.e 3rd display..................................... */}
-            <div style={{ display: "flex" }}>
+            {/* <div style={{ display: "flex" }}>
               <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
@@ -880,8 +880,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(29, 34)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -894,8 +894,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(34, 39)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -909,9 +909,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 }).slice(39, 44)
                 }
               </div>
-            </div>
+            </div> */}
             {/* .................from down here is 4th div..i.e 4th display....................... */}
-            <div style={{ display: "flex" }}>
+            {/* <div style={{ display: "flex" }}>
               <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
@@ -925,8 +925,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(44, 49)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -939,8 +939,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(49,54)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -954,10 +954,10 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 }).slice(54, 59)
                 }
               </div>
-            </div>
+            </div> */}
             {/* .................from down here is 5th div..i.e 5th display....................... */}
 
-            <div style={{ display: "flex" }}>              
+            {/* <div style={{ display: "flex" }}>              
 
               <div className={styles.MobFilterJobTitleWrapper}>
                 {
@@ -973,9 +973,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                       )
                   }).slice(59, 64)
                 }
-              </div>
+              </div> */}
 
-              <div className={styles.MobFilterJobTitleWrapper}>
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -988,8 +988,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(64, 69)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -1003,10 +1003,10 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 }).slice(69, 74)
                 }
               </div>
-            </div>
+            </div> */}
 
           
-            <div style={{ display: "flex" }}>
+            {/* <div style={{ display: "flex" }}>
               <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
@@ -1020,8 +1020,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(74, 79)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -1034,8 +1034,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(79, 84)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -1049,8 +1049,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 }).slice(84, 89)
                 }
               </div>
-            </div>
-            <div style={{ display: "flex" }}>
+            </div> */}
+            {/* <div style={{ display: "flex" }}>
               <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
@@ -1064,8 +1064,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(89, 94)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -1078,8 +1078,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(94, 99)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -1093,9 +1093,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 }).slice(99, 104)
                 }
               </div>
-            </div>
+            </div> */}
       
-            <div style={{ display: "flex" }}>
+            {/* <div style={{ display: "flex" }}>
               <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
@@ -1109,8 +1109,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(104, 109)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -1123,8 +1123,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(109,114)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -1138,10 +1138,10 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 }).slice(114, 119)
                 }
               </div>
-            </div>
+            </div> */}
           
 
-            <div style={{ display: "flex" }}>
+            {/* <div style={{ display: "flex" }}>
               
               <div className={styles.MobFilterJobTitleWrapper}>
                 {
@@ -1156,9 +1156,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                                          )
                   }).slice(119, 124)
                 }
-              </div>
+              </div> */}
 
-              <div className={styles.MobFilterJobTitleWrapper}>
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -1171,8 +1171,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(124, 129)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -1186,10 +1186,10 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 }).slice(129, 134)
                 }
               </div>
-            </div>
+            </div> */}
 
             
-            <div style={{ display: "flex" }}>
+            {/* <div style={{ display: "flex" }}>
               <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
@@ -1203,8 +1203,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(134, 139)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -1217,8 +1217,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(139, 144)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -1232,9 +1232,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 }).slice(144, 149)
                 }
               </div>
-            </div>
+            </div> */}
             
-            <div style={{ display: "flex" }}>
+            {/* <div style={{ display: "flex" }}>
               <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
@@ -1248,8 +1248,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(149, 154)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -1262,8 +1262,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   )
                 }).slice(154, 159)
                 }
-              </div>
-              <div className={styles.MobFilterJobTitleWrapper}>
+              </div> */}
+              {/* <div className={styles.MobFilterJobTitleWrapper}>
                 {jobTags.map((tags, i) => {
                   return (
                     <label><input disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
@@ -1280,9 +1280,31 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
             </div>
 
             
-          </Carousel>
+          </Carousel> */}
 
-
+<div className={styles.JobtitleFilterWrapper}>
+            <buton className={ Active.length===0? styles.active:styles.JobtitleFilter} onClick={() => { getjobs() }}>All</buton>
+            {
+              jobTags.map((tags, i) => {
+                return (
+                                   
+                  <button disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
+                    tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
+                    className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
+                    tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
+                    styles.TagHeading: 
+                    //  Active === tags.value ? 
+                    Active.findIndex(  (present)=>{
+                      return(
+                        present===tags.value
+                      )
+                          }) >=0?
+                     styles.active : styles.JobtitleFilter} onClick={ () => {  filterByJobTitle(tags.value) }}>{tags.value} </button>
+                
+                  )
+              })
+            }
+          </div>
          
           <div style={{ marginBottom: "5px", marginTop: "10px", marginLeft: "10px" }}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
