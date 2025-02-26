@@ -46,6 +46,7 @@ function AllJobs(props) {
 
   const [jobs, setJobs] = useState([])
   const [Filterjobs, setFilterjobs] = useState([])
+  const [selectedOption, setSelectedOption] = useState("");
 
   const [nopageFilter, setNoPageFilter] = useState(false)
   const [Filtereredjobs, setFiltereredjobs] = useState([])
@@ -468,6 +469,9 @@ function AllJobs(props) {
         });
       })
   }
+  const handleYourChange=(event)=>{
+    setSelectedOption(event.target.value);
+  }
   return (
     <>
       {screenSize.width > 850 ?
@@ -481,10 +485,19 @@ function AllJobs(props) {
     JobLocationTags.map((location, i) => {
       return (
         <>
-        <label className={styles.JobLocationFilter}>
+        <select class={styles.selectContainer} value={selectedOption} onChange={handleYourChange}>
+        {/* <option value="">Option 1</option> */}
+        <option value="Bangalore">🌍Bangalore,India</option>
+        <option value="New York">🌍New York,USA</option>
+        <option value="San Francisco">🌍San Francisco,USA</option>
+        <option value="Sydney">🌍Sydney,Australia</option>
+        <option value="London">🌍London,Uk</option>
+        <option value="Berlian">🌍Berlian,Germany</option>
+      </select>
+        {/* <label className={styles.JobLocationFilter}>
         <input type="radio" checked  disabled={location == "Chennai" ||
         location == "Hyderabad" || location == "Mumbai" || location == "Delhi"} name="filter" onClick={() => 
-            { getjobs() }} />{location}</label><br></br>
+            { getjobs() }} />{location}</label><br></br> */}
             </>
       )
     })
@@ -803,6 +816,16 @@ function AllJobs(props) {
         <>
     {/* <p style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>ITwalkin Career</p>
    */}
+   
+    <select class={styles.selectContainerMobile}style={{position:"relative", top:"-36px",left:"178px",zIndex:"999"}} value={selectedOption} onChange={handleYourChange}>
+        {/* <option value="">Option 1</option> */}
+        <option  value="Bangalore">🌍Bangalore,India</option>
+        <option  value="New York">🌍New York,US</option>
+        <option  value="San Francisco">🌍San Francisco,USA</option>
+        <option  value="Sydney">🌍Sydney,Australia</option>
+        <option  value="London">🌍London,Uk</option>
+        <option  value="Berlian">🌍Berlian,Germany</option>
+      </select>
    <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>ITwalkin Career</h2>
   
           <div className={styles.searchBoth}>
@@ -813,9 +836,9 @@ function AllJobs(props) {
             <h4 style={{ marginLeft: "18%", marginTop: "10px" }}> {jobs.length} matching Result Found  </h4>
             : ""
           }
-
+          
           {/* ...................... All Filter for Mobile */}
-
+          
           <Carousel
             swipeable={true}
             draggable={false}

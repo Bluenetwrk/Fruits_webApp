@@ -727,6 +727,7 @@ font-weight: 400;
     width:30px;
    height:30px;
    margin-top: 3px;
+   margin-left: 12px;
 
 }
 
@@ -748,6 +749,13 @@ font-weight: 400;
  @media(max-width:760px){
     .MobileLoginIconWrapper {
         margin-left: 52%;
+}
+.MobIwalkinLogologo{
+    width:85%;
+    margin-top: 6px;
+    height: 37px;
+    margin-left: -11px;
+
 }
     }
 

@@ -34,8 +34,10 @@ const responsive = {
 function Home() {
 
   const [jobs, setJobs] = useState([])
+  const [selectedOption, setSelectedOption] = useState("");
   const [nopageFilter, setNoPageFilter] = useState(true)
   const [Filtereredjobs, setFiltereredjobs] = useState([])
+  
 
   const [Filterjobs, setFilterjobs] = useState([])
 
@@ -512,7 +514,10 @@ function Home() {
       setCheckBoxValue(removeId)
     }
   }
+const handleYourChange=(event)=>{
+  setSelectedOption(event.target.value);
 
+}
   return (
     <>
       {screenSize.width > 850 ?
@@ -524,9 +529,22 @@ function Home() {
                 JobLocationTags.map((location, i) => {
                   return (
                     <>
-                      <label className={styles.JobLocationFilter}>
+                    <div style={styles.container}>
+      {/* <label style={styles.label}>Select an option:</label> */}
+      <select class={styles.selectContainer} value={selectedOption} onChange={handleYourChange}>
+        {/* <option value="">Option 1</option> */}
+        <option value="Bangalore">🌍Bangalore,India</option>
+        <option value="New York">🌍New York,USA</option>
+        <option value="San Francisco">🌍San Francisco,USA</option>
+        <option value="Sydney">🌍Sydney,Australia</option>
+        <option value="London">🌍London,Uk</option>
+        <option value="Berlian">🌍Berlian,Germany</option>
+      </select>
+      {/* {selectedOption && <p style={styles.result}>You selected: {selectedOption}</p>} */}
+    </div>
+                      {/* <label className={styles.JobLocationFilter}>
                         <input type="radio" checked disabled={location == "Chennai" ||
-                          location == "Hyderabad" || location == "Mumbai" || location == "Delhi"} name="filter" onClick={() => { getjobs() }} />{location}</label><br></br>
+                          location == "Hyderabad" || location == "Mumbai" || location == "Delhi"} name="filter" onClick={() => { getjobs() }} />{location}</label><br></br> */}
                     </>
                   )
                 })
@@ -735,7 +753,7 @@ function Home() {
 
                           }
                         </li>
-                      </ul>
+                      </ul>          
                     )
                   })
                 : <p style={{ marginLeft: "47%", color: "red" }}>No Record Found</p>
@@ -788,16 +806,28 @@ function Home() {
             : ""
           }
           {/* ...................... All Filter for Mobile */}
-          <div className={styles.MobLocationFilterWrapper}>
-            
-            {
+<div className={styles.MobLocationFilterWrapper}>
+          {/* <div style={styles.container}> */}
+      {/* <label style={styles.label}>Select an option:</label> */}
+      <select class={styles.selectContainerMobile} value={selectedOption} onChange={handleYourChange}>
+        {/* <option value="">Option 1</option> */}
+        <option  value="Bangalore">🌍Bangalore,India</option>
+        <option  value="New York">🌍New York,US</option>
+        <option  value="San Francisco">🌍San Francisco,USA</option>
+        <option  value="Sydney">🌍Sydney,Australia</option>
+        <option  value="London">🌍London,Uk</option>
+        <option  value="Berlian">🌍Berlian,Germany</option>
+      </select>
+      {/* {selectedOption && <p style={styles.result}>You selected: {selectedOption}</p>}
+    </div> */}
+            {/* {
               JobLocationTags.map((location, i) => {
                 return (
                   <label> <input className={styles.MobJobtitleFilter} checked type="radio" disabled={location == "Chennai" || location == "Hyderabad" || location == "Mumbai" || location == "Delhi"} name="filter" onClick={() => { getLocation(location.toLowerCase()) }} />{location}</label>
 
                 )
               })
-            }
+            } */}
           </div>
           <div className={styles.JobtitleFilterWrapper} style={{height:"101px", marginLeft:"9px"}}>
             <buton className={Active.length === 0 ? styles.active : styles.JobtitleFilter} onClick={() => { getjobs() }}>All</buton>

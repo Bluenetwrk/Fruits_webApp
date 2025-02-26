@@ -5,6 +5,20 @@
     border-radius: 180%;
     margin-left:-10px;
 }
+.selectContainer{
+    height: 30px;
+    width: 154px;
+    margin-left: -36px;
+    border-radius: 4px;
+
+}
+.selectContainerMobile{
+    height: 27px;
+    width: 134px;
+    margin-left: -35px;
+    border-radius: 4px;
+    margin-top: -4px;
+}
 
 
 /* ---------------Home Page ends------------- */
