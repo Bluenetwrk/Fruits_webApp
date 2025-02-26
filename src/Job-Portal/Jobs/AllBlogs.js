@@ -32,14 +32,14 @@ const responsive = {
 
 
 function Blogs() {
-
+  const [selectedOption, setSelectedOption] = useState("");
   const [jobs, setJobs] = useState([])
 
   const [nopageFilter, setNoPageFilter] = useState(false)
   const [Filtereredjobs, setFiltereredjobs] = useState([])
 
   const [Filterjobs, setFilterjobs] = useState([])
-
+ 
   const [isReadMore, setIsReadMore] = useState(true)
   const [showJobs, setshowJobs] = useState(false)
   const [showExperiance, setshowExperiance] = useState(false)
@@ -425,7 +425,10 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
     }
 
   }
-
+  const handleYourChange=(event)=>{
+    setSelectedOption(event.target.value);
+  
+  }
 
   return (
     <>
@@ -442,10 +445,19 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
               JobLocationTags.map((location, i) => {
                 return (
                   <>
-                  <label className={styles.JobLocationFilter}>
+                  {/* <label className={styles.JobLocationFilter}>
                   <input type="radio" checked disabled={location == "Chennai" ||
                   location == "Hyderabad" || location == "Mumbai" || location == "Delhi"} name="filter" onClick={() => 
-                      { getjobs() }} />{location}</label><br></br>
+                      { getjobs() }} />{location}</label><br></br> */}
+         <select class={styles.selectContainer} value={selectedOption} onChange={handleYourChange}>
+        {/* <option value="">Option 1</option> */}
+        <option value="Bangalore">🌍Bangalore,India</option>
+        <option value="New York">🌍New York,USA</option>
+        <option value="San Francisco">🌍San Francisco,USA</option>
+        <option value="Sydney">🌍Sydney,Australia</option>
+        <option value="London">🌍London,Uk</option>
+        <option value="Berlian">🌍Berlian,Germany</option>
+      </select>
                       </>
                 )
               })
@@ -747,7 +759,18 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 {
                   JobLocationTags.map((location, i) => {
                     return (
-                  !StudentAuth? <label> <input className={styles.MobJobtitleFilter} checked type="radio" disabled={location == "Chennai" || location == "Hyderabad" || location == "Mumbai" || location == "Delhi"} name="filter" onClick={() => { getLocation(location.toLowerCase()) }} />{location}</label>
+                  !StudentAuth?
+                  <select class={styles.selectContainerMobile} style={{position:"relative", top:"-11px"}}value={selectedOption} onChange={handleYourChange}>
+                  {/* <option value="">Option 1</option> */}
+                  <option  value="Bangalore">🌍Bangalore,India</option>
+                  <option  value="New York">🌍New York,US</option>
+                  <option  value="San Francisco">🌍San Francisco,USA</option>
+                  <option  value="Sydney">🌍Sydney,Australia</option>
+                  <option  value="London">🌍London,Uk</option>
+                  <option  value="Berlian">🌍Berlian,Germany</option>
+                </select>
+                
+                  //  <label> <input className={styles.MobJobtitleFilter} checked type="radio" disabled={location == "Chennai" || location == "Hyderabad" || location == "Mumbai" || location == "Delhi"} name="filter" onClick={() => { getLocation(location.toLowerCase()) }} />{location}</label>
                   :""
                     )
                   })
