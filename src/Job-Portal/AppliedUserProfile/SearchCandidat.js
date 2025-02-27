@@ -17,8 +17,8 @@ import location from "../img/icons8-location-20.png"
 
 const options = [
   { value: "bangalore", label: "Bangalore, India", img:location},
-  { value: "San Francisco,USA", label: "San Francisco, USA", img:location},
-  { value: "berlin", label: "Berlin, Germany", img:location},
+  { value: "san Francisco", label: "San Francisco, USA", img:location},
+  { value: "new york", label: "New York, USA", img:location},
   { value: "sydney", label: "Sydney, Australia", img:location},
   { value: "london", label: "London, UK", img:  location},
   { value: "berlin", label: "Berlin, Germany", img:location},
