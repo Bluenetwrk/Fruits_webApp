@@ -426,8 +426,14 @@ if(confirm){
   return (
     <>
 
-      <div className={styles.EntireFullWrapper}>
-        <div className={styles.EntireWrapper}>
+      {/* <div className={styles.EntireFullWrapperStd} >
+        <div className={styles.EntireWrapperStd}>
+        <div style={{display:"flex", justifyContent:"space-between"}}>
+             <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px"}} 
+             onClick={()=>{navigate(-1)}}>Back</button>
+             <h1 style={{marginRight:"200px"}}>New Jobseeker Registration Form</h1>
+         </div> */}
+
           {/* <h3 style={{ color: "rgb(40, 4, 99)", marginLeft: "2%" }}>Update your Profile</h3> */}
           {/* <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
              width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} />
@@ -459,12 +465,18 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
             {immage ? <button className={styles.DeleteImage} onClick={deletePic}>Delete</button> : ""}
           </div> */}
 
-          <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
+          {/* <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p> */}
           {screenSize.width > 850 ?
 <>
-            <div className={styles.inputWrapper}>
-
-
+   <div className={styles.EntireFullWrapperStd} >
+     <div className={styles.EntireWrapperStd}>
+        <div style={{display:"flex", justifyContent:"space-between"}}>
+             <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px"}} 
+             onClick={()=>{navigate(-1)}}>Back</button>
+             <h1 style={{marginRight:"200px"}}>New Jobseeker Registration Form</h1>
+         </div>
+         <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
+         <div className={styles.inputWrapper}>
               <label className={styles.inputName}>
                 <h4>Name:</h4>
                 <input maxLength="22" className={styles.input} value={name}  onChange={(e) => { setname(e.target.value) }} type="text" />
@@ -607,15 +619,29 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               {/* <button className={styles.Save} onClick={(e) => { saveUpdate(e) }}>Save</button> */}
               {/* <button className={styles.cancel} onClick={() => { navigate(-1) }} >cancel</button> */}
               </div>
-            </div>
+            </div>   
+
+
+      </div>
+    </div>  
+
+      
+           
 
 
              
         </>
             :
             <>
-
-              <label className={styles.MobileinputName}>
+              <div className={styles.EntireFullWrapperStd} >
+              <div className={styles.EntireWrapperStd} style={{height:"100%",marginLeft:"7px",width:"310px"}}>
+              <div style={{display:"flex", justifyContent:"space-between", flexDirection:"column" }}>
+             <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px",width:"70px"}} 
+             onClick={()=>{navigate(-1)}}>Back</button>
+             <h1 style={{marginRight:"0px",fontSize:"21px",marginLeft:"10px"}}>New Jobseeker Registration Form</h1>
+         </div>
+         <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
+<label className={styles.MobileinputName}>
                 <h4 className={styles.MobileName}>Name:</h4>
                 <input maxLength="20" className={styles.Mobileinput} disabled value={name} onChange={(e) => { setname(e.target.value) }} type="text" />
               </label>
@@ -754,12 +780,13 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
         </div>
           <Footer/>
         </div>
+        </div>
+
+</div>
             </>
 
           }
-        </div>
-
-      </div>
+      
 
 
     </>

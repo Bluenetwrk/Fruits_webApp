@@ -429,14 +429,16 @@ setCompanyCIN("")
   return (
     <>
 
-      <div className={styles.EntireFullWrapper}>
+      {/* <div className={styles.EntireFullWrapper}>
 
-        <div className={styles.EntireWrapper}>
+        <div className={styles.EntireWrapper}> */}
         {/* <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
              width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} /> */}
-             
-             <button class={styles.empRegBackButton} style={{cursor:"pointer",}} 
-             onClick={()=>{navigate(-1)}}>Back</button>
+             {/* <div style={{display:"flex", justifyContent:"space-between"}}>
+             <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px"}} 
+             onClick={()=>{navigate(-1)}}>Back</button> */}
+             {/* <h1 style={{marginRight:"70px"}}>New Employer/Consultant Registration Form</h1> */}
+             {/* </div> */}
 
         {/* <h3 style={{color:"rgb(40, 4, 99)", marginLeft:"2%"}}>Update your Profi</h3> */}
 
@@ -458,10 +460,19 @@ setCompanyCIN("")
             {immage ? <button className={styles.EmpDeleteImage} onClick={deletePic}>Delete</button> : ""}
           </div> */}
 
-          <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
+          {/* <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p> */}
 {screenSize.width>850?
-
+   
 <>
+<div className={styles.EntireFullWrapper}>
+        <div className={styles.EntireWrapper}>
+         <div style={{display:"flex", justifyContent:"space-between"}}>
+             <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px"}} 
+             onClick={()=>{navigate(-1)}}>Back</button>
+             <h1 style={{marginRight:"70px",whiteSpace:"normal"}}>New Employer/Consultant Registration Form</h1>
+         </div>
+         <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
+
 
           <div className={styles.inputWrapper}>
 {!RegLoader?
@@ -576,7 +587,10 @@ setCompanyCIN("")
 
 <div className={styles.Editor}>
             <h4>About Company:</h4>
-<JoditEditor  ref={editor}  value={AboutCompany.toString()} onChange={(e)=>{setAboutCompany(e)}} />
+            <div className={`screen1 ${styles.screen1}`} style={{ marginTop: "-10px", marginLeft: "11px", width: "103%" }}>
+    <JoditEditor ref={editor} value={AboutCompany.toString()} onChange={(e) => setAboutCompany(e)} />
+</div>
+
 </div>
             {/* <label className={styles.inputName}>
               <h4>Type of Organisation:</h4>
@@ -587,7 +601,7 @@ setCompanyCIN("")
             {/* 
 
             <button className={styles.cancel} onClick={() => { navigate(-1) }} >cancel</button> */}
-<div className={STyles.signUpWrapper} style={{marginLeft:"10px", marginBottom:"20px"}} onClick={(e) => { saveMicrosoft(e) }} >
+<div className={STyles.signUpWrapper} style={{marginLeft:"20px", marginBottom:"20px"}} onClick={(e) => { saveMicrosoft(e) }} >
           <div className={STyles.both}>
             <img className={STyles.google} src={ MicosoftImage}/> 
             <p className={STyles.signUpwrap} >Rigister with Microsoft</p>
@@ -603,10 +617,22 @@ setCompanyCIN("")
         </>
         :<div style={{margin:"auto", marginTop:"80px", marginBottom:"300px"}}><TailSpin color="blue" height={100} /></div>}
 </div>
+
+</div>
+</div>
  
 </>
           :
           <>
+  <div className={styles.EntireFullWrapper}>
+
+<div className={styles.EntireWrapper} style={{height:"100%",width:"96%",marginLeft:"8px"}}>
+         <div style={{display:"flex", flexDirection:"column",justifyContent:"space-between"}}>
+             <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px", width:"62px"}} 
+             onClick={()=>{navigate(-1)}}>Back</button>
+             <h1 style={{marginLeft:"5px",marginRight:"0px",whiteSpace:"normal",fontSize:"21px"}}>New Employer/ Consultant Registration Form</h1>
+         </div>
+         <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
 
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Primary User Name : <span style={{fontWeight:800, fontSize:"medium"}} title='(primary user will have the admin right for your
@@ -708,7 +734,9 @@ setCompanyCIN("")
             
 <div className={styles.Editor}>
             <h4>About Company:</h4>
+            <div className={`screen2 ${styles.screen2}`}>
 <JoditEditor  ref={editor}  value={AboutCompany.toString()} onChange={(e)=>{setAboutCompany(e)}} />
+</div>
 </div>
 
             <div className={STyles.signUpWrapper} style={{marginLeft:"10px", marginBottom:"20px"}} onClick={(e) => { saveMicrosoft(e) }} >
@@ -728,11 +756,12 @@ setCompanyCIN("")
             <div style={{marginTop:"60px"}}>
           <Footer/>
         </div>
-          </>
-}
         </div>
 
       </div>
+          </>
+}
+        
 
     </>
   )
