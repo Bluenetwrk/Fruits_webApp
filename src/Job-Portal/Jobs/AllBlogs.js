@@ -15,6 +15,15 @@ import {jobTags} from '../Tags'
 import HTMLReactParser from 'html-react-parser'
 import CompanyLogo from '../img/company-logo.png'
 
+const options = [
+  { value: "bangalore", label: "Bangalore, India", img:location},
+  { value: "San Francisco,USA", label: "San Francisco, USA", img:location},
+  { value: "berlin", label: "Berlin, Germany", img:location},
+  { value: "sydney", label: "Sydney, Australia", img:location},
+  { value: "london", label: "London, UK", img:  location},
+  { value: "berlin", label: "Berlin, Germany", img:location},
+];
+
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -32,7 +41,8 @@ const responsive = {
 
 
 function Blogs() {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [isOpen, setIsOpen] = useState(false);
   const [jobs, setJobs] = useState([])
 
   const [nopageFilter, setNoPageFilter] = useState(false)
@@ -425,11 +435,25 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
     }
 
   }
-  const handleYourChange=(event)=>{
-    setSelectedOption(event.target.value);
+  const dropdownRef = useRef(null);
   
-  }
-
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+          setIsOpen(false);
+        }
+      }
+   
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, []);
+  
+    const handleSelect = (option) => {
+      setSelectedOption(option);
+      setIsOpen(false);
+    };
   return (
     <>
 
@@ -440,28 +464,96 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
         <div className={adminLogin?styles.HomeNavConetenetWrapperAdmin:styles.BlogNavConetenetWrapper}>
 
 
-          <div className={styles.LocationFilterWrapper}>
-            {
+          <div className={styles.LocationFilterWrapper} style={{marginTop:"-20px"}}>/
+          <div ref={dropdownRef} style={{ position: "relative" }}>
+      
+      <div style={{ display: "flex", marginLeft: "-40px", marginTop: "-5px" }}>
+        <button
+          onClick={() => setIsOpen((prev) => !prev)}
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "24px",
+            color: "#007bff",
+          }}
+        >
+          <img className={styles.jobLocationImage} src={location} alt="Location" />
+        </button>
+        <p style={{ marginTop: "17px", fontWeight: "bold", color: "white" }}>
+          {selectedOption?.label}
+        </p>
+      </div>
+
+      
+      {isOpen && (
+        <div
+          style={{
+            position: "absolute",
+            top: "45px",
+            left: "-43px",
+            background: "white",
+            color: "black",
+            borderRadius: "20px",
+            width: "160px",
+            padding: "15px",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+            animation: "fadeIn 0.2s ease-in-out",
+          }}
+        >
+         
+          <div
+            style={{
+              position: "absolute",
+              top: "-9px",
+              left: "25px",
+              width: "0",
+              height: "0",
+              borderLeft: "10px solid transparent",
+              borderRight: "10px solid transparent",
+              borderBottom: "10px solid white",
+            }}
+          ></div>
+
+         
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            {options.map((option) => (
+              <li
+                key={option.value}
+                onClick={() => handleSelect(option)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "10px",
+                  cursor: "pointer",
+                  borderRadius: "10px",
+                }}
+              >
+                <img
+                  src={option.img}
+                  alt={option.label}
+                  style={{ width: "22px", height: "22px", marginRight: "12px" }}
+                />
+                <span>{option.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+            {/* {
               JobLocationTags.map((location, i) => {
                 return (
-                  <>
+                  <> */}
                   {/* <label className={styles.JobLocationFilter}>
                   <input type="radio" checked disabled={location == "Chennai" ||
                   location == "Hyderabad" || location == "Mumbai" || location == "Delhi"} name="filter" onClick={() => 
                       { getjobs() }} />{location}</label><br></br> */}
-         <select class={styles.selectContainer} value={selectedOption} onChange={handleYourChange}>
-        {/* <option value="">Option 1</option> */}
-        <option value="Bangalore">🌍Bangalore,India</option>
-        <option value="New York">🌍New York,USA</option>
-        <option value="San Francisco">🌍San Francisco,USA</option>
-        <option value="Sydney">🌍Sydney,Australia</option>
-        <option value="London">🌍London,Uk</option>
-        <option value="Berlian">🌍Berlian,Germany</option>
-      </select>
-                      </>
+         
+                      {/* </>
                 )
               })
-            }
+            } */}
           </div>          
           <div className={styles.searchBothForNavWrapper}>
             <input className={styles.inputboxsearchNav} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
@@ -755,27 +847,91 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
           {/* ...................... All Filter for Mobile */}
           {
           (!EmployeeAuth)?
+          !StudentAuth?
+          <>
             <div className={styles.MobLocationFilterWrapper}>
-                {
+               <div ref={dropdownRef} style={{ position: "relative" }}>
+      <div style={{ display: "flex", marginLeft: "-45px", marginTop: "-27px" }}>
+        <button
+          onClick={() => setIsOpen((prev) => !prev)}
+          style={{background: "none",border: "none",cursor: "pointer",fontSize: "24px",color: "#007bff",}}>
+          <img className={styles.jobLocationImage} src={location} alt="Location" />
+        </button>
+        <p style={{ marginTop: "17px", fontWeight: "bold", color: "white",width:"113px" }}>
+          {selectedOption?.label}
+        </p>
+      </div>
+
+      
+      {isOpen && (
+        <div
+          style={{
+            position: "absolute",
+            top: "45px",
+            left: "-55px",
+            background: "white",
+            color: "black",
+            borderRadius: "20px",
+            width: "160px",
+            padding: "15px",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+            animation: "fadeIn 0.2s ease-in-out",
+          }}
+        >
+         
+          <div
+            style={{
+              position: "absolute",
+              top: "-9px",
+              left: "25px",
+              width: "0",
+              height: "0",
+              borderLeft: "10px solid transparent",
+              borderRight: "10px solid transparent",
+              borderBottom: "10px solid white",
+            }}
+          ></div>
+
+         
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            {options.map((option) => (
+              <li
+                key={option.value}
+                onClick={() => handleSelect(option)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "10px",
+                  cursor: "pointer",
+                  borderRadius: "10px",
+                }}
+              >
+                <img
+                  src={option.img}
+                  alt={option.label}
+                  style={{ width: "22px", height: "22px", marginRight: "12px" }}
+                />
+                <span>{option.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+   
+                {/* {
                   JobLocationTags.map((location, i) => {
                     return (
                   !StudentAuth?
-                  <select class={styles.selectContainerMobile} style={{position:"relative", top:"-11px"}}value={selectedOption} onChange={handleYourChange}>
-                  {/* <option value="">Option 1</option> */}
-                  <option  value="Bangalore">🌍Bangalore,India</option>
-                  <option  value="New York">🌍New York,US</option>
-                  <option  value="San Francisco">🌍San Francisco,USA</option>
-                  <option  value="Sydney">🌍Sydney,Australia</option>
-                  <option  value="London">🌍London,Uk</option>
-                  <option  value="Berlian">🌍Berlian,Germany</option>
-                </select>
+                 
                 
-                  //  <label> <input className={styles.MobJobtitleFilter} checked type="radio" disabled={location == "Chennai" || location == "Hyderabad" || location == "Mumbai" || location == "Delhi"} name="filter" onClick={() => { getLocation(location.toLowerCase()) }} />{location}</label>
-                  :""
+                    {/* <label> <input className={styles.MobJobtitleFilter} checked type="radio" disabled={location == "Chennai" || location == "Hyderabad" || location == "Mumbai" || location == "Delhi"} name="filter" onClick={() => { getLocation(location.toLowerCase()) }} />{location}</label> */}
+                  {/* :""
                     )
                   })
-                }
-              </div>             
+                } */}
+              </div>  
+              </>:""           
                            
               :""
               }
