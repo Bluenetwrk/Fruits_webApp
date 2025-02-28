@@ -143,7 +143,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
     window.scrollTo(50,5000000)
 
     }
-     const url = "https://www.itwalkin.com/Blogs";
+     const url = "https://www.itwalkin.com/";
           const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
          
            
