@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styles from "./Allobs.module.css"
 import { useEffect, useState } from 'react'
 import axios from "axios";
@@ -19,6 +19,10 @@ import EMpProfile from "../Profile/EmployeeProfile"
 import Down from '../img/icons8-down-button-24.png'
 import Up from '../img/icons8-arrow-button-24.png'
 import Linkedinlogo from '../img/linkedin-logo.png'
+import Linkedin from '../img/linkedin.webp'
+import Email from '../img/email.webp'
+import Whatsapp from '../img/whatsapp.png'
+import Share from '../img/share.jpg'
 
 
 function Answerdetails(props) {
@@ -27,7 +31,7 @@ function Answerdetails(props) {
 
   const [CommentName, setCommentName] = useState("")
   const [CommentID, setCommentID] = useState()
-  const [shareClicked, setShareClicked] = useState(false)
+  // const [shareClicked, setShareClicked] = useState(false)
   // let CommentName = atob(JSON.parse(localStorage.getItem("Snm")))
   const updateClick=()=>{
     setShareClicked((currenvalue)=>!currenvalue)
@@ -155,9 +159,53 @@ async function deletComment(id){
     
    
      
-      const url = encodeURIComponent("https://www.itwalkin.com/Blogs");
-       const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
-    
+      const url = "https://www.itwalkin.com/Blogs";
+      const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
+     
+       
+  const [shareClicked, setShareClicked] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const shareRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  const updateClickStatus = () => {
+    setShareClicked((prev) => !prev);
+    setCopied(false);
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1000);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        shareRef.current && shareRef.current.contains(event.target)
+      ) {
+        return;
+      }
+
+      if (
+        buttonRef.current && buttonRef.current.contains(event.target)
+      ) {
+        return;
+      }
+
+      setTimeout(() => {
+        setShareClicked(false);
+      }, 50);
+    };
+
+    if (shareClicked) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [shareClicked]);
   
   return (
     <>
@@ -186,14 +234,51 @@ async function deletComment(id){
               <h1 style={{textAlign:"center", fontSize:"40px", whiteSpace:"no", marginTop:"10px",marginRight:"120px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</h1>
            {/* <div style={{display:" flex",flexDirection:"column"}}> */}
            {/* <button style={{ marginRight:"4px"}}class={styles.readPageBackBtn} onClick={updateClick} >Share</button> */}
-           <a
+           {/* <a
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
         target="_blank"
         rel="noopener noreferrer"
       >
         <img  class={styles.linkedinLogoDesktop} src={Linkedinlogo} />
-      </a>
+      </a> */}
       {/* </div> */}
+
+    <div ref={buttonRef} onClick={updateClickStatus} style={{ marginRight: "4px" }} className={styles.shareBtn}>
+  <i className="fa-solid fa-share" style={{ fontSize: "medium", cursor: "pointer" }}></i>
+  <p style={{ margin: "0px",fontWeight:"400" }}>Share</p>
+</div>
+
+      {shareClicked && (
+        <div ref={shareRef} class={styles.shareContainer}>
+          <h1 style={{textAlign:"center",color:"white"}}>Share</h1>
+
+          <div class={styles.shareButtonsContainer}>
+            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+              <img src={Linkedin} style={{borderRadius:"50%",height:"45px",backgroundColor:"white" }}></img>
+            </a>
+
+            <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+            <img src={Whatsapp} style={{borderRadius:"50%", height:"46px",width:"48px"}}></img>
+            </a>
+
+            <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=&su=Shared%20Link&body=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+            <img src={Email} style={{borderRadius:"70%", borderRadius:"50%", height:"45px",}}></img>
+              </a>
+          </div>
+
+          <div className={styles.copyLinkContainer}>
+            <input type="text" value={url} readOnly className={styles.urlInput} />
+            <button onClick={copyToClipboard} className={styles.copyButton}>
+              {copied ? "Copied!" : "Copy Link"}
+            </button>
+          </div>
+
+          <div onClick={() => setShareClicked(false)} className={styles.closeButton} style={{position:"absolute", top:"8px", right:"13px",fontSize:"20px", color:"white", cursor:"pointer"}}>X</div>
+        </div>
+      )}
+
+
+
       </div>    
               <div style={{marginLeft:"12px"}}>
                 <span>Posted by {jobs.name}</span> |  
@@ -240,14 +325,51 @@ async function deletComment(id){
               <div class={styles.mobileReadTopbtnsContainer}>
               <button class={styles.readPageBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
               <img style={{marginLeft:"-7%",height:"30px",marginTop:"10px" }}  onClick={()=>{goDown()}} src={Down}/>
+              <div ref={buttonRef} onClick={updateClickStatus} style={{ marginRight: "-9px", height:"35px", width:"76px", paddingRight:"10px" }} className={styles.shareBtn}>
+  <i className="fa-solid fa-share" style={{ fontSize: "medium", cursor: "pointer",marginLeft: "8px"}}></i>
+  <p style={{ margin: "0px",fontWeight:"400" }}>Share</p>
+</div>
+
+      {shareClicked && (
+        <div ref={shareRef} class={styles.shareContainerMob}>
+          <h1 style={{textAlign:"center",color:"white"}}>Share</h1>
+
+          <div class={styles.shareButtonsContainer} style={{marginTop:"16px"}}>
+            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+              <img src={Linkedin} style={{borderRadius:"50%",height:"45px",backgroundColor:"white" }}></img>
+            </a>
+
+            <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+            <img src={Whatsapp} style={{borderRadius:"50%", height:"46px",width:"48px"}}></img>
+            </a>
+
+            <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=&su=Shared%20Link&body=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+            <img src={Email} style={{borderRadius:"70%", borderRadius:"50%", height:"45px"}}></img>
+              </a>
+          </div>
+
+          <div className={styles.copyLinkContainer} style={{marginTop:"16px"}}>
+            <input type="text" value={url} readOnly className={styles.urlInput} />
+            <button onClick={copyToClipboard} className={styles.copyButton}>
+              {copied ? "Copied!" : "Copy Link"}
+            </button>
+          </div>
+
+          <div onClick={() => setShareClicked(false)} className={styles.closeButton} style={{position:"absolute", top:"8px", right:"13px",fontSize:"20px", color:"white", cursor:"pointer"}}>X</div>
+        </div>
+      )}
+
+
+
+         
               {/* <div style={{display:"flex",marginLeft:"20px"}}> */}
-                 <a
+                 {/* <a
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
         target="_blank"
         rel="noopener noreferrer"
       >
         <img class={styles.linkedinLogoMobile} src={Linkedinlogo} />
-      </a>
+      </a> */}
                 {/* <button  class={styles.readPageBackBtn} onClick={updateClick}>Share</button> */}
              
               {/* </div> */}
