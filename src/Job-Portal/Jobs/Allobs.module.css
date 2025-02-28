@@ -1,3 +1,91 @@
+/* -----------------Share button starts---------------- */
+.shareContainer{
+    position: absolute;
+    border: 2px solid rgb(12, 12, 12);
+    border-radius: 3%;
+    background-color: rgb(40, 4, 99);
+    left: 1090px;
+    top: 170px;
+    width: 20%;
+    height: 30%;
+}
+.shareContainerMob{
+    position: absolute;
+    border: 2px solid rgb(12, 12, 12);
+    border-radius: 3%;
+    background-color: rgb(40, 4, 99);
+    left: 15px;
+    top: 109px;
+    width: 91%;
+    height: 30%;
+}
+.shareBtn {
+    display: flex;  
+    align-items: center; /* Align icon and text vertically */
+    gap: 8px; /* Add spacing between icon and text */
+    cursor: pointer;
+    background-color: rgb(40, 4, 99);
+    height: 42px;
+    width: 95px;
+    color: white;
+    border-radius: 2px;
+    padding-right: 6px;
+
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.0rem; 
+    margin-right: 20px;
+  }
+.shareButtonsContainer{
+       display: flex;
+        gap: -46px;
+        /* justify-content: space-between; */
+        gap: 35px;
+        margin-left: 50px;
+        margin-top: 30px;
+}
+
+.copyLinkContainer{
+    display:flex;
+    margin-top: 21px;
+    background-color: white;
+    border-radius: 8px;
+    width:92%;
+    margin-left: 15px;
+    height:40px;
+    align-items: center;
+}
+
+.urlInput{
+    /* height:30px; */
+    width:100%;
+    margin-left: 7px;
+    height:30px;
+    /* background-color: red; */
+    /* border-radius: 25px; */
+    border:none;
+    margin-top: 2px;
+    
+}
+.copyButton{
+        background-color: rgb(40, 4, 99);
+        color: white;
+        border: none;
+        padding: 2px 2px 2px 2px;
+        cursor: pointer;
+        border-radius: 25px;
+        font-weight: 500;
+        font-size: 0.8rem; 
+        width:100px;
+        height:35px;
+        margin-right:7px;
+    }
+
+/* ----------------share button ends--------------------------- */
+
+
 /* ---------------Home Page starts------------- */
 .homePageCompanyLogo{
     height:45px;
@@ -43,11 +131,11 @@
     font-size: 1.0rem; 
     margin-left: 20px;
 }
-.jobdetailBackBtn:hover{
+/* .jobdetailBackBtn:hover{
     background-color: white;
     color: rgb(40, 4, 99);
     border: 2px solid  rgb(40, 4, 99);
-}
+} */
 .jobdetailApplyBtn{
     /* position: absolute;
     right:0px;
@@ -63,11 +151,11 @@
     font-size: 1.0rem; 
     margin-right: 20px;
 }
-.jobdetailApplyBtn:hover{
+/* .jobdetailApplyBtn:hover{
     background-color: white;
     color: rgb(40, 4, 99);
     border: 2px solid  rgb(40, 4, 99);
-}
+} */
 .jobDetailsHeading{
     display: flex;
     
