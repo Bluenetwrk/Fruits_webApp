@@ -163,7 +163,7 @@ async function deletComment(id){
       // const url = "https://www.itwalkin.com/Blogs";
       // const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
      
-       
+     console.log("url",url);  
   const [shareClicked, setShareClicked] = useState(false);
   const [copied, setCopied] = useState(false);
   const shareRef = useRef(null);
