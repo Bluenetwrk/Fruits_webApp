@@ -3,7 +3,7 @@ import styles from "./Allobs.module.css"
 import { useEffect, useState } from 'react'
 import axios from "axios";
 import Footer from '../Footer/Footer';
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { TailSpin, Puff } from "react-loader-spinner"
 import location from "../img/icons8-location-20.png" 
 import Swal from "sweetalert2";
@@ -143,8 +143,10 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
     window.scrollTo(50,5000000)
 
     }
-     const url = "https://www.itwalkin.com/";
-          const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
+          // const url = "https://www.itwalkin.com/";
+          // const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
+      const location = useLocation();
+      const url = window.location.origin + location.pathname; // Dynamic URL
          
            
       const [shareClicked, setShareClicked] = useState(false);
@@ -160,7 +162,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
       const copyToClipboard = () => {
         navigator.clipboard.writeText(url);
         setCopied(true);
-        setTimeout(() => setCopied(false), 1000);
+        setTimeout(() => setCopied(false), 1000);
       };
     
       useEffect(() => {
@@ -209,7 +211,17 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
         <div class={styles.jobDetailContainer}>
 
         <div class={styles.jobdetailBtnContainer} style={{display:"flex"}}>
-           <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
+           {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
+           <button className={styles.jobdetailBackBtn} 
+            onClick={() => {
+               if (window.history.length > 1) {
+                  navigate(-1);
+                 } else {
+                    navigate('/'); 
+                  }
+             }}>
+                 Back
+          </button>
            <div style={{display:"flex"}}>
            <button class={styles.jobdetailApplyBtn} style={{marginRight:"9px",display:"flex", gap:"5px",width:"80px"}}onClick={updateClickStatus}>
            <i className="fa-solid fa-share" style={{ fontSize: "medium", cursor: "pointer", marginLeft:"-8px" }}></i>
@@ -302,12 +314,22 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
 
               <>
-              <div style={{display:"flex",marginTop:"25px"}}>
-              <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
-              <img style={{marginLeft:"25%", marginTop:"0px", height:"24px"}}  onClick={()=>{goDown()}} src={Down}/>
-              <div ref={buttonRef} onClick={updateClickStatus} style={{ marginLeft: "45px",marginTop:"-4px", height:"35px", width:"76px", paddingRight:"10px" }} className={styles.shareBtn}>
+              <div style={{display:"flex",marginLeft:"8px",marginTop:"25px",marginRight:"-6px",alignItems:"center", justifyContent:"space-between"}}>
+              {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
+              <button className={styles.jobdetailBackBtnMobile} 
+            onClick={() => {
+               if (window.history.length > 1) {
+                  navigate(-1);
+                 } else {
+                    navigate('/'); 
+                  }
+             }}>
+                 Back
+          </button>
+              <img style={{height:"24px"}}  onClick={()=>{goDown()}} src={Down}/>
+              <div ref={buttonRef} onClick={updateClickStatus} style={{height:"35px", width:"76px"}} className={styles.shareBtnMobile}>
   <i className="fa-solid fa-share" style={{ fontSize: "medium", cursor: "pointer",marginLeft: "8px"}}></i>
-  <p style={{ margin: "0px",fontWeight:"400" }}>Share</p>
+  <p style={{ fontWeight:"400" }}>Share</p>
 </div>
 
 {shareClicked && (
