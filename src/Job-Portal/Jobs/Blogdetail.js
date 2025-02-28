@@ -3,7 +3,7 @@ import styles from "./Allobs.module.css"
 import { useEffect, useState } from 'react'
 import axios from "axios";
 import Footer from '../Footer/Footer';
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { TailSpin, Puff } from "react-loader-spinner"
 import location from "../img/icons8-location-20.png" 
 import Swal from "sweetalert2";
@@ -158,9 +158,10 @@ async function deletComment(id){
     }  
     
    
-     
-      const url = "https://www.itwalkin.com/Blogs";
-      const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
+    const location = useLocation();
+    const url = window.location.origin + location.pathname; // Dynamic URL
+      // const url = "https://www.itwalkin.com/Blogs";
+      // const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
      
        
   const [shareClicked, setShareClicked] = useState(false);
