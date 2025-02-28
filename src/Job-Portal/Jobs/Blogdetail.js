@@ -177,7 +177,7 @@ async function deletComment(id){
   const copyToClipboard = () => {
     navigator.clipboard.writeText(url);
     setCopied(true);
-    setTimeout(() => setCopied(false), 1000);
+    setTimeout(() => setCopied(false), 1000);
   };
 
   useEffect(() => {
@@ -230,8 +230,19 @@ async function deletComment(id){
         
     <div class={styles.readPageContainer}>
        <div class={styles.ReadPageBtnTitleContainer} style={{display:"flex"}}>
-           <button class={styles.readPageBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
-     
+           {/* <button class={styles.readPageBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
+           <button className={styles.readPageBackBtn} 
+            onClick={() => {
+               if (window.history.length > 1) {
+                  navigate(-1);
+                 } else {
+                    navigate('/Blogs'); 
+                  }
+             }}>
+                 Back
+          </button>
+          {console.log("history length",window.history.length)}
+
               <h1 style={{textAlign:"center", fontSize:"40px", whiteSpace:"no", marginTop:"10px",marginRight:"120px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</h1>
            {/* <div style={{display:" flex",flexDirection:"column"}}> */}
            {/* <button style={{ marginRight:"4px"}}class={styles.readPageBackBtn} onClick={updateClick} >Share</button> */}
@@ -321,14 +332,25 @@ async function deletComment(id){
           <>
     <div id={styles.JobCardWrapper} >
 
-
               <>
-              <div class={styles.mobileReadTopbtnsContainer}>
-              <button class={styles.readPageBackBtn} onClick={()=>{navigate(-1)}}>Back</button>
-              <img style={{marginLeft:"-7%",height:"30px",marginTop:"10px" }}  onClick={()=>{goDown()}} src={Down}/>
-              <div ref={buttonRef} onClick={updateClickStatus} style={{ marginRight: "-9px", height:"35px", width:"76px", paddingRight:"10px" }} className={styles.shareBtn}>
+              <div style={{display:"flex",marginLeft:"8px",marginTop:"25px",marginRight:"-6px",alignItems:"center", justifyContent:"space-between"}}>
+      
+              {/* <div class={styles.mobileReadTopbtnsContainer} style={{backgroundColor:"red"}}> */}
+              {/* <button class={styles.readPageBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
+              <button className={styles.jobdetailBackBtnMobile} 
+            onClick={() => {
+               if (window.history.length > 1) {
+                  navigate(-1);
+                 } else {
+                    navigate('/Blogs'); 
+                  }
+             }}>
+                 Back
+          </button>
+              <img style={{height:"30px"}}  onClick={()=>{goDown()}} src={Down}/>
+              <div ref={buttonRef} onClick={updateClickStatus} style={{height:"35px", width:"76px"}} className={styles.shareBtnMobile}>
   <i className="fa-solid fa-share" style={{ fontSize: "medium", cursor: "pointer",marginLeft: "8px"}}></i>
-  <p style={{ margin: "0px",fontWeight:"400" }}>Share</p>
+  <p style={{fontWeight:"400" }}>Share</p>
 </div>
 
       {shareClicked && (
@@ -359,8 +381,7 @@ async function deletComment(id){
           <div onClick={() => setShareClicked(false)} className={styles.closeButton} style={{position:"absolute", top:"8px", right:"13px",fontSize:"20px", color:"white", cursor:"pointer"}}>X</div>
         </div>
       )}
-
-
+ </div>
 
          
               {/* <div style={{display:"flex",marginLeft:"20px"}}> */}
@@ -374,7 +395,7 @@ async function deletComment(id){
                 {/* <button  class={styles.readPageBackBtn} onClick={updateClick}>Share</button> */}
              
               {/* </div> */}
-              </div>
+              {/* </div> */}
               {/* <a
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
         target="_blank"

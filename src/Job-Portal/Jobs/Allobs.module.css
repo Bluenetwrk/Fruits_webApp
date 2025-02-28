@@ -85,7 +85,6 @@
 
 /* ----------------share button ends--------------------------- */
 
-
 /* ---------------Home Page starts------------- */
 .homePageCompanyLogo{
     height:45px;
@@ -108,7 +107,6 @@
     margin-top: -4px;
 }
 
-
 /* ---------------Home Page ends------------- */
 
 /* ---------------Job Details starts------------- */
@@ -116,7 +114,6 @@
     /* background-color: blue; */
     display: flex;
     justify-content: space-between;
-
 
 }
 .jobdetailBackBtn{
@@ -248,7 +245,6 @@
     margin-top: 15px;
     margin-right:0px;
 }
-
 
 
 /* ------------------Blog Read Page ends-------------------- */
@@ -635,7 +631,6 @@ background-color: white;
     border-radius: 10px;
     background-color: #ffffff;
 }
-
 
 .imageV{
     height:100px;
@@ -1325,3 +1320,5 @@ margin-top: 11px;
        overflow: hidden;
        box-sizing: border-box;
 }
+
+
