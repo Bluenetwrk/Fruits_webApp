@@ -216,6 +216,36 @@
 
 /* ---------------Job Details Ends------------- */
 
+/* ---------------------Blog Home page starts--------------- */
+
+.blogSearchContainer{
+    display: flex;
+    gap:2px;
+    width: 84%;
+    margin-right: 7px; 
+}
+.searchicon{
+    margin-top: 10px;
+}
+.blogInputboxsearch {
+    border-radius: 18px;
+    border: 2px solid rgb(40, 4, 99);
+    height: 29px;
+    width: 100%;
+    margin-top: 3px;
+    transition: width 0.9s ease-in-out;
+   
+
+}
+.blogInputboxsearch::placeholder{
+    font-size:10.5px;
+}
+
+
+
+
+/* ---------------------Blog Home page ends--------------- */
+
 /* ------------------Blog Read Page starts-------------------- */
 .readPageContainer{
     background-color: white;
@@ -578,10 +608,28 @@ background-color: white;
             text-align: justify;
             margin-right: 10px;
 }
-
 .JobtitleFilterWrapper:hover{
     scrollbar-color:  rgb(40, 4, 99) white ;
 }
+
+
+.JobtitleFilterWrapperMobile{
+background: rgb(242, 244, 245);
+    margin-left: 12px;
+    margin-top: 7px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    height: 105px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+    margin-right: 10px;
+}
+.JobtitleFilterWrapperMobile{
+    scrollbar-color:  rgb(40, 4, 99) white ;
+}
+
 
 .JobtitleFilter{
     /* margin-left: 5px;

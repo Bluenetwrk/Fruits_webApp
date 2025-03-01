@@ -448,6 +448,8 @@ return(
       setSelectedOption(option);
       setIsOpen(false);
     };
+const[searchClick,setSearchClick]=useState(false);
+
   return (
     <>
       {screenSize.width > 850 ?
@@ -751,12 +753,20 @@ return(
         :
         <>
 
-        
+        <div style={{display:"flex"}}>
+           <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Home</h2>
 
-          <div className={styles.searchBoth}>
+          <div className={styles.blogSearchContainer}>
+             <i style={{ color: "rgb(40, 4, 99)", fontSize: "18px", cursor: "pointer" , marginLeft:"3px",marginTop:"11px"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
+              class="searchicon fa fa-search" ></i>
+            <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
+          </div>
+          </div>
+
+          {/* <div className={styles.searchBoth}>
             <p className={styles.p}>Search </p>
             <input className={styles.inputboxsearch} type="text" placeholder="candidate's/skills/experience/qualification/noticeperiod" onChange={(e) => { search(e) }} />
-          </div>
+          </div> */}
           {Result ?
             <h4 style={{ marginLeft: "19%", marginTop: "10px" }}> {Candidate.length} matching Result Found  </h4>
             : ""
