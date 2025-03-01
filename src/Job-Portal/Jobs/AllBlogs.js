@@ -453,6 +453,8 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
       setSelectedOption(option);
       setIsOpen(false);
     };
+    const[searchClick,setSearchClick]=useState(false)
+    
   return (
     <>
 
@@ -832,25 +834,114 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
         // Mobile View
         :
         <>
+        {
+          (!EmployeeAuth)?
+          !StudentAuth?
+        <> 
+       <div style={{position:"fixed",zIndex:"999",top:"-4px",left:"175px"}}>
+       <div ref={dropdownRef} style={{ position: "relative" }}>
+   <div style={{ display: "flex", marginLeft: "-45px", marginTop: "11px",position:"fixed" }}>
+        <button
+          onClick={() => setIsOpen((prev) => !prev)}
+          style={{background: "none",border: "none",cursor: "pointer",fontSize: "24px",color: "#007bff",}}>
+          <img className={styles.jobLocationImage} src={location} alt="Location" />
+        </button>
+        <p style={{ marginTop: "17px", fontWeight: "bold", color: "white",width:"113px" }}>
+          {selectedOption?.label}
+        </p>
+      </div>
+
+     
+      {isOpen && (
+        <div
+          style={{
+            position: "fixed",
+            top: "57px",
+            left: "126px",
+            background: "white",
+            color: "black",
+            borderRadius: "20px",
+            width: "154px",
+            padding: "15px",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+            animation: "fadeIn 0.2s ease-in-out",
+          }}
+        >
+          
+          <div
+            style={{
+              position: "absolute",
+              top: "-9px",
+              left: "25px",
+              width: "0",
+              height: "0",
+              borderLeft: "10px solid transparent",
+              borderRight: "10px solid transparent",
+              borderBottom: "10px solid white",
+            }}
+          ></div>
+
+        
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            {options.map((option) => (
+              <li
+                key={option.value}
+                onClick={() => handleSelect(option)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "10px",
+                  cursor: "pointer",
+                  borderRadius: "10px",
+                }}
+              >
+                <img
+                  src={option.img}
+                  alt={option.label}
+                  style={{ width: "22px", height: "22px", marginRight: "12px" }}
+                />
+                <span>{option.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+        </div>
+        </>
+        :""           
+                         
+        :""
+        }
+
+       <>
     {/* <p style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Blogs</p> */}
+    <div style={{display:"flex"}}>
     <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Blogs</h2>
 
-          <div className={styles.searchBoth}>
-            <p className={styles.p}>Search </p>
-            <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
+          {/* <div className={styles.searchBoth}> */}
+          <div className={styles.blogSearchContainer}>
+
+            {/* <p className={styles.p}>Search </p> */}
+             <i style={{ color: "rgb(40, 4, 99)", fontSize: "18px", cursor: "pointer" , marginLeft:"3px",marginTop:"11px"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
+              class="searchicon fa fa-search" ></i>
+
+            {/* <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
+            <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
+          </div>
           </div>
           {Result ?
             <h4 style={{ marginLeft: "18.5%", marginTop: "10px" }}> {jobs.length} matching Result Found  </h4>
             : ""
           }
           {/* ...................... All Filter for Mobile */}
-          {
+          {/* {
           (!EmployeeAuth)?
           !StudentAuth?
           <>
             <div className={styles.MobLocationFilterWrapper}>
                <div ref={dropdownRef} style={{ position: "relative" }}>
-      <div style={{ display: "flex", marginLeft: "-45px", marginTop: "-27px" }}>
+      <div style={{ display: "flex", marginLeft: "-45px", marginTop: "11px",position:"fixed" }}>
         <button
           onClick={() => setIsOpen((prev) => !prev)}
           style={{background: "none",border: "none",cursor: "pointer",fontSize: "24px",color: "#007bff",}}>
@@ -865,13 +956,13 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
       {isOpen && (
         <div
           style={{
-            position: "absolute",
-            top: "45px",
-            left: "-55px",
+            position: "fixed",
+            top: "57px",
+            left: "126px",
             background: "white",
             color: "black",
             borderRadius: "20px",
-            width: "160px",
+            width: "154px",
             padding: "15px",
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
             animation: "fadeIn 0.2s ease-in-out",
@@ -916,7 +1007,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
           </ul>
         </div>
       )}
-    </div>
+    </div> */}
    
                 {/* {
                   JobLocationTags.map((location, i) => {
@@ -929,11 +1020,11 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                     )
                   })
                 } */}
-              </div>  
+              {/* </div>  
               </>:""           
                            
               :""
-              }
+              } */}
 
           {/* <Carousel
             swipeable={true}
@@ -1460,7 +1551,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
             
           </Carousel> */}
 
-<div className={styles.JobtitleFilterWrapper}>
+<div className={styles.JobtitleFilterWrapperMobile}>
             <buton className={ Active.length===0? styles.active:styles.JobtitleFilter} onClick={() => { getjobs() }}>All</buton>
             {
               jobTags.map((tags, i) => {
@@ -1642,6 +1733,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
           <div style={{marginTop:"20px",}}>
             <Footer/>
             </div>
+        </>
         </>
       }
 

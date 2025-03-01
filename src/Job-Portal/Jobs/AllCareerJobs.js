@@ -498,6 +498,8 @@ function AllJobs(props) {
      setSelectedOption(option);
      setIsOpen(false);
    };
+
+   const[searchClick,setSearchClick]=useState(false)
    
   return (
     <>
@@ -913,13 +915,22 @@ function AllJobs(props) {
     {/* <p style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>ITwalkin Career</p>
    */}
    
-    
-   <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>ITwalkin Career</h2>
-  
-          <div className={styles.searchBoth}>
+   <div style={{display:"flex"}}>
+   <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Career</h2>
+   <div className={styles.blogSearchContainer}>
+
+{/* <p className={styles.p}>Search </p> */}
+ <i style={{ color: "rgb(40, 4, 99)", fontSize: "18px", cursor: "pointer" , marginLeft:"3px",marginTop:"11px"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
+  class="searchicon fa fa-search" ></i>
+
+{/* <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
+<input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
+</div>
+</div>
+          {/* <div className={styles.searchBoth}>
             <p className={styles.p}>Search </p>
             <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
-          </div>
+          </div> */}
           
           {Result ?
           

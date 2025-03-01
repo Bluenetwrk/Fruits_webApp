@@ -506,7 +506,7 @@ function AllJobs(props) {
       setIsOpen(false);
     };
     
-
+const[searchClick,setSearchClick]=useState(false);
   return (
     <>
 
@@ -912,10 +912,18 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
         :
         // Mobile View
         <>
-          <div className={styles.searchBoth}>
+           <div style={{display:"flex"}}>
+   <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Home</h2>
+   <div className={styles.blogSearchContainer}>
+ <i style={{ color: "rgb(40, 4, 99)", fontSize: "18px", cursor: "pointer" , marginLeft:"3px",marginTop:"11px"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
+  class="searchicon fa fa-search" ></i>
+<input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
+</div>
+</div>
+          {/* <div className={styles.searchBoth}>
             <p className={styles.p}>Search </p>
             <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
-          </div>
+          </div> */}
           {Result ?
             <h4 style={{ marginLeft: "18.5%", marginTop: "10px" }}> {jobs.length} matching Result Found  </h4>
 
