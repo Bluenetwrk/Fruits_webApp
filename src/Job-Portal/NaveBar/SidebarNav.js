@@ -13,13 +13,7 @@ function SidebarNav(props) {
       {/* <p style={{marginLeft:"80%"}} onClick={()=>{props.setShowSideNaveProps((prev)=>!prev)}}> &#10005;</p> */}
       <div style={{ marginTop:"-15px", zIndex:1000}}>
         <p onClick={()=>{navigate("/"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Home </p>
-        <p onClick={()=>{navigate("/AboutUs"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>About Us</p>
-        <p onClick={()=>{navigate("/Services"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Our Services</p>
-        <p onClick={()=>{navigate("/Contact"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Contact Us</p>
-        <p onClick={()=>{navigate("/AllCareerJobs"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>ITwalkin Career</p>
-        <p onClick={()=>{navigate("/Blogs"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Blogs </p>
-        <p onClick={()=>{navigate("/TermsAndCondition"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Terms & Conditions</p>
-        <p onClick={()=>{setShow(prev=>!prev)}} className={`${Styles.textinMobileSodeBar} `}>New Registration
+        <p onClick={()=>{setShow(prev=>!prev)}} className={`${Styles.textinMobileSodeBar} `}>Open an account
        {
         show?
         <i  className={`${Styles.arrow} ${Styles.down}`} ></i>
@@ -30,13 +24,19 @@ function SidebarNav(props) {
        {
         show?
         <div style={{marginLeft:"10px"}}>
-<p onClick={() => { navigate("/New-Registration");props.setShowSideNaveProps(false);setShow(false); window.scrollTo({top:0}) }} className={`${Styles.textinMobileSodeBar} `}>Employer Login </p>
-<p onClick={() => { navigate("/Jobseeker-New-Registration");props.setShowSideNaveProps(false);setShow(false); window.scrollTo({top:0}) }}className={`${Styles.textinMobileSodeBar} `} >Job Seeker Login</p>
+<p onClick={() => { navigate("/New-Registration");props.setShowSideNaveProps(false);setShow(false); window.scrollTo({top:0}) }} className={`${Styles.textinMobileSodeBar} `}>Employer Registration </p>
+<p onClick={() => { navigate("/Jobseeker-New-Registration");props.setShowSideNaveProps(false);setShow(false); window.scrollTo({top:0}) }}className={`${Styles.textinMobileSodeBar} `} >Job Seeker Registration</p>
         </div>
         :""
        }
+        <p onClick={()=>{navigate("/Blogs"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Blogs </p>
+        <p onClick={()=>{navigate("/AllCareerJobs"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>ITwalkin Career</p>
+        <p  className={`${Styles.textinMobileSodeBar} `} style={{color:"grey"}}>Walkin Drive</p>
+        <p onClick={()=>{navigate("/AboutUs"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>About Us</p>
+        <p onClick={()=>{navigate("/Services"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Our Services</p>
+        <p onClick={()=>{navigate("/Contact"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Contact Us</p>
        
-       
+        <p onClick={()=>{navigate("/TermsAndCondition"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Terms & Conditions</p>
         </div>
       </div>
       </>
