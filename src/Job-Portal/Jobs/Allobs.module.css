@@ -21,8 +21,8 @@
 }
 .shareBtn {
     display: flex;  
-    align-items: center; /* Align icon and text vertically */
-    gap: 8px; /* Add spacing between icon and text */
+    align-items: center; 
+    gap: 8px; 
     cursor: pointer;
     background-color: rgb(40, 4, 99);
     height: 42px;
@@ -38,6 +38,23 @@
     font-size: 1.0rem; 
     margin-right: 20px;
   }
+
+  .shareBtnMobile{
+    display: flex;  
+    align-items: center; 
+    gap: 8px; 
+    cursor: pointer;
+    background-color: rgb(40, 4, 99);
+    height: 42px;
+    width: 95px;
+    color: white;
+    border-radius: 2px;
+    padding-right: 6px;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 1.0rem; 
+  }
+
 .shareButtonsContainer{
        display: flex;
         gap: -46px;
@@ -128,6 +145,18 @@
     font-size: 1.0rem; 
     margin-left: 20px;
 }
+
+.jobdetailBackBtnMobile{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 1.0rem; 
+}
+
 /* .jobdetailBackBtn:hover{
     background-color: white;
     color: rgb(40, 4, 99);
