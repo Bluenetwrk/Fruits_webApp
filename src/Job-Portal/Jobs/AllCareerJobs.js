@@ -41,9 +41,16 @@ const responsive = {
 };
 
 
-function AllJobs(props) {
+// function AllJobs(props) {
+  function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
+    ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
+    jobTagsIds,setJobTagsIds,PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
+    currentPage,setCurrentPage,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon,url,
+    searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon
+
+  }) {
   useEffect(() => {
-    const socket = socketIO.connect(props.url, {
+    const socket = socketIO.connect(url, {
       auth: {
         token: JSON.parse(localStorage.getItem("StudId"))
       }
@@ -53,13 +60,13 @@ function AllJobs(props) {
   
   let JobLocationTags = ["Bangalore"]
 
-  const [jobs, setJobs] = useState([])
-  const [Filterjobs, setFilterjobs] = useState([])
+  // const [jobs, setJobs] = useState([])
+  // const [Filterjobs, setFilterjobs] = useState([])
  const [selectedOption, setSelectedOption] = useState(options[0]);
    const [isOpen, setIsOpen] = useState(false);
 
-  const [nopageFilter, setNoPageFilter] = useState(false)
-  const [Filtereredjobs, setFiltereredjobs] = useState([])
+  // const [nopageFilter, setNoPageFilter] = useState(false)
+  // const [Filtereredjobs, setFiltereredjobs] = useState([])
 
   const [isReadMore, setIsReadMore] = useState(true)
   const [jobapplied, setjobapplied] = useState(false)
@@ -67,22 +74,22 @@ function AllJobs(props) {
   const [showJobs, setshowJobs] = useState(false)
   const [showExperiance, setshowExperiance] = useState(false)
   const [showPackage, setshowPackage] = useState(false)
-  const [PageLoader, setPageLoader] = useState(false)
-  const [Result, setResult] = useState(false)
+  // const [PageLoader, setPageLoader] = useState(false)
+  // const [Result, setResult] = useState(false)
   const [nojob, setnojob] = useState("")
   const screenSize = useScreenSize();
-  const [Active, setActive] = useState([])
+  // const [Active, setActive] = useState([])
 
   const [Loader, setLoader] = useState(false)
 
-  const [totalCount, settotalCount] = useState()
+  // const [totalCount, settotalCount] = useState()
   const [clickedJobId, setclickedJobId] = useState() //for single job loader
   let jobSeekerId = JSON.parse(localStorage.getItem("StudId"))
 
-  let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpage"))
+  // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpage"))
 
-  const [currentPage, setCurrentPage] = useState(1)
-  const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage ? recordsperpage : 10)
+  // const [currentPage, setCurrentPage] = useState(1)
+  // const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage ? recordsperpage : 10)
   const lastIndex = currentPage * recordsPerPage //10
   const firstIndex = lastIndex - recordsPerPage //5
   const records = jobs.slice(firstIndex, lastIndex)//0,5
@@ -165,7 +172,7 @@ function AllJobs(props) {
   }
 
 
-  const [searchKey, setsearchKey] = useState()
+  // const [searchKey, setsearchKey] = useState()
    
   async function searchIcon(key) {
     setNoPageFilter(true)
@@ -381,10 +388,10 @@ function AllJobs(props) {
       })
   }
 
-  const [count, setCount] = useState(1)
+  // const [count, setCount] = useState(1)
   const [jobTagIds, setjobTagIds] = useState([])
 
-  const [jobTagsIds, setJobTagsIds] = useState([])
+  // const [jobTagsIds, setJobTagsIds] = useState([])
   console.log("all dublicate ids", jobTagsIds)
 
   useEffect(() => {
@@ -499,7 +506,7 @@ function AllJobs(props) {
      setIsOpen(false);
    };
 
-   const[searchClick,setSearchClick]=useState(false)
+  //  const[searchClick,setSearchClick]=useState(false)
    
   return (
     <>
@@ -600,18 +607,18 @@ function AllJobs(props) {
     })
   } */}
 </div>          
-<div className={styles.searchBothForNavWrapper}>
+{/* <div className={styles.searchBothForNavWrapper}>
   <input className={styles.inputboxsearchNav} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
 
   <i style={{ color: "rgb(40, 4, 99)", fontSize: "18px", cursor: "pointer" , marginLeft:"2%"}} onClick={() => { searchIcon(searchKey) }}
     class="fa fa-search" ></i>
-</div>
+</div> */}
 </div>
 
-          {Result ?
+          {/* {Result ?
             <h4 style={{ marginLeft: "40%", marginTop: "20px" }}> {jobs.length} matching Result Found  </h4>
             : ""
-          }
+          } */}
         </>
         : ""
       }
@@ -650,9 +657,12 @@ function AllJobs(props) {
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             
              {nopageFilter ?
+              // <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>
+              //   {uniqueList.length} </span>Jobs with following matching tags:
+              //   <span style={{ color: "blue" }}>{Active.toString()}</span></p>
               <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>
-                {uniqueList.length} </span>Jobs with following matching tags:
-                <span style={{ color: "blue" }}>{Active.toString()}</span></p>
+                {jobs.length} </span>Jobs with following matching tags:
+                <span style={{ color: "blue" }}>{Active.toString()}</span></p>   
               :
               <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest jobs</p>
             }
@@ -727,7 +737,8 @@ function AllJobs(props) {
                     return (
 
                       <ul className={styles.ul} key={i}>
-                        <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/CareerJobdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.toUpperCase()}</li>
+                        {/* <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/CareerJobdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.toUpperCase()}</li> */}
+                        <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/CareerJobdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items?.jobTitle?.toUpperCase()}</li>
 
                         {
                           !items.Source ?
@@ -764,7 +775,8 @@ function AllJobs(props) {
                           )}
                         </li>
                         <li className={`${styles.li} ${styles.Location}`}>
-                          {items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li>
+                          {/* {items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li> */}
+                          {items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}</li>
                         <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
                         <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
                         <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
@@ -806,7 +818,8 @@ function AllJobs(props) {
                     return (
 
                       <ul className={styles.ul} key={i}>
-                        <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/CareerJobdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.toUpperCase()}</li>
+                        {/* <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/CareerJobdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.toUpperCase()}</li> */}
+                        <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/CareerJobdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items?.jobTitle?.toUpperCase()}</li>
 
                         {
                           !items.Source ?
@@ -841,7 +854,9 @@ function AllJobs(props) {
                             }
                           )}
                         </li>
-                        <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li>
+                        {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li> */}
+                        <li className={`${styles.li} ${styles.Location}`}>{items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}</li>
+                     
                         <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
                         <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
                         <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
@@ -915,28 +930,30 @@ function AllJobs(props) {
     {/* <p style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>ITwalkin Career</p>
    */}
    
-   <div style={{display:"flex"}}>
-   <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Career</h2>
+   {/* <div style={{display:"flex"}}> */}
+   {/* <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Career</h2> */}
    <div className={styles.blogSearchContainer}>
 
 {/* <p className={styles.p}>Search </p> */}
- <i style={{ color: "rgb(40, 4, 99)", fontSize: "18px", cursor: "pointer" , marginLeft:"3px",marginTop:"11px"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
-  class="searchicon fa fa-search" ></i>
+ {/* <i style={{ color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px",position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
+  class="searchicon fa fa-search" ></i> */}
+  <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
+              class="searchicon fa fa-search" ></i>
 
 {/* <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
-<input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
+{/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
 </div>
-</div>
+{/* </div> */}
           {/* <div className={styles.searchBoth}>
             <p className={styles.p}>Search </p>
             <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
           </div> */}
           
-          {Result ?
+          {/* {Result ?
           
             <h4 style={{ marginLeft: "18%", marginTop: "10px" }}> {jobs.length} matching Result Found  </h4>
             : ""
-          }
+          } */}
           
           {/* ...................... All Filter for Mobile */}
           <div className={styles.JobtitleFilterWrapper} style={{marginTop:"5px",marginBottom:"10px" ,height:"100px", marginLeft:"18px",marginRight:"13px"}}>
@@ -1514,7 +1531,8 @@ function AllJobs(props) {
                               top: 0
                             })
                             navigate(`/CareerJobdetails/${btoa(job._id)}`)
-                          }} >{job.jobTitle.toUpperCase()}</p>
+                          // }} >{job.jobTitle.toUpperCase()}</p>
+                           }} >{job?.jobTitle?.toUpperCase()}</p>
                           <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
@@ -1541,7 +1559,9 @@ function AllJobs(props) {
                         </div>
 
                         <  img className={styles.jobLocationImage} src={location} />
-                        <span className={styles.jobLocation}>{job.jobLocation[0].toUpperCase() + job.jobLocation.slice(1)}</span>
+                        {/* <span className={styles.jobLocation}>{job.jobLocation[0].toUpperCase() + job.jobLocation.slice(1)}</span> */}
+                        <span className={styles.jobLocation}>{job?.jobLocation[0]?.toUpperCase() + job.jobLocation.slice(1)}</span>
+                      
                         <span className={styles.qualificationAndExperiance}>
                           <  img className={styles.graduationImage} src={graduation} />
 

@@ -39,29 +39,35 @@ const responsive = {
   }
 };
 
-function SearchCandidate() {
+function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
+  ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
+  jobTagsIds,setJobTagsIds,PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
+  currentPage,setCurrentPage,totalCount,settotalCount,searchs,getjobs,gettotalcount,searchIcon
+  ,FilCandidate,setFilCandidate,getAllJobSeekers,Candidate,setCandidate
+  ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon
+}) {
   let params = useParams()
   let navigate = useNavigate()
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [isOpen, setIsOpen] = useState(false);
-  const [Candidate, setCandidate] = useState([])
-  const [FilCandidate, setFilCandidate] = useState([])
-  const [nopageFilter, setNoPageFilter] = useState(false)
-  const [Filtereredjobs, setFiltereredjobs] = useState([])
+  // const [Candidate, setCandidate] = useState([])
+  // const [FilCandidate, setFilCandidate] = useState([])
+  // const [nopageFilter, setNoPageFilter] = useState(false)
+  // const [Filtereredjobs, setFiltereredjobs] = useState([])
 
   const [jobSeekers, setjobSeekers] = useState([])
   const [NotFound, setNotFound] = useState("")
-  const [Result, setResult] = useState(false)
+  // const [Result, setResult] = useState(false)
   const screenSize = useScreenSize();
-  const [Active, setActive] = useState([])
+  // const [Active, setActive] = useState([])
   
   const Location = ['Bangalore']
-  const [totalCount, settotalCount] = useState()
+  // const [totalCount, settotalCount] = useState()
 
-  let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageSerachCand"))
+  // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageSerachCand"))
 
-  const [currentPage, setCurrentPage] = useState(1)
-  const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage?recordsperpage:10)
+  // const [currentPage, setCurrentPage] = useState(1)
+  // const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage?recordsperpage:10)
 
   const lastIndex = currentPage * recordsPerPage //10
   const firstIndex = lastIndex - recordsPerPage //0
@@ -110,7 +116,7 @@ function SearchCandidate() {
         }
       }, [currentPage, recordsPerPage])
 
-  const [searchKey, setsearchKey] = useState()
+  // const [searchKey, setsearchKey] = useState()
 
   async function searchIcon(key) {
     setFiltereredjobs(key)
@@ -196,9 +202,9 @@ function SearchCandidate() {
     setrecordsPerPage(recordsperpage) 
     setCurrentPage(1)
   }
-    const [count, setCount]=useState(1)
+    // const [count, setCount]=useState(1)
   
-      const [jobTagsIds, setJobTagsIds] = useState([])
+      // const [jobTagsIds, setJobTagsIds] = useState([])
 
       useEffect(() => {
         if (jobTagsIds.length > 0) {
@@ -448,7 +454,22 @@ return(
       setSelectedOption(option);
       setIsOpen(false);
     };
-const[searchClick,setSearchClick]=useState(false);
+// const[searchClick,setSearchClick]=useState(false);
+
+// const [empHome, setEmpHome] = useState(false);
+//   const locationemp = useLocation();
+
+//   useEffect(() => {
+//     console.log("Current Path:", locationemp.pathname);
+//     if (locationemp.pathname === "/Search-Candidate") {
+//       setEmpHome(true);  
+//     } else {
+//       console.log("hhhh")
+//       setEmpHome(false); 
+//     }
+//   }, [locationemp.pathname]); 
+
+//   console.log("pathname",empHome)
 
   return (
     <>
@@ -548,18 +569,18 @@ const[searchClick,setSearchClick]=useState(false);
   } */}
 </div>
           
-<div className={styles.searchBothForNavWrapper}>
-  <input className={styles.inputboxsearchNav}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
+{/* <div className={styles.searchBothForNavWrapper}>
+  <input className={styles.inputboxsearchNav}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { searchs(e) }} />
 
   <i style={{ color: "rgb(40, 4, 99)", fontSize: "18px", cursor: "pointer" , marginLeft:"3%"}} onClick={() => { searchIcon(searchKey) }}
     class="fa fa-search" ></i>
-</div>
+</div> */}
 
 </div>
-          {Result ?
+          {/* {Result ?
             <h4 style={{ marginLeft: "40%", marginTop: "20px" }}> {Candidate.length} matching Result Found  </h4>
             : ""
-          }
+          } */}
         </>
         : ""
       }
@@ -672,14 +693,14 @@ const[searchClick,setSearchClick]=useState(false);
 
 
             </ul>
-
+           
             {
-              
+             
                 Candidate.length > 0 ?
                   Candidate.map((Applieduser, i) => {
                     return (
                       <>
-
+ 
                         <ul className={styles.ul} key={i}>
                           <li className={`${styles.li} ${styles.name} ${styles.onclick}`} onClick={() => { CheckProfile(btoa(Applieduser._id)) }} >
                             {Applieduser.name ? <a className={styles.namelink} title="Click to check the Contact Details">
@@ -753,24 +774,26 @@ const[searchClick,setSearchClick]=useState(false);
         :
         <>
 
-        <div style={{display:"flex"}}>
-           <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Home</h2>
+        {/* <div style={{display:"flex"}}> */}
+           {/* <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Home</h2> */}
 
           <div className={styles.blogSearchContainer}>
-             <i style={{ color: "rgb(40, 4, 99)", fontSize: "18px", cursor: "pointer" , marginLeft:"3px",marginTop:"11px"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
+             {/* <i style={{ color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px",position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
+              class="searchicon fa fa-search" ></i> */}
+              <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
               class="searchicon fa fa-search" ></i>
-            <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
+            {/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
           </div>
-          </div>
+          {/* </div> */}
 
           {/* <div className={styles.searchBoth}>
             <p className={styles.p}>Search </p>
             <input className={styles.inputboxsearch} type="text" placeholder="candidate's/skills/experience/qualification/noticeperiod" onChange={(e) => { search(e) }} />
           </div> */}
-          {Result ?
+          {/* {Result ?
             <h4 style={{ marginLeft: "19%", marginTop: "10px" }}> {Candidate.length} matching Result Found  </h4>
             : ""
-          }
+          } */}
            <div className={styles.JobtitleFilterWrapper}>
                    <buton className={Active.length===0?styles.active:styles.JobtitleFilter} onClick={() => 
                 { getAllJobSeekers() }}>All</buton>

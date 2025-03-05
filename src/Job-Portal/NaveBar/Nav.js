@@ -20,10 +20,15 @@ import StuModal from "../Login/StudLogModal";
 
 function Nav(props) {
 
+  // const[empHomeClicked, setEmpHomeClicked]=useState(false)
 
+  // const updateEmpClicked=()=>{
+  //   setEmpHomeClicked((currentValue)=>!currentValue)
+  // }
 
   const [showprofile, setShowprofile] = useState(false)
-  const [ShowSideNave, setShowSideNave] = useState(false)
+  // const [ShowSideNave, setShowSideNave] = useState(false)
+  // const [searchClick, setSearchClick] = useState(false)
   const navigate = useNavigate()
 
   let StudentAuth = localStorage.getItem("StudLog")
@@ -138,7 +143,7 @@ function Nav(props) {
     setShowBigSideNave((prev) => !prev)
   }
   function ChangeSideNaveMobile() {
-    setShowSideNave((prev) => !prev)
+    props.setShowSideNave((prev) => !prev)
   }
   const [ShowRegister, setShowRegister] = useState(false)
 
@@ -157,12 +162,16 @@ function Nav(props) {
           StudentAuth ?
             <>
               <div className={Styles.fullnavewrapper}>
-                <div style={{ width:"20px"}}>
+                <div style={{ width:"20px",display:"flex"}}>
                   <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
-                    className={ShowBigSideNave ? "fas fa-times" : "fas fa-bars"} onClick={ChangeSideNaveBar}>
+                    className={ShowBigSideNave ? "fas fa-times" : "fas fa-bars"} onClick={()=>{ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}}>
                   </i>
-                  <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px" } : { marginLeft: "-115px" }}>
-                    <BigSidebarNav />
+                  <i style={{color:"white", fontSize:"18px",visibility:props.searchClick?"hidden":"visible"}}
+                  class=" fa fa-search" onClick={() => {ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}} ></i>
+               
+                  <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px"} : { marginLeft: "-215px"}}>
+                
+                    <BigSidebarNav setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
                   </div>
                 </div>
                 {/* <div className={Styles.logoWrapper}> */}
@@ -214,12 +223,17 @@ function Nav(props) {
               <>
                 <div className={Styles.fullnavewrapper}>
                   {/* <div className={Styles.logoWrapper}> */}
-                  <div style={{ width:"20px"}}>
+                  <div style={{ width:"20px",display:"flex"}}>
                   <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
-                    className={ShowBigSideNave ? "fas fa-times" : "fas fa-bars"} onClick={ChangeSideNaveBar}>
+                    className={ShowBigSideNave ? "fas fa-times" : "fas fa-bars"} onClick={()=>{ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}}>
                   </i>
-                  <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px" } : { marginLeft: "-115px" }}>
-                    <BigSidebarNav  />
+                  <i style={{color:"white", fontSize:"18px",visibility:props.searchClick?"hidden":"visible"}}
+                  class=" fa fa-search" onClick={() => {ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}} ></i>
+               
+                  <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px" } : { marginLeft: "-215px" }}>
+                    {/* <BigSidebarNav  /> */}
+                    <BigSidebarNav setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
+             
                   </div>
                 </div>
                     {/* <NavLink to="/" > <img className={Styles.logo} src={logo} /> </NavLink> */}
@@ -322,12 +336,16 @@ function Nav(props) {
                   <div className={Styles.fullnavewrapper}>
                       {/* <NavLink to="/"> <img className={Styles.logo} src={logo} /> </NavLink> */}
 
-                      <div style={{ width:"20px"}}>
+                      <div style={{ width:"20px",display:"flex"}}>
                   <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
-                    className={ShowBigSideNave ? "fas fa-times" : "fas fa-bars"} onClick={ChangeSideNaveBar}>
+                    className={ShowBigSideNave ? "fas fa-times" : "fas fa-bars"} onClick={() => {ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}}>
                   </i>
-                  <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px" } : { marginLeft: "-112px" }}>
-                    <BigSidebarNav />
+                  <i style={{color:"white", fontSize:"18px",visibility:props.searchClick?"hidden":"visible"}}
+                  class=" fa fa-search" onClick={() => {ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}} ></i>
+                  <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px" } : { marginLeft: "-215px" }} >
+                  {/* <div className="BigNavWrapper" style={{visibility:ShowBigSideNave?"visible":"hidden"}} > */}
+                
+                    <BigSidebarNav setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
                   </div>
                 </div>
 
@@ -393,7 +411,7 @@ function Nav(props) {
               <div style={{ width:"30px"}}>
 
 <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
-className={ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick={() => { setShowSideNave((prev) => !prev)}}>
+className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick={() => { props.setShowSideNave((prev) => !prev);props.setSearchClick((currentValue)=>!currentValue);props.setShowMobileSearchIcon((currentValue)=>!currentValue)}}>
 </i>
 </div>
                 {/* <div className={Styles.logoWrapper}> */}
@@ -436,8 +454,11 @@ className={ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick=
                 </div>
                 : ""}
                 <div ref={SmenuRef} className={`${Styles.MovileNavOptions} `}
-                    style={ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
-                    <SidebarNav setShowSideNaveProps={setShowSideNave} />
+                    style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
+                    {/* <SidebarNav setShowSideNaveProps={props.setShowSideNave} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar} /> */}
+                  {/* <SidebarNav setShowSideNaveProps={setShowSideNave} /> */}
+                  <SidebarNav setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
+              
                   </div>
             </>
 
@@ -448,8 +469,11 @@ className={ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick=
                 <div className={Styles.MobilEmployeeFullnavewrapper}>
                 <div style={{ width:"30px"}}>
 
+{/* <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
+className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick={() => { props.setShowSideNave((prev) => !prev)}}>
+</i> */}
 <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
-className={ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick={() => { setShowSideNave((prev) => !prev)}}>
+className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick={() => { props.setShowSideNave((prev) => !prev);props.setSearchClick((currentValue)=>!currentValue);props.setShowMobileSearchIcon((currentValue)=>!currentValue)}}>
 </i>
 </div>
                   {/* <div className={Styles.logoWrapper}> */}
@@ -488,9 +512,10 @@ className={ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick=
                 </div>
                 {/* ............Mobile View.........drop down............ */}
                 <div ref={SmenuRef} className={`${Styles.MovileNavOptions} `}
-                    style={ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
-                    <SidebarNav setShowSideNaveProps={setShowSideNave} />
-                  </div>
+                    style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
+                    {/* <SidebarNav setShowSideNaveProps={setShowSideNave} /> */}
+                    <SidebarNav setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar} />
+                       </div>
 
               </>
               // ............Admin Login............Mobile View..........
@@ -541,10 +566,10 @@ className={ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick=
                 <div style={{ width:"30px"}}>
 
                     <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
-                    className={ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick={() => { setShowSideNave((prev) => !prev)}}>
+                    className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick={() => { props.setShowSideNave((prev) => !prev);props.setSearchClick((currentValue)=>!currentValue);props.setShowMobileSearchIcon((currentValue)=>!currentValue)}}>
                   </i>
                 </div>
-
+                                     
                     <div className={Styles.ITwalkinWrapperHomeMobile}>
                       {/* <p className={Styles.ITwalkinMob}>ITwalkin</p>
                       <p className={Styles.onlyforITjobsMob}>Only for IT jobs</p> */}
@@ -567,8 +592,8 @@ className={ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick=
                   </div>
                   {/* {ShowSideNave? */}
                   <div ref={SmenuRef} className={`${Styles.MovileNavOptions} `}
-                    style={ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
-                    <SidebarNav setShowSideNaveProps={setShowSideNave} />
+                    style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
+                    <SidebarNav setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
                   </div>
                   {/* :"" }   */}
                 </>

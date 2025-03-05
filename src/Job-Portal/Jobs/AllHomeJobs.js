@@ -40,26 +40,31 @@ const responsive = {
 };
 
 
-function Home() {
+function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
+  ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
+  jobTagsIds,setJobTagsIds,PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
+  currentPage,setCurrentPage,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon
+  ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon
+}) {
 
-  const [jobs, setJobs] = useState([])
+  // const [jobs, setJobs] = useState([])
   // const [selectedOption, setSelectedOption] = useState("");
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [isOpen, setIsOpen] = useState(false);
-  const [nopageFilter, setNoPageFilter] = useState(true)
-  const [Filtereredjobs, setFiltereredjobs] = useState([])
+  // const [nopageFilter, setNoPageFilter] = useState(true)
+  // const [Filtereredjobs, setFiltereredjobs] = useState([])
   
 
-  const [Filterjobs, setFilterjobs] = useState([])
+  // const [Filterjobs, setFilterjobs] = useState([])
 
   const [isReadMore, setIsReadMore] = useState(true)
   const [showJobs, setshowJobs] = useState(false)
   const [showExperiance, setshowExperiance] = useState(false)
   const [showPackage, setshowPackage] = useState(false)
-  const [PageLoader, setPageLoader] = useState(false)
-  const [Result, setResult] = useState(false)
+  // const [PageLoader, setPageLoader] = useState(false)
+  // const [Result, setResult] = useState(false)
   const [NotFound, setNotFound] = useState("")
-  const [Active, setActive] = useState([])
+  // const [Active, setActive] = useState([])
   const screenSize = useScreenSize();
 
   let JobLocationTags = ["Bangalore"]
@@ -82,11 +87,11 @@ function Home() {
     }
   }, [])
 
-  const [totalCount, settotalCount] = useState()
-  let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
+  // const [totalCount, settotalCount] = useState()
+  // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
 
-  const [currentPage, setCurrentPage] = useState(1)
-  const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage ? recordsperpage : 10)
+  // const [currentPage, setCurrentPage] = useState(1)
+  // const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage ? recordsperpage : 10)
   const[jobsPerPageValue,setJobsPerPageValue]=useState(10);
 
 
@@ -155,7 +160,7 @@ function Home() {
   }
 
 
-  const [searchKey, setsearchKey] = useState()
+  // const [searchKey, setsearchKey] = useState()
   // const [jobs, setJobs] = useState([])  
   async function searchIcon(key) {
     setNoPageFilter(true)
@@ -361,10 +366,10 @@ function Home() {
     setCurrentPage(1)
   }
 
-  const [count, setCount] = useState(1)
+  // const [count, setCount] = useState(1)
   const [jobTagIds, setjobTagIds] = useState([])
 
-  const [jobTagsIds, setJobTagsIds] = useState([])
+  // const [jobTagsIds, setJobTagsIds] = useState([])
 
 
   useEffect(() => {
@@ -546,14 +551,13 @@ function Home() {
     setSelectedOption(option);
     setIsOpen(false);
   };
-   const[searchClick,setSearchClick]=useState(false)
+  //  const[searchClick,setSearchClick]=useState(false)
   
   return (
     <>
       {screenSize.width > 850 ?
 
         <>
-        
           <div className={adminLogin ? styles.HomeNavConetenetWrapperAdmin : styles.HomeNavConetenetWrapper}>
             <div className={styles.LocationFilterWrapper}>
               {/* {
@@ -647,17 +651,17 @@ function Home() {
                 })
               } */}
             </div>
-            <div className={styles.HomesearchBothForNavWrapper}>
+            {/* <div className={styles.HomesearchBothForNavWrapper}>
               <input className={styles.inputboxsearchNav} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
 
               <i style={{ color: "rgb(40, 4, 99)", fontSize: "18px", cursor: "pointer", marginLeft: "2%" }} onClick={() => { searchIcon(searchKey) }}
                 class="fa fa-search" ></i>
-            </div>
+            </div> */}
           </div>
-          {Result ?
+          {/* {Result ?
             <h4 style={{ marginLeft: "40%", marginTop: "20px" }}> {jobs.length} matching Result Found  </h4>
             : ""
-          }
+          } */}
         </>
         : ""
       }
@@ -708,8 +712,11 @@ function Home() {
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             {nopageFilter ?
+              // <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>
+              //   {uniqueList.length} </span>Jobs with following matching tags:
+              //   <span style={{ color: "blue" }}>{Active.toString()}</span></p>
               <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>
-                {uniqueList.length} </span>Jobs with following matching tags:
+                {jobs.length} </span>Jobs with following matching tags:
                 <span style={{ color: "blue" }}>{Active.toString()}</span></p>
               :
               <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest jobs</p>
@@ -831,7 +838,8 @@ function Home() {
                             }
                           )}
                         </li>
-                        <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li>
+                        {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li> */}
+                        <li className={`${styles.li} ${styles.Location}`}>{items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}</li>
                         <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
                         <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
                         <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
@@ -965,23 +973,23 @@ function Home() {
     </div>
         </div> 
         <>
-        <div style={{display:"flex"}}>
-    <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Home</h2>
-
+        {/* <div style={{display:"flex"}}> */}
+    {/* <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Home</h2> */}
+            {console.log("show",ShowSideNave)}
           <div className={styles.blogSearchContainer}>
-             <i style={{ color: "rgb(40, 4, 99)", fontSize: "18px", cursor: "pointer" , marginLeft:"3px",marginTop:"11px"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
+             <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
               class="searchicon fa fa-search" ></i>
-            <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
+            {/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
           </div>
-          </div>
+          {/* </div> */}
           {/* <div className={styles.searchBoth}>
             <p className={styles.p}>Search </p>
             <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
           </div> */}
-          {Result ?
+          {/* {Result ?
             <h4 style={{ marginLeft: "18.5%", marginTop: "10px" }}> {jobs.length} matching Result Found  </h4>
             : ""
-          }
+          } */}
           {/* ...................... All Filter for Mobile */}
 <div className={styles.MobLocationFilterWrapper}>
    {/* <div ref={dropdownRef} style={{ position: "relative" }}>
@@ -1708,7 +1716,9 @@ function Home() {
                           </div>
                         </div>
                         <  img className={styles.jobLocationImage} src={location} />
-                        <span className={styles.jobLocation}>{job.jobLocation[0].toUpperCase() + job.jobLocation.slice(1)} ,</span>
+                        {/* <span className={styles.jobLocation}>{job.jobLocation[0].toUpperCase() + job.jobLocation.slice(1)} ,</span> */}
+                        <span className={styles.jobLocation}>{job?.jobLocation[0]?.toUpperCase() + job.jobLocation.slice(1)} ,</span>
+                    
                         <span className={styles.qualificationAndExperiance}>
 
                           <  img className={styles.graduationImage} src={graduation} />

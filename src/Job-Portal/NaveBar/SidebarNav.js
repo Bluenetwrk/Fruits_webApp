@@ -1,17 +1,42 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Styles from "./nav.module.css"
-import { Link, useNavigate, NavLink } from "react-router-dom";
+import { Link, useNavigate, NavLink, useLocation } from "react-router-dom";
 
 
 function SidebarNav(props) {
   const[show,setShow]=useState(false)
   let navigate = useNavigate()
+  const [empHome, setEmpHome] = useState(false);
+  const location = useLocation(); 
+
+  useEffect(() => {
+    console.log("Current Path:", location.pathname); 
+
+    if (location.pathname === "/Search-Candidate") {
+      setEmpHome(true);
+    } else {
+      setEmpHome(false); 
+    }
+
+    const inputField = document.querySelector(`.${Styles.blogInputboxsearch}`);
+    if (inputField) {
+      inputField.value = ""; 
+      props.setShowMobileSearchIcon(true)
+    }
+  }, [location.pathname]); 
+
   return (
   <>
   
       <div  >
       {/* <p style={{marginLeft:"80%"}} onClick={()=>{props.setShowSideNaveProps((prev)=>!prev)}}> &#10005;</p> */}
       <div style={{ marginTop:"-15px", zIndex:1000}}>
+      <div style={{display:"flex",marginTop:"10px",marginRight:"6px"}} >
+            {/* <input style={{height:"18px",width:"84%",marginLeft:"2px"}}className={Styles.blogInputboxsearch}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { props.search(e) }} /> */}
+            <input style={{height:"18px",width:"84%",marginLeft:"2px"}}className={Styles.blogInputboxsearch}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { empHome?props.searchs(e):props.search(e) }} />
+           
+            <i style={{marginLeft:"2px",fontSize:"16px",marginTop:"6px"}} class="fa fa-search" onClick={() => { props.searchIcon(props.searchKey);props.setShowSideNaveProps();props.setShowMobileSearchIcon(true)}}></i>
+          </div>
         <p onClick={()=>{navigate("/"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Home </p>
         <p onClick={()=>{setShow(prev=>!prev)}} className={`${Styles.textinMobileSodeBar} `}>Open an account
        {
