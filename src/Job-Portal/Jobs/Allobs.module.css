@@ -595,7 +595,7 @@ background-color: white;
 
   
 .JobtitleFilterWrapper{
-    background:rgb(242, 244, 245);
+    background:#a5a5a5;
 
     margin-left: 3px;
     margin-top: 20px;
@@ -614,7 +614,7 @@ background-color: white;
 
 
 .JobtitleFilterWrapperMobile{
-background: rgb(242, 244, 245);
+background: #a5a5a5;
     margin-left: 12px;
     margin-top: 7px;
     padding: 10px;
