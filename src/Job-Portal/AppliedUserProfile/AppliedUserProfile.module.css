@@ -200,7 +200,7 @@
 /* ...........................for Filter..................... */
 .JobtitleFilterWrapper{
     /* background-color: rgb(40, 4, 99); */
-    background:rgb(242, 244, 245);
+    background:#a5a5a5;
 
     margin-left: 3px;
     padding: 10px;
@@ -211,6 +211,7 @@
     overflow-y: auto;
     text-align: justify;
     margin-right: 10px;
+    margin-top: 20px;
 
 }
 .JobtitleFilterWrapper:hover{
