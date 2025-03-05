@@ -39,24 +39,29 @@ const responsive = {
 };
 
 
-function Blogs() {
+function Blogs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
+  ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
+  jobTagsIds,setJobTagsIds,PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
+  currentPage,setCurrentPage,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon
+  ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon
+}) {
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [isOpen, setIsOpen] = useState(false);
-  const [jobs, setJobs] = useState([])
+  // const [jobs, setJobs] = useState([])
 
-  const [nopageFilter, setNoPageFilter] = useState(false)
-  const [Filtereredjobs, setFiltereredjobs] = useState([])
+  // const [nopageFilter, setNoPageFilter] = useState(false)
+  // const [Filtereredjobs, setFiltereredjobs] = useState([])
 
-  const [Filterjobs, setFilterjobs] = useState([])
+  // const [Filterjobs, setFilterjobs] = useState([])
  
   const [isReadMore, setIsReadMore] = useState(true)
   const [showJobs, setshowJobs] = useState(false)
   const [showExperiance, setshowExperiance] = useState(false)
   const [showPackage, setshowPackage] = useState(false)
-  const [PageLoader, setPageLoader] = useState(false)
-  const [Result, setResult] = useState(false)
+  // const [PageLoader, setPageLoader] = useState(false)
+  // const [Result, setResult] = useState(false)
   const [NotFound, setNotFound] = useState("")
-  const [Active, setActive] = useState([])
+  // const [Active, setActive] = useState([])
   const screenSize = useScreenSize();
 
   let adminLogin = localStorage.getItem("AdMLog")
@@ -70,10 +75,10 @@ function Blogs() {
 
   let navigate = useNavigate()
 
-  let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
+  // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
 
-  const [currentPage, setCurrentPage] = useState(1)
-  const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage ? recordsperpage : 10)
+  // const [currentPage, setCurrentPage] = useState(1)
+  // const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage ? recordsperpage : 10)
   const[jobsPerPageValue,setJobsPerPageValue]=useState(10);
 
   const lastIndex = currentPage * recordsPerPage //10
@@ -115,7 +120,7 @@ function Blogs() {
     window.open(`${Link}`)
   }
 
-  const [searchKey, setsearchKey] = useState()
+  // const [searchKey, setsearchKey] = useState()
   // const [jobs, setJobs] = useState([])  
   async function searchIcon(key) {
     setNoPageFilter(true)
@@ -321,7 +326,7 @@ function Blogs() {
     setCurrentPage(1)
   }
 
-  const [count, setCount]=useState(1)
+  // const [count, setCount]=useState(1)
 
   async function filterByJobTitle(key) {
 
@@ -453,7 +458,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
       setSelectedOption(option);
       setIsOpen(false);
     };
-    const[searchClick,setSearchClick]=useState(false)
+    // const[searchClick,setSearchClick]=useState(false)
     
   return (
     <>
@@ -556,19 +561,19 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
               })
             } */}
           </div>          
-          <div className={styles.searchBothForNavWrapper}>
+          {/* <div className={styles.searchBothForNavWrapper}>
             <input className={styles.inputboxsearchNav} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
 
             <i style={{ color: "rgb(40, 4, 99)", fontSize: "18px", cursor: "pointer" , marginLeft:"2%"}} onClick={() => { searchIcon(searchKey) }}
               class="fa fa-search" ></i>
-          </div>
+          </div> */}
           </div>
           :""
           }
-          {Result ?
+          {/* {Result ?
             <h4 style={{ marginLeft: "40%", marginTop: "20px" }}> {jobs.length} matching Result Found  </h4>
             : ""
-          }
+          } */}
         </>
         : ""
       }
@@ -616,7 +621,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             {nopageFilter ?
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying Jobs with following matching tags:
+              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>{jobs.length}</span>Jobs with following matching tags:
               <span style={{ color: "blue" }}>{Active.toString()}</span></p>
               :
               <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest jobs</p>
@@ -916,24 +921,26 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
 
        <>
     {/* <p style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Blogs</p> */}
-    <div style={{display:"flex"}}>
-    <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Blogs</h2>
+    {/* <div style={{display:"flex"}}> */}
+    {/* <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Blogs</h2> */}
 
           {/* <div className={styles.searchBoth}> */}
           <div className={styles.blogSearchContainer}>
 
             {/* <p className={styles.p}>Search </p> */}
-             <i style={{ color: "rgb(40, 4, 99)", fontSize: "18px", cursor: "pointer" , marginLeft:"3px",marginTop:"11px"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
+             {/* <i style={{ color:"white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px",zIndex:"999",position:"fixed"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
+              class="searchicon fa fa-search" ></i> */}
+               <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
               class="searchicon fa fa-search" ></i>
 
             {/* <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
-            <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
+            {/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
           </div>
-          </div>
-          {Result ?
+          {/* </div> */}
+          {/* {Result ?
             <h4 style={{ marginLeft: "18.5%", marginTop: "10px" }}> {jobs.length} matching Result Found  </h4>
             : ""
-          }
+          } */}
           {/* ...................... All Filter for Mobile */}
           {/* {
           (!EmployeeAuth)?

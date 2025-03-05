@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Styles from "../Job-Portal/NaveBar/nav.module.css"
-import { Link, useNavigate, NavLink, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, NavLink, useSearchParams, useLocation } from "react-router-dom";
 
 
 function SidebarNav(props) {
@@ -34,7 +34,24 @@ function SidebarNav(props) {
   function Linkedin(e){
     window.open("https://www.linkedin.com/company/104886917/admin/dashboard/", '_blank');  
   }
-  
+  const [empHome, setEmpHome] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log("Current Path:", location.pathname); 
+
+    if (location.pathname === "/Search-Candidate") {
+      setEmpHome(true); 
+    } else {
+      setEmpHome(false); 
+    }
+
+    const inputField = document.querySelector(`.${Styles.blogInputboxsearch}`);
+    if (inputField) {
+      inputField.value = ""; 
+    }
+  }, [location.pathname]); 
+
 
   return (
   <>
@@ -42,6 +59,11 @@ function SidebarNav(props) {
       <div  ref ={props.refrence} >
       {/* <p style={{marginLeft:"80%"}} onClick={()=>{props.setShowSideNaveProps((prev)=>!prev)}}> &#10005;</p> */}
       <div style={{ marginTop:"-15px"}}>
+         <div style={{display:"flex",marginTop:"10px",marginRight:"6px"}} >
+            <input className={Styles.blogInputboxsearch}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { empHome?props.searchs(e):props.search(e) }} />
+            <i style={{marginLeft:"0px",fontSize:"20px",marginTop:"7px"}} class="fa fa-search" onClick={() => { props.searchIcon(props.searchKey);props.ChangeSideNaveBar();props.setSearchClick(false)}}></i>
+          </div>
+          
         {/* <p onClick={()=>{navigate("/")}} className={`${Styles.p} `}>Home </p> */}
         <p onClick={()=>{navigate("/Blogs"); update("Blogs")}} className={`${Styles.textBigSodeBar} ${value==="Blogs"?Styles.active:""}`}>Blogs</p>
         <p onClick={()=>{navigate("/AllCareerJobs"); update("AllCareerJobs")}} className={`${Styles.textBigSodeBar} ${value==="AllCareerJobs"?Styles.active:""}`}>ITwalkin Career</p>

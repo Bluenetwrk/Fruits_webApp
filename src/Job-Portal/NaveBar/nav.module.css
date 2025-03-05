@@ -1,3 +1,21 @@
+.blogInputboxsearch {
+    border-radius: 4px;
+    border: 2px solid rgb(40, 4, 99);
+    height: 29px;
+    width: 90%;
+    /* margin-top: 6px; */
+    transition: width 0.9sease-in-out;
+    /* margin-right: 8px; */
+    margin-left: 9px;
+
+}
+input:focus {
+    outline: none;
+    /* border: none;  */
+}
+.blogInputboxsearch::placeholder{
+    font-size:9.1px;
+}
 
 
 .ITwalkinWrapperHomeMobile{
@@ -751,10 +769,10 @@ font-weight: 400;
         margin-left: 52%;
 }
 .MobIwalkinLogologo{
-    width:85%;
+    width:73%;
     margin-top: 6px;
-    height: 37px;
-    margin-left: -11px;
+    height: 29px;
+    margin-left: 13px;
 
 }
     }
