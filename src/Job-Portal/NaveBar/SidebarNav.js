@@ -37,7 +37,7 @@ function SidebarNav(props) {
            
             <i style={{marginLeft:"2px",fontSize:"16px",marginTop:"6px"}} class="fa fa-search" onClick={() => { props.searchIcon(props.searchKey);props.setShowSideNaveProps();props.setShowMobileSearchIcon(true)}}></i>
           </div>
-        <p onClick={()=>{navigate("/"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Home </p>
+        <p onClick={()=>{navigate("/"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Home </p>
         <p onClick={()=>{setShow(prev=>!prev)}} className={`${Styles.textinMobileSodeBar} `}>Open an account
        {
         show?
@@ -54,14 +54,14 @@ function SidebarNav(props) {
         </div>
         :""
        }
-        <p onClick={()=>{navigate("/Blogs"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Blogs </p>
+        <p onClick={()=>{navigate("/Blogs"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Blogs </p>
         <p onClick={()=>{navigate("/AllCareerJobs"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>ITwalkin Career</p>
         <p  className={`${Styles.textinMobileSodeBar} `} style={{color:"grey"}}>Walkin Drive</p>
-        <p onClick={()=>{navigate("/AboutUs"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>About Us</p>
-        <p onClick={()=>{navigate("/Services"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Our Services</p>
-        <p onClick={()=>{navigate("/Contact"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Contact Us</p>
+        <p onClick={()=>{navigate("/AboutUs"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>About Us</p>
+        <p onClick={()=>{navigate("/Services"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Our Services</p>
+        <p onClick={()=>{navigate("/Contact"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Contact Us</p>
        
-        <p onClick={()=>{navigate("/TermsAndCondition"); props.setShowSideNaveProps(false)}} className={`${Styles.textinMobileSodeBar} `}>Terms & Conditions</p>
+        <p onClick={()=>{navigate("/TermsAndCondition"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Terms & Conditions</p>
         </div>
       </div>
       </>
