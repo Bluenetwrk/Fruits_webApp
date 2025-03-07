@@ -113,25 +113,39 @@ const [Loader, setLoader] = useState(false)
 
   return (
     <>
-    <div style={{display:"flex"}}>
-                            <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
-             width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} />
+    {/* <div style={{display:"flex"}}> */}
+                            {/* <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
+             width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} /> */}
+            
     {/* <p style={{marginLeft:"30%"}}><b>Full Job Description</b></p> */}
-    </div>
+    {/* </div> */}
 
       {screenSize.width>850 ?
 
-        <>
-        <div>
-        <img className={styles.imageV} src={jobs.Logo?jobs.Logo : profileDp}/>
-        
+        <> 
+        <div class={styles.jobDetailContainer} >
+        <div style={{display:"flex"}}>
+              <button className={styles.jobdetailBackBtn} 
+            onClick={() => {
+               if (window.history.length > 1) {
+                  navigate(-1);
+                 } else {
+                    navigate('/'); 
+                  }
+             }}>
+                 Back
+          </button>
         </div>
-          
-          <table>
+        <div>
+        {/* <img className={styles.imageV} src={jobs.Logo?jobs.Logo : profileDp}/> */}
+        <img className={styles.imageV} src={jobs.Logo?profileDp : profileDp}/>
+        </div>
+      
+          {/* <table style={{width:"95%",borderRadius:"5px"}}>
           <tr>
-    <td colSpan={2} style={{backgroundColor:" rgb(40, 4, 99)"}}>
+    <td colSpan={2} style={{backgroundColor:" rgb(40, 4, 99)"}}> */}
     {/* <div  style={{marginLeft:"48%", color:"white", fontWeight:"550"}}>Full Job Description</div> */}
-    <div style={{marginLeft:"48%", color:"white", fontWeight:"550"}}>{jobs.jobTitle ? jobs.jobTitle[0].toUpperCase()+jobs.jobTitle.slice(1)
+    {/* <div style={{marginLeft:"48%", color:"white", fontWeight:"550"}}>{jobs.jobTitle ? jobs.jobTitle[0].toUpperCase()+jobs.jobTitle.slice(1)
     : <li style={{ display: "inline-block" }}>job Title</li>}</div>
 
     </td>
@@ -139,12 +153,12 @@ const [Loader, setLoader] = useState(false)
   <tr>
     <th>Company Name</th>
     <td>{jobs.companyName ? jobs.companyName : <li style={{ display: "inline-block" }}>Company name</li>}</td>
-  </tr>
+  </tr> */}
   {/* <tr>
 <th>Job Title</th>
     <td>{jobs.jobTitle ? jobs.jobTitle : <li style={{ display: "inline-block" }}>job Title</li>}</td>
   </tr> */}
-  <tr>
+  {/* <tr>
     <th>Location</th>
     <td>{jobs.jobLocation ? jobs.jobLocation : <li style={{ display: "inline-block" }}>job Location</li>}</td>
   </tr>
@@ -190,10 +204,59 @@ const [Loader, setLoader] = useState(false)
 
   </tr>
 
-</table>
+</table> */}
+ <table className={styles.tableContainer}>
+      <tr>
+        <td colSpan={2} className={styles.headerRow}>
+          {jobs.jobTitle
+            ? jobs.jobTitle[0].toUpperCase() + jobs.jobTitle.slice(1)
+            : "Job Title"}
+        </td>
+      </tr>
+      <tr>
+        <th className={styles.th}>Company Name</th>
+        <td className={styles.td}>{jobs.companyName || "Company Name"}</td>
+      </tr>
+      <tr>
+        <th className={styles.th}>Location</th>
+        <td className={styles.td}>{jobs.jobLocation || "Job Location"}</td>
+      </tr>
+      <tr>
+        <th className={styles.th}>Package</th>
+        <td className={styles.td}>{jobs.salaryRange ? jobs.salaryRange + " LPA" : "Salary Range"}</td>
+      </tr>
+      <tr>
+        <th className={styles.th}>Experience Required</th>
+        <td className={styles.td}>{jobs.experiance ? jobs.experiance + " Yrs" : "Experience"}</td>
+      </tr>
+      <tr>
+        <th className={styles.th}>Skills Required</th>
+        <td className={styles.td}>{jobs.skills || "Skills"}</td>
+      </tr>
+      <tr>
+        <th className={styles.th}>Posted Date</th>
+        <td className={styles.td}>
+          {jobs.updatedAt
+            ? new Date(jobs.updatedAt).toLocaleString("en-US", {
+                month: "short",
+                day: "2-digit",
+                year: "numeric",
+              })
+            : "Date"}
+        </td>
+      </tr>
+      <tr>
+        <td colSpan={2} className={styles.descriptionRow}>Description</td>
+      </tr>
+      <tr>
+        <td colSpan={2} className={styles.descriptionContent}>
+          {jobdescription ? HTMLReactParser(jobdescription.toString()) : ""}
+        </td>
+      </tr>
+    </table>
 
 
-
+</div>
           </>
           :
           <>
@@ -201,6 +264,16 @@ const [Loader, setLoader] = useState(false)
 
 
               <>
+              <button className={styles.jobdetailBackBtn} style={{marginTop:"22px",marginLeft:"10px"}} 
+            onClick={() => {
+               if (window.history.length > 1) {
+                  navigate(-1);
+                 } else {
+                    navigate('/'); 
+                  }
+             }}>
+                 Back
+          </button>
                 <div className={styles.JobCard} >
                 <div className={styles.JobTitleDateWrapper}>
         <p className={styles.jobTitle} >{jobs.jobTitle}</p>

@@ -1,3 +1,51 @@
+.tableContainer {
+    width: 95%;
+    border-radius: 15px;
+    border-collapse: collapse;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    box-shadow: 6px 6px 12px 6px rgba(0, 0, 0, 0.4);
+    margin: auto;
+    /* height: 97%; */
+    margin-bottom: 20px;
+    margin-left: 30px;
+
+  }
+  
+  .headerRow {
+    background-color: rgb(40, 4, 99);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+  }
+  
+  .th, .td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .descriptionRow {
+    background-color: rgb(40, 4, 99);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+  }
+  
+  .descriptionContent {
+    padding: 10px;
+    background-color: white;
+  }
+  
 /* -----------------Share button starts---------------- */
 .shareContainer{
     position: absolute;
@@ -713,7 +761,7 @@ background: rgb(202, 202, 202);
     height:100px;
     width:100px;
     border-radius: 180%;
-    margin-left: 7%;
+    margin-left: 2%;
     margin-top: 10px;
     /* background-color: aqua; */
 }
