@@ -634,6 +634,30 @@ setCompanyCIN("")
          </div>
          <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
 
+         <label className={styles.MobileinputName}>
+              <h4 className={styles.MobileName}>Company Name: </h4>
+              <input maxLength="25" className={styles.Mobileinput} value={CompanyName} onChange={(e) => { handleCompanyname(e) }} type="text" />
+            </label>
+
+          
+            <label className={styles.MobileinputName}>
+              <h4 className={styles.MobileName}>Company Email id:</h4>
+              <input maxLength="25" className={styles.Mobileinput} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" />
+           <br></br>
+           <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span>
+            </label>
+
+            <label className={styles.MobileinputName}>
+              <h4 className={styles.MobileName}>Company Contact No:</h4>
+              <input maxLength="15" className={styles.Mobileinput} value={CompanyContact} onChange={(e) => { handleCompanyPhoneNumber(e) }} type="number" />
+            </label>
+              
+              
+            <label className={styles.MobileinputName}>
+              <h4 className={styles.MobileName}>Company Address:</h4>
+              <input maxLength="90" className={styles.Mobileinput} value={CompanyAddress} onChange={(e) => {handleCompanyAddress(e) }} type="text" />
+            </label>
+
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Primary User Name : <span style={{fontWeight:800, fontSize:"medium"}} title='(primary user will have the admin right for your
                 company, primary user can add or remove multiple secondary user)'><i class="fa-solid fa-circle-info"></i></span></h4>
@@ -650,66 +674,66 @@ setCompanyCIN("")
               <input maxLength="90" className={styles.Mobileinput} value={PrimeryuserDesignation} onChange={(e) => {handlePrimeryuserDesignation(e) }} type="text" />
             </label>
             
-            <label className={styles.MobileinputName}>
+            {/* <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Aadhaar number:</h4>
               <input maxLength="16" className={styles.Mobileinput} value={Aadhar} onChange={(e) => { AadharhandleChange(e) }} type="number" />
-            </label>
+            </label> */}
 
-            <label className={styles.MobileinputName}>
+            {/* <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Pan Card Number:</h4>
               <input className={styles.Mobileinput} value={panCard} onChange={(e) => { PanCardhandleChange(e) }} type="text" />
-            </label>
+            </label> */}
 
-            <label className={styles.MobileinputName}>
+            {/* <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Company Name: </h4>
               <input maxLength="25" className={styles.Mobileinput} value={CompanyName} onChange={(e) => { handleCompanyname(e) }} type="text" />
-            </label>
+            </label> */}
 
-            <label className={styles.MobileinputName}>
+            {/* <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Company Email id:</h4>
               <input maxLength="25" className={styles.Mobileinput} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" />
            <br></br>
            <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span>
 
-            </label>
+            </label> */}
 
-            <label className={styles.MobileinputName}>
+            {/* <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Company Contact No:</h4>
               <input maxLength="15" className={styles.Mobileinput} value={CompanyContact} onChange={(e) => { handleCompanyPhoneNumber(e) }} type="number" />
-            </label>
+            </label> */}
 
-            <label className={styles.MobileinputName}>
+            {/* <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Company GSTIN: </h4>
               <input maxLength="15" className={styles.Mobileinput} value={CompanyGSTIN} onChange={(e) => { handleGstn(e) }} type="text" />
-            </label>
+            </label> */}
 
-            <label className={styles.MobileinputName}>
+            {/* <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Company Website:</h4>
               <input maxLength="25" className={styles.Mobileinput} value={CompanyWebsite} onChange={(e) => { handleCompanyWebsite(e)}} type="text" />
-            </label>
-            <label className={styles.MobileinputName}>
+            </label> */}
+            {/* <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>About us:</h4>
               <input maxLength="25" className={styles.Mobileinput} value={CompanyWebsite} onChange={(e) => { handleCompanyWebsite(e)}} type="text" />
-            </label>
-
+            </label> */}
+{/* 
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Company Address:</h4>
               <input maxLength="90" className={styles.Mobileinput} value={CompanyAddress} onChange={(e) => {handleCompanyAddress(e) }} type="text" />
-            </label>
+            </label> */}
 
-            <label className={styles.MobileinputName}>
+            {/* <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Secondary user name : <span style={{fontWeight:800, fontSize:"medium"}} 
             title='(secondary user will be able to post a job search candidates)'><i class="fa-solid fa-circle-info"></i></span></h4>
               <input maxLength="90" className={styles.Mobileinput} value={Secondaryusername} onChange={(e) => {handleSecondaryusername(e) }} type="text" />
-            </label>
+            </label> */}
 
-            <label className={styles.MobileinputName}>
+            {/* <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Secondary user Designation:</h4>
               <input maxLength="90" className={styles.Mobileinput} value={PrimeryuserDesignation} onChange={(e) => {handleSecondaryuserDesignation(e) }} type="text" />
-            </label>
+            </label> */}
 
             
-            <label className={styles.MobileinputName}>
+            {/* <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Secondary user email id:</h4>
               <input maxLength="90" className={styles.Mobileinput} value={Secondaryuseremailid} onChange={(e) => {handleSecondaryuseremailid(e) }} type="text" />
             </label>
@@ -717,7 +741,7 @@ setCompanyCIN("")
               <h4 className={styles.MobileName}>Secondary user contact number:</h4>
               <input maxLength="90" className={styles.Mobileinput} value={Secondaryusercontactnumber} onChange={(e) => {handleSecondaryusercontactnumber(e) }} type="text" />
             </label>
-           
+            */}
             <div className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Type of Organisation :  <span style={{color:"blue"}}>{TypeofOrganisation}</span></h4>          
             <select className={styles.Mobileinput } style={{height:"35px"}}onChange={(e)=>{setTypeofOrganisation(e.target.value)}}>
