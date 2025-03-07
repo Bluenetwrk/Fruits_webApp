@@ -36,9 +36,10 @@ function SidebarNav(props) {
   }
   const [empHome, setEmpHome] = useState(false);
   const location = useLocation();
-
+  // const[pathName,setPathName]=useState(location.pathname)
+  // console.log("pathnameee",pathName)
   useEffect(() => {
-    console.log("Current Path:", location.pathname); 
+    // console.log("Current Path:", location.pathname); 
 
     if (location.pathname === "/Search-Candidate") {
       setEmpHome(true); 
@@ -60,7 +61,27 @@ function SidebarNav(props) {
       {/* <p style={{marginLeft:"80%"}} onClick={()=>{props.setShowSideNaveProps((prev)=>!prev)}}> &#10005;</p> */}
       <div style={{ marginTop:"-15px"}}>
          <div style={{display:"flex",marginTop:"10px",marginRight:"6px"}} >
-            <input className={Styles.blogInputboxsearch}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { empHome?props.searchs(e):props.search(e) }} />
+            <input className={Styles.blogInputboxsearch}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { 
+                                                                                                                                 if(empHome)
+                                                                                                                                    props.searchs(e)
+                                                                                                                                 else if(location.pathname==="/Blogs"){
+                                                                                                                                      props.searchBlog(e)
+                                                                                                                                      console.log("blogs entered")          
+                                                                                                                                  }
+                                                                                                                                 else if(location.pathname==="/AllCareerJobs"){
+                                                                                                                                  props.searchcarrer(e)
+                                                                                                                                  console.log("carrer entered")          
+                                                                                                                                 }
+                                                                                                                                 else if(location.pathname==="/alljobs"){
+                                                                                                                                  props.jobSeekersearch(e)
+                                                                                                                                  console.log("jobseeker home entered") 
+                                                                                                                                 }
+                                                                                                                                 
+                                                                                                                                 else{
+                                                                                                                                  props.search(e)
+                                                                                                                                  console.log("else entered")   
+                                                                                                                                 }
+                                                                                                                                }} />
             <i style={{marginLeft:"0px",fontSize:"20px",marginTop:"7px"}} class="fa fa-search" onClick={() => { props.searchIcon(props.searchKey);props.ChangeSideNaveBar();props.setSearchClick(false)}}></i>
           </div>
           

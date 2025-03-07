@@ -8,9 +8,11 @@ function SidebarNav(props) {
   let navigate = useNavigate()
   const [empHome, setEmpHome] = useState(false);
   const location = useLocation(); 
+  // const[pathName,setPathName]=useState(location.pathname)
+  // console.log("pathnameees",pathName)
 
   useEffect(() => {
-    console.log("Current Path:", location.pathname); 
+    // console.log("Current Path:", location.pathname); 
 
     if (location.pathname === "/Search-Candidate") {
       setEmpHome(true);
@@ -33,7 +35,26 @@ function SidebarNav(props) {
       <div style={{ marginTop:"-15px", zIndex:1000}}>
       <div style={{display:"flex",marginTop:"10px",marginRight:"6px"}} >
             {/* <input style={{height:"18px",width:"84%",marginLeft:"2px"}}className={Styles.blogInputboxsearch}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { props.search(e) }} /> */}
-            <input style={{height:"18px",width:"84%",marginLeft:"2px"}}className={Styles.blogInputboxsearch}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { empHome?props.searchs(e):props.search(e) }} />
+            <input style={{height:"18px",width:"84%",marginLeft:"2px"}}className={Styles.blogInputboxsearch}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => {  
+                                                                                                                                                                            if(empHome)
+                                                                                                                                                                                props.searchs(e)
+                                                                                                                                                                             else if(location.pathname==="/Blogs"){
+                                                                                                                                                                                  props.searchBlog(e)
+                                                                                                                                                                                  console.log("s-screen blogs entered")          
+                                                                                                                                                                              }
+                                                                                                                                                                             else if(location.pathname==="/AllCareerJobs"){
+                                                                                                                                                                              props.searchcarrer(e)
+                                                                                                                                                                              console.log(" s-screen carrer entered")          
+                                                                                                                                                                             }
+                                                                                                                                                                             else if(location.pathname==="/alljobs"){
+                                                                                                                                                                              props.jobSeekersearch(e)
+                                                                                                                                                                              console.log("s-screen jobseeker home entered") 
+                                                                                                                                                                             }
+                                                                                                                                                                             
+                                                                                                                                                                             else{
+                                                                                                                                                                              props.search(e)
+                                                                                                                                                                              console.log("s-screen else entered")   
+                                                                                                                                                                             } }} />
            
             <i style={{marginLeft:"2px",fontSize:"16px",marginTop:"6px"}} class="fa fa-search" onClick={() => { props.searchIcon(props.searchKey);props.setShowSideNaveProps();props.setShowMobileSearchIcon(true)}}></i>
           </div>

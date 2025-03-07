@@ -843,6 +843,17 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
           (!EmployeeAuth)?
           !StudentAuth?
         <> 
+        <div className={styles.blogSearchContainer}>
+
+{/* <p className={styles.p}>Search </p> */}
+ {/* <i style={{ color:"white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px",zIndex:"999",position:"fixed"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
+  class="searchicon fa fa-search" ></i> */}
+   <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
+  class="searchicon fa fa-search" ></i>
+
+{/* <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
+{/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
+</div>
        <div style={{position:"fixed",zIndex:"999",top:"-4px",left:"175px"}}>
        <div ref={dropdownRef} style={{ position: "relative" }}>
    <div style={{ display: "flex", marginLeft: "-45px", marginTop: "11px",position:"fixed" }}>
@@ -922,20 +933,20 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
        <>
     {/* <p style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Blogs</p> */}
     {/* <div style={{display:"flex"}}> */}
-    {/* <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Blogs</h2> */}
+    <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Blogs</h2>
 
           {/* <div className={styles.searchBoth}> */}
-          <div className={styles.blogSearchContainer}>
+          {/* <div className={styles.blogSearchContainer}> */}
 
             {/* <p className={styles.p}>Search </p> */}
              {/* <i style={{ color:"white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px",zIndex:"999",position:"fixed"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
               class="searchicon fa fa-search" ></i> */}
-               <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
-              class="searchicon fa fa-search" ></i>
+               {/* <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"absolute",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
+              class="searchicon fa fa-search" ></i> */}
 
             {/* <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
             {/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
-          </div>
+          {/* </div> */}
           {/* </div> */}
           {/* {Result ?
             <h4 style={{ marginLeft: "18.5%", marginTop: "10px" }}> {jobs.length} matching Result Found  </h4>

@@ -946,6 +946,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
 
             : ""
           } */}
+          <>
           <div className={styles.JobtitleFilterWrapper}>
             <buton className={Active.length===0?styles.active:styles.JobtitleFilter} onClick={() => { getjobs() }}>All</buton>
             {
@@ -1696,7 +1697,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
             <Footer/>
             </div>
         </>
-
+        </>
       }
 
     </>

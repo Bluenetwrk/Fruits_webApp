@@ -902,6 +902,11 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
         // Mobile View
         :
         <>
+         <div className={styles.blogSearchContainer}>
+             <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
+              class="searchicon fa fa-search" ></i>
+            {/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
+          </div>
        <div style={{position:"fixed",zIndex:"999",top:"-4px",left:"175px"}}>
        <div ref={dropdownRef} style={{ position: "relative" }}>
    <div style={{ display: "flex", marginLeft: "-45px", marginTop: "11px",position:"fixed" }}>
@@ -975,12 +980,12 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
         <>
         {/* <div style={{display:"flex"}}> */}
     {/* <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Home</h2> */}
-            {console.log("show",ShowSideNave)}
-          <div className={styles.blogSearchContainer}>
-             <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
-              class="searchicon fa fa-search" ></i>
+            {/* {console.log("show",ShowSideNave)} */}
+          {/* <div className={styles.blogSearchContainer}>
+             <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"absolute",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
+              class="searchicon fa fa-search" ></i> */}
             {/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
-          </div>
+          {/* </div> */}
           {/* </div> */}
           {/* <div className={styles.searchBoth}>
             <p className={styles.p}>Search </p>
