@@ -926,13 +926,7 @@ const responsive = {
         :
         // Mobile View
         <>
-        
-    {/* <p style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>ITwalkin Career</p>
-   */}
-   
-   {/* <div style={{display:"flex"}}> */}
-   {/* <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Career</h2> */}
-   <div className={styles.blogSearchContainer}>
+        <div className={styles.blogSearchContainer}>
 
 {/* <p className={styles.p}>Search </p> */}
  {/* <i style={{ color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px",position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
@@ -943,6 +937,23 @@ const responsive = {
 {/* <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
 {/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
 </div>
+        <>
+    {/* <p style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>ITwalkin Career</p>
+   */}
+   
+   {/* <div style={{display:"flex"}}> */}
+   <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>ITwalkin Career</h2>
+   {/* <div className={styles.blogSearchContainer}> */}
+
+{/* <p className={styles.p}>Search </p> */}
+ {/* <i style={{ color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px",position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
+  class="searchicon fa fa-search" ></i> */}
+  {/* <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"absolute",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
+              class="searchicon fa fa-search" ></i> */}
+
+{/* <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
+{/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
+{/* </div> */}
 {/* </div> */}
           {/* <div className={styles.searchBoth}>
             <p className={styles.p}>Search </p>
@@ -956,7 +967,7 @@ const responsive = {
           } */}
           
           {/* ...................... All Filter for Mobile */}
-          <div className={styles.JobtitleFilterWrapper} style={{marginTop:"5px",marginBottom:"10px" ,height:"100px", marginLeft:"18px",marginRight:"13px"}}>
+          <div className={styles.JobtitleFilterWrapper} style={{marginTop:"19px",marginBottom:"10px" ,height:"100px", marginLeft:"18px",marginRight:"13px"}}>
             <buton className={Active.length===0?styles.active:styles.JobtitleFilter} onClick={() =>
                { getjobs() }}>All</buton>
             {
@@ -1633,7 +1644,7 @@ const responsive = {
             <Footer/>
             </div>
         </>
-
+      </> 
       }
 
     </>

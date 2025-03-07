@@ -110,6 +110,7 @@ const [Candidate, setCandidate] = useState([])
       })
   }
 
+  // ---------------home page search methods-------------------
   async function search(e) {
     setNoPageFilter(true)
     let key = e.target.value
@@ -127,27 +128,6 @@ const [Candidate, setCandidate] = useState([])
     } else {
       getjobs()
       setResult(false)
-    }
-  }
-
-  
-  async function searchs(e) {
-    let key = e.target.value
-    setsearchKey(key)
-    setFiltereredjobs(key)
-
-    if (key) {
-      setResult(true)
-      let dubmyjobs = [...FilCandidate]
-
-      const filteredItems = dubmyjobs.filter((user) =>
-        JSON.stringify(user).toLowerCase().includes(key.toLowerCase())
-      )
-      setCandidate(filteredItems)
-    } else {
-      getAllJobSeekers()
-      setResult(false)
-
     }
   }
 
@@ -178,17 +158,6 @@ const [Candidate, setCandidate] = useState([])
       })
   }
 
-  async function gettotalcount() {
-    const headers = { authorization: 'BlueItImpulseWalkinIn' };
-    await axios.get("/jobpost/getTotalCount", { headers })
-      .then((res) => {
-        // console.log(res.data.result)
-        settotalCount(res.data.result)
-      }).catch((err) => {
-        alert("something went wrong")
-      })
-  }
-
   async function searchIcon(key) {
     setNoPageFilter(true)
     setFiltereredjobs(key)
@@ -207,6 +176,236 @@ const [Candidate, setCandidate] = useState([])
       setResult(false)
     }
   }
+// ------------home page search method ends------------------
+
+// ------------blog page search method starts------------------
+  async function searchBlog(e) {
+    setNoPageFilter(true)
+    let key = e.target.value
+    setFiltereredjobs(key)
+    setsearchKey(key)
+    if (key) {
+      setResult(true)
+      let dubmyjobs = [...Filterjobs]
+      const filteredItems = dubmyjobs.filter((user) => {
+        if (JSON.stringify(user).includes(key.toLowerCase())) {
+          return user
+        }
+      })
+      setJobs(filteredItems)
+    } else {
+      getblogs()
+      setResult(false)
+    }
+  }
+  async function getblogs() {
+    setCount(1)
+    setActive([])
+    setPageLoader(true)
+    setNoPageFilter(false)
+    const headers = { authorization: 'BlueItImpulseWalkinIn' };
+    await axios.get("/BlogRoutes/getAllBlogs", { headers })
+      .then((res) => {
+        let result = res.data
+        let sortedate = result.sort(function (a, b) {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+        setJobs(sortedate)
+        setFilterjobs(sortedate)
+        setPageLoader(false)
+      }).catch((err) => {
+        alert("some thing went wrong")
+      })
+  }
+  async function blogsearchIcon(key) {
+    setNoPageFilter(true)
+    setFiltereredjobs(key)
+    setsearchKey(key)
+    if (key) {
+      setResult(true)
+      let dubmyjobs = [...Filterjobs]
+      const filteredItems = dubmyjobs.filter((user) => {
+        if (JSON.stringify(user).includes(key.toLowerCase())) {
+          return user
+        }
+      })
+      setJobs(filteredItems)
+    } else {
+      getblogs()
+      setResult(false)
+    }
+  }
+
+  // ------------blog page search method ends---------------
+
+  // ------------carrer page search method starts---------------
+  async function searchcarrer(e) {
+    setNoPageFilter(true)
+    let key = e.target.value
+    setsearchKey(key)
+
+    setFiltereredjobs(key)
+    if (key) {
+      setResult(true)
+      let dubmyjobs = [...Filterjobs]
+      const filteredItems = dubmyjobs.filter((user) =>
+        JSON.stringify(user).toLowerCase().includes(key.toLowerCase())
+      )
+      setJobs(filteredItems)
+    } else {
+      getcarrer()
+      setResult(false)
+    }
+  }
+
+  
+  async function getcarrer() {
+    setCount(1)
+    setActive([])
+    setJobTagsIds([])
+
+    setPageLoader(true)
+    setNoPageFilter(false)
+   
+    const headers = { authorization: 'BlueItImpulseWalkinIn' };
+    await axios.get("/Careerjobpost/getCareerjobs", { headers })
+      .then((res) => {
+        let result = (res.data)
+        gettotalcount()
+
+        let sortedate = result.sort((a, b) => {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+        setJobs(sortedate)
+        setFilterjobs(sortedate)
+        setPageLoader(false)
+      }).catch((err) => {
+        alert("server issue occured")
+      })
+  }
+
+  async function searchCarrerIcon(key) {
+    setNoPageFilter(true)
+    setFiltereredjobs(key)
+    setsearchKey(key)
+    if (key) {
+      setResult(true)
+      let dubmyjobs = [...Filterjobs]
+      const filteredItems = dubmyjobs.filter((user) => {
+        if (JSON.stringify(user).includes(key.toLowerCase())) {
+          return user
+        }
+      })
+      setJobs(filteredItems)
+    } else {
+      getcarrer()
+      setResult(false)
+    }
+  }
+
+  //  ----------------carrer home page search method ends---------------- 
+
+//  ----------------employer home page search method starts---------------- 
+  async function searchs(e) {
+    let key = e.target.value
+    setsearchKey(key)
+    setFiltereredjobs(key)
+
+    if (key) {
+      setResult(true)
+      let dubmyjobs = [...FilCandidate]
+
+      const filteredItems = dubmyjobs.filter((user) =>
+        JSON.stringify(user).toLowerCase().includes(key.toLowerCase())
+      )
+      setCandidate(filteredItems)
+    } else {
+      getAllJobSeekers()
+      setResult(false)
+
+    }
+  }
+
+  // ---------------employer home page search method ends---------------
+
+  // ---------------jobseeker home page search method starts---------------
+  async function jobSeekersearch(e) {
+    setNoPageFilter(true)
+    let key = e.target.value
+    setsearchKey(key)
+
+    setFiltereredjobs(key)
+    if (key) {
+      setResult(true)
+      let dubmyjobs = [...Filterjobs]
+      const filteredItems = dubmyjobs.filter((user) =>
+        JSON.stringify(user).toLowerCase().includes(key.toLowerCase())
+      )
+      setJobs(filteredItems)
+    } else {
+      getJobseekerjobs()
+      setResult(false)
+    }
+  }
+  async function getJobseekerjobs() {
+    setCount(1)
+    setActive([])
+    setJobTagsIds([])
+    setPageLoader(true)
+    setNoPageFilter(false)
+
+    let userid = JSON.parse(localStorage.getItem("StudId"))
+    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+    await axios.get("/jobpost/getjobs", { headers })
+      .then((res) => {
+        let result = (res.data)
+        gettotalcount()
+
+        let sortedate = result.sort((a, b) => {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+        setJobs(sortedate)
+        setFilterjobs(sortedate)
+        setPageLoader(false)
+      }).catch((err) => {
+        alert("server issue occured")
+      })
+  }
+
+  async function searchJobseekerIcon(key) {
+    setNoPageFilter(true)
+    setFiltereredjobs(key)
+    setsearchKey(key)
+    if (key) {
+      setResult(true)
+      let dubmyjobs = [...Filterjobs]
+      const filteredItems = dubmyjobs.filter((user) => {
+        if (JSON.stringify(user).includes(key.toLowerCase())) {
+          return user
+        }
+      })
+      setJobs(filteredItems)
+    } else {
+      getJobseekerjobs()
+      setResult(false)
+    }
+  }
+
+  // -----------------jobseeker home page search ends----------------
+
+
+  async function gettotalcount() {
+    const headers = { authorization: 'BlueItImpulseWalkinIn' };
+    await axios.get("/jobpost/getTotalCount", { headers })
+      .then((res) => {
+        // console.log(res.data.result)
+        settotalCount(res.data.result)
+      }).catch((err) => {
+        alert("something went wrong")
+      })
+  }
+
+
 const [searchClick, setSearchClick] = useState(false)
 const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
 
@@ -214,7 +413,9 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
     <>
 
       <BrowserRouter>
-        <Nav setSearchClick={setSearchClick} showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon} ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon} searchClick={searchClick} setSearchClick={setSearchClick} chandinmargin={setShowSideNave} search={search} searchKey={searchKey} searchIcon={searchIcon} searchs={searchs}/>
+        <Nav jobSeekersearch={jobSeekersearch} searchBlog={searchBlog} searchcarrer={searchcarrer} setSearchClick={setSearchClick} showMobileSearchIcon={showMobileSearchIcon} 
+        setShowMobileSearchIcon={setShowMobileSearchIcon} ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}   searchClick={searchClick}  chandinmargin={setShowSideNave} 
+        search={search} searchKey={searchKey} searchIcon={searchIcon} searchs={searchs}/>
         
         <div style={ShowSideNave && screenSize.width > 850 ? { marginLeft: "210px", transition: " ease-in-out 0.6s" } : { marginLeft: "-3px", transition: " ease-in-out 0.5s" }}>
         {/* <div style={ShowSideNave && screenSize.width > 850 ? { marginLeft: "210px" } : { marginLeft: "-3px"}}> */}
