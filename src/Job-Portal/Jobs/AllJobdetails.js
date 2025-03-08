@@ -364,17 +364,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
               </div>
                 <div className={styles.JobCard} >
-                <p className={styles.readPageDate}>{new Date(jobs.createdAt).toLocaleString(
-          "en-US",
-          {
-            month: "short",
-            day: "2-digit",
-            year: "numeric",
-          }
-        )} </p>
-                <div className={styles.JobTitleDateWrapper} style={{marginTop: "-20px"}}>
-        <p style={{ width:"100%" ,whiteSpace:"normal", marginRight: "5px" }}className={styles.jobTitle} >{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
-        {/* <p className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
+                {/* <p className={styles.readPageDate}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {
             month: "short",
@@ -382,6 +372,16 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
             year: "numeric",
           }
         )} </p> */}
+                <div className={styles.JobTitleDateWrapper} style={{marginTop: "-20px"}}>
+        <p style={{ width:"100%" ,whiteSpace:"normal", marginRight: "5px" }}className={styles.jobTitle} >{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
+        <p className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
+          "en-US",
+          {
+            month: "short",
+            day: "2-digit",
+            year: "numeric",
+          }
+        )} </p> 
         </div>
 
         <div className={styles.JobPagecompanyNameLocationWrapper}   >
@@ -392,7 +392,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
           <span className={styles.companyName} >{jobs.companyName}  </span> 
           :
-  <> <a style={{ fontSize:"18px"}}className={`${styles.skills}`} href={jobs.SourceLink} target="_blank">{jobs.Source}</a><br></br> </>
+  <> <a style={{ fontSize:"15px"}}className={`${styles.skills}`} href={jobs.SourceLink} target="_blank">{jobs.Source}</a><br></br> </>
 
 
 }  

@@ -1675,24 +1675,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
                   return (
                     <>
                       <div className={styles.JobCard} key={i}>
-                      <p className={styles.readPageDate}>{new Date(job.createdAt).toLocaleString(
-                            "en-US",
-                            {
-                              day: "2-digit",
-                              month: "short",
-                              year: "numeric",
-                            }
-                          )
-                          } </p>
-                          <div style={{marginTop:"-24px"}}>
-                        <div className={styles.JobTitleDateWrapper}>
-                          <p className={styles.jobTitle} onClick={() => {
-                            window.scrollTo({
-                              top: 0
-                            })
-                            navigate(`/Jobdetails/${btoa(job._id)}`)
-                          }} style={{width:"100%", whiteSpace:"normal"}}>{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
-                          {/* <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
+                      {/* <p className={styles.readPageDate}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
                               day: "2-digit",
@@ -1701,6 +1684,23 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
                             }
                           )
                           } </p> */}
+                          <div style={{marginTop:"-12px"}}>
+                        <div className={styles.JobTitleDateWrapper}>
+                          <p className={styles.jobTitle} onClick={() => {
+                            window.scrollTo({
+                              top: 0
+                            })
+                            navigate(`/Jobdetails/${btoa(job._id)}`)
+                          }} style={{width:"100%", whiteSpace:"normal"}}>{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
+                           <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
+                            "en-US",
+                            {
+                              day: "2-digit",
+                              month: "short",
+                              year: "numeric",
+                            }
+                          )
+                          } </p> 
 
                         </div>
                          

@@ -405,17 +405,7 @@ async function deletComment(id){
       </a> */}
 
                 <div className={styles.JobCard} >
-                <p className={`${styles.Date} ${styles.readPageDate}`}>{new Date(jobs.createdAt).toLocaleString(
-          "en-US",
-          {
-            month: "short",
-            day: "2-digit",
-            year: "numeric",
-          }
-        )} </p>
-                <div className={styles.JobTitleDateWrapper}>
-        <p className={styles.QuestionjobTitle} style={{fontSize:"26px", width:"100%" , marginTop:"2px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
-        {/* <p className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
+                {/* <p className={`${styles.Date} ${styles.readPageDate}`}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {
             month: "short",
@@ -423,6 +413,16 @@ async function deletComment(id){
             year: "numeric",
           }
         )} </p> */}
+                <div className={styles.JobTitleDateWrapper} style={{marginTop:"-4px"}}>
+        <p className={styles.QuestionjobTitle} style={{fontSize:"26px", width:"100%" , marginTop:"2px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
+        <p className={styles.Date} style={{marginTop:"12px"}}>{new Date(jobs.createdAt).toLocaleString(
+          "en-US",
+          {
+            month: "short",
+            day: "2-digit",
+            year: "numeric",
+          }
+        )} </p>
         </div>
      
      <table style={{marginLeft:"6px", marginTop:"0px", width:"95.5%"}}>         

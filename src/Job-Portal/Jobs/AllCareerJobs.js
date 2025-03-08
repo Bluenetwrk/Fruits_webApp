@@ -1543,8 +1543,8 @@ const responsive = {
                             })
                             navigate(`/CareerJobdetails/${btoa(job._id)}`)
                           // }} >{job.jobTitle.toUpperCase()}</p>
-                           }} >{job?.jobTitle?.toUpperCase()}</p>
-                          <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
+                           }} >{job?.jobTitle?.charAt(0).toUpperCase()+job?.jobTitle?.substring(1)}</p>
+                          <p className={styles.Date} style={{marginRight:"-17px"}}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
                               month: "short",
