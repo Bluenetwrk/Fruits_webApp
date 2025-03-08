@@ -520,7 +520,8 @@
     margin-top: 20px;
     overflow:hidden;
 text-wrap: nowrap;
-    width:35%;
+    /* width:35%; */
+    width: 52%;
 }
 .MobileimageView{
     height:35px;

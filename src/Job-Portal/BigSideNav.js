@@ -76,11 +76,15 @@ function SidebarNav(props) {
                                                                                                                                   props.jobSeekersearch(e)
                                                                                                                                   console.log("jobseeker home entered") 
                                                                                                                                  }
-                                                                                                                                 
+                                                                                                                                 else if(location.pathname==="/Search-Candidate-Home"){
+                                                                                                                                  props. empSearchNoLogin(e)
+                                                                                                                                  console.log("emp entered",e.target.value)          
+                                                                                                                                 }
                                                                                                                                  else{
                                                                                                                                   props.search(e)
                                                                                                                                   console.log("else entered")   
                                                                                                                                  }
+                                                                                                                          
                                                                                                                                 }} />
             <i style={{marginLeft:"0px",fontSize:"20px",marginTop:"7px"}} class="fa fa-search" onClick={() => { props.searchIcon(props.searchKey);props.ChangeSideNaveBar();props.setSearchClick(false)}}></i>
           </div>
