@@ -464,12 +464,12 @@ setCompanyCIN("")
 {screenSize.width>850?
    
 <>
-<div className={styles.EntireFullWrapper}>
+<div className={styles.RegEntireFullWrapper}>
         <div className={styles.EntireWrapper}>
-         <div style={{display:"flex", justifyContent:"space-between"}}>
+         <div style={{display:"flex", justifyContent:"space-around"}}>
              <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px"}} 
              onClick={()=>{navigate(-1)}}>Back</button>
-             <h1 style={{marginRight:"70px",whiteSpace:"normal"}}>New Employer/Consultant Registration Form</h1>
+             <h1 style={{marginLeft:"-7px",whiteSpace:"normal"}}>New Employer/Consultant Registration Form</h1>
          </div>
          <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
 
@@ -604,14 +604,14 @@ setCompanyCIN("")
 <div className={STyles.signUpWrapper} style={{marginLeft:"20px", marginBottom:"20px"}} onClick={(e) => { saveMicrosoft(e) }} >
           <div className={STyles.both}>
             <img className={STyles.google} src={ MicosoftImage}/> 
-            <p className={STyles.signUpwrap} >Rigister with Microsoft</p>
+            <p className={STyles.signUpwrap} >Register with Microsoft</p>
           </div>
         </div>
 
             <div className={STyles.signUpWrapper} style={{marginLeft:"50px", marginBottom:"20px"}} onClick={!email? NoEmailAlert : emailError? InvalidEmailAlert :login}>
           <div className={STyles.both}>
             <img className={STyles.google} src={GoogleImage} />
-            <p className={STyles.signUpwrap} >Rigister with Google</p>
+            <p className={STyles.signUpwrap} >Register with Google</p>
           </div>
         </div>
         </>
