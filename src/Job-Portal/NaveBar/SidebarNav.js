@@ -50,6 +50,10 @@ function SidebarNav(props) {
                                                                                                                                                                               props.jobSeekersearch(e)
                                                                                                                                                                               console.log("s-screen jobseeker home entered") 
                                                                                                                                                                              }
+                                                                                                                                                                             else if(location.pathname==="/Search-Candidate-Home"){
+                                                                                                                                                                              props. empSearchNoLogin(e)
+                                                                                                                                                                              console.log("emp entered",e.target.value)          
+                                                                                                                                                                             }
                                                                                                                                                                              
                                                                                                                                                                              else{
                                                                                                                                                                               props.search(e)

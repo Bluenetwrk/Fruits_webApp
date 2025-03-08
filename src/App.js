@@ -180,6 +180,7 @@ const [Candidate, setCandidate] = useState([])
 
 // ------------blog page search method starts------------------
   async function searchBlog(e) {
+    console.log("tyty xhxbc",e.target.value)
     setNoPageFilter(true)
     let key = e.target.value
     setFiltereredjobs(key)
@@ -240,6 +241,7 @@ const [Candidate, setCandidate] = useState([])
 
   // ------------carrer page search method starts---------------
   async function searchcarrer(e) {
+    console.log("tyty xhxbc",e.target.value)
     setNoPageFilter(true)
     let key = e.target.value
     setsearchKey(key)
@@ -393,6 +395,46 @@ const [Candidate, setCandidate] = useState([])
 
   // -----------------jobseeker home page search ends----------------
 
+  //------------------Employer Home page (without Login) starts---------
+  async function empSearchNoLogin(e) {
+    console.log("xhxbc",e)
+    let key = e.target.value
+    setsearchKey(key)
+    setFiltereredjobs(key)
+    if (key) {
+      setResult(true)
+      let dubmyjobs = [...FilCandidate]
+      const filteredItems = dubmyjobs.filter((user) =>
+        JSON.stringify(user).toLowerCase().includes(key.toLowerCase())
+      )
+      setCandidate(filteredItems)
+    } else {
+      getAllJobSeekerss()
+      setResult(false)
+    }
+  }
+  async function getAllJobSeekerss() {
+    setCount(1)
+    setActive([])
+    setJobTagsIds([])
+
+    setNoPageFilter(false)
+    const headers = { authorization: 'BlueItImpulseWalkinIn' };
+    // await axios.get("StudentProfile/getAllJobseekers", { headers })
+    await axios.get(`/StudentProfile/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
+
+      .then((res) => {
+        let result = (res.data)
+        // console.log(result)
+        gettotalcount()
+        let sortedate = result.sort(function (a, b) {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+        setCandidate(sortedate)
+        setFilCandidate(sortedate)
+      })
+  }
+//------------------Employer Home page (without Login) ends---------
 
   async function gettotalcount() {
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
@@ -413,7 +455,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
     <>
 
       <BrowserRouter>
-        <Nav jobSeekersearch={jobSeekersearch} searchBlog={searchBlog} searchcarrer={searchcarrer} setSearchClick={setSearchClick} showMobileSearchIcon={showMobileSearchIcon} 
+        <Nav empSearchNoLogin={empSearchNoLogin} jobSeekersearch={jobSeekersearch} searchBlog={searchBlog} searchcarrer={searchcarrer} setSearchClick={setSearchClick} showMobileSearchIcon={showMobileSearchIcon} 
         setShowMobileSearchIcon={setShowMobileSearchIcon} ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}   searchClick={searchClick}  chandinmargin={setShowSideNave} 
         search={search} searchKey={searchKey} searchIcon={searchIcon} searchs={searchs}/>
         
@@ -583,7 +625,30 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             <Route path="/CareerJobdetails/:id" element={<CareerJobdetails />} />
             <Route path="/CheckEmpHalfProfile/:empId" element={<CheckEmpHalfProfile />} />
 
-            <Route path="/Search-Candidate-Home" element={<SearchCandHome url={axios.defaults.baseURL} />} />
+            <Route path="/Search-Candidate-Home" element={<SearchCandHome url={axios.defaults.baseURL}
+            FilCandidate={FilCandidate} setFilCandidate={setFilCandidate}
+            Candidate={Candidate} setCandidate={setCandidate} 
+              showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
+              ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
+              searchClick={searchClick} setSearchClick={setSearchClick}
+              nopageFilter={nopageFilter} setNoPageFilter={setNoPageFilter} 
+              searchKey={searchKey} setsearchKey={setsearchKey}
+              Filtereredjobs={Filtereredjobs} setFiltereredjobs={setFiltereredjobs}
+              Result={Result} setResult={setResult}
+              Filterjobs={Filterjobs} setFilterjobs={setFilterjobs}
+              jobs={jobs} setJobs={setJobs}
+              count={count} setCount={setCount}
+              Active={Active} setActive={setActive}
+              jobTagsIds={jobTagsIds} setJobTagsIds={setJobTagsIds}
+              PageLoader={PageLoader} setPageLoader={setPageLoader}
+              recordsperpage={recordsperpage}
+              recordsPerPage={recordsPerPage} setrecordsPerPage={setrecordsPerPage}
+              currentPage={currentPage} setCurrentPage={setCurrentPage}
+              totalCount={totalCount} settotalCount={settotalCount}
+              search={search}
+              getjobs={getjobs}
+              gettotalcount={gettotalcount}
+              searchIcon={searchIcon} />} />
             <Route path="/AboutUs" element={<AboutUs />} />
             <Route path="/Services" element={<Services />} />
             <Route path="/Contact" element={<Contact />} />
