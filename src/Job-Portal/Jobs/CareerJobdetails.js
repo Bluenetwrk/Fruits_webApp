@@ -276,8 +276,9 @@ const [Loader, setLoader] = useState(false)
           </button>
                 <div className={styles.JobCard} >
                 <div className={styles.JobTitleDateWrapper}>
-        <p className={styles.jobTitle} >{jobs.jobTitle}</p>
-        <p className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
+        {/* <p className={styles.jobTitle} >{jobs.jobTitle}</p> */}
+        <p className={styles.jobTitle} >{jobs?.jobTitle?.charAt(0).toUpperCase()+jobs?.jobTitle?.substring(1)}</p>
+        <p className={styles.Date} style={{marginRight:"-17px"}}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {
             month: "short",
