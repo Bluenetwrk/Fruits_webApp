@@ -428,7 +428,26 @@ if(confirm){
     setOthers(e.target.value);
     // console.log(e.target.value)
   };
+  const [employers, setEmployers] = useState([]); 
 
+  const addEmployer = () => {
+    if (employers.length < 3) {
+      setEmployers([...employers, ""]);
+    }
+  };
+
+  const removeEmployer = (index) => {
+    const updatedEmployers = [...employers];
+    updatedEmployers.splice(index, 1);
+    setEmployers(updatedEmployers);
+  };
+
+  const handleEmployerChange = (index, value) => {
+    const updatedEmployers = [...employers];
+    updatedEmployers[index] = value;
+    setEmployers(updatedEmployers);
+    // console.log(employers)
+  };
 
   return (
     <>
@@ -619,6 +638,57 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
             )}
 
+   <div style={{ maxWidth: "400px", margin: "auto", padding: "10px",marginleft:"10px" }}>
+      <div style={{display:"flex",gap:"16px"}}>
+      <h2 style={{ fontSize: "13px", marginBottom: "10px",marginTop:"15px",marginLeft:"10px" }}>Previous Employers</h2>
+      {employers.length < 3 && (
+        <button
+          onClick={addEmployer}
+          style={{
+            marginTop: "10px",
+            backgroundColor: "rgb(40,4,99)",
+            color: "white",
+            border: "none",
+            padding: "6px 10px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "16px"
+          }}
+        >
+          +
+        </button>
+      )}
+      </div>
+
+      {employers.map((employer, index) => (
+        <div key={index} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+          <input
+            type="text"
+            placeholder={`Employer ${index + 1}`}
+            value={employer}
+            onChange={(e) => handleEmployerChange(index, e.target.value)}
+            style={{ flex: "1", padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
+          />
+          <button
+            onClick={() => removeEmployer(index)}
+            style={{
+              background: "red",
+              color: "#fff",
+              border: "none",
+              padding: "6px 10px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            -
+          </button>
+        </div>
+      ))}
+    </div>
+
+
+
         <div className={STyles.signUpWrapper} style={{marginLeft:"17px", marginBottom:"20px"}} 
               onClick={!email? NoEmailAlert : emailError? InvalidEmailAlert :login}>
           <div className={STyles.both}>
@@ -806,6 +876,55 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
              </label>
 
             )}
+
+<div style={{ maxWidth: "400px", margin: "auto", padding: "10px",marginleft:"10px" }}>
+      <div style={{display:"flex",gap:"16px"}}>
+      <h2 style={{ fontSize: "13px", marginBottom: "10px",marginTop:"15px",marginLeft:"10px" }}>Previous Employers</h2>
+      {employers.length < 3 && (
+        <button
+          onClick={addEmployer}
+          style={{
+            marginTop: "10px",
+            backgroundColor: "rgb(40,4,99)",
+            color: "white",
+            border: "none",
+            padding: "6px 10px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "16px"
+          }}
+        >
+          +
+        </button>
+      )}
+      </div>
+
+      {employers.map((employer, index) => (
+        <div key={index} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+          <input
+            type="text"
+            placeholder={`Employer ${index + 1}`}
+            value={employer}
+            onChange={(e) => handleEmployerChange(index, e.target.value)}
+            style={{ flex: "1", padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
+          />
+          <button
+            onClick={() => removeEmployer(index)}
+            style={{
+              background: "red",
+              color: "#fff",
+              border: "none",
+              padding: "6px 10px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            -
+          </button>
+        </div>
+      ))}
+    </div>
 
 
               <div style={{marginTop:"20px"}}>
