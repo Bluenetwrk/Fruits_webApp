@@ -233,7 +233,8 @@ function StudentUpdateProfile(props) {
 }  
   }  
     function handleCollege(tag){
-      setcollege(tag)      
+      setcollege(tag)    
+      setOthers("")  
   }  
     const [city, setcity] = useState([])
 
@@ -422,6 +423,12 @@ if(confirm){
     setExperiance(sanitizedValue);
   }
 
+  const [Others, setOthers]=useState("");
+  const handleOthersCollege = (e) => {
+    setOthers(e.target.value);
+    // console.log(e.target.value)
+  };
+
 
   return (
     <>
@@ -469,7 +476,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
           {screenSize.width > 850 ?
 <>
    <div className={styles.EntireFullWrapperStd} >
-     <div className={styles.EntireWrapperStd}>
+     <div className={styles.EntireWrapperStd} style={{height:"100%"}}>
         <div style={{display:"flex", justifyContent:"space-between"}}>
              <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px"}} 
              onClick={()=>{navigate(-1)}}>Back</button>
@@ -550,6 +557,8 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                 <input maxLength="3" className={styles.input} value={Experiance} onChange={(e) => { handleExperiance(e) }} type="text" />
               </label>
 
+
+              <div style={{display:"flex"}}>
               <label className={styles.inputName}>
                 <h4>Skill Tags: </h4>
                 {/* <div style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}>
@@ -560,7 +569,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                   onChange={handleChange}   
                 />
                          </div> */}
-                         <div className={Style.JobtitleFilterWrapper}>
+              <div className={Style.JobtitleFilterWrapper} style={{height:"120px",marginBottom:"15px"}}>
             {/* <buton className={ Active.length===0? Style.active:Style.JobtitleFilter} onClick={() => { getjobs() }}>All</buton> */}
             {
               jobTags.map((tags, i) => {
@@ -589,6 +598,8 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
               </label>
 
+              <div style={{marginLeft:"15px",width:"328px"}}>
+
               <label className={styles.inputName}>
                 <h4>College:</h4>
                 <div style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}>
@@ -599,7 +610,30 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                 />
                 </div>
               </label>
-              <div style={{display:"flex", marginLeft:"50%", marginTop:"-50px"}}>
+
+            {college.value==="Others" &&(
+               <label className={styles.inputName} style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}>
+               <h4>Others: &nbsp;<span className={styles.hint}>(Enter College name)</span></h4>
+               <input className={styles.input} value={Others} onChange={handleOthersCollege}  type="text" />
+             </label>
+
+            )}
+
+        <div className={STyles.signUpWrapper} style={{marginLeft:"17px", marginBottom:"20px"}} 
+              onClick={!email? NoEmailAlert : emailError? InvalidEmailAlert :login}>
+          <div className={STyles.both}>
+            <img className={STyles.google} src={GoogleImage} />
+            <p className={STyles.signUpwrap} >Register with Google</p>
+          </div>
+          </div>
+
+            
+            </div>
+
+            
+
+            </div>
+              {/* <div style={{display:"flex", marginLeft:"50%", marginTop:"-50px"}}> */}
 
               {/* <div className={STyles.signUpWrapper} style={{marginLeft:"50px", marginBottom:"20px"}} onClick={saveUpdate}>
           <div className={STyles.both}>
@@ -608,17 +642,18 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
           </div>
         </div> */}
 
-              <div className={STyles.signUpWrapper} style={{marginLeft:"50px", marginBottom:"20px"}} 
+              {/* <div className={STyles.signUpWrapper} style={{marginLeft:"50px", marginBottom:"20px"}} 
               onClick={!email? NoEmailAlert : emailError? InvalidEmailAlert :login}>
           <div className={STyles.both}>
             <img className={STyles.google} src={GoogleImage} />
             <p className={STyles.signUpwrap} >Register with Google</p>
           </div>
-        </div>
+        </div> */}
 
               {/* <button className={styles.Save} onClick={(e) => { saveUpdate(e) }}>Save</button> */}
               {/* <button className={styles.cancel} onClick={() => { navigate(-1) }} >cancel</button> */}
-              </div>
+             
+              {/* </div> */}
             </div>   
 
 
@@ -763,6 +798,15 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                 />
                          </div>
               </label>
+
+              {college.value==="Others" &&(
+               <label className={styles.inputName} style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}>
+               <h4>Others: &nbsp;<span className={styles.hint}>(Enter College name)</span></h4>
+               <input className={styles.input} value={Others} onChange={handleOthersCollege}  type="text" />
+             </label>
+
+            )}
+
 
               <div style={{marginTop:"20px"}}>
 {/* 
