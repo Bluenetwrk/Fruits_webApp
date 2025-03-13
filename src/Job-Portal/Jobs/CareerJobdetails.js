@@ -275,7 +275,7 @@ const [Loader, setLoader] = useState(false)
                  Back
           </button>
                 <div className={styles.JobCard} >
-                <div className={styles.JobTitleDateWrapper}>
+                <div className={styles.JobTitleDateWrapper} style={{display:"flex",gap:"25px"}}>
         {/* <p className={styles.jobTitle} >{jobs.jobTitle}</p> */}
         <p className={styles.jobTitle} >{jobs?.jobTitle?.charAt(0).toUpperCase()+jobs?.jobTitle?.substring(1)}</p>
         <p className={styles.Date} style={{marginRight:"-17px"}}>{new Date(jobs.createdAt).toLocaleString(

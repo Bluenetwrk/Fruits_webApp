@@ -1645,7 +1645,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                           )
                           } </p> */}
                          
-                        <div className={styles.JobTitleDateWrapper} style={{marginTop:"-12px",display:"flex"}}>
+                        <div className={styles.JobTitleDateWrapper} style={{marginTop:"-12px",display:"flex",gap:"8px"}}>
                    
                             {
                               job.question?

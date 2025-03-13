@@ -1536,7 +1536,7 @@ const responsive = {
                   return (
                     <>
                       <div className={styles.JobCard} key={i}>
-                        <div className={styles.JobTitleDateWrapper}>
+                        <div className={styles.JobTitleDateWrapper} style={{display:"flex",gap:"18px"}}>
                           <p className={styles.jobTitle} onClick={() => {
                             window.scrollTo({
                               top: 0
@@ -1551,7 +1551,10 @@ const responsive = {
                               day: "2-digit",
                               year: "numeric",
                             }
-                          )} </p></div>
+                          )} 
+                          </p>
+                          
+                          </div>
                         
                         <div className={styles.companyNameLocationWrapper}  >
                           <img className={styles.logo} src={job.Logo} />
