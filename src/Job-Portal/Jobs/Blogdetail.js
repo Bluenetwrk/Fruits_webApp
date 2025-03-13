@@ -413,9 +413,9 @@ async function deletComment(id){
             year: "numeric",
           }
         )} </p> */}
-                <div className={styles.JobTitleDateWrapper} style={{marginTop:"-4px"}}>
+                <div className={styles.JobTitleDateWrapper} style={{marginTop:"-4px",display:"flex",gap:"8px"}}>
         <p className={styles.QuestionjobTitle} style={{fontSize:"26px", width:"100%" , marginTop:"2px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
-        <p className={styles.Date} style={{marginTop:"12px"}}>{new Date(jobs.createdAt).toLocaleString(
+        <p className={styles.Date} style={{marginTop:"12px",marginRight:"-20px"}}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {
             month: "short",

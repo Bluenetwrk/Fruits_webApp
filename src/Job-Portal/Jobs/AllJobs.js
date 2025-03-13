@@ -1557,7 +1557,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                               year: "numeric",
                             }
                           )} </p> */}
-                        <div className={styles.JobTitleDateWrapper} style={{marginTop:"-22px"}}>
+                        <div className={styles.JobTitleDateWrapper} style={{marginTop:"-16px", display:"flex",gap:"18px"}}>
                           <p className={styles.jobTitle} onClick={() => {
                             window.scrollTo({
                               top: 0

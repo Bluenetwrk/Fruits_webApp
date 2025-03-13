@@ -1685,7 +1685,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
                           )
                           } </p> */}
                           <div style={{marginTop:"-12px"}}>
-                        <div className={styles.JobTitleDateWrapper}>
+                        <div className={styles.JobTitleDateWrapper} style={{display:"flex",gap:"16px"}}>
                           <p className={styles.jobTitle} onClick={() => {
                             window.scrollTo({
                               top: 0
