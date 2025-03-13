@@ -136,10 +136,53 @@ const [Loader, setLoader] = useState(false)
                  Back
           </button>
         </div>
-        <div>
-        {/* <img className={styles.imageV} src={jobs.Logo?jobs.Logo : profileDp}/> */}
-        <img className={styles.imageV} src={jobs.Logo?profileDp : profileDp}/>
+
+        <div class={styles.jobDetailsHeading}>
+             <div class={styles.jobDetailsImage} style={{marginLeft:"8px"}}>
+             <img className={styles.imageV} src={jobs.Logo?profileDp : profileDp}/>
+            </div>
+          
+              <div class={styles.jobDetailsPosterDesc} style={{marginLeft:"150px"}}>
+                  <h1 style={{textAlign:"center", fontSize:"xx-large"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading...."}</h1>
+                 <div style={{marginLeft:"100px"}}>
+                   <span>Company Name : {jobs.companyName}</span> &nbsp;|  
+                           &nbsp; <span> Posted Date : {new Date(jobs.createdAt).toLocaleString(
+                     "en-US",
+                  {
+                    month: "short",
+                    day: "2-digit",
+                    year: "numeric",
+                  }
+                )}</span> &nbsp; |
+                   &nbsp; <span>Experience Required : {jobs.experiance} Yrs</span> &nbsp;|  
+                   &nbsp; <span>Location : {jobs?.jobLocation?.charAt(0).toUpperCase()+jobs?.jobLocation?.substring(1)}</span>&nbsp; |  
+                   {/* &nbsp; <span>Job Type : {jobs.jobtype}</span>&nbsp; |   */}
+                  {/* &nbsp; <span>Qualification : {jobs.qualification}</span>&nbsp; |   */}
+                   {/* &nbsp; <span>Package : {jobs.salaryRange} LPA</span> | */}
+                   {/* &nbsp; <span>Skills Required : {jobs.skills}</span>  */}
+                   <div style={{display:"flex",gap:"15px"}}>
+                  <p>Package : {jobs.salaryRange} LPA |</p> 
+                  <p>Skills Required : {jobs.skills} </p>
+                 </div>
+             </div>
+          </div>
         </div>
+
+      <table className={styles.tableDesWrapper} style={{marginLeft:"6px", marginTop:"-10px", flexWrap:"wrap", width:"98.8%", borderCollapse: "collapse",border:"none"}}>         
+           <tr style={{border:"none"}}>
+           <td colSpan={2} style={{border:"none"}}>
+          {
+            jobdescription? HTMLReactParser(jobdescription.toString()) :""
+          } 
+           </td>
+           </tr>
+      </table>
+
+
+        {/* <div> */}
+        {/* <img className={styles.imageV} src={jobs.Logo?jobs.Logo : profileDp}/> */}
+        {/* <img className={styles.imageV} src={jobs.Logo?profileDp : profileDp}/>
+        </div> */}
       
           {/* <table style={{width:"95%",borderRadius:"5px"}}>
           <tr>
@@ -205,7 +248,7 @@ const [Loader, setLoader] = useState(false)
   </tr>
 
 </table> */}
- <table className={styles.tableContainer}>
+ {/* <table className={styles.tableContainer}>
       <tr>
         <td colSpan={2} className={styles.headerRow}>
           {jobs.jobTitle
@@ -253,7 +296,7 @@ const [Loader, setLoader] = useState(false)
           {jobdescription ? HTMLReactParser(jobdescription.toString()) : ""}
         </td>
       </tr>
-    </table>
+    </table> */}
 
 
 </div>
@@ -357,8 +400,8 @@ const [Loader, setLoader] = useState(false)
           applyforOtherJob(jobs.SourceLink) }}>Apply</button>
           :
       <button className={styles.ApplyMobile} onClick={() => { navigate("/JobSeekerLogin") }}><b>Apply</b></button>
+    
       
-
 
 }
                   </div>
