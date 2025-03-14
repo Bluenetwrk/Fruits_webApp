@@ -163,7 +163,7 @@ async function deletComment(id){
       // const url = "https://www.itwalkin.com/Blogs";
       // const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
      
-     console.log("url",url);  
+    //  console.log("url",url);  
   const [shareClicked, setShareClicked] = useState(false);
   const [copied, setCopied] = useState(false);
   const shareRef = useRef(null);
@@ -207,6 +207,24 @@ async function deletComment(id){
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [shareClicked]);
+
+  const convertToIST = (utcTimestamp) => {
+    if (!utcTimestamp) return "Loading...";
+    const date = new Date(utcTimestamp); 
+    const istOffset = 5.5 * 60 * 60 * 1000; 
+    const istDate = new Date(date.getTime() + istOffset); 
+
+    let hours = istDate.getUTCHours(); 
+    let minutes = istDate.getUTCMinutes();
+    let seconds = istDate.getUTCSeconds();
+
+    let period = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12 || 12; 
+
+    return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")} ${period}`;
+};
+
+  
   
   return (
     <>
@@ -241,7 +259,7 @@ async function deletComment(id){
              }}>
                  Back
           </button>
-          {console.log("history length",window.history.length)}
+          {/* {console.log("history length",window.history.length)} */}
 
               <h1 style={{textAlign:"center", fontSize:"40px", whiteSpace:"no", marginTop:"10px",marginRight:"120px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</h1>
            {/* <div style={{display:" flex",flexDirection:"column"}}> */}
@@ -301,7 +319,9 @@ async function deletComment(id){
                     day: "2-digit",
                     year: "numeric",
                   }
-                )}</span> . 
+                )}</span> |
+                <span> Updated Time : {convertToIST(jobs.updatedAt)}</span>.
+                {/* {console.log(jobs)}  */}
               
      </div>
      {/* <a
@@ -414,7 +434,7 @@ async function deletComment(id){
           }
         )} </p> */}
                 <div className={styles.JobTitleDateWrapper} style={{marginTop:"-4px",display:"flex",gap:"8px"}}>
-        <p className={styles.QuestionjobTitle} style={{fontSize:"26px", width:"100%" , marginTop:"2px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
+        <p className={styles.QuestionjobTitle} style={{fontSize:"26px" , marginTop:"2px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
         <p className={styles.Date} style={{marginTop:"12px",marginRight:"-20px"}}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {
