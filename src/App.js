@@ -88,7 +88,7 @@ function App() {
 
    const [FilCandidate, setFilCandidate] = useState([])
 const [Candidate, setCandidate] = useState([])
-
+const [showDriveFlash, setShowDriveFlash] = useState(false);
 
 
  async function getAllJobSeekers() {
@@ -448,14 +448,14 @@ const [Candidate, setCandidate] = useState([])
   }
 
 
-const [searchClick, setSearchClick] = useState(false)
+  const [searchClick, setSearchClick] = useState(false)
 const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
 
   return (
     <>
 
       <BrowserRouter>
-        <Nav empSearchNoLogin={empSearchNoLogin} jobSeekersearch={jobSeekersearch} searchBlog={searchBlog} searchcarrer={searchcarrer} setSearchClick={setSearchClick} showMobileSearchIcon={showMobileSearchIcon} 
+        <Nav showDriveFlash={showDriveFlash} setShowDriveFlash={setShowDriveFlash} empSearchNoLogin={empSearchNoLogin} jobSeekersearch={jobSeekersearch} searchBlog={searchBlog} searchcarrer={searchcarrer} setSearchClick={setSearchClick} showMobileSearchIcon={showMobileSearchIcon} 
         setShowMobileSearchIcon={setShowMobileSearchIcon} ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}   searchClick={searchClick}  chandinmargin={setShowSideNave} 
         search={search} searchKey={searchKey} searchIcon={searchIcon} searchs={searchs}/>
         

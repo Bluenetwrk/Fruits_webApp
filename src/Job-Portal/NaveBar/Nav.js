@@ -69,7 +69,7 @@ function Nav(props) {
     }
   })
 
-  // window.addEventListener("click", (e) => {
+// window.addEventListener("click", (e) => {
   //   if (e.target !== SmenuRef.current && e.target !== SimgRef.current) {
   //     setShowSideNave(false)
   //   }
@@ -151,6 +151,16 @@ function Nav(props) {
     setShowRegister((prev)=>!prev)
   }
 
+  // const [showMessage, setShowMessage] = useState(false);
+  const [showDriveMenu, setShowDriveMenu]=useState(false)
+  let driveRef=useRef();
+  let driveImgRef=useRef();
+  window.addEventListener("click", (e) => {
+    if (e.target !== driveRef.current && e.target !== driveImgRef.current) {
+      setShowDriveMenu(false)
+    }
+  })
+
   return (
     <>
 
@@ -207,9 +217,14 @@ function Nav(props) {
 
                         </div>
                       </div>
-                      : ""}
+                      : ""}                    
 
                   </div >
+                  {props.showDriveFlash && (
+                          <div class={Styles.blast} >
+                           <img  ref={driveImgRef} onClick={()=>{setShowDriveMenu((prev)=>!prev)}} src="/drive.png" alt="Walk-in Drive" style={{ width: "60px", borderRadius: "5px",marginTop:"-10px" }} />
+                          </div>
+                        )}
 
                 </div>
               </div>
@@ -247,6 +262,23 @@ function Nav(props) {
                   <div className={Styles.linkWrapper}>
 
                     <NavLink to="/PostJobs" className={Styles.PostJobLink} style={navLinkStyles}>Post a Job</NavLink>
+                    <div class={Styles.enableDrive}>
+                      <label style={{display:"flex", fontSize: "14px", cursor: "pointer" }}>
+                       Walk-in Drive
+                        <input
+                          type="checkbox"
+                          checked={props.showDriveFlash}
+                          onChange={() => props.setShowDriveFlash(!props.showDriveFlash)}
+                          style={{ marginRight: "10px" }}
+                        />
+                      </label>
+                     </div> 
+                        {props.showDriveFlash && (
+                          <div class={Styles.blast}>
+                           <img onClick={()=>{setShowDriveMenu((prev)=>!prev)}} src="/drive.png" alt="Walk-in Drive" style={{ width: "60px", borderRadius: "5px",marginTop:"-10px" }} />
+                          </div>
+                        )}
+                            
                     <NavLink to="/Search-Candidate" className={Styles.SearchCandidate} style={navLinkStyles}>Employer Home</NavLink>
                     <div className={`${Styles.link} ${Styles.EmpIconeWrapper}`}>
                       <img className={`${Styles.Icon} ${Styles.EmpProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
@@ -354,13 +386,13 @@ function Nav(props) {
                         {/* <p className={Styles.ITwalkin}>ITwalkin</p>
                         <p className={Styles.onlyforITjobs}>Only for IT jobs</p> */}
                         <img className={Styles.IwalkinLogologo} src={Itwalkinlogo} />
-                      </div>
+                      </div>                  
                     <div className={Styles.linkWrapper}>
 
                       <NavLink to="/" className={Styles.HomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px" }} class="fa-solid fa-house"></i>Home</NavLink>
                       {/* <NavLink to="/AboutUs" className={`${Styles.Hlink} ${Styles.Aboutus}`} style={navLinkStyles} >About Us</NavLink>
                       <NavLink to="/Services" className={Styles.Hlink} style={navLinkStyles}>Services</NavLink>
-                      <NavLink to="/Contact" className={Styles.Hlink} style={navLinkStyles}>Contact</NavLink> */}
+                      <NavLink to="/Contact" className={Styles.Hlink} style={navLinkStyles}>Contact</NavLink> */}                     
                       <div className={` ${Styles.LoginlinkwrapperHome}`}>
                         <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Employer </NavLink>
                         {/* <NavLink to="/New-Registration" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>New Register </NavLink> */}
@@ -391,8 +423,26 @@ function Nav(props) {
 
                     : ""}
                       </div>
+                      {props.showDriveFlash && (
+                          <div class={Styles.blast} style={{cursor:"pointer"}} >
+                           <img  ref={driveImgRef} onClick={()=>{setShowDriveMenu((prev)=>!prev)}} src="/drive.png" alt="Walk-in Drive" style={{ width: "60px", borderRadius: "5px",marginTop:"-10px" }} />
+                          </div>
+                        )}
+
+                        {showDriveMenu &&(
+                              <div className={Styles.Alldownwrapper}  >
+
+                              <div style={{width:"155px",marginLeft:"-75px",marginTop:"43px"}} className={Styles.dropdownwrapperHome} ref={driveRef} >
+                              <p onClick={()=>{navigate("/Jobseeker-New-Registration");setShowDriveMenu((prev)=>!prev)}}>JobSeeker Registration</p>
+                              <p onClick={() => { handleStuOpen(); handleClose();setShowDriveMenu((prev)=>!prev) }}>Login with ITWalkin</p>
+                              </div>
+                            </div>
+                        )
+                        }
                     </div>
+                    
                   </div>
+                  
                   <>
                     <StuModal isStuOpen={Stuopen} onClose={() => { handleStuClose() }} />
                     <Modal isOpen={open} onClose={() => { handleClose() }} />
@@ -426,6 +476,11 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                 <div className={Styles.linkWrapper}>
 
                   <NavLink to="/alljobs" className={`${Styles.Moblink} ${Styles.AlllJobs}`} >All Jobs </NavLink>
+                  {props.showDriveFlash && (
+                          <div class={Styles.blast} style={{cursor:"pointer",marginLeft:"21%"}} >
+                           <img  ref={driveImgRef} onClick={()=>{setShowDriveMenu((prev)=>!prev)}} src="/drive.png" alt="Walk-in Drive" style={{ width: "50px", borderRadius: "5px",marginTop:"-10px" }} />
+                          </div>
+                        )}
 
                   <div className={`${Styles.link} ${Styles.MobileIconeWrapper}`}>
 
@@ -488,18 +543,35 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                   <div className={Styles.linkWrapper}>
 
                     {/* <NavLink to="/postedjobs" className={`${Styles.Moblink} ${Styles.PostedJobs}`} > Posted jobs</NavLink> */}
-
-                    <NavLink to="/PostJobs" className={`${Styles.Moblink} ${Styles.PostJob}`} >Post a Job</NavLink>
-
-
+                    <div style={{display:"flex",flexDirection:"column"}}>
+                    <NavLink to="/PostJobs" style={{marginLeft:"-24%"}}className={`${Styles.Moblink} ${Styles.PostJob}`} >Post a Job</NavLink>
+          
+                    <div style={{width:"190%"}}>
+                      <label style={{ display:"flex",marginTop:"6px", fontSize: "12px", cursor: "pointer",marginLeft:"-22px" ,color:"white"}}>
+                       Walk-in Drive
+                        <input
+                          type="checkbox"
+                          checked={props.showDriveFlash}
+                          onChange={() => props.setShowDriveFlash(!props.showDriveFlash)}
+                          style={{ marginRight: "10px"}}
+                        />
+                      </label>
+                     </div> 
+                    </div>
+                    {/* <NavLink to="/PostJobs" style={{marginLeft:"-6%"}}className={`${Styles.Moblink} ${Styles.PostJob}`} >Post a Job</NavLink> */}
+                    {props.showDriveFlash && (
+                          <div class={Styles.blast} style={{cursor:"pointer",marginLeft:"21%"}} >
+                           <img  ref={driveImgRef} onClick={()=>{setShowDriveMenu((prev)=>!prev)}} src="/drive.png" alt="Walk-in Drive" style={{ width: "50px", borderRadius: "5px",marginTop:"-10px" }} />
+                          </div>
+                        )}
 
                     <div className={`${Styles.link} ${Styles.MobileIconeWrapperEmp}`}>
 
                       {/* <NavLink to="/" className={` ${Styles.JobMobileNotificationIcon}`}><img src={JobseekerNotification} /> </NavLink> */}
 
-                      <img className={`${Styles.Icon} ${Styles.EmpMobileProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
+                      <img style={{marginLeft:"23px"}} className={`${Styles.Icon} ${Styles.EmpMobileProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
                       {showprofile ?
-                  <div className={Styles.EmpMobDropdownwrapper} ref={menuRef} >
+                  <div style={{left:"231px"}} className={Styles.EmpMobDropdownwrapper} ref={menuRef} >
                     <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
                     <NavLink to="/postedjobs" className={`${Styles.text} `} > Posted jobs</NavLink>
                     <p className={Styles.text} ref={menuRef} onClick={logutEmp}>Logout</p>
@@ -558,7 +630,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
 
                 <>
 
-                  <div className={Styles.fullnavewrapper}>
+                  <div className={Styles.fullnavewrapper}>                 
                     {/* {ShowSideNave ?
                       <img className={`${Styles.NavIconCross} `} src={Cancel} ref={SimgRef} onClick={() => { setShowSideNave((prev) => !prev) }} />
                       : <img className={`${Styles.NavIconBars} `} src={NavIcon} ref={SimgRef} onClick={() => { setShowSideNave((prev) => !prev) }} />
@@ -574,7 +646,22 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                       {/* <p className={Styles.ITwalkinMob}>ITwalkin</p>
                       <p className={Styles.onlyforITjobsMob}>Only for IT jobs</p> */}
                         <img className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} />
+                        {props.showDriveFlash && (
+                          <div class={Styles.blast} style={{cursor:"pointer", marginLeft:"69%" }} >
+                           <img  ref={driveImgRef} onClick={()=>{setShowDriveMenu((prev)=>!prev)}} src="/drive.png" alt="Walk-in Drive" style={{ width: "45px", borderRadius: "5px",marginTop:"-10px" }} />
+                          </div>
+                        )}
 
+                        {showDriveMenu &&(
+                              <div className={Styles.Alldownwrapper}  >
+
+                              <div style={{width:"155px",marginLeft:"88px",marginTop:"62px"}} className={Styles.dropdownwrapperHome} ref={driveRef} >
+                              <p onClick={()=>{navigate("/Jobseeker-New-Registration");setShowDriveMenu((prev)=>!prev)}}>JobSeeker Registration</p>
+                              <p onClick={() => { handleStuOpen(); handleClose();setShowDriveMenu((prev)=>!prev) }}>Login with ITWalkin</p>
+                              </div>
+                            </div>
+                        )
+                        }
                     </div>
 
                     {/* <NavLink to="/" > <img className={Styles.MobHomelogo} src={logo} /> </NavLink> */}

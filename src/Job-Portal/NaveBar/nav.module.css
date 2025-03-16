@@ -259,6 +259,37 @@ font-weight: 400;
     position: absolute;
     /* background-color: wh; */
 }
+
+.enableDrive {
+    margin-left: 45%;
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    text-wrap: nowrap;
+    padding: 8px 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 13px;
+}
+
+.blast{
+    margin-top:20px;
+    position:absolute;
+    animation: flash 2s infinite;
+    margin-left: 73%;
+    
+}
+
+@keyframes flash {
+    0% { opacity: 0.3; }   /* Low */
+    50% { opacity: 1; }    /* High */
+    75% { opacity: 1; }    /* Hold for some time */
+    100% { opacity: 0.3; } /* Low again */
+  }
+
+
+
 .AllJobJobSeeker {
     /* margin: 2%; */
     text-decoration: none;
