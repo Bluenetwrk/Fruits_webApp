@@ -248,6 +248,21 @@ font-weight: 400;
     padding: 8px 10px;
     border-radius: 5px;
 }
+
+.PostHelpLink {
+    /* background-color: aqua; */
+    margin: -3%;
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    /* width:14%; */
+    text-wrap: nowrap;
+    padding: 8px 10px;
+    border-radius: 5px;
+    position:absolute;
+    left:65%;
+}
 .SearchCandidate {
     margin-left: 53%;
     text-decoration: none;
@@ -261,8 +276,21 @@ font-weight: 400;
     /* background-color: wh; */
 }
 
+.SearchCandidates {
+    margin-left: 60%;
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    text-wrap: nowrap;
+    padding: 8px 10px;
+    border-radius: 5px;
+    position: absolute;
+    /* background-color: wh; */
+}
+
 .enableDrive {
-    margin-left: 45%;
+    margin-left: 52%;
     text-decoration: none;
     color: white;
     font-size: small;

@@ -262,6 +262,7 @@ function Nav(props) {
                   <div className={Styles.linkWrapper}>
 
                     <NavLink to="/PostJobs" className={Styles.PostJobLink} style={navLinkStyles}>Post a Job</NavLink>
+                    <NavLink to="/Post-Help-Questions" className={Styles.PostHelpLink} style={navLinkStyles}>Post Help Questions</NavLink>
                     <div class={Styles.enableDrive}>
                       <label style={{display:"flex", fontSize: "14px", cursor: "pointer" }}>
                        Walkin-Drives
@@ -279,7 +280,7 @@ function Nav(props) {
                           </div>
                         )}
                             
-                    <NavLink to="/Search-Candidate" className={Styles.SearchCandidate} style={navLinkStyles}>Employer Home</NavLink>
+                    <NavLink to="/Search-Candidate" className={Styles.SearchCandidates} style={navLinkStyles}>Employer Home</NavLink>
                     <div className={`${Styles.link} ${Styles.EmpIconeWrapper}`}>
                       <img className={`${Styles.Icon} ${Styles.EmpProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
 
