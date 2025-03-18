@@ -26,7 +26,7 @@ function SidebarNav(props) {
       props.setShowMobileSearchIcon(true)
     }
   }, [location.pathname]); 
-
+  let EmployeeAuth = localStorage.getItem("EmpLog")
   return (
   <>
   
@@ -63,7 +63,12 @@ function SidebarNav(props) {
             <i style={{marginLeft:"2px",fontSize:"16px",marginTop:"6px"}} class="fa fa-search" onClick={() => { props.searchIcon(props.searchKey);props.setShowSideNaveProps();props.setShowMobileSearchIcon(true)}}></i>
           </div>
         <p onClick={()=>{navigate("/"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Home </p>
+       {EmployeeAuth&&(
         <p onClick={()=>{navigate("/Post-Help-Questions"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Post Help Questions </p>
+       )
+
+       }
+                <p onClick={()=>{navigate("/support"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Help/Support </p>
         <p onClick={()=>{setShow(prev=>!prev)}} className={`${Styles.textinMobileSodeBar} `}>Open an account
        {
         show?
