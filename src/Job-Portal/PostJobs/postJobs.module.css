@@ -250,3 +250,24 @@
             color : red;
             font-style: italic;
         }
+
+        .helpHeading{
+            margin-left: 150px;
+        }
+        @media  (max-width:1024px) {
+            .helpHeading{
+            margin-left:98px;
+            }
+        }
+
+        @media  (max-width:768px) {
+            .helpHeading{
+            margin-left: 77px;
+            }
+        }
+
+        @media  (max-width:475px) {
+            .helpHeading{
+            margin-left: 34px;
+            }
+        }

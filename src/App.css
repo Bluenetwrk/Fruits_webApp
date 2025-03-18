@@ -64,6 +64,15 @@
   height: 33px;
 } 
 
+@media (max-width: 768px) {
+  .screen3 .jodit-wysiwyg {
+    min-height: 127px !important;
+  }
+  .jodit-status-bar .jodit-status-bar__item {
+    font-size: 6px !important;
+}
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
