@@ -62,6 +62,7 @@ import SidebarNav from "./Job-Portal/BigSideNav";
 import useScreenSize from '../src/Job-Portal/SizeHook';
 import AskQuestion from "./Job-Portal/PostJobs/postQuesion";
 import PostHelp from "./Job-Portal/PostJobs/PostHelp";
+import AllHelps from "./Job-Portal/Jobs/AllHelps";
 
 axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -652,6 +653,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               gettotalcount={gettotalcount}
               searchIcon={searchIcon} />} />
             <Route path="/AboutUs" element={<AboutUs />} />
+            <Route path="/support" element={<AllHelps />} />
             <Route path="/Services" element={<Services />} />
             <Route path="/Contact" element={<Contact />} />
             <Route path="/TermsAndCondition" element={<TermsAndCondition />} />
