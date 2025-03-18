@@ -264,7 +264,7 @@ function Nav(props) {
                     <NavLink to="/PostJobs" className={Styles.PostJobLink} style={navLinkStyles}>Post a Job</NavLink>
                     <div class={Styles.enableDrive}>
                       <label style={{display:"flex", fontSize: "14px", cursor: "pointer" }}>
-                       Walkin-Drive
+                       Walkin-Drives
                         <input
                           type="checkbox"
                           checked={props.showDriveFlash}
