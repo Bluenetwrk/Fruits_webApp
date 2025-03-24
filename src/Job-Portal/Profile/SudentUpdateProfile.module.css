@@ -30,11 +30,93 @@
     font-size: 1.0rem; 
     margin-left: 10px;
 }
-.empRegBackButton:hover{
+/* .empRegBackButton:hover{
     background-color: white;
     color: rgb(40, 4, 99);
     border: 2px solid  rgb(40, 4, 99);
+} */
+.jobseekerHelpDropDown{
+    position:absolute;
+
+   padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+    z-index:100;
+    background-color: white;
+    margin-top: 17px;
+    /* margin-left:50px; */
 }
+.jobseekerHelpDropDown::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 9rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
+.dropdownwrapperHomeRegistration {
+    position:absolute;
+
+   padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+    z-index:100;
+    background-color: white;
+    margin-top: 17px;
+}
+
+.dropdownwrapperHomeRegistration::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 9rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
+
+.dropdownwrapperHomeRegistrationMob {
+    position:absolute;
+
+   padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+    z-index:100;
+    background-color: white;
+    margin-top: 67px;
+    margin-left: 106px;
+}
+
+.dropdownwrapperHomeRegistrationMob::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
+
+
 
 .RegEntireFullWrapper {
     /* background-color: red; */
@@ -122,6 +204,22 @@
         border: 1px solid rgb(40, 4, 99);
         border-radius: 10px;
     }
+    .dropdownwrapperHomeRegistrationMob {
+        margin-left: 192px;
+      }
+}
+
+@media (max-width:376px){
+    
+    .dropdownwrapperHomeRegistrationMob {
+        margin-left: 142px;
+      }
+}
+@media (max-width:320px){
+    
+    .dropdownwrapperHomeRegistrationMob {
+        margin-left: 100px;
+      }
 }
 
 .imageViewWrapper {
