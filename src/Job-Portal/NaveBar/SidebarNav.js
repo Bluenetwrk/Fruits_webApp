@@ -68,7 +68,7 @@ function SidebarNav(props) {
        )
 
        }
-                <p onClick={()=>{navigate("/support"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Help/Support </p>
+                <p onClick={()=>{navigate("/support/help"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Help/Support </p>
         <p onClick={()=>{setShow(prev=>!prev)}} className={`${Styles.textinMobileSodeBar} `}>Open an account
        {
         show?

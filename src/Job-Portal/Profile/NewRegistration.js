@@ -426,6 +426,42 @@ setCompanyCIN("")
     setRegLoader(false)
   }
 
+const[helpClicked, setHelpClicked]=useState(false)
+ let helpRef=useRef();
+  let helpBtnRef=useRef();
+  window.addEventListener("click", (e) => {
+    if (e.target !== helpRef.current && e.target !== helpBtnRef.current) {
+      setHelpClicked(false)
+    }
+  })
+
+
+
+const helpData = [
+  { 
+    id: 1, 
+    question: "How to Register as an Employer?", 
+    source: "ITWalkin", 
+    companyName: "ITWalkin", 
+    postedby: "ITWalkin", 
+    postedDate: "20-03-2025", 
+    view: "View",
+    details: "1. To register as an employer, follow these steps:\n2. Click on the 'Open an Account' menu in the navigation bar.\n3. A submenu will appear—select 'Employer Registration' from the list.\n4. The Employer Registration Form will open in a new window.\n5. Fill in all the required details in the given fields.\n6. Choose to register using either Microsoft or Google.\n7. Once completed, your registration will be successful."
+},
+{ 
+  id: 2, 
+  question: "How to Register as Jobseeker?", 
+  source: "ITWalkin", 
+  companyName: "ITWalkin", 
+  postedby: "ITWalkin", 
+  postedDate: "20-03-2025", 
+  view: "View",
+  details: "1. To register as a Jobseeker, follow these steps:\n2. Click on the 'Open an Account' menu in the navigation bar.\n3. A submenu will appear—select 'Jobseeker Registration' from the list.\n4. The jobseeker Registration Form will open in a new window.\n5. Fill in all the required details in the given fields.\n6. Choose to register using either Microsoft or Google.\n7. Once completed, your registration will be successful."
+},
+   ];
+
+   
+
   return (
     <>
 
@@ -464,12 +500,29 @@ setCompanyCIN("")
 {screenSize.width>850?
    
 <>
+
+
 <div className={styles.RegEntireFullWrapper}>
+
         <div className={styles.EntireWrapper}>
-         <div style={{display:"flex", justifyContent:"space-around"}}>
+         <div style={{display:"flex", justifyContent:"space-between"}}>
              <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px"}} 
              onClick={()=>{navigate(-1)}}>Back</button>
-             <h1 style={{marginLeft:"-7px",whiteSpace:"normal"}}>New Employer/Consultant Registration Form</h1>
+             <h1 style={{whiteSpace:"normal"}}>New Employer/Consultant Registration Form</h1>
+
+             <div>
+             <button ref={helpBtnRef} class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px",marginRight:"10px"}} 
+             onClick={()=>setHelpClicked((prev)=>!prev)}>Help</button>
+    
+             {helpClicked &&(
+              <div className={styles.dropdownwrapperHomeRegistration} ref={helpRef}>
+                <p onClick={()=>{navigate(`/support/help/${btoa(1)}`, { state: { helpItem: helpData[0] } });setHelpClicked(false)}}>How to create a new Account</p>
+                <p onClick={()=>{navigate("/support/help");setHelpClicked(false)}}>More help topics</p>
+              </div>
+             )
+            }
+           </div>
+
          </div>
          <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
 
@@ -619,6 +672,7 @@ setCompanyCIN("")
 </div>
 
 </div>
+
 </div>
  
 </>
@@ -627,11 +681,22 @@ setCompanyCIN("")
   <div className={styles.EntireFullWrapper}>
 
 <div className={styles.EntireWrapper} style={{height:"100%",width:"96%",marginLeft:"8px"}}>
-         <div style={{display:"flex", flexDirection:"column",justifyContent:"space-between"}}>
+         <div style={{display:"flex",justifyContent:"space-between"}}>
              <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px", width:"62px"}} 
              onClick={()=>{navigate(-1)}}>Back</button>
-             <h1 style={{marginLeft:"5px",marginRight:"0px",whiteSpace:"normal",fontSize:"21px"}}>New Employer/ Consultant Registration Form</h1>
-         </div>
+               <button ref={helpBtnRef} class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px",marginRight:"10px"}} 
+             onClick={()=>setHelpClicked((prev)=>!prev)}>Help</button>
+    
+             {helpClicked &&(
+              <div className={styles.dropdownwrapperHomeRegistrationMob} ref={helpRef}>
+                <p onClick={()=>{navigate(`/support/help/${btoa(1)}`, { state: { helpItem: helpData[0] } });setHelpClicked(false)}}>How to create a new Account</p>
+                <p onClick={()=>{navigate("/support/help");setHelpClicked(false)}}>More help topics</p>
+              </div>
+             )
+            }
+             </div>
+         <h1 style={{marginLeft:"5px",marginRight:"0px",whiteSpace:"normal",fontSize:"21px"}}>New Employer/ Consultant Registration Form</h1>
+
          <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
 
          <label className={styles.MobileinputName}>

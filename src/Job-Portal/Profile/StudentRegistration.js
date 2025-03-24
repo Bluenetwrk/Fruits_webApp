@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from "./SudentUpdateProfile.module.css"
 import Style  from "../Jobs/Allobs.module.css"
 import STyles from "../Login/login.module.css"
@@ -449,6 +449,41 @@ if(confirm){
     // console.log(employers)
   };
 
+const[helpClicked, setHelpClicked]=useState(false)
+ let helpRef=useRef();
+  let helpBtnRef=useRef();
+  window.addEventListener("click", (e) => {
+    if (e.target !== helpRef.current && e.target !== helpBtnRef.current) {
+      setHelpClicked(false)
+    }
+  })
+
+
+
+const helpData = [
+  { 
+    id: 1, 
+    question: "How to Register as an Employer?", 
+    source: "ITWalkin", 
+    companyName: "ITWalkin", 
+    postedby: "ITWalkin", 
+    postedDate: "20-03-2025", 
+    view: "View",
+    details: "1. To register as an employer, follow these steps:\n2. Click on the 'Open an Account' menu in the navigation bar.\n3. A submenu will appear—select 'Employer Registration' from the list.\n4. The Employer Registration Form will open in a new window.\n5. Fill in all the required details in the given fields.\n6. Choose to register using either Microsoft or Google.\n7. Once completed, your registration will be successful."
+},
+{ 
+  id: 2, 
+  question: "How to Register as a Jobseeker?", 
+  source: "ITWalkin", 
+  companyName: "ITWalkin", 
+  postedby: "ITWalkin", 
+  postedDate: "20-03-2025", 
+  view: "View",
+  details: "1. To register as a Jobseeker, follow these steps:\n2. Click on the 'Open an Account' menu in the navigation bar.\n3. A submenu will appear—select 'Jobseeker Registration' from the list.\n4. The jobseeker Registration Form will open in a new window.\n5. Fill in all the required details in the given fields.\n6. Choose to register using either Microsoft or Google.\n7. Once completed, your registration will be successful."
+},
+   ];
+
+
   return (
     <>
 
@@ -499,7 +534,19 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
         <div style={{display:"flex", justifyContent:"space-between"}}>
              <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px"}} 
              onClick={()=>{navigate(-1)}}>Back</button>
-             <h1 style={{marginRight:"200px"}}>New Jobseeker Registration Form</h1>
+             <h1 >New Jobseeker Registration Form</h1>
+             <div>
+             <button ref={helpBtnRef} class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px",marginRight:"10px"}} 
+             onClick={()=>setHelpClicked((prev)=>!prev)}>Help</button>
+    
+             {helpClicked &&(
+              <div className={styles.jobseekerHelpDropDown} ref={helpRef}>
+                <p onClick={()=>{navigate(`/support/help/${btoa(2)}`, { state: { helpItem: helpData[1] } });setHelpClicked(false)}}>How to create a new Account</p>
+                <p onClick={()=>{navigate("/support/help");setHelpClicked(false)}}>More help topics</p>
+              </div>
+             )
+            }
+            </div>
          </div>
          <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
          <div className={styles.inputWrapper}>
@@ -739,12 +786,23 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
             :
             <>
               <div className={styles.EntireFullWrapperStd} >
-              <div className={styles.EntireWrapperStd} style={{height:"100%",marginLeft:"7px",width:"310px"}}>
-              <div style={{display:"flex", justifyContent:"space-between", flexDirection:"column" }}>
+              <div className={styles.EntireWrapperStd} style={{height:"100%",marginLeft:"7px",width:"95%"}}>
+              <div style={{display:"flex", justifyContent:"space-between"}}>
              <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px",width:"70px"}} 
              onClick={()=>{navigate(-1)}}>Back</button>
-             <h1 style={{marginRight:"0px",fontSize:"21px",marginLeft:"10px"}}>New Jobseeker Registration Form</h1>
-         </div>
+             <button ref={helpBtnRef} class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px",marginRight:"10px"}} 
+             onClick={()=>setHelpClicked((prev)=>!prev)}>Help</button>
+    
+             {helpClicked &&(
+              <div className={styles.dropdownwrapperHomeRegistrationMob} ref={helpRef}>
+                <p onClick={()=>{navigate(`/support/help/${btoa(2)}`, { state: { helpItem: helpData[1] } });setHelpClicked(false)}}>How to create a new Account</p>
+                <p onClick={()=>{navigate("/support/help");setHelpClicked(false)}}>More help topics</p>
+              </div>
+             )
+            }
+           </div>
+         <h1 style={{marginRight:"0px",fontSize:"21px",marginLeft:"10px"}}>New Jobseeker Registration Form</h1>
+ 
          <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
 <label className={styles.MobileinputName}>
                 <h4 className={styles.MobileName}>Name:</h4>

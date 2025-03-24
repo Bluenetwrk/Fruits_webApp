@@ -63,6 +63,7 @@ import useScreenSize from '../src/Job-Portal/SizeHook';
 import AskQuestion from "./Job-Portal/PostJobs/postQuesion";
 import PostHelp from "./Job-Portal/PostJobs/PostHelp";
 import AllHelps from "./Job-Portal/Jobs/AllHelps";
+import HelpDetails from "./Job-Portal/Jobs/HelpDetails";
 
 axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -653,7 +654,15 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               gettotalcount={gettotalcount}
               searchIcon={searchIcon} />} />
             <Route path="/AboutUs" element={<AboutUs />} />
-            <Route path="/support" element={<AllHelps />} />
+            <Route path="/support/help" element={<AllHelps   
+            Active={Active} setActive={setActive} 
+            getjobs={getjobs}  setJobs={setJobs} 
+            count={count} setCount={setCount}
+            currentPage={currentPage} setCurrentPage={setCurrentPage}
+            recordsPerPage={recordsPerPage} setrecordsPerPage={setrecordsPerPage}
+            nopageFilter={nopageFilter} setNoPageFilter={setNoPageFilter}
+            />} />
+            <Route path="/support/help/:id" element={<HelpDetails/>} />
             <Route path="/Services" element={<Services />} />
             <Route path="/Contact" element={<Contact />} />
             <Route path="/TermsAndCondition" element={<TermsAndCondition />} />

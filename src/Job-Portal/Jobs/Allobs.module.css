@@ -1072,6 +1072,69 @@ background: rgb(202, 202, 202);
     margin-left: -15%;
 }
 
+/* ---------------help card----- */
+.helpPageContainer{
+    background-color: white;
+    margin-left: 120px;
+    border: 2px solid black;
+    border-radius: 10px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.75); */
+    width:85%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.helpTitle{
+    text-align: center;
+    font-size: 40px;
+    white-space: nowrap; /* Fixed the incorrect 'no' */
+    margin-top: 10px;
+    margin-right: 300px;
+}
+@media (max-width: 768px) {
+    .helpPageContainer{
+        margin-left: 10px;
+        width:95%;
+    }
+
+    .helpTitle{
+        text-align: center;
+    font-size: 24px;
+    white-space: normal;
+    margin-top: 10px;
+    margin-left: -24px;
+    margin-right: 0px;
+    }
+}
+.helpCard{
+   /* display: flex; */
+    /* background-color: aqua;    */
+    margin-left: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    white-space:wrap;
+    /* height: 250px; */
+    width: 90%;
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 2px 2px 2px 2px #999999;
+    padding-bottom: 7px;
+    padding:10px;
+}
+
+.contactTable{
+   width:30%;
+margin-bottom:20px;
+margin-left: -5px;
+}
+@media (max-width: 768px) {
+    .contactTable {
+        width: 100%;
+    }
+}
+
+
 /* ..............Job Details  Table */
 
 table {
@@ -1280,6 +1343,7 @@ table {
     margin-top: 24px;
     margin-right: -11px;
 }
+
 .readPageDate{
     display: flex;
 
