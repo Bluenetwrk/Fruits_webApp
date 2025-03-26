@@ -64,6 +64,8 @@ import AskQuestion from "./Job-Portal/PostJobs/postQuesion";
 import PostHelp from "./Job-Portal/PostJobs/PostHelp";
 import AllHelps from "./Job-Portal/Jobs/AllHelps";
 import HelpDetails from "./Job-Portal/Jobs/HelpDetails";
+import AllWalkinDrive from "./Job-Portal/Jobs/AllWalkinDrive";
+import PostWalkinDrive from "./Job-Portal/PostJobs/PostWalkinDrive";
 
 axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -454,11 +456,72 @@ const [showDriveFlash, setShowDriveFlash] = useState(false);
   const [searchClick, setSearchClick] = useState(false)
 const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
 
+ const driveJobs = [
+    {
+      jobTitle: "Software Engineer",
+      postedBy: "HR Manager",
+      companyName: "Tech Corp",
+      jobType: "Full-Time",
+      driveTime: "9:00 AM",
+      driveDate: "2025-03-20",
+      location: "Koramangala,Bengaluru",
+      ctc: "10 LPA",
+      experience: "2-4 years",
+      qualification: "B.Tech/MCA",
+      skillsRequired: "React, Node.js, MongoDB",
+      apply: "https://apply-link.com/1",
+    },
+    {
+      jobTitle: "Frontend Developer",
+      postedBy: "Recruiter",
+      companyName: "InnovateX",
+      jobType: "Remote",
+      driveTime: "10:00 AM",
+      driveDate: "2025-03-23",
+      location: "WhiteField,Bengaluru",
+      ctc: "8 LPA",
+      experience: "1-3 years",
+      qualification: "B.Tech/BCA",
+      skillsRequired: "HTML, CSS, JavaScript",
+      apply: "https://apply-link.com/2",
+    },
+    {
+      jobTitle: "Data Analyst",
+      postedBy: "HR Lead",
+      companyName: "DataWorks",
+      jobType: "Contract",
+      driveTime: "11:00 AM",
+      driveDate: "2025-03-27",
+      location: "Mumbai",
+      ctc: "6 LPA",
+      experience: "1-2 years",
+      qualification: "B.Sc/M.Sc",
+      skillsRequired:"Python, SQL, Power BI",
+      apply: "https://apply-link.com/3",
+    },
+  ];
+  
+  const processDriveJobs = (driveJobs) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize today's date for comparison
+  
+    return driveJobs
+      .map((job) => ({
+        ...job,
+        dateObj: new Date(job.driveDate), // Convert driveDate string to Date object
+      }))
+      .sort((a, b) => a.dateObj - b.dateObj) // Sort by driveDate
+      .filter((job) => job.dateObj >= today) // Keep only today or future drive dates
+      .map(({ dateObj, ...rest }) => rest); // Remove temporary dateObj
+  };
+  
+  const sortedFilteredDriveJobs = processDriveJobs(driveJobs);
+
   return (
     <>
 
       <BrowserRouter>
-        <Nav showDriveFlash={showDriveFlash} setShowDriveFlash={setShowDriveFlash} empSearchNoLogin={empSearchNoLogin} jobSeekersearch={jobSeekersearch} searchBlog={searchBlog} searchcarrer={searchcarrer} setSearchClick={setSearchClick} showMobileSearchIcon={showMobileSearchIcon} 
+        <Nav sortedFilteredDriveJobs={sortedFilteredDriveJobs} showDriveFlash={showDriveFlash} setShowDriveFlash={setShowDriveFlash} empSearchNoLogin={empSearchNoLogin} jobSeekersearch={jobSeekersearch} searchBlog={searchBlog} searchcarrer={searchcarrer} setSearchClick={setSearchClick} showMobileSearchIcon={showMobileSearchIcon} 
         setShowMobileSearchIcon={setShowMobileSearchIcon} ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}   searchClick={searchClick}  chandinmargin={setShowSideNave} 
         search={search} searchKey={searchKey} searchIcon={searchIcon} searchs={searchs}/>
         
@@ -469,6 +532,32 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
 
             <Route path="/" element={
               <Home 
+              showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
+              ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
+              searchClick={searchClick} setSearchClick={setSearchClick}
+              nopageFilter={nopageFilter} setNoPageFilter={setNoPageFilter} 
+              searchKey={searchKey} setsearchKey={setsearchKey}
+              Filtereredjobs={Filtereredjobs} setFiltereredjobs={setFiltereredjobs}
+              Result={Result} setResult={setResult}
+              Filterjobs={Filterjobs} setFilterjobs={setFilterjobs}
+              jobs={jobs} setJobs={setJobs}
+              count={count} setCount={setCount}
+              Active={Active} setActive={setActive}
+              jobTagsIds={jobTagsIds} setJobTagsIds={setJobTagsIds}
+              PageLoader={PageLoader} setPageLoader={setPageLoader}
+              recordsperpage={recordsperpage}
+              recordsPerPage={recordsPerPage} setrecordsPerPage={setrecordsPerPage}
+              currentPage={currentPage} setCurrentPage={setCurrentPage}
+              totalCount={totalCount} settotalCount={settotalCount}
+              search={search}
+              getjobs={getjobs}
+              gettotalcount={gettotalcount}
+              searchIcon={searchIcon}
+              />
+            } />
+            <Route path="/Walkin-Drives" element={
+              <AllWalkinDrive 
+              sortedFilteredDriveJobs={sortedFilteredDriveJobs}
               showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
               ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
               searchClick={searchClick} setSearchClick={setSearchClick}
@@ -521,6 +610,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             <Route element={<EmpPrivate />}>
               <Route path="/PostJobs" element={<PostJobs url={axios.defaults.baseURL} />} />
               <Route path="/Post-Help-Questions" element={<PostHelp url={axios.defaults.baseURL} />} />
+              <Route path="/PostDrives" element={<PostWalkinDrive url={axios.defaults.baseURL}/>} />
               <Route path="/PostBlogs" element={<PostBlogs url={axios.defaults.baseURL} />} />
               <Route path="/postedjobs" element={<PostedJobsbyEmp url={axios.defaults.baseURL} />} />
               <Route path="/posted-Blogs" element={<BlogpostedByEmp url={axios.defaults.baseURL} />} />

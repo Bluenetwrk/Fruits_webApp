@@ -263,6 +263,22 @@ font-weight: 400;
     position:absolute;
     left:65%;
 }
+
+.PostDriveLink {
+    /* background-color: aqua; */
+    margin: -3%;
+    text-decoration: none;
+    color: white;
+    font-size: small;
+    font-weight: 540;
+    /* width:14%; */
+    text-wrap: nowrap;
+    padding: 8px 10px;
+    border-radius: 5px;
+    position:absolute;
+    left:75%;
+}
+
 .SearchCandidate {
     margin-left: 53%;
     text-decoration: none;
