@@ -483,6 +483,15 @@ const helpData = [
 },
    ];
 
+   const [selectedCountry, setSelectedCountry] = useState("");
+  
+  const countries = ["India", "USA", "Singapore", "Australia", "UK"];
+
+  const handleCountryChange = (event) => {
+    setSelectedCountry(event.target.value);
+    console.log("selected value",selectedCountry)
+  };
+
 
   return (
     <>
@@ -579,6 +588,17 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               </label>
 
               <label className={styles.inputName}>
+                <h4>Country:</h4>
+                <select className={styles.input} style={{height:"34px"}}  value={selectedCountry} onChange={handleCountryChange}>
+                <option value="" >Select a country</option>
+                {countries.map((country, index) => (
+                  <option key={index} value={country}>{country}</option>
+                ))}
+              </select>
+
+             </label>
+
+              <label className={styles.inputName}>
                 <h4>Age:</h4>
                 <input maxLength="3" className={styles.input} value={age} onChange={(e) => { handleAge(e) }} type="number" />
               </label>
@@ -617,12 +637,29 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                 <h4>Qualification:</h4>
                 <input maxLength="6" className={styles.input} value={Qualification} onChange={(e) => {handleQualification(e) }} type="text" />
               </label>
-
+            
               <label className={styles.inputName}>
                 <h4>Experience: &nbsp;<span className={styles.hint}>(e.g 3Y or 10Y)</span></h4>
                 <input maxLength="3" className={styles.input} value={Experiance} onChange={(e) => { handleExperiance(e) }} type="text" />
               </label>
+              <label className={styles.inputName}>
+                <h4>College:</h4>
+                <div style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}>
+                <CreatableSelect  
+                  options={colleges}
+                  value={college}
+                  onChange={handleCollege}   
+                />
+                </div>
+              </label>
 
+            {college.value==="Others" &&(
+               <label className={styles.inputName} style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}>
+               <h4 style={{marginLeft:"64%"}}>Others: &nbsp;<span className={styles.hint} >(Enter College name)</span></h4>
+               <input className={styles.input}  style={{width:"48%", marginLeft:"64%"}}  value={Others} onChange={handleOthersCollege}  type="text" />
+             </label>
+
+            )}
 
               <div style={{display:"flex"}}>
               <label className={styles.inputName}>
@@ -666,7 +703,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
               <div style={{marginLeft:"15px",width:"328px"}}>
 
-              <label className={styles.inputName}>
+              {/* <label className={styles.inputName}>
                 <h4>College:</h4>
                 <div style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}>
                 <CreatableSelect  
@@ -683,7 +720,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                <input className={styles.input} value={Others} onChange={handleOthersCollege}  type="text" />
              </label>
 
-            )}
+            )} */}
 
    <div style={{ maxWidth: "400px", margin: "auto", padding: "10px",marginleft:"10px" }}>
       <div style={{display:"flex",gap:"16px"}}>
@@ -828,6 +865,18 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                         />
                         </div>
               </label>
+
+              <label className={styles.MobileinputName}>
+                <h4 className={styles.MobileName}>Country: </h4>
+                <select className={styles.Mobileinput} value={selectedCountry} onChange={handleCountryChange}>
+                <option value="" >Select a country</option>
+                {countries.map((country, index) => (
+                  <option key={index} value={country}>{country}</option>
+                ))}
+              </select>
+
+              </label>
+
 
               <label className={styles.MobileinputName}>
                 <h4 className={styles.MobileName}>Age:</h4>

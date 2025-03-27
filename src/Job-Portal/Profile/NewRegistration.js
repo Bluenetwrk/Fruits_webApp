@@ -460,7 +460,15 @@ const helpData = [
 },
    ];
 
-   
+   const [selectedCountry, setSelectedCountry] = useState("");
+  
+  const countries = ["India", "USA", "Singapore", "Australia", "UK"];
+
+  const handleCountryChange = (event) => {
+    setSelectedCountry(event.target.value);
+    console.log("selected value",selectedCountry)
+  };
+  
 
   return (
     <>
@@ -602,6 +610,17 @@ const helpData = [
               <h4>Primary user Designation:</h4>
               <input maxLength="90" className={styles.input} value={PrimeryuserDesignation} onChange={(e) => {handlePrimeryuserDesignation(e) }} type="text" />
             </label>
+
+            <label className={styles.inputName}>
+              <h4>Country:</h4>
+              <select className={styles.input} style={{height:"32px"}} value={selectedCountry} onChange={handleCountryChange}>
+                <option value="" >Select a country</option>
+                {countries.map((country, index) => (
+                  <option key={index} value={country}>{country}</option>
+                ))}
+              </select>
+            </label>
+
 {/* 
             <label className={styles.inputName}>
               <h4>Aadhaar number:
@@ -638,7 +657,7 @@ const helpData = [
             </label> */}
 
 
-<div className={styles.Editor}>
+<div className={styles.EmpEditor}>
             <h4>About Company:</h4>
             <div className={`screen1 ${styles.screen1}`} style={{ marginTop: "-10px", marginLeft: "11px", width: "103%" }}>
     <JoditEditor ref={editor} value={AboutCompany.toString()} onChange={(e) => setAboutCompany(e)} />
@@ -738,7 +757,16 @@ const helpData = [
               <h4 className={styles.MobileName}>Primary user Designation:</h4>
               <input maxLength="90" className={styles.Mobileinput} value={PrimeryuserDesignation} onChange={(e) => {handlePrimeryuserDesignation(e) }} type="text" />
             </label>
-            
+            <label className={styles.MobileinputName}>
+              <h4 className={styles.MobileName}>Country:</h4>
+              <select className={styles.Mobileinput} value={selectedCountry} onChange={handleCountryChange}>
+                <option value="" >Select a country</option>
+                {countries.map((country, index) => (
+                  <option key={index} value={country}>{country}</option>
+                ))}
+              </select>
+            </label>
+
             {/* <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Aadhaar number:</h4>
               <input maxLength="16" className={styles.Mobileinput} value={Aadhar} onChange={(e) => { AadharhandleChange(e) }} type="number" />
