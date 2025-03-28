@@ -821,7 +821,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                       <ul className={styles.ul} key={i}>
                         {/* } */}
 
-                        <li className={`${styles.li} ${styles.Jtitle}`}  >{items.jobTitle}</li>
+                        <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/DriveDetails/${btoa(items.id)}`, { state: { driveItem: items } })} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}  >{items.jobTitle}</li>
                         <li className={`${styles.li} ${styles.Source}`} >{items.driveTime}</li>
 
                         {
@@ -1073,7 +1073,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                       
                           <div style={{marginTop:"-12px"}}>
                         <div className={styles.JobTitleDateWrapper} style={{display:"flex",gap:"16px"}}>
-                          <p className={styles.jobTitle}  style={{width:"100%", whiteSpace:"normal"}}>{job.jobTitle} </p>
+                          <p className={styles.jobTitle} onClick={() => navigate(`/DriveDetails/${btoa(job.id)}`, { state: { driveItem: job } })} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" ,width:"100%", whiteSpace:"normal"}}>{job.jobTitle} </p>
                            {/* <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
@@ -1131,29 +1131,39 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                         <div className={styles.skillWrapper}>
                           <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skillsRequired}</span><br></br>
                         </div>
-                        <div className={styles.ApplyPackage}>
+                        <div className={styles.applyDrivePackage}>
                           <p className={styles.salaryRange}><span>&#8377;</span>{job.ctc}</p>
                           {
                           
-                            <button className={styles.ApplyMobile}><b>Apply</b></button>
+                            <button className={styles.ApplyDriveMobile}><b>Apply</b></button>
                           }
                         </div>
                         </div> 
 
-                        {/* <p className={styles.jobDescriptionHeading}>Job Description:</p> */}
-                        {/* <p className={styles.jobDescription}>
-                          {
+                        <p className={styles.jobDescriptionHeading}>Job Description:</p>
+                        <p className={styles.jobDescription}>
+                          {/* {
                             job.jobDescription ? HTMLReactParser(job.jobDescription.slice(0, 100).toString()) : ""
+                          } */}
+                          {
+                            job.details.slice(0,100)
                           }
-                          <span onClick={() => {
-                            window.scrollTo({
-                              top: 0
-                            })
-                            navigate(`/Jobdetails/${btoa(job._id)}`)
-                          }} className={styles.seeMore}>
+                          <span 
+                          // onClick={() => {
+                          //   window.scrollTo({
+                          //     top: 0
+                          //   })
+                          //   navigate(`/Jobdetails/${btoa(job._id)}`)
+                          // }} 
+
+                          onClick={() => {
+                            window.scrollTo({ top: 0 });
+                            navigate(`/DriveDetails/${btoa(job.id)}`, { state: { driveItem: job } });
+                          }}
+                          className={styles.seeMore}>
                             ...read more
                           </span>
-                        </p> */}
+                        </p>
 
 
                       </div>
