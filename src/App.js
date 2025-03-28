@@ -66,6 +66,7 @@ import AllHelps from "./Job-Portal/Jobs/AllHelps";
 import HelpDetails from "./Job-Portal/Jobs/HelpDetails";
 import AllWalkinDrive from "./Job-Portal/Jobs/AllWalkinDrive";
 import PostWalkinDrive from "./Job-Portal/PostJobs/PostWalkinDrive";
+import DriveDetails from "./Job-Portal/Jobs/DriveDetails";
 
 axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -457,35 +458,40 @@ const [showDriveFlash, setShowDriveFlash] = useState(false);
 const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
 
  const driveJobs = [
-    {
+    { id:1001,
       jobTitle: "Software Engineer",
       postedBy: "HR Manager",
       companyName: "Tech Corp",
       jobType: "Full-Time",
       driveTime: "9:00 AM",
-      driveDate: "2025-03-20",
+      driveDate: "2025-03-31",
       location: "Koramangala,Bengaluru",
       ctc: "10 LPA",
       experience: "2-4 years",
       qualification: "B.Tech/MCA",
       skillsRequired: "React, Node.js, MongoDB",
       apply: "https://apply-link.com/1",
+      details: "1. To participate in the Walk-In Drive for Software Development, follow these steps:\n2. Click on the 'Career' section on the company's official website.\n3. A submenu will appear—select 'Walk-In Drive' from the list.\n4. The Walk-In Drive details page will open in a new window.\n5. Check the eligibility criteria, date, time, and venue of the drive.\n6. Prepare your updated resume along with necessary documents (ID proof, educational certificates, experience letters, etc.).\n7. Visit the venue on the scheduled date and complete the registration process.\n8. Appear for the technical assessment or coding test, followed by interviews.\n9. If shortlisted, attend further rounds as per the company's selection process.\n10. Await final confirmation from the recruitment team regarding the results."
+
     },
     {
+      id:2002,
       jobTitle: "Frontend Developer",
       postedBy: "Recruiter",
       companyName: "InnovateX",
       jobType: "Remote",
       driveTime: "10:00 AM",
-      driveDate: "2025-03-23",
+      driveDate: "2025-03-30",
       location: "WhiteField,Bengaluru",
       ctc: "8 LPA",
       experience: "1-3 years",
       qualification: "B.Tech/BCA",
       skillsRequired: "HTML, CSS, JavaScript",
       apply: "https://apply-link.com/2",
+      details: "1. To participate in the Walk-In Drive for Software Development, follow these steps:\n2. Click on the 'Career' section on the company's official website.\n3. A submenu will appear—select 'Walk-In Drive' from the list.\n4. The Walk-In Drive details page will open in a new window.\n5. Check the eligibility criteria, date, time, and venue of the drive.\n6. Prepare your updated resume along with necessary documents (ID proof, educational certificates, experience letters, etc.).\n7. Visit the venue on the scheduled date and complete the registration process.\n8. Appear for the technical assessment or coding test, followed by interviews.\n9. If shortlisted, attend further rounds as per the company's selection process.\n10. Await final confirmation from the recruitment team regarding the results."
+
     },
-    {
+    { id:3003,
       jobTitle: "Data Analyst",
       postedBy: "HR Lead",
       companyName: "DataWorks",
@@ -498,6 +504,8 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
       qualification: "B.Sc/M.Sc",
       skillsRequired:"Python, SQL, Power BI",
       apply: "https://apply-link.com/3",
+      details: "1. To participate in the Walk-In Drive for Software Development, follow these steps:\n2. Click on the 'Career' section on the company's official website.\n3. A submenu will appear—select 'Walk-In Drive' from the list.\n4. The Walk-In Drive details page will open in a new window.\n5. Check the eligibility criteria, date, time, and venue of the drive.\n6. Prepare your updated resume along with necessary documents (ID proof, educational certificates, experience letters, etc.).\n7. Visit the venue on the scheduled date and complete the registration process.\n8. Appear for the technical assessment or coding test, followed by interviews.\n9. If shortlisted, attend further rounds as per the company's selection process.\n10. Await final confirmation from the recruitment team regarding the results."
+
     },
   ];
   
@@ -718,6 +726,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             <Route path="/Answerdetails/:id" element={<Answerdetails />} />
             <Route path="/CareerJobdetails/:id" element={<CareerJobdetails />} />
             <Route path="/CheckEmpHalfProfile/:empId" element={<CheckEmpHalfProfile />} />
+            <Route path="/DriveDetails/:id" element={<DriveDetails />} />
 
             <Route path="/Search-Candidate-Home" element={<SearchCandHome url={axios.defaults.baseURL}
             FilCandidate={FilCandidate} setFilCandidate={setFilCandidate}

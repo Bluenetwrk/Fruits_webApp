@@ -250,9 +250,9 @@ const [selectedTime, setSelectedTime] = useState("");
                                         <input maxLength="30" className={Style.inputbox} type="text" value={companyName} disabled />
 
 
-                                        {/* <h4 className={Style.jobHeadline}>Job Description**</h4> */}
+                                        <h4 className={Style.jobHeadline}>Job Description**</h4>
                                         
-{/* <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} /> */}
+<JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} />
 
 
                                         <p className={Style.jobHeadline}>Job Tags <span className={Style.hint}>(Select multiple Tags to reach the best Matching Candidates)</span></p>
