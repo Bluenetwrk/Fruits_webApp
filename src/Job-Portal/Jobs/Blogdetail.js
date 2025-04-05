@@ -241,11 +241,29 @@ async function deletComment(id){
       {screenSize.width>850 ?
 
         <>
-    <div class={ styles.blogArrow} style={{display:"flex", height:"50px", alignItems:"center"}}>
+    {/* <div class={ styles.blogArrow} style={{display:"flex", height:"50px", alignItems:"center",justifyContent:"space-between",}}>
            <h2 style={{fontSize:"25px",marginLeft:"120px", fontWeight:"800", marginTop:"-15px", marginBottom:"-15px"}}> Blogs  </h2>
-          <img style={{marginLeft:"35%", height: "30px"}}  onClick={()=>{goDown()}} src={Down}/>
-        </div>
-        
+          <img style={{ height: "30px"}}  onClick={()=>{goDown()}} src={Down}/>
+          <div style={{ display: "flex", justifyContent: "space-between", marginRight:"110px" }}>
+            <div className={styles.navigationWrapperbtn}>
+              <button style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }} className={styles.navigationbtn}> 
+              <i class='fas fa-step-backward' > </i> First
+              </button>
+              <button style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
+              <i class='fas fa-caret-square-left'></i>Prev
+              </button>
+              <div style={{display:"flex",alignItems:"center"}}>1</div>
+              <button style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
+               Next<i class='fas fa-caret-square-right'></i>
+              </button> */}
+              {/* <button style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
+                Last<i class='fas fa-step-forward'></i>
+               
+              </button>
+            </div>
+          </div>
+        </div> */}
+        <img style={{marginLeft:"50%", height: "30px"}}  onClick={()=>{goDown()}} src={Down}/>
     <div class={styles.readPageContainer}>
        <div class={styles.ReadPageBtnTitleContainer} style={{display:"flex"}}>
            {/* <button class={styles.readPageBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
@@ -260,8 +278,28 @@ async function deletComment(id){
                  Back
           </button>
           {/* {console.log("history length",window.history.length)} */}
+          <div class={ styles.blogArrow} style={{display:"flex", height:"50px", alignItems:"center",justifyContent:"space-between",}}>
+                 <div style={{ display: "flex", justifyContent: "space-between", marginRight:"0px" }}>
+            <div className={styles.navigationWrapperbtn}>
+              {/* <button style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }} className={styles.navigationbtn}> 
+              <i class='fas fa-step-backward' > </i> First
+              </button> */}
+              <button style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
+              <i class='fas fa-caret-square-left'></i>Prev
+              </button>
+              <div style={{display:"flex",alignItems:"center"}}>1</div>
+              <button style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
+               Next<i class='fas fa-caret-square-right'></i>
+              </button>
+              {/* <button style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
+                Last<i class='fas fa-step-forward'></i> */}
+               
+              {/* </button> */}
+            </div>
+          </div>
+        </div>
 
-              <h1 style={{textAlign:"center", fontSize:"40px", whiteSpace:"no", marginTop:"10px",marginRight:"120px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</h1>
+              <h1 style={{textAlign:"center", fontSize:"40px", whiteSpace:"no", marginTop:"10px",marginRight:"0px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</h1>
            {/* <div style={{display:" flex",flexDirection:"column"}}> */}
            {/* <button style={{ marginRight:"4px"}}class={styles.readPageBackBtn} onClick={updateClick} >Share</button> */}
            {/* <a
@@ -402,6 +440,25 @@ async function deletComment(id){
         </div>
       )}
  </div>
+
+ <div style={{ display: "flex", justifyContent: "space-between", marginRight:"80px", marginBottom:"-14px"}}>
+            <div className={styles.navigationWrapperbtn}>
+              {/* <button style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }} className={styles.navigationbtn}> 
+              <i className="fas fa-step-backward" style={{ color: "rgb(40,4,99)" }}></i> First
+              </button> */}
+              <button style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
+              <i class='fas fa-caret-square-left' style={{ color: "rgb(40,4,99)" }}></i>Prev
+              </button>
+              <div style={{display:"flex",alignItems:"center"}}>1</div>
+              <button style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
+               Next<i class='fas fa-caret-square-right' style={{ color: "rgb(40,4,99)" }}></i>
+              </button>
+              {/* <button style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
+                Last<i class='fas fa-step-forward' style={{ color: "rgb(40,4,99)" }}></i>
+               
+              </button> */}
+            </div>
+          </div>
 
          
               {/* <div style={{display:"flex",marginLeft:"20px"}}> */}

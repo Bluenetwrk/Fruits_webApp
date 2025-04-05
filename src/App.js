@@ -116,13 +116,394 @@ const [showDriveFlash, setShowDriveFlash] = useState(false);
       })
   }
 
+  
+//----------------------Tags search method starts----------------
+
+ //----------------search by tags(LOGGOUT USER - HOME PAGE) ---------
+
+async function searchByTags(key) {
+  setPageLoader(true); // Enable loader at the start
+
+  if (count === 1) {
+    setJobs([]);
+  }
+  setCount(prev => prev + 1);
+
+  const isIndex = Active.findIndex((present) => present === key);
+
+  if (isIndex < 0) { 
+    var updatedActive = [...Active, key]; 
+    setActive(updatedActive);
+
+    setTimeout(() => {
+      setPageLoader(false);
+    }, 1000); 
+    return;
+  } else {
+    const IndexId = Active.findIndex((present) => present === key);
+    Active.splice(IndexId, 1);
+
+    if (Active.length === 0) {
+      await getjobs(); 
+      setPageLoader(false);
+      return;
+    }
+
+    await changeTags();
+  }
+
+  setPageLoader(false); 
+}
+
+  async function changeTags(key){
+     
+
+    setNoPageFilter(true)
+    setFiltereredjobs(key)
+    await axios.get(`/jobpost/getTagsJobs/${Active}`)
+      .then((res) => {
+        let result = (res.data)
+        
+        let sortedate = result.sort((a, b) => {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+        setJobTagsIds(sortedate)
+        
+      })
+  }
+
+
+  //---------------------blog search tags------------
+  async function BlogSearchTags(key) {
+    setPageLoader(true)
+    if(count==1){
+      setJobs("")
+
+    }
+    setCount(prev=>prev+1)
+
+    const isIndex=Active.findIndex((present)=>{
+return(
+  present===key
+)
+    })
+    if(isIndex<0){
+    setActive([...Active, key])
+    setTimeout(() => {
+      setPageLoader(false);
+    }, 1000); 
+    }else{
+      const IndexId=Active.findIndex((present)=>{
+        return(
+          present==key
+        )
+            })
+            Active.splice(IndexId,1)
+                if(Active.length===0){
+      getjobs()
+    }
+    if(jobs.length>0){
+         let removedItems = jobs.filter((tags)=>{
+            return( 
+              !tags.Tags.includes(key)
+                
+        )
+      }) 
+      setJobs(removedItems)
+      return false
+    }
+  }
+
+    setNoPageFilter(true)
+    setFiltereredjobs(key)
+    await axios.get(`/BlogRoutes/getTagsJobs/${key}`)
+      .then( (res) => {
+        let result = (res.data)
+        let sortedate = result.sort( (a, b) => {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+        let elements=  sortedate.flatMap(element => {
+          setJobs(oldArray => [...oldArray,element] )
+     });
+      })
+  }
+//------------------carrer search tags-----------
+async function carrerSearchTags(key) {
+  setPageLoader(true)
+  if (count == 1) {
+    setJobs([])
+  }
+  setCount(prev => prev + 1)
+  const isIndex = Active.findIndex((present) => {
+    return (
+      present === key
+    )
+  })
+  if (isIndex < 0) {
+    
+    
+    var updatedActive = [...Active, key];
+    setActive(updatedActive);
+    setTimeout(() => {
+      setPageLoader(false);
+    }, 1000); 
+  } else {
+    const IndexId = Active.findIndex((present) => {
+      return (
+        present == key
+      )
+    })
+    Active.splice(IndexId, 1)
+    if (Active.length === 0) {
+      getjobs()
+      return false
+    }
+   
+    changeTags()
+    
+  }}
+  async function changeTags(key){
+  
+
+  setNoPageFilter(true)
+  setFiltereredjobs(key)
+  await axios.get(`/Careerjobpost/getTagsJobs/${Active}`)
+
+    .then((res) => {
+      let result = (res.data)
+      
+      let sortedate = result.sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
+     
+      setJobTagsIds(sortedate)
+     
+
+      let elements = sortedate.flatMap(element => {
+        
+      });
+    })
+}
+
+//-----------------Jobseeker login search Tags---------
+async function jobseekerSearchTags(key) {
+  setPageLoader(true)
+  if (count == 1) {
+    setJobs([])
+  }
+  setCount(prev => prev + 1)
+  const isIndex = Active.findIndex((present) => {
+    return (
+      present === key
+    )
+  })
+  if (isIndex < 0) {
+    // setActive([...Active, key])
+    
+    var updatedActive = [...Active, key]; 
+    setActive(updatedActive);
+    setTimeout(() => {
+      setPageLoader(false);
+    }, 1000); 
+  } else {
+    const IndexId = Active.findIndex((present) => {
+      return (
+        present == key
+      )
+    })
+    Active.splice(IndexId, 1)
+    if (Active.length === 0) {
+      getjobs()
+      return false
+    }
+    changeLoginTags()
+  }}
+  async function changeLoginTags(key){
+    // console.log("in APi",Active)
+
+  setNoPageFilter(true)
+  setFiltereredjobs(key)
+  await axios.get(`/jobpost/getTagsJobs/${Active}`)
+    .then((res) => {
+      let result = (res.data)
+      // console.log("the total id's are", result)
+      let sortedate = result.sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
+      // setJobTagsIds(oldjobTagsIds => [...oldjobTagsIds, ...sortedate])
+      setJobTagsIds(sortedate)
+      // getTagId(sortedate)
+
+      let elements = sortedate.flatMap(element => {
+       
+      });
+    })
+}
+//--------------employer  tags-------------
+async function searchEmpTags(key) {
+  setPageLoader(false);
+  if(count==1){
+    setCandidate([])
+  }
+  setCount(prev=>prev+1)
+  const isIndex=Active.findIndex((present)=>{
+return(
+present===key
+)
+  })
+  if(isIndex<0){
+  var updatedActive = [...Active, key]; 
+  setActive(updatedActive);
+  setTimeout(() => {
+    setPageLoader(false);
+  }, 1000);
+  }else{
+    const IndexId=Active.findIndex((present)=>{
+      return(
+        present==key
+      )
+          })
+          Active.splice(IndexId,1)
+              if(Active.length===0){
+                getAllJobSeekers()
+                return false
+  }
+  changeEmpTags()
+}}
+
+async function changeEmpTags(key){
+
+  setNoPageFilter(true)
+  setFiltereredjobs(key)
+  await axios.get(`/StudentProfile/getTagsJobs/${Active}`)
+    .then((res) => {
+      let result = (res.data)
+      // console.log(result)
+      let sortedate = result.sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
+      setJobTagsIds(sortedate)
+    })
+}
+
+
+//-------------------------search candidate hoem--------
+async function searchBlurTags(key) {
+  setPageLoader(true);
+  if(count==1){
+    setCandidate([])
+  }
+  setCount(prev=>prev+1)
+  const isIndex=Active.findIndex((present)=>{
+return(
+present===key
+)
+  })
+  if(isIndex<0){
+  var updatedActive = [...Active, key]; 
+  setActive(updatedActive);
+  setTimeout(() => {
+    setPageLoader(false);
+  }, 1000);
+  }else{
+    const IndexId=Active.findIndex((present)=>{
+      return(
+        present==key
+      )
+          })
+          Active.splice(IndexId,1)
+              if(Active.length===0){
+                getAllJobSeekers()
+                return false
+  }
+  changeblurTags()
+}}
+
+async function changeblurTags(key){
+
+  setNoPageFilter(true)
+  setFiltereredjobs(key)
+  await axios.get(`/StudentProfile/getTagsJobs/${Active}`)
+    .then((res) => {
+      let result = (res.data)
+      // console.log(result)
+      let sortedate = result.sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
+      setJobTagsIds(sortedate)
+      setTimeout(() => {
+    setPageLoader(false);
+  }, 1000);
+    })
+}
+
+
+
+//-------------------------Tags search method ends-----------------  
+
+  const [searchKeyState, setSearchKeyState] = useState(""); 
+
+//--------------------SEARCH METHODS---------------------------------
+
   // ---------------home page search methods-------------------
   async function search(e) {
+    if(e===""){
+      getjobs()
+      setResult(false)
+      setPageLoader(false)
+      return
+    }
+    // setPageLoader(true)
+    // setJobTagsIds([]) 
+    // setJobs([])
     setNoPageFilter(true)
+
     let key = e.target.value
     setFiltereredjobs(key)
     setsearchKey(key)
-    if (key) {
+    setSearchKeyState(key);
+
+  //   const currentSearchKey = key;
+
+  // if (!key) {
+  //   console.log("Input cleared, ignoring old API calls.");
+  //   setPageLoader(false);
+  //   setResult(false);
+  //   getjobs(); 
+  //   return;
+  // }
+
+    if (key) { 
+      // console.log("executed after else") 
+    setResult(true) 
+    //  -------------all new search-------------
+    // const headers = { authorization: 'BlueItImpulseWalkinIn' };
+    // await axios.get("/jobpost/getHomejobs", { headers })
+    // .then((res) => {
+    //   if (currentSearchKey !== e.target.value.trim()) {
+    //     console.log("Ignored stale API response for:", currentSearchKey);
+    //     return;
+    //   }
+  
+    //   let result = (res.data)
+
+    //   let filteredData = result.filter(job => 
+    //     (Array.isArray(job.Tags) && job.Tags.some(tag =>tag.toString().toLowerCase().includes(key.toLowerCase()))) || 
+    //     (job.jobTitle && job.jobTitle.toString().toLowerCase().includes(key.toLowerCase()))
+    //   );
+  
+    //   // let sortedData = filteredData.sort((a, b) => 
+    //   //   new Date(b.createdAt) - new Date(a.createdAt)
+    //   // );
+    
+    //   // console.log("Filtered Data:", sortedData);
+    //   setJobTagsIds(filteredData)  
+    //   setPageLoader(false)
+    // })
+
+    //-----------all new search ends ----------
+
+    //-------old search method-------------
       setResult(true)
       let dubmyjobs = [...Filterjobs]
       const filteredItems = dubmyjobs.filter((user) => {
@@ -134,7 +515,10 @@ const [showDriveFlash, setShowDriveFlash] = useState(false);
     } else {
       getjobs()
       setResult(false)
+      setPageLoader(false)
+      return
     }
+  
   }
 
   async function getjobs() {
@@ -186,7 +570,12 @@ const [showDriveFlash, setShowDriveFlash] = useState(false);
 
 // ------------blog page search method starts------------------
   async function searchBlog(e) {
-    console.log("tyty xhxbc",e.target.value)
+    if(e===""){
+      getblogs()
+      setResult(false)
+      return
+    }
+    // console.log("tyty xhxbc",e.target.value)
     setNoPageFilter(true)
     let key = e.target.value
     setFiltereredjobs(key)
@@ -247,7 +636,14 @@ const [showDriveFlash, setShowDriveFlash] = useState(false);
 
   // ------------carrer page search method starts---------------
   async function searchcarrer(e) {
-    console.log("tyty xhxbc",e.target.value)
+    if(e===""){
+      // console.log("carrer executed")
+      getcarrer()
+      setResult(false)
+      getcarrer()
+      return
+    }
+    // console.log("tyty xhxbc",e.target.value)
     setNoPageFilter(true)
     let key = e.target.value
     setsearchKey(key)
@@ -315,6 +711,12 @@ const [showDriveFlash, setShowDriveFlash] = useState(false);
 
 //  ----------------employer home page search method starts---------------- 
   async function searchs(e) {
+    // console.log("e is loading",e.target.value)
+    if(e===""){
+      getAllJobSeekers()
+      setResult(false)
+      return
+    }
     let key = e.target.value
     setsearchKey(key)
     setFiltereredjobs(key)
@@ -338,6 +740,11 @@ const [showDriveFlash, setShowDriveFlash] = useState(false);
 
   // ---------------jobseeker home page search method starts---------------
   async function jobSeekersearch(e) {
+    if(e===""){
+      getJobseekerjobs()
+      setResult(false)
+      return
+    }
     setNoPageFilter(true)
     let key = e.target.value
     setsearchKey(key)
@@ -403,7 +810,14 @@ const [showDriveFlash, setShowDriveFlash] = useState(false);
 
   //------------------Employer Home page (without Login) starts---------
   async function empSearchNoLogin(e) {
-    console.log("xhxbc",e)
+    if(e===""){
+      // console.log("js")
+      getAllJobSeekerss()
+      setResult(false)
+      getAllJobSeekerss()
+      return
+    }
+    // console.log("xhxbc",e)
     let key = e.target.value
     setsearchKey(key)
     setFiltereredjobs(key)
@@ -481,7 +895,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
       companyName: "InnovateX",
       jobType: "Remote",
       driveTime: "10:00 AM",
-      driveDate: "2025-03-30",
+      driveDate: "2025-04-06",
       location: "WhiteField,Bengaluru",
       ctc: "8 LPA",
       experience: "1-3 years",
@@ -529,9 +943,9 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
     <>
 
       <BrowserRouter>
-        <Nav sortedFilteredDriveJobs={sortedFilteredDriveJobs} showDriveFlash={showDriveFlash} setShowDriveFlash={setShowDriveFlash} empSearchNoLogin={empSearchNoLogin} jobSeekersearch={jobSeekersearch} searchBlog={searchBlog} searchcarrer={searchcarrer} setSearchClick={setSearchClick} showMobileSearchIcon={showMobileSearchIcon} 
+        <Nav carrerSearchTags={carrerSearchTags} BlogSearchTags={BlogSearchTags} searchByTags={searchByTags} sortedFilteredDriveJobs={sortedFilteredDriveJobs} showDriveFlash={showDriveFlash} setShowDriveFlash={setShowDriveFlash} empSearchNoLogin={empSearchNoLogin} jobSeekersearch={jobSeekersearch} searchBlog={searchBlog} searchcarrer={searchcarrer} setSearchClick={setSearchClick} showMobileSearchIcon={showMobileSearchIcon} 
         setShowMobileSearchIcon={setShowMobileSearchIcon} ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}   searchClick={searchClick}  chandinmargin={setShowSideNave} 
-        search={search} searchKey={searchKey} searchIcon={searchIcon} searchs={searchs}/>
+        searchBlurTags={searchBlurTags}searchEmpTags={searchEmpTags}jobseekerSearchTags={jobseekerSearchTags} search={search} searchKey={searchKey} searchIcon={searchIcon} searchs={searchs}/>
         
         <div style={ShowSideNave && screenSize.width > 850 ? { marginLeft: "210px", transition: " ease-in-out 0.6s" } : { marginLeft: "-3px", transition: " ease-in-out 0.5s" }}>
         {/* <div style={ShowSideNave && screenSize.width > 850 ? { marginLeft: "210px" } : { marginLeft: "-3px"}}> */}

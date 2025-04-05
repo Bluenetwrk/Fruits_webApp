@@ -51,7 +51,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
     await axios.get(`/jobpost/getjobs/${atob(params.id)}`, {headers})
       .then((res) => {
         let result = (res.data)
-        console.log(result)
+        // console.log(result)
         setJobs(result)
         setjobdescription(result.jobDescription)
         setjobSeekerId(result.jobSeekerId)
@@ -207,11 +207,15 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
       {screenSize.width>850 ?
 
         <>
+        
         <img style={{marginLeft:"50%", height: "30px"}}  onClick={()=>{goDown()}} src={Down}/>
+        
+        {/* <img style={{marginLeft:"50%", height: "30px"}}  onClick={()=>{goDown()}} src={Down}/> */}
         <div class={styles.jobDetailContainer}>
 
         <div class={styles.jobdetailBtnContainer} style={{display:"flex"}}>
            {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
+           <div style={{display:"flex"}}>
            <button className={styles.jobdetailBackBtn} 
             onClick={() => {
                if (window.history.length > 1) {
@@ -222,6 +226,21 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
              }}>
                  Back
           </button>
+          <div className={styles.navigationWrapperbtn}>
+              <button style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
+              <i class='fas fa-caret-square-left' style={{ color: "rgb(40,4,99)" }}></i>Prev
+              </button>
+              <div style={{display:"flex",alignItems:"center"}}>1</div>
+              <button style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
+               Next<i class='fas fa-caret-square-right' style={{ color: "rgb(40,4,99)" }}></i>
+              </button>
+            </div>
+          </div>
+              
+              
+
+
+
            <div style={{display:"flex"}}>
            <button class={styles.jobdetailApplyBtn} style={{marginRight:"9px",display:"flex", gap:"5px",width:"80px"}}onClick={updateClickStatus}>
            <i className="fa-solid fa-share" style={{ fontSize: "medium", cursor: "pointer", marginLeft:"-8px" }}></i>
@@ -269,7 +288,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
           
           
 <div class={styles.jobDetailsPosterDesc}>
-<h1 style={{textAlign:"center", fontSize:"xx-large"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading...."}</h1>
+<h1 style={{marginLeft:"80px",width:"75%",textAlign:"center", fontSize:"xx-large"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading...."}</h1>
 <div style={{marginLeft:"30px"}}>
   <span>Posted by : {jobs.companyName}</span> &nbsp;|  
   &nbsp; <span> Posted on : {new Date(jobs.createdAt).toLocaleString(
@@ -290,6 +309,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 <p>Skills : {jobs.skills} </p>
 </div>
 </div>
+
 </div>
 
 
@@ -332,6 +352,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
   <p style={{ fontWeight:"400" }}>Share</p>
 </div>
 
+
 {shareClicked && (
         <div ref={shareRef} class={styles.shareContainerMob}>
           <h1 style={{textAlign:"center",color:"white"}}>Share</h1>
@@ -361,8 +382,18 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
         </div>
       )}
 
-
               </div>
+               <div style={{ display: "flex", justifyContent: "space-between", marginRight:"80px",marginBottom:"-14px" }}>
+            <div className={styles.navigationWrapperbtn}>
+              <button style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
+              <i class='fas fa-caret-square-left' style={{ color: "rgb(40,4,99)" }}></i>Prev
+              </button>
+              <div style={{display:"flex",alignItems:"center"}}>1</div>
+              <button style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
+               Next<i class='fas fa-caret-square-right' style={{ color: "rgb(40,4,99)" }}></i>
+              </button>
+            </div>
+          </div>
                 <div className={styles.JobCard} >
                 {/* <p className={styles.readPageDate}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
