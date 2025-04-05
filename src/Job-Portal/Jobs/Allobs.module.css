@@ -876,12 +876,32 @@ background: rgb(202, 202, 202);
     margin:10px;
 
 }
+
+.navigationWrapperbtn{
+    text-align:right;
+    margin:10px;
+    display: flex;
+    gap: 5px;
+}
 .navigation{
     background-color:rgb(214, 212, 212);
     padding:3px;
     padding-right:10px; 
     border:none;
 }
+.navigationbtn{
+    background-color:rgb(214, 212, 212);
+    border:none;
+    height: 30px;
+    font-weight: 700;
+}
+.navigationbtnMob{
+    background-color:rgb(214, 212, 212);
+    border:none;
+    height: 30px;
+    font-weight: 700;
+}
+
 
 .seeMore{
  color: blue;

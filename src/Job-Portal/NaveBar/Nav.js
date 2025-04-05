@@ -181,7 +181,7 @@ function Nav(props) {
                
                   <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px"} : { marginLeft: "-215px"}}>
                 
-                    <BigSidebarNav jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
+                    <BigSidebarNav   jobseekerSearchTags={props.jobseekerSearchTags} carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
                   </div>
                 </div>
                 {/* <div className={Styles.logoWrapper}> */}
@@ -257,7 +257,7 @@ function Nav(props) {
                
                   <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px" } : { marginLeft: "-215px" }}>
                     {/* <BigSidebarNav  /> */}
-                    <BigSidebarNav jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
+                    <BigSidebarNav searchEmpTags={props.searchEmpTags}  carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
              
                   </div>
                 </div>
@@ -392,7 +392,7 @@ function Nav(props) {
                   <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px" } : { marginLeft: "-215px" }} >
                   {/* <div className="BigNavWrapper" style={{visibility:ShowBigSideNave?"visible":"hidden"}} > */}
                 
-                    <BigSidebarNav empSearchNoLogin={props.empSearchNoLogin} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
+                    <BigSidebarNav searchBlurTags={props.searchBlurTags}  carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} empSearchNoLogin={props.empSearchNoLogin} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
                   </div>
                 </div>
 
@@ -454,7 +454,7 @@ function Nav(props) {
                          />
                        </div>
                      )}
-                 {console.log(showDriveMenu)}
+                 {/* {console.log(showDriveMenu)} */}
                         {showDriveMenu &&(
                               <div className={Styles.Alldownwrapper}  >
 
@@ -548,7 +548,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                     style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
                     {/* <SidebarNav setShowSideNaveProps={props.setShowSideNave} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar} /> */}
                   {/* <SidebarNav setShowSideNaveProps={setShowSideNave} /> */}
-                  <SidebarNav jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
+                  <SidebarNav jobseekerSearchTags={props.jobseekerSearchTags} carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
               
                   </div>
             </>
@@ -631,7 +631,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                 <div ref={SmenuRef} className={`${Styles.MovileNavOptions} `}
                     style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
                     {/* <SidebarNav setShowSideNaveProps={setShowSideNave} /> */}
-                    <SidebarNav jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog}  setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar} />
+                    <SidebarNav  searchEmpTags={props.searchEmpTags}  carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog}  setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar} />
                        </div>
 
               </>
@@ -737,7 +737,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                   {/* {ShowSideNave? */}
                   <div ref={SmenuRef} className={`${Styles.MovileNavOptions} `}
                     style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
-                    <SidebarNav empSearchNoLogin={props.empSearchNoLogin} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
+                    <SidebarNav searchBlurTags={props.searchBlurTags}  carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} empSearchNoLogin={props.empSearchNoLogin} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
                   </div>
                   {/* :"" }   */}
                 </>

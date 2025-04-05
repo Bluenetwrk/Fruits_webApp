@@ -106,7 +106,7 @@ const responsive = {
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
     await axios.get("/Careerjobpost/getTotalCount")
       .then((res) => {
-        console.log(res.data.result)
+        // console.log(res.data.result)
         settotalCount(res.data.result)
       }).catch((err) => {
         alert("something went wrong")
@@ -334,7 +334,7 @@ const responsive = {
     await axios.post(`/jobpost/getBothjobFilter/${jobLocation}`, { jobTitle })
       .then((res) => {
         let result = (res.data)
-        console.log(result)
+        // console.log(result)
         let sortedate = result.sort(function (a, b) {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
@@ -392,13 +392,34 @@ const responsive = {
   const [jobTagIds, setjobTagIds] = useState([])
 
   // const [jobTagsIds, setJobTagsIds] = useState([])
-  console.log("all dublicate ids", jobTagsIds)
+  // console.log("all dublicate ids", jobTagsIds)
 
-  useEffect(() => {
-    if (jobTagsIds.length > 0) {
-      getTagId();
-    }
-  }, [jobTagsIds])
+  // useEffect(() => {
+  //   if (jobTagsIds.length > 0) {
+  //     console.log("executing tags carrer")
+  //     getTagId();
+  //   }
+  // }, [jobTagsIds])
+
+  const [pathChanged, setPathChanged] = useState(false); // Track if path changed
+
+// Run getjobs() only if path changes
+useEffect(() => {
+  // console.log("Path changed, executing getjobs...",currentPage);
+  setPathChanged(true); // Mark that getjobs() was executed
+  getjobs();
+
+  // Reset after a delay to allow normal execution of getTagId() in future updates
+  setTimeout(() => setPathChanged(false), 500); 
+}, [location.pathname]);
+
+// Run getTagId() only if path didn't change recently
+useEffect(() => {
+  if (!pathChanged && jobTagsIds.length > 0) {
+    // console.log("jobtagsids", jobTagsIds);
+    getTagId();
+  }
+}, [jobTagsIds]);
 
   let ids = jobTagsIds.map((id) => {
     return (
@@ -412,7 +433,7 @@ const responsive = {
       params: { currentPage, recordsPerPage }
     })
       .then((res) => {
-        console.log("data from uique id's",res.data)
+        // console.log("data from uique id's",res.data)
         let result = res.data
         let sortedate = result.sort((a, b) => {
           return new Date(b.createdAt) - new Date(a.createdAt);

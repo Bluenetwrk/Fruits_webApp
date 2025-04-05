@@ -205,7 +205,7 @@ function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,current
 
             {helpData.map((item) => (
              <ul key={item.id} className={styles.ul}>
-               <li className={`${styles.li} ${styles.BlogJtitle}`} onClick={()=>navigate(`/support/help/Mg==`)} >{item.question}</li>
+               <li className={`${styles.li} ${styles.BlogJtitle}`} >{item.question}</li>
                <li className={`${styles.li} ${styles.BlogSource}`}>{item.source}</li>
                <li className={`${styles.li} ${styles.BlogCompanyName}`}>{item.companyName}</li>
                <li className={`${styles.li} ${styles.BlogCompanyName}`}>{item.postedby}</li>

@@ -46,6 +46,8 @@ function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,F
   ,FilCandidate,setFilCandidate,getAllJobSeekers,Candidate,setCandidate
   ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon
 }) {
+
+
   let params = useParams()
   let navigate = useNavigate()
   const [selectedOption, setSelectedOption] = useState(options[0]);
@@ -110,8 +112,9 @@ function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,F
       useEffect(() => {
         if (jobTagsIds.length < 1) {
       getAllJobSeekers()
-  
+              // console.log("this")
         } else {
+          // console.log("that")
           getTagId();
         }
       }, [currentPage, recordsPerPage])
@@ -208,9 +211,37 @@ function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,F
 
       useEffect(() => {
         if (jobTagsIds.length > 0) {
+          console.log("thisss")
           getTagId();
         }
       }, [jobTagsIds])
+
+// -------------exp----------------
+const [pathChanged, setPathChanged] = useState(false); 
+
+// Run getjobs() only if path changes
+// useEffect(() => {
+//   console.log("Path changed, executing getjobs...");
+//   setPathChanged(true); // Mark that getjobs() was executed
+//   getAllJobSeekers();
+
+//   // Reset after a delay to allow normal execution of getTagId() in future updates
+//   setTimeout(() => setPathChanged(false), 500); 
+// }, [location.pathname]);
+
+// Run getTagId() only if path didn't change recently
+// useEffect(() => {
+//   if (!pathChanged && jobTagsIds.length > 0) {
+//     console.log("jobtagsids-->", jobTagsIds);
+//     getTagId();
+//   }
+// }, [jobTagsIds]);
+
+
+
+
+// -----------------exp-------------
+
 
       let ids = jobTagsIds.map((id) => {
         return (
@@ -235,6 +266,7 @@ function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,F
             }
     
           })
+          console.log("candidate",Candidate)
       }
     
       useEffect(()=>{
@@ -470,7 +502,7 @@ return(
 //   }, [locationemp.pathname]); 
 
 //   console.log("pathname",empHome)
-
+console.log("canidate -f -->",Candidate)
   return (
     <>
       {screenSize.width > 850 ?

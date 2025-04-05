@@ -372,11 +372,31 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
   // const [jobTagsIds, setJobTagsIds] = useState([])
 
 
-  useEffect(() => {
-    if (jobTagsIds.length > 0) {
-      getTagId();
-    }
-  }, [jobTagsIds])
+  // useEffect(() => {
+  //   if (jobTagsIds.length > 0) {
+  //     getTagId();
+  //   }
+  // }, [jobTagsIds])
+
+  const [pathChanged, setPathChanged] = useState(false); // Track if path changed
+
+// Run getjobs() only if path changes
+useEffect(() => {
+  // console.log("Path changed, executing getjobs...");
+  setPathChanged(true); // Mark that getjobs() was executed
+  getjobs();
+
+  // Reset after a delay to allow normal execution of getTagId() in future updates
+  setTimeout(() => setPathChanged(false), 500); 
+}, [location.pathname]);
+
+// Run getTagId() only if path didn't change recently
+useEffect(() => {
+  if (!pathChanged && jobTagsIds.length > 0) {
+    // console.log("jobtagsids", jobTagsIds);
+    getTagId();
+  }
+}, [jobTagsIds]);
 
   let ids = jobTagsIds.map((id) => {
     return (

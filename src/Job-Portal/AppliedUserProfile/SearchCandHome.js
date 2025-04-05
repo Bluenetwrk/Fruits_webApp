@@ -205,9 +205,13 @@ const [selectedOption, setSelectedOption] = useState(options[0]);
   // const [count, setCount]=useState(1)
 
     // const [jobTagsIds, setJobTagsIds] = useState([])
+    // useEffect(()=>{
+    //   console.log("at",Active,"jids",jobTagsIds,"jobs",jobs)
+    // })
 
       useEffect(() => {
         if (jobTagsIds.length > 0) {
+          // console.log("executed")
           getTagId();
         }
       }, [jobTagsIds])

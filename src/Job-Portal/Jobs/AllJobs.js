@@ -334,7 +334,7 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
     await axios.post(`/jobpost/getBothjobFilter/${jobLocation}`, { jobTitle })
       .then((res) => {
         let result = (res.data)
-        console.log(result)
+        // console.log(result)
         let sortedate = result.sort(function (a, b) {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
@@ -399,19 +399,38 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
 
   // const [jobTagsIds, setJobTagsIds] = useState([])
   // console.log("all dublicate ids", jobTagsIds)
-
+//  useEffect(()=>{
+//   setJobTagsIds([])
+//   setJobs([])
+//   getjobs()
+//  },[])
+ 
   useEffect(() => {
+    console.log("jobTgaids---->",jobTagsIds)
+    setJobTagsIds([])
     if (jobTagsIds.length > 0) {
+      // setJobs([])
+      // getjobs()
       getTagId();
     }
   }, [jobTagsIds])
+
+// ----------------------exp----------------------  
+
+
+
+// ----------------------exp-----------------
+
+  const [pathChanged, setPathChanged] = useState(false);
 
   let ids = jobTagsIds.map((id) => {
     return (
       id._id
     )
   })
+  
   const uniqueList = [...new Set(ids)];
+
   async function getTagId() {
     settotalCount(uniqueList.length)
     await axios.get(`/jobpost/jobTagsIds/${uniqueList}`, {
@@ -429,6 +448,7 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
         }
 
       })
+      // console.log("sd",jobs)
   }
 
   useEffect(()=>{
@@ -439,7 +459,7 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
 
 
   async function filterByJobTitle(key) {
-
+// console.log("clicked")
     if (count == 1) {
       setJobs([])
     }
@@ -510,8 +530,11 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
       setSelectedOption(option);
       setIsOpen(false);
     };
-    
+    // useEffect(()=>{
+    //   setrecordsPerPage(1)
+    // },[])
 // const[searchClick,setSearchClick]=useState(false);
+// console.log("jobs",jobs,"rcp",recordsPerPage)
   return (
     <>
 
