@@ -211,7 +211,7 @@ function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,F
 
       useEffect(() => {
         if (jobTagsIds.length > 0) {
-          console.log("thisss")
+          // console.log("thisss")
           getTagId();
         }
       }, [jobTagsIds])
@@ -266,7 +266,7 @@ const [pathChanged, setPathChanged] = useState(false);
             }
     
           })
-          console.log("candidate",Candidate)
+          // console.log("candidate",Candidate)
       }
     
       useEffect(()=>{
@@ -502,7 +502,7 @@ return(
 //   }, [locationemp.pathname]); 
 
 //   console.log("pathname",empHome)
-console.log("canidate -f -->",Candidate)
+// console.log("canidate -f -->",Candidate)
   return (
     <>
       {screenSize.width > 850 ?

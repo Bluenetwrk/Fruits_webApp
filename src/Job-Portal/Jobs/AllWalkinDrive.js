@@ -600,11 +600,12 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
   let EmployeeAuth = localStorage.getItem("EmpLog")
  
   const applyForDrive=(Link)=>{
-    console.log(StudentAuth)
-    if(StudentAuth===null)
+    // console.log("thisis",StudentAuth)
+    if(StudentAuth===null && EmployeeAuth===null)
      navigate("/JobSeekerLogin")
-    else
+    else{
     window.open(`${Link}`)
+    }
   }
 
 
