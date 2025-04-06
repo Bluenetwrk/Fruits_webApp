@@ -6,11 +6,11 @@ import {jobTags} from "./Tags"
 function SidebarNav(props) {
   let navigate = useNavigate()
 
-  const [value , setValue] = useState("")
+  // const [value , setValue] = useState("")
     // console.log(value)
 
   function update(key){
-    setValue(key)
+    props.setValue(key)
     // console.log(key)
   }
 
@@ -23,7 +23,7 @@ function SidebarNav(props) {
         currentUrl==="PostBlogs" || currentUrl==="postedjobs" || currentUrl==="Search-Candidate-Home" || currentUrl==="EmployeeLogin"
         || currentUrl==="JobSeekerLogin"
       ){
-        setValue(currentUrl)
+        props.setValue(currentUrl)
       }
   }
   
@@ -183,14 +183,14 @@ function SidebarNav(props) {
 
 
         {/* <p onClick={()=>{navigate("/")}} className={`${Styles.p} `}>Home </p> */}
-        <p onClick={()=>{navigate("/Blogs"); update("Blogs")}} className={`${Styles.textBigSodeBar} ${value==="Blogs"?Styles.active:""}`}>Blogs</p>
-        <p onClick={()=>{navigate("/AllCareerJobs"); update("AllCareerJobs")}} className={`${Styles.textBigSodeBar} ${value==="AllCareerJobs"?Styles.active:""}`}>ITwalkin Career</p>
-        <p onClick={()=>{navigate("/Walkin-Drives"); update("AllWalkinDrive")}} className={`${Styles.textBigSodeBar} ${value==="AllWalkinDrive"?Styles.active:""} `}>Walkin Drives</p>
-        <p onClick={()=>{navigate("/support/help"); update("AllHelps")}} className={`${Styles.textBigSodeBar} ${value==="AllHelps"?Styles.active:""} `}>Help/Support</p>
-        <p onClick={()=>{navigate("/AboutUs"); update("AboutUs")}} className={`${Styles.textBigSodeBar} ${value==="AboutUs"?Styles.active:""} `}>About Us</p>
-        <p onClick={()=>{navigate("/Services"); update("Services")}} className={`${Styles.textBigSodeBar} ${value==="Services"?Styles.active:""}`}>Our Services</p>
-        <p onClick={()=>{navigate("/Contact"); update("Contact")}} className={`${Styles.textBigSodeBar} ${value==="Contact"?Styles.active:""}`}>Contact Us</p>
-        <p onClick={()=>{navigate("/TermsAndCondition"); update("TermsAndCondition")}} className={`${Styles.textBigSodeBar} ${value==="TermsAndCondition"?Styles.active:""}`}>Terms & Conditions</p>
+        <p onClick={()=>{navigate("/Blogs"); update("Blogs")}} className={`${Styles.textBigSodeBar} ${props.value==="Blogs"?Styles.active:""}`}>Blogs</p>
+        <p onClick={()=>{navigate("/AllCareerJobs"); update("AllCareerJobs")}} className={`${Styles.textBigSodeBar} ${props.value==="AllCareerJobs"?Styles.active:""}`}>ITwalkin Career</p>
+        <p onClick={()=>{navigate("/Walkin-Drives"); update("AllWalkinDrive")}} className={`${Styles.textBigSodeBar} ${props.value==="AllWalkinDrive"?Styles.active:""} `}>Walkin Drives</p>
+        <p onClick={()=>{navigate("/support/help"); update("AllHelps")}} className={`${Styles.textBigSodeBar} ${props.value==="AllHelps"?Styles.active:""} `}>Help/Support</p>
+        <p onClick={()=>{navigate("/AboutUs"); update("AboutUs")}} className={`${Styles.textBigSodeBar} ${props.value==="AboutUs"?Styles.active:""} `}>About Us</p>
+        <p onClick={()=>{navigate("/Services"); update("Services")}} className={`${Styles.textBigSodeBar} ${props.value==="Services"?Styles.active:""}`}>Our Services</p>
+        <p onClick={()=>{navigate("/Contact"); update("Contact")}} className={`${Styles.textBigSodeBar} ${props.value==="Contact"?Styles.active:""}`}>Contact Us</p>
+        <p onClick={()=>{navigate("/TermsAndCondition"); update("TermsAndCondition")}} className={`${Styles.textBigSodeBar} ${props.value==="TermsAndCondition"?Styles.active:""}`}>Terms & Conditions</p>
         <div className={Styles.brands}>
 
         {/* <a> <i className='fa-brands fa-facebook-square' style={{fontSize:"xx-Large" , marginBottom:"30px", marginTop:"10px"}}></i> </a>

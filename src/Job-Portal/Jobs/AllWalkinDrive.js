@@ -598,6 +598,18 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
   
   let StudentAuth = localStorage.getItem("StudLog")
   let EmployeeAuth = localStorage.getItem("EmpLog")
+ 
+  const applyForDrive=(Link)=>{
+    console.log(StudentAuth)
+    if(StudentAuth===null)
+     navigate("/JobSeekerLogin")
+    else
+    window.open(`${Link}`)
+  }
+
+
+
+
   return (
     <>
       {screenSize.width > 850 ?
@@ -784,7 +796,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                 </p>
               </li>
               
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Location}`}>Location</li>
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Location}`}>Venu</li>
 
               <li style={{ backgroundColor: " rgb(40, 4, 99)", }} className={`${styles.li} ${styles.Package}`}>CTC
                 <p className={styles.arrowWrapper}>
@@ -865,16 +877,16 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                         </li>
 
                         <li className={`${styles.li} ${styles.Apply}`}>
-                          {
-                            adminLogin ?
+                        
+                            {/* // adminLogin ?
                               
-                              <input type="checkbox" onClick={() => { checkBoxforDelete(items._id) }} />
+                            //   <input type="checkbox" onClick={() => { checkBoxforDelete(items._id) }} />
 
-                              :
+                            //   : */}
                             
-                                <button className={styles.Applybutton}>Apply</button>
+                                <button className={styles.Applybutton} onClick={()=>{applyForDrive(items.link)}}>Apply</button>
 
-                          }
+                         
                         </li>
                       </ul>          
                     )
@@ -1135,7 +1147,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                           <p className={styles.salaryRange}><span>&#8377;</span>{job.ctc}</p>
                           {
                           
-                            <button className={styles.ApplyDriveMobile}><b>Apply</b></button>
+                            <button className={styles.ApplyDriveMobile} onClick={()=>{applyForDrive(job.link)}}><b>Apply</b></button>
                           }
                         </div>
                         </div> 

@@ -161,6 +161,12 @@ function Nav(props) {
     }
   })
 
+   const [value , setValue] = useState("")
+
+   const reDirecttoDrive=()=>{
+      setValue("AllWalkinDrive")
+      navigate("/Walkin-Drives")
+   }
   return (
     <>
 
@@ -181,7 +187,7 @@ function Nav(props) {
                
                   <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px"} : { marginLeft: "-215px"}}>
                 
-                    <BigSidebarNav   jobseekerSearchTags={props.jobseekerSearchTags} carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
+                    <BigSidebarNav value={value} setValue={setValue}   jobseekerSearchTags={props.jobseekerSearchTags} carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
                   </div>
                 </div>
                 {/* <div className={Styles.logoWrapper}> */}
@@ -223,7 +229,7 @@ function Nav(props) {
                   {props.sortedFilteredDriveJobs.length >= 1 && (
                        <div className={Styles.blast}>
                          <img
-                           onClick={() => setShowDriveMenu((prev) => !prev)}
+                           onClick={reDirecttoDrive}
                            src="/drive.png"
                            alt="Walk-in Drive"
                            style={{ width: "60px", borderRadius: "5px", marginTop: "-10px" }}
@@ -257,7 +263,7 @@ function Nav(props) {
                
                   <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px" } : { marginLeft: "-215px" }}>
                     {/* <BigSidebarNav  /> */}
-                    <BigSidebarNav searchEmpTags={props.searchEmpTags}  carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
+                    <BigSidebarNav value={value} setValue={setValue}  searchEmpTags={props.searchEmpTags}  carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
              
                   </div>
                 </div>
@@ -279,7 +285,7 @@ function Nav(props) {
                      {props.sortedFilteredDriveJobs.length >= 1 && (
                        <div className={Styles.blast}>
                          <img
-                           onClick={() => setShowDriveMenu((prev) => !prev)}
+                           onClick={reDirecttoDrive}
                            src="/drive.png"
                            alt="Walk-in Drive"
                            style={{ width: "60px", borderRadius: "5px", marginTop: "-10px" }}
@@ -392,7 +398,7 @@ function Nav(props) {
                   <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px" } : { marginLeft: "-215px" }} >
                   {/* <div className="BigNavWrapper" style={{visibility:ShowBigSideNave?"visible":"hidden"}} > */}
                 
-                    <BigSidebarNav searchBlurTags={props.searchBlurTags}  carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} empSearchNoLogin={props.empSearchNoLogin} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
+                    <BigSidebarNav value={value} setValue={setValue} searchBlurTags={props.searchBlurTags}  carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} empSearchNoLogin={props.empSearchNoLogin} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
                   </div>
                 </div>
 
@@ -446,7 +452,7 @@ function Nav(props) {
                         {props.sortedFilteredDriveJobs.length >= 1 && (
                        <div className={Styles.blast}>
                          <img
-                           onClick={() => setShowDriveMenu((prev) => !prev)}
+                           onClick={reDirecttoDrive}
                            src="/drive.png"
                            alt="Walk-in Drive"
                            ref={driveImgRef}
@@ -455,7 +461,7 @@ function Nav(props) {
                        </div>
                      )}
                  {/* {console.log(showDriveMenu)} */}
-                        {showDriveMenu &&(
+                        {/* {showDriveMenu &&(
                               <div className={Styles.Alldownwrapper}  >
 
                               <div style={{width:"155px",marginLeft:"-75px",marginTop:"43px"}} className={Styles.dropdownwrapperHome} ref={driveRef} >
@@ -464,7 +470,7 @@ function Nav(props) {
                               </div>
                             </div>
                         )
-                        }
+                        } */}
                     </div>
                     
                   </div>
@@ -505,10 +511,10 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                   {props.sortedFilteredDriveJobs.length >= 1 && (
                        <div className={Styles.blast} style={{cursor:"pointer",marginLeft:"21%"}}>
                          <img
-                           onClick={() => setShowDriveMenu((prev) => !prev)}
+                           onClick={reDirecttoDrive}
                            src="/drive.png"
                            alt="Walk-in Drive"
-                           style={{ width: "50px", borderRadius: "5px",marginTop:"-10px" }}
+                           style={{zIndex:"999", width: "50px", borderRadius: "5px",marginTop:"-10px" }}
                          />
                        </div>
                      )}
@@ -548,7 +554,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                     style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
                     {/* <SidebarNav setShowSideNaveProps={props.setShowSideNave} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar} /> */}
                   {/* <SidebarNav setShowSideNaveProps={setShowSideNave} /> */}
-                  <SidebarNav jobseekerSearchTags={props.jobseekerSearchTags} carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
+                  <SidebarNav value={value} setValue={setValue}  jobseekerSearchTags={props.jobseekerSearchTags} carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
               
                   </div>
             </>
@@ -603,7 +609,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                     {props.sortedFilteredDriveJobs.length >= 1 && (
                        <div className={Styles.blast} style={{cursor:"pointer",marginLeft:"21%"}}>
                          <img
-                           onClick={() => setShowDriveMenu((prev) => !prev)}
+                           onClick={reDirecttoDrive}
                            src="/drive.png"
                            alt="Walk-in Drive"
                            style={{ width: "50px", borderRadius: "5px",marginTop:"-10px" }}
@@ -631,7 +637,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                 <div ref={SmenuRef} className={`${Styles.MovileNavOptions} `}
                     style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
                     {/* <SidebarNav setShowSideNaveProps={setShowSideNave} /> */}
-                    <SidebarNav  searchEmpTags={props.searchEmpTags}  carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog}  setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar} />
+                    <SidebarNav value={value} setValue={setValue}  searchEmpTags={props.searchEmpTags}  carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog}  setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar} />
                        </div>
 
               </>
@@ -700,16 +706,16 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                          {props.sortedFilteredDriveJobs.length >= 1 && (
                        <div className={Styles.blast} style={{cursor:"pointer", marginLeft:"69%" }}>
                          <img
-                           onClick={() => setShowDriveMenu((prev) => !prev)}
+                           onClick={reDirecttoDrive}
                            src="/drive.png"
                            alt="Walk-in Drive"
                            ref={driveImgRef}
-
-                           style={{ width: "45px", borderRadius: "5px",marginTop:"-10px" }}
+                           class={Styles.flashDriveHome}
+                          //  style={{ width: "45px", borderRadius: "5px",marginTop:"-10px" }}
                          />
                        </div>
                      )}
-                        {showDriveMenu &&(
+                        {/* {showDriveMenu &&(
                               <div className={Styles.Alldownwrapper}  >
 
                               <div style={{width:"155px",marginLeft:"88px",marginTop:"62px"}} className={Styles.dropdownwrapperHome} ref={driveRef} >
@@ -718,7 +724,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                               </div>
                             </div>
                         )
-                        }
+                        } */}
                     </div>
 
                     {/* <NavLink to="/" > <img className={Styles.MobHomelogo} src={logo} /> </NavLink> */}
@@ -737,7 +743,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                   {/* {ShowSideNave? */}
                   <div ref={SmenuRef} className={`${Styles.MovileNavOptions} `}
                     style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
-                    <SidebarNav searchBlurTags={props.searchBlurTags}  carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} empSearchNoLogin={props.empSearchNoLogin} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
+                    <SidebarNav value={value} setValue={setValue}  searchBlurTags={props.searchBlurTags}  carrerSearchTags={props.carrerSearchTags} BlogSearchTags={props.BlogSearchTags} searchByTags={props.searchByTags} empSearchNoLogin={props.empSearchNoLogin} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
                   </div>
                   {/* :"" }   */}
                 </>

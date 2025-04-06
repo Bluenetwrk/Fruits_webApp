@@ -875,16 +875,16 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
     { id:1001,
       jobTitle: "Software Engineer",
       postedBy: "HR Manager",
-      companyName: "Tech Corp",
+      companyName: "Microsoft",
       jobType: "Full-Time",
       driveTime: "9:00 AM",
-      driveDate: "2025-03-31",
+      driveDate: "2025-04-10",
       location: "Koramangala,Bengaluru",
       ctc: "10 LPA",
       experience: "2-4 years",
       qualification: "B.Tech/MCA",
       skillsRequired: "React, Node.js, MongoDB",
-      apply: "https://apply-link.com/1",
+      link: "https://www.microsoft.com/en-in",
       details: "1. To participate in the Walk-In Drive for Software Development, follow these steps:\n2. Click on the 'Career' section on the company's official website.\n3. A submenu will appear—select 'Walk-In Drive' from the list.\n4. The Walk-In Drive details page will open in a new window.\n5. Check the eligibility criteria, date, time, and venue of the drive.\n6. Prepare your updated resume along with necessary documents (ID proof, educational certificates, experience letters, etc.).\n7. Visit the venue on the scheduled date and complete the registration process.\n8. Appear for the technical assessment or coding test, followed by interviews.\n9. If shortlisted, attend further rounds as per the company's selection process.\n10. Await final confirmation from the recruitment team regarding the results."
 
     },
@@ -895,13 +895,13 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
       companyName: "InnovateX",
       jobType: "Remote",
       driveTime: "10:00 AM",
-      driveDate: "2025-04-06",
+      driveDate: "2025-04-01",
       location: "WhiteField,Bengaluru",
       ctc: "8 LPA",
       experience: "1-3 years",
       qualification: "B.Tech/BCA",
       skillsRequired: "HTML, CSS, JavaScript",
-      apply: "https://apply-link.com/2",
+      link: "https://apply-link.com/2",
       details: "1. To participate in the Walk-In Drive for Software Development, follow these steps:\n2. Click on the 'Career' section on the company's official website.\n3. A submenu will appear—select 'Walk-In Drive' from the list.\n4. The Walk-In Drive details page will open in a new window.\n5. Check the eligibility criteria, date, time, and venue of the drive.\n6. Prepare your updated resume along with necessary documents (ID proof, educational certificates, experience letters, etc.).\n7. Visit the venue on the scheduled date and complete the registration process.\n8. Appear for the technical assessment or coding test, followed by interviews.\n9. If shortlisted, attend further rounds as per the company's selection process.\n10. Await final confirmation from the recruitment team regarding the results."
 
     },
@@ -917,7 +917,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
       experience: "1-2 years",
       qualification: "B.Sc/M.Sc",
       skillsRequired:"Python, SQL, Power BI",
-      apply: "https://apply-link.com/3",
+      link: "https://apply-link.com/3",
       details: "1. To participate in the Walk-In Drive for Software Development, follow these steps:\n2. Click on the 'Career' section on the company's official website.\n3. A submenu will appear—select 'Walk-In Drive' from the list.\n4. The Walk-In Drive details page will open in a new window.\n5. Check the eligibility criteria, date, time, and venue of the drive.\n6. Prepare your updated resume along with necessary documents (ID proof, educational certificates, experience letters, etc.).\n7. Visit the venue on the scheduled date and complete the registration process.\n8. Appear for the technical assessment or coding test, followed by interviews.\n9. If shortlisted, attend further rounds as per the company's selection process.\n10. Await final confirmation from the recruitment team regarding the results."
 
     },
