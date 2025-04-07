@@ -293,11 +293,11 @@ const [selectedTime, setSelectedTime] = useState("");
                                         <h4 className={Style.jobHeadline}>Job Location**</h4>
                                         <div style={{ marginTop: "-10px" }}>
                                             <label><input name="Location" type="radio" checked={joblocation === "Bangalore"} value="Bangalore" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} />Bangalore </label>
-                                            <label><input name="Location" type="radio" checked={joblocation === "Hyderabad"} value="Hyderabad" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }}  />Hyderabad </label>
+                                            {/* <label><input name="Location" type="radio" checked={joblocation === "Hyderabad"} value="Hyderabad" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }}  />Hyderabad </label>
                                             <label><input name="Location" type="radio" checked={joblocation === "Chennai"} value="Chennai" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} disabled />Chennai </label>
                                             <label><input name="Location" type="radio" checked={joblocation === "Mumbai"} value="Mumbai" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} disabled />Mumbai </label>
-                                            <label><input name="Location" type="radio" checked={joblocation === "Delhi"} value="Delhi" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} disabled />Delhi </label>
-                                            <label><input name="Location" type="radio" value="others" onClick={(e) => { setotherJobLocation((prev) => !prev); setJobLocation("") }} />others </label>
+                                            <label><input name="Location" type="radio" checked={joblocation === "Delhi"} value="Delhi" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} disabled />Delhi </label> */}
+                                            {/* <label><input name="Location" type="radio" value="others" onClick={(e) => { setotherJobLocation((prev) => !prev); setJobLocation("") }} />others </label> */}
                                         </div>
                                         {
                                             otherJobLocation ?
@@ -364,7 +364,7 @@ const [selectedTime, setSelectedTime] = useState("");
 
                                         {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
 
-                                        <button disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Post Job</button>
+                                        <button disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Post Walkin Drive</button>
                                     </div >
                                 </div >
                             </div>
