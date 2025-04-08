@@ -406,7 +406,7 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
 //  },[])
  
   useEffect(() => {
-    console.log("jobTgaids---->",jobTagsIds)
+    // console.log("jobTgaids---->",jobTagsIds)
     setJobTagsIds([])
     if (jobTagsIds.length > 0) {
       // setJobs([])
@@ -535,6 +535,11 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
     // },[])
 // const[searchClick,setSearchClick]=useState(false);
 // console.log("jobs",jobs,"rcp",recordsPerPage)
+const selectedTag=useRef("")
+  const updateTag=(tag)=>{
+    selectedTag.current=tag
+  }
+
   return (
     <>
 
@@ -672,7 +677,7 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
                           present===tags.value
                         )
                             })>=0?
-                    styles.active : styles.JobtitleFilter} onClick={() => { filterByJobTitle(tags.value) }}>{tags.value} </button>
+                    styles.active : styles.JobtitleFilter} onClick={() => { filterByJobTitle(tags.value);updateTag(tags.value) }}>{tags.value} </button>
                 
                 )
               })
@@ -766,7 +771,7 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
 
                       <ul className={styles.ul} key={i}>
 
-<li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}`)} 
+<li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} 
 style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li>
                           <li className={`${styles.li} ${styles.Source}`} >Itwalkin</li>
                         {
@@ -841,7 +846,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
 
                       <ul className={styles.ul} key={i}>
 
-             <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}`)} 
+             <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} 
             //  style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.toUpperCase()}</li>
             style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items?.jobTitle?.toUpperCase()}</li>
             
@@ -990,7 +995,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                           present===tags.value
                         )
                             })>=0?
-                    styles.active : styles.JobtitleFilter} onClick={() => { filterByJobTitle(tags.value) }}>{tags.value} </button>
+                    styles.active : styles.JobtitleFilter} onClick={() => { filterByJobTitle(tags.value);updateTag(tags.value) }}>{tags.value} </button>
                 
                 )
               })
@@ -1585,7 +1590,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                             window.scrollTo({
                               top: 0
                             })
-                            navigate(`/Jobdetails/${btoa(job._id)}`)
+                            navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
                           }}style={{ width:"100%",whiteSpace:"normal"}} >{job?.jobTitle?.charAt(0).toUpperCase()+job.jobTitle.substring(1)}</p>
                           <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
@@ -1674,7 +1679,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                             window.scrollTo({
                               top: 0
                             })
-                            navigate(`/Jobdetails/${btoa(job._id)}`)
+                            navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
                           }} className={styles.seeMore}>
                             ...read more
                           </span>

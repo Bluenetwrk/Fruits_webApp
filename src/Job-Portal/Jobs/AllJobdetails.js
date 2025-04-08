@@ -40,8 +40,125 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
   const navigate = useNavigate()
 
+  //-----------------prev next starts--------
   let params = useParams();
+  const location = useLocation(); 
+  const urlParams = new URLSearchParams(window.location.search);
+  let indexing = parseInt(urlParams.get("index"), 10);
+  const [index, setIndex]=useState(indexing)
+  let lastIndex=useRef(0)
+  const userTags = location.state?.selectedTag;
+  const allJobs=useRef([])
+  // console.log("ut",userTags)
+  let studentAuth = localStorage.getItem("StudLog")
 
+ 
+  async function getAllHomejobs() {
+      const headers = { authorization: 'BlueItImpulseWalkinIn' };
+      await axios.get("/jobpost/getHomejobs", { headers })
+       .then((res) => {
+         let result = (res.data)
+          // console.log(result)
+         let sortedate = result.sort(function (a, b) {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+         });
+         lastIndex.current=sortedate.length; 
+         allJobs.current=sortedate
+        //  console.log("jobs-",allJobs,"lastIndex",lastIndex)
+        }).catch((err) => {
+        //  console.log(err)
+         alert("some thing went wrong")
+      })
+    }
+
+
+    async function getAllJobseekersjobs() {
+      let userid = JSON.parse(localStorage.getItem("StudId"))
+       const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+       await axios.get("/jobpost/getjobs", { headers })
+       .then((res) => {
+         let result = (res.data)
+          // console.log(result)
+         let sortedate = result.sort(function (a, b) {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+         });
+         lastIndex.current=sortedate.length; 
+         allJobs.current=sortedate
+        //  console.log("jobs-",allJobs,"lastIndex",lastIndex)
+        }).catch((err) => {
+        //  console.log(err)
+         alert("some thing went wrong")
+      })
+    }
+
+
+    async function getTagValue(){
+        // console.log("executing-->",userTags.current)
+        await axios.get(`/jobpost/getTagsJobs/${userTags.current}`)
+          .then((res) => {
+            let result = (res.data)
+            
+            let sortedate = result.sort((a, b) => {
+             return new Date(b.createdAt) - new Date(a.createdAt);
+            });
+            lastIndex.current=sortedate.length;  
+            allJobs.current=sortedate 
+            // allTagJobs.current=sortedate;
+            // console.log("tags-",allJobs,"lastIndex",lastIndex)
+          })
+      } 
+      
+      useEffect(()=>{
+          // console.log(userTags)
+          if(userTags.current===""||userTags.current===undefined){
+            if(studentAuth)
+              getAllJobseekersjobs()
+            else
+             getAllHomejobs()
+          //  console.log("exe home")
+          }
+          else{ 
+           getTagValue() 
+         } 
+        },[])   
+
+
+        const incIndex=()=>{
+            if(index<lastIndex.current-1)
+             setIndex((prev)=>prev+1)
+            // console.log("inc",index)
+          }
+          const descIndex=()=>{
+            if(index>0)
+             setIndex((prev)=>prev-1)
+          //  console.log("dec",index)
+          }
+   
+          async function getNextPrevJobs() {
+              window.scrollTo({
+                top:0,
+                // behavior:"smooth"
+              })
+              // console.log("aal jobs current",allJobs.current[index]._id)
+              const headers = { authorization: 'BlueItImpulseWalkinIn'};
+              await axios.get(`/jobpost/getjobs/${allJobs.current[index]._id}`, {headers})
+                .then((res) => {
+                  let result = (res.data)
+                  // console.log(result)
+                  setJobs(result)
+                  setjobdescription(result.jobDescription)
+                  setjobSeekerId(result.jobSeekerId)
+                })
+            }
+
+            useEffect(()=>{
+                if (allJobs.current.length > 0) {
+                 getNextPrevJobs();
+               }
+              },[index])
+
+
+  //-----prev next ends---------
   async function getjobs() {
     window.scrollTo({
       top:0,
@@ -61,6 +178,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
   useEffect(() => {
     getjobs()
   }, [])
+
   function showless() {
     navigate(-1)
   }
@@ -145,7 +263,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
     }
           // const url = "https://www.itwalkin.com/";
           // const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
-      const location = useLocation();
+      // const location = useLocation();
       const url = window.location.origin + location.pathname; // Dynamic URL
          
            
@@ -227,11 +345,12 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
                  Back
           </button>
           <div className={styles.navigationWrapperbtn}>
-              <button style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
+              <button onClick={descIndex} style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
               <i class='fas fa-caret-square-left' style={{ color: "rgb(40,4,99)" }}></i>Prev
               </button>
-              <div style={{display:"flex",alignItems:"center"}}>1</div>
-              <button style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
+              <div style={{display:"flex",alignItems:"center"}}>{index+1}</div>
+              <button onClick={incIndex} style={{ display: "flex", alignItems:"center", padding: "6px", zIndex:"999" }} className={styles.navigationbtn} >
+              {/* <button style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} > */}
                Next<i class='fas fa-caret-square-right' style={{ color: "rgb(40,4,99)" }}></i>
               </button>
             </div>
@@ -385,11 +504,11 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
               </div>
                <div style={{ display: "flex", justifyContent: "space-between", marginRight:"80px",marginBottom:"-14px" }}>
             <div className={styles.navigationWrapperbtn}>
-              <button style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
+              <button onClick={descIndex} style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
               <i class='fas fa-caret-square-left' style={{ color: "rgb(40,4,99)" }}></i>Prev
               </button>
-              <div style={{display:"flex",alignItems:"center"}}>1</div>
-              <button style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
+              <div style={{display:"flex",alignItems:"center"}}>{index+1}</div>
+              <button onClick={incIndex} style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
                Next<i class='fas fa-caret-square-right' style={{ color: "rgb(40,4,99)" }}></i>
               </button>
             </div>
