@@ -459,7 +459,11 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
       setIsOpen(false);
     };
     // const[searchClick,setSearchClick]=useState(false)
-    
+    const selectedTag=useRef("")
+      const updateTag=(tag)=>{
+        selectedTag.current=tag
+        console.log(selectedTag)
+      }
   return (
     <>
 
@@ -612,7 +616,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                         present===tags.value
                       )
                           }) >=0?
-                     styles.active : styles.JobtitleFilter} onClick={ () => {  filterByJobTitle(tags.value) }}>{tags.value} </button>
+                     styles.active : styles.JobtitleFilter} onClick={ () => {  filterByJobTitle(tags.value);updateTag(tags.value) }}>{tags.value} </button>
                 
                   )
               })
@@ -691,9 +695,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                       {/* } */}  
                       {
                           items.question?
-                          <li className={`${styles.li} ${styles.BlogJtitle}`} onClick={() => navigate(`/Answerdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.slice(0,120).charAt(0).toUpperCase()+items.jobTitle.slice(1,120)}</li>
+                          <li className={`${styles.li} ${styles.BlogJtitle}`} onClick={() => navigate(`/Answerdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.slice(0,120).charAt(0).toUpperCase()+items.jobTitle.slice(1,120)}</li>
                           :
-                          <li className={`${styles.li} ${styles.BlogJtitle}`} onClick={() => navigate(`/Blogdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li>
+                          <li className={`${styles.li} ${styles.BlogJtitle}`} onClick={() => navigate(`/Blogdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li>
                         }                  
                       
                        <li className={`${styles.li} ${styles.BlogSource}`} >Itwalkin</li>
@@ -723,9 +727,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                       <li className={`${styles.li} ${styles.BlogApply}`}>
                       {
                           items.question?
-                          <button className={styles.AnswerApplybutton} onClick={() => { navigate(`/Answerdetails/${btoa(items._id)}`) }}>Answer</button>
+                          <button className={styles.AnswerApplybutton} onClick={() => navigate(`/Answerdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})}>Answer</button>
                           :
-                          <button className={styles.BlogApplybutton} onClick={() => { navigate(`/Blogdetails/${btoa(items._id)}`) }}>Read</button>
+                          <button className={styles.BlogApplybutton} onClick={() => navigate(`/Blogdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})}>Read</button>
                         }
                         
                         
@@ -751,9 +755,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                     <ul className={styles.ul} key={i}>
                       {
                           items.question?
-                          <li className={`${styles.li} ${styles.BlogJtitle}`} onClick={() => navigate(`/Answerdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle}</li>
+                          <li className={`${styles.li} ${styles.BlogJtitle}`} onClick={() => navigate(`/Answerdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle}</li>
                           :
-                          <li className={`${styles.li} ${styles.BlogJtitle}`} onClick={() => navigate(`/Blogdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle}</li>
+                          <li className={`${styles.li} ${styles.BlogJtitle}`} onClick={() => navigate(`/Blogdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle}</li>
                         }                      
                                <li className={`${styles.li} ${styles.BlogSource}`} >Itwalkin</li>
 
@@ -782,9 +786,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                       <li className={`${styles.li} ${styles.BlogApply}`}>
                         {
                           items.question?
-                          <button className={styles.AnswerApplybutton} onClick={() => { navigate(`/Answerdetails/${btoa(items._id)}`) }}>Answer</button>
+                          <button className={styles.AnswerApplybutton} nClick={() => navigate(`/Answerdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})}>Answer</button>
                           :
-                          <button className={styles.BlogApplybutton} onClick={() => { navigate(`/Blogdetails/${btoa(items._id)}`) }}>Read</button>
+                          <button className={styles.BlogApplybutton} onClick={() => navigate(`/Blogdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})}>Read</button>
                         }
                         
                     </li>
@@ -1586,7 +1590,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                         present===tags.value
                       )
                           }) >=0?
-                     styles.active : styles.JobtitleFilter} onClick={ () => {  filterByJobTitle(tags.value) }}>{tags.value} </button>
+                     styles.active : styles.JobtitleFilter} onClick={ () => {  filterByJobTitle(tags.value);updateTag(tags.value) }}>{tags.value} </button>
                 
                   )
               })
@@ -1653,14 +1657,14 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                                 window.scrollTo({
                                   top: 0
                                 })
-                            navigate(`/Answerdetails/${btoa(job._id)}`)
+                            navigate(`/Answerdetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
                           }}style={{fontSize:"15px", fontWeight:"500"}} >{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
                               :
                               <p className={styles.jobTitle} onClick={() => {
                                 window.scrollTo({
                                   top: 0
                                 })
-                            navigate(`/Blogdetails/${btoa(job._id)}`)
+                                navigate(`/Blogdetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
                           }} style={{width:"100%", whiteSpace:"normal"}} >{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
                             }
                             

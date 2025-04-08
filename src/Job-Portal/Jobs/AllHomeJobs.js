@@ -572,7 +572,11 @@ useEffect(() => {
     setIsOpen(false);
   };
   //  const[searchClick,setSearchClick]=useState(false)
-  
+  const selectedTag=useRef("")
+  const updateTag=(tag)=>{
+    selectedTag.current=tag
+  }
+
   return (
     <>
       {screenSize.width > 850 ?
@@ -723,7 +727,7 @@ useEffect(() => {
                           present === tags.value
                         )
                       }) >= 0 ?
-                        styles.active : styles.JobtitleFilter} onClick={() => { filterByJobTitle(tags.value) }}>{tags.value} </button>
+                        styles.active : styles.JobtitleFilter} onClick={() => { filterByJobTitle(tags.value);updateTag(tags.value)  }}>{tags.value} </button>
 
                 )
               })
@@ -823,7 +827,10 @@ useEffect(() => {
                       <ul className={styles.ul} key={i}>
                         {/* } */}
 
-                        <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li>
+                       
+                       {/* <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li> */}
+                       
+                       <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li>
                         <li className={`${styles.li} ${styles.Source}`} >Itwalkin</li>
 
                         {
@@ -1113,7 +1120,7 @@ useEffect(() => {
                           present === tags.value
                         )
                       }) >= 0 ?
-                        styles.active : styles.JobtitleFilter} onClick={() => { filterByJobTitle(tags.value) }}>{tags.value} </button>
+                        styles.active : styles.JobtitleFilter} onClick={() => { filterByJobTitle(tags.value);updateTag(tags.value) }}>{tags.value} </button>
 
                 )
               })
@@ -1710,7 +1717,7 @@ useEffect(() => {
                             window.scrollTo({
                               top: 0
                             })
-                            navigate(`/Jobdetails/${btoa(job._id)}`)
+                            navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
                           }} style={{width:"100%", whiteSpace:"normal"}}>{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
                            <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
