@@ -797,7 +797,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                 </p>
               </li>
               
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Location}`}>Venu</li>
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Location}`}>Venue</li>
 
               <li style={{ backgroundColor: " rgb(40, 4, 99)", }} className={`${styles.li} ${styles.Package}`}>CTC
                 <p className={styles.arrowWrapper}>
@@ -818,7 +818,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
 
 
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Skills}`}>Skills Required</li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Apply}`}>Apply</li>
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Apply}`}>Register</li>
 
             </ul>
             {PageLoader ?
@@ -885,7 +885,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
 
                             //   : */}
                             
-                                <button className={styles.Applybutton} onClick={()=>{applyForDrive(items.link)}}>Apply</button>
+                                <button className={styles.Applybutton} onClick={()=>{applyForDrive(items.link)}}>Register</button>
 
                          
                         </li>
@@ -1148,7 +1148,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                           <p className={styles.salaryRange}><span>&#8377;</span>{job.ctc}</p>
                           {
                           
-                            <button className={styles.ApplyDriveMobile} onClick={()=>{applyForDrive(job.link)}}><b>Apply</b></button>
+                            <button className={styles.ApplyDriveMobile} style={{paddingLeft:"4px"}} onClick={()=>{applyForDrive(job.link)}}><b>Register</b></button>
                           }
                         </div>
                         </div> 
