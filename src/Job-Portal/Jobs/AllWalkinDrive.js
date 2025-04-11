@@ -786,16 +786,16 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
           <div className={styles.Uiwarpper}>
             <ul className={styles.ul} style={{ color: 'white', fontWeight: "bold" }}>
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Jtitle}`}>Job Title</li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Source}`}>Drive Time</li>
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" ,width:"9.5%"}} className={`${styles.li} ${styles.Source}`}>Drive Date/ Drive Time</li>
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.CompanyName}`}>Company Name</li>
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.JobType}`}>JobType</li>
               {/* <li className={`${styles.li} ${styles.HliDescription}`}><b>Job description</b></li> */}
-              <li style={{ backgroundColor: " rgb(40, 4, 99)", }} className={`${styles.li} ${styles.date}`}>Drive Date
+              {/* <li style={{ backgroundColor: " rgb(40, 4, 99)", }} className={`${styles.li} ${styles.date}`}>Drive Date
                 <p className={styles.arrowWrapper} >
                   <i onClick={sortbyNewjobs} className={`${styles.arrow} ${styles.up}`} ></i>
                   <i onClick={sortbyOldjobs} className={`${styles.arrow} ${styles.down}`}></i>
                 </p>
-              </li>
+              </li> */}
               
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Location}`}>Venue</li>
 
@@ -835,7 +835,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                         {/* } */}
 
                         <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/DriveDetails/${btoa(items.id)}`, { state: { driveItem: items } })} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}  >{items.jobTitle}</li>
-                        <li className={`${styles.li} ${styles.Source}`} >{items.driveTime}</li>
+                        <li className={`${styles.li} ${styles.Source}`} style={{width:"9.5%"}} >{items.driveDate}/{items.driveTime}</li>
 
                         {
                           !items.Source ?
@@ -859,7 +859,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                         <li className={`${styles.li} ${styles.JobType}`}>{items.jobType}</li>
 
                         
-                        <li className={`${styles.li} ${styles.date}`}>
+                        {/* <li className={`${styles.li} ${styles.date}`}> */}
                           {/* {new Date(items.createdAt).toLocaleString(
                             "en-US",
                             {
@@ -867,8 +867,9 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                               day: "2-digit",
                               year: "numeric",
                             }
-                          )} */}{items.driveDate}
-                        </li>
+                          )} */}
+                          {/* {items.driveDate}
+                        </li> */}
                         {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocatin[0].toUpperCase() + items.jobLocation.slice(1)}</li> */}
                         <li className={`${styles.li} ${styles.Location}`}>{items.location}</li>
                         <li className={`${styles.li} ${styles.Package}`}>{items.ctc}</li>
@@ -885,7 +886,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
 
                             //   : */}
                             
-                                <button className={styles.Applybutton} onClick={()=>{applyForDrive(items.link)}}>Register</button>
+                                <button className={styles.applyRegisterButton} onClick={()=>{applyForDrive(items.link)}}>Register</button>
 
                          
                         </li>
