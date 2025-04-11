@@ -370,13 +370,21 @@ async function deletComment(id){
              }}>
                  Back
           </button>
+
+          <div style={{display:"flex",height:"55px"}}>
+          <button onClick={descIndex}  className={styles.readPageBackBtn} style={{display:"flex", gap:"4px",height:"42px", alignItems:"center",justifyContent:"space-between",}}>
+          <i class='fas fa-caret-square-left' style={{marginLeft:"-2px"}}></i>   Prev
+          </button>
+          <h2 style={{display:"flex",alignItems:"center",marginLeft:"-15px"}}>{index +1}</h2>
+          <button onClick={incIndex} className={styles.readPageBackBtn} style={{zIndex:"999",display:"flex", height:"42px", alignItems:"center",justifyContent:"space-between",}}>
+                 Next <i class='fas fa-caret-square-right' style={{marginLeft:"4px"}}></i>
+          </button>
+          </div>
           {/* {console.log("history length",window.history.length)} */}
-          <div class={ styles.blogArrow} style={{display:"flex", height:"50px", alignItems:"center",justifyContent:"space-between",}}>
+          {/* <div class={ styles.blogArrow} style={{display:"flex", height:"50px", alignItems:"center",justifyContent:"space-between",}}>
                  <div style={{ display: "flex", justifyContent: "space-between", marginRight:"0px" }}>
             <div className={styles.navigationWrapperbtn}>
-              {/* <button style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }} className={styles.navigationbtn}> 
-              <i class='fas fa-step-backward' > </i> First
-              </button> */}
+             
               <button onClick={descIndex} style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
               <i class='fas fa-caret-square-left'></i>Prev
               </button>
@@ -384,13 +392,10 @@ async function deletComment(id){
               <button onClick={incIndex} style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
                Next<i class='fas fa-caret-square-right'></i>
               </button>
-              {/* <button style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
-                Last<i class='fas fa-step-forward'></i> */}
-               
-              {/* </button> */}
+             
             </div>
           </div>
-        </div>
+        </div> */}
 
               <h1 style={{textAlign:"center", fontSize:"40px", whiteSpace:"no", marginTop:"10px",marginRight:"0px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</h1>
            {/* <div style={{display:" flex",flexDirection:"column"}}> */}
@@ -534,45 +539,17 @@ async function deletComment(id){
       )}
  </div>
 
- <div style={{ display: "flex", justifyContent: "space-between", marginRight:"80px", marginBottom:"-14px"}}>
-            <div className={styles.navigationWrapperbtn}>
-              {/* <button style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }} className={styles.navigationbtn}> 
-              <i className="fas fa-step-backward" style={{ color: "rgb(40,4,99)" }}></i> First
-              </button> */}
-              <button onClick={descIndex} style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
-              <i class='fas fa-caret-square-left' style={{ color: "rgb(40,4,99)" }}></i>Prev
-              </button>
-              <div style={{display:"flex",alignItems:"center"}}>{index+1}</div>
-              <button onClick={incIndex} style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
-               Next<i class='fas fa-caret-square-right' style={{ color: "rgb(40,4,99)" }}></i>
-              </button>
-              {/* <button style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
-                Last<i class='fas fa-step-forward' style={{ color: "rgb(40,4,99)" }}></i>
-               
-              </button> */}
-            </div>
-          </div>
-
-         
-              {/* <div style={{display:"flex",marginLeft:"20px"}}> */}
-                 {/* <a
-        href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img class={styles.linkedinLogoMobile} src={Linkedinlogo} />
-      </a> */}
-                {/* <button  class={styles.readPageBackBtn} onClick={updateClick}>Share</button> */}
-             
-              {/* </div> */}
-              {/* </div> */}
-              {/* <a
-        href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img class={styles.linkedinLogoMobile} src={Linkedinlogo} style={{visibility:shareClicked?"visible":"hidden"}}/>
-      </a> */}
+ <div style={{display:"flex",marginLeft:"8px",marginTop:"25px",marginRight:"-6px",alignItems:"center", gap:"2px"}}>
+              {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
+              <button onClick={descIndex} className={styles.jobdetailBackBtnMobile} style={{fontWeight:"100"}} >
+              <i class='fas fa-caret-square-left' style={{ color: "white",marginLeft:"0px", marginLeft:"-2px" }}></i>    Prev
+          </button>
+          <h2 style={{display:"flex",alignItems:"center",margin:"1px",marginTop:"2px"}}>{index+1}</h2>
+          <button onClick={incIndex} className={styles.jobdetailBackBtnMobile} 
+            >
+             <i class='fas fa-caret-square-right' style={{ color: "white",marginLeft:"0px", marginLeft:"-2px" }}></i>    Next
+          </button>
+ </div>
 
                 <div className={styles.JobCard} >
                 {/* <p className={`${styles.Date} ${styles.readPageDate}`}>{new Date(jobs.createdAt).toLocaleString(

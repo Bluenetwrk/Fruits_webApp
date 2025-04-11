@@ -327,11 +327,11 @@
     width: 70px;
     margin-right:20px;
 }
-.readPageBackBtn:hover{
+/* .readPageBackBtn:hover{
     background-color: white;
     color: rgb(40, 4, 99);
     border: 2px solid  rgb(40, 4, 99);
-}
+} */
 .blogReadTitlePosterDesc{
     margin-top: -18px;
 }

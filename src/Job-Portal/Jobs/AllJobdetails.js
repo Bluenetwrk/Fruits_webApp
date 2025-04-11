@@ -344,16 +344,26 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
              }}>
                  Back
           </button>
-          <div className={styles.navigationWrapperbtn}>
+          <div style={{display:"flex",justifyContent:"space-between"}}>
+          <button className={styles.jobdetailBackBtn} style={{padding:"10px"}}
+            onClick={descIndex}>
+               <i class='fas fa-caret-square-left' style={{ color: "white",marginLeft:"2px", marginLeft:"-2px" }}></i>    Prev
+          </button>
+          <h2 style={{display:"flex",alignItems:"center",margin:"1px",marginTop:"14px"}}>{index+1}</h2>
+          <button className={styles.jobdetailBackBtn} style={{padding:"10px",marginLeft:"2px",zIndex:"999"}}
+            onClick={incIndex} >
+             Next  <i class='fas fa-caret-square-right' style={{ color: "white",marginLeft:"0px", marginLeft:"-2px" }}></i>    
+          </button>
+          </div>
+          {/* <div className={styles.navigationWrapperbtn}>
               <button onClick={descIndex} style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
               <i class='fas fa-caret-square-left' style={{ color: "rgb(40,4,99)" }}></i>Prev
               </button>
               <div style={{display:"flex",alignItems:"center"}}>{index+1}</div>
               <button onClick={incIndex} style={{ display: "flex", alignItems:"center", padding: "6px", zIndex:"999" }} className={styles.navigationbtn} >
-              {/* <button style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} > */}
                Next<i class='fas fa-caret-square-right' style={{ color: "rgb(40,4,99)" }}></i>
               </button>
-            </div>
+            </div> */}
           </div>
               
               
@@ -502,8 +512,22 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
       )}
 
               </div>
+
+              <div style={{display:"flex",marginLeft:"8px",marginTop:"25px",marginRight:"-6px",alignItems:"center", gap:"2px"}}>
+              {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
+              <button onClick={descIndex} className={styles.jobdetailBackBtnMobile} >
+              <i class='fas fa-caret-square-left' style={{ color: "white",marginLeft:"0px", marginLeft:"-2px" }}></i>    Prev
+          </button>
+          <h2 style={{display:"flex",alignItems:"center",margin:"1px",marginTop:"2px"}}>{index+1}</h2>
+          <button onClick={incIndex} className={styles.jobdetailBackBtnMobile} 
+            >
+            Next <i class='fas fa-caret-square-right' style={{ color: "white",marginLeft:"0px", marginLeft:"-2px" }}></i>    
+          </button>
+              
+
+              </div>
                <div style={{ display: "flex", justifyContent: "space-between", marginRight:"80px",marginBottom:"-14px" }}>
-            <div className={styles.navigationWrapperbtn}>
+            {/* <div className={styles.navigationWrapperbtn}>
               <button onClick={descIndex} style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
               <i class='fas fa-caret-square-left' style={{ color: "rgb(40,4,99)" }}></i>Prev
               </button>
@@ -511,7 +535,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
               <button onClick={incIndex} style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
                Next<i class='fas fa-caret-square-right' style={{ color: "rgb(40,4,99)" }}></i>
               </button>
-            </div>
+            </div> */}
           </div>
                 <div className={styles.JobCard} >
                 {/* <p className={styles.readPageDate}>{new Date(jobs.createdAt).toLocaleString(
