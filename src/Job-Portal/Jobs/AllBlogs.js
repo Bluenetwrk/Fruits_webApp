@@ -705,7 +705,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                           <li style={{ cursor: "pointer", textDecoration: "underline" }} className={`${styles.li} ${styles.BlogCompanyName}`}
                             onClick={(e) => { checkEmpHalf(btoa(items.empId)) }}  >
 
-                            {items.companyName}
+                            {items.companyName===""||items.companyName===undefined ? "Itwalkin":items.companyName}
                             </li>
                           <li style={{ cursor: "pointer",  }} className={`${styles.li} ${styles.BlogCompanyName}`} >
 
@@ -1686,7 +1686,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                           {/* <img className={styles.logo} src={job.Logo} /> */}
                           <img style={{height:"40px",width:"40px",marginTop:"10px"}}className={styles.logo} src={ CompanyLogo} />
 
-                             <span className={styles.blogCompanyName} onClick={() => { navigate(`/Blogdetails/${btoa(job._id)}`) }} >{job.companyName} </span>
+                             <span className={styles.blogCompanyName} onClick={() => { navigate(`/Blogdetails/${btoa(job._id)}`) }} >{job.companyName===""||job.companyName===undefined?"Itwalkin":job.companyName} </span>
                           </div>
                              <span className={styles.jobtypeAndDate}>Posted by</span> :
                              <> <span className={styles.skills}>{job.name}</span><br></br></>                          
