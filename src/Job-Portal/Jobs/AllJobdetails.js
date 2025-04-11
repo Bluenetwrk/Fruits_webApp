@@ -559,11 +559,11 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
         </span><br></br> 
         <span className={styles.jobtypeAndDate}>Source</span> :
 
-{jobs.Source ?
+{/* {jobs.Source ?
   <> <a className={`${styles.skills}`} href={jobs.SourceLink} target="_blank">{jobs.Source}</a><br></br> </>
-  :
+  : */}
   <> <span className={styles.skills}>ItWalkin</span><br></br></>
-}
+{/* } */}
 
 <div className={styles.skillWrapper}>
           <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{jobs.skills}</span><br></br>

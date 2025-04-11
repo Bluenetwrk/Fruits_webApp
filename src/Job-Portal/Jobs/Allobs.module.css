@@ -1047,6 +1047,21 @@ background: rgb(202, 202, 202);
     margin-left: 6%;
     cursor:pointer;
 }
+.applyRegisterButton{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex;
+    color: white;
+    /* font-weight: bold; */
+    width:70px;
+    padding: 12px;
+    /* padding-right: 1px; */
+    height: 25px;
+    align-items: center;
+    text-align: center;
+    margin-left: 6%;
+    cursor:pointer;
+}
 .BlogApplybutton{
     border: 1px solid rgb(40, 4, 99);
     background-color: rgb(40, 4, 99);
@@ -1486,7 +1501,16 @@ margin-top: 11px;
     padding-bottom: 15px;
      */
 }
-
+.homeApplyPackage{
+    display: flex;
+    margin-left: 1px;
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(241,248,234);
+    border-radius: 10px; 
+    height: 50px;
+    margin-top: 8px;
+    justify-content: space-between;
+}
 .applyDrivePackage {
     display: flex;
     margin-left: 15px;
@@ -1540,6 +1564,23 @@ margin-top: 11px;
     border-radius: 5px;
     padding-left: 15px;
 }
+.homeApplyMobileBtn{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex;
+    color: white;
+    font-weight: bold;
+    width:70px;
+    height: 35px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    margin-top: 9px;
+    border-radius: 5px;
+    padding-left: 15px;
+    margin-right:2%;
+}
+
 .MobileAppliedButton{
     border: 1px solid green;
     border-radius: 5px;

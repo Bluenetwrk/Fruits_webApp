@@ -867,8 +867,9 @@ useEffect(() => {
                         </li>
                         {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li> */}
                         <li className={`${styles.li} ${styles.Location}`}>{items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}</li>
-                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
+                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"L" }</li>
                         <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
+                        {console.log("qualifications - ",items)}
                         <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
                         <li className={`${styles.li} ${styles.Skills}`}>{items.skills}
                         </li>
@@ -1767,11 +1768,11 @@ useEffect(() => {
                         <div className={styles.skillWrapper}>
                           <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skills}</span><br></br>
                         </div>
-                        <div className={styles.ApplyPackage}>
-                          <p className={styles.salaryRange}><span>&#8377;</span>{job.salaryRange}L</p>
+                        <div className={styles.homeApplyPackage}>
+                          <p className={styles.salaryRange}><span>&#8377;</span>{job.salaryRange===""? "Not Disclosed":job.salaryRange+"L"}</p>
                           {
                           
-                            <button className={styles.ApplyMobile} onClick={() => { navigate("/JobSeekerLogin") }}><b>Apply</b></button>
+                            <button className={styles.homeApplyMobileBtn} onClick={() => { navigate("/JobSeekerLogin") }}><b>Apply</b></button>
                           }
                         </div>
 

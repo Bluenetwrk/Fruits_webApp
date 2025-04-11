@@ -859,7 +859,7 @@ const helpData = [
             <div className={STyles.signUpWrapper} style={{marginLeft:"10px", marginBottom:"20px"}} onClick={(e) => { saveMicrosoft(e) }} >
           <div className={STyles.both}>
             <img className={STyles.google} src={ MicosoftImage}/> 
-            <p className={STyles.signUpwrap} >Rigister with Microsoft</p>
+            <p className={STyles.signUpwrap} >Register with Microsoft</p>
           </div>
         </div>
 
