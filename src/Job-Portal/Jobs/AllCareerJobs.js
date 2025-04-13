@@ -44,7 +44,7 @@ const responsive = {
 // function AllJobs(props) {
   function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
     ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
-    jobTagsIds,setJobTagsIds,PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
+    PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
     currentPage,setCurrentPage,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon,url,
     searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon
 
@@ -391,35 +391,35 @@ const responsive = {
   // const [count, setCount] = useState(1)
   const [jobTagIds, setjobTagIds] = useState([])
 
-  // const [jobTagsIds, setJobTagsIds] = useState([])
+  const [jobTagsIds, setJobTagsIds] = useState([])
   // console.log("all dublicate ids", jobTagsIds)
 
-  // useEffect(() => {
-  //   if (jobTagsIds.length > 0) {
-  //     console.log("executing tags carrer")
-  //     getTagId();
-  //   }
-  // }, [jobTagsIds])
+  useEffect(() => {
+    if (jobTagsIds.length > 0) {
+      console.log("executing tags carrer")
+      getTagId();
+    }
+  }, [jobTagsIds])
 
   const [pathChanged, setPathChanged] = useState(false); // Track if path changed
 
 // Run getjobs() only if path changes
-useEffect(() => {
-  // console.log("Path changed, executing getjobs...",currentPage);
-  setPathChanged(true); // Mark that getjobs() was executed
-  getjobs();
+// useEffect(() => {
+//   // console.log("Path changed, executing getjobs...",currentPage);
+//   setPathChanged(true); // Mark that getjobs() was executed
+//   getjobs();
 
-  // Reset after a delay to allow normal execution of getTagId() in future updates
-  setTimeout(() => setPathChanged(false), 500); 
-}, [location.pathname]);
+//   // Reset after a delay to allow normal execution of getTagId() in future updates
+//   setTimeout(() => setPathChanged(false), 500); 
+// }, [location.pathname]);
 
-// Run getTagId() only if path didn't change recently
-useEffect(() => {
-  if (!pathChanged && jobTagsIds.length > 0) {
-    // console.log("jobtagsids", jobTagsIds);
-    getTagId();
-  }
-}, [jobTagsIds]);
+// // Run getTagId() only if path didn't change recently
+// useEffect(() => {
+//   if (!pathChanged && jobTagsIds.length > 0) {
+//     // console.log("jobtagsids", jobTagsIds);
+//     getTagId();
+//   }
+// }, [jobTagsIds]);
 
   let ids = jobTagsIds.map((id) => {
     return (
