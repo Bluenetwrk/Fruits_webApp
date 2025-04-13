@@ -46,7 +46,7 @@ const responsive = {
 // import { Bars } from  'react-loader-spinner'
 function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
   ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
-  jobTagsIds,setJobTagsIds,PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
+  PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
   currentPage,setCurrentPage,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon,url
   ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon
 }) {
@@ -397,7 +397,7 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
   // const [count, setCount] = useState(1)
   const [jobTagIds, setjobTagIds] = useState([])
 
-  // const [jobTagsIds, setJobTagsIds] = useState([])
+  const [jobTagsIds, setJobTagsIds] = useState([])
   // console.log("all dublicate ids", jobTagsIds)
 //  useEffect(()=>{
 //   setJobTagsIds([])
@@ -407,7 +407,7 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
  
   useEffect(() => {
     // console.log("jobTgaids---->",jobTagsIds)
-    setJobTagsIds([])
+    // setJobTagsIds([])
     if (jobTagsIds.length > 0) {
       // setJobs([])
       // getjobs()
@@ -421,7 +421,7 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
 
 // ----------------------exp-----------------
 
-  const [pathChanged, setPathChanged] = useState(false);
+  // const [pathChanged, setPathChanged] = useState(false);
 
   let ids = jobTagsIds.map((id) => {
     return (

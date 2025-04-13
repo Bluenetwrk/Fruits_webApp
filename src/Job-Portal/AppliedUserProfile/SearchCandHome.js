@@ -41,7 +41,7 @@ const responsive = {
 
 function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
   ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
-  jobTagsIds,setJobTagsIds,PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
+  PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
   currentPage,setCurrentPage,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon,
   FilCandidate,setFilCandidate,Candidate,setCandidate,
   searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon
@@ -204,7 +204,7 @@ const [selectedOption, setSelectedOption] = useState(options[0]);
   
   // const [count, setCount]=useState(1)
 
-    // const [jobTagsIds, setJobTagsIds] = useState([])
+    const [jobTagsIds, setJobTagsIds] = useState([])
     // useEffect(()=>{
     //   console.log("at",Active,"jids",jobTagsIds,"jobs",jobs)
     // })

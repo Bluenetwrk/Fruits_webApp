@@ -41,7 +41,7 @@ const responsive = {
 
 function Blogs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
   ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
-  jobTagsIds,setJobTagsIds,PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
+  PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
   currentPage,setCurrentPage,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon
   ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon
 }) {

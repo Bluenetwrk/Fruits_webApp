@@ -6,11 +6,11 @@ import {jobTags} from "./Tags"
 function SidebarNav(props) {
   let navigate = useNavigate()
 
-  // const [value , setValue] = useState("")
+  const [value , setValue] = useState("")
     // console.log(value)
 
   function update(key){
-    props.setValue(key)
+    setValue(key)
     // console.log(key)
   }
 
@@ -23,7 +23,7 @@ function SidebarNav(props) {
         currentUrl==="PostBlogs" || currentUrl==="postedjobs" || currentUrl==="Search-Candidate-Home" || currentUrl==="EmployeeLogin"
         || currentUrl==="JobSeekerLogin"
       ){
-        props.setValue(currentUrl)
+        setValue(currentUrl)
       }
   }
   
@@ -50,91 +50,91 @@ function SidebarNav(props) {
     const inputField = document.querySelector(`.${Styles.blogInputboxsearch}`);
     if (inputField) {
       inputField.value = ""; 
-      if(empHome){
-        // props.searchs("")
-        setQuery("")   
-      }
-     else if(location.pathname==="/Blogs"){
-        props.searchBlog("")     
-        setQuery("")   
-      }
-      else if(location.pathname==="/AllCareerJobs"){
-        props.searchcarrer("")    
-        setQuery("")    
-       }
-       else if(location.pathname==="/alljobs"){
-        props.jobSeekersearch("")
-        setQuery("")   
-       }
-       else if(location.pathname==="/Search-Candidate-Home"){
-        props. empSearchNoLogin("") 
-        setQuery("")         
-       }
-       else{
-        props.search("")  
-        setQuery("")  
-       }
+    //   if(empHome){
+    //     // props.searchs("")
+    //     setQuery("")   
+    //   }
+    //  else if(location.pathname==="/Blogs"){
+    //     props.searchBlog("")     
+    //     setQuery("")   
+    //   }
+    //   else if(location.pathname==="/AllCareerJobs"){
+    //     props.searchcarrer("")    
+    //     setQuery("")    
+    //    }
+    //    else if(location.pathname==="/alljobs"){
+    //     props.jobSeekersearch("")
+    //     setQuery("")   
+    //    }
+    //    else if(location.pathname==="/Search-Candidate-Home"){
+    //     props. empSearchNoLogin("") 
+    //     setQuery("")         
+    //    }
+    //    else{
+    //     props.search("")  
+    //     setQuery("")  
+    //    }
     }
   }, [location.pathname]); 
 
 
-  const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
+//   const [query, setQuery] = useState("");
+//   const [suggestions, setSuggestions] = useState([]);
 
-  const handleInputChange = (event) => {
-    if(empHome)
-      props.searchs(event)
-   else if(location.pathname==="/Blogs"){
-        props.searchBlog(event)        
-    }
-   else if(location.pathname==="/AllCareerJobs"){
-    props.searchcarrer(event)        
-   }
-   else if(location.pathname==="/alljobs"){
-    props.jobSeekersearch(event)
-   }
-   else if(location.pathname==="/Search-Candidate-Home"){
-    props. empSearchNoLogin(event)       
-   }
-   else{
-    props.search(event)   
-   }
+//   const handleInputChange = (event) => {
+//     if(empHome)
+//       props.searchs(event)
+//    else if(location.pathname==="/Blogs"){
+//         props.searchBlog(event)        
+//     }
+//    else if(location.pathname==="/AllCareerJobs"){
+//     props.searchcarrer(event)        
+//    }
+//    else if(location.pathname==="/alljobs"){
+//     props.jobSeekersearch(event)
+//    }
+//    else if(location.pathname==="/Search-Candidate-Home"){
+//     props. empSearchNoLogin(event)       
+//    }
+//    else{
+//     props.search(event)   
+//    }
 
-    const values = event.target.value;
-    setQuery(values)  
-    if (values) {
-      const filteredTags = jobTags.filter((tag) =>
-       tag.value.toLowerCase().includes(values.toLowerCase())
-     );
-     setSuggestions(filteredTags);
-    } else {
-     setSuggestions([]);
-    }
-  };
+//     const values = event.target.value;
+//     setQuery(values)  
+//     if (values) {
+//       const filteredTags = jobTags.filter((tag) =>
+//        tag.value.toLowerCase().includes(values.toLowerCase())
+//      );
+//      setSuggestions(filteredTags);
+//     } else {
+//      setSuggestions([]);
+//     }
+//   };
 
-   const handleSuggestionClick = (tag) => {
+//    const handleSuggestionClick = (tag) => {
    
-   if(empHome)
-    props.searchEmpTags(tag)
-  else if(location.pathname==="/Blogs"){
-      props.BlogSearchTags(tag)       
-  }
- else if(location.pathname==="/AllCareerJobs"){
-  props.carrerSearchTags(tag)        
- }
- else if(location.pathname==="/alljobs"){
-  props.jobseekerSearchTags(tag)
- }
- else if(location.pathname==="/Search-Candidate-Home"){
-  props.searchBlurTags(tag)     
- }
- else{
-  props.searchByTags(tag)
- }
+//    if(empHome)
+//     props.searchEmpTags(tag)
+//   else if(location.pathname==="/Blogs"){
+//       props.BlogSearchTags(tag)       
+//   }
+//  else if(location.pathname==="/AllCareerJobs"){
+//   props.carrerSearchTags(tag)        
+//  }
+//  else if(location.pathname==="/alljobs"){
+//   props.jobseekerSearchTags(tag)
+//  }
+//  else if(location.pathname==="/Search-Candidate-Home"){
+//   props.searchBlurTags(tag)     
+//  }
+//  else{
+//   props.searchByTags(tag)
+//  }
 
-   setQuery(tag);
-   setSuggestions([]); 
- };
+//    setQuery(tag);
+//    setSuggestions([]); 
+//  };
 
 
   return (
@@ -144,10 +144,35 @@ function SidebarNav(props) {
       {/* <p style={{marginLeft:"80%"}} onClick={()=>{props.setShowSideNaveProps((prev)=>!prev)}}> &#10005;</p> */}
       <div style={{ marginTop:"-15px"}}>
          <div style={{display:"flex",marginTop:"10px",marginRight:"6px"}} >
-            <input className={Styles.blogInputboxsearch}  type="text" value={query} placeholder='Search for a Job / Skills / Location / Experiance' onChange={handleInputChange} />
+            {/* <input className={Styles.blogInputboxsearch}  type="text" value={query} placeholder='Search for a Job / Skills / Location / Experiance' onChange={handleInputChange} /> */}
+            <input className={Styles.blogInputboxsearch}  type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { 
+                                                                                                                                 if(empHome)
+                                                                                                                                    props.searchs(e)
+                                                                                                                                 else if(location.pathname==="/Blogs"){
+                                                                                                                                      props.searchBlog(e)
+                                                                                                                                      console.log("blogs entered")          
+                                                                                                                                  }
+                                                                                                                                 else if(location.pathname==="/AllCareerJobs"){
+                                                                                                                                  props.searchcarrer(e)
+                                                                                                                                  console.log("carrer entered")          
+                                                                                                                                 }
+                                                                                                                                 else if(location.pathname==="/alljobs"){
+                                                                                                                                  props.jobSeekersearch(e)
+                                                                                                                                  console.log("jobseeker home entered") 
+                                                                                                                                 }
+                                                                                                                                 else if(location.pathname==="/Search-Candidate-Home"){
+                                                                                                                                  props. empSearchNoLogin(e)
+                                                                                                                                  console.log("emp entered",e.target.value)          
+                                                                                                                                 }
+                                                                                                                                 else{
+                                                                                                                                  props.search(e)
+                                                                                                                                  console.log("else entered")   
+                                                                                                                                 }
+                                                                                                                          
+                                                                                                                                }} />
             <i style={{marginLeft:"0px",fontSize:"20px",marginTop:"7px"}} class="fa fa-search" onClick={() => { props.searchIcon(props.searchKey);props.ChangeSideNaveBar();props.setSearchClick(false)}}></i>
           </div>
-          {suggestions.length > 0 && (
+          {/* {suggestions.length > 0 && (
         <div
           style={{
             border: "1px solid #ccc",
@@ -179,18 +204,18 @@ function SidebarNav(props) {
             </div>
           ))}
         </div>
-      )}
+      )} */}
 
 
         {/* <p onClick={()=>{navigate("/")}} className={`${Styles.p} `}>Home </p> */}
-        <p onClick={()=>{navigate("/Blogs"); update("Blogs")}} className={`${Styles.textBigSodeBar} ${props.value==="Blogs"?Styles.active:""}`}>Blogs</p>
-        <p onClick={()=>{navigate("/AllCareerJobs"); update("AllCareerJobs")}} className={`${Styles.textBigSodeBar} ${props.value==="AllCareerJobs"?Styles.active:""}`}>ITwalkin Career</p>
-        <p onClick={()=>{navigate("/Walkin-Drives"); update("AllWalkinDrive")}} className={`${Styles.textBigSodeBar} ${props.value==="AllWalkinDrive"?Styles.active:""} `}>Walkin Drives</p>
-        <p onClick={()=>{navigate("/support/help"); update("AllHelps")}} className={`${Styles.textBigSodeBar} ${props.value==="AllHelps"?Styles.active:""} `}>Help/Support</p>
-        <p onClick={()=>{navigate("/AboutUs"); update("AboutUs")}} className={`${Styles.textBigSodeBar} ${props.value==="AboutUs"?Styles.active:""} `}>About Us</p>
-        <p onClick={()=>{navigate("/Services"); update("Services")}} className={`${Styles.textBigSodeBar} ${props.value==="Services"?Styles.active:""}`}>Our Services</p>
-        <p onClick={()=>{navigate("/Contact"); update("Contact")}} className={`${Styles.textBigSodeBar} ${props.value==="Contact"?Styles.active:""}`}>Contact Us</p>
-        <p onClick={()=>{navigate("/TermsAndCondition"); update("TermsAndCondition")}} className={`${Styles.textBigSodeBar} ${props.value==="TermsAndCondition"?Styles.active:""}`}>Terms & Conditions</p>
+        <p onClick={()=>{navigate("/Blogs"); update("Blogs")}} className={`${Styles.textBigSodeBar} ${value==="Blogs"?Styles.active:""}`}>Blogs</p>
+        <p onClick={()=>{navigate("/AllCareerJobs"); update("AllCareerJobs")}} className={`${Styles.textBigSodeBar} ${value==="AllCareerJobs"?Styles.active:""}`}>ITwalkin Career</p>
+        <p onClick={()=>{navigate("/Walkin-Drives"); update("AllWalkinDrive")}} className={`${Styles.textBigSodeBar} ${value==="AllWalkinDrive"?Styles.active:""} `}>Walkin Drives</p>
+        <p onClick={()=>{navigate("/support/help"); update("AllHelps")}} className={`${Styles.textBigSodeBar} ${value==="AllHelps"?Styles.active:""} `}>Help/Support</p>
+        <p onClick={()=>{navigate("/AboutUs"); update("AboutUs")}} className={`${Styles.textBigSodeBar} ${value==="AboutUs"?Styles.active:""} `}>About Us</p>
+        <p onClick={()=>{navigate("/Services"); update("Services")}} className={`${Styles.textBigSodeBar} ${value==="Services"?Styles.active:""}`}>Our Services</p>
+        <p onClick={()=>{navigate("/Contact"); update("Contact")}} className={`${Styles.textBigSodeBar} ${value==="Contact"?Styles.active:""}`}>Contact Us</p>
+        <p onClick={()=>{navigate("/TermsAndCondition"); update("TermsAndCondition")}} className={`${Styles.textBigSodeBar} ${value==="TermsAndCondition"?Styles.active:""}`}>Terms & Conditions</p>
         <div className={Styles.brands}>
 
         {/* <a> <i className='fa-brands fa-facebook-square' style={{fontSize:"xx-Large" , marginBottom:"30px", marginTop:"10px"}}></i> </a>

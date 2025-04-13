@@ -41,7 +41,7 @@ const responsive = {
 
 function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
   ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
-  jobTagsIds,setJobTagsIds,PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
+  PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
   currentPage,setCurrentPage,totalCount,settotalCount,searchs,getjobs,gettotalcount,searchIcon
   ,FilCandidate,setFilCandidate,getAllJobSeekers,Candidate,setCandidate
   ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon
@@ -207,7 +207,7 @@ function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,F
   }
     // const [count, setCount]=useState(1)
   
-      // const [jobTagsIds, setJobTagsIds] = useState([])
+      const [jobTagsIds, setJobTagsIds] = useState([])
 
       useEffect(() => {
         if (jobTagsIds.length > 0) {
@@ -217,7 +217,7 @@ function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,F
       }, [jobTagsIds])
 
 // -------------exp----------------
-const [pathChanged, setPathChanged] = useState(false); 
+// const [pathChanged, setPathChanged] = useState(false); 
 
 // Run getjobs() only if path changes
 // useEffect(() => {
