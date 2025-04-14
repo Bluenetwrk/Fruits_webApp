@@ -474,7 +474,7 @@ const dropdownRef = useRef(null);
         <div className={styles.HomeNavConetenetWrapper}>
 
 
-<div className={styles.HomeLocationFilterWrapper}>
+{/* <div className={styles.HomeLocationFilterWrapper}> */}
   {/* {
     Location.map((location, i) => {
       return (
@@ -487,7 +487,7 @@ const dropdownRef = useRef(null);
       )
     })
   } */}
-          <div ref={dropdownRef} style={{ position: "relative" }}>
+          {/* <div ref={dropdownRef} style={{ position: "relative" }}>
       
       <div style={{ display: "flex", marginLeft: "-40px", marginTop: "-5px" }}>
         <button
@@ -563,7 +563,7 @@ const dropdownRef = useRef(null);
         </div>
       )}
     </div>
-</div>          
+</div>           */}
 {/* <div className={styles.searchBothForNavWrapper}>
   <input className={styles.inputboxsearchNav} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
 
@@ -579,9 +579,10 @@ const dropdownRef = useRef(null);
         : ""
       }
      
+     
       {screenSize.width > 850 ?
         <>
-        <div style={{marginTop:"10px"}}></div>
+        <div style={{marginTop:"55px"}}></div>
                    
             <div className={styles.JobtitleFilterWrapper}>
               <buton className={Active.length===0?styles.active:styles.JobtitleFilter} onClick={() => 

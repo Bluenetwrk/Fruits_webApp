@@ -474,7 +474,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
         <div className={adminLogin?styles.HomeNavConetenetWrapperAdmin:styles.BlogNavConetenetWrapper}>
 
 
-          <div className={styles.LocationFilterWrapper} style={{marginTop:"-20px"}}>/
+          {/* <div className={styles.LocationFilterWrapper} style={{marginTop:"-20px"}}>/
           <div ref={dropdownRef} style={{ position: "relative" }}>
       
       <div style={{ display: "flex", marginLeft: "-40px", marginTop: "-5px" }}>
@@ -550,7 +550,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
           </ul>
         </div>
       )}
-    </div>
+    </div> */}
             {/* {
               JobLocationTags.map((location, i) => {
                 return (
@@ -564,7 +564,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 )
               })
             } */}
-          </div>          
+          {/* </div>           */}
           {/* <div className={styles.searchBothForNavWrapper}>
             <input className={styles.inputboxsearchNav} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
 
@@ -596,7 +596,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
       {screenSize.width > 850 ?
         <>
       
-        <h2 style={{marginLeft:"10px", fontWeight:"800", marginTop:"15px", marginBottom:"-15px"}}> Blogs  </h2>
+        <h2 style={{marginLeft:"10px", fontWeight:"800", marginTop:"55px", marginBottom:"-15px"}}> Blogs  </h2>
 
 
           <div className={styles.JobtitleFilterWrapper}>
@@ -847,18 +847,18 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
           (!EmployeeAuth)?
           !StudentAuth?
         <> 
-        <div className={styles.blogSearchContainer}>
+        {/* <div className={styles.blogSearchContainer}> */}
 
 {/* <p className={styles.p}>Search </p> */}
  {/* <i style={{ color:"white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px",zIndex:"999",position:"fixed"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
   class="searchicon fa fa-search" ></i> */}
-   <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
-  class="searchicon fa fa-search" ></i>
+   {/* <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
+  class="searchicon fa fa-search" ></i> */}
 
 {/* <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
 {/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
-</div>
-       <div style={{position:"fixed",zIndex:"999",top:"-4px",left:"175px"}}>
+{/* </div> */}
+       {/* <div style={{position:"fixed",zIndex:"999",top:"-4px",left:"175px"}}>
        <div ref={dropdownRef} style={{ position: "relative" }}>
    <div style={{ display: "flex", marginLeft: "-45px", marginTop: "11px",position:"fixed" }}>
         <button
@@ -927,7 +927,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
         </div>
       )}
     </div>
-        </div>
+        </div> */}
         </>
         :""           
                          
@@ -1683,7 +1683,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                         </div>
 
                         <div className={styles.blogNameLocationWrapper}   >
-                          {/* <img className={styles.logo} src={job.Logo} /> */}
+                     
                           <img style={{height:"40px",width:"40px",marginTop:"10px"}}className={styles.logo} src={ CompanyLogo} />
 
                              <span className={styles.blogCompanyName} onClick={() => { navigate(`/Blogdetails/${btoa(job._id)}`) }} >{job.companyName===""||job.companyName===undefined?"Itwalkin":job.companyName} </span>

@@ -537,7 +537,7 @@ const responsive = {
 <div className={styles.BlogNavConetenetWrapper}>
 
 
-<div className={styles.LocationFilterWrapper}>
+{/* <div className={styles.LocationFilterWrapper}>
 <div ref={dropdownRef} style={{ position: "relative" }}>
      
       <div style={{ display: "flex", marginLeft: "-40px", marginTop: "-5px" }}>
@@ -613,7 +613,7 @@ const responsive = {
           </ul>
         </div>
       )}
-    </div>
+    </div> */}
   {/* {
     JobLocationTags.map((location, i) => {
       return (
@@ -627,7 +627,7 @@ const responsive = {
       )
     })
   } */}
-</div>          
+{/* </div>           */}
 {/* <div className={styles.searchBothForNavWrapper}>
   <input className={styles.inputboxsearchNav} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
 
@@ -646,7 +646,7 @@ const responsive = {
 
       {screenSize.width > 850 ?
         <>
-    <h2 style={{marginLeft:"10px", fontWeight:"800", marginTop:"15px", marginBottom:"-15px"}}> ITwalkin Career </h2>
+    <h2 style={{marginLeft:"10px", fontWeight:"800", marginTop:"55px", marginBottom:"-15px"}}> ITwalkin Career </h2>
 
           <div className={styles.JobtitleFilterWrapper}>
             <buton className={Active.length===0?styles.active:styles.JobtitleFilter} onClick={() =>
@@ -947,23 +947,23 @@ const responsive = {
         :
         // Mobile View
         <>
-        <div className={styles.blogSearchContainer}>
+        {/* <div className={styles.blogSearchContainer}> */}
 
 {/* <p className={styles.p}>Search </p> */}
  {/* <i style={{ color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px",position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
   class="searchicon fa fa-search" ></i> */}
-  <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
-              class="searchicon fa fa-search" ></i>
+  {/* <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
+              class="searchicon fa fa-search" ></i> */}
 
 {/* <input className={styles.inputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
 {/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
-</div>
+{/* </div> */}
         <>
     {/* <p style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>ITwalkin Career</p>
    */}
    
    {/* <div style={{display:"flex"}}> */}
-   <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>ITwalkin Career</h2>
+   <h2 style={{marginLeft:"6%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>ITwalkin Career</h2>
    {/* <div className={styles.blogSearchContainer}> */}
 
 {/* <p className={styles.p}>Search </p> */}

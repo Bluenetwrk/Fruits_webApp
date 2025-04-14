@@ -28,7 +28,7 @@ input:focus {
 }
 .MobIwalkinLogologo{
     width:100%;
-    margin-top: 6px;
+    /* margin-top: 6px; */
     height: 40px;
 
 }
@@ -49,7 +49,7 @@ font-size: xx-large;
     }
 
 .ITwalkinWrapper{
-margin-left: 4%;
+/* margin-left: 4%; */
 /* background-color: red; */
 width:140px;
     height:60px
@@ -87,8 +87,8 @@ font-weight: 400;
     font-size: small;
     font-weight: 540;
     text-wrap: nowrap;
-    padding-left: 40px ;
-    padding-right: 40px ;
+    /* padding-left: 40px ;
+    padding-right: 40px ; */
     border-radius: 5px;
     cursor: pointer;
     /* position: absolute; */
@@ -133,8 +133,8 @@ font-weight: 400;
     z-index:100;
     background-color: white;
     width:100px;
-    margin-top: 30px;
-    margin-left: -110px;
+    margin-top: 9px;
+    margin-left: -76px;
 }
 .dropdownwrapperHome::after {
     content: "";
@@ -204,7 +204,86 @@ font-weight: 400;
     position:sticky;
     top:0px;
     z-index: 100; 
+    justify-content: space-between;
 }
+
+
+.fullnavewrapperLS{
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+.fullnavewrapperRS{
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+    gap: 23px;
+}
+.empFullnavewrapperLS{
+    display: flex;
+    align-items: center;
+    gap: 15px;  
+}
+.empFullnavewrapperRS{
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+    gap: 4px;
+}
+
+.fullnavewrapperMobile{
+    display: flex;
+    background-color: rgb(40, 4, 99);
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    position:sticky;
+    top:0px;
+    z-index: 100; 
+    justify-content: space-between;
+}
+.fullnavewrapperRSMobile{
+    display: flex;
+    align-items: center;
+}
+.fullnavewrapperLSMobile{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.empFullnavewrapperRSMobile{
+    display: flex;
+    align-items: center;
+    margin-right: 21px;
+}
+.empFullnavewrapperLSMobile{
+    display: flex;
+    align-items: center;
+    margin-right: -30px;
+}
+
+.empFullnavewrapper {
+    display: flex;
+    background-color: rgb(40, 4, 99);
+    width: 100%;
+    height: 60px;
+    align-items: center;
+    position:sticky;
+    top:0px;
+    z-index: 100; 
+    justify-content: space-between;
+}
+@media (max-width: 768px) and (min-width: 425px) {
+    .empFullnavewrapperLS {
+        gap: 4px;
+    }
+    .empFullnavewrapperRS{
+        gap:0px;
+    }
+}
+
+
 .linkWrapper {
     display: flex;
     flex-wrap: nowrap;
@@ -221,6 +300,7 @@ font-weight: 400;
     width: 100%;
     height: 60px;
     align-items: center;
+    justify-content: space-between;
 }
 
 .logoWrapper {
@@ -251,7 +331,7 @@ font-weight: 400;
 
 .PostHelpLink {
     /* background-color: aqua; */
-    margin: -3%;
+    /* margin: -3%; */
     text-decoration: none;
     color: white;
     font-size: small;
@@ -260,13 +340,13 @@ font-weight: 400;
     text-wrap: nowrap;
     padding: 8px 10px;
     border-radius: 5px;
-    position:absolute;
-    left:65%;
+    /* position:absolute; */
+    /* left:65%; */ 
 }
 
 .PostDriveLink {
     /* background-color: aqua; */
-    margin: -3%;
+    /* margin: -3%; */
     text-decoration: none;
     color: white;
     font-size: small;
@@ -275,8 +355,8 @@ font-weight: 400;
     text-wrap: nowrap;
     padding: 8px 10px;
     border-radius: 5px;
-    position:absolute;
-    left:75%;
+    /* position:absolute;
+    left:75%; */
 }
 
 .SearchCandidate {
@@ -293,7 +373,7 @@ font-weight: 400;
 }
 
 .SearchCandidates {
-    margin-left: 60%;
+    /* margin-left: 60%; */
     text-decoration: none;
     color: white;
     font-size: small;
@@ -301,7 +381,7 @@ font-weight: 400;
     text-wrap: nowrap;
     padding: 8px 10px;
     border-radius: 5px;
-    position: absolute;
+    /* position: absolute; */
     /* background-color: wh; */
 }
 
@@ -320,10 +400,8 @@ font-weight: 400;
 
 .blast{
     margin-top:20px;
-    position:absolute;
-    animation: flash 2s infinite;
-    margin-left: 73%;
-    
+    animation: flash 2s infinite;    
+    cursor: pointer;
 }
 
 @keyframes flash {
@@ -400,19 +478,21 @@ font-weight: 400;
     width:18%    
 }
 .HomeJobs{
-    margin-left: -2%;
+    /* margin-left: 35px; */
     text-decoration: none;
     color: white;
     font-size: small;
     font-weight: 540;
     /* width:18%  */
-    position: absolute;
+    /* position: absolute; */
     padding-left: 10px ;
     padding-right: 10px ;
     padding-top: 8px ;
     padding-bottom: 8px ;
     border-radius: 5px;
     z-index: 1000;
+    display: inline-block;
+    width:62px;
 }
 
 .Loginlink:hover {
@@ -753,7 +833,7 @@ font-weight: 400;
 .MobJobseekerProfileIcon{
     width: 35px;
     height: 35px;
-    margin-left: 145%;
+    /* margin-left: 145%; */
     margin-top: 5px;
     cursor: pointer;
     /* background-color: aqua; */
@@ -828,7 +908,7 @@ font-weight: 400;
     .MobHomeDropdownwrapper {
         position: absolute;
         margin-left: -70px;
-        margin-top: 130px;
+        margin-top: 19px;
         padding-right: 5px;
         padding-left: 5px;
         padding-bottom: 0px;
@@ -845,10 +925,10 @@ font-weight: 400;
         margin-left: 52%;
 }
 .MobIwalkinLogologo{
-    width:73%;
+    width:100%;
     margin-top: 6px;
     height: 29px;
-    margin-left: 13px;
+    margin-left: 6px;
 
 }
     }
@@ -994,6 +1074,33 @@ font-weight: 400;
     z-index: 100;  
     margin-top: 8px;
 }
+.EmpMobDropdownwrapperMobile{
+        position: absolute;
+padding-right: 11px;
+padding-left: 9px;
+padding-bottom: 0px;
+border-radius: 8px;
+background-color: white;
+border: 1px solid rgb(202, 202, 202);
+cursor: pointer;
+width: 75px;
+z-index: 100;
+margin-top: 8px;
+right: 56px;
+}
+
+.EmpMobDropdownwrapperMobile ::after{
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+}
 .EmpMobDropdownwrapper::after {
     content: "";
     position: absolute;
@@ -1026,6 +1133,21 @@ font-weight: 400;
     /* width:102px;  */
     z-index: 100;   
 }
+.MobJobseekerDropdownwrapperlogin{
+position: absolute;
+    right: -114px;
+    /* margin-left: 76%; */
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid rgb(202, 202, 202);
+    cursor: pointer;
+    /* width: 102px; */
+    z-index: 100;
+    top: 52px;
+}
 .MobJobseekerDropdownwrapper::after {
     content: "";
     position: absolute;
@@ -1039,19 +1161,35 @@ font-weight: 400;
     border-top: 1px solid grey;
 
 }
+.MobJobseekerDropdownwrapperlogin::after {
+    content: "";
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
 
-@media (max-width :360px){
-    .MobJobseekerDropdownwrapper{
-        position: absolute;
-        margin-left: 74%;
-        padding-right: 5px;
-        padding-left: 5px;
-        padding-bottom: 0px;
-        border-radius: 8px;
-        background-color: white;
-        border: 1px solid rgb(202, 202, 202);
-        cursor: pointer;
-        width:78px;
+}
+
+
+
+@media (max-width :475px){
+    .MobJobseekerDropdownwrapperlogin{
+       right:-212px;
+    }    
+}
+@media (max-width :376px){
+    .MobJobseekerDropdownwrapperlogin{
+       right:-163px;
+    }    
+}
+@media (max-width :320px){
+    .MobJobseekerDropdownwrapperlogin{
+       right:-113px;
     }    
 }
 /* 
@@ -1157,11 +1295,10 @@ margin-left: 10%;
     margin-top:-10px;
 }
 
-@media (min-width: 340px) and (max-width: 720px) {
+@media (max-width: 320px) {
     .flashDriveHome{
         position: absolute;
-        top:-46px;
-        right: -16px;
+        top: 69px;
    }
   }
 
