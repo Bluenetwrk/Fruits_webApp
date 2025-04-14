@@ -547,9 +547,8 @@ const selectedTag=useRef("")
         <>
         <div className={styles.NavConetenetWrapper}>
 
-<div className={styles.LocationFilterWrapper}>
+{/* <div className={styles.LocationFilterWrapper}>
 <div ref={dropdownRef} style={{ position: "relative" }}>
-      {/* Button & Selected Value Display */}
       <div style={{ display: "flex", marginLeft: "-40px", marginTop: "-5px" }}>
         <button
           onClick={() => setIsOpen((prev) => !prev)}
@@ -568,7 +567,6 @@ const selectedTag=useRef("")
         </p>
       </div>
 
-      {/* Dropdown Menu */}
       {isOpen && (
         <div
           style={{
@@ -584,7 +582,7 @@ const selectedTag=useRef("")
             animation: "fadeIn 0.2s ease-in-out",
           }}
         >
-          {/* Speech Bubble Tail */}
+
           <div
             style={{
               position: "absolute",
@@ -598,7 +596,6 @@ const selectedTag=useRef("")
             }}
           ></div>
 
-          {/* Options List */}
           <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
             {options.map((option) => (
               <li
@@ -623,7 +620,7 @@ const selectedTag=useRef("")
           </ul>
         </div>
       )}
-    </div>
+    </div> */}
 
   {/* {
     JobLocationTags.map((location, i) => {
@@ -637,7 +634,7 @@ const selectedTag=useRef("")
       )
     })
   } */}
-</div>      
+{/* </div>       */}
 
 {/* <div className={styles.searchBothForNavWrapper}>
   <input className={styles.inputboxsearchNav} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
@@ -657,7 +654,7 @@ const selectedTag=useRef("")
       {screenSize.width > 850 ?
         <>
 
-          <div className={styles.JobtitleFilterWrapper}>
+          <div className={styles.JobtitleFilterWrapper} style={{marginTop:"65px"}} >
             <buton className={Active.length===0?styles.active:styles.JobtitleFilter} onClick={() => { getjobs() }}>All</buton>
             {
               jobTags.map((tags, i) => {
@@ -957,13 +954,13 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
         <>
            {/* <div style={{display:"flex"}}> */}
    {/* <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Home</h2> */}
-   <div className={styles.blogSearchContainer}>
+   {/* <div className={styles.blogSearchContainer}> */}
  {/* <i style={{ color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px",position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue)}}
   class="searchicon fa fa-search" ></i> */}
-  <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
-              class="searchicon fa fa-search" ></i>
+  {/* <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
+              class="searchicon fa fa-search" ></i> */}
 {/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
-</div>
+{/* </div> */}
 {/* </div> */}
           {/* <div className={styles.searchBoth}>
             <p className={styles.p}>Search </p>

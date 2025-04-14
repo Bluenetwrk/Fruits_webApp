@@ -67,7 +67,7 @@ import HelpDetails from "./Job-Portal/Jobs/HelpDetails";
 import AllWalkinDrive from "./Job-Portal/Jobs/AllWalkinDrive";
 import PostWalkinDrive from "./Job-Portal/PostJobs/PostWalkinDrive";
 import DriveDetails from "./Job-Portal/Jobs/DriveDetails";
-
+import location from "./Job-Portal/img/icons8-location-20.png"
 axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
 function App() {
@@ -955,12 +955,20 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
   };
   
   const sortedFilteredDriveJobs = processDriveJobs(driveJobs);
-
+     const options = [
+      { value: "bangalore", label: "Bangalore, India", img:location},
+      { value: "san Francisco", label: "San Francisco, USA", img:location},
+      { value: "new york", label: "New York, USA", img:location},
+      { value: "sydney", label: "Sydney, Australia", img:location},
+      { value: "london", label: "London, UK", img:  location},
+      { value: "berlin", label: "Berlin, Germany", img:location},
+    ];
+   const [selectedlocationOption, setSelectedlocationOption] = useState(options[0]);
   return (
     <>
 
       <BrowserRouter>
-        <Nav  sortedFilteredDriveJobs={sortedFilteredDriveJobs} showDriveFlash={showDriveFlash} setShowDriveFlash={setShowDriveFlash} empSearchNoLogin={empSearchNoLogin} jobSeekersearch={jobSeekersearch} searchBlog={searchBlog} searchcarrer={searchcarrer} setSearchClick={setSearchClick} showMobileSearchIcon={showMobileSearchIcon} 
+        <Nav options={options} selectedlocationOption={selectedlocationOption}  setSelectedlocationOption={setSelectedlocationOption} sortedFilteredDriveJobs={sortedFilteredDriveJobs} showDriveFlash={showDriveFlash} setShowDriveFlash={setShowDriveFlash} empSearchNoLogin={empSearchNoLogin} jobSeekersearch={jobSeekersearch} searchBlog={searchBlog} searchcarrer={searchcarrer} setSearchClick={setSearchClick} showMobileSearchIcon={showMobileSearchIcon} 
         setShowMobileSearchIcon={setShowMobileSearchIcon} ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}   searchClick={searchClick}  chandinmargin={setShowSideNave} 
          search={search} searchKey={searchKey} searchIcon={searchIcon} searchs={searchs}/>
         
@@ -971,6 +979,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
 
             <Route path="/" element={
               <Home 
+              selectedlocationOption={selectedlocationOption}
               showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
               ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
               searchClick={searchClick} setSearchClick={setSearchClick}

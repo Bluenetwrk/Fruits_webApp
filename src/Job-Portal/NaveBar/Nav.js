@@ -14,7 +14,7 @@ import SidebarNav from "./SidebarNav"
 import BigSidebarNav from '../BigSideNav'
 import loginuser from "../img/icons8-user-96.png"
 import StudentUpdateProfile from '../Profile/StudentUpdateProfile';
-
+import location from "../img/icons8-location-20.png"
 import Modal from "../Login/EmpLogModal";
 import StuModal from "../Login/StudLogModal";
 
@@ -167,6 +167,29 @@ function Nav(props) {
       setValue("AllWalkinDrive")
       navigate("/Walkin-Drives")
    }
+  
+
+    const [isOpen, setIsOpen] = useState(false);
+    const handleSelect = (option) => {
+      props.setSelectedlocationOption(option);
+      setIsOpen(false);
+    };
+    const dropdownRef = useRef(null);
+      
+        useEffect(() => {
+          function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+              setIsOpen(false);
+            }
+          }
+       
+          document.addEventListener("mousedown", handleClickOutside);
+          return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+          };
+        }, []);
+
+
   return (
     <>
 
@@ -178,55 +201,119 @@ function Nav(props) {
           StudentAuth ?
             <>
               <div className={Styles.fullnavewrapper}>
-                <div style={{ width:"20px",display:"flex"}}>
+                <div className={Styles.fullnavewrapperLS} >
+                  <div style={{display:"flex"}}>
                   <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
                     className={ShowBigSideNave ? "fas fa-times" : "fas fa-bars"} onClick={()=>{ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}}>
                   </i>
                   <i style={{color:"white", fontSize:"18px",visibility:props.searchClick?"hidden":"visible"}}
                   class=" fa fa-search" onClick={() => {ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}} ></i>
-               
-                  <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px"} : { marginLeft: "-215px"}}>
-                
-                    <BigSidebarNav  jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
-                  </div>
-                </div>
-                {/* <div className={Styles.logoWrapper}> */}
+                 </div>
                 <div className={Styles.ITwalkinWrapper}>
-                <img className={Styles.IwalkinLogologo} src={Itwalkinlogo} />
-{/* 
-                  <p className={Styles.ITwalkin}>ITwalkin</p>
-                  <p className={Styles.onlyforITjobs}>Only for IT jobs</p> */}
+                   <img className={Styles.IwalkinLogologo} src={Itwalkinlogo} />
                 </div>
-                {/* <NavLink to="/" > <img className={Styles.logo} src={logo} /> </NavLink> */}
-                {/* </div> */}
-                <div className={Styles.linkWrapper}>
+                  <div><NavLink to="/alljobs" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>All Jobs </NavLink>
+                  </div>
+                  <div ref={dropdownRef} style={{ position: "relative" }}>
+                            
+                            <div style={{ display: "flex", marginTop: "-5px" }}>
+                              <button
+                                onClick={() => setIsOpen((prev) => !prev)}
+                                style={{
+                                  background: "none",
+                                  border: "none",
+                                  cursor: "pointer",
+                                  fontSize: "24px",
+                                  color: "#007bff",
+                                }}
+                              >
+                                <img className={Styles.jobLocationImage} src={location} alt="Location" />
+                              </button>
+                              <p style={{ marginTop: "17px", fontWeight: "bold", color: "white" }}>
+                                {props.selectedlocationOption?.label}
+                              </p>
+                            </div>
+                      
+                           
+                            {isOpen && (
+                              <div
+                                style={{
+                                  position: "absolute",
+                                  top: "45px",
+                                  left: "-18px",
+                                  background: "white",
+                                  color: "black",
+                                  borderRadius: "20px",
+                                  width: "160px",
+                                  padding: "15px",
+                                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                                  animation: "fadeIn 0.2s ease-in-out",
+                                }}
+                              >
+                               
+                                <div
+                                  style={{
+                                    position: "absolute",
+                                    top: "-9px",
+                                    left: "25px",
+                                    width: "0",
+                                    height: "0",
+                                    borderLeft: "10px solid transparent",
+                                    borderRight: "10px solid transparent",
+                                    borderBottom: "10px solid white",
+                                  }}
+                                ></div>
+                      
+                              
+                                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                                  {props.options.map((option) => (
+                                    <li
+                                      key={option.value}
+                                      onClick={() => handleSelect(option)}
+                                      style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        padding: "10px",
+                                        cursor: "pointer",
+                                        borderRadius: "10px",
+                                      }}
+                                    >
+                                      <img
+                                        src={option.img}
+                                        alt={option.label}
+                                        style={{ width: "22px", height: "22px", marginRight: "12px" }}
+                                      />
+                                      <span>{option.label}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
+                  
+                </div>
 
-                  <NavLink to="/alljobs" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>All Jobs </NavLink>
-                  {/* <NavLink to="/AboutUs" className={Styles.link} style={navLinkStyles}>About Us</NavLink>
-                  <NavLink to="/Services" className={Styles.link} style={navLinkStyles}>Services</NavLink>
-                  <NavLink to="/Contact" className={Styles.link} style={navLinkStyles}>Contact</NavLink> */}
-                  <div className={`${Styles.link} ${Styles.JobSeekerIconeWrapper}`}>
+                <div className={Styles.fullnavewrapperRS} >
+                <div>
+                <img className={`${Styles.Icon} ${Styles.JobSeekerprofileIcon
 
-                    {/* <NavLink to="/" className={` ${Styles.notificationIcon}`}><img src={JobseekerNotification} /> </NavLink> */}
-                    <img className={`${Styles.Icon} ${Styles.JobSeekerprofileIcon
+}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
 
-                      }`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
-                    {/* .....................drop down............ */}
-                    {showprofile ?
-                      <div className={Styles.Alldownwrapper} >
-                        <div className={Styles.JobSeekerdropdownwrapper} ref={menuRef} >
-                          <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
-                          {/* <p className={Styles.text} ref={menuRef} onClick={updateprofile}>Update profile</p> */}
-                          <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>Jobs Applied</p>
-                          <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
-                          <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
+{showprofile ?
+<div className={Styles.Alldownwrapper} >
+  <div className={Styles.JobSeekerdropdownwrapper} ref={menuRef} >
+    <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
 
-                        </div>
-                      </div>
-                      : ""}                    
+    <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>Jobs Applied</p>
+    <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
+    <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
 
-                  </div >
-                  {props.sortedFilteredDriveJobs.length >= 1 && (
+  </div>
+</div>
+: ""}      
+                </div>
+                <div>
+                {props.sortedFilteredDriveJobs.length >= 1 && (
                        <div className={Styles.blast}>
                          <img
                            onClick={reDirecttoDrive}
@@ -236,14 +323,17 @@ function Nav(props) {
                          />
                        </div>
                      )}
-                  {/* {props.showDriveFlash && (
-                          <div class={Styles.blast} >
-                           <img  ref={driveImgRef} onClick={()=>{setShowDriveMenu((prev)=>!prev)}} src="/drive.png" alt="Walk-in Drive" style={{ width: "60px", borderRadius: "5px",marginTop:"-10px" }} />
-                          </div>
-                        )} */}
-
                 </div>
-              </div>
+                </div>
+              </div> 
+              <div className="BigNavWrapper" style={{
+  marginTop: "-6px",
+  marginLeft: ShowBigSideNave ? "-5px" : "-215px"
+}}>
+                
+                    <BigSidebarNav  jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
+                  </div> 
+              
 
             </>
 
@@ -252,60 +342,118 @@ function Nav(props) {
             
             (EmployeeAuth) ?
               <>
-                <div className={Styles.fullnavewrapper}>
-                  {/* <div className={Styles.logoWrapper}> */}
-                  <div style={{ width:"20px",display:"flex"}}>
-                  <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
-                    className={ShowBigSideNave ? "fas fa-times" : "fas fa-bars"} onClick={()=>{ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}}>
-                  </i>
-                  <i style={{color:"white", fontSize:"18px",visibility:props.searchClick?"hidden":"visible"}}
-                  class=" fa fa-search" onClick={() => {ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}} ></i>
-               
-                  <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px" } : { marginLeft: "-215px" }}>
-                    {/* <BigSidebarNav  /> */}
-                    <BigSidebarNav  jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
-             
-                  </div>
-                </div>
-                    {/* <NavLink to="/" > <img className={Styles.logo} src={logo} /> </NavLink> */}
-                    <div className={Styles.ITwalkinWrapper}>
-                      {/* <p className={Styles.ITwalkin}>ITwalkin</p>
-                      <p className={Styles.onlyforITjobs}>Only for IT jobs</p> */}
-                        <img className={Styles.IwalkinLogologo} src={Itwalkinlogo} />
-
+              <div className={Styles.fullnavewrapper}>
+                <div className={Styles.empFullnavewrapperLS}>
+                   <div>
+                     <div style={{display:"flex"}}>
+                      <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
+                       className={ShowBigSideNave ? "fas fa-times" : "fas fa-bars"} onClick={()=>{ChangeSideNaveBar();props.   setSearchClick((currentValue)=>!currentValue)}}>
+                     </i>
+                     <i style={{color:"white", fontSize:"18px",visibility:props.searchClick?"hidden":"visible"}}
+                     class=" fa fa-search" onClick={() => {ChangeSideNaveBar();props.setSearchClick((currentValue)   =>!currentValue)}} ></i>
+                     </div>
+                     <div className="BigNavWrapper" style={{ marginLeft: ShowBigSideNave ?"-5px" : "-215px"}}>
+                   <BigSidebarNav  jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/> 
                     </div>
-                  
-                  <div className={Styles.linkWrapper}>
-
-                    <NavLink to="/PostJobs" className={Styles.PostJobLink} style={navLinkStyles}>Post a Job</NavLink>
-                    <NavLink to="/Post-Help-Questions" className={Styles.PostHelpLink} style={navLinkStyles}>Post Help Questions</NavLink>
-                    <NavLink to="/PostDrives" className={Styles.PostDriveLink} style={navLinkStyles}>Post Walkin Drive</NavLink>
- 
-                    {/*                       */}
-                     {props.sortedFilteredDriveJobs.length >= 1 && (
-                       <div className={Styles.blast}>
-                         <img
-                           onClick={reDirecttoDrive}
-                           src="/drive.png"
-                           alt="Walk-in Drive"
-                           style={{ width: "60px", borderRadius: "5px", marginTop: "-10px" }}
-                         />
-                       </div>
-                     )}
-
-
-                        {/* {props.showDriveFlash && (
-                          <div class={Styles.blast}>
-                           <img onClick={()=>{setShowDriveMenu((prev)=>!prev)}} src="/drive.png" alt="Walk-in Drive" style={{ width: "60px", borderRadius: "5px",marginTop:"-10px" }} />
-                          </div>
-                        )} */}
+                   </div>
+                   <div className={Styles.ITwalkinWrapper}>
+                      <img className={Styles.IwalkinLogologo} src={Itwalkinlogo} />
+                   </div>
+                   <div>
+                      <NavLink to="/PostJobs" className={Styles.PostJobLink} style={navLinkStyles}>Post a Job</NavLink>
+                   </div>
+                   {screenSize.width > 850 && 
+                   <div ref={dropdownRef} style={{ position: "relative" }}>
                             
-                    <NavLink to="/Search-Candidate" className={Styles.SearchCandidates} style={navLinkStyles}>Employer Home</NavLink>
-                    <div className={`${Styles.link} ${Styles.EmpIconeWrapper}`}>
-                      <img className={`${Styles.Icon} ${Styles.EmpProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
-
-                      {/* .....................drop down............ */}
-                      {showprofile ?
+                            <div style={{ display: "flex", marginTop: "-5px" }}>
+                              <button
+                                onClick={() => setIsOpen((prev) => !prev)}
+                                style={{
+                                  background: "none",
+                                  border: "none",
+                                  cursor: "pointer",
+                                  fontSize: "24px",
+                                  color: "#007bff",
+                                }}
+                              >
+                                <img className={Styles.jobLocationImage} src={location} alt="Location" />
+                              </button>
+                              <p style={{ marginTop: "17px", fontWeight: "bold", color: "white" }}>
+                                {props.selectedlocationOption?.label}
+                              </p>
+                            </div>
+                      
+                           
+                            {isOpen && (
+                              <div
+                                style={{
+                                  position: "absolute",
+                                  top: "45px",
+                                  left: "-18px",
+                                  background: "white",
+                                  color: "black",
+                                  borderRadius: "20px",
+                                  width: "160px",
+                                  padding: "15px",
+                                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                                  animation: "fadeIn 0.2s ease-in-out",
+                                }}
+                              >
+                               
+                                <div
+                                  style={{
+                                    position: "absolute",
+                                    top: "-9px",
+                                    left: "25px",
+                                    width: "0",
+                                    height: "0",
+                                    borderLeft: "10px solid transparent",
+                                    borderRight: "10px solid transparent",
+                                    borderBottom: "10px solid white",
+                                  }}
+                                ></div>
+                      
+                              
+                                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                                  {props.options.map((option) => (
+                                    <li
+                                      key={option.value}
+                                      onClick={() => handleSelect(option)}
+                                      style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        padding: "10px",
+                                        cursor: "pointer",
+                                        borderRadius: "10px",
+                                      }}
+                                    >
+                                      <img
+                                        src={option.img}
+                                        alt={option.label}
+                                        style={{ width: "22px", height: "22px", marginRight: "12px" }}
+                                      />
+                                      <span>{option.label}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
+                          }
+                </div>
+                <div className={Styles.empFullnavewrapperRS}>
+                 <div>
+                  <NavLink to="/Post-Help-Questions" className={Styles.PostHelpLink} style={navLinkStyles}>Post Help Questions</NavLink>
+                 </div>
+                 <div>
+                 <NavLink to="/PostDrives" className={Styles.PostDriveLink} style={navLinkStyles}>Post Walkin Drive</NavLink>
+                 </div>
+                 <div> 
+                  <NavLink to="/Search-Candidate" className={Styles.SearchCandidates} style={navLinkStyles}>Employer Home</NavLink>
+                  </div>
+                 <div>
+                    <img className={`${Styles.Icon} ${Styles.EmpProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />       
+                    {showprofile ?
                         <div className={Styles.Alldownwrapper} >
                           <div className={Styles.Empdropdownwrapper} ref={menuRef} >
                             <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
@@ -316,11 +464,23 @@ function Nav(props) {
                           </div>
                         </div>
                         : ""}
-                    </div >
-
-
-                  </div>
+                 </div> 
+                 <div>
+                 {props.sortedFilteredDriveJobs.length >= 1 && (
+                       <div className={Styles.blast}>
+                         <img
+                           onClick={reDirecttoDrive}
+                           src="/drive.png"
+                           alt="Walk-in Drive"
+                           ref={driveImgRef}
+                           style={{ width: "60px", borderRadius: "5px", marginTop: "-10px" }}
+                         />
+                       </div>
+                     )}
+                 </div>           
                 </div>
+                         
+             </div>
 
               </>
               // ............Admin Login...................... SuperAdminLogin
@@ -387,56 +547,126 @@ function Nav(props) {
                 :
                 <>
                   <div className={Styles.fullnavewrapper}>
-                      {/* <NavLink to="/"> <img className={Styles.logo} src={logo} /> </NavLink> */}
+                    <div className={Styles.fullnavewrapperLS}>
+                      <div>
+                          <div style={{display:"flex"}}>
+                          <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
+                          className={ShowBigSideNave ? "fas fa-times" : "fas fa-bars"} onClick={() => {ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}}>
+                          </i>
+                           <i style={{color:"white", fontSize:"18px",visibility:props.searchClick?"hidden":"visible"}}
+                           class=" fa fa-search" onClick={() => {ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}} ></i>
+                           </div>
+                           <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px" } : { marginLeft: "-215px" }} >
+                           <BigSidebarNav  empSearchNoLogin={props.empSearchNoLogin} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
+                           </div>
+                      </div>
+                      <div>
+                          <div className={Styles.ITwalkinWrapper}>
+                           <img className={Styles.IwalkinLogologo} src={Itwalkinlogo} />
+                          </div> 
+                      </div>
+                      <div>
+                      <NavLink to="/" className={Styles.HomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px" }} class="fa-solid fa-house"></i>Home</NavLink>   
+                      </div>
 
-                      <div style={{ width:"20px",display:"flex"}}>
-                  <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
-                    className={ShowBigSideNave ? "fas fa-times" : "fas fa-bars"} onClick={() => {ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}}>
-                  </i>
-                  <i style={{color:"white", fontSize:"18px",visibility:props.searchClick?"hidden":"visible"}}
-                  class=" fa fa-search" onClick={() => {ChangeSideNaveBar();props.setSearchClick((currentValue)=>!currentValue)}} ></i>
-                  <div className="BigNavWrapper" style={ShowBigSideNave ? { marginLeft: "-5px" } : { marginLeft: "-215px" }} >
-                  {/* <div className="BigNavWrapper" style={{visibility:ShowBigSideNave?"visible":"hidden"}} > */}
-                
-                    <BigSidebarNav  empSearchNoLogin={props.empSearchNoLogin} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar}/>
-                  </div>
-                </div>
-
-
-                      <div className={Styles.ITwalkinWrapper}>
-                        {/* <p className={Styles.ITwalkin}>ITwalkin</p>
-                        <p className={Styles.onlyforITjobs}>Only for IT jobs</p> */}
-                        <img className={Styles.IwalkinLogologo} src={Itwalkinlogo} />
-                      </div>                  
-                    <div className={Styles.linkWrapper}>
-
-                      <NavLink to="/" className={Styles.HomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px" }} class="fa-solid fa-house"></i>Home</NavLink>
-                      {/* <NavLink to="/AboutUs" className={`${Styles.Hlink} ${Styles.Aboutus}`} style={navLinkStyles} >About Us</NavLink>
-                      <NavLink to="/Services" className={Styles.Hlink} style={navLinkStyles}>Services</NavLink>
-                      <NavLink to="/Contact" className={Styles.Hlink} style={navLinkStyles}>Contact</NavLink> */}                     
-                      <div className={` ${Styles.LoginlinkwrapperHome}`}>
-                        <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Employer </NavLink>
-                        {/* <NavLink to="/New-Registration" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>New Register </NavLink> */}
-                        {/* <NavLink to="/Jobseeker-New-Registration" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Student Register </NavLink> */}
-<div>
-<p className={` ${Styles.openAccount}`} onClick={handleOpenAccont} ref={Reg} >Open an Account</p>
-{
-  ShowRegister?
-  <div className={Styles.dropdownwrapperHomeRegistration} ref={newReg} >
-  <p onClick={()=>{navigate("/New-Registration");setShowRegister(false)}}>Employer Registration</p>
-  <p onClick={()=>{navigate("/Jobseeker-New-Registration");setShowRegister(false)}}>JobSeeker Registration</p>
-  </div>
-  :""
-}
-</div>
-                        <img className={` ${Styles.HomeprofileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
-                        {/* <NavLink to="/JobSeekerLogin" className={`${Styles.Loginlink} ${Styles.StuLogin}`} style={navLinkStyles}>Job Seeker Login</NavLink> */}
-                        {showprofile ?
+                      <div ref={dropdownRef} style={{ position: "relative" }}>
+                            
+                            <div style={{ display: "flex", marginTop: "-5px" }}>
+                              <button
+                                onClick={() => setIsOpen((prev) => !prev)}
+                                style={{
+                                  background: "none",
+                                  border: "none",
+                                  cursor: "pointer",
+                                  fontSize: "24px",
+                                  color: "#007bff",
+                                }}
+                              >
+                                <img className={Styles.jobLocationImage} src={location} alt="Location" />
+                              </button>
+                              <p style={{ marginTop: "17px", fontWeight: "bold", color: "white" }}>
+                                {props.selectedlocationOption?.label}
+                              </p>
+                            </div>
+                      
+                           
+                            {isOpen && (
+                              <div
+                                style={{
+                                  position: "absolute",
+                                  top: "45px",
+                                  left: "-18px",
+                                  background: "white",
+                                  color: "black",
+                                  borderRadius: "20px",
+                                  width: "160px",
+                                  padding: "15px",
+                                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                                  animation: "fadeIn 0.2s ease-in-out",
+                                }}
+                              >
+                               
+                                <div
+                                  style={{
+                                    position: "absolute",
+                                    top: "-9px",
+                                    left: "25px",
+                                    width: "0",
+                                    height: "0",
+                                    borderLeft: "10px solid transparent",
+                                    borderRight: "10px solid transparent",
+                                    borderBottom: "10px solid white",
+                                  }}
+                                ></div>
+                      
+                              
+                                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                                  {props.options.map((option) => (
+                                    <li
+                                      key={option.value}
+                                      onClick={() => handleSelect(option)}
+                                      style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        padding: "10px",
+                                        cursor: "pointer",
+                                        borderRadius: "10px",
+                                      }}
+                                    >
+                                      <img
+                                        src={option.img}
+                                        alt={option.label}
+                                        style={{ width: "22px", height: "22px", marginRight: "12px" }}
+                                      />
+                                      <span>{option.label}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
+                    </div>
+                    <div className={Styles.fullnavewrapperRS}>
+                      <div>
+                      <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Employer </NavLink>
+                      </div>
+                      <div>
+                         <p className={` ${Styles.openAccount}`} onClick={handleOpenAccont} ref={Reg} >Open an Account</p>
+                         {
+                           ShowRegister?
+                           <div className={Styles.dropdownwrapperHomeRegistration} ref={newReg} >
+                           <p onClick={()=>{navigate("/New-Registration");setShowRegister(false)}}>Employer Registration</p>
+                           <p onClick={()=>{navigate("/Jobseeker-New-Registration");setShowRegister(false)}}>JobSeeker Registration</p>
+                           </div>
+                           :""
+                         }
+                      </div>
+                      <div>
+                      <img className={` ${Styles.HomeprofileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
+                    {showprofile ?
                     <div className={Styles.Alldownwrapper} >
 
                       <div style={{  }} className={Styles.dropdownwrapperHome} ref={menuRef} >
-                        {/* <p onClick={() => { navigate("/EmployeeLogin") }}>Employee Login </p>
-                      <p onClick={() => { navigate("/JobSeekerLogin") }}>Job Seeker Login</p> */}
                         <p onClick={() => { handleEmpOpen(); handleStuClose() }}>Employer Login</p>
                         <p onClick={() => { handleStuOpen(); handleClose() }}>Job Seeker Login</p>
                       </div>
@@ -444,12 +674,8 @@ function Nav(props) {
 
                     : ""}
                       </div>
-                      {/* {props.showDriveFlash && (
-                          <div class={Styles.blast} style={{cursor:"pointer"}} >
-                           <img  ref={driveImgRef} onClick={()=>{setShowDriveMenu((prev)=>!prev)}} src="/drive.png" alt="Walk-in Drive" style={{ width: "60px", borderRadius: "5px",marginTop:"-10px" }} />
-                          </div>
-                        )} */}
-                        {props.sortedFilteredDriveJobs.length >= 1 && (
+                      <div>
+                      {props.sortedFilteredDriveJobs.length >= 1 && (
                        <div className={Styles.blast}>
                          <img
                            onClick={reDirecttoDrive}
@@ -460,19 +686,8 @@ function Nav(props) {
                          />
                        </div>
                      )}
-                 {/* {console.log(showDriveMenu)} */}
-                        {/* {showDriveMenu &&(
-                              <div className={Styles.Alldownwrapper}  >
-
-                              <div style={{width:"155px",marginLeft:"-75px",marginTop:"43px"}} className={Styles.dropdownwrapperHome} ref={driveRef} >
-                              <p onClick={()=>{navigate("/Jobseeker-New-Registration");setShowDriveMenu((prev)=>!prev)}}>JobSeeker Registration</p>
-                              <p onClick={() => { handleStuOpen(); handleClose();setShowDriveMenu((prev)=>!prev) }}>Login with ITWalkin</p>
-                              </div>
-                            </div>
-                        )
-                        } */}
-                    </div>
-                    
+                      </div>
+                    </div>                                     
                   </div>
                   
                   <>
@@ -490,21 +705,80 @@ function Nav(props) {
           StudentAuth ?
             <>
               <div className={Styles.fullnavewrapper}>
-              <div style={{ width:"30px"}}>
+                <div className={Styles.fullnavewrapperLSMobile}>
+                  <div>
+                    <div style={{display:"flex"}}>
+                    <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
+                     className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick=                     {() => { props.setShowSideNave((prev) => !prev);props.setSearchClick((currentValue)                     =>!currentValue);props.setShowMobileSearchIcon((currentValue)=>!currentValue)}}>
+                     </i>
+                     <i style={{ visibility:props.showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" ,zIndex:"999"}} onClick=                     {() => { props.setShowSideNave((prev) => !prev);props.setSearchClick((currentValue)                     =>!currentValue);props.setShowMobileSearchIcon((currentValue)=>!currentValue)}}
+                      class="searchicon fa fa-search" ></i>
+                        </div>
+                  </div>
+                  
+                <div className={Styles.ITwalkinWrapper} style={{marginTop:"13px", width:"96px", position:"relative"}}> 
+ 
+                  <img className={Styles.MobIwalkinLogologo} src={Itwalkinlogo}  />
+                  {showprofile ?
+                  <div className={Styles.Alldownwrapper} >
+                  <div className={Styles.MobJobseekerDropdownwrapperlogin} ref={menuRef} >
+                    <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
+                    <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>Jobs Applied</p>
+                    <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
+
+                    <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
+
+                  </div>
+                </div>
+                : ""}
+                </div>
+                  
+                </div>
+                 
+                <div className={Styles.fullnavewrapperRSMobile} style={{marginRight:"11px"}}>
+                 <div>
+                  <NavLink to="/alljobs" className={`${Styles.Moblink} ${Styles.AlllJobs}`} >All Jobs </NavLink>
+                  </div>
+                <div>
+                  
+                <img className={`${Styles.Icon} ${Styles.MobJobseekerProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
+
+                </div>
+                <div>
+                {props.sortedFilteredDriveJobs.length >= 1 && (
+                       <div className={Styles.blast} style={{cursor:"pointer"}}>
+                         <img
+                           onClick={reDirecttoDrive}
+                           src="/drive.png"
+                           alt="Walk-in Drive"
+                           style={{zIndex:"999", width: "50px", borderRadius: "5px",marginTop:"-10px" }}
+                         />
+                       </div>
+                     )}
+                </div>
+                </div>
+                 </div>
+
+                 <div ref={SmenuRef} className={`${Styles.MovileNavOptions} `}
+                    style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
+                   
+                  <SidebarNav  jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
+              
+                  </div>
+
+              {/* <div style={{ width:"30px"}}>
 
 <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
 className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick={() => { props.setShowSideNave((prev) => !prev);props.setSearchClick((currentValue)=>!currentValue);props.setShowMobileSearchIcon((currentValue)=>!currentValue)}}>
 </i>
 </div>
-                {/* <div className={Styles.logoWrapper}> */}
-                {/* <NavLink to="/" > <img className={Styles.Moblogo} src={logo} /> </NavLink> */}
+               
                 <div className={Styles.ITwalkinWrapper} style={{marginTop:"10px"}}>
-                  {/* <p className={Styles.ITwalkin}>ITwalkin</p>
-                  <p className={Styles.onlyforITjobs}>Only for IT jobs</p> */}
+                
                         <img className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} />
 
                 </div>
-                {/* </div> */}
+              
                 <div className={Styles.linkWrapper}>
 
                   <NavLink to="/alljobs" className={`${Styles.Moblink} ${Styles.AlllJobs}`} >All Jobs </NavLink>
@@ -518,29 +792,25 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                          />
                        </div>
                      )}
-                  {/* {props.showDriveFlash && (
-                          <div class={Styles.blast} style={{cursor:"pointer",marginLeft:"21%"}} >
-                           <img  ref={driveImgRef} onClick={()=>{setShowDriveMenu((prev)=>!prev)}} src="/drive.png" alt="Walk-in Drive" style={{ width: "50px", borderRadius: "5px",marginTop:"-10px" }} />
-                          </div>
-                        )} */}
+                 
 
                   <div className={`${Styles.link} ${Styles.MobileIconeWrapper}`}>
 
-                    {/* <NavLink to="/" className={` ${Styles.MobJobseekerNotificationIcon}`}><img src={JobseekerNotification} /> </NavLink> */}
+                   
                     <img className={`${Styles.Icon} ${Styles.MobJobseekerProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
 
                   </div >
 
                 </div>
               </div>
-              {/* .....................drop down..Mobile View.......... */}
+             
               {showprofile ?
                 <div className={Styles.Alldownwrapper} >
 
                   <div className={Styles.MobJobseekerDropdownwrapper} ref={menuRef} >
                     <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
 
-                    {/* <p className={Styles.text} ref={menuRef} onClick={updateprofile}>Update profile</p> */}
+                   
 
                     <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>Jobs Applied</p>
                     <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
@@ -552,11 +822,10 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                 : ""}
                 <div ref={SmenuRef} className={`${Styles.MovileNavOptions} `}
                     style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
-                    {/* <SidebarNav setShowSideNaveProps={props.setShowSideNave} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar} /> */}
-                  {/* <SidebarNav setShowSideNaveProps={setShowSideNave} /> */}
+                   
                   <SidebarNav  jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
               
-                  </div>
+                  </div> */}
             </>
 
             // ..........................................Emplyee login......Mobile View.................................................              
@@ -564,48 +833,37 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
             (EmployeeAuth) ?
               <>
                 <div className={Styles.MobilEmployeeFullnavewrapper}>
-                <div style={{ width:"30px"}}>
-
-{/* <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
-className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick={() => { props.setShowSideNave((prev) => !prev)}}>
-</i> */}
-<i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
-className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick={() => { props.setShowSideNave((prev) => !prev);props.setSearchClick((currentValue)=>!currentValue);props.setShowMobileSearchIcon((currentValue)=>!currentValue)}}>
-</i>
-</div>
-                  {/* <div className={Styles.logoWrapper}> */}
-                  {/* <NavLink to="/"> <img className={Styles.Moblogo} src={logo} /> </NavLink> */}
-                  <div className={Styles.ITwalkinWrapper} style={{marginTop:"10px"}}>
-                    {/* <p className={Styles.ITwalkin}>ITwalkin</p>
-                    <p className={Styles.onlyforITjobs}>Only for IT jobs</p> */}
-                        <img className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} />
-
+                  <div className={Styles.empFullnavewrapperLSMobile}>
+                        <div>
+                          <div style={{display:"flex"}}> 
+                        <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
+                       className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick={() => { props.setShowSideNave((prev) => !prev);props.setSearchClick((currentValue)=>!currentValue);props.setShowMobileSearchIcon((currentValue)=>!currentValue)}}>
+                       </i>
+                        <i style={{ visibility:props.showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer",zIndex:"999"}} onClick={() => { props.setShowSideNave((prev) => !prev);props.setSearchClick((currentValue)=>!currentValue);props.setShowMobileSearchIcon((currentValue)=>!currentValue)}} class="searchicon fa fa-search" ></i>
+                        </div> 
+                        
                   </div>
-                  {/* </div> */}
-                  <div className={Styles.linkWrapper}>
-
-                    {/* <NavLink to="/postedjobs" className={`${Styles.Moblink} ${Styles.PostedJobs}`} > Posted jobs</NavLink> */}
-                    <div style={{display:"flex",flexDirection:"column"}}>
-                    <NavLink to="/PostJobs" style={{marginLeft:"-24%"}}className={`${Styles.Moblink} ${Styles.PostJob}`} >Post a Job</NavLink>
-          
-                    {/* <div style={{width:"190%"}}>
-                      <label style={{ display:"flex",marginTop:"6px", fontSize: "12px", cursor: "pointer",marginLeft:"-22px" ,color:"white"}}>
-                       Walk-in Drive
-                        <input
-                          type="checkbox"
-                          checked={props.showDriveFlash}
-                          onChange={() => props.setShowDriveFlash(!props.showDriveFlash)}
-                          style={{ marginRight: "10px"}}
-                        />
-                      </label>
-                     </div>  */}
+                  
+                   <div>
+                     <img style={{width:"80%"}}  className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} />
                     </div>
-                    {/* <NavLink to="/PostJobs" style={{marginLeft:"-6%"}}className={`${Styles.Moblink} ${Styles.PostJob}`} >Post a Job</NavLink> */}
-                    {/* {props.showDriveFlash && (
-                          <div class={Styles.blast} style={{cursor:"pointer",marginLeft:"21%"}} >
-                           <img  ref={driveImgRef} onClick={()=>{setShowDriveMenu((prev)=>!prev)}} src="/drive.png" alt="Walk-in Drive" style={{ width: "50px", borderRadius: "5px",marginTop:"-10px" }} />
-                          </div>
-                        )} */}
+                    <div>
+                    <NavLink to="/PostJobs" style={{marginLeft:"-24%"}}className={`${Styles.Moblink} ${Styles.PostJob}`} >Post a Job</NavLink>
+                    </div>
+                  </div>
+
+                  <div className={Styles.empFullnavewrapperRSMobile}>
+                    <div>
+                    <img style={{marginLeft:"23px",position:"relative"}} className={`${Styles.Icon} ${Styles.EmpMobileProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
+                      {showprofile ?
+                     <div  className={Styles.EmpMobDropdownwrapperMobile} ref={menuRef} >
+                    <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
+                    <NavLink to="/postedjobs" className={`${Styles.text} `} > Posted jobs</NavLink>
+                    <p className={Styles.text} ref={menuRef} onClick={logutEmp}>Logout</p>
+                    </div>
+                     : ""}
+                    </div>
+                    <div>
                     {props.sortedFilteredDriveJobs.length >= 1 && (
                        <div className={Styles.blast} style={{cursor:"pointer",marginLeft:"21%"}}>
                          <img
@@ -616,29 +874,17 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                          />
                        </div>
                      )}
-                    <div className={`${Styles.link} ${Styles.MobileIconeWrapperEmp}`}>
-
-                      {/* <NavLink to="/" className={` ${Styles.JobMobileNotificationIcon}`}><img src={JobseekerNotification} /> </NavLink> */}
-
-                      <img style={{marginLeft:"23px"}} className={`${Styles.Icon} ${Styles.EmpMobileProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
-                      {showprofile ?
-                  <div style={{left:"231px"}} className={Styles.EmpMobDropdownwrapper} ref={menuRef} >
-                    <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
-                    <NavLink to="/postedjobs" className={`${Styles.text} `} > Posted jobs</NavLink>
-                    <p className={Styles.text} ref={menuRef} onClick={logutEmp}>Logout</p>
+                    </div>
                   </div>
-                  : ""}
-
-                    </div >
-
+                  
                   </div>
-                </div>
-                {/* ............Mobile View.........drop down............ */}
-                <div ref={SmenuRef} className={`${Styles.MovileNavOptions} `}
+                  <div ref={SmenuRef} className={`${Styles.MovileNavOptions} `}
                     style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
-                    {/* <SidebarNav setShowSideNaveProps={setShowSideNave} /> */}
+                        
                     <SidebarNav  jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog}  setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} searchs={props.searchs} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon} ChangeSideNaveBar={ChangeSideNaveBar} />
                        </div>
+               
+                
 
               </>
               // ............Admin Login............Mobile View..........
@@ -681,12 +927,111 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
 
                 <>
 
-                  <div className={Styles.fullnavewrapper}>                 
-                    {/* {ShowSideNave ?
-                      <img className={`${Styles.NavIconCross} `} src={Cancel} ref={SimgRef} onClick={() => { setShowSideNave((prev) => !prev) }} />
-                      : <img className={`${Styles.NavIconBars} `} src={NavIcon} ref={SimgRef} onClick={() => { setShowSideNave((prev) => !prev) }} />
-                    } */}
-                <div style={{ width:"30px"}}>
+                  <div className={Styles.fullnavewrapperMobile}>
+                    <div className={Styles.fullnavewrapperRSMobile}>
+                      <div>
+                        <div style={{display:"flex"}}>
+                         <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
+                       className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick={() => { props.setShowSideNave((prev) => !prev);props.setSearchClick((currentValue)=>!currentValue);props.setShowMobileSearchIcon((currentValue)=>!currentValue)}}>
+                        </i>
+                        <i style={{ visibility:props.showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer",zIndex:"999", marginLeft:"6px"}} onClick={() => { props.setShowSideNave((prev) => !prev);props.setSearchClick((currentValue)=>!currentValue);props.setShowMobileSearchIcon((currentValue)=>!currentValue)}} class="searchicon fa fa-search" ></i>
+                        </div>
+                      </div>
+                      <div>
+                        <img className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} />
+                      </div>
+                       <div ref={dropdownRef} style={{ position: "relative" }}>
+                         <div style={{ display: "flex", marginTop: "11px"}}>
+                              <button
+                                onClick={() => setIsOpen((prev) => !prev)}
+                                style={{background: "none",border: "none",cursor: "pointer",fontSize: "24px",color: "#007bff",}}>
+                                <img className={Styles.jobLocationImage} src={location} alt="Location" />
+                              </button>
+                              <p style={{ marginTop: "17px", fontWeight: "bold", color: "white",width:"113px" }}>
+                              {props.selectedlocationOption?.label}
+                              </p>
+                            </div>
+                      
+                           
+                            {isOpen && (
+                              <div
+                                style={{
+                                  position: "fixed",
+                                  top: "57px",
+                                  left: "126px",
+                                  background: "white",
+                                  color: "black",
+                                  borderRadius: "20px",
+                                  width: "154px",
+                                  padding: "15px",
+                                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                                  animation: "fadeIn 0.2s ease-in-out",
+                                }}
+                              >
+                                
+                                <div
+                                  style={{
+                                    position: "absolute",
+                                    top: "-9px",
+                                    left: "25px",
+                                    width: "0",
+                                    height: "0",
+                                    borderLeft: "10px solid transparent",
+                                    borderRight: "10px solid transparent",
+                                    borderBottom: "10px solid white",
+                                  }}
+                                ></div>
+                      
+                              
+                                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                                  {props.options.map((option) => (
+                                    <li
+                                      key={option.value}
+                                      onClick={() => handleSelect(option)}
+                                      style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        padding: "10px",
+                                        cursor: "pointer",
+                                        borderRadius: "10px",
+                                      }}
+                                    >
+                                      <img
+                                        src={option.img}
+                                        alt={option.label}
+                                        style={{ width: "22px", height: "22px", marginRight: "12px" }}
+                                      />
+                                      <span>{option.label}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
+                    </div>
+
+                    <div className={Styles.fullnavewrapperLSMobile}>
+                      <div>
+                          {props.sortedFilteredDriveJobs.length >= 1 && (
+                         <div className={Styles.blast} style={{cursor:"pointer"}}>
+                          <img onClick={reDirecttoDrive} src="/drive.png" alt="Walk-in Drive" ref={driveImgRef} class={Styles.flashDriveHome}/>
+                         </div>
+                          )}
+                      </div>
+                       <div>
+                         <img className={`${Styles.MobloginLogo} `} src={logIn} ref={imgRef} onClick={() =>    setShowprofile((prev) => !prev)} />
+                         {showprofile ?
+                           <div className={Styles.MobHomeDropdownwrapper} ref={menuRef} >
+                             <p onClick={() => { navigate("/EmployeeLogin") }}>Employer Login </p>
+                             <p onClick={() => { navigate("/JobSeekerLogin") }}>Job Seeker Login</p>
+                           </div>
+                           : ""}
+                       </div>           
+                    </div>
+                    
+                    
+                  </div>                 
+                {/* <div style={{ width:"30px"}}>
 
                     <i style={{ fontSize: "Large", color: "white", zIndex: "1000",  }}
                     className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} onClick={() => { props.setShowSideNave((prev) => !prev);props.setSearchClick((currentValue)=>!currentValue);props.setShowMobileSearchIcon((currentValue)=>!currentValue)}}>
@@ -694,15 +1039,9 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                 </div>
                                      
                     <div className={Styles.ITwalkinWrapperHomeMobile}>
-                      {/* <p className={Styles.ITwalkinMob}>ITwalkin</p>
-                      <p className={Styles.onlyforITjobsMob}>Only for IT jobs</p> */}
+                      
                         <img className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} />
-                        
-                        {/* {props.showDriveFlash && (
-                          <div class={Styles.blast} style={{cursor:"pointer", marginLeft:"69%" }} >
-                           <img  ref={driveImgRef} onClick={()=>{setShowDriveMenu((prev)=>!prev)}} src="/drive.png" alt="Walk-in Drive" style={{ width: "45px", borderRadius: "5px",marginTop:"-10px" }} />
-                          </div>
-                        )} */}
+                       
                          {props.sortedFilteredDriveJobs.length >= 1 && (
                        <div className={Styles.blast} style={{cursor:"pointer", marginLeft:"69%" }}>
                          <img
@@ -711,24 +1050,14 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                            alt="Walk-in Drive"
                            ref={driveImgRef}
                            class={Styles.flashDriveHome}
-                          //  style={{ width: "45px", borderRadius: "5px",marginTop:"-10px" }}
+                          
                          />
                        </div>
                      )}
-                        {/* {showDriveMenu &&(
-                              <div className={Styles.Alldownwrapper}  >
-
-                              <div style={{width:"155px",marginLeft:"88px",marginTop:"62px"}} className={Styles.dropdownwrapperHome} ref={driveRef} >
-                              <p onClick={()=>{navigate("/Jobseeker-New-Registration");setShowDriveMenu((prev)=>!prev)}}>JobSeeker Registration</p>
-                              <p onClick={() => { handleStuOpen(); handleClose();setShowDriveMenu((prev)=>!prev) }}>Login with ITWalkin</p>
-                              </div>
-                            </div>
-                        )
-                        } */}
+                       
                     </div>
 
-                    {/* <NavLink to="/" > <img className={Styles.MobHomelogo} src={logo} /> </NavLink> */}
-                    {/* <NavLink to="/" className={`${Styles.Hlink} ${Styles.HomeIcon}`}>  <img src={HomeIcon} /></NavLink> */}
+                   
                     <div className={Styles.MobileLoginIconWrapper}>
 
                       <img className={`${Styles.MobloginLogo} `} src={logIn} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
@@ -739,13 +1068,24 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                         </div>
                         : ""}
                     </div>
-                  </div>
+                  </div> */}
                   {/* {ShowSideNave? */}
                   <div ref={SmenuRef} className={`${Styles.MovileNavOptions} `}
                     style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
                     <SidebarNav empSearchNoLogin={props.empSearchNoLogin} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
                   </div>
-                  {/* :"" }   */}
+                  {/* {props.sortedFilteredDriveJobs.length >= 1 && (
+                       <div className={Styles.blast} style={{cursor:"pointer", marginLeft:"69%" }}>
+                         <img
+                           onClick={reDirecttoDrive}
+                           src="/drive.png"
+                           alt="Walk-in Drive"
+                           ref={driveImgRef}
+                           class={Styles.flashDriveHome}
+                          
+                         />
+                       </div>
+                     )} */}
                 </>
       }
 

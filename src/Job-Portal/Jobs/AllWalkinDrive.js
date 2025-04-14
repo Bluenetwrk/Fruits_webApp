@@ -617,7 +617,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
 
         <>
           <div className={adminLogin ? styles.HomeNavConetenetWrapperAdmin : styles.HomeNavConetenetWrapper}>
-            <div className={styles.LocationFilterWrapper}>
+            {/* <div className={styles.LocationFilterWrapper}>
               
         <div ref={dropdownRef} style={{ position: "relative" }}>
       
@@ -696,7 +696,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
       )}
     </div>
 
-            </div>
+            </div> */}
             
           </div>
           
@@ -723,8 +723,8 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
         <>
          
 
-         <h2 style={{marginLeft:"10px"}}>Walkin Drive</h2>
-          <div className={styles.JobtitleFilterWrapper}>
+         <h2 style={{marginLeft:"10px", marginTop:"55px"}}>Walkin Drive</h2>
+          <div className={styles.JobtitleFilterWrapper} style={{marginTop:"-10px"}}>
             <buton className={Active.length === 0 ? styles.active : styles.JobtitleFilter} onClick={() => { getjobs() }}>All</buton>
             {
               jobTags.map((tags, i) => {
@@ -935,12 +935,12 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
         :
         <>
         
-         <div className={styles.blogSearchContainer}>
+         {/* <div className={styles.blogSearchContainer}>
              <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
-              class="searchicon fa fa-search" ></i>
+              class="searchicon fa fa-search" ></i> */}
             {/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
-          </div>
-          {!(StudentAuth||EmployeeAuth)&&
+          {/* </div> */}
+          {/* {!(StudentAuth||EmployeeAuth)&&
           (  <div style={{position:"fixed",zIndex:"999",top:"-4px",left:"175px"}}>
             <div ref={dropdownRef} style={{ position: "relative" }}>
         <div style={{ display: "flex", marginLeft: "-45px", marginTop: "11px",position:"fixed" }}>
@@ -1013,7 +1013,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
              </div> 
      
      )
-          }
+          } */}
         <>
         
           {/* ...................... All Filter for Mobile */}
@@ -1021,7 +1021,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
   
           </div>
           <h2 style={{marginLeft:"10px",marginTop:"2px" }}>Walkin Drive</h2>
-          <div className={styles.JobtitleFilterWrapperMobile} style={{height:"101px", marginLeft:"9px"}}>
+          <div className={styles.JobtitleFilterWrapperMobile} style={{height:"101px", marginLeft:"9px",marginTop:"-6px"}}>
             <buton className={Active.length === 0 ? styles.active : styles.JobtitleFilter} onClick={() => { getjobs() }}>All</buton>
             {
               jobTags.map((tags, i) => {

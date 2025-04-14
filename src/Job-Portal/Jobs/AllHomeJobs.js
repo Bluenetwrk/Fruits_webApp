@@ -44,7 +44,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
   ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
   PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
   currentPage,setCurrentPage,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon
-  ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon
+  ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon,selectedlocationOption
 }) {
 
   // const [jobs, setJobs] = useState([])
@@ -577,18 +577,23 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
     selectedTag.current=tag
   }
 
+  useEffect(()=>{
+       console.log("location",selectedOption)
+  },[selectedlocationOption])
+
+
   return (
     <>
       {screenSize.width > 850 ?
 
         <>
           <div className={adminLogin ? styles.HomeNavConetenetWrapperAdmin : styles.HomeNavConetenetWrapper}>
-            <div className={styles.LocationFilterWrapper}>
+            {/* <div className={styles.LocationFilterWrapper}> */}
               {/* {
                 JobLocationTags.map((location, i) => {
                   return (
                     <> */}
-        <div ref={dropdownRef} style={{ position: "relative" }}>
+        {/* <div ref={dropdownRef} style={{ position: "relative" }}>
       
       <div style={{ display: "flex", marginLeft: "-40px", marginTop: "-5px" }}>
         <button
@@ -663,7 +668,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
           </ul>
         </div>
       )}
-    </div>
+    </div> */}
 
       {/* <p style={{ marginTop: "10px", fontWeight: "bold" }}>{selectedOption.label}</p> */}
    
@@ -674,7 +679,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
                   )
                 })
               } */}
-            </div>
+            {/* </div> */}
             {/* <div className={styles.HomesearchBothForNavWrapper}>
               <input className={styles.inputboxsearchNav} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} />
 
@@ -710,7 +715,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
          
 
 
-          <div className={styles.JobtitleFilterWrapper}>
+          <div className={styles.JobtitleFilterWrapper} style={{marginTop:"60px"}}>
             <buton className={Active.length === 0 ? styles.active : styles.JobtitleFilter} onClick={() => { getjobs() }}>All</buton>
             {
               jobTags.map((tags, i) => {
@@ -869,7 +874,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
                         <li className={`${styles.li} ${styles.Location}`}>{items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}</li>
                         <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"L" }</li>
                         <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
-                        {console.log("qualifications - ",items)}
+                        {/* {console.log("qualifications - ",items)} */}
                         <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
                         <li className={`${styles.li} ${styles.Skills}`}>{items.skills}
                         </li>
@@ -931,12 +936,12 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
         :
         <>
          <div className={styles.blogSearchContainer}>
-             <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
-              class="searchicon fa fa-search" ></i>
+             {/* <i style={{ visibility:showMobileSearchIcon?"visible":"hidden", color: "white", fontSize: "18px", cursor: "pointer" , marginLeft:"41px",marginTop:"-38px", position:"fixed",zIndex:"999"}} onClick={() => { searchIcon(searchKey) ;setSearchClick((currentvalue)=>!currentvalue);setShowMobileSearchIcon((currentvalue)=>!currentvalue);setShowSideNave((currentvalue)=>!currentvalue)}}
+              class="searchicon fa fa-search" ></i> */}
             {/* <input style={{visibility:searchClick?"visible":"hidden"}} className={styles.blogInputboxsearch} type="text" placeholder='Search for a Job / Skills / Location / Experiance' onChange={(e) => { search(e) }} /> */}
           </div>
-       <div style={{position:"fixed",zIndex:"999",top:"-4px",left:"175px"}}>
-       <div ref={dropdownRef} style={{ position: "relative" }}>
+       {/* <div style={{position:"fixed",zIndex:"999",top:"-4px",left:"175px"}}> */}
+       {/* <div ref={dropdownRef} style={{ position: "relative" }}>
    <div style={{ display: "flex", marginLeft: "-45px", marginTop: "11px",position:"fixed" }}>
         <button
           onClick={() => setIsOpen((prev) => !prev)}
@@ -1004,7 +1009,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
         </div>
       )}
     </div>
-        </div> 
+        </div>  */}
         <>
         {/* <div style={{display:"flex"}}> */}
     {/* <h2 style={{marginLeft:"3%", fontWeight:"800", marginTop:"5px", marginBottom:"-15px"}}>Home</h2> */}
