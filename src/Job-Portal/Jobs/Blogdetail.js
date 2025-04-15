@@ -372,12 +372,12 @@ async function deletComment(id){
           </button>
 
           <div style={{display:"flex",height:"55px"}}>
-          <button onClick={descIndex}  className={styles.readPageBackBtn} style={{display:"flex", gap:"4px",height:"42px", alignItems:"center",justifyContent:"space-between",}}>
-          <i class='fas fa-caret-square-left' style={{marginLeft:"-2px"}}></i>   Prev
+          <button onClick={descIndex}  className={styles.readPageBackBtn}>
+          <i class='fas fa-caret-square-left' style={{fontSize:"small",marginLeft:"-2px"}}></i>   Prev
           </button>
-          <h2 style={{display:"flex",alignItems:"center",marginLeft:"-15px"}}>{index +1}</h2>
-          <button onClick={incIndex} className={styles.readPageBackBtn} style={{zIndex:"999",display:"flex", height:"42px", alignItems:"center",justifyContent:"space-between",}}>
-                 Next <i class='fas fa-caret-square-right' style={{marginLeft:"4px"}}></i>
+          <h2 style={{display:"flex",alignItems:"center"}}>{index +1}</h2>
+          <button onClick={incIndex} className={styles.readPageBackBtn} style={{zIndex:"999",marginLeft:"2px"}}>
+                 Next <i class='fas fa-caret-square-right' style={{fontSize:"small",marginLeft:"4px"}}></i>
           </button>
           </div>
           {/* {console.log("history length",window.history.length)} */}
@@ -408,9 +408,9 @@ async function deletComment(id){
         <img  class={styles.linkedinLogoDesktop} src={Linkedinlogo} />
       </a> */}
       {/* </div> */}
-
-    <div ref={buttonRef} onClick={updateClickStatus} style={{ marginRight: "4px" }} className={styles.shareBtn}>
-  <i className="fa-solid fa-share" style={{ fontSize: "medium", cursor: "pointer" }}></i>
+    <div style={{position:"relative"}}>
+    <div ref={buttonRef} onClick={updateClickStatus} style={{ marginRight: "4px" }} className={styles.shareBtnBlog}>
+  <i className="fa-solid fa-share" style={{marginLeft:"6px", fontSize: "small", cursor: "pointer" }}></i>
   <p style={{ margin: "0px",fontWeight:"400" }}>Share</p>
 </div>
 
@@ -442,7 +442,7 @@ async function deletComment(id){
           <div onClick={() => setShareClicked(false)} className={styles.closeButton} style={{position:"absolute", top:"8px", right:"13px",fontSize:"20px", color:"white", cursor:"pointer"}}>X</div>
         </div>
       )}
-
+</div>
 
 
       </div>    
@@ -504,8 +504,9 @@ async function deletComment(id){
                  Back
           </button>
               <img style={{height:"30px"}}  onClick={()=>{goDown()}} src={Down}/>
-              <div ref={buttonRef} onClick={updateClickStatus} style={{height:"35px", width:"76px"}} className={styles.shareBtnMobile}>
-  <i className="fa-solid fa-share" style={{ fontSize: "medium", cursor: "pointer",marginLeft: "8px"}}></i>
+              <div style={{position:"relative"}}>
+              <div ref={buttonRef} onClick={updateClickStatus} className={styles.shareBtnMobile}>
+  <i className="fa-solid fa-share" style={{ fontSize: "small", cursor: "pointer",marginLeft: "8px"}}></i>
   <p style={{fontWeight:"400" }}>Share</p>
 </div>
 
@@ -538,8 +539,9 @@ async function deletComment(id){
         </div>
       )}
  </div>
+ </div>
 
- <div style={{display:"flex",marginLeft:"8px",marginTop:"25px",marginRight:"-6px",alignItems:"center", gap:"2px"}}>
+ <div style={{display:"flex",marginLeft:"8px",marginTop:"11px",marginRight:"-6px",alignItems:"center", gap:"2px"}}>
               {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
               <button onClick={descIndex} className={styles.jobdetailBackBtnMobile} style={{fontWeight:"100"}} >
               <i class='fas fa-caret-square-left' style={{ color: "white",marginLeft:"0px", marginLeft:"-2px" }}></i>    Prev
@@ -551,7 +553,7 @@ async function deletComment(id){
           </button>
  </div>
 
-                <div className={styles.JobCard} >
+                <div className={styles.JobCard} style={{marginTop:"8px"}} >
                 {/* <p className={`${styles.Date} ${styles.readPageDate}`}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {

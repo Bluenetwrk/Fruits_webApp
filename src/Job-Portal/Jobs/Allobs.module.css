@@ -52,20 +52,25 @@
     border: 2px solid rgb(12, 12, 12);
     border-radius: 3%;
     background-color: rgb(40, 4, 99);
-    left: 1090px;
-    top: 170px;
-    width: 20%;
-    height: 30%;
+    /* left: 1090px; */
+    top: 62px;
+    right: 1px;
+    padding: 20px;
+    /* width: 20%;
+    height: 30%; */
 }
 .shareContainerMob{
     position: absolute;
     border: 2px solid rgb(12, 12, 12);
     border-radius: 3%;
     background-color: rgb(40, 4, 99);
-    left: 15px;
+    /* left: 15px;
     top: 109px;
     width: 91%;
-    height: 30%;
+    height: 30%; */
+    right: -8px;
+    top:42px;
+    padding-bottom: 13px;
 }
 .shareBtn {
     display: flex;  
@@ -87,20 +92,38 @@
     margin-right: 20px;
   }
 
-  .shareBtnMobile{
+  .shareBtnBlog {
     display: flex;  
     align-items: center; 
     gap: 8px; 
     cursor: pointer;
     background-color: rgb(40, 4, 99);
-    height: 42px;
-    width: 95px;
+    height: 36px;
+    width: 80px;
     color: white;
     border-radius: 2px;
-    padding-right: 6px;
+    cursor: pointer;
     border-radius: 5px;
+    margin-top: 10px;
     font-weight: 500;
     font-size: 1.0rem; 
+    margin-right: 20px;
+  }
+
+  .shareBtnMobile{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+    background-color: rgb(40, 4, 99);
+    height: 29px;
+    width: 61px;
+    color: white;
+    border-radius: 2px;
+    /* padding-right: 6px; */
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 12px;
   }
 
 .shareButtonsContainer{
@@ -110,6 +133,7 @@
         gap: 35px;
         margin-left: 50px;
         margin-top: 30px;
+        margin-right: 35px;
 }
 
 .copyLinkContainer{
@@ -185,24 +209,30 @@
     background-color: rgb(40, 4, 99);
     color: white;
     border: none;
-    padding: 10px 15px 10px 15px;
+    padding: 0px 13px 0px 14px;
     cursor: pointer;
     border-radius: 5px;
     margin-top: 10px;
     font-weight: 500;
     font-size: 1.0rem; 
     margin-left: 20px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    gap:6px;
 }
 
 .jobdetailBackBtnMobile{
     background-color: rgb(40, 4, 99);
     color: white;
     border: none;
-    padding: 10px 15px 10px 15px;
+    /* padding: 10px 15px 10px 15px; */
     cursor: pointer;
     border-radius: 5px;
     font-weight: 500;
-    font-size: 1.0rem; 
+    font-size: 12px;
+    width: 53px;
+    padding: 7px;
 }
 
 /* .jobdetailBackBtn:hover{
@@ -211,18 +241,15 @@
     border: 2px solid  rgb(40, 4, 99);
 } */
 .jobdetailApplyBtn{
-    /* position: absolute;
-    right:0px;
-    top:60px; */
     background-color: rgb(40, 4, 99);
     color: white;
     border: none;
-    padding: 10px 15px 10px 15px;
+    padding: 4px 12px 4px 16px;
     cursor: pointer;
     border-radius: 5px;
     margin-top: 10px;
     font-weight: 500;
-    font-size: 1.0rem; 
+    font-size: 1.0rem;
     margin-right: 20px;
 }
 /* .jobdetailApplyBtn:hover{
@@ -316,16 +343,17 @@
     background-color: rgb(40, 4, 99);
     color: white;
     border: none;
-    padding: 10px 15px 10px 15px;
+    padding: 0px 13px 0px 14px;
     cursor: pointer;
     border-radius: 5px;
     margin-top: 10px;
     font-weight: 500;
     font-size: 1.0rem; 
-    margin-left: 6px;
-    height: 42px;
-    width: 70px;
-    margin-right:20px;
+    margin-left: 20px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    gap:6px;
 }
 /* .readPageBackBtn:hover{
     background-color: white;
@@ -1501,6 +1529,15 @@ margin-top: 11px;
     padding-bottom: 15px;
      */
 }
+.ApplyPackageJobseeker{
+    display: flex;
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(241,248,234);
+    border-radius: 10px; 
+    height: 50px;
+    margin-top: 8px;
+    justify-content: space-between;
+}
 .homeApplyPackage{
     display: flex;
     margin-left: 1px;
@@ -1548,6 +1585,11 @@ margin-top: 11px;
     margin-top: 13px;
     font-size: large;
 }
+.salaryRangeJobseeker{
+    font-weight: bold;
+    margin-top: 13px;
+    font-size: large;
+}
 .ApplyMobile {
     border: 1px solid rgb(40, 4, 99);
     background-color: rgb(40, 4, 99);
@@ -1560,6 +1602,20 @@ margin-top: 11px;
     text-align: center;
     align-content: center;
     margin-left: 40%;
+    margin-top: 9px;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+.ApplyMobileJobseeker{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex;
+    color: white;
+    font-weight: bold;
+    height: 35px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
     margin-top: 9px;
     border-radius: 5px;
     padding-left: 15px;
