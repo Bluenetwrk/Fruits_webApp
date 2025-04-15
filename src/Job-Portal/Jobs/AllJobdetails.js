@@ -306,6 +306,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
           document.addEventListener("mousedown", handleClickOutside);
         }
     
+        
         return () => {
           document.removeEventListener("mousedown", handleClickOutside);
         };
