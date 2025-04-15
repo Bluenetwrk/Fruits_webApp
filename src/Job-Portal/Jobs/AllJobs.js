@@ -802,7 +802,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                           {items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}
                         
                           </li>
-                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
+                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"L" }</li>
                         <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
                         <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
                         <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li>
@@ -881,7 +881,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                         {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li> */}
                         <li className={`${styles.li} ${styles.Location}`}>{items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}</li>
                     
-                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
+                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"L" }</li>
                         <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
                         <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
                         <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li>
@@ -1641,8 +1641,8 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                         </div>
 
 
-                        <div className={styles.ApplyPackage}>
-                          <p className={styles.salaryRange}><span>&#8377;</span>{job.salaryRange}L</p>
+                        <div className={styles.ApplyPackageJobseeker}>
+                          <p style={{marginLeft: "20px"}} className={styles.salaryRangeJobseeker}><span>&#8377;</span>{job.salaryRange==="" ? "Not Disclosed":job.salaryRange+"L" }</p>
 
 
                           {job.jobSeekerId.find((jobseeker) => {
@@ -1654,11 +1654,11 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                             :
                             // job .isApproved?
                             job.SourceLink ?
-                              <button className={styles.ApplyMobile} onClick={() => {
+                              <button style={{marginRight: "13px"}} className={styles.ApplyMobileJobseeker} onClick={() => {
                                 applyforOtherJob(job.SourceLink)
                               }}>Apply</button>
                               :
-                              <button className={styles.ApplyMobile} onClick={() => { applyforJob(job._id) }}>Apply
+                              <button style={{marginRight: "13px"}} className={styles.ApplyMobileJobseeker} onClick={() => { applyforJob(job._id) }}>Apply
                                 <span className={styles.Loader} >{Loader && job._id == clickedJobId ?
                                   <TailSpin color="white" height={20} />
                                   : ""}</span></button>
