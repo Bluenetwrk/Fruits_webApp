@@ -376,7 +376,7 @@ async function deletComment(id){
           <i class='fas fa-caret-square-left' style={{fontSize:"small",marginLeft:"-2px"}}></i>   Prev
           </button>
           <h2 style={{display:"flex",alignItems:"center"}}>{index +1}</h2>
-          <button onClick={incIndex} className={styles.readPageBackBtn} style={{zIndex:"999",marginLeft:"2px"}}>
+          <button onClick={incIndex} className={styles.readPageBackBtn} style={{marginLeft:"2px"}}>
                  Next <i class='fas fa-caret-square-right' style={{fontSize:"small",marginLeft:"4px"}}></i>
           </button>
           </div>

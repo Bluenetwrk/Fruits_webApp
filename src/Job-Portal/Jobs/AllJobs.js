@@ -46,8 +46,7 @@ const responsive = {
 // import { Bars } from  'react-loader-spinner'
 function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
   ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
-  PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
-  currentPage,setCurrentPage,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon,url
+  PageLoader,setPageLoader,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon,url
   ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon
 }) {
 
@@ -89,8 +88,8 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
 
   // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpage"))
 
-  // const [currentPage, setCurrentPage] = useState(1)
-  // const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage ? recordsperpage : 10)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [recordsPerPage, setrecordsPerPage] = useState(10)
   const[jobsPerPageValue,setJobsPerPageValue]=useState(10);
 
   const lastIndex = currentPage * recordsPerPage //10
@@ -368,10 +367,10 @@ function AllJobs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filterere
     setCurrentPage(npage)
   }
   function handleRecordchange(e) {
-    sessionStorage.setItem("recordsperpage", JSON.stringify(e.target.value));
-    let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpage"))
+    // sessionStorage.setItem("recordsperpage", JSON.stringify(e.target.value));
+    // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpage"))
     setJobsPerPageValue(Number(e.target.value));
-    setrecordsPerPage(recordsperpage)
+    setrecordsPerPage(Number(e.target.value))
     setCurrentPage(1)
   }
 

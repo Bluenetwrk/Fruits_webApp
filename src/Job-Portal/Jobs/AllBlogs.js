@@ -41,8 +41,7 @@ const responsive = {
 
 function Blogs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
   ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
-  PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
-  currentPage,setCurrentPage,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon
+  PageLoader,setPageLoader,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon
   ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon
 }) {
   const [selectedOption, setSelectedOption] = useState(options[0]);
@@ -77,8 +76,8 @@ function Blogs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredj
 
   // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
 
-  // const [currentPage, setCurrentPage] = useState(1)
-  // const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage ? recordsperpage : 10)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [recordsPerPage, setrecordsPerPage] = useState(10)
   const[jobsPerPageValue,setJobsPerPageValue]=useState(10);
 
   const lastIndex = currentPage * recordsPerPage //10
@@ -319,10 +318,10 @@ function Blogs({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredj
   }
 
   function handleRecordchange(e) {
-    sessionStorage.setItem("recordsperpageHome", JSON.stringify(e.target.value));
-    let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
+    // sessionStorage.setItem("recordsperpageHome", JSON.stringify(e.target.value));
+    // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
     setJobsPerPageValue(Number(e.target.value));
-    setrecordsPerPage(recordsperpage)
+    setrecordsPerPage(Number(e.target.value))
     setCurrentPage(1)
   }
 
@@ -595,10 +594,10 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
 
       {screenSize.width > 850 ?
         <>
-      
-        <h2 style={{marginLeft:"10px", fontWeight:"800", marginTop:"55px", marginBottom:"-15px"}}> Blogs  </h2>
-
-
+       {EmployeeAuth?
+        <h2 style={{marginLeft:"10px", fontWeight:"800", marginTop:"6px", marginBottom:"-15px"}}> Blogs  </h2>:
+             <h2 style={{marginLeft:"10px", fontWeight:"800", marginTop:"55px", marginBottom:"-15px"}}> Blogs  </h2>
+       }
           <div className={styles.JobtitleFilterWrapper}>
             <buton className={ Active.length===0? styles.active:styles.JobtitleFilter} onClick={() => { getjobs() }}>All</buton>
             {

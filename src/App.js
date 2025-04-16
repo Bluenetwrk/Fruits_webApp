@@ -87,9 +87,9 @@ function App() {
    const [Active, setActive] = useState([])
    const [jobTagsIds, setJobTagsIds] = useState([])
    const [PageLoader, setPageLoader] = useState(false)
-   let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
-   const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage ? recordsperpage : 10)
-   const [currentPage, setCurrentPage] = useState(1)
+  //  let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
+   const [recordsPerPages, setrecordsPerPageNo] = useState(10)
+   const [currentPageNo, setCurrentPages] = useState(1)
    const [totalCount, settotalCount] = useState()
 
    const [FilCandidate, setFilCandidate] = useState([])
@@ -103,7 +103,7 @@ const [showDriveFlash, setShowDriveFlash] = useState(false);
     setJobTagsIds([])
 
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
-    await axios.get(`/StudentProfile/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
+    await axios.get(`/StudentProfile/getLimitJobs/${recordsPerPages}`, { params: { currentPageNo }, headers })
 
       .then((res) => {
         let result = (res.data)
@@ -547,7 +547,7 @@ const [showDriveFlash, setShowDriveFlash] = useState(false);
     setNoPageFilter(false)
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
     // await axios.get("/jobpost/getHomejobs", { headers })
-    await axios.get(`/jobpost/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
+    await axios.get(`/jobpost/getLimitJobs/${recordsPerPages}`, { params: { currentPageNo }, headers })
       .then((res) => {
         let result = (res.data)
         gettotalcount()
@@ -858,7 +858,7 @@ const [showDriveFlash, setShowDriveFlash] = useState(false);
     setNoPageFilter(false)
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
     // await axios.get("StudentProfile/getAllJobseekers", { headers })
-    await axios.get(`/StudentProfile/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
+    await axios.get(`/StudentProfile/getLimitJobs/${recordsPerPages}`, { params: { currentPageNo }, headers })
 
       .then((res) => {
         let result = (res.data)
@@ -993,9 +993,6 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               Active={Active} setActive={setActive}
               jobTagsIds={jobTagsIds} setJobTagsIds={setJobTagsIds}
               PageLoader={PageLoader} setPageLoader={setPageLoader}
-              recordsperpage={recordsperpage}
-              recordsPerPage={recordsPerPage} setrecordsPerPage={setrecordsPerPage}
-              currentPage={currentPage} setCurrentPage={setCurrentPage}
               totalCount={totalCount} settotalCount={settotalCount}
               search={search}
               getjobs={getjobs}
@@ -1019,9 +1016,6 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               Active={Active} setActive={setActive}
               jobTagsIds={jobTagsIds} setJobTagsIds={setJobTagsIds}
               PageLoader={PageLoader} setPageLoader={setPageLoader}
-              recordsperpage={recordsperpage}
-              recordsPerPage={recordsPerPage} setrecordsPerPage={setrecordsPerPage}
-              currentPage={currentPage} setCurrentPage={setCurrentPage}
               totalCount={totalCount} settotalCount={settotalCount}
               search={search}
               getjobs={getjobs}
@@ -1043,9 +1037,6 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
              Active={Active} setActive={setActive}
              jobTagsIds={jobTagsIds} setJobTagsIds={setJobTagsIds}
              PageLoader={PageLoader} setPageLoader={setPageLoader}
-             recordsperpage={recordsperpage}
-             recordsPerPage={recordsPerPage} setrecordsPerPage={setrecordsPerPage}
-             currentPage={currentPage} setCurrentPage={setCurrentPage}
              totalCount={totalCount} settotalCount={settotalCount}
              search={search}
              getjobs={getjobs}
@@ -1082,9 +1073,6 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
           Active={Active} setActive={setActive}
           jobTagsIds={jobTagsIds} setJobTagsIds={setJobTagsIds}
           PageLoader={PageLoader} setPageLoader={setPageLoader}
-          recordsperpage={recordsperpage}
-          recordsPerPage={recordsPerPage} setrecordsPerPage={setrecordsPerPage}
-          currentPage={currentPage} setCurrentPage={setCurrentPage}
           totalCount={totalCount} settotalCount={settotalCount}
           searchs={searchs}
           getjobs={getjobs}
@@ -1114,9 +1102,6 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               Active={Active} setActive={setActive}
               jobTagsIds={jobTagsIds} setJobTagsIds={setJobTagsIds}
               PageLoader={PageLoader} setPageLoader={setPageLoader}
-              recordsperpage={recordsperpage}
-              recordsPerPage={recordsPerPage} setrecordsPerPage={setrecordsPerPage}
-              currentPage={currentPage} setCurrentPage={setCurrentPage}
               totalCount={totalCount} settotalCount={settotalCount}
               searchs={searchs}
               getjobs={getjobs}
@@ -1148,9 +1133,6 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             Active={Active} setActive={setActive}
             jobTagsIds={jobTagsIds} setJobTagsIds={setJobTagsIds}
             PageLoader={PageLoader} setPageLoader={setPageLoader}
-            recordsperpage={recordsperpage}
-            recordsPerPage={recordsPerPage} setrecordsPerPage={setrecordsPerPage}
-            currentPage={currentPage} setCurrentPage={setCurrentPage}
             totalCount={totalCount} settotalCount={settotalCount}
             search={search}
             getjobs={getjobs}
@@ -1184,9 +1166,6 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               Active={Active} setActive={setActive}
               jobTagsIds={jobTagsIds} setJobTagsIds={setJobTagsIds}
               PageLoader={PageLoader} setPageLoader={setPageLoader}
-              recordsperpage={recordsperpage}
-              recordsPerPage={recordsPerPage} setrecordsPerPage={setrecordsPerPage}
-              currentPage={currentPage} setCurrentPage={setCurrentPage}
               totalCount={totalCount} settotalCount={settotalCount}
               search={search}
               getjobs={getjobs}
@@ -1197,8 +1176,6 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             Active={Active} setActive={setActive} 
             getjobs={getjobs}  setJobs={setJobs} 
             count={count} setCount={setCount}
-            currentPage={currentPage} setCurrentPage={setCurrentPage}
-            recordsPerPage={recordsPerPage} setrecordsPerPage={setrecordsPerPage}
             nopageFilter={nopageFilter} setNoPageFilter={setNoPageFilter}
             />} />
             <Route path="/support/help/:id" element={<HelpDetails/>} />
