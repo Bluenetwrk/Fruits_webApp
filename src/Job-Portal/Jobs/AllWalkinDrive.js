@@ -42,8 +42,7 @@ const responsive = {
 
 function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
   ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
-  jobTagsIds,setJobTagsIds,PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
-  currentPage,setCurrentPage,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon
+  jobTagsIds,setJobTagsIds,PageLoader,setPageLoader,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon
   ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon,sortedFilteredDriveJobs
 }) {
 
@@ -77,7 +76,10 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
   //     navigate("/alljobs")
   //   }
   // }, [])
+  // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
 
+  const [currentPage, setCurrentPage] = useState(1)
+  const [recordsPerPage, setrecordsPerPage] = useState(10)
 
   const[jobsPerPageValue,setJobsPerPageValue]=useState(10);
 
@@ -343,10 +345,10 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
   }
 
   function handleRecordchange(e) {
-    sessionStorage.setItem("recordsperpageHome", JSON.stringify(e.target.value));
-    let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
+    // sessionStorage.setItem("recordsperpageHome", JSON.stringify(e.target.value));
+    // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
     setJobsPerPageValue(Number(e.target.value));
-    setrecordsPerPage(recordsperpage)
+    setrecordsPerPage(Number(e.target.value))
     setCurrentPage(1)
   }
 

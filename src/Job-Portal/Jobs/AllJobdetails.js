@@ -351,7 +351,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
                <i class='fas fa-caret-square-left' style={{fontSize:"small", color: "white",marginLeft:"2px", marginLeft:"-2px" }}></i>    Prev
           </button>
           <h2 style={{display:"flex",alignItems:"center",margin:"1px",marginTop:"14px"}}>{index+1}</h2>
-          <button className={styles.jobdetailBackBtn} style={{padding:"10px",marginLeft:"2px",zIndex:"999"}}
+          <button className={styles.jobdetailBackBtn} style={{padding:"10px",marginLeft:"2px",zIndex:"99"}}
             onClick={incIndex} >
              Next  <i class='fas fa-caret-square-right' style={{fontSize:"small", color: "white",marginLeft:"0px", marginLeft:"-2px" }}></i>    
           </button>

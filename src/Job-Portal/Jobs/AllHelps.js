@@ -8,8 +8,7 @@ import styles from "./Allobs.module.css"
 import { useNavigate } from "react-router-dom";
 import {jobTags} from '../Tags'
 
-function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,currentPage,setCurrentPage,
-  recordsPerPage, setrecordsPerPage,nopageFilter,setNoPageFilter
+function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageFilter,setNoPageFilter
 }) {
   const [Contact, setContact] = useState([]);
   const screenSize = useScreenSize();
@@ -22,12 +21,17 @@ function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,current
   const npage=1;
   const number = [...Array(npage + 1).keys()].slice(1)
   const navigate = useNavigate();
+//  let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageSearchHome"))
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const [recordsPerPage, setrecordsPerPage] = useState(10)
+
 
   function handleRecordchange(e) {
-    sessionStorage.setItem("recordsperpageHome", JSON.stringify(e.target.value));
-    let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
+    // sessionStorage.setItem("recordsperpageHome", JSON.stringify(e.target.value));
+    // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageHome"))
     setJobsPerPageValue(Number(e.target.value));
-    setrecordsPerPage(recordsperpage)
+    setrecordsPerPage(Number(e.target.value))
     setCurrentPage(1)
   }
 

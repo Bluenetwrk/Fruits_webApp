@@ -41,8 +41,7 @@ const responsive = {
 
 function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
   ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
-  PageLoader,setPageLoader,recordsperpage,recordsPerPage, setrecordsPerPage,
-  currentPage,setCurrentPage,totalCount,settotalCount,searchs,getjobs,gettotalcount,searchIcon
+  PageLoader,setPageLoader,totalCount,settotalCount,searchs,getjobs,gettotalcount,searchIcon
   ,FilCandidate,setFilCandidate,getAllJobSeekers,Candidate,setCandidate
   ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon
 }) {
@@ -68,8 +67,8 @@ function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,F
 
   // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageSerachCand"))
 
-  // const [currentPage, setCurrentPage] = useState(1)
-  // const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage?recordsperpage:10)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [recordsPerPage, setrecordsPerPage] = useState(10)
 
   const lastIndex = currentPage * recordsPerPage //10
   const firstIndex = lastIndex - recordsPerPage //0
@@ -200,9 +199,9 @@ function SearchCandidate({nopageFilter,setNoPageFilter,searchKey, setsearchKey,F
   }
 
   function handleRecordchange(e){  
-    sessionStorage.setItem("recordsperpageSerachCand", JSON.stringify(e.target.value));
-    let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageSerachCand"))
-    setrecordsPerPage(recordsperpage) 
+    // sessionStorage.setItem("recordsperpageSerachCand", JSON.stringify(e.target.value));
+    // let recordsperpage = JSON.parse(sessionStorage.getItem("recordsperpageSerachCand"))
+    setrecordsPerPage(Number(e.target.value))
     setCurrentPage(1)
   }
     // const [count, setCount]=useState(1)
