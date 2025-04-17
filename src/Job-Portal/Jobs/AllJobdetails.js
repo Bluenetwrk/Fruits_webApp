@@ -47,7 +47,8 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
   let indexing = parseInt(urlParams.get("index"), 10);
   const [index, setIndex]=useState(indexing)
   let lastIndex=useRef(0)
-  const userTags = location.state?.selectedTag;
+  const userTags = location.state?.selectedTag?location.state.selectedTag:"";
+ const transferRecords=location.state?.transferRecords?location.state.transferRecords:"";
   const allJobs=useRef([])
   // console.log("ut",userTags)
   let studentAuth = localStorage.getItem("StudLog")
@@ -107,9 +108,67 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
             // console.log("tags-",allJobs,"lastIndex",lastIndex)
           })
       } 
+
+      async function getMyAppliedjobs() {
+        let userid = JSON.parse(localStorage.getItem("StudId"))
+        const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+        setTimeout(async () => {
+    
+          await axios.get(`/jobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
+            .then((res) => {
+              let result = (res.data)
+              let sortedate = result.sort(function (a, b) {
+                return new Date(b.createdAt) - new Date(a.createdAt);
+              });
+              lastIndex.current=sortedate.length;  
+              allJobs.current=sortedate 
+            }).catch((err) => {
+              alert("backend arror occured")
+            })
+        }, 1000)
+      }
+
+      async function getMyPostedjobs() {
+        let userid = JSON.parse(localStorage.getItem("EmpIdG"))
+        const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("EmpLog"))) };
+        setTimeout(async () => {
+          await axios.get(`/jobpost/getPostedjobs/${empId}`, {headers})
+            .then((res) => {
+              let result = (res.data)
+              let sortedate = result.sort(function (a, b) {
+                return new Date(b.createdAt) - new Date(a.createdAt);
+              });
+              lastIndex.current=sortedate.length;  
+              allJobs.current=sortedate 
+            }).catch((err) => {
+              alert("back error occured")
+            })
+        }, 1000)
+    
+      }
+    
+      async function getMyCarrerAppliedjobs() {
+        let userid = JSON.parse(localStorage.getItem("StudId"))
+        const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+        setTimeout(async () => {
+    
+          await axios.get(`/Careerjobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
+            .then((res) => {
+              let result = (res.data)
+              let sortedate = result.sort(function (a, b) {
+                return new Date(b.createdAt) - new Date(a.createdAt);
+              });
+              lastIndex.current=sortedate.length;  
+              allJobs.current=sortedate 
+            }).catch((err) => {
+              alert("backend arror occured")
+            })
+        }, 1000)
+      }
       
       useEffect(()=>{
           // console.log(userTags)
+        if(transferRecords===""){  
           if(userTags.current===""||userTags.current===undefined){
             if(studentAuth)
               getAllJobseekersjobs()
@@ -120,7 +179,17 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
           else{ 
            getTagValue() 
          } 
-        },[])   
+      }
+      else{
+        // console.log("executing else")
+        if(transferRecords==="AppliedJobs")
+         getMyAppliedjobs()
+        else if(transferRecords==="PostedJobs")
+          getMyPostedjobs()
+        else if(transferRecords==="CarrerAppliedJobs")
+          getMyCarrerAppliedjobs()        
+      }
+  },[])   
 
 
         const incIndex=()=>{

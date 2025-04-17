@@ -35,7 +35,7 @@ function BlogpostedByEmp(props) {
 
   const [Filtereredjobs, setFiltereredjobs] = useState([])
   const [nopageFilter, setNoPageFilter]=useState(false)
-
+  const [transferRecords, setTransferRecords] = useState("postedBlogs")
   const [isReadMore, setIsReadMore] = useState(true)
   const navigate = useNavigate()
 
@@ -49,12 +49,14 @@ function BlogpostedByEmp(props) {
       await axios.get(`/BlogRoutes/getPostedjobs/${empId}`, {headers})
         .then((res) => {
           let result = (res.data)
+          console.log("setmyjobs",result)
           let sortedate = result.sort(function (a, b) {
             return new Date(b.createdAt) - new Date(a.createdAt);
           });
           setMyjobs(sortedate)
           setmyjobsforFilter(sortedate)
-    setPageLoader(false)
+          setPageLoader(false)
+ 
           if (res.data.length == 0) {
             setNoJobFound("You have not posted any job")
           }
@@ -265,7 +267,7 @@ function handleRecordchange(e){
   setrecordsPerPage(recordsperpage)  
   setCurrentPage(1)
 }
-
+console.log("dhdgsgdg",records)
 
   return (
     <>
@@ -368,14 +370,13 @@ function handleRecordchange(e){
                 return (
 
                   <ul className={styles.ul} key={i}>
-
+     
                     {/* <li className={styles.li}>
                      
                       {items.companyName}
                       </li> */}
 
-                    <li className={`${styles.li} ${styles.BJtitle}`} style={{ color: "blue", cursor:"pointer" }} onClick={() =>
-                       { navigate(`/Blogdetails/${btoa(items._id)}`) }}>{items.jobTitle.toUpperCase()}</li>
+                    <li className={`${styles.li} ${styles.BJtitle}`} style={{ color: "blue", cursor:"pointer" }} onClick={() => navigate(`/Blogdetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})}>{items.jobTitle.toUpperCase()}</li>
                    
                     <li className={`${styles.li} ${styles.BPdate}`}>
                       {new Date(items.createdAt).toLocaleString(
@@ -470,10 +471,11 @@ myjobs.map((job, i) => {
                         
                         <div className={styles.JobTitleDateWrapper}>
         <p className={styles.jobTitle} onClick={() => {
-  window.scrollTo({
-    top:0
-  })
-  navigate(`/Blogdetails/${btoa(job._id)}`)}} >{job.jobTitle.toUpperCase()} </p>                      
+  window.scrollTo({ top: 0 });
+  navigate(`/Blogdetails/${btoa(job._id)}?index=${i}`, {
+    state: { transferRecords },
+  });
+}}>{job.jobTitle.toUpperCase()} </p>                      
         <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
           "en-US",
           {
