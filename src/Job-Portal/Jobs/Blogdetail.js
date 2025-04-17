@@ -134,8 +134,8 @@ async function deletComment(id){
  let indexing = parseInt(urlParams.get("index"), 10);
  const [index, setIndex]=useState(indexing)
  let lastIndex=useRef(0)
- const userTags = location.state?.selectedTag;
- console.log(userTags)
+ const userTags = location.state?.selectedTag?location.state.selectedTag:"";
+ const transferRecords=location.state?.transferRecords?location.state.transferRecords:"";
  const allJobs=useRef([])
 
  async function getAllHomejobs() {
@@ -172,9 +172,39 @@ async function deletComment(id){
            // console.log("tags-",allJobs,"lastIndex",lastIndex)
          })
      } 
+
+
+    //  let empId = JSON.parse(localStorage.getItem("EmpIdG"))
+
+     async function getMyPostedBlogs() {
+       let userid = JSON.parse(localStorage.getItem("EmpIdG"))
+       const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("EmpLog"))) };
+       setTimeout(async () => {
+         await axios.get(`/BlogRoutes/getPostedjobs/${empId}`, {headers})
+           .then((res) => {
+             let result = (res.data)
+             let sortedate = result.sort(function (a, b) {
+               return new Date(b.createdAt) - new Date(a.createdAt);
+             });
+
+             lastIndex.current=sortedate.length;  
+             allJobs.current=sortedate 
+             console.log("alljobs",allJobs)
+             if (res.data.length == 0) {
+              //  setNoJobFound("You have not posted any job")
+             }
+   
+           }).catch((err) => {
+             alert("back error occured")
+           })
+       }, 1000)
+   
+     }
      
      useEffect(()=>{
-         console.log("userTags",userTags)
+        //  console.log("transfer", transferRecords)
+      if(transferRecords===""){
+        // console.log("if")
          if(userTags.current===""||userTags.current===undefined){
           getAllHomejobs()
          //  console.log("exe home")
@@ -182,7 +212,13 @@ async function deletComment(id){
          else{ 
           getTagValue() 
         } 
-       },[])   
+      }
+      else{
+        // console.log("tr",transferRecords)
+        if(transferRecords==="postedBlogs")
+          getMyPostedBlogs()
+      }
+    },[])   
 
 
        const incIndex=()=>{

@@ -239,6 +239,7 @@ function JoppostedByEmp(props) {
   const records = myjobs.slice(firstIndex, lastIndex)//0,5
   const npage = Math.ceil(myjobs.length / recordsPerPage) // last page
   const number = [...Array(npage + 1).keys()].slice(1)
+  const [transferRecords, setTransferRecords] = useState("PostedJobs")
 
   function firstPage(id){
     setCurrentPage(1)
@@ -376,8 +377,7 @@ function handleRecordchange(e){
                       {items.companyName}
                       </li>
 
-                    <li className={`${styles.li} ${styles.Jtitle}`} style={{ color: "blue", cursor:"pointer" }} onClick={() =>
-                       { navigate(`/Jobdetails/${btoa(items._id)}`) }}>{items.jobTitle.toUpperCase()}</li>
+                    <li className={`${styles.li} ${styles.Jtitle}`} style={{ color: "blue", cursor:"pointer" }} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})}>{items.jobTitle.toUpperCase()}</li>
                     {/* <li className={`${styles.li} ${styles.liDescription}`}> 
                     {items.jobDescription? HTMLReactParser(items.jobDescription.toString()) :""}
                       <span style={{ color: "blue", cursor:"pointer" }} onClick={() => { navigate(`/Jobdetails/${btoa(items._id)}`) }} >...see more</span>
@@ -478,7 +478,7 @@ myjobs.map((job, i) => {
   window.scrollTo({
     top:0
   })
-  navigate(`/Jobdetails/${btoa(job._id)}`)}} >{job.jobTitle.toUpperCase()} </p>                      
+  navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {transferRecords, },})}} >{job.jobTitle.toUpperCase()} </p>                      
         <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
           "en-US",
           {

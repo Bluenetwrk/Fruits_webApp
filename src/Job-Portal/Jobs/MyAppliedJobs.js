@@ -29,6 +29,7 @@ function AppledJobs(props) {
   const screenSize = useScreenSize();
   const [Filtereredjobs, setFiltereredjobs] = useState([])
   const [nopageFilter, setNoPageFilter] = useState(false)
+  const [transferRecords, setTransferRecords] = useState("AppliedJobs")
 
 
 
@@ -267,7 +268,7 @@ function AppledJobs(props) {
     setrecordsPerPage(recordsperpage)
     setCurrentPage(1)
   }
-
+console.log(records)
 
   return (
     <>
@@ -359,7 +360,7 @@ function AppledJobs(props) {
 
                 records.map((items, i) => {
                   return (
-
+                
                     <ul className={styles.ul} key={i}>
                       <li style={{ cursor: "pointer", textDecoration: "underline" }} className={styles.li} onClick={() => { navigate(`/CheckEmpHalfProfile/${btoa(items.empId)}`) }} >
                         {/* {items.Logo ?
@@ -368,7 +369,7 @@ function AppledJobs(props) {
                         {items.companyName}</li>
 
                       <li className={`${styles.li} ${styles.JtitleR}`}
-                      onClick={() => { navigate(`/Jobdetails/${btoa(items._id)}`) }}>{items.jobTitle.toUpperCase()}</li>
+                      onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})}>{items.jobTitle.toUpperCase()}</li>
                       <li className={`${styles.li} ${styles.JobType}`}>{items.jobtype}</li>
 
                       <li className={`${styles.li} ${styles.Pdate}`}>
@@ -459,7 +460,7 @@ function AppledJobs(props) {
                           window.scrollTo({
                             top: 0
                           })
-                          navigate(`/Jobdetails/${btoa(job._id)}`)
+                          navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {transferRecords, },})
                         }} >{job.jobTitle.toUpperCase()} </p>
                         <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                           "en-US",
