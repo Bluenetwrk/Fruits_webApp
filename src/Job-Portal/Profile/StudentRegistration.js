@@ -31,6 +31,14 @@ function StudentUpdateProfile(props) {
     });
   }, [])
 
+  const [city, setCity] = useState("Banglore")
+  const [selectedCountry, setSelectedCountry] = useState("India");
+ 
+  useEffect(()=>{
+    setCity(props.selectedlocationOption.value)
+    setSelectedCountry(props.selectedlocationOption.country)
+  },[props.selectedlocationOption])
+  
   let colleges=[
     {value:'Others', label: 'Others'},
     {value:'Indian Institute Of Technology, Kharagpur', label: 'Indian Institute Of Technology, Kharagpur'},
@@ -236,14 +244,14 @@ function StudentUpdateProfile(props) {
       setcollege(tag)    
       setOthers("")  
   }  
-    const [city, setcity] = useState([])
-
-    const CTags=[{value:'Bangalore', label: 'Bangalore'},{value:'Chennai', label:'Chennai' },
-      {value:'Hyderabad', label: 'Hyderabad'}, {value:'Delhi', label: 'Delhi'},{value:'Mumbai', label: 'Mumbai' }]
     
-      function handleChangeCityTag(tag){
-      setcity(tag)   
-  }    
+
+  //   const CTags=[{value:'Bangalore', label: 'Bangalore'},{value:'Chennai', label:'Chennai' },
+  //     {value:'Hyderabad', label: 'Hyderabad'}, {value:'Delhi', label: 'Delhi'},{value:'Mumbai', label: 'Mumbai' }]
+    
+  //     function handleChangeCityTag(tag){
+  //     setcity(tag)   
+  // }    
 
   let navigate = useNavigate()
 
@@ -428,7 +436,30 @@ if(confirm){
     setOthers(e.target.value);
     // console.log(e.target.value)
   };
-  const [employers, setEmployers] = useState([]); 
+  // const [employers, setEmployers] = useState([]); 
+
+  // const addEmployer = () => {
+  //   if (employers.length < 3) {
+  //     setEmployers([...employers, ""]);
+  //   }
+  // };
+
+  // const removeEmployer = (index) => {
+  //   const updatedEmployers = [...employers];
+  //   updatedEmployers.splice(index, 1);
+  //   setEmployers(updatedEmployers);
+  // };
+
+  // const handleEmployerChange = (index, value) => {
+  //   const updatedEmployers = [...employers];
+  //   updatedEmployers[index] = value;
+  //   setEmployers(updatedEmployers);
+  //   // console.log(employers)
+  // };
+
+  const [employers, setEmployers] = useState([]);
+  const inputRefs = useRef([]);
+  const collegeInputRef = useRef(null);
 
   const addEmployer = () => {
     if (employers.length < 3) {
@@ -440,14 +471,71 @@ if(confirm){
     const updatedEmployers = [...employers];
     updatedEmployers.splice(index, 1);
     setEmployers(updatedEmployers);
+    inputRefs.current.splice(index, 1); // also remove ref
   };
 
   const handleEmployerChange = (index, value) => {
     const updatedEmployers = [...employers];
     updatedEmployers[index] = value;
     setEmployers(updatedEmployers);
-    // console.log(employers)
   };
+
+  // Hook up Google Places Autocomplete
+  useEffect(() => {
+    employers.forEach((_, index) => {
+      if (inputRefs.current[index] && !inputRefs.current[index].autocomplete) {
+        const autocomplete = new window.google.maps.places.Autocomplete(
+          inputRefs.current[index],
+          {
+            fields: ["formatted_address", "geometry", "address_components", "place_id", "name"],
+          }
+        );
+
+        autocomplete.addListener("place_changed", () => {
+          const place = autocomplete.getPlace();
+          console.log("Selected Place:", place);
+        
+          if (place && place.formatted_address) {
+            const displayValue = place.name && place.name !== place.formatted_address
+              ? `${place.name}, ${place.formatted_address}`
+              : place.formatted_address;
+        
+            handleEmployerChange(index, displayValue);
+          }
+        });
+        
+
+        // Attach the autocomplete instance to the input ref to avoid duplicate listeners
+        inputRefs.current[index].autocomplete = autocomplete;
+      }
+    });
+
+    console.log()
+  }, [employers]);
+
+  useEffect(() => {
+    if (collegeInputRef.current && !collegeInputRef.current.autocomplete) {
+      const autocomplete = new window.google.maps.places.Autocomplete(collegeInputRef.current, {
+        fields: ["formatted_address", "geometry", "address_components", "place_id", "name"],
+      });
+  
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        if (place && place.formatted_address) {
+          const displayValue =
+            place.name && place.name !== place.formatted_address
+              ? `${place.name}, ${place.formatted_address}`
+              : place.formatted_address;
+  
+          setcollege(displayValue);
+        }
+      });
+  
+      collegeInputRef.current.autocomplete = autocomplete; // attach instance
+    }
+  }, []);
+  
+  
 
 const[helpClicked, setHelpClicked]=useState(false)
  let helpRef=useRef();
@@ -483,7 +571,7 @@ const helpData = [
 },
    ];
 
-   const [selectedCountry, setSelectedCountry] = useState("");
+   
   
   const countries = ["India", "USA", "Singapore", "Australia", "UK"];
 
@@ -492,7 +580,15 @@ const helpData = [
     console.log("selected value",selectedCountry)
   };
 
+  useEffect(()=>{
+    console.log("college",college)
 
+  },[college])
+
+  useEffect(()=>{
+    console.log("employer",employers)
+  },[employers])
+  
   return (
     <>
 
@@ -576,25 +672,27 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                   {/* <span style={{color:"blue"}}>{city}</span> */}
                 </h4>
                 {/* <input maxLength="15" className={styles.input} value={city} onChange={(e) => { setCity(e.target.value) }} type="text" /> */}
-                <div style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}>
-                           <CreatableSelect  
+                {/* <div style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}> */}
+                           {/* <CreatableSelect  
                   // isMulti={true}
                           options={CTags}
                           value={city}
                           onChange={handleChangeCityTag}     
-                        />
-                         </div>
+                        /> */}
+                         {/* </div> */}
+                         <input className={styles.input}disabled value={city} ></input>
             
               </label>
 
               <label className={styles.inputName}>
                 <h4>Country:</h4>
-                <select className={styles.input} style={{height:"34px"}}  value={selectedCountry} onChange={handleCountryChange}>
+                {/* <select className={styles.input} style={{height:"34px"}}  value={selectedCountry} onChange={handleCountryChange}>
                 <option value="" >Select a country</option>
                 {countries.map((country, index) => (
                   <option key={index} value={country}>{country}</option>
                 ))}
-              </select>
+              </select> */}
+              <input className={styles.input}disabled value={selectedCountry} ></input>
 
              </label>
 
@@ -643,15 +741,17 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                 <input maxLength="3" className={styles.input} value={Experiance} onChange={(e) => { handleExperiance(e) }} type="text" />
               </label>
               <label className={styles.inputName}>
-                <h4>College:</h4>
-                <div style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}>
-                <CreatableSelect  
-                  options={colleges}
-                  value={college}
-                  onChange={handleCollege}   
-                />
-                </div>
-              </label>
+  <h4>College:</h4>
+  <input
+    type="text"
+    ref={collegeInputRef}
+    value={college}
+    onChange={(e) => setcollege(e.target.value)}
+    className={styles.input}
+    style={{ width: "81%", marginLeft: "18px" }}
+    placeholder="Search for your college"
+  />
+</label>
 
             {college.value==="Others" &&(
                <label className={styles.inputName} style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}>
@@ -722,7 +822,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
             )} */}
 
-   <div style={{ maxWidth: "400px", margin: "auto", padding: "10px",marginleft:"10px" }}>
+   {/* <div style={{ maxWidth: "400px", margin: "auto", padding: "10px",marginleft:"10px" }}>
       <div style={{display:"flex",gap:"16px"}}>
       <h2 style={{ fontSize: "13px", marginBottom: "10px",marginTop:"15px",marginLeft:"10px" }}>Previous Employers</h2>
       {employers.length < 3 && (
@@ -751,6 +851,58 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
             placeholder={`Employer ${index + 1}`}
             value={employer}
             onChange={(e) => handleEmployerChange(index, e.target.value)}
+            style={{ flex: "1", padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
+          />
+          <button
+            onClick={() => removeEmployer(index)}
+            style={{
+              background: "red",
+              color: "#fff",
+              border: "none",
+              padding: "6px 10px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            -
+          </button>
+        </div>
+      ))}
+    </div> */}
+
+<div style={{ maxWidth: "400px", margin: "auto", padding: "10px" }}>
+      <div style={{ display: "flex", gap: "16px" }}>
+        <h2 style={{ fontSize: "13px", marginBottom: "10px", marginTop: "15px", marginLeft: "10px" }}>
+          Previous Employers
+        </h2>
+        {employers.length < 3 && (
+          <button
+            onClick={addEmployer}
+            style={{
+              marginTop: "10px",
+              backgroundColor: "rgb(40,4,99)",
+              color: "white",
+              border: "none",
+              padding: "6px 10px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            +
+          </button>
+        )}
+      </div>
+
+      {employers.map((employer, index) => (
+        <div key={index} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+          <input
+            type="text"
+            placeholder={`Employer ${index + 1}`}
+            value={employer}
+            onChange={(e) => handleEmployerChange(index, e.target.value)}
+            ref={(el) => (inputRefs.current[index] = el)}
             style={{ flex: "1", padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
           />
           <button
@@ -841,7 +993,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
          <h1 style={{marginRight:"0px",fontSize:"21px",marginLeft:"10px"}}>New Jobseeker Registration Form</h1>
  
          <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
-<label className={styles.MobileinputName}>
+             <label className={styles.MobileinputName}>
                 <h4 className={styles.MobileName}>Name:</h4>
                 <input maxLength="20" className={styles.Mobileinput} disabled value={name} onChange={(e) => { setname(e.target.value) }} type="text" />
               </label>
@@ -855,25 +1007,27 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
               <label className={styles.MobileinputName}>
                 <h4>City: </h4>
-                <div style={{ width:"88%", marginLeft:"10px"}}>
+                {/* <div style={{ width:"88%", marginLeft:"10px"}}> */}
 
-                <CreatableSelect  
+                {/* <CreatableSelect  
                   // isMulti={true}
                           options={CTags}
                           value={city}
                           onChange={handleChangeCityTag}     
-                        />
-                        </div>
+                        /> */}
+                        {/* </div> */}
+                        <input className={styles.Mobileinput}disabled value={city} ></input>
               </label>
 
               <label className={styles.MobileinputName}>
                 <h4 className={styles.MobileName}>Country: </h4>
-                <select className={styles.Mobileinput} value={selectedCountry} onChange={handleCountryChange}>
+                <input className={styles.Mobileinput}disabled value={selectedCountry} ></input>
+                {/* <select className={styles.Mobileinput} value={selectedCountry} onChange={handleCountryChange}>
                 <option value="" >Select a country</option>
                 {countries.map((country, index) => (
                   <option key={index} value={country}>{country}</option>
                 ))}
-              </select>
+              </select> */}
 
               </label>
 
@@ -965,7 +1119,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
           </div>
 
 
-               <label className={styles.inputName}>
+               {/* <label className={styles.inputName}>
                 <h4 className={styles.MobileName}>College:</h4>
                 <div style={{ width:"88%", marginLeft:"10px"}}>
                 <CreatableSelect  
@@ -974,7 +1128,19 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                   onChange={handleCollege}   
                 />
                          </div>
-              </label>
+              </label> */}
+              <label className={styles.inputName}>
+  <h4>College:</h4>
+  <input
+    type="text"
+    ref={collegeInputRef}
+    value={college}
+    onChange={(e) => setcollege(e.target.value)}
+    className={styles.input}
+    style={{ width: "81%", marginLeft: "18px" }}
+    placeholder="Search for your college"
+  />
+</label>
 
               {college.value==="Others" &&(
                <label className={styles.inputName} style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}>
@@ -985,7 +1151,59 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
             )}
 
 <div style={{ maxWidth: "400px", margin: "auto", padding: "10px",marginleft:"10px" }}>
-      <div style={{display:"flex",gap:"16px"}}>
+<div style={{ maxWidth: "400px", margin: "auto", padding: "10px" }}>
+      <div style={{ display: "flex", gap: "16px" }}>
+        <h2 style={{ fontSize: "13px", marginBottom: "10px", marginTop: "15px", marginLeft: "10px" }}>
+          Previous Employers
+        </h2>
+        {employers.length < 3 && (
+          <button
+            onClick={addEmployer}
+            style={{
+              marginTop: "10px",
+              backgroundColor: "rgb(40,4,99)",
+              color: "white",
+              border: "none",
+              padding: "6px 10px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            +
+          </button>
+        )}
+      </div>
+
+      {employers.map((employer, index) => (
+        <div key={index} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+          <input
+            type="text"
+            placeholder={`Employer ${index + 1}`}
+            value={employer}
+            onChange={(e) => handleEmployerChange(index, e.target.value)}
+            ref={(el) => (inputRefs.current[index] = el)}
+            style={{ flex: "1", padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
+          />
+          <button
+            onClick={() => removeEmployer(index)}
+            style={{
+              background: "red",
+              color: "#fff",
+              border: "none",
+              padding: "6px 10px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              fontSize: "16px",
+            }}
+          >
+            -
+          </button>
+        </div>
+      ))}
+    </div>
+
+      {/* <div style={{display:"flex",gap:"16px"}}>
       <h2 style={{ fontSize: "13px", marginBottom: "10px",marginTop:"15px",marginLeft:"10px" }}>Previous Employers</h2>
       {employers.length < 3 && (
         <button
@@ -1030,8 +1248,9 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
             -
           </button>
         </div>
-      ))}
+      ))} */}
     </div>
+    
 
 
               <div style={{marginTop:"20px"}}>

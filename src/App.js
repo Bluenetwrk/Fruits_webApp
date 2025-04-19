@@ -956,12 +956,12 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
   
   const sortedFilteredDriveJobs = processDriveJobs(driveJobs);
      const options = [
-      { value: "bangalore", label: "Bangalore, India", img:location},
-      { value: "san Francisco", label: "San Francisco, USA", img:location},
-      { value: "new york", label: "New York, USA", img:location},
-      { value: "sydney", label: "Sydney, Australia", img:location},
-      { value: "london", label: "London, UK", img:  location},
-      { value: "berlin", label: "Berlin, Germany", img:location},
+      { value: "Bangalore", label: "Bangalore, India", country:"India", img:location},
+      { value: "San Francisco", label: "San Francisco, USA",country:"USA", img:location},
+      { value: "New york", label: "New York, USA", country:"USA", img:location},
+      { value: "Sydney", label: "Sydney, Australia", country:"Australia", img:location},
+      { value: "London", label: "London, UK", country:"UK", img:  location},
+      { value: "Berlin", label: "Berlin, Germany", country:"Germany", img:location},
     ];
    const [selectedlocationOption, setSelectedlocationOption] = useState(options[0]);
   return (
@@ -1141,7 +1141,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             />} />
             <Route path="/JobSeekerLogin" element={<StudentLogin />} />
             <Route path="/New-Registration" element={<NewRegistered />} />
-            <Route path="/Jobseeker-New-Registration" element={<StuNewRegistered />} />
+            <Route path="/Jobseeker-New-Registration" element={<StuNewRegistered selectedlocationOption={selectedlocationOption} />} />
             <Route path="/EmployeeLogin" element={<EmployeeLogin />} />
             <Route path="/JobDetails/:id" element={<Jobdetails />} />
             <Route path="/Blogdetails/:id" element={<Blogdetails />} />
