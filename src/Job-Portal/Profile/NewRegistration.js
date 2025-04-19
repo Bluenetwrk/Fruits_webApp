@@ -356,6 +356,7 @@ const [immage, setimmage] = useState()
     //   name, email, phoneNumber, Aadhar, panCard,CompanyName,CompanyContact, CompanyGSTIN, CompanyWebsite, CompanyAddress,
     //   CompanyEmail, TypeofOrganisation 
     // )
+
     await axios.post(`/EmpProfile/NewEmployeeRegistration`, { PrimeryuserDesignation, Secondaryusername, Secondaryuseremailid,
       Secondaryusercontactnumber,  name, email, phoneNumber, Aadhar, panCard, CompanyName, CompanyContact, CompanyGSTIN,
       CompanyWebsite,CompanyAddress,CompanyEmail, TypeofOrganisation,CompanyCIN, secondaryuserDesignation,AboutCompany},{headers})
@@ -467,10 +468,71 @@ const helpData = [
   const handleCountryChange = (event) => {
     setSelectedCountry(event.target.value);
     console.log("selected value",selectedCountry)
+ 
   };
   
 
-  return (
+  // ---------------------place api-----------------------
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    const loadScript = (url, callback) => {
+      const existingScript = document.getElementById("googleMaps");
+      if (!existingScript) {
+        const script = document.createElement("script");
+        script.src = url;
+        script.id = "googleMaps";
+        script.async = true;
+        script.defer = true;
+        script.onload = callback;
+        document.body.appendChild(script);
+      } else {
+        callback();
+      }
+    };
+
+    const initAutocomplete = () => {
+      if (!window.google) return;
+
+      const autocomplete = new window.google.maps.places.Autocomplete(
+        inputRef.current,
+        {
+          // Allows all place types: address, establishment, cities, regions
+          types: [], // Empty array means no restriction
+          fields: ["formatted_address", "geometry", "name", "place_id"],
+        }
+      );
+
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        console.log("Selected Place:", place);
+      
+        const address = place.formatted_address;
+        setCompanyAddress(address);
+      
+        console.log("Company :", address, CompanyAddress); // ✅ shows correct value
+      
+        if (!place.geometry) {
+          alert("No details available for: " + place.name);
+          return;
+        }
+  
+
+        // You can access: place.name, place.formatted_address, place.geometry.location, etc.
+      });
+    };
+
+    loadScript(
+      `https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ1-4QU6vh2XuUhENkFLY1YRX5barmKZk&libraries=places`,
+      initAutocomplete
+    );
+  }, []);
+  useEffect(() => {
+    console.log("Updated Company Address:", CompanyAddress);
+  }, [CompanyAddress]);
+
+
+ return (
     <>
 
       {/* <div className={styles.EntireFullWrapper}>
@@ -591,7 +653,7 @@ const helpData = [
 
             <label className={styles.inputName}>
               <h4>Company Address:</h4>
-              <input maxLength="200" className={styles.input} value={CompanyAddress} onChange={(e) => { handleCompanyAddress(e) }} type="text" />
+              <input  ref={inputRef} maxLength="200" className={styles.input} value={CompanyAddress} onChange={(e) => { handleCompanyAddress(e) }} type="text" />
             </label>
 
             <label className={styles.inputName}>
@@ -739,7 +801,7 @@ const helpData = [
               
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Company Address:</h4>
-              <input maxLength="90" className={styles.Mobileinput} value={CompanyAddress} onChange={(e) => {handleCompanyAddress(e) }} type="text" />
+              <input ref={inputRef} maxLength="90" className={styles.Mobileinput} value={CompanyAddress} onChange={(e) => {handleCompanyAddress(e) }} type="text" />
             </label>
 
             <label className={styles.MobileinputName}>
