@@ -191,6 +191,13 @@ function SidebarNav(props) {
         <p onClick={()=>{navigate("/"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Home </p>
        {EmployeeAuth&&(
         <p onClick={()=>{navigate("/Post-Help-Questions"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Post Help Questions </p>
+        
+       )
+
+       }
+           {EmployeeAuth&&(
+        <p onClick={()=>{navigate("/PostDrives"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Post Walkin Drive </p>
+        
        )
 
        }
