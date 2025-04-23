@@ -21,6 +21,7 @@ import GoogleImage from "../img/icons8-google-48.png"
 
 
 import {jobTags} from '../Tags'
+import { use } from 'react';
 
 function StudentUpdateProfile(props) {
   useEffect(() => {
@@ -293,7 +294,7 @@ alert("Invalid Primary email id")
     }, { headers })
       .then(async (res) => {
         let result = res.data
-        console.log(result)
+        // console.log(result)
         if (result == "success") {
           settopMessage("Success! Profile Registered successfully")
         } else if (result == "feilds are missing") {
@@ -493,7 +494,7 @@ if(confirm){
 
         autocomplete.addListener("place_changed", () => {
           const place = autocomplete.getPlace();
-          console.log("Selected Place:", place);
+          // console.log("Selected Place:", place);
         
           if (place && place.formatted_address) {
             const displayValue = place.name && place.name !== place.formatted_address
@@ -510,7 +511,7 @@ if(confirm){
       }
     });
 
-    console.log()
+    // console.log()
   }, [employers]);
 
   useEffect(() => {
@@ -577,18 +578,70 @@ const helpData = [
 
   const handleCountryChange = (event) => {
     setSelectedCountry(event.target.value);
-    console.log("selected value",selectedCountry)
+    // console.log("selected value",selectedCountry)
   };
 
-  useEffect(()=>{
-    console.log("college",college)
+  // useEffect(()=>{
+  //   console.log("college",college)
 
-  },[college])
+  // },[college])
 
-  useEffect(()=>{
-    console.log("employer",employers)
-  },[employers])
+  // useEffect(()=>{
+  //   console.log("employer",employers)
+  // },[employers])
   
+// --------------------qualification tab----------------
+const qualifications = [
+  {
+    main: "BE / B.Tech",
+    subs: ["Computer Science", "Electronics", "Mechanical", "Civil"],
+  },
+  {
+    main: "ME / M.Tech",
+    subs: ["Computer Science", "Embedded Systems", "Power Systems", "Thermal Engineering"],
+  },
+  {
+    main: "BCA",
+    subs: ["General", "Data Science", "Cloud Computing"],
+  },
+  {
+    main: "MCA",
+    subs: ["General", "AI & ML", "Cyber Security"],
+  },
+];
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [openIndex, setOpenIndex] = useState(null);
+  const [selected, setSelected] = useState("");
+  const containerRef = useRef(null);
+
+  const toggleMain = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const handleSelect = (value) => {
+    // setSelected(value);
+    setQualification(value)
+    setMenuOpen(false);
+    setOpenIndex(null);
+  };
+
+  // Handle outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setMenuOpen(false);
+        setOpenIndex(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // useEffect(()=>{
+  //   console.log("qualification",Qualification)
+  // },[qualifications])
+
   return (
     <>
 
@@ -731,10 +784,84 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                 <input maxLength="3" className={styles.input} value={currentCTC} onChange={(e) => {handleCurrentCTC(e)}} type="text" />
               </label>
 
-              <label className={styles.inputName}>
+              {/* <label className={styles.inputName}>
                 <h4>Qualification:</h4>
                 <input maxLength="6" className={styles.input} value={Qualification} onChange={(e) => {handleQualification(e) }} type="text" />
-              </label>
+              </label> */}
+              
+              <div ref={containerRef} style={{ position: "relative",}} className={styles.inputName}>
+                 <h4>Qualification:</h4>
+                 {/* Clickable Select Box */}
+                  <div  onClick={() => setMenuOpen((prev) => !prev)} style={{cursor: "pointer", marginTop:"-10px", display:"flex", alignItems:"center"}} className={styles.input}>
+                     <div style={{paddingLeft:"7px"}}>
+                     {Qualification? `${Qualification}` : "Select your qualification"}
+                  </div>
+                 </div>
+
+                {/* Menu Dropdown */}
+                 {menuOpen && (
+                    <div
+                      style={{
+                        marginTop: "10px",
+                        marginLeft:"7px",
+                        border: "1px solid #ddd",
+                        borderRadius: "6px",
+                        padding: "10px",
+                        background: "#fff",
+                        position: "absolute",
+                        width: "81%",
+                        zIndex: 10,
+                        maxHeight:"200px",
+                        overflowY: "auto",
+                      }}
+                    >
+                   {qualifications.map((item, index) => (
+                     <div key={index} style={{ marginBottom: "10px" }}>
+                       <button
+                         onClick={() => toggleMain(index)}
+                         style={{
+                           width: "100%",
+                           padding: "10px",
+                           textAlign: "left",
+                           background: "#f0f0f0",
+                           border: "none",
+                           borderRadius: "6px",
+                           cursor: "pointer",
+                           display: "flex",
+                           justifyContent: "space-between",
+                           fontSize: "16px",
+                         }}
+                       >
+                       <span>{item.main}</span>
+                           </button>
+
+                   {openIndex === index && (
+                     <div style={{ marginTop: "6px", marginLeft: "16px" }}>
+                       {item.subs.map((sub, i) => (
+                         <div
+                           key={i}
+                           onClick={() => handleSelect(`${item.main} - ${sub}`)}
+                           style={{
+                             padding: "8px 12px",
+                             cursor: "pointer",
+                             background: "#e9f3ff",
+                             borderRadius: "4px",
+                             marginBottom: "4px",
+                             fontSize: "15px",
+                           }}
+                           onMouseEnter={(e) => (e.target.style.background = "#cde6ff")}
+                           onMouseLeave={(e) => (e.target.style.background = "#e9f3ff")}
+                         >
+                           {sub}
+                         </div>
+                       ))}
+                     </div>
+                     )}
+                 </div>
+                ))}
+            </div>
+            )}
+          </div>
             
               <label className={styles.inputName}>
                 <h4>Experience: &nbsp;<span className={styles.hint}>(e.g 3Y or 10Y)</span></h4>
@@ -1067,10 +1194,84 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                 <input maxLength="3" className={styles.Mobileinput} value={currentCTC} onChange={(e) => { handleCurrentCTC(e) }} type="text" />
               </label>
 
-              <label className={styles.MobileinputName}>
+              {/* <label className={styles.MobileinputName}>
                 <h4 className={styles.MobileName}>Qualification:</h4>
                 <input maxLength="10" className={styles.Mobileinput} value={Qualification} onChange={(e) => { handleQualification(e) }} type="text" />
-              </label>
+              </label> */}
+
+              <div ref={containerRef} style={{ position: "relative",}} className={styles.MobileinputName}>
+                 <h4 className={styles.MobileName}>Qualification:</h4>
+                 {/* Clickable Select Box */}
+                 <div  onClick={() => setMenuOpen((prev) => !prev)} style={{cursor: "pointer", marginTop:"0px", display:"flex", alignItems:"center"}} className={styles.Mobileinput} >
+                     <div style={{paddingLeft:"7px"}}>
+                     {Qualification? `${Qualification}` : "Select your qualification"}
+                 </div>
+                 </div>
+
+                {/* Menu Dropdown */}
+                 {menuOpen && (
+                    <div
+                      style={{
+                        marginTop: "10px",
+                        marginLeft:"7px",
+                        border: "1px solid #ddd",
+                        borderRadius: "6px",
+                        padding: "10px",
+                        background: "#fff",
+                        position: "absolute",
+                        width: "81%",
+                        zIndex: 10,
+                        maxHeight:"200px",
+                        overflowY: "auto",
+                      }}
+                    >
+                   {qualifications.map((item, index) => (
+                     <div key={index} style={{ marginBottom: "10px" }}>
+                       <button
+                         onClick={() => toggleMain(index)}
+                         style={{
+                           width: "100%",
+                           padding: "10px",
+                           textAlign: "left",
+                           background: "#f0f0f0",
+                           border: "none",
+                           borderRadius: "6px",
+                           cursor: "pointer",
+                           display: "flex",
+                           justifyContent: "space-between",
+                           fontSize: "16px",
+                         }}
+                       >
+                       <span>{item.main}</span>
+                           </button>
+
+                   {openIndex === index && (
+                     <div style={{ marginTop: "6px", marginLeft: "16px" }}>
+                       {item.subs.map((sub, i) => (
+                         <div
+                           key={i}
+                           onClick={() => handleSelect(`${item.main} - ${sub}`)}
+                           style={{
+                             padding: "8px 12px",
+                             cursor: "pointer",
+                             background: "#e9f3ff",
+                             borderRadius: "4px",
+                             marginBottom: "4px",
+                             fontSize: "15px",
+                           }}
+                           onMouseEnter={(e) => (e.target.style.background = "#cde6ff")}
+                           onMouseLeave={(e) => (e.target.style.background = "#e9f3ff")}
+                         >
+                           {sub}
+                         </div>
+                       ))}
+                     </div>
+                     )}
+                 </div>
+                ))}
+            </div>
+            )}
+          </div>
 
               {/* <label className={styles.MobileinputName}>
                 <h4 className={styles.MobileName}>College:</h4>
