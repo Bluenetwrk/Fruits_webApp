@@ -149,6 +149,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
 
 
   async function applyforJob(id) {
+    alert(" ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website." )
     navigate("/JobSeekerLogin", { state: { Jid: id } })
    
   }
@@ -1775,7 +1776,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
                           <p className={styles.salaryRange}><span>&#8377;</span>{job.salaryRange===""? "Not Disclosed":job.salaryRange+"L"}</p>
                           {
                           
-                            <button className={styles.homeApplyMobileBtn} onClick={() => { navigate("/JobSeekerLogin") }}><b>Apply</b></button>
+                            <button className={styles.homeApplyMobileBtn} onClick={() => { applyforJob(job._id) }}><b>Apply</b></button>
                           }
                         </div>
 
