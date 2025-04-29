@@ -245,11 +245,11 @@ const [selectedTime, setSelectedTime] = useState("");
                                <div className={Style.dirvefirstRow}>
                                   <div className={Style.dirvesubContainer}>
                                     <h4 className={Style.heading}>Job title**</h4>
-                                    <input className={Style.driveinput} maxLength="100"  type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />          
+                                    <input className={Style.driveinput} style={{width:"220px"}}maxLength="100"  type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />          
                                   </div>
                                  <div className={Style.dirvesubContainer}>
                                    <h4 className={Style.heading}>Company Name**</h4>
-                                   <input className={Style.driveinput} maxLength="100" type="text" value={companyName} disabled />
+                                   <input className={Style.driveinput}style={{width:"220px"}} maxLength="100" type="text" value={companyName} disabled />
                                  </div>
                                </div> 
 
@@ -326,11 +326,11 @@ const [selectedTime, setSelectedTime] = useState("");
                               <div className={Style.driveThirdRow}>
                                 <div className={Style.dirvesubContainer} >
                                     <h4 className={Style.heading}>Salary Per Annum in Lakhs** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
-                                    <input className={Style.driveinput} maxLength="3" type="number" value={salaryRange} onChange={(e) => { handleSalary(e); handleRadioTags(e.target.value) }} />
+                                    <input className={Style.driveinput} style={{width:"32px"}} maxLength="3" type="number" value={salaryRange} onChange={(e) => { handleSalary(e); handleRadioTags(e.target.value) }} />
                                 </div>
                                 <div className={Style.dirvesubContainer}>
                                     <h4 className={Style.heading} >Experience Needed** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
-                                    <input className={Style.driveinput} maxLength="3" type="number" value={experiance} onChange={(e) => { handleExperiance(e); handleExpButton(e.target.value) }} />
+                                    <input className={Style.driveinput}style={{width:"32px"}} maxLength="3" type="number" value={experiance} onChange={(e) => { handleExperiance(e); handleExpButton(e.target.value) }} />
 
                                 </div>
                               </div>
@@ -338,12 +338,12 @@ const [selectedTime, setSelectedTime] = useState("");
                             <div className={Style.driveFourthRow}>
                                 <div className={Style.dirvesubContainer}>
                                 <h4 className={Style.heading}>Skills Needed**</h4>
-                                        <input className={Style.driveinput}  maxLength="100" value={skills} type="text" onChange={(e)=>{setSkills(e.target.value)}} disabled />
+                                        <input className={Style.driveinput} style={{width:"220px"}}   maxLength="100" value={skills} type="text" onChange={(e)=>{setSkills(e.target.value)}} disabled />
 
                                 </div>
                                 <div className={Style.dirvesubContainer}>
                                 <h4 className={Style.heading} >Apply Link**</h4>
-                                        <input className={Style.driveinput}  maxLength="100" value={applyLink} type="text" onChange={(e)=>{setApplyLink(e.target.value)}} />
+                                        <input className={Style.driveinput} style={{width:"220px"}} maxLength="100" value={applyLink} type="text" onChange={(e)=>{setApplyLink(e.target.value)}} />
                                          
                                 </div>
                             </div>
