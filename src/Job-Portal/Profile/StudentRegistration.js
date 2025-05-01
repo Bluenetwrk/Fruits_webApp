@@ -766,7 +766,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
               <label className={styles.inputName}>
                 <h4>Pan Card Number: &nbsp;<span className={styles.hint}>(Optional)</span></h4>
-                <input maxLength="10" className={styles.input} value={panCard} onChange={(e) => { PanCardhandleChange(e) }} type="text" />
+                <input className={styles.input} value={panCard} onChange={(e) => { PanCardhandleChange(e) }} type="text" />
               </label>
 
               <label className={styles.inputName}>
