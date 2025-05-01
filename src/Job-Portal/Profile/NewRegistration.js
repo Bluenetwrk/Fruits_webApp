@@ -623,7 +623,7 @@ const helpData = [
 
             <label className={styles.inputName}>
               <h4>Company Email id:</h4>
-              <input maxLength="25" className={styles.input} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" /><br></br>
+              <input className={styles.input} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" /><br></br>
               <span style={{color:"red", marginLeft:"5%"}}>{compemailError}</span>
             </label>
 
@@ -788,7 +788,7 @@ const helpData = [
           
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Company Email id:</h4>
-              <input maxLength="25" className={styles.Mobileinput} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" />
+              <input className={styles.Mobileinput} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" />
            <br></br>
            <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span>
             </label>
