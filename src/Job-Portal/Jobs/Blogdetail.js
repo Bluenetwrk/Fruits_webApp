@@ -404,16 +404,17 @@ async function deletComment(id){
                     navigate('/Blogs'); 
                   }
              }}>
-                 Back
+                 <div style={{fontSize:"12px", fontWeight:"800px"}}>Back</div>
           </button>
 
           <div style={{display:"flex",height:"55px"}}>
-          <button onClick={descIndex}  className={styles.readPageBackBtn}>
-          <i class='fas fa-caret-square-left' style={{fontSize:"small",marginLeft:"-2px"}}></i>   Prev
+          <button onClick={descIndex}  className={styles.readPageBackBtn}style={{padding: "0px 5px 0px 8px"}}>
+          <i class='fas fa-caret-square-left' style={{fontSize:"9px",marginLeft:"-2px"}}></i>   
+          <div style={{fontSize:"12px", fontWeight:"800px"}}>Prev</div>
           </button>
           <h2 style={{display:"flex",alignItems:"center"}}>{index +1}</h2>
-          <button onClick={incIndex} className={styles.readPageBackBtn} style={{marginLeft:"2px"}}>
-                 Next <i class='fas fa-caret-square-right' style={{fontSize:"small",marginLeft:"4px"}}></i>
+          <button onClick={incIndex} className={styles.readPageBackBtn} style={{marginLeft:"2px", padding: "0px 5px 0px 8px"}}>
+          <div style={{fontSize:"12px", fontWeight:"800px"}}>Next</div> <i class='fas fa-caret-square-right' style={{fontSize:"9px",marginLeft:"4px"}}></i>
           </button>
           </div>
           {/* {console.log("history length",window.history.length)} */}
@@ -445,9 +446,9 @@ async function deletComment(id){
       </a> */}
       {/* </div> */}
     <div style={{position:"relative"}}>
-    <div ref={buttonRef} onClick={updateClickStatus} style={{ marginRight: "4px" }} className={styles.shareBtnBlog}>
+    <div ref={buttonRef} onClick={updateClickStatus} style={{ marginRight: "4px",width:"65px",height:"35px" }} className={styles.shareBtnBlog}>
   <i className="fa-solid fa-share" style={{marginLeft:"6px", fontSize: "small", cursor: "pointer" }}></i>
-  <p style={{ margin: "0px",fontWeight:"400" }}>Share</p>
+  <div style={{fontSize:"12px", fontWeight:"800px" }}>Share</div>
 </div>
 
       {shareClicked && (

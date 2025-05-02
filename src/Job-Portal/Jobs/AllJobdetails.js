@@ -412,17 +412,18 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
                     navigate('/'); 
                   }
              }}>
-                 Back
+                <div style={{fontSize:"12px", fontWeight:"800px"}}>Back</div>
           </button>
           <div style={{display:"flex",justifyContent:"space-between"}}>
-          <button className={styles.jobdetailBackBtn}
+          <button className={styles.jobdetailBackBtn} style={{padding: "0px 5px 0px 8px"}}
             onClick={descIndex}>
-               <i class='fas fa-caret-square-left' style={{fontSize:"small", color: "white",marginLeft:"2px", marginLeft:"-2px" }}></i>    Prev
+               <i class='fas fa-caret-square-left' style={{fontSize:"9px", color: "white",marginLeft:"2px", marginLeft:"-2px" }}></i>  
+               <div style={{fontSize:"12px", fontWeight:"800px"}}>Prev</div>
           </button>
           <h2 style={{display:"flex",alignItems:"center",margin:"1px",marginTop:"14px"}}>{index+1}</h2>
-          <button className={styles.jobdetailBackBtn} style={{padding:"10px",marginLeft:"2px",zIndex:"99"}}
+          <button className={styles.jobdetailBackBtn} style={{padding: "0px 5px 0px 8px",marginLeft:"2px",zIndex:"99"}}
             onClick={incIndex} >
-             Next  <i class='fas fa-caret-square-right' style={{fontSize:"small", color: "white",marginLeft:"0px", marginLeft:"-2px" }}></i>    
+            <div style={{fontSize:"12px", fontWeight:"800px"}}>Next</div> <i class='fas fa-caret-square-right' style={{fontSize:"9px", color: "white",marginLeft:"0px", marginLeft:"-2px" }}></i>    
           </button>
           </div>
           {/* <div className={styles.navigationWrapperbtn}>
@@ -441,14 +442,15 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
 
            <div style={{display:"flex",position:"relative"}}>
-           <button class={styles.jobdetailApplyBtn} style={{marginRight:"9px",display:"flex", gap:"5px",width:"80px",alignItems:"center"}}onClick={updateClickStatus}>
+           <button class={styles.jobdetailApplyBtn} style={{marginRight:"9px",display:"flex", gap:"5px",width:"65px",alignItems:"center", fontSize:"12px"}}onClick={updateClickStatus}>
            <i className="fa-solid fa-share" style={{ fontSize: "small", cursor: "pointer", marginLeft:"-8px" }}></i>
-           <p style={{ margin: "0px",fontWeight:"400" }}>Share</p>
+           <div style={{fontSize:"12px", fontWeight:"800px"}}>Share</div>
             </button>
-           <button class={styles.jobdetailApplyBtn} onClick={()=>applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>Apply</button>
+           <button class={styles.jobdetailApplyBtn} onClick={()=>applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>
+           <div style={{fontSize:"12px", fontWeight:"800px"}}>Apply</div></button>
            {shareClicked && (
         <div ref={shareRef} class={styles.shareContainer}>
-          <h1 style={{textAlign:"center",color:"white"}}>Share</h1>
+          <div style={{fontSize:"12px", fontWeight:"800px" }}>Share</div>
 
           <div class={styles.shareButtonsContainer}>
             <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
