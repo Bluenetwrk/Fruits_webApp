@@ -190,7 +190,7 @@ function Nav(props) {
         }, []);
 
 
-  return (
+        return (
     <>
 
       {
@@ -313,7 +313,7 @@ function Nav(props) {
 : ""}      
                 </div>
                 <div>
-                {props.sortedFilteredDriveJobs.length >= 1 && (
+                {props.flashVisible && (
                        <div className={Styles.blast}>
                          <img
                            onClick={reDirecttoDrive}
@@ -466,7 +466,7 @@ function Nav(props) {
                         : ""}
                  </div> 
                  <div>
-                 {props.sortedFilteredDriveJobs.length >= 1 && (
+                 {props.flashVisible && (
                        <div className={Styles.blast}>
                          <img
                            onClick={reDirecttoDrive}
@@ -675,7 +675,7 @@ function Nav(props) {
                     : ""}
                       </div>
                       <div>
-                      {props.sortedFilteredDriveJobs.length >= 1 && (
+                      {props.flashVisible && (
                        <div className={Styles.blast}>
                          <img
                            onClick={reDirecttoDrive}
@@ -745,7 +745,7 @@ function Nav(props) {
 
                 </div>
                 <div>
-                {props.sortedFilteredDriveJobs.length >= 1 && (
+                {props.flashVisible && (
                        <div className={Styles.blast} style={{cursor:"pointer"}}>
                          <img
                            onClick={reDirecttoDrive}
@@ -782,7 +782,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                 <div className={Styles.linkWrapper}>
 
                   <NavLink to="/alljobs" className={`${Styles.Moblink} ${Styles.AlllJobs}`} >All Jobs </NavLink>
-                  {props.sortedFilteredDriveJobs.length >= 1 && (
+                  {props.flashVisible && (
                        <div className={Styles.blast} style={{cursor:"pointer",marginLeft:"21%"}}>
                          <img
                            onClick={reDirecttoDrive}
@@ -866,7 +866,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                      : ""}
                     </div>
                     <div>
-                    {props.sortedFilteredDriveJobs.length >= 1 && (
+                    {props.flashVisible && (
                        <div className={Styles.blast} style={{cursor:"pointer",marginLeft:"21%"}}>
                          <img
                            onClick={reDirecttoDrive}
@@ -1014,7 +1014,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
 
                     <div className={Styles.fullnavewrapperLSMobile}>
                       <div>
-                          {props.sortedFilteredDriveJobs.length >= 1 && (
+                          {props.flashVisible && (
                          <div className={Styles.blast} style={{cursor:"pointer"}}>
                           <img onClick={reDirecttoDrive} src="/drive.png" alt="Walk-in Drive" ref={driveImgRef} class={Styles.flashDriveHome}/>
                          </div>
@@ -1044,7 +1044,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                       
                         <img className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} />
                        
-                         {props.sortedFilteredDriveJobs.length >= 1 && (
+                         {props.flashVisible && (
                        <div className={Styles.blast} style={{cursor:"pointer", marginLeft:"69%" }}>
                          <img
                            onClick={reDirecttoDrive}
@@ -1076,7 +1076,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                     style={props.ShowSideNave ? { marginLeft: "0px" } : { marginLeft: "-380px" }} >
                     <SidebarNav empSearchNoLogin={props.empSearchNoLogin} jobSeekersearch={props.jobSeekersearch} searchcarrer={props.searchcarrer} searchBlog={props.searchBlog} setSearchClick={props.setSearchClick} setShowMobileSearchIcon={props.setShowMobileSearchIcon} setShowSideNaveProps={props.setShowSideNave} search={props.search} searchKey={props.searchKey} searchIcon={props.searchIcon}/>
                   </div>
-                  {/* {props.sortedFilteredDriveJobs.length >= 1 && (
+                  {/* {props.flashVisible && (
                        <div className={Styles.blast} style={{cursor:"pointer", marginLeft:"69%" }}>
                          <img
                            onClick={reDirecttoDrive}

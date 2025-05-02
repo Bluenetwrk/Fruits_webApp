@@ -895,7 +895,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
       companyName: "xyz",
       jobType: "Full-Time",
       driveTime: "9:00 AM",
-      driveDate: "2025-04-10",
+      driveDate: "2023-11-10",
       location: "Koramangala,Bengaluru",
       ctc: "10 LPA",
       experience: "2-4 years",
@@ -912,7 +912,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
       companyName: "Abc",
       jobType: "Remote",
       driveTime: "10:00 AM",
-      driveDate: "2025-04-20",
+      driveDate: "2025-1-20",
       location: "WhiteField,Bengaluru",
       ctc: "8 LPA",
       experience: "1-3 years",
@@ -928,7 +928,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
       companyName: "xyz",
       jobType: "Contract",
       driveTime: "11:00 AM",
-      driveDate: "2025-04-20",
+      driveDate: "2025-05-05",
       location: "Mumbai",
       ctc: "6 LPA",
       experience: "1-2 years",
@@ -940,19 +940,53 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
     },
   ];
   
+  const [flashVisible, setFlashVisible] = useState(false);
+  const [processedJobs, setProcessedJobs] = useState([]);
   const processDriveJobs = (driveJobs) => {
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normalize today's date for comparison
-  
-    return driveJobs
-      .map((job) => ({
-        ...job,
-        dateObj: new Date(job.driveDate), // Convert driveDate string to Date object
-      }))
-      .sort((a, b) => a.dateObj - b.dateObj) // Sort by driveDate
-      .filter((job) => job.dateObj >= today) // Keep only today or future drive dates
-      .map(({ dateObj, ...rest }) => rest); // Remove temporary dateObj
+    today.setHours(0, 0, 0, 0); // Normalize today's date
+
+    const EmployeeAuth = localStorage.getItem("EmpLog");
+
+    let jobs = driveJobs.map((job) => ({
+      ...job,
+      dateObj: new Date(job.driveDate),
+    }));
+
+    jobs = jobs.filter((job) => !isNaN(job.dateObj));
+
+    if (!EmployeeAuth) {
+      jobs = jobs.filter((job) => job.dateObj >= today);
+    }
+
+    jobs.sort((a, b) => b.dateObj - a.dateObj);
+
+    return jobs.map(({ dateObj, ...rest }) => rest);
   };
+
+  // Handle flashVisible state based on driveJobs
+  useEffect(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize today's date
+
+    let jobs = driveJobs.map((job) => ({
+      ...job,
+      dateObj: new Date(job.driveDate),
+    }));
+
+    jobs = jobs.filter((job) => !isNaN(job.dateObj));
+
+    // Set flashVisible = true if any job date is today or in the future
+    if (jobs.some((job) => job.dateObj >= today)) {
+      setFlashVisible(true);
+    }
+
+    // Process the jobs and set them to processedJobs
+    const processed = processDriveJobs(driveJobs);
+    setProcessedJobs(processed);
+  }, [driveJobs]); 
+
+  
   
   const sortedFilteredDriveJobs = processDriveJobs(driveJobs);
      const options = [
@@ -968,7 +1002,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
     <>
 
       <BrowserRouter>
-        <Nav options={options} selectedlocationOption={selectedlocationOption}  setSelectedlocationOption={setSelectedlocationOption} sortedFilteredDriveJobs={sortedFilteredDriveJobs} showDriveFlash={showDriveFlash} setShowDriveFlash={setShowDriveFlash} empSearchNoLogin={empSearchNoLogin} jobSeekersearch={jobSeekersearch} searchBlog={searchBlog} searchcarrer={searchcarrer} setSearchClick={setSearchClick} showMobileSearchIcon={showMobileSearchIcon} 
+        <Nav flashVisible={flashVisible} options={options} selectedlocationOption={selectedlocationOption}  setSelectedlocationOption={setSelectedlocationOption} sortedFilteredDriveJobs={sortedFilteredDriveJobs} showDriveFlash={showDriveFlash} setShowDriveFlash={setShowDriveFlash} empSearchNoLogin={empSearchNoLogin} jobSeekersearch={jobSeekersearch} searchBlog={searchBlog} searchcarrer={searchcarrer} setSearchClick={setSearchClick} showMobileSearchIcon={showMobileSearchIcon} 
         setShowMobileSearchIcon={setShowMobileSearchIcon} ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}   searchClick={searchClick}  chandinmargin={setShowSideNave} 
          search={search} searchKey={searchKey} searchIcon={searchIcon} searchs={searchs}/>
         
