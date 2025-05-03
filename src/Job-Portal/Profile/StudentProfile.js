@@ -107,6 +107,8 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
                 <li className={styles.li}><b>Skill Tags</b></li>
                 <li className={styles.li}><b>Experience</b></li>
                 <li className={styles.li}><b>Account status</b></li>
+                <li className={styles.li}><b>HRs/Employer FeedBack</b></li>
+
 
 
             </ul>
@@ -139,6 +141,7 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
                          {item.Experiance?       <li className={` ${styles.Hli}`}>{item.Experiance}</li>:  <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your experiance yet</li> }
                          {item.isApproved?   <li className={` ${styles.Hli}`} style={{color:"blue"}}>Congrates! Your account has been Approved</li>: <li className={` ${styles.Hli} ${styles.Nli}`} style={{fontStyle:"italic"}}>"Your account is in under Verfication process"</li>}                        
                          {item.message?<p style={{width:"450%",  marginLeft:"-70%"}}><b> Message :</b><span style={{color:"red"}}> {item.message}! </span></p>:""}
+                         {item.Experiance?       <li className={` ${styles.Hli}`}>{item.Experiance}</li>:  <li className={` ${styles.Hli} ${styles.Nli}`}>No FeedBack</li> }
                         </ul>
                     )
 
@@ -172,6 +175,7 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
                         <span className={styles.span}>Experience : </span><br></br>
                         <span className={styles.span}> Current CTC :</span><br></br>
                         <span className={styles.span}>Expected CTC : </span><br></br>
+                        
                     </div>
             
                     <div className={styles.RightTable}>
@@ -185,7 +189,8 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
                     <span className={styles.span}> {job.Qualification?<span style={{ color: "blue" }}>{job.Qualification} </span>:<span style={{color:"red"}}>Not updated</span>}</span><br></br>
                     <span className={styles.span}> {job.Experiance?<span style={{ color: "blue" }}>{job.Experiance} </span>:<span style={{color:"red"}}>Not updated</span>}   </span><br></br>
                     <span className={styles.span}>{job.currentCTC?<span style={{ color: "blue" }}>{job.currentCTC} </span>:<span style={{color:"red"}}>Not updated</span>} </span><br></br>
-                    <span className={styles.span}> {job.ExpectedSalary?<span style={{ color: "blue" }}>{job.ExpectedSalary} </span>:<span style={{color:"red"}}>Not updated</span>}</span><br></br>          
+                    <span className={styles.span}> {job.ExpectedSalary?<span style={{ color: "blue" }}>{job.ExpectedSalary} </span>:<span style={{color:"red"}}>Not updated</span>}</span><br></br>  
+
                     </div>
             
                   </div>
@@ -194,6 +199,7 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
                   <span className={styles.span}> Skills : {job.Skills?<span style={{ color: "blue" }}>{job.Skills} </span>:<span style={{color:"red"}}>Not updated</span>}</span><br></br>
                   <span className={styles.span}> Account Status:  {job.isApproved ? <span style={{ color: "blue" }}>Congrates! Your account has been Approved</span> : <span style={{ color: "red" }}>"Your account is under Verfication process"</span>}</span><br></br>
                   {job.message?<span style={{}} className={styles.span}> Message :<span style={{color:"red"}}> {job.message}! </span></span>:""}
+                  <span className={styles.span}> HRs/Employer FeedBack : {job.Skills?<span style={{ color: "blue" }}>{job.Skills} </span>:<span style={{color:"red"}}>No FeedBack</span>}</span><br></br>
                   </div>
       </div>
     </>
