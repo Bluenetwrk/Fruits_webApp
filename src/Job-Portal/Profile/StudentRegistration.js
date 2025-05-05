@@ -190,7 +190,7 @@ function StudentUpdateProfile(props) {
   
           // console.log("decoded name :", gemail)
           // console.log(" decoded id :", gname)
-  
+             
           await axios.post("/StudentProfile/Glogin", {
              ipAddress, userId, email, name, gtoken, isApproved, phoneNumber, Aadhar, panCard, city, NoticePeriod, 
              ExpectedSalary, currentCTC, age, Qualification, Skills, Experiance, Tags, college})
@@ -457,16 +457,28 @@ if(confirm){
   //   setEmployers(updatedEmployers);
   //   // console.log(employers)
   // };
-
+// ----------------------
   const [employers, setEmployers] = useState([]);
   const inputRefs = useRef([]);
   const collegeInputRef = useRef(null);
+  const tenthInputRef = useRef(null);
+  const twelfthInputRef = useRef(null);
+  const DegreeInputRef = useRef(null);
+  const currentEmpInputRef = useRef(null);
+
+  
+  const[tenth, setTenth]=useState("");
+  const[twelfth, setTwelfth]=useState("");
+  const[degree, setDegree]=useState("");
+  const[currentEmp, setCurrentEmp]=useState("");
+  const[currentEmpTenure, setCurrentEmpTenure]=useState("");
 
   const addEmployer = () => {
-    if (employers.length < 3) {
-      setEmployers([...employers, ""]);
-    }
-  };
+  if (employers.length < 3) {
+    setEmployers([...employers, { name: "", years: "" }]);
+  }
+};
+
 
   const removeEmployer = (index) => {
     const updatedEmployers = [...employers];
@@ -475,12 +487,12 @@ if(confirm){
     inputRefs.current.splice(index, 1); // also remove ref
   };
 
-  const handleEmployerChange = (index, value) => {
-    const updatedEmployers = [...employers];
-    updatedEmployers[index] = value;
-    setEmployers(updatedEmployers);
+  const handleEmployerChange = (index, field, value) => {
+    const updated = [...employers];
+    updated[index][field] = value;
+    setEmployers(updated);
   };
-
+  
   // Hook up Google Places Autocomplete
   useEffect(() => {
     employers.forEach((_, index) => {
@@ -501,7 +513,9 @@ if(confirm){
               ? `${place.name}, ${place.formatted_address}`
               : place.formatted_address;
         
-            handleEmployerChange(index, displayValue);
+              if (employers[index]?.name !== displayValue) {
+                handleEmployerChange(index, "name", displayValue);
+              }
           }
         });
         
@@ -514,6 +528,7 @@ if(confirm){
     // console.log()
   }, [employers]);
 
+  // -------------college-----------------
   useEffect(() => {
     if (collegeInputRef.current && !collegeInputRef.current.autocomplete) {
       const autocomplete = new window.google.maps.places.Autocomplete(collegeInputRef.current, {
@@ -535,8 +550,107 @@ if(confirm){
       collegeInputRef.current.autocomplete = autocomplete; // attach instance
     }
   }, []);
+
+  // ----------------degree/diploma---------
+  useEffect(() => {
+    if (DegreeInputRef.current && !DegreeInputRef.current.autocomplete) {
+      const autocomplete = new window.google.maps.places.Autocomplete(DegreeInputRef.current, {
+        fields: ["formatted_address", "geometry", "address_components", "place_id", "name"],
+      });
   
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        if (place && place.formatted_address) {
+          const displayValue =
+            place.name && place.name !== place.formatted_address
+              ? `${place.name}, ${place.formatted_address}`
+              : place.formatted_address;
   
+          setDegree(displayValue);
+          
+        }
+      });
+  
+      DegreeInputRef.current.autocomplete = autocomplete; // attach instance
+    }
+  }, []);
+  
+  // ----------------12th---------
+  useEffect(() => {
+    if (twelfthInputRef.current && !twelfthInputRef.current.autocomplete) {
+      const autocomplete = new window.google.maps.places.Autocomplete(twelfthInputRef.current, {
+        fields: ["formatted_address", "geometry", "address_components", "place_id", "name"],
+      });
+  
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        if (place && place.formatted_address) {
+          const displayValue =
+            place.name && place.name !== place.formatted_address
+              ? `${place.name}, ${place.formatted_address}`
+              : place.formatted_address;
+  
+          setTwelfth(displayValue);
+        }
+      });
+  
+      twelfthInputRef.current.autocomplete = autocomplete; // attach instance
+    }
+  }, []);
+  
+  // ----------------10th-----------
+  useEffect(() => {
+    if (tenthInputRef.current && !tenthInputRef.current.autocomplete) {
+      const autocomplete = new window.google.maps.places.Autocomplete(tenthInputRef.current, {
+        fields: ["formatted_address", "geometry", "address_components", "place_id", "name"],
+      });
+  
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        if (place && place.formatted_address) {
+          const displayValue =
+            place.name && place.name !== place.formatted_address
+              ? `${place.name}, ${place.formatted_address}`
+              : place.formatted_address;
+  
+          setTenth(displayValue);
+        }
+      });
+  
+      tenthInputRef.current.autocomplete = autocomplete; // attach instance
+    }
+  }, []);
+
+  //--------------- Current emp----------
+  useEffect(() => {
+    if (currentEmpInputRef.current && !currentEmpInputRef.current.autocomplete) {
+      const autocomplete = new window.google.maps.places.Autocomplete(currentEmpInputRef.current, {
+        fields: ["formatted_address", "geometry", "address_components", "place_id", "name"],
+      });
+  
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        if (place && place.formatted_address) {
+          const displayValue =
+            place.name && place.name !== place.formatted_address
+              ? `${place.name}, ${place.formatted_address}`
+              : place.formatted_address;
+  
+          setCurrentEmp(displayValue);
+        }
+      });
+  
+      currentEmpInputRef.current.autocomplete = autocomplete; // attach instance
+    }
+  }, []);
+  
+  // -------------CHECK-----
+  // useEffect(()=>{
+  //   console.log("10th-", tenth)
+  //   console.log("12th-", twelfth)
+  //   console.log("degree-", degree)
+  //   console.log("master-",college)
+  // },[degree])
 
 const[helpClicked, setHelpClicked]=useState(false)
  let helpRef=useRef();
@@ -638,9 +752,9 @@ const qualifications = [
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // useEffect(()=>{
-  //   console.log("qualification",Qualification)
-  // },[qualifications])
+  useEffect(()=>{
+    console.log("employer",employers)
+  })
 
   return (
     <>
@@ -862,43 +976,17 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
             </div>
             )}
           </div>
-            
+
+           <div style={{display:"flex", gap:"14px", marginLeft:"15px"}}>
+
+             <div style={{width:"50%"}}>  
               <label className={styles.inputName}>
                 <h4>Experience: &nbsp;<span className={styles.hint}>(e.g 3Y or 10Y)</span></h4>
                 <input maxLength="3" className={styles.input} value={Experiance} onChange={(e) => { handleExperiance(e) }} type="text" />
               </label>
-              <label className={styles.inputName}>
-  <h4>College:</h4>
-  <input
-    type="text"
-    ref={collegeInputRef}
-    value={college}
-    onChange={(e) => setcollege(e.target.value)}
-    className={styles.input}
-    style={{ width: "81%", marginLeft: "18px" }}
-    placeholder="Search for your college"
-  />
-</label>
 
-            {college.value==="Others" &&(
-               <label className={styles.inputName} style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}>
-               <h4 style={{marginLeft:"64%"}}>Others: &nbsp;<span className={styles.hint} >(Enter College name)</span></h4>
-               <input className={styles.input}  style={{width:"48%", marginLeft:"64%"}}  value={Others} onChange={handleOthersCollege}  type="text" />
-             </label>
-
-            )}
-
-              <div style={{display:"flex"}}>
               <label className={styles.inputName}>
                 <h4>Skill Tags: </h4>
-                {/* <div style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}>
-                   <CreatableSelect  
-                  isMulti={true}
-                  options={jobTags}
-                  value={Tags}
-                  onChange={handleChange}   
-                />
-                         </div> */}
               <div className={Style.JobtitleFilterWrapper} style={{height:"120px",marginBottom:"15px"}}>
             {/* <buton className={ Active.length===0? Style.active:Style.JobtitleFilter} onClick={() => { getjobs() }}>All</buton> */}
             {
@@ -923,12 +1011,113 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                   )
               })
             }
+                </div>
+              </label>
+            </div>
+
+              <div style={{width:"50%"}}>
+                 <h4>School/College:</h4>
+                <div style={{display:"flex", alignItems:"center", gap:"20px"}}>                 
+                  <h4>10th:</h4> 
+                  <label className={styles.inputName}>
+                  <input
+                   type="text"
+                   ref={tenthInputRef}
+                   value={tenth}
+                   onChange={(e) => setTenth(e.target.value)}
+                   className={styles.input}
+                   style={{ width: "130%", marginLeft: "31px" }}
+                   placeholder="Search  your 10th School"
+                 />
+                 </label>
+               </div>
+               <div style={{display:"flex", alignItems:"center", gap:"20px"}}>  
+                 <h4>12th:</h4>
+              <label className={styles.inputName}>
+                 <input
+                   type="text"
+                   ref={twelfthInputRef}
+                   value={twelfth}
+                   onChange={(e) => setTwelfth(e.target.value)}
+                   className={styles.input}
+                   style={{ width: "130%", marginLeft: "31px" }}
+                   placeholder="Search your 12th School/College"
+                 />
+                 
+               </label>
+               </div>
+
+               <div style={{display:"flex", alignItems:"center",}}>
+                <div>
+                  <h4>Degree/<br></br>Diploma:</h4>
+                 </div>
+               <label className={styles.inputName}>
+               
+                 <input
+                   type="text"
+                   ref={DegreeInputRef}
+                   value={degree}
+                   onChange={(e) => setDegree(e.target.value)}
+                   className={styles.input}
+                   style={{ width: "130%", marginLeft: "2px" }}
+                   placeholder="Search Degree/Diploma College"
+                 />
+                 
+               </label>
+               </div>
+
+               <div style={{display:"flex", alignItems:"center"}}>  
+                 <h4>Masters:</h4>
+               <label className={styles.inputName}>
+                 <input
+                   type="text"
+                   ref={collegeInputRef}
+                   value={college}
+                   onChange={(e) => setcollege(e.target.value)}
+                   className={styles.input}
+                   style={{ width: "130%", marginLeft: "51px" }}
+                   placeholder="Search  your Masters college"
+                 />
+                 
+               </label>
+               </div>
+           </div>
+
+           </div>
+
+              
+              {/* <label className={styles.inputName}>
+                <h4>Skill Tags: </h4>
+              <div className={Style.JobtitleFilterWrapper} style={{height:"120px",marginBottom:"15px"}}> */}
+            {/* <buton className={ Active.length===0? Style.active:Style.JobtitleFilter} onClick={() => { getjobs() }}>All</buton> */}
+            {/* {
+              jobTags.map((tags, i) => {
+                return (
+                                   
+                  <button disabled={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
+                    tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="ROLE" || tags.value==="COMPANY TYPE" } 
+                    className={tags.value==="TECHNOLOGIES" || tags.value==="EDUCATION" || tags.value==="COLLEGE TYPE" || tags.value==="NOTICE PERIOD" || tags.value==="SALARY" || 
+                    tags.value==="EXPERIENCE" || tags.value==="Job Type" || tags.value==="INDUSTRY" || tags.value==="TOOLS/PROTOCOLS" || tags.value==="COMPANY TYPE" || tags.value==="ROLE"?
+                    Style.TagHeading: 
+                    //  Active === tags.value ? 
+                    Tags.findIndex(  (present)=>{
+                      return(
+                        present===tags.value
+                      )
+                          }) >=0?
+                     Style.active : Style.JobtitleFilter} 
+                     onClick={ () => {  handleTags(tags.value) }}
+                     >{tags.value} </button>
+                
+                  )
+              })
+            }
           </div>
 
 
-              </label>
+              </label> */}
 
-              <div style={{marginLeft:"15px",width:"328px"}}>
+              {/* <div style={{marginLeft:"15px",width:"328px"}}> */}
 
               {/* <label className={styles.inputName}>
                 <h4>College:</h4>
@@ -997,62 +1186,110 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
         </div>
       ))}
     </div> */}
+     <div style={{display:"flex", alignItems:"center", marginLeft: "7px"}}>  
+                 <div><h4>Current Employer:</h4></div>
+                <label style={{marginLeft:"0"}}className={styles.inputName}>
+                 <input
+                   type="text"
+                   ref={currentEmpInputRef}  
+                   value={currentEmp}
+                   onChange={(e) => setCurrentEmp(e.target.value)}
+                   className={styles.input}
+                   style={{ width: "80%",}}
+                   placeholder="Search your Current Employer"
+                 />      
+               </label>
+                <div style={{display:"flex"}}>
+               <label style={{ display: "flex", alignItems: "center", marginLeft:"27px" , marginTop:"0", width:"52%"}} className={styles.MobileinputName}>
+                    <div> <h4 style={{ margin: 0 }}>No of Years:</h4> </div>
+                <input
+                  type="number"
+                  value={currentEmpTenure}
+                  onChange={(e) => setCurrentEmpTenure(e.target.value)}
+                  className={styles.Mobileinput}
+                  style={{ width: "30%", height: "22px" }}
+                  placeholder="years"
+                />             
+               
+             </label>
+             <div className={styles.tooltipWrapper}>
+                 <span className={styles.tooltipIcon}>i</span>
+                 <span className={styles.tooltipText}>You can fill this field later.<br></br> It's not required during registration</span>
+               </div>
+             </div>
+         </div> 
 
-<div style={{ maxWidth: "400px", margin: "auto", padding: "10px" }}>
-      <div style={{ display: "flex", gap: "16px" }}>
-        <h2 style={{ fontSize: "13px", marginBottom: "10px", marginTop: "15px", marginLeft: "10px" }}>
+<div style={{display:"flex", flexDirection:"column", alignItems:"start", width:"100%"}}>        
+<div style={{ maxWidth: "400px", width: "40%", padding: "10px", display: "flex", justifyContent: "flex-end", flexDirection:"column" }}>
+
+      <div style={{ display: "flex", gap: "16px", justifyContent:"end", marginRight:"35px", marginTop:"-16px", position:"relative", left:"-66px"}}>
+        <h2 style={{ fontSize: "13px", marginBottom: "10px", marginTop: "15px", marginLeft: "12px" }}>
           Previous Employers
         </h2>
-        {employers.length < 3 && (
-          <button
-            onClick={addEmployer}
-            style={{
-              marginTop: "10px",
-              backgroundColor: "rgb(40,4,99)",
-              color: "white",
-              border: "none",
-              padding: "6px 10px",
-              borderRadius: "4px",
-              cursor: "pointer",
-              fontSize: "16px",
-            }}
-          >
-            +
-          </button>
-        )}
+        <div style={{display:"flex"}}>
+        {employers.length < 3 ? (
+  <button
+    onClick={addEmployer}
+    style={{
+      marginTop: "10px",
+      backgroundColor: "rgb(40,4,99)",
+      color: "white",
+      border: "none",
+      padding: "6px 10px",
+      borderRadius: "4px",
+      cursor: "pointer",
+      fontSize: "16px",
+    }}
+  >
+    +
+  </button>
+) : (
+  <div style={{ width: "36px", height: "36px", marginTop: "10px" }} />
+)}
+
+        <div className={styles.tooltipWrapper}>
+                 <span className={styles.tooltipIcon}>i</span>
+                 <span className={styles.tooltipText}>You can fill this field later.<br></br> It's not required during registration</span>
+        </div>
+       </div>
       </div>
 
       {employers.map((employer, index) => (
-        <div key={index} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-          <input
-            type="text"
-            placeholder={`Employer ${index + 1}`}
-            value={employer}
-            onChange={(e) => handleEmployerChange(index, e.target.value)}
-            ref={(el) => (inputRefs.current[index] = el)}
-            style={{ flex: "1", padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
-          />
-          <button
-            onClick={() => removeEmployer(index)}
-            style={{
-              background: "red",
-              color: "#fff",
-              border: "none",
-              padding: "6px 10px",
-              borderRadius: "4px",
-              cursor: "pointer",
-              fontSize: "16px",
-            }}
-          >
-            -
-          </button>
-        </div>
-      ))}
+        
+  <div key={index} style={{ display: "flex", flexDirection: "column", gap: "4px", marginBottom: "12px" }}>
+   <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "72px" }}>
+      <h4>Prev Emp {index + 1}:</h4>
+      <input
+        type="text"
+        placeholder={`Employer ${index + 1}`}
+        value={employer.name}
+        onChange={(e) => handleEmployerChange(index, "name", e.target.value)}
+        ref={(el) => (inputRefs.current[index] = el)}
+        style={{ flex: 1, padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
+      />
     </div>
 
+    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginLeft: "20px" }}>
+      <label ><h4>No of Years:</h4></label>
+      <input
+        type="number"
+        min="0"
+        placeholder="years"
+        value={employer.years}
+        onChange={(e) => handleEmployerChange(index, "years", e.target.value)}
+        style={{ width: "30px", padding: "6px", border: "1px solid #ccc", borderRadius: "5px" }}
+      />
+      <button onClick={() => removeEmployer(index)} class={styles.minusbtn}>-</button>
+    </div>
+    </div>
+  </div>
+))}
+</div>
 
 
-        <div className={STyles.signUpWrapper} style={{marginLeft:"17px", marginBottom:"20px"}} 
+
+        <div className={STyles.signUpWrapper} style={{marginRight:"45px", marginBottom:"20px"}} 
               onClick={!email? NoEmailAlert : emailError? InvalidEmailAlert :login}>
           <div className={STyles.both}>
             <img className={STyles.google} src={GoogleImage} />
@@ -1061,7 +1298,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
           </div>
 
             
-            </div>
+            {/* </div> */}
 
             
 
@@ -1331,7 +1568,46 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                          </div>
               </label> */}
               <label className={styles.inputName}>
-  <h4>College:</h4>
+  <h4>10th:</h4>
+  <input
+    type="text"
+    ref={tenthInputRef}
+    value={tenth}
+    onChange={(e) => setTenth(e.target.value)}
+    className={styles.input}
+    style={{ width: "81%", marginLeft: "18px" }}
+    placeholder="Search your 10th college"
+  />
+</label>
+
+<label className={styles.inputName}>
+  <h4>12th:</h4>
+  <input
+    type="text"
+    ref={twelfthInputRef}
+    value={twelfth}
+    onChange={(e) => setTwelfth(e.target.value)}
+    className={styles.input}
+    style={{ width: "81%", marginLeft: "18px" }}
+    placeholder="Search your 12th college"
+  />
+</label>
+
+<label className={styles.inputName}>
+  <h4>Degree/Diploma:</h4>
+  <input
+    type="text"
+    ref={DegreeInputRef}
+    value={degree}
+    onChange={(e) => setDegree(e.target.value)}
+    className={styles.input}
+    style={{ width: "81%", marginLeft: "18px" }}
+    placeholder="Search your Degree college"
+  />
+</label>
+
+<label className={styles.inputName}>
+  <h4>Masters:</h4>
   <input
     type="text"
     ref={collegeInputRef}
@@ -1339,19 +1615,42 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
     onChange={(e) => setcollege(e.target.value)}
     className={styles.input}
     style={{ width: "81%", marginLeft: "18px" }}
-    placeholder="Search for your college"
+    placeholder="Search your masters college"
   />
 </label>
 
-              {college.value==="Others" &&(
-               <label className={styles.inputName} style={{marginTop:"-7px", width:"81%", marginLeft:"18px"}}>
-               <h4>Others: &nbsp;<span className={styles.hint}>(Enter College name)</span></h4>
-               <input className={styles.input} value={Others} onChange={handleOthersCollege}  type="text" />
-             </label>
 
-            )}
+<label className={styles.MobileinputName}>
+  <h4>Current Employer:</h4>
+  <input
+    type="text"
+    ref={currentEmpInputRef}
+    value={currentEmp}
+    onChange={(e) => setCurrentEmp(e.target.value)}
+    className={styles.input}
+    style={{ width: "81%", marginLeft: "18px" }}
+    placeholder="Search your current Employer"
+  />
+</label>
 
-<div style={{ maxWidth: "400px", margin: "auto", padding: "10px",marginleft:"10px" }}>
+<label style={{ display: "flex", alignItems: "center", marginLeft:"19px" , marginTop:"10px"}} className={styles.MobileinputName}>
+  <div> <h4 style={{ margin: 0 }}>No of Years:</h4> </div>
+  <input
+    type="number"
+    value={currentEmpTenure}
+    onChange={(e) => setCurrentEmpTenure(e.target.value)}
+    className={styles.Mobileinput}
+    style={{ width: "9%", height: "22px" }}
+    placeholder="years"
+  />
+  <div className={styles.tooltipWrapper}>
+    <span className={styles.tooltipIcon}>i</span>
+    <span className={styles.tooltipText}>You can fill this field later.<br></br> It's not required during registration</span>
+  </div>
+</label>
+
+
+{/* <div style={{ maxWidth: "400px", margin: "auto", padding: "10px",marginleft:"10px" }}> */}
 <div style={{ maxWidth: "400px", margin: "auto", padding: "10px" }}>
       <div style={{ display: "flex", gap: "16px" }}>
         <h2 style={{ fontSize: "13px", marginBottom: "10px", marginTop: "15px", marginLeft: "10px" }}>
@@ -1377,32 +1676,38 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
       </div>
 
       {employers.map((employer, index) => (
-        <div key={index} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-          <input
-            type="text"
-            placeholder={`Employer ${index + 1}`}
-            value={employer}
-            onChange={(e) => handleEmployerChange(index, e.target.value)}
-            ref={(el) => (inputRefs.current[index] = el)}
-            style={{ flex: "1", padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
-          />
-          <button
-            onClick={() => removeEmployer(index)}
-            style={{
-              background: "red",
-              color: "#fff",
-              border: "none",
-              padding: "6px 10px",
-              borderRadius: "4px",
-              cursor: "pointer",
-              fontSize: "16px",
-            }}
-          >
-            -
-          </button>
+        
+        <div key={index} style={{ display: "flex", flexDirection: "column", gap: "4px", marginBottom: "12px" }}>
+         <div style={{ display: "flex",flexDirection:"column", alignItems: "start", gap: "2px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "72px" }}>
+            <h4>Prev Emp {index + 1}:</h4>
+            <input
+              type="text"
+              placeholder={`Employer ${index + 1}`}
+              value={employer.name}
+              onChange={(e) => handleEmployerChange(index, "name", e.target.value)}
+              ref={(el) => (inputRefs.current[index] = el)}
+              style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
+            />
+          </div>
+      
+          <div style={{ display: "flex", alignItems: "center", gap: "8px"}}>
+            <label ><h4>No of Years:</h4></label>
+            <input
+              type="number"
+              min="0"
+              placeholder="years"
+              value={employer.years}
+              onChange={(e) => handleEmployerChange(index, "years", e.target.value)}
+              style={{ width: "30px", padding: "6px", border: "1px solid #ccc", borderRadius: "5px" }}
+            />
+            <button onClick={() => removeEmployer(index)} class={styles.minusbtn}>-</button>
+          </div>
+          </div>
         </div>
       ))}
     </div>
+    
 
       {/* <div style={{display:"flex",gap:"16px"}}>
       <h2 style={{ fontSize: "13px", marginBottom: "10px",marginTop:"15px",marginLeft:"10px" }}>Previous Employers</h2>
@@ -1450,7 +1755,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
           </button>
         </div>
       ))} */}
-    </div>
+    {/* </div> */}
     
 
 

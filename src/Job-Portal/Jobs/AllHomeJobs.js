@@ -159,6 +159,10 @@ const handleOkClick = (id) => {
   applyforJob(id);
 };
 
+const handlecancelClick = () => {
+  setActiveAlertId(null); 
+};
+
 const alertRef = useRef(null);
 useEffect(() => {
   const handleClickOutside = (event) => {
@@ -923,7 +927,7 @@ useEffect(() => {
           padding: '20px',
           backgroundColor: 'rgb(40,4,99)',
           color: 'white',
-          fontSize: '16px',
+          fontSize: '12px',
           borderRadius: '5px',
           position: 'fixed',
           top: '50%',
@@ -934,10 +938,15 @@ useEffect(() => {
           textAlign: 'center',
         }}
         
-        >
+        > 
+        {/* <strong style={{color:"red", textAlign:"center", fontSize:"14px"}}>NOTICE</strong><br></br>
+          ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website.<br></br>
+          <br></br>
+          You will be redirected to the career page of {items.Source}. 
+          ITWalkin is not the authorised partner of this company */}
           <strong>Notice:</strong> ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website.
 
-          <div ref={alertRef} style={{ marginTop: '15px' }}>
+          <div ref={alertRef} style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"5px" }}>
             <button
               onClick={() => handleOkClick(items._id)}
               style={{
@@ -946,12 +955,26 @@ useEffect(() => {
                 color: 'white',
                 border: 'none',
                 borderRadius: '5px',
-                fontSize: '14px',
+                fontSize: '12px',
                 cursor: 'pointer',
               }}
             >
-              OK
+              Ok
             </button>
+            {/* <button
+              onClick={handlecancelClick }
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              Cancel
+            </button> */}
           </div>
         </div>
       )}
@@ -1160,7 +1183,7 @@ useEffect(() => {
                             {activeAlertId === job._id && (
                               <div
                               style={{
-                                width: '204px',
+                                width: '74%',
                                 padding: '20px',
                                 backgroundColor: 'rgb(40,4,99)',
                                 color: 'white',
@@ -1175,9 +1198,14 @@ useEffect(() => {
                                 textAlign: 'center',
                               }}                              
                               >
-                                <strong>Notice:</strong> ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website.
-                      
-                                <div ref={alertRef} style={{ marginTop: '15px' }}>
+                                {/* <strong style={{color:"red", textAlign:"center", fontSize:"14px"}}>NOTICE</strong><br></br>
+                                  ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website.<br></br>
+                                  <br></br>
+                                  You will be redirected to the career page of {job.Source}. 
+                                  ITWalkin is not the authorised partner of this company */}
+                                  <strong>Notice:</strong> ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website.
+
+                                <div ref={alertRef} style={{ marginTop: '15px', display:"flex", gap:"4px", justifyContent:"center" }}>
                                   <button
                                     onClick={() => handleOkClick(job._id)}
                                     style={{
@@ -1186,12 +1214,26 @@ useEffect(() => {
                                       color: 'white',
                                       border: 'none',
                                       borderRadius: '5px',
-                                      fontSize: '11px',
+                                      fontSize: '10px',
                                       cursor: 'pointer',
                                     }}
                                   >
                                     OK
                                   </button>
+                                  {/* <button
+                                    onClick={handlecancelClick}
+                                    style={{
+                                      padding: '8px 16px',
+                                      backgroundColor: '#4CAF50',
+                                      color: 'white',
+                                      border: 'none',
+                                      borderRadius: '5px',
+                                      fontSize: '10px',
+                                      cursor: 'pointer',
+                                    }}
+                                  >
+                                    Cancel
+                                  </button> */}
                                 </div>
                               </div>
                             )}

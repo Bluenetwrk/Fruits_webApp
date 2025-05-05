@@ -386,6 +386,7 @@ const [immage, setimmage] = useState()
     if (response.ok) {
       const data = await response.json();
       alert(` You will receive an invitation email from microsoft to your primary email address: ${email} `)
+      // alert(`You will receive an invitation email from Microsoft at your registered email address shortly.`)
       setname("")
 setemail("")
 setphoneNumber("")

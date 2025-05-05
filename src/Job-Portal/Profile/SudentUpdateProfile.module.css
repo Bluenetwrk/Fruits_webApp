@@ -1,3 +1,55 @@
+.minusbtn{
+    background: red;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.tooltipWrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltipIcon {
+    cursor: pointer;
+    border: 1px solid #aaa;
+    border-radius: 25px;
+    padding: 2px 6px;
+    font-size: 8px;
+    font-weight: bold;
+    background-color: black;
+    display: inline-block;
+    text-align: center;
+    color: white;
+  }
+  
+  .tooltipText {
+    visibility: hidden;
+    opacity: 0;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Show above */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 0.3s;
+    width: max-content;
+    max-width: 200px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  
+  .tooltipWrapper:hover .tooltipText {
+    visibility: visible;
+    opacity: 1;
+  }
+  
 /* ------------------------Employer registration  starts-------------------- */
 .readPageBackBtn{
     background-color: rgb(40, 4, 99);
