@@ -928,7 +928,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
       companyName: "xyz",
       jobType: "Contract",
       driveTime: "11:00 AM",
-      driveDate: "2025-05-05",
+      driveDate: "2025-06-05",
       location: "Mumbai",
       ctc: "6 LPA",
       experience: "1-2 years",
@@ -966,25 +966,29 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
 
   // Handle flashVisible state based on driveJobs
   useEffect(() => {
+    if (!Array.isArray(driveJobs)) return;
+  
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normalize today's date
-
-    let jobs = driveJobs.map((job) => ({
-      ...job,
-      dateObj: new Date(job.driveDate),
-    }));
-
-    jobs = jobs.filter((job) => !isNaN(job.dateObj));
-
-    // Set flashVisible = true if any job date is today or in the future
-    if (jobs.some((job) => job.dateObj >= today)) {
-      setFlashVisible(true);
-    }
-
-    // Process the jobs and set them to processedJobs
+    today.setHours(0, 0, 0, 0);
+  
+    const jobs = driveJobs
+      .map((job) => ({
+        ...job,
+        dateObj: new Date(job.driveDate),
+      }))
+      .filter((job) => !isNaN(job.dateObj));
+  
+    // Update flashVisible only if changed
+    const shouldShowFlash = jobs.some((job) => job.dateObj >= today);
+    setFlashVisible((prev) => (prev !== shouldShowFlash ? shouldShowFlash : prev));
+  
+    // Avoid unnecessary setProcessedJobs if no real change
     const processed = processDriveJobs(driveJobs);
-    setProcessedJobs(processed);
-  }, [driveJobs]); 
+    setProcessedJobs((prev) => {
+      return JSON.stringify(prev) !== JSON.stringify(processed) ? processed : prev;
+    });
+  }, [driveJobs]);
+  
 
   
   
