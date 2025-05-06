@@ -599,9 +599,9 @@ async function deletComment(id){
             year: "numeric",
           }
         )} </p> */}
-                <div className={styles.JobTitleDateWrapper} style={{marginTop:"-4px",display:"flex",gap:"8px"}}>
-        <p className={styles.QuestionjobTitle} style={{fontSize:"26px" , marginTop:"2px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
-        <p className={styles.Date} style={{marginTop:"12px",marginRight:"-20px"}}>{new Date(jobs.createdAt).toLocaleString(
+                <div className={styles.JobTitleDateWrapper} style={{marginTop:"-4px",display:"flex", flexDirection:"column", gap:"2px"}}>
+        <p className={styles.QuestionjobTitle} style={{fontSize:"26px" , marginTop:"2px", width:"100%", marginBottom:"0"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
+        <p className={styles.Date} style={{marginRight:"-20px",marginTop:"0px",}}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {
             month: "short",

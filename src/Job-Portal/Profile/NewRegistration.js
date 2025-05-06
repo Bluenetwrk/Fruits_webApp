@@ -385,8 +385,8 @@ const [immage, setimmage] = useState()
     // console.log("Response :", response);
     if (response.ok) {
       const data = await response.json();
-      alert(` You will receive an invitation email from microsoft to your primary email address: ${email} `)
-      // alert(`You will receive an invitation email from Microsoft at your registered email address shortly.`)
+      // alert(` You will receive an invitation email from microsoft to your primary email address: ${email} `)
+      alert(`You will receive an invitation email from Microsoft at your registered email address shortly.`)
       setname("")
 setemail("")
 setphoneNumber("")
@@ -736,7 +736,7 @@ const helpData = [
             {/* 
 
             <button className={styles.cancel} onClick={() => { navigate(-1) }} >cancel</button> */}
-<div className={STyles.signUpWrapper} style={{marginLeft:"20px", marginBottom:"20px"}} onClick={(e) => { saveMicrosoft(e) }} >
+        <div className={STyles.signUpWrapper} style={{marginLeft:"20px", marginBottom:"20px"}} onClick={(e) => { saveMicrosoft(e) }} >
           <div className={STyles.both}>
             <img className={STyles.google} src={ MicosoftImage}/> 
             <p className={STyles.signUpwrap} >Register with Microsoft</p>
