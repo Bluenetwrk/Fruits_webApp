@@ -1359,7 +1359,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
          <p style={{ fontStyle: "italic", color: "green" }}>{topMessage}</p>
              <label className={styles.MobileinputName}>
                 <h4 className={styles.MobileName}>Name:</h4>
-                <input maxLength="20" className={styles.Mobileinput} disabled value={name} onChange={(e) => { setname(e.target.value) }} type="text" />
+                <input maxLength="20" className={styles.Mobileinput} value={name} onChange={(e) => { setname(e.target.value) }} type="text" />
               </label>
 
               <label className={styles.MobileinputName}>

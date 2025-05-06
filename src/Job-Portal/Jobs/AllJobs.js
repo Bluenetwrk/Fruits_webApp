@@ -887,12 +887,12 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
         }}
         
         >
-          {/* <strong style={{color:"red", textAlign:"center", fontSize:"14px"}}>NOTICE</strong><br></br>
+          <strong style={{color:"red", textAlign:"center", fontSize:"14px"}}>NOTICE</strong><br></br>
           ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website.<br></br>
           <br></br>
           You will be redirected to the career page of {items.Source}. 
-          ITWalkin is not the authorised partner of this company */}
-          <strong>Notice:</strong> ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website.
+          ITWalkin is not the authorised partner of this company
+          {/* <strong>Notice:</strong> ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website. */}
 
           <div ref={alertRef} style={{ marginTop: '15px', display:"flex", gap:"4px", justifyContent:"center" }}>
             <button
@@ -909,7 +909,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
             >
               OK
             </button>
-            {/* <button
+            <button
               onClick={handlecancelClick }
               style={{
                 padding: '8px 16px',
@@ -922,7 +922,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
               }}
             >
               Cancel
-            </button> */}
+            </button>
           </div>
         </div>
       )}
@@ -1303,14 +1303,14 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                                 }}   
                                 
                                 >
-                                  {/* <strong style={{color:"red", textAlign:"center", fontSize:"14px"}}>NOTICE</strong><br></br>
+                                  <strong style={{color:"red", textAlign:"center", fontSize:"14px"}}>NOTICE</strong><br></br>
                                   ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website.<br></br>
                                   <br></br>
                                   You will be redirected to the career page of {job.Source}. 
-                                  ITWalkin is not the authorised partner of this company */}
+                                  ITWalkin is not the authorised partner of this company
                                   <strong>Notice:</strong> ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website.
 
-                                  <div ref={alertRef} style={{ marginTop: '15px', display:"flex", justifyContent:"center" }}>
+                                  <div ref={alertRef} style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"4px" }}>
                                     <button
                                       onClick={() => handleOkClick1(job.SourceLink)}
                                       style={{
@@ -1325,7 +1325,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                                     >
                                       OK
                                     </button>
-                                    {/* <button
+                                    <button
                                     onClick={handlecancelClick}
                                     style={{
                                       padding: '8px 16px',
@@ -1338,7 +1338,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                                     }}
                                   >
                                     Cancel
-                                  </button> */}
+                                  </button>
                                   </div>
                                 </div>
                               )}
