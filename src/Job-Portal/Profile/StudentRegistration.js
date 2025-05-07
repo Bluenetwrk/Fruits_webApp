@@ -4,7 +4,7 @@ import Style  from "../Jobs/Allobs.module.css"
 import STyles from "../Login/login.module.css"
 import { useGoogleLogin } from '@react-oauth/google';
 import validator from "validator";
-
+import MicosoftImage from "../img/icons8-windows-10-48.png"
 import imageCompression from 'browser-image-compression';
 import axios from 'axios';
 import logo from "../img/Blue.jpg"
@@ -168,7 +168,9 @@ function StudentUpdateProfile(props) {
                .catch(error => console.log(error))
            }, []);
 
+const saveMicrosoft=(e)=>{
 
+}
      const login= useGoogleLogin({
       onSuccess: async (response) => {
         try {
@@ -1288,6 +1290,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 </div>
 
 
+        <div style={{display:"flex"}}>
 
         <div className={STyles.signUpWrapper} style={{marginRight:"45px", marginBottom:"20px"}} 
               onClick={!email? NoEmailAlert : emailError? InvalidEmailAlert :login}>
@@ -1296,6 +1299,16 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
             <p className={STyles.signUpwrap} >Register with Google</p>
           </div>
           </div>
+          
+          <div className={STyles.signUpWrapper} style={{marginLeft:"20px", marginBottom:"20px"}} onClick={(e) => { saveMicrosoft(e) }} >
+          <div className={STyles.both}>
+            <img className={STyles.google} src={ MicosoftImage}/> 
+            <p className={STyles.signUpwrap} >Register with Microsoft</p>
+          </div>
+        </div>
+
+        </div>
+
 
             
             {/* </div> */}
@@ -1766,11 +1779,17 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               </div>
               <div style={{marginTop:"60px"}}> */}
 
-              <div className={STyles.signUpWrapper} style={{marginLeft:"50px", marginBottom:"20px"}}
+              <div className={STyles.signUpWrapper} style={{marginLeft:"20px", marginBottom:"20px"}}
                onClick={!email? NoEmailAlert : emailError? InvalidEmailAlert :login}>
           <div className={STyles.both}>
             <img className={STyles.google} src={GoogleImage} />
             <p className={STyles.signUpwrap} >Register with Google</p>
+          </div>
+        </div>
+        <div className={STyles.signUpWrapper} style={{marginLeft:"20px", marginBottom:"20px"}} onClick={(e) => { saveMicrosoft(e) }} >
+          <div className={STyles.both}>
+            <img className={STyles.google} src={ MicosoftImage}/> 
+            <p className={STyles.signUpwrap} >Register with Microsoft</p>
           </div>
         </div>
           <Footer/>

@@ -235,7 +235,7 @@
     border-radius: 3px;
     border: none;
 }
-.JobtitleFilter:hover{    
+/* .JobtitleFilter:hover{    
     background-color: rgb(40, 4, 99);
 
     margin: 4px;
@@ -247,7 +247,7 @@
     align-content: center;
     text-wrap: nowrap ;
     border-radius: 3px;
-}
+} */
 .TagHeading{
     /* background:rgb(242, 244, 245); */
     background:rgb(228, 230, 231);
