@@ -904,7 +904,8 @@ useEffect(() => {
                         </li>
                         {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li> */}
                         <li className={`${styles.li} ${styles.Location}`}>{items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}</li>
-                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"L" }</li>
+                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="Not disclosed" ? "Not Disclosed":items.salaryRange+"LPA" }</li>
+                        {/* {console.log("Sdsd",items)} */}
                         <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
                         {/* {console.log("qualifications - ",items)} */}
                         <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
@@ -1115,14 +1116,14 @@ useEffect(() => {
                           )
                           } </p> */}
                           <div style={{marginTop:"-12px"}}>
-                        <div className={styles.JobTitleDateWrapper} style={{display:"flex",gap:"16px"}}>
+                        <div className={styles.JobTitleDateWrapper} style={{display:"flex", flexDirection:"column", gap:"1px"}}>
                           <p className={styles.jobTitle} onClick={() => {
                             window.scrollTo({
                               top: 0
                             })
                             navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
                           }} style={{width:"100%", whiteSpace:"normal"}}>{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
-                           <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
+                           <p style={{marginTop:"-11px"}} className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
                               day: "2-digit",
@@ -1171,7 +1172,7 @@ useEffect(() => {
                           <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skills}</span><br></br>
                         </div>
                         <div className={styles.homeApplyPackage}>
-                          <p className={styles.salaryRange}><span>&#8377;</span>{job.salaryRange===""? "Not Disclosed":job.salaryRange+"L"}</p>
+                          <p className={styles.salaryRange}><span>&#8377;</span>{job.salaryRange==="Not disclosed" ? "Not Disclosed":job.salaryRange+"LPA"}</p>
                           {
                           
                             // <button className={styles.homeApplyMobileBtn} onClick={() => { applyforJob(job._id) }}><b>Apply</b></button>

@@ -1648,7 +1648,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                           )
                           } </p> */}
                          
-                        <div className={styles.JobTitleDateWrapper} style={{marginTop:"-12px",display:"flex",gap:"8px"}}>
+                        <div className={styles.JobTitleDateWrapper} style={{marginTop:"-12px",display:"flex", flexDirection:"column"}}>
                    
                             {
                               job.question?
@@ -1669,7 +1669,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                             
 
 
-                          <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
+                          <p style={{marginTop:"0px"}} className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
                               day: "2-digit",

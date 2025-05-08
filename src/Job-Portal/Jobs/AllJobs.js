@@ -843,7 +843,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                           {items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}
                         
                           </li>
-                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"L" }</li>
+                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="Not disclosed" ? "Not Disclosed":items.salaryRange+"LPA" }</li>
                         <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
                         <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
                         <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li>
@@ -1034,7 +1034,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                         {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li> */}
                         <li className={`${styles.li} ${styles.Location}`}>{items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}</li>
                     
-                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"L" }</li>
+                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="Not disclosed" ? "Not Disclosed":items.salaryRange+"LPA" }</li>
                         <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
                         <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
                         <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li>
@@ -1204,14 +1204,14 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                               year: "numeric",
                             }
                           )} </p> */}
-                        <div className={styles.JobTitleDateWrapper} style={{marginTop:"-16px", display:"flex",gap:"18px"}}>
+                        <div className={styles.JobTitleDateWrapper} style={{marginTop:"-16px", display:"flex",flexDirection:"column"}}>
                           <p className={styles.jobTitle} onClick={() => {
                             window.scrollTo({
                               top: 0
                             })
                             navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
                           }}style={{ width:"100%",whiteSpace:"normal"}} >{job?.jobTitle?.charAt(0).toUpperCase()+job.jobTitle.substring(1)}</p>
-                          <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
+                          <p style={{marginTop:"-5px"}} className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
                               month: "short",
@@ -1264,7 +1264,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
 
 
                         <div className={styles.ApplyPackageJobseeker}>
-                          <p style={{marginLeft: "20px"}} className={styles.salaryRangeJobseeker}><span>&#8377;</span>{job.salaryRange==="" ? "Not Disclosed":job.salaryRange+"L" }</p>
+                          <p style={{marginLeft: "20px"}} className={styles.salaryRangeJobseeker}><span>&#8377;</span>{job.salaryRange==="Not disclosed" ? "Not Disclosed":job.salaryRange+"LPA" }</p>
 
 
                           {job.jobSeekerId.find((jobseeker) => {
