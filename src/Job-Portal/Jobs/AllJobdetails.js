@@ -501,11 +501,11 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
                     year: "numeric",
                   }
                 )}</span> &nbsp; |
-  &nbsp; <span>Experience : {jobs.experiance}</span> &nbsp;|  
-  &nbsp; <span>Location : {jobs.jobLocation}</span>&nbsp; |  
+  &nbsp; <span>Experience : {jobs.experiance}yrs</span> &nbsp;|  
+  &nbsp;<span>Location : {jobs.jobLocation ? jobs.jobLocation.charAt(0).toUpperCase() + jobs.jobLocation.substring(1) : ''} &nbsp;|</span>
   &nbsp; <span>Job Type : {jobs.jobtype}</span>&nbsp; |  
   &nbsp; <span>Qualification : {jobs.qualification}</span>&nbsp; |  
-  &nbsp; <span>Salary : {jobs.salaryRange}</span> 
+  &nbsp; <span>Salary : {jobs.salaryRange}LPA</span> 
   
   
 <p>Skills : {jobs.skills} </p>
@@ -620,9 +620,9 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
             year: "numeric",
           }
         )} </p> */}
-                <div className={styles.JobTitleDateWrapper} style={{marginTop: "-20px"}}>
+                <div className={styles.JobTitleDateWrapper} style={{marginTop: "-10px", display:"flex", flexDirection:"column"}}>
         <p style={{ width:"100%" ,whiteSpace:"normal", marginRight: "5px" }}className={styles.jobTitle} >{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
-        <p className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
+        <p style={{marginTop:"-6px"}} className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {
             month: "short",
@@ -648,11 +648,14 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
         </div>
         <  img className={styles.jobLocationImage} src={location}  /> 
-        <span className={styles.jobLocation}>{jobs.jobLocation}</span>                        
+        <span className={styles.jobLocation}>
+  {jobs.jobLocation ? jobs.jobLocation.charAt(0).toUpperCase() + jobs.jobLocation.substring(1) : ''}
+</span>
+
         <span className={styles.qualificationAndExperiance}>
         <  img className={styles.graduationImage} src={graduation}  /> 
 
-          {jobs.qualification},   {jobs.experiance}Y Exp, {jobs.jobtype}
+          {jobs.qualification},   {jobs.experiance}yrs , {jobs.jobtype}
         {/* <span className={styles.jobtypeAndDate}> {job.jobtype}</span> */}
         </span><br></br> 
         <span className={styles.jobtypeAndDate}>Source</span> :
@@ -669,7 +672,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
             
             <div className={styles.ApplyPackage}>
-            <p className={styles.salaryRange}><span>&#8377;</span>{jobs.salaryRange}L</p>        
+            <p className={styles.salaryRange}><span>&#8377;</span>{jobs.salaryRange}LPA</p>        
 
 
             {

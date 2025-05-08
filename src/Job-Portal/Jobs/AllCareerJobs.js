@@ -1556,7 +1556,7 @@ const responsive = {
                   return (
                     <>
                       <div className={styles.JobCard} key={i}>
-                        <div className={styles.JobTitleDateWrapper} style={{display:"flex",gap:"18px"}}>
+                        <div className={styles.JobTitleDateWrapper} style={{display:"flex",flexDirection:"column"}}>
                           <p className={styles.jobTitle} onClick={() => {
                             window.scrollTo({
                               top: 0
@@ -1564,7 +1564,7 @@ const responsive = {
                             navigate(`/CareerJobdetails/${btoa(job._id)}`)
                           // }} >{job.jobTitle.toUpperCase()}</p>
                            }} >{job?.jobTitle?.charAt(0).toUpperCase()+job?.jobTitle?.substring(1)}</p>
-                          <p className={styles.Date} style={{marginRight:"-17px"}}>{new Date(job.createdAt).toLocaleString(
+                          <p style={{marginTop:"-5px"}} className={styles.Date} style={{marginRight:"-17px"}}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
                               month: "short",
