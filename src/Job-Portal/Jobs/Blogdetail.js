@@ -31,6 +31,7 @@ function Answerdetails(props) {
 
   const [CommentName, setCommentName] = useState("")
   const [CommentID, setCommentID] = useState()
+  const [PageLoader, setPageLoader] = useState(false)
   // const [shareClicked, setShareClicked] = useState(false)
   // let CommentName = atob(JSON.parse(localStorage.getItem("Snm")))
   const updateClick=()=>{
@@ -166,7 +167,7 @@ async function deletComment(id){
            let sortedate = result.sort((a, b) => {
             return new Date(b.createdAt) - new Date(a.createdAt);
            });
-           lastIndex.current=sortedate.length;  
+           lastIndex.current=sortedate.length;  
            allJobs.current=sortedate 
            // allTagJobs.current=sortedate;
            // console.log("tags-",allJobs,"lastIndex",lastIndex)
@@ -187,7 +188,7 @@ async function deletComment(id){
                return new Date(b.createdAt) - new Date(a.createdAt);
              });
 
-             lastIndex.current=sortedate.length;  
+             lastIndex.current=sortedate.length;  
              allJobs.current=sortedate 
              console.log("alljobs",allJobs)
              if (res.data.length == 0) {
@@ -233,6 +234,7 @@ async function deletComment(id){
          }
   
          async function getNextPrevJobs() {
+          setPageLoader(true)
              window.scrollTo({
                top:0,
                // behavior:"smooth"
@@ -246,6 +248,7 @@ async function deletComment(id){
                  setJobs(result)
                  setjobdescription(result.jobDescription)
                  setjobSeekerId(result.jobSeekerId)
+                 setPageLoader(false)
                })
            }
 
@@ -396,6 +399,7 @@ async function deletComment(id){
     <div class={styles.readPageContainer}>
        <div class={styles.ReadPageBtnTitleContainer} style={{display:"flex"}}>
            {/* <button class={styles.readPageBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
+           <div style={{display:"flex"}}>
            <button className={styles.readPageBackBtn} 
             onClick={() => {
                if (window.history.length > 1) {
@@ -417,35 +421,12 @@ async function deletComment(id){
           <div style={{fontSize:"12px", fontWeight:"800px"}}>Next</div> <i class='fas fa-caret-square-right' style={{fontSize:"9px",marginLeft:"4px"}}></i>
           </button>
           </div>
-          {/* {console.log("history length",window.history.length)} */}
-          {/* <div class={ styles.blogArrow} style={{display:"flex", height:"50px", alignItems:"center",justifyContent:"space-between",}}>
-                 <div style={{ display: "flex", justifyContent: "space-between", marginRight:"0px" }}>
-            <div className={styles.navigationWrapperbtn}>
-             
-              <button onClick={descIndex} style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
-              <i class='fas fa-caret-square-left'></i>Prev
-              </button>
-              <div style={{display:"flex",alignItems:"center"}}>{index +1}</div>
-              <button onClick={incIndex} style={{ display: "flex", alignItems:"center", padding: "6px" }} className={styles.navigationbtn} >
-               Next<i class='fas fa-caret-square-right'></i>
-              </button>
-             
-            </div>
-          </div>
-        </div> */}
+       </div>
+       {PageLoader ?"":
+       <h1 style={{textAlign:"center", fontSize:"40px", whiteSpace:"no", marginTop:"10px",marginRight:"0px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</h1>
+       }
 
-              <h1 style={{textAlign:"center", fontSize:"40px", whiteSpace:"no", marginTop:"10px",marginRight:"0px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</h1>
-           {/* <div style={{display:" flex",flexDirection:"column"}}> */}
-           {/* <button style={{ marginRight:"4px"}}class={styles.readPageBackBtn} onClick={updateClick} >Share</button> */}
-           {/* <a
-        href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img  class={styles.linkedinLogoDesktop} src={Linkedinlogo} />
-      </a> */}
-      {/* </div> */}
-    <div style={{position:"relative"}}>
+                  <div style={{position:"relative"}}>
     <div ref={buttonRef} onClick={updateClickStatus} style={{ marginRight: "4px",width:"65px",height:"35px" }} className={styles.shareBtnBlog}>
   <i className="fa-solid fa-share" style={{marginLeft:"6px", fontSize: "small", cursor: "pointer" }}></i>
   <div style={{fontSize:"12px", fontWeight:"800px" }}>Share</div>
@@ -482,9 +463,14 @@ async function deletComment(id){
 </div>
 
 
-      </div>    
+      </div>  
+      {PageLoader ?<>
+                            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "47%", marginTop: "50px" }} />
+                            <h3 style={{color:"red",textAlign:"center"}}>No Record Found</h3>
+                      </>:
+                      <> 
               <div style={{marginLeft:"12px"}}>
-                <span>Posted by {jobs.name}</span> |  
+                                <span>Posted by {jobs.name}</span> |  
                 <span> Posted on : {new Date(jobs.createdAt).toLocaleString(
                   "en-US",
                   {
@@ -518,6 +504,7 @@ async function deletComment(id){
 
   </tr>
   </table>
+  </> }
   </div>
   <img style={{marginLeft:"50%",height:"30px",marginBottom:"20px" }}  onClick={()=>{goUp()}} src={Up}/>
           </>
@@ -599,6 +586,11 @@ async function deletComment(id){
             year: "numeric",
           }
         )} </p> */}
+        {PageLoader ?<>
+                            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "40%", marginTop: "50px" }} />
+                            <h3 style={{color:"red",textAlign:"center"}}>No Record Found</h3>
+                      </>:
+                      <>
                 <div className={styles.JobTitleDateWrapper} style={{marginTop:"-4px",display:"flex", flexDirection:"column", gap:"2px"}}>
         <p className={styles.QuestionjobTitle} style={{fontSize:"26px" , marginTop:"2px", width:"100%", marginBottom:"0"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
         <p className={styles.Date} style={{marginRight:"-20px",marginTop:"0px",}}>{new Date(jobs.createdAt).toLocaleString(
@@ -623,7 +615,8 @@ async function deletComment(id){
 
   </tr>
   </table>  
-
+  </>
+  }
                 </div>
                 <img style={{marginLeft:"50%",height:"30px",marginTop:"10px" }}  onClick={()=>{goUp()}} src={Up}/>
              

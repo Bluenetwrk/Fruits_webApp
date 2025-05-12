@@ -31,7 +31,7 @@ function Jobdetails() {
 const screenSize = useScreenSize();
 const [Loader, setLoader] = useState(false)
 const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
-
+const [PageLoader, setPageLoader] = useState(false)
   const [clickedJobId, setclickedJobId] = useState() //for single job loader
   let jobSeekerId = JSON.parse(localStorage.getItem("StudId"))
   let empId = JSON.parse(localStorage.getItem("EmpIdG"))
@@ -102,7 +102,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
             let sortedate = result.sort((a, b) => {
              return new Date(b.createdAt) - new Date(a.createdAt);
             });
-            lastIndex.current=sortedate.length;  
+            lastIndex.current=sortedate.length;  
             allJobs.current=sortedate 
             // allTagJobs.current=sortedate;
             // console.log("tags-",allJobs,"lastIndex",lastIndex)
@@ -120,7 +120,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
               let sortedate = result.sort(function (a, b) {
                 return new Date(b.createdAt) - new Date(a.createdAt);
               });
-              lastIndex.current=sortedate.length;  
+              lastIndex.current=sortedate.length;  
               allJobs.current=sortedate 
             }).catch((err) => {
               alert("backend arror occured")
@@ -138,7 +138,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
               let sortedate = result.sort(function (a, b) {
                 return new Date(b.createdAt) - new Date(a.createdAt);
               });
-              lastIndex.current=sortedate.length;  
+              lastIndex.current=sortedate.length;  
               allJobs.current=sortedate 
             }).catch((err) => {
               alert("back error occured")
@@ -158,7 +158,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
               let sortedate = result.sort(function (a, b) {
                 return new Date(b.createdAt) - new Date(a.createdAt);
               });
-              lastIndex.current=sortedate.length;  
+              lastIndex.current=sortedate.length;  
               allJobs.current=sortedate 
             }).catch((err) => {
               alert("backend arror occured")
@@ -204,6 +204,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
           }
    
           async function getNextPrevJobs() {
+            setPageLoader(true)
               window.scrollTo({
                 top:0,
                 // behavior:"smooth"
@@ -217,6 +218,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
                   setJobs(result)
                   setjobdescription(result.jobDescription)
                   setjobSeekerId(result.jobSeekerId)
+                  setPageLoader(false)
                 })
             }
 
@@ -437,7 +439,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
             </div> */}
           </div>
               
-              
+
 
 
 
@@ -479,8 +481,14 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
            </div>
         </div>
 
-        
-
+         {PageLoader ?
+                    <>
+                    <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "47%", marginTop: "50px", textAlign:"center" }} />
+                    <h3 style={{color:"red", textAlign:"center"}}>No Record Found</h3>
+                    </>
+                    : 
+          
+         <> 
         <div class={styles.jobDetailsHeading}>
              <div class={styles.jobDetailsImage}>
             {/* <img className={styles.imageV} src={jobs.Logo?jobs.Logo : profileDp}/> */}
@@ -526,6 +534,8 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 
   </tr>
   </table>
+  </> 
+  }
   </div>
   <img style={{height:"30px",marginLeft:"50%",marginBottom:"50px"}}  onClick={()=>{goUp()}} src={Up}/> 
   
@@ -620,6 +630,11 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
             year: "numeric",
           }
         )} </p> */}
+        {PageLoader ?<>
+                    <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "40%", marginTop: "50px" }} />
+                    <h3 style={{color:"red",textAlign:"center"}}>No Record Found</h3>
+                    </>: 
+                  <>
                 <div className={styles.JobTitleDateWrapper} style={{marginTop: "-10px", display:"flex", flexDirection:"column"}}>
         <p style={{ width:"100%" ,whiteSpace:"normal", marginRight: "5px" }}className={styles.jobTitle} >{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</p>
         <p style={{marginTop:"-6px"}} className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
@@ -709,8 +724,8 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
           applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>Apply</button>
           :
       <button className={styles.ApplyMobile} onClick={() => { navigate("/JobSeekerLogin") }}><b>Apply</b></button>
+   
       
-
 
 }
                   </div>
@@ -721,6 +736,8 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
             }
             
                </p>
+               </>
+          }
                 </div>
               </>
 
