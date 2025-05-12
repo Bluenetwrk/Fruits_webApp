@@ -906,7 +906,7 @@ useEffect(() => {
                         <li className={`${styles.li} ${styles.Location}`}>{items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}</li>
                         <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="Not disclosed" ? "Not Disclosed":items.salaryRange+"LPA" }</li>
                         {/* {console.log("Sdsd",items)} */}
-                        <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}yrs</li>
+                        <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Yrs</li>
                         {/* {console.log("qualifications - ",items)} */}
                         <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
                         <li className={`${styles.li} ${styles.Skills}`}>{items.skills}

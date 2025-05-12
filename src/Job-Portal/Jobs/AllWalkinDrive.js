@@ -265,8 +265,8 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
 
   }
 
-
   
+
   const [jobLocation, setjobLocation] = useState("AllL")
   const [jobTitle, setjobTitle] = useState("")
   
@@ -612,7 +612,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
 
 
 
-
+  
   return (
     <>
       {screenSize.width > 850 ?
