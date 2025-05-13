@@ -988,7 +988,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                   })
 
                   
-                  : <p style={{ marginLeft: "47%", color: "red" }}>No Record Found</p>
+                  : <p style={{ marginLeft: "47%", color: "red" }}>Loading......</p>
                   :
                   jobs.length > 0 ?
                   jobs.map((items, i) => {
@@ -1064,7 +1064,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                       </ul>
                     )
                   })
-                  : <p style={{ marginLeft: "47%", color: "red" }}>No Record Found</p>
+                  : <p style={{ marginLeft: "47%", color: "red" }}>Loading......</p>
             }
           </div>
 
@@ -1418,7 +1418,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                     </>
                   )
                 })
-                : <p style={{ marginLeft: "35%", color: "red" }}>No Record Found</p>
+                : <p style={{ marginLeft: "35%", color: "red" }}>Loading......</p>
 
             }
 

@@ -484,7 +484,7 @@ const [PageLoader, setPageLoader] = useState(false)
          {PageLoader ?
                     <>
                     <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "47%", marginTop: "50px", textAlign:"center" }} />
-                    <h3 style={{color:"red", textAlign:"center"}}>No Record Found</h3>
+                    <h3 style={{color:"red", textAlign:"center"}}>Loading......</h3>
                     </>
                     : 
           
@@ -509,7 +509,7 @@ const [PageLoader, setPageLoader] = useState(false)
                     year: "numeric",
                   }
                 )}</span> &nbsp; |
-  &nbsp; <span>Experience : {jobs.experiance}yrs</span> &nbsp;|  
+  &nbsp; <span>Experience : {jobs.experiance}Yrs</span> &nbsp;|  
   &nbsp;<span>Location : {jobs.jobLocation ? jobs.jobLocation.charAt(0).toUpperCase() + jobs.jobLocation.substring(1) : ''} &nbsp;|</span>
   &nbsp; <span>Job Type : {jobs.jobtype}</span>&nbsp; |  
   &nbsp; <span>Qualification : {jobs.qualification}</span>&nbsp; |  
@@ -632,7 +632,7 @@ const [PageLoader, setPageLoader] = useState(false)
         )} </p> */}
         {PageLoader ?<>
                     <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "40%", marginTop: "50px" }} />
-                    <h3 style={{color:"red",textAlign:"center"}}>No Record Found</h3>
+                    <h3 style={{color:"red",textAlign:"center"}}>Loading......</h3>
                     </>: 
                   <>
                 <div className={styles.JobTitleDateWrapper} style={{marginTop: "-10px", display:"flex", flexDirection:"column"}}>
@@ -670,7 +670,7 @@ const [PageLoader, setPageLoader] = useState(false)
         <span className={styles.qualificationAndExperiance}>
         <  img className={styles.graduationImage} src={graduation}  /> 
 
-          {jobs.qualification},   {jobs.experiance}yrs , {jobs.jobtype}
+          {jobs.qualification},   {jobs.experiance}Yrs , {jobs.jobtype}
         {/* <span className={styles.jobtypeAndDate}> {job.jobtype}</span> */}
         </span><br></br> 
         <span className={styles.jobtypeAndDate}>Source</span> :

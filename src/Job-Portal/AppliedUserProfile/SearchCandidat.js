@@ -769,7 +769,7 @@ return(
                     )
                   })
                   :
-                  <p style={{ marginLeft: "45%", color: "red" }}>No Record found</p>
+                  <p style={{ marginLeft: "45%", color: "red" }}>Loading......</p>
 
             }
             <div>
@@ -1430,7 +1430,7 @@ return(
               )
             })
             :
-            <p style={{ marginLeft: "37%", color: "red" }}>No Record found</p>
+            <p style={{ marginLeft: "37%", color: "red" }}>Loading......</p>
           }
 
           </div>

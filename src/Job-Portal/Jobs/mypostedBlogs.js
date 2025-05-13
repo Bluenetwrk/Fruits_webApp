@@ -448,9 +448,9 @@ console.log("dhdgsgdg",records)
       <> 
 
 <p style={{marginLeft:"45%"}}>My Posted Jobs</p>
-<button className={styles.searchButton} onClick={() => {
+{/* <button className={styles.searchButton} onClick={() => {
           navigate("/Search-Candidate")
-        }}>Search Candidate</button>
+        }}>Search Candidate</button> */}
 
 <p style={{ marginLeft: "4%", color: "blue", fontWeight:"bold" }}> Total {myjobs.length} jobs</p>
         <div className={styles.searchBoth}>

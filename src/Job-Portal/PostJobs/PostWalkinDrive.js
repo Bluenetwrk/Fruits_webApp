@@ -227,6 +227,34 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
 
 const [selectedDate, setSelectedDate] = useState("");
 const [selectedTime, setSelectedTime] = useState("");
+
+
+  const venueInputRef = useRef(null);
+  const[venue, setVenue]=useState("");
+    useEffect(() => {
+      if (venueInputRef.current && !venueInputRef.current.autocomplete) {
+        const autocomplete = new window.google.maps.places.Autocomplete(venueInputRef.current, {
+          fields: ["formatted_address", "geometry", "address_components", "place_id", "name"],
+        });
+    
+        autocomplete.addListener("place_changed", () => {
+          const place = autocomplete.getPlace();
+          if (place && place.formatted_address) {
+            const displayValue =
+              place.name && place.name !== place.formatted_address
+                ? `${place.name}, ${place.formatted_address}`
+                : place.formatted_address;
+    
+            setVenue(displayValue);
+          }
+        });
+    
+        venueInputRef.current.autocomplete = autocomplete; // attach instance
+      }
+    }, []);
+
+
+
     return (
         <>
 
@@ -311,6 +339,7 @@ const [selectedTime, setSelectedTime] = useState("");
                                            <label><input name="Qualification" type="radio" checked={qualification === "B.E/Mech"} value="B.E/Mech" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(Mech) </label>
                                            <label><input name="Qualification" type="radio" checked={qualification === "B.E/ECE"} value="B.E/ECE" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(ECE) </label>
                                            <label><input name="Qualification" type="radio" checked={qualification === "B.E/IT"} value="B.E/IT" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(IT) </label>
+                                           
                                            <label><input name="Qualification" type="radio" value="others" onClick={(e) => { setOthers((prev) => !prev); setQualification("") }} />others </label>
                                        </div>
                                        {
@@ -348,7 +377,8 @@ const [selectedTime, setSelectedTime] = useState("");
                                 </div>
                             </div>
                               
-                            <div class={Style.driveDateContainer}>
+                            <div  class={Style.driveDateContainer1}>
+                                <div>
                                           <label>Select Drive Date: </label>
                                           <input 
                                             className={Style.DriveDate}
@@ -356,7 +386,20 @@ const [selectedTime, setSelectedTime] = useState("");
                                             value={selectedDate} 
                                             onChange={(e) => setSelectedDate(e.target.value)} 
                                           />
-                                        </div>
+                                          </div>
+                                           <div style={{display:"flex", flexDirection:"column", gap:"2px",marginRight:"124px" }}> 
+                                          <label>Venue: </label>
+                                          <input
+                                            type="text"
+                                            ref={venueInputRef}
+                                            value={venue}
+                                            onChange={(e) => setVenue(e.target.value)}
+                                            className={Style.driveinput}
+                                            style={{ width: "110%", zIndex:"99"}}
+                                            placeholder="Search Venue"
+                                          />
+                                          </div> 
+                            </div>
 
                                         <div class={Style.driveDateContainer}>
                                          <label>Select Time: </label>
@@ -375,9 +418,9 @@ const [selectedTime, setSelectedTime] = useState("");
 
      </div>
      {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
-
-<button disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Post Walkin Drive</button>
-
+<div style={{display:"flex", justifyContent:"center" }}>
+<button style={{width:"25%",}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit/Post</button>
+</div>
                             {/* </div> */}
 
                                </div> 
