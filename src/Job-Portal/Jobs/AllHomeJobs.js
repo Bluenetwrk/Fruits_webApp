@@ -986,7 +986,7 @@ useEffect(() => {
                       </ul>          
                     )
                   })
-                : <p style={{ marginLeft: "47%", color: "red" }}>No Record Found</p>
+                : <p style={{ marginLeft: "47%", color: "red" }}>Loading......</p>
             }
           </div>
 
@@ -1163,7 +1163,7 @@ useEffect(() => {
                           {/* <span className={styles.jobtypeAndDate}> {job.jobtype}</span> */}
                         </span><br></br>
 
-                        <span className={styles.jobtypeAndDate}>Source</span> :
+                        <span className={styles.jobtypeAndDate}>Posted By</span> :
 
                         <> <span className={styles.skills}>ItWalkin</span><br></br></>
                         {/* } */}
@@ -1263,7 +1263,7 @@ useEffect(() => {
                     </>
                   )
                 })
-                : <p style={{ marginLeft: "35%", color: "red" }}>No Record Found</p>
+                : <p style={{ marginLeft: "35%", color: "red" }}>Loading......</p>
 
             }
 

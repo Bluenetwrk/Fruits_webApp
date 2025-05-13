@@ -72,6 +72,7 @@ let navigate = useNavigate()
 profileData.map((item, i) => {
     return (
         <div key={i} style={{}}>
+            {console.log(profileData)}
         <img style={{}} className={styles.EmpImage} src={item.image?item.image : Companylogo}/>
         
         </div>
@@ -132,7 +133,7 @@ profileData.length>0?<button className={styles.updateProfile} onClick={updateEmp
                          {item.CompanyWebsite?   <li className={` ${styles.Hli}`}>{item.CompanyWebsite}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated  Company Website yet</li>}
                          {item.CompanyAddress?     <li className={` ${styles.Hli}`}>{item.CompanyAddress}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated CompanyAddress yet</li>}
                          {item.TypeofOrganisation?   <li className={` ${styles.Hli}`}>{item.TypeofOrganisation}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated  Organisation Type yet</li>}                        
-                         {item.isApproved?   <li className={` ${styles.Hli}`} style={{color:"blue"}}>Congrates! Your account has been Approved, You can start posting Jobs</li>: <li className={` ${styles.Hli} ${styles.Nli}`} style={{fontStyle:"italic"}}>"Your account is in under Verfication process"</li>}                        
+                         {item.isApproved?   <li className={` ${styles.Hli}`} style={{color:"blue"}}>Congrats! Your account has been Approved, You can start posting Jobs</li>: <li className={` ${styles.Hli} ${styles.Nli}`} style={{fontStyle:"italic"}}>"Your account is in under Verfication process"</li>}                        
                                                 
 {item.message?<p style={{width:"450%",  marginLeft:"-70%"}}><b> Message :</b><span style={{color:"red"}}> {item.message}! </span></p>:""}
                         

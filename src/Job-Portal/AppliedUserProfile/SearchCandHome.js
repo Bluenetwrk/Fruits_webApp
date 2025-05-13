@@ -754,7 +754,7 @@ const dropdownRef = useRef(null);
                     )
                   })
                   :
-                  <p style={{ marginLeft: "45%", color: "red" }}>No Record found</p>
+                  <p style={{ marginLeft: "45%", color: "red" }}>Loading......</p>
                                              
                 }
           </div >
@@ -1424,7 +1424,7 @@ const dropdownRef = useRef(null);
               )
             })
             :
-            <p style={{ marginLeft: "37%", color: "red" }}>No Record found</p>
+            <p style={{ marginLeft: "37%", color: "red" }}>Loading......</p>
 
           }
 

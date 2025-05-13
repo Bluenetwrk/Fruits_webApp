@@ -87,7 +87,7 @@ function changeComments(e){
 
 async function handleComment(){
   if(!userid){
-    alert("you must login to comment on question")
+    alert("Sign in to join the discussion and comment on this question.")
     return false
   }
   if(!comments.comment){

@@ -895,7 +895,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                       </ul>          
                     )
                   })
-                : <p style={{ marginLeft: "47%", color: "red" }}>No Record Found</p>
+                : <p style={{ marginLeft: "47%", color: "red" }}>Loading......</p>
             }
           </div>
 
@@ -1187,7 +1187,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                     </>
                   )
                 })
-                : <p style={{ marginLeft: "35%", color: "red" }}>No Record Found</p>
+                : <p style={{ marginLeft: "35%", color: "red" }}>Loading......</p>
 
             }
 

@@ -57,7 +57,7 @@ function JoppostedByEmp(props) {
           setmyjobsforFilter(sortedate)
     setPageLoader(false)
           if (res.data.length == 0) {
-            setNoJobFound("You have not posted any job")
+            setNoJobFound("Loading......")
           }
 
         }).catch((err) => {
@@ -414,7 +414,7 @@ function handleRecordchange(e){
                 )
               })
               // :""
-              : <p style={{ marginLeft: "44%", color: "red" }}>You have not posted any jobs yet</p>
+              : <p style={{ marginLeft: "44%", color: "red" }}>Loading......s yet</p>
           }
         </div>
         

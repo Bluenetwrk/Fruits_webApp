@@ -105,10 +105,19 @@
   
   
 /* --------------new drive ends-------- */
-.driveDateContainer{
+.driveDateContainer1{
     margin-top: 10px;
     font-weight: 800;
+     display:flex; 
+     justify-content:space-between;
+     flex-wrap:wrap;
  }
+ @media (max-width: 768px) {
+    .driveDateContainer1 {
+      gap: 20px;
+    }
+
+  }
  .DriveDate{
     border-radius:5px;
  }
@@ -308,7 +317,7 @@
     }
     .Otherinputbox{
         height: 40px ;
-    width : 100%;
+    width : 25%;
      border-radius: 5px;
      border: 1px solid black;
      font-size: medium;    

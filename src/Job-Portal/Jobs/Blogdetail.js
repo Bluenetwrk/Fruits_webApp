@@ -466,7 +466,7 @@ async function deletComment(id){
       </div>  
       {PageLoader ?<>
                             <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "47%", marginTop: "50px" }} />
-                            <h3 style={{color:"red",textAlign:"center"}}>No Record Found</h3>
+                            <h3 style={{color:"red",textAlign:"center"}}>Loading......</h3>
                       </>:
                       <> 
               <div style={{marginLeft:"12px"}}>
@@ -588,7 +588,7 @@ async function deletComment(id){
         )} </p> */}
         {PageLoader ?<>
                             <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "40%", marginTop: "50px" }} />
-                            <h3 style={{color:"red",textAlign:"center"}}>No Record Found</h3>
+                            <h3 style={{color:"red",textAlign:"center"}}>Loading......</h3>
                       </>:
                       <>
                 <div className={styles.JobTitleDateWrapper} style={{marginTop:"-4px",display:"flex", flexDirection:"column", gap:"2px"}}>

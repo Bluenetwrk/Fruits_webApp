@@ -356,7 +356,7 @@ const [immage, setimmage] = useState()
     //   name, email, phoneNumber, Aadhar, panCard,CompanyName,CompanyContact, CompanyGSTIN, CompanyWebsite, CompanyAddress,
     //   CompanyEmail, TypeofOrganisation 
     // )
-
+  console.log("dd",PrimeryuserDesignation)
     await axios.post(`/EmpProfile/NewEmployeeRegistration`, { PrimeryuserDesignation, Secondaryusername, Secondaryuseremailid,
       Secondaryusercontactnumber,  name, email, phoneNumber, Aadhar, panCard, CompanyName, CompanyContact, CompanyGSTIN,
       CompanyWebsite,CompanyAddress,CompanyEmail, TypeofOrganisation,CompanyCIN, secondaryuserDesignation,AboutCompany},{headers})
