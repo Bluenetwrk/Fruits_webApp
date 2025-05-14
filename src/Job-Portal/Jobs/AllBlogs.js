@@ -624,10 +624,10 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             {nopageFilter ?
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>{jobs.length}</span>Jobs with following matching tags:
+              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>{jobs.length}</span>Blogs with following matching tags:
               <span style={{ color: "blue" }}>{Active.toString()}</span></p>
               :
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest jobs</p>
+              <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest Blogs</p>
             }
             <div className={styles.navigationWrapper}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>

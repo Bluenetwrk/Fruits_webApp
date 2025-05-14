@@ -57,7 +57,7 @@ function JoppostedByEmp(props) {
           setmyjobsforFilter(sortedate)
     setPageLoader(false)
           if (res.data.length == 0) {
-            setNoJobFound("Loading......")
+            setNoJobFound("Loading....")
           }
 
         }).catch((err) => {
@@ -360,9 +360,11 @@ function handleRecordchange(e){
 
           </ul>
           {PageLoader ?
-            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "49%", marginTop: "50px" }} />
-            : ""
-          }
+           <> <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "49%", marginTop: "50px" }} />
+              <div style={{display:"flex",justifyContent:"center", color:"red"}}>
+              <h3>Loading...</h3>
+              </div>
+            </>: <>
           {
             records.length > 0 ?
 
@@ -414,7 +416,9 @@ function handleRecordchange(e){
                 )
               })
               // :""
-              : <p style={{ marginLeft: "44%", color: "red" }}>Loading......s yet</p>
+              : <p style={{ marginLeft: "44%", color: "red" }}>No Record Found</p>
+          }
+          </>
           }
         </div>
         
