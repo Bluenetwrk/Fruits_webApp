@@ -58,7 +58,7 @@ function BlogpostedByEmp(props) {
           setPageLoader(false)
  
           if (res.data.length == 0) {
-            setNoJobFound("You have not posted any job")
+            setNoJobFound("Loading...")
           }
 
         }).catch((err) => {
@@ -361,8 +361,8 @@ console.log("dhdgsgdg",records)
           </ul>
           {PageLoader ?
             <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "49%", marginTop: "50px" }} />
-            : ""
-          }
+           :""
+          } 
           {
             records.length > 0 ?
 
@@ -410,7 +410,8 @@ console.log("dhdgsgdg",records)
                 )
               })
               // :""
-              : <p style={{ marginLeft: "44%", color: "red" }}>You have not posted any jobs yet</p>
+              : <p style={{ marginLeft: "44%", color: "red" }}>Loading...</p>
+          
           }
         </div>
         
