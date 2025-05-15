@@ -419,7 +419,7 @@ console.log(records)
                             return (
                               SelectedProfile == jobSeekerId
                             )
-                          }) ? <p style={{ color: "rgb(7, 161, 7)" }}>Congrates! Your profile has been selected, HR will get in touch with You very shortly</p>
+                          }) ? <p style={{ color: "rgb(7, 161, 7)" }}> Congrats ! Your profile has been selected, HR will get in touch with You very shortly</p>
                             :
                             items.rejectedJobseker.find((rejectProfile) => {
                               return (
@@ -536,7 +536,7 @@ console.log(records)
                               return (
                                 SelectedProfile == jobSeekerId
                               )
-                            }) ? <p style={{ color: "rgb(7, 161, 7)" }} className={styles.MobileStatus}>Congrates! Your profile has been selected, HR will get in touch with You very shortly</p>
+                            }) ? <p style={{ color: "rgb(7, 161, 7)" }} className={styles.MobileStatus}> Congrats ! Your profile has been selected, HR will get in touch with You very shortly</p>
                               :
 
                               job.rejectedJobseker.find((rejectProfile) => {

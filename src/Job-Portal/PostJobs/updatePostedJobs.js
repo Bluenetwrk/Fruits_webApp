@@ -128,7 +128,7 @@ function UpdatePostedJobs() {
             // setQualification("")
             // setExperiance("")
             // setSkills("")
-            setSuccessMessage("Success!  successfully updated")
+            setSuccessMessage("Job Listing Updated Successfully")
         }
         
     }).catch((err)=>{
