@@ -25,6 +25,7 @@ import Jobs from "./Job-Portal/Jobs/AllJobs";
 import Nav from "./Job-Portal/NaveBar/Nav";
 import Jobdetails from "./Job-Portal/Jobs/AllJobdetails"
 import Blogdetails from "./Job-Portal/Jobs/Blogdetail"
+
 import Answerdetails from "./Job-Portal/Jobs/Answerdetails";
 import CareerJobdetails from "./Job-Portal/Jobs/CareerJobdetails"
 import Home from "./Job-Portal/Jobs/AllHomeJobs";
@@ -69,6 +70,8 @@ import PostWalkinDrive from "./Job-Portal/PostJobs/PostWalkinDrive";
 import DriveDetails from "./Job-Portal/Jobs/DriveDetails";
 import location from "./Job-Portal/img/icons8-location-20.png"
 import AllResumes from "./Job-Portal/Resumes/AllResumes";
+import PostFraudForm from "./Job-Portal/Jobs/PostFraudForm";
+// import PostFraud from "./Job-Portal/Jobs/PostFraud";
 axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
 function App() {
@@ -1015,7 +1018,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
         {/* <div style={ShowSideNave && screenSize.width > 850 ? { marginLeft: "210px" } : { marginLeft: "-3px"}}> */}
       
           <Routes>
-
+            <Route path='/fraud-form' element={<PostFraudForm/>}></Route>
             <Route path="/" element={
               <Home 
               selectedlocationOption={selectedlocationOption}

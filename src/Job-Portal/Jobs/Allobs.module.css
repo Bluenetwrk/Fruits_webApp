@@ -1,3 +1,97 @@
+.container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+  }
+
+
+  
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .successMessage {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+  }
+  
+  .select,
+  .textarea,
+  .input {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .submitButton {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .cancelButton {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  @media(max-width:426px){
+    .container {
+        width: 80%;
+      }
+      .buttonContainer {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .submitButton {
+        width:46%;
+        font-size: 11px;
+      }
+      
+      .cancelButton {
+       width:46%;
+       font-size: 11px;
+      }
+  }
+
 .tableContainer {
     width: 95%;
     border-radius: 15px;

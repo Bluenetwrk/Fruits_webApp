@@ -352,7 +352,7 @@ function AppliedUserProfile() {
                                 <i onClick={AgeDescendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
                             </p>
                         </li>
-                        <li style={{ backgroundColor: " rgb(40, 4, 99)", color: "white" }} className={`${styles.li} ${styles.Qualification}`}>  <b>Qualif</b> </li>
+                        <li style={{ backgroundColor: " rgb(40, 4, 99)", color: "white" }} className={`${styles.li} ${styles.Qualification}`}>  <b>Qualification</b> </li>
                         <li style={{ backgroundColor: " rgb(40, 4, 99)", color: "white" }} className={`${styles.li} ${styles.Experiance}`}><b>Experience</b>
                             <p style={{ display: "inline", marginLeft: "10px" }}>
                                 <i onClick={ExpAscendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>

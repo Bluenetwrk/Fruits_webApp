@@ -648,6 +648,9 @@ function Nav(props) {
                           </div>
                     </div>
                     <div className={Styles.fullnavewrapperRS}>
+                    <div>
+                      <NavLink to="/fraud-form" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Fraud </NavLink>
+                      </div>
                       <div>
                       <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Employer </NavLink>
                       </div>
