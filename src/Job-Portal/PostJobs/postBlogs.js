@@ -55,7 +55,9 @@ function PostBlogs(props) {
     const [skills, setSkills] = useState("")
     const [name, setName] = useState("")
     const [concent, setconcent] = useState(true)
+    const [profileConcent,setProfileConcent] = useState(false)
     
+
 
     // function handleChange(tag) {
     //     setTag(tag)
@@ -388,6 +390,12 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
 <p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>
     I have read the terms and conditions of ITwalkin.com and I agree to all the 
      <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> terms and conditons</span> before posting the jobs </p> 
+
+     <p><input type="checkbox" onChange={()=>{setProfileConcent((prev)=>!prev)}}/>
+     Show my company and designation</p>
+    
+
+     
 
 
                                         {/* {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""} */}

@@ -55,7 +55,7 @@ async function getEmpProfile() {
   await axios.get(`/EmpProfile/getProfile/${empId}`, {headers})
       .then((res) => {
           let result = res.data.result
-          // console.log(result.name)
+          // console.log(result)
           setCommentName(result.name)
           // localStorage.setItem("Snm", JSON.stringify(btoa(result.name)))
 
@@ -116,7 +116,7 @@ async function deletComment(id){
   const headers = { authorization: 'BlueItImpulseWalkinIn'};
   await axios.put(`/BlogRoutes/deletComment/${atob(params.id)}`,{id}, {headers})
   .then((res)=>{
-    let result=res.data
+    let result=res.data    
     if(result==="success"){
       // setcomments("")
     // setcomments({ ...comments, comment: ""})
@@ -190,7 +190,7 @@ async function deletComment(id){
 
              lastIndex.current=sortedate.length;  
              allJobs.current=sortedate 
-             console.log("alljobs",allJobs)
+            //  console.log("alljobs",allJobs)
              if (res.data.length == 0) {
               //  setNoJobFound("You have not posted any job")
              }
