@@ -13,6 +13,7 @@ import socketIO from 'socket.io-client';
 import CreatableSelect from "react-select"
 import useScreenSize from '../SizeHook';
 import {jobTags} from "../Tags"
+import CustomTextEditor from '../Editor/CustomTextEditor'
 
 // import CreatableSelect  from 'react-select/creatable';
 
@@ -283,7 +284,8 @@ const [selectedTime, setSelectedTime] = useState("");
 
                                 <div>
                                    <h4 className={Style.jobHeadline}>Job Description**</h4>      
-                                    <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} />
+                                    {/* <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} /> */}
+                                 <CustomTextEditor ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}}/>
                                 </div>
 
                                <div style={{display:"flex",flexDirection:"column"}}>

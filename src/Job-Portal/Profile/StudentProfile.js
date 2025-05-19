@@ -60,7 +60,7 @@ let navigate = useNavigate()
                         <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
              width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} />
 
-        <h3 style={{color:"rgb(40, 4, 99)", marginLeft:"40%"}}>My Profile</h3>
+        <h3 style={{color:"rgb(40, 4, 99)", marginLeft:"41%"}}>My Profile</h3>
         </div>
         
          {
@@ -139,7 +139,7 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
                          {/* => typeof e === 'string' */}
                          </li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your Skills yet</li>}
                          {item.Experiance?       <li className={` ${styles.Hli}`}>{item.Experiance}</li>:  <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your experiance yet</li> }
-                         {item.isApproved?   <li className={` ${styles.Hli}`} style={{color:"blue"}}>Congrates! Your account has been Approved</li>: <li className={` ${styles.Hli} ${styles.Nli}`} style={{fontStyle:"italic"}}>"Your account is in under Verfication process"</li>}                        
+                         {item.isApproved?   <li className={` ${styles.Hli}`} style={{color:"blue"}}> Congrats !  Your account has been Approved</li>: <li className={` ${styles.Hli} ${styles.Nli}`} style={{fontStyle:"italic"}}>"Your account is in under Verfication process"</li>}                        
                          {item.message?<p style={{width:"450%",  marginLeft:"-70%"}}><b> Message :</b><span style={{color:"red"}}> {item.message}! </span></p>:""}
                          {item.Experiance?       <li className={` ${styles.Hli}`}>{item.Experiance}</li>:  <li className={` ${styles.Hli} ${styles.Nli}`}>No FeedBack</li> }
                         </ul>
@@ -195,9 +195,9 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
             
                   </div>
 
-                  <div className={styles.Down}>
+                  <div className={styles.Down} style={{marginLeft:"6px"}}>
                   <span className={styles.span}> Skills : {job.Skills?<span style={{ color: "blue" }}>{job.Skills} </span>:<span style={{color:"red"}}>Not updated</span>}</span><br></br>
-                  <span className={styles.span}> Account Status:  {job.isApproved ? <span style={{ color: "blue" }}>Congrates! Your account has been Approved</span> : <span style={{ color: "red" }}>"Your account is under Verfication process"</span>}</span><br></br>
+                  <span className={styles.span}> Account Status:  {job.isApproved ? <span style={{ color: "blue" }}> Congrats ! Your account has been Approved</span> : <span style={{ color: "red" }}>"Your account is under Verfication process"</span>}</span><br></br>
                   {job.message?<span style={{}} className={styles.span}> Message :<span style={{color:"red"}}> {job.message}! </span></span>:""}
                   <span className={styles.span}> HRs/Employer FeedBack : {job.Skills?<span style={{ color: "blue" }}>{job.Skills} </span>:<span style={{color:"red"}}>No FeedBack</span>}</span><br></br>
                   </div>

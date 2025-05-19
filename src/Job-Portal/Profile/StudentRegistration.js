@@ -1224,8 +1224,8 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 <div style={{display:"flex", flexDirection:"column", alignItems:"start", width:"100%"}}>        
 <div style={{ maxWidth: "400px", width: "40%", padding: "10px", display: "flex", justifyContent: "flex-end", flexDirection:"column" }}>
 
-      <div style={{ display: "flex", gap: "16px", justifyContent:"end", marginRight:"35px", marginTop:"-16px", position:"relative", left:"-66px"}}>
-        <h2 style={{ fontSize: "13px", marginBottom: "10px", marginTop: "15px", marginLeft: "12px" }}>
+      <div style={{ display: "flex", gap: "16px", justifyContent:"end", marginRight:"18px", marginTop:"-16px", position:"relative", left:"-66px"}}>
+        <h2 style={{ fontSize: "13px", marginBottom: "10px", marginTop: "15px", marginLeft: "24px" }}>
           Previous Employers
         </h2>
         <div style={{display:"flex"}}>
@@ -1233,14 +1233,16 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
   <button
     onClick={addEmployer}
     style={{
-      marginTop: "10px",
+      marginTop: "11px",
       backgroundColor: "rgb(40,4,99)",
       color: "white",
       border: "none",
-      padding: "6px 10px",
+      padding: "1px 6px",
       borderRadius: "4px",
       cursor: "pointer",
       fontSize: "16px",
+      width:"30",
+      height:"20px"
     }}
   >
     +
@@ -1673,14 +1675,16 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
           <button
             onClick={addEmployer}
             style={{
-              marginTop: "10px",
+              marginTop: "11px",
               backgroundColor: "rgb(40,4,99)",
               color: "white",
               border: "none",
-              padding: "6px 10px",
+              padding: "1px 0px",
               borderRadius: "4px",
               cursor: "pointer",
               fontSize: "16px",
+              width:"26px",
+              height:"18px"
             }}
           >
             +

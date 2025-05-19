@@ -2,10 +2,13 @@
     background: red;
     color: rgb(255, 255, 255);
     border: none;
-    padding: 6px 10px;
+    padding: 1px 0px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    width: 26px;
+    height: 19px;
+
 }
 .tooltipWrapper {
     position: relative;

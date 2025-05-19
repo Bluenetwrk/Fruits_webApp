@@ -168,6 +168,10 @@ function Nav(props) {
       navigate("/Walkin-Drives")
    }
   
+   const reDirecttoFraud=()=>{
+    // setValue("AllWalkinDrive")
+    navigate("/fraud-form")
+ }
 
     const [isOpen, setIsOpen] = useState(false);
     const handleSelect = (option) => {
@@ -325,6 +329,19 @@ function Nav(props) {
                        </div>
                      )}
                 </div>
+                <div>
+                      {
+                       <div className={Styles.blast}>
+                         <img
+                           onClick={reDirecttoFraud}
+                           src="/report-fraud.png"
+                           alt="Walk-in Drive"
+                           ref={driveImgRef}
+                           style={{ width: "60px", borderRadius: "5px", marginTop: "-10px" }}
+                         />
+                       </div>
+                     }
+                      </div>
                 </div>
               </div> 
               <div className="BigNavWrapper" style={{
@@ -478,7 +495,20 @@ function Nav(props) {
                          />
                        </div>
                      )}
-                 </div>           
+                 </div> 
+                 <div>
+                      {
+                       <div className={Styles.blast}>
+                         <img
+                           onClick={reDirecttoFraud}
+                           src="/report-fraud.png"
+                           alt="Walk-in Drive"
+                           ref={driveImgRef}
+                           style={{ width: "60px", borderRadius: "5px", marginTop: "-10px" }}
+                         />
+                       </div>
+                     }
+                      </div>          
                 </div>
                          
              </div>
@@ -648,9 +678,9 @@ function Nav(props) {
                           </div>
                     </div>
                     <div className={Styles.fullnavewrapperRS}>
-                    <div>
+                    {/* <div>
                       <NavLink to="/fraud-form" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Fraud </NavLink>
-                      </div>
+                      </div> */}
                       <div>
                       <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Employer </NavLink>
                       </div>
@@ -690,6 +720,19 @@ function Nav(props) {
                          />
                        </div>
                      )}
+                      </div>
+                      <div>
+                      {
+                       <div className={Styles.blast}>
+                         <img
+                           onClick={reDirecttoFraud}
+                           src="/report-fraud.png"
+                           alt="Walk-in Drive"
+                           ref={driveImgRef}
+                           style={{ width: "60px", borderRadius: "5px", marginTop: "-10px" }}
+                         />
+                       </div>
+                     }
                       </div>
                     </div>                                     
                   </div>

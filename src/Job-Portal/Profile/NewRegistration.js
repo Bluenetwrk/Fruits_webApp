@@ -21,6 +21,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 
 import JoditEditor from 'jodit-react'
 import Style from "../PostJobs/postJobs.module.css"
+import CustomTextEditor from '../Editor/CustomTextEditor';
 
 function EmployeeUpdateProfile(props) {
   const editor=useRef(null)
@@ -723,7 +724,8 @@ const helpData = [
 <div className={styles.EmpEditor}>
             <h4>About Company:</h4>
             <div className={`screen1 ${styles.screen1}`} style={{ marginTop: "-10px", marginLeft: "11px", width: "103%" }}>
-    <JoditEditor ref={editor} value={AboutCompany.toString()} onChange={(e) => setAboutCompany(e)} />
+    {/* <JoditEditor ref={editor} value={AboutCompany.toString()} onChange={(e) => setAboutCompany(e)} /> */}
+<CustomTextEditor ref={editor} value={AboutCompany.toString()} onChange={(e) => setAboutCompany(e)} />
 </div>
 
 </div>
@@ -912,10 +914,11 @@ const helpData = [
             </select>  
             </div>
             
-<div className={styles.Editor}>
+<div className={styles.Editor} style={{marginLeft:"7px", marginTop:"-10px"}}>
             <h4>About Company:</h4>
             <div className={`screen2 ${styles.screen2}`}>
-<JoditEditor  ref={editor}  value={AboutCompany.toString()} onChange={(e)=>{setAboutCompany(e)}} />
+{/* <JoditEditor  ref={editor}  value={AboutCompany.toString()} onChange={(e)=>{setAboutCompany(e)}} /> */}
+<CustomTextEditor ref={editor}  value={AboutCompany.toString()} onChange={(e)=>{setAboutCompany(e)}} ></CustomTextEditor>
 </div>
 </div>
 
