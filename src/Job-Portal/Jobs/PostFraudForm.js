@@ -51,7 +51,7 @@ const PostFraudForm = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>🚨 Report Misuse of ITWalkin</h2>
+      <h2 className={styles.title}> Report Misuse of ITWalkin</h2>
       
       {showSuccessMessage && (
         <div className={styles.successMessage}>
@@ -61,7 +61,7 @@ const PostFraudForm = () => {
 
       <form onSubmit={handleSubmit} className={styles.form}>
         <label className={styles.label}>
-          📌 Select Type of Misuse:
+           Select Type of Misuse:
           <select
             value={misuseType}
             onChange={(e) => setMisuseType(e.target.value)}
@@ -76,8 +76,9 @@ const PostFraudForm = () => {
         </label>
 
         <label className={styles.label}>
-          📝 Describe the Issue (Required)
+           Describe the Issue (Required)
           <textarea
+          style={{fontFamily:"serif"}}
             placeholder="Provide details of the misuse..."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -86,13 +87,13 @@ const PostFraudForm = () => {
           />
         </label>
 
-        <label className={styles.label}>
+        {/* <label className={styles.label}>
           📎 Upload Evidence (Optional)
           <input type="file" onChange={handleFileChange} />
-        </label>
+        </label> */}
 
         <label className={styles.label}>
-          🔍 Your Contact Email (Optional)
+           Your Contact Email (Optional)
           <input
             type="email"
             value={email}
