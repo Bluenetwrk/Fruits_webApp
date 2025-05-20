@@ -158,7 +158,7 @@ function StudentUpdateProfile(props) {
      
 
        const [ipAddress, setIPAddress] = useState('')
-           const [gmailuser, setGmailuser] = useState("")
+       const [gmailuser, setGmailuser] = useState("")
          
          
            useEffect(() => {
@@ -172,9 +172,10 @@ const saveMicrosoft=(e)=>{
 
 }
      const login= useGoogleLogin({
+    
       onSuccess: async (response) => {
         try {
-  
+          
           const res = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo",
             {
               headers: {
@@ -278,7 +279,7 @@ const saveMicrosoft=(e)=>{
   }
 
   function NoEmailAlert(){
-    alert("primary email field must be filled")
+    alert("Please complete all required fields in your profile to improve your chances of getting noticed by employers")
 }
 
 function InvalidEmailAlert(){
@@ -1295,7 +1296,9 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
         <div style={{display:"flex"}}>
 
         <div className={STyles.signUpWrapper} style={{marginRight:"45px", marginBottom:"20px"}} 
-              onClick={!email? NoEmailAlert : emailError? InvalidEmailAlert :login}>
+              onClick={(!name || !email || !age || !phoneNumber ||!Aadhar ||!panCard ||!NoticePeriod ||!ExpectedSalary ||!currentCTC ||!Qualification ||!Experiance ||
+                !tenth||!twelfth ||!degree ||!college||!Tags)
+      ? NoEmailAlert : emailError? InvalidEmailAlert :login}>
           <div className={STyles.both}>
             <img className={STyles.google} src={GoogleImage} />
             <p className={STyles.signUpwrap} >Register with Google</p>
@@ -1784,7 +1787,9 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               <div style={{marginTop:"60px"}}> */}
 
               <div className={STyles.signUpWrapper} style={{marginLeft:"20px", marginBottom:"20px"}}
-               onClick={!email? NoEmailAlert : emailError? InvalidEmailAlert :login}>
+               onClick={(!name || !email || !age || !phoneNumber ||!Aadhar ||!panCard ||!NoticePeriod ||!ExpectedSalary ||!currentCTC ||!Qualification ||!Experiance ||
+                !tenth||!twelfth ||!degree ||!college||!Tags)
+      ? NoEmailAlert : emailError? InvalidEmailAlert :login}>
           <div className={STyles.both}>
             <img className={STyles.google} src={GoogleImage} />
             <p className={STyles.signUpwrap} >Register with Google</p>

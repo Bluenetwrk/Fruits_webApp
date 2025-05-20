@@ -7,6 +7,10 @@
   border: 1px solid #ccc;
 }
 
+.resume-section{
+  margin-left:20px;
+}
+
 .resume-header {
   text-align: center;
   margin-bottom: 20px;
@@ -44,6 +48,7 @@
 
 .skills-list {
   font-size: 14px;
+  margin-left: -20px;
 }
 
 .download-button {

@@ -9,7 +9,7 @@ const TemplateOne = ({ data }) => {
       <div id="template-one" className="template-one">
         {/* Header */}
         <header className="resume-header">
-          <h1 className="resume-name">{data?.name}</h1>
+          <h1 className="resume-name"> {data?.name}</h1>
           <p className="resume-contact">
             Email: {data?.email} | Phone: {data?.phone}
           </p>
