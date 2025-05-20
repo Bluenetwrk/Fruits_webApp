@@ -724,8 +724,8 @@ const helpData = [
 <div className={styles.EmpEditor}>
             <h4>About Company:</h4>
             <div className={`screen1 ${styles.screen1}`} style={{ marginTop: "-10px", marginLeft: "11px", width: "103%" }}>
-    {/* <JoditEditor ref={editor} value={AboutCompany.toString()} onChange={(e) => setAboutCompany(e)} /> */}
-<CustomTextEditor ref={editor} value={AboutCompany.toString()} onChange={(e) => setAboutCompany(e)} />
+    <JoditEditor ref={editor} value={AboutCompany.toString()} onChange={(e) => setAboutCompany(e)} />
+{/* <CustomTextEditor ref={editor} value={AboutCompany.toString()} onChange={(e) => setAboutCompany(e)} /> */}
 </div>
 
 </div>

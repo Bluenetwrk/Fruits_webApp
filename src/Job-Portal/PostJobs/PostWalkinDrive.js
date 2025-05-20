@@ -284,8 +284,8 @@ const [selectedTime, setSelectedTime] = useState("");
 
                                 <div>
                                    <h4 className={Style.jobHeadline}>Job Description**</h4>      
-                                    {/* <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} /> */}
-                                 <CustomTextEditor ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}}/>
+                                    <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} />
+                                 {/* <CustomTextEditor ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}}/> */}
                                 </div>
 
                                <div style={{display:"flex",flexDirection:"column"}}>

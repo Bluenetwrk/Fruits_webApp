@@ -19,7 +19,7 @@
   
   .blurred {
     width: 100%;
-    height: auto;
+    height: 83%;
     border-radius: 10px;
     /* filter: blur(1px); */
     border: 1px solid #ccc;

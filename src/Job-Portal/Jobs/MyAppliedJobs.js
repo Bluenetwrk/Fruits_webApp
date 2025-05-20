@@ -273,8 +273,8 @@ console.log(records)
   return (
     <>
 
-      <p className={styles.h3} style={{ textAlign: "center" }}><b>My applied Jobs</b></p>
-      <p className={styles.h3}><b>you have total {MyAppliedjob.length} applied jobs</b></p>
+<p className={styles.h3} style={{ textAlign: "center" }}><b>My applied Jobs</b></p>
+<p className={styles.h3}><b>You’ve successfully submitted applications for {MyAppliedjob.length} positions.Stay tuned for updates.  </b></p>
 
       {/* <button onClick={()=>{navigate("/MyCareer-Applied-Jobs")}} style={{ backgroundColor:"rgb(40, 4, 99)",
          marginLeft:"10px", fontWeight:600, color:"white", border:"none",
@@ -352,7 +352,9 @@ console.log(records)
               <li className={`${styles.li} ${styles.Status}`}><b>Status</b></li>
             </ul>
             {PageLoader ?
-              <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "45%", marginTop: "100px" }} />
+              <div style={{display:"flex", justifyContent:"center"}}>
+              <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "100px" }} />
+              </div>
               : ""
             }
             {
@@ -372,7 +374,7 @@ console.log(records)
                       onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})}>{items.jobTitle.toUpperCase()}</li>
                       <li className={`${styles.li} ${styles.JobType}`}>{items.jobtype}</li>
 
-                      <li className={`${styles.li} ${styles.Pdate}`}>
+                      {/* <li className={`${styles.li} ${styles.Pdate}`}>
                         {new Date(items.createdAt).toLocaleString(
                           "en-US",
                           {
@@ -381,8 +383,29 @@ console.log(records)
                             year: "numeric",
                           }
                         )}
-                      </li>
+                      </li> */}
                       <li className={`${styles.li} ${styles.Pdate}`}>
+  {(() => {
+    const date = new Date(items.createdAt);
+    const day = date.getDate();
+    const month = date.toLocaleString('en-US', { month: 'short' });
+    const year = date.getFullYear();
+
+    const getOrdinal = (d) => {
+      if (d > 3 && d < 21) return 'th';
+      switch (d % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+      }
+    };
+
+    return `${day}${getOrdinal(day)} ${month}, ${year}`;
+  })()}
+</li>
+
+                      {/* <li className={`${styles.li} ${styles.Pdate}`}>
                         {new Date(
                           items.jobSeekerId.find((id) => {
                             return (
@@ -397,7 +420,31 @@ console.log(records)
                             year: "2-digit",
                           }
                         )}
-                      </li>
+                      </li> */}
+                      <li className={`${styles.li} ${styles.Pdate}`}>
+  {(() => {
+    const matched = items.jobSeekerId.find(id => id.jobSeekerId == jobSeekerId);
+    if (!matched || !matched.date) return '';
+
+    const date = new Date(matched.date);
+    const day = date.getDate();
+    const month = date.toLocaleString('en-US', { month: 'short' });
+    const year = date.getFullYear();
+
+    // Function to get ordinal suffix
+    const getOrdinal = (d) => {
+      if (d > 3 && d < 21) return 'th';
+      switch (d % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+      }
+    };
+
+    return `${day}${getOrdinal(day)} ${month}, ${year}`;
+  })()}
+</li>
                       <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() +
                         items.jobLocation.slice(1)}</li>
                       <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
@@ -419,14 +466,14 @@ console.log(records)
                             return (
                               SelectedProfile == jobSeekerId
                             )
-                          }) ? <p style={{ color: "rgb(7, 161, 7)" }}> Congrats ! Your profile has been selected, HR will get in touch with You very shortly</p>
+                          }) ? <p style={{ color: "rgb(7, 161, 7)" }}> Congratulations! You've Been Shortlisted!.You’ll receive details about the interview soon.</p>
                             :
                             items.rejectedJobseker.find((rejectProfile) => {
                               return (
                                 rejectProfile == jobSeekerId
                               )
                             }) ? <p style={{ color: "red" }}>Sorry! Your profile has not been Selected for this job</p>
-                              : "Your status will be updated here, Once the HR checks Your Profile"
+                              : "Your application is submitted.It will be reviewed and we will update you soon"
                         }
 
                       </li>
@@ -435,7 +482,11 @@ console.log(records)
                   )
                 })
 
-                : <p style={{ marginLeft: "42%", color: "red" }}> {NoJobFound} </p>
+                : 
+                // <p style={{ marginLeft: "42%", color: "red" }}> {NoJobFound} </p>
+                <div style={{display:"flex", justifyContent:"center"}}>
+                  <p style={{ color: "red" }}> Loading...</p>
+                </div>
             }
 
           </div>
@@ -443,7 +494,9 @@ console.log(records)
         :
         <>
           {PageLoader ?
-            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "37%", marginTop: "100px" }} />
+            <div style={{display:"flex", justifyContent:"center"}}>
+            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "100px" }} />
+            </div>
             : ""
           }
           <div id={styles.JobCardWrapper} >
@@ -499,7 +552,7 @@ console.log(records)
                         <> <span className={styles.skills}>ItWalkin </span></>
                       }
                       <span style={{ marginBottom: "-3px", display: "inline" }}><span style={{ marginLeft: "5px", fontWeight: "450" }}>Applied Date: </span>
-                        {new Date(
+                        {/* {new Date(
                           job.jobSeekerId.find((id) => {
                             return (
                               id.jobSeekerId == jobSeekerId
@@ -512,7 +565,27 @@ console.log(records)
                             day: "2-digit",
                             year: "2-digit",
                           }
-                        )}
+                        )} */}
+                        {(() => {
+    const matched = job.jobSeekerId.find(id => id.jobSeekerId == jobSeekerId);
+    if (!matched || !matched.date) return '';
+
+    const date = new Date(matched.date);
+    const day = date.getDate();
+    const month = date.toLocaleString('en-US', { month: 'short' });
+    const year = date.getFullYear();
+
+    const getOrdinal = (d) => {
+      if (d > 3 && d < 21) return 'th';
+      switch (d % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+      }
+    };
+    return `${day}${getOrdinal(day)} ${month}, ${year}`;
+  })()}
                       </span>
 
                       <div className={styles.skillWrapper}>
@@ -536,7 +609,7 @@ console.log(records)
                               return (
                                 SelectedProfile == jobSeekerId
                               )
-                            }) ? <p style={{ color: "rgb(7, 161, 7)" }} className={styles.MobileStatus}> Congrats ! Your profile has been selected, HR will get in touch with You very shortly</p>
+                            }) ? <p style={{ color: "rgb(7, 161, 7)" }} className={styles.MobileStatus}> Congratulations! You've Been Shortlisted!.You’ll receive details about the interview soon.</p>
                               :
 
                               job.rejectedJobseker.find((rejectProfile) => {
@@ -544,7 +617,7 @@ console.log(records)
                                   rejectProfile == jobSeekerId
                                 )
                               }) ? <p style={{ color: "red" }} className={styles.MobileStatus}>Sorry! Your profile has not been Matched for this job</p>
-                                : <p className={styles.MobileStatus}>Your Result will be updated here, Once the HR checks Your Profile</p>
+                                : <p className={styles.MobileStatus}>Your application is submitted.It will be reviewed and we will update you soon</p>
 
                         }
 
@@ -574,8 +647,10 @@ console.log(records)
                   </>
                 )
               })
-              : <p style={{ marginLeft: "25%", color: "red" }}> You have not applied any jobs yet</p>
-
+              : 
+              <div style={{display:"flex", justifyContent:"center"}}>
+                <p style={{ marginLeft: "25%", color: "red" }}> Loading....</p>
+              </div>
             }
 
           </div>
