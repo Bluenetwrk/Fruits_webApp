@@ -427,7 +427,7 @@ const [selectedTime, setSelectedTime] = useState("");
 
                                </div> 
                             </div>
-                            : <p style={{ color: "red", fontStyle: "italic", marginLeft: "20px" }}>Your account is in under verification process, Once your account gets verified, then you will be able to post a Job</p>
+                            : <p style={{ color: "red", fontStyle: "italic", marginLeft: "20px" }}>Your account is being verified.Once your account gets verified,then you will be able to post a Walkin Drive</p>
 
                     )
 

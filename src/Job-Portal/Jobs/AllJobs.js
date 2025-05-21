@@ -988,7 +988,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                   })
 
                   
-                  : <p style={{ marginLeft: "47%", color: "red" }}>Loading......</p>
+                  : <p style={{ marginLeft: "50%", color: "red" }}>Loading......</p>
                   :
                   jobs.length > 0 ?
                   jobs.map((items, i) => {
@@ -1418,7 +1418,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                     </>
                   )
                 })
-                : <p style={{ marginLeft: "35%", color: "red" }}>Loading......</p>
+                : <p style={{ marginLeft: "44%", color: "red" }}>Loading......</p>
 
             }
 

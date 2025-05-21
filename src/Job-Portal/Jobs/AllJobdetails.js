@@ -483,7 +483,7 @@ const [PageLoader, setPageLoader] = useState(false)
 
          {PageLoader ?
                     <>
-                    <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "47%", marginTop: "50px", textAlign:"center" }} />
+                    <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "46%", marginTop: "50px", textAlign:"center" }} />
                     <h3 style={{color:"red", textAlign:"center"}}>Loading......</h3>
                     </>
                     : 
@@ -513,7 +513,7 @@ const [PageLoader, setPageLoader] = useState(false)
   &nbsp;<span>Location : {jobs.jobLocation ? jobs.jobLocation.charAt(0).toUpperCase() + jobs.jobLocation.substring(1) : ''} &nbsp;|</span>
   &nbsp; <span>Job Type : {jobs.jobtype}</span>&nbsp; |  
   &nbsp; <span>Qualification : {jobs.qualification}</span>&nbsp; |  
-  &nbsp; <span>Salary : {jobs.salaryRange}LPA</span> 
+  &nbsp; <span>Salary :{jobs.salaryRange==="Not disclosed" ? "Not Disclosed":jobs.salaryRange+"LPA" }</span> 
   
   
 <p>Skills : {jobs.skills} </p>
@@ -631,7 +631,7 @@ const [PageLoader, setPageLoader] = useState(false)
           }
         )} </p> */}
         {PageLoader ?<>
-                    <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "40%", marginTop: "50px" }} />
+                    <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "37%", marginTop: "50px" }} />
                     <h3 style={{color:"red",textAlign:"center"}}>Loading......</h3>
                     </>: 
                   <>

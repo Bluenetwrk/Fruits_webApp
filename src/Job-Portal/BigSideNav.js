@@ -223,6 +223,7 @@ function SidebarNav(props) {
               <a> <i className='fa-brands fa-twitter-square' style={{fontSize:"xx-Large", marginBottom:"45px", marginTop:"10px"}}></i> </a> */}
               {/* <i className="fa-brands fa-linkedin-square" style={{fontSize:"xx-Large", marginBottom:"30px"}} onClick={Linkedin} ></i><br></br> */}
               <i className="fa-brands fa-linkedin" style={{ fontSize: "xx-large", marginBottom: "30px" }}  onClick={Linkedin}></i>
+             <p style={{marginTop:"-10px", marginLeft:"15px"}}>Version 3.0</p>
         </div>
         </div>
       </div>

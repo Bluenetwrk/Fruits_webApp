@@ -682,8 +682,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                       }
             </ul>
             {PageLoader ?
-              <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "49%", marginTop: "50px" }} />
-              : ""
+                 <div style={{display:"flex", justifyContent:"center"}}>
+              <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "50px" }} />
+              </div> : ""
             }
             {!nopageFilter ?
               records.length > 0 ?
@@ -745,7 +746,10 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                     </ul>
                   )
                 })
-                : <p style={{ marginLeft: "47%", color: "red" }}>Loading......</p>
+                :
+                <div style={{display:"flex", justifyContent:"center"}}> 
+                <p style={{ color: "red" }}>Loading......</p>
+                </div>
               :
               jobs.length > 0 ?
                 jobs.map((items, i) => {
@@ -802,7 +806,10 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                   </ul>
                   )
                 })
-                : <p style={{ marginLeft: "47%", color: "red" }}>Loading......</p>
+                : 
+                <div style={{display:"flex", justifyContent:"center"}}>
+                <p style={{ marginLeft: "47%", color: "red" }}>Loading......</p>
+                </div>
             }
           </div>
 
@@ -1100,8 +1107,9 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
               </button>
             </div>
             {PageLoader ?
-            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "40%", marginTop: "50px" }} />
-            : ""
+                 <div style={{display:"flex", justifyContent:"center"}}>
+              <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "50px" }} />
+           </div> : ""
           }
           <div id={styles.JobCardWrapper} >
             {
@@ -1195,7 +1203,10 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                     </>
                   )
                 })
-                : <p style={{ marginLeft: "35%", color: "red" }}>Loading......</p>
+                : 
+                <div style={{display:"flex", justifyContent:"center"}}>
+                <p style={{ color: "red" }}>Loading......</p>
+                </div>
 
             }
 
