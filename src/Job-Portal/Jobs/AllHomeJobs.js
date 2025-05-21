@@ -852,8 +852,9 @@ useEffect(() => {
 
             </ul>
             {PageLoader ?
-              <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "49%", marginTop: "50px" }} />
-              : ""
+              <div style={{display:"flex", justifyContent:"center"}}>
+              <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "50px" }} />
+              </div>: ""
             }
             {
               jobs.length > 0 ?
@@ -986,7 +987,10 @@ useEffect(() => {
                       </ul>          
                     )
                   })
-                : <p style={{ marginLeft: "47%", color: "red" }}>Loading......</p>
+                :
+                <div style={{display:"flex", justifyContent:"center"}}>
+                <p style={{ color: "red" }}>Loading......</p>
+                </div>
             }
           </div>
 
@@ -1095,8 +1099,9 @@ useEffect(() => {
             </div>
             </div>
             {PageLoader ?
-            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "40%", marginTop: "50px" }} />
-            : ""
+            <div style={{display:"flex", justifyContent:"center"}}>
+            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "50px" }} />
+            </div>: ""
           }
           <div id={styles.JobCardWrapper} >
             {
@@ -1263,8 +1268,10 @@ useEffect(() => {
                     </>
                   )
                 })
-                : <p style={{ marginLeft: "35%", color: "red" }}>Loading......</p>
-
+                : 
+                <div style={{display:"flex", justifyContent:"center"}}>
+                 <p style={{ color: "red" }}>Loading......</p>
+                </div>
             }
 
           </div>

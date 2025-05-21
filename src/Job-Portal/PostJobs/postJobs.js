@@ -254,7 +254,7 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
                             <div key={i}>
 
                                 {Logo ? <img className={Style.logo} src={Logo} /> :
-                                    <p style={{ color: "red", marginLeft: "5%", fontStyle: "italic" }}> Alert! You have not updated the Company logo, please update the Company Logo</p>}
+                                    <p style={{ color: "red", marginLeft: "5%", fontStyle: "italic" }}> Reminder! Your Company logo is missing,Kindly upload it to complete your profile.</p>}
                                 {/* <h3 style={{ color: "blue", marginLeft: "15%" }}>Welcome to Post job Page, Post a Job and get Connected with Job Seekers</h3> */}
 
                                 <div className={Style.postJobPageWrapper} >
@@ -387,7 +387,8 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
 // onChange={(e)=>{setSkills(e.target.value)}} 
 />
 <p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>
-I acknowledge that by posting a job, I accept the <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}>terms and conditions</span> governing job postings and agree to comply with all applicable policies."</p>
+I have read and understood the <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}>terms and conditions</span> of ITwalkin.com, and I 
+fully agree to them before posting help-related questions.</p>
     
 
 
@@ -397,7 +398,7 @@ I acknowledge that by posting a job, I accept the <span style={{color:"blue", cu
                                     </div >
                                 </div >
                             </div>
-                            : <p style={{ color: "red", fontStyle: "italic", marginLeft: "20px" }}>Your account is in under verification process, Once your account gets verified, then you will be able to post a Job</p>
+                            : <p style={{ color: "red", fontStyle: "italic", marginLeft: "20px" }}>Your account is being verified.Once your account gets verified,then you will be able to post a Job</p>
 
                     )
 

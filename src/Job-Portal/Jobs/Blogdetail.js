@@ -465,7 +465,7 @@ async function deletComment(id){
 
       </div>  
       {PageLoader ?<>
-                            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "47%", marginTop: "50px" }} />
+                            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "46%", marginTop: "50px" }} />
                             <h3 style={{color:"red",textAlign:"center"}}>Loading......</h3>
                       </>:
                       <> 
@@ -587,7 +587,7 @@ async function deletComment(id){
           }
         )} </p> */}
         {PageLoader ?<>
-                            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "40%", marginTop: "50px" }} />
+                            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "38%", marginTop: "50px" }} />
                             <h3 style={{color:"red",textAlign:"center"}}>Loading......</h3>
                       </>:
                       <>
