@@ -393,8 +393,9 @@ fully agree to them before posting help-related questions.</p>
 
 
                                         {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
-
-                                        <button disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Post Job</button>
+                                        <div style={{display:"flex", justifyContent:"center"}}>
+                                        <button style={{width:"210px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Post Job</button>
+                                        </div>
                                     </div >
                                 </div >
                             </div>
