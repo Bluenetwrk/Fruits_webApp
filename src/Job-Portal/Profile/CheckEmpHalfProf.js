@@ -47,6 +47,9 @@ const screenSize = useScreenSize();
 
     }
     
+    const[verification , setVerification]=useState(false)
+
+
     return (
         <>
         <div style={{display:"flex"}}>
@@ -59,9 +62,16 @@ const screenSize = useScreenSize();
 
 profileData.map((item, i) => {
     return (
-        <div key={i}>
-        <img className={styles.imageV} src={item.image?item.image : profileDp}/>
-        
+        <div style={{display:"flex", justifyContent:"space-between"}} key={i}>
+          <img className={styles.imageV} src={item.image?item.image : profileDp}/>
+                      {verification&&(
+                        <div style={{display:"flex", justifyContent:"center", flexDirection:"column"}}>
+                        <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "20px" }} />
+                        <p>Verification in progress</p>
+                        </div>)
+                        
+                    }: ""
+                        
         </div>
     )
 
@@ -149,6 +159,9 @@ profileData.map((item, i) => {
 
             }
             </div>
+            <button onClick={()=>setVerification((prev)=>!prev)} style={{marginLeft:"4%"}} className={styles.jobdetailBackBtnMobile} >
+                 Submit
+          </button>
               
         </>
             :

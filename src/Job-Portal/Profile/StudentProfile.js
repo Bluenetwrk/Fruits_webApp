@@ -20,6 +20,15 @@ function StudentProfile(props) {
     //       }
     //     });
     //   },[])
+    const [showConsent, setShowConsent] = useState(false);
+    const [consent, setConsent] = useState('');
+    const [signature, setSignature] = useState('');
+    const [date, setDate] = useState('');
+  
+    const toggleConsent = () => {
+      setShowConsent(!showConsent);
+    };
+  
 
     const [profileData, setProfileData] = useState([])
 const [PageLoader, setPageLoader] = useState(false)
@@ -90,7 +99,7 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
         }       
             {screenSize.width>850?
       <>      
-           
+          
 <div className={styles.uiwrapper}>
             <ul className={styles.ul}>
                 <li className={styles.li}><b>Name </b></li>
@@ -150,6 +159,116 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
             }
 
          </div>
+         <div style={{ marginTop: '20px', textAlign: 'center' }}>
+      {/* Notch-style 'i' icon */}
+      <div
+        onClick={toggleConsent}
+        style={{
+          width: '22px',
+          height: '22px',
+          borderRadius: '50%',
+          backgroundColor: 'rgb(40,4,99)',
+          color: 'white',
+          display: 'inline-flex',
+          alignItems: 'center',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+          fontSize: '14px',
+          position:'relative',
+          display:'flex',
+          justifyContent: 'center',
+          textAlign:"center",
+          marginLeft:"60px",
+          marginBottom:"20px"
+        }}
+        title="Consent Info"
+      >
+        i
+      </div>
+
+      {/* Consent Box */}
+      {showConsent && (
+        <div
+          style={{
+            position:"absolute",
+            marginTop: '15px',
+            padding: '15px',
+            border: '1px solid #ccc',
+            borderRadius: '8px',
+            width: '90%',
+            maxWidth: '350px',
+            marginLeft: '60px',
+            marginRight: 'auto',
+            textAlign: 'left',
+            backgroundColor: '#f9f9f9',
+            fontSize: '14px',
+            marginBottom:"50px"
+          }}
+        >
+          <p style={{ marginBottom: '10px' }}>
+            ✅ I consent to the background check and authorize the verification of my details.
+          </p>
+
+          <div style={{ marginBottom: '10px' }}>
+            <label>
+              <input
+                type="radio"
+                name="consent"
+                value="yes"
+                checked={consent === 'yes'}
+                onChange={() => setConsent('yes')}
+              />
+              {' '}Yes, I agree
+            </label>
+            <br />
+            <label>
+              <input
+                type="radio"
+                name="consent"
+                value="no"
+                checked={consent === 'no'}
+                onChange={() => setConsent('no')}
+              />
+              {' '}No, I decline
+            </label>
+          </div>
+
+          <p style={{ margin: '10px 0 5px' }}><strong>Jobseeker Signature:</strong></p>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <label style={{ fontSize: '13px' }}>
+              Signature:
+              <input
+                type="text"
+                value={signature}
+                onChange={(e) => setSignature(e.target.value)}
+                placeholder="Type name"
+                style={{
+                  width: '100%',
+                  padding: '4px',
+                  fontSize: '13px',
+                  marginTop: '3px',
+                }}
+              />
+            </label>
+            <label style={{ fontSize: '13px' }}>
+              Date:
+              <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '4px',
+                  fontSize: '13px',
+                  marginTop: '3px',
+                }}
+              />
+            </label>
+          </div>
+        </div>
+      )}
+    </div>
 
         </>
 
@@ -202,6 +321,116 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
                   <span className={styles.span}> HRs/Employer FeedBack : {job.Skills?<span style={{ color: "blue" }}>{job.Skills} </span>:<span style={{color:"red"}}>No FeedBack</span>}</span><br></br>
                   </div>
       </div>
+      <div style={{ marginTop: '20px', textAlign: 'center' }}>
+      {/* Notch-style 'i' icon */}
+      <div
+        onClick={toggleConsent}
+        style={{
+          width: '22px',
+          height: '22px',
+          borderRadius: '50%',
+          backgroundColor: 'rgb(40,4,99)',
+          color: 'white',
+          display: 'inline-flex',
+          alignItems: 'center',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+          fontSize: '14px',
+          position:'relative',
+          display:'flex',
+          justifyContent: 'center',
+          textAlign:"center",
+          marginLeft:"20px",
+          marginBottom:"20px"
+        }}
+        title="Consent Info"
+      >
+        i
+      </div>
+
+      {/* Consent Box */}
+      {showConsent && (
+        <div
+          style={{
+            position:"absolute",
+            marginTop: '15px',
+            padding: '15px',
+            border: '1px solid #ccc',
+            borderRadius: '8px',
+            width: '90%',
+            maxWidth: '350px',
+            marginLeft: '60px',
+            marginRight: 'auto',
+            textAlign: 'left',
+            backgroundColor: '#f9f9f9',
+            fontSize: '14px',
+            marginTop:"-20px"
+          }}
+        >
+          <p style={{ marginBottom: '10px' }}>
+            ✅ I consent to the background check and authorize the verification of my details.
+          </p>
+
+          <div style={{ marginBottom: '10px' }}>
+            <label>
+              <input
+                type="radio"
+                name="consent"
+                value="yes"
+                checked={consent === 'yes'}
+                onChange={() => setConsent('yes')}
+              />
+              {' '}Yes, I agree
+            </label>
+            <br />
+            <label>
+              <input
+                type="radio"
+                name="consent"
+                value="no"
+                checked={consent === 'no'}
+                onChange={() => setConsent('no')}
+              />
+              {' '}No, I decline
+            </label>
+          </div>
+
+          <p style={{ margin: '10px 0 5px' }}><strong>Jobseeker Signature:</strong></p>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <label style={{ fontSize: '13px' }}>
+              Signature:
+              <input
+                type="text"
+                value={signature}
+                onChange={(e) => setSignature(e.target.value)}
+                placeholder="Type name"
+                style={{
+                  width: '100%',
+                  padding: '4px',
+                  fontSize: '13px',
+                  marginTop: '3px',
+                }}
+              />
+            </label>
+            <label style={{ fontSize: '13px' }}>
+              Date:
+              <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '4px',
+                  fontSize: '13px',
+                  marginTop: '3px',
+                }}
+              />
+            </label>
+          </div>
+        </div>
+      )}
+    </div>
     </>
   )
 })}
