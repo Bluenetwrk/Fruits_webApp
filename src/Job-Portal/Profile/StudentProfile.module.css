@@ -14,6 +14,49 @@
     align-items: center;
     gap:6px;  
 }
+.validateBtn{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    /* padding: 10px 15px 10px 15px; */
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 12px;
+    width: 60px;
+    padding: 7px;
+    margin-top: 10px;
+}
+
+.validateBtnMobile{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 12px;
+    width: 60px;
+    margin-top: 10px;
+    height: 25px;
+}
+
+.imgBgv{
+   display:flex;
+   justify-content:space-between;
+   margin-right:400px;
+}
+.puff-loader {
+    margin-top: 20px;
+    margin-right: 300px;
+  }
+  
+
+@media(max-width:475px){
+    .imgBgv{
+        margin-right:20px;
+     }
+}
 .jobdetailBackBtnMobile{
     background-color: rgb(40, 4, 99);
     color: white;
