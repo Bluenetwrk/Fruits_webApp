@@ -71,6 +71,7 @@ import DriveDetails from "./Job-Portal/Jobs/DriveDetails";
 import location from "./Job-Portal/img/icons8-location-20.png"
 import AllResumes from "./Job-Portal/Resumes/AllResumes";
 import PostFraudForm from "./Job-Portal/Jobs/PostFraudForm";
+import AppliedDrives from "./Job-Portal/Jobs/AppliedDrives";
 // import PostFraud from "./Job-Portal/Jobs/PostFraud";
 axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -1160,6 +1161,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               <Route path="/Update-Profile" element={<StudentUpdateProfile url={axios.defaults.baseURL} />} />
               <Route path="/My-Profile" element={<StudentProfile />} />
               <Route path="/My-Applied-Jobs" element={<MyAppliedJobs url={axios.defaults.baseURL} />} />
+              <Route path="/My-Applied-Drives" element={<AppliedDrives url={axios.defaults.baseURL} />} />
               <Route path="/MyCareer-Applied-Jobs" element={<CareerAppliedJobs url={axios.defaults.baseURL} />} />
             </Route>
             <Route path="/AllCareerJobs" element={<AllCareerJobs 
