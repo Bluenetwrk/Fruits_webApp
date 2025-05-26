@@ -96,6 +96,10 @@ function Nav(props) {
   function MyJobApplied() {
     navigate("/My-Applied-Jobs")
   }
+  
+  function MyDrivesApplied() {
+    navigate("/My-Applied-Drives")
+  }
   function AskQuestion() {
     navigate("/AskQuestion")
   }
@@ -310,6 +314,7 @@ function Nav(props) {
     <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
 
     <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>Jobs Applied</p>
+    <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p>
     <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
     <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
 
@@ -771,6 +776,7 @@ function Nav(props) {
                   <div className={Styles.MobJobseekerDropdownwrapperlogin} ref={menuRef} >
                     <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
                     <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>Jobs Applied</p>
+                    <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p>
                     <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
 
                     <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
