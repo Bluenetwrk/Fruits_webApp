@@ -159,7 +159,7 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
             }
 
          </div>
-         <div style={{ marginTop: '20px', textAlign: 'center' }}>
+         <div style={{ marginTop: '20px', textAlign: 'center',}}>
       {/* Notch-style 'i' icon */}
       <div
         onClick={toggleConsent}
@@ -185,18 +185,19 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
       >
         i
       </div>
-
+        
       {/* Consent Box */}
+      <div style={{marginBottom:"90px"}}>
       {showConsent && (
         <div
           style={{
             position:"absolute",
-            marginTop: '15px',
+            marginTop: '1px',
             padding: '15px',
             border: '1px solid #ccc',
             borderRadius: '8px',
             width: '90%',
-            maxWidth: '350px',
+            // maxWidth: '350px',
             marginLeft: '60px',
             marginRight: 'auto',
             textAlign: 'left',
@@ -209,7 +210,7 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
             ✅ I consent to the background check and authorize the verification of my details.
           </p>
 
-          <div style={{ marginBottom: '10px' }}>
+          <div style={{ marginBottom: '0px' }}>
             <label>
               <input
                 type="radio"
@@ -233,9 +234,9 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
             </label>
           </div>
 
-          <p style={{ margin: '10px 0 5px' }}><strong>Jobseeker Signature:</strong></p>
+          {/* <p style={{ margin: '10px 0 5px' }}><strong>Jobseeker Signature:</strong></p> */}
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {/* <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <label style={{ fontSize: '13px' }}>
               Signature:
               <input
@@ -265,11 +266,13 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
                 }}
               />
             </label>
-          </div>
+          </div> */}
         </div>
       )}
-    </div>
+      </div>
 
+    </div>
+    <div style={{marginBottom:"-5px"}}></div>
         </>
 
             :
