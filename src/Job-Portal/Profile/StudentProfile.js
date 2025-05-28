@@ -207,7 +207,7 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
           }}
         >
           <p style={{ marginBottom: '10px' }}>
-            ✅ I consent to the background check and authorize the verification of my details.
+             I consent to the background check and authorize the verification of my details.
           </p>
 
           <div style={{ marginBottom: '0px' }}>
@@ -371,7 +371,7 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
           }}
         >
           <p style={{ marginBottom: '10px' }}>
-            ✅ I consent to the background check and authorize the verification of my details.
+             I consent to the background check and authorize the verification of my details.
           </p>
 
           <div style={{ marginBottom: '10px' }}>

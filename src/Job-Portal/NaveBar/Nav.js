@@ -201,7 +201,16 @@ function Nav(props) {
             document.removeEventListener("mousedown", handleClickOutside);
           };
         }, []);
-
+        // let StudentAuth = localStorage.getItem("StudLog")
+        // let EmployeeAuth = localStorage.getItem("EmpLog")
+          const bgvCheck=()=>{
+             if(StudentAuth){
+              navigate("/My-Applied-Jobs")
+             }
+             else{
+              navigate("/JobSeekerLogin")
+             }
+          }
 
         return (
     <>
@@ -308,6 +317,9 @@ function Nav(props) {
                 </div>
 
                 <div className={Styles.fullnavewrapperRS} >
+                <div>
+                      <NavLink to="/My-Applied-Jobs" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Background check</NavLink>
+                      </div>
                 <div>
                 <img className={`${Styles.Icon} ${Styles.JobSeekerprofileIcon
 
@@ -692,6 +704,9 @@ function Nav(props) {
                     {/* <div>
                       <NavLink to="/fraud-form" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Fraud </NavLink>
                       </div> */}
+                      <div>
+                      <NavLink to="/JobSeekerLogin" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Background check</NavLink>
+                      </div>
                       <div>
                       <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Employer </NavLink>
                       </div>
