@@ -413,27 +413,54 @@ if(confirm){
     const sanitizedValue = value.replace(/[^\w\s]/gi, ''); // Regex to remove special characters
     setNoticePeriod(sanitizedValue);
   }
-  function handleexpectedSalary(e){
+  // function handleexpectedSalary(e){
+  //   const value = e.target.value;
+  //   const sanitizedValue = value.replace(/[^\w\s]/gi, ''); // Regex to remove special characters
+  //   setExpectedSalary(sanitizedValue);
+  // }
+  function handleexpectedSalary(e) {
     const value = e.target.value;
-    const sanitizedValue = value.replace(/[^\w\s]/gi, ''); // Regex to remove special characters
-    setExpectedSalary(sanitizedValue);
+  
+    // Allow only digits and limit to 3 characters
+    if (/^\d{0,3}$/.test(value)) {
+      setExpectedSalary(value);
+    }
   }
+  
 
-  function handleCurrentCTC(e){
+  // function handleCurrentCTC(e){
+  //   const value = e.target.value;
+  //   const sanitizedValue = value.replace(/[^\w\s]/gi, ''); // Regex to remove special characters
+  //   setcurrentCTC(sanitizedValue);
+  // }
+  function handleCurrentCTC(e) {
     const value = e.target.value;
-    const sanitizedValue = value.replace(/[^\w\s]/gi, ''); // Regex to remove special characters
-    setcurrentCTC(sanitizedValue);
+  
+    // Only allow up to 3 digits
+    if (/^\d{0,3}$/.test(value)) {
+      setcurrentCTC(value);
+    }
   }
+  
   function handleQualification(e){
     const value = e.target.value;
     const sanitizedValue = value.replace(/[^\w\s.]/gi, ''); // Regex to remove special characters
     setQualification(sanitizedValue);
   }
-  function handleExperiance(e){
+  // function handleExperiance(e){
+  //   const value = e.target.value;
+  //   const sanitizedValue = value.replace(/[^\w\s]/gi, ''); // Regex to remove special characters
+  //   setExperiance(sanitizedValue);
+  // }
+  function handleExperiance(e) {
     const value = e.target.value;
-    const sanitizedValue = value.replace(/[^\w\s]/gi, ''); // Regex to remove special characters
-    setExperiance(sanitizedValue);
+  
+    // Allow only digits, max 2 characters
+    if (/^\d{0,2}$/.test(value)) {
+      setExperiance(value);
+    }
   }
+  
 
   const [Others, setOthers]=useState("");
   const handleOthersCollege = (e) => {
@@ -893,7 +920,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
               <label className={styles.inputName}>
                 <h4>Expected Salary: &nbsp;<span className={styles.hint}>(e.g 5L or 10L)</span></h4>
-                <input maxLength="3" className={styles.input} value={ExpectedSalary} onChange={(e) => { handleexpectedSalary(e)}} type="text" />
+                <input maxLength="3" className={styles.input} value={ExpectedSalary} onChange={(e) => { handleexpectedSalary(e)}} type="text" inputMode="text" />
               </label>
 
               <label className={styles.inputName}>
