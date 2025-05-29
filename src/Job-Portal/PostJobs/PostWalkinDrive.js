@@ -232,29 +232,61 @@ const [selectedTime, setSelectedTime] = useState("");
 
   const venueInputRef = useRef(null);
   const[venue, setVenue]=useState("");
+    // useEffect(() => {
+    //   if (venueInputRef.current && !venueInputRef.current.autocomplete) {
+    //     const autocomplete = new window.google.maps.places.Autocomplete(venueInputRef.current, {
+    //       fields: ["formatted_address", "geometry", "address_components", "place_id", "name"],
+    //     });
+    
+    //     autocomplete.addListener("place_changed", () => {
+    //       const place = autocomplete.getPlace();
+    //       if (place && place.formatted_address) {
+    //         const displayValue =
+    //           place.name && place.name !== place.formatted_address
+    //             ? `${place.name}, ${place.formatted_address}`
+    //             : place.formatted_address;
+    
+    //         setVenue(displayValue);
+    //       }
+    //     });
+    
+    //     venueInputRef.current.autocomplete = autocomplete; // attach instance
+    //   }
+    // }, []);
+
     useEffect(() => {
-      if (venueInputRef.current && !venueInputRef.current.autocomplete) {
-        const autocomplete = new window.google.maps.places.Autocomplete(venueInputRef.current, {
-          fields: ["formatted_address", "geometry", "address_components", "place_id", "name"],
-        });
+      const interval = setInterval(() => {
+        if (
+          window.google &&
+          window.google.maps &&
+          window.google.maps.places &&
+          venueInputRef.current &&
+          !venueInputRef.current.autocomplete
+        ) {
+          const autocomplete = new window.google.maps.places.Autocomplete(venueInputRef.current, {
+            fields: ["formatted_address", "geometry", "address_components", "place_id", "name"],
+          });
     
-        autocomplete.addListener("place_changed", () => {
-          const place = autocomplete.getPlace();
-          if (place && place.formatted_address) {
-            const displayValue =
-              place.name && place.name !== place.formatted_address
-                ? `${place.name}, ${place.formatted_address}`
-                : place.formatted_address;
+          autocomplete.addListener("place_changed", () => {
+            const place = autocomplete.getPlace();
+            if (place && place.formatted_address) {
+              const displayValue =
+                place.name && place.name !== place.formatted_address
+                  ? `${place.name}, ${place.formatted_address}`
+                  : place.formatted_address;
     
-            setVenue(displayValue);
-          }
-        });
+              setVenue(displayValue);
+            }
+          });
     
-        venueInputRef.current.autocomplete = autocomplete; // attach instance
-      }
+          venueInputRef.current.autocomplete = autocomplete;
+          clearInterval(interval); // stop checking once loaded
+        }
+      }, 300); // check every 300ms
+    
+      return () => clearInterval(interval);
     }, []);
-
-
+    
 
     return (
         <>
@@ -421,7 +453,7 @@ const [selectedTime, setSelectedTime] = useState("");
      </div>
      {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
 <div style={{display:"flex", justifyContent:"center" }}>
-<button style={{width:"25%",}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit/Post</button>
+<button style={{width:"130px",}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit/Post</button>
 </div>
                             {/* </div> */}
 
