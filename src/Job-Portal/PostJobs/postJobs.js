@@ -292,8 +292,8 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
                                             className={Style.inputbox}
                                             onChange={(e) => { setJobDescription(e.blocks) }}
                                         /> */}
-{/* <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} /> */}
-<CustomTextEditor ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}}/>
+<JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} />
+{/* <CustomTextEditor ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}}/> */}
 
                                         <p className={Style.jobHeadline}>Job Tags <span className={Style.hint}>(Select multiple Tags to reach the best Matching Candidates)</span></p>
 

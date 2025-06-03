@@ -306,18 +306,18 @@ const [selectedTime, setSelectedTime] = useState("");
                                <div className={Style.dirvefirstRow}>
                                   <div className={Style.dirvesubContainer}>
                                     <h4 className={Style.heading}>Job title**</h4>
-                                    <input className={Style.driveinput} style={{width:"220px"}}maxLength="100"  type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />          
+                                    <input className={Style.driveinput} style={{width:"290px"}}maxLength="100"  type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />          
                                   </div>
                                  <div className={Style.dirvesubContainer}>
                                    <h4 className={Style.heading}>Company Name**</h4>
-                                   <input className={Style.driveinput}style={{width:"220px"}} maxLength="100" type="text" value={companyName} disabled />
+                                   <input className={Style.driveinput}style={{width:"290px"}} maxLength="100" type="text" value={companyName} disabled />
                                  </div>
                                </div> 
 
                                 <div>
                                    <h4 className={Style.jobHeadline}>Job Description**</h4>      
-                                    <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} />
-                                 {/* <CustomTextEditor ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}}/> */}
+                                    {/* <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} /> */}
+                                 <CustomTextEditor ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}}/>
                                 </div>
 
                                <div style={{display:"flex",flexDirection:"column"}}>

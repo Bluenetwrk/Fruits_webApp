@@ -1,3 +1,4 @@
+
 .minusbtn{
     background: red;
     color: rgb(255, 255, 255);
@@ -10,6 +11,31 @@
     height: 19px;
 
 }
+.suffix {
+    position: absolute;
+    left: 45px;
+    top: 78%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: black;
+  }
+
+  .suffixCTCMob {
+    position: absolute;
+    right: 266px;
+    top: 90%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: black;
+  }
+  .suffixExpMob {
+  position: absolute;
+  right: 266px;
+  top: 90%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: black;
+  }
 .tooltipWrapper {
     position: relative;
     display: inline-block;
@@ -253,6 +279,16 @@
         margin-left:15px;
     }
 }
+
+
+@media (max-width:768px){
+    .suffixCTCMob {
+        right: 587px;
+      }
+      .suffixExpMob {
+      right: 587px;
+      }
+    }
 @media (max-width:650px){
     .EntireWrapper {
         margin-left: 9%;  
@@ -265,16 +301,49 @@
       }
 }
 
+@media (max-width:650px){
+.suffixCTCMob {
+    right: 307px;
+  }
+  .suffixExpMob {
+  right: 307px;
+  }
+}
+
+
 @media (max-width:376px){
     
     .dropdownwrapperHomeRegistrationMob {
         margin-left: 142px;
+      }
+      .suffixCTCMob {
+        position: absolute;
+        right: 266px;
+        top: 90%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: black;
+      }
+      .suffixExpMob {
+      position: absolute;
+      right: 266px;
+      top: 90%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: black;
       }
 }
 @media (max-width:320px){
     
     .dropdownwrapperHomeRegistrationMob {
         margin-left: 100px;
+      }
+
+      .suffixCTCMob {
+        right: 224px;
+      }
+      .suffixExpMob {
+      right: 224px;
       }
 }
 

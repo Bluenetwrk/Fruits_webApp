@@ -140,7 +140,10 @@ profileData.map((item, i) => {
                         </div>)
                         
                       }
-           {PageLoader ? (
+            <button onClick={getCompanyRating} disabled={!companyName || loading} style={{marginRight:"1%",marginTop:"0px"}} className={styles.validateBtnMobile}>
+                         {loading ? "Validating" : "Background Check"}
+              </button>            
+           {/* {PageLoader ? (
             <div style={{display:"flex", flexDirection:"column"}}>
   <Puff
   height="90"
@@ -163,7 +166,7 @@ profileData.map((item, i) => {
     </div>
   )
   
-)}
+)} */}
       
                    
                         
@@ -184,7 +187,32 @@ profileData.map((item, i) => {
                 <li className={styles.li}><b>H.R Name</b></li>
                 <li className={styles.li}><b>Company Address</b></li>
                 <li className={styles.li}><b>Company Website</b></li>
-                <li className={styles.li} style={{height:"25px"}}><b>Background check</b></li>
+                {PageLoader ? (
+            <div style={{display:"flex", flexDirection:"column", marginLeft: "120px" }}>
+  <Puff
+  height="90"
+  width="90"
+  color="#4fa94d"
+  ariaLabel="bars-loading"
+  wrapperClass="puff-loader"
+/>
+
+  <p style={{marginLeft:"-20px"}}>Verification in progress</p>
+  </div>
+) : (
+  rating && (
+    
+    <div style={{ marginTop: "20px", marginLeft: "90px",width:"318px" }}>
+      <p style={{display:"flex", alignItems:"center", gap:"10px"}}>
+        Rating: {rating.rating}
+        {" "}
+        {renderStars(rating.rating)}(as per google reviews)
+      </p>
+    </div>
+  )
+  
+)} 
+
                 {/* <li className={styles.li}><b>Email  Address</b></li>
                 <li className={styles.li}><b>Phone  Number</b></li>
                 <li className={styles.li}><b>Aadhar</b></li>
@@ -212,11 +240,7 @@ profileData.map((item, i) => {
                             <li className={`${styles.Hli}`}>{item.name?item.name:<li className={styles.Nli} >Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.CompanyAddress?item.CompanyAddress:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.CompanyWebsite?item.CompanyWebsite:<li className={styles.Nli}>Not Updated</li>}</li>
-                       <li className={` ${styles.Hli}`}>
-                       <button onClick={getCompanyRating} disabled={!companyName || loading} style={{marginLeft:"0", marginTop:"-2px"}} className={styles.validateBtnMobile}>
-                         {loading ? "Validating" : "Submit"}
-                      </button>
-                       </li>
+                             
                             {/* <li className={`${styles.Hli}`}>{item.email?item.email:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.phoneNumber?item.phoneNumber:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.Aadhar?item.Aadhar:<li className={styles.Nli}>Not Updated</li>}</li>
@@ -303,11 +327,7 @@ profileData.map((item, i) => {
 
                                         <div className={styles.Down}>
                                         <span className={`${styles.span} ${styles.LastDown}`}>Company Address:  {job.CompanyAddress ? <span className={styles.span} style={{ color: "blue", marginLeft:"5px" }}  >{job.CompanyAddress} </span> : <span style={{ color: "red", marginLeft:"5px" }} >Not updated</span>}</span><br></br>
-                                        <span className={`${styles.span} ${styles.LastDown}`}>Background check: 
-                                        <button onClick={getCompanyRating} disabled={!companyName || loading} style={{marginLeft:"4px", marginTop:"2px"}} className={styles.validateBtnMobile}>
-                                           {loading ? "Validating" : "Submit"}
-                                        </button>
-                                        </span><br></br>
+                        
 {/*                                       
                                         <span className={styles.span}> Account Status:  {job.isApproved?
                   <button  className={styles.Approved} onClick={()=>{DisApprove(job._id, false)}}>Approved</button>
@@ -321,6 +341,32 @@ profileData.map((item, i) => {
                      <button onClick={()=>{sendMessage(job._id)}}>Send</button></p>  */}
                                         </div>                                    
             </div>
+            {PageLoader ? (
+            <div style={{display:"flex", flexDirection:"column", marginLeft: "120px" }}>
+  <Puff
+  height="90"
+  width="90"
+  color="#4fa94d"
+  ariaLabel="bars-loading"
+  wrapperClass="puff-loader"
+/>
+
+  <p style={{marginLeft:"-20px"}}>Verification in progress</p>
+  </div>
+) : (
+  rating && (
+    
+    <div style={{ marginTop: "20px", marginLeft: "32px",width:"318px" }}>
+      <p style={{display:"flex", alignItems:"center", gap:"10px"}}>
+        Rating: {rating.rating}
+        {" "}
+        {renderStars(rating.rating)}
+      </p>
+      <p>(as per google reviews)</p>
+    </div>
+  )
+  
+)} 
         </>
     )
 })}
