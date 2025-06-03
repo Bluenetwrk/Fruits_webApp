@@ -918,14 +918,16 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                 <input maxLength="6" className={styles.input} value={NoticePeriod} onChange={(e) => { handleNoticePeriod(e) }} type="text" />
               </label>
 
-              <label className={styles.inputName}>
+              <label className={styles.inputName} style={{position:"relative"}} >
                 <h4>Expected Salary: &nbsp;<span className={styles.hint}>(e.g 5L or 10L)</span></h4>
                 <input maxLength="3" className={styles.input} value={ExpectedSalary} onChange={(e) => { handleexpectedSalary(e)}} type="text" inputMode="text" />
+                <span className={styles.suffix}>{ExpectedSalary===""?"":"LPA"}</span>
               </label>
 
-              <label className={styles.inputName}>
+              <label className={styles.inputName} style={{position:"relative"}} >
                 <h4>Current CTC: &nbsp;<span className={styles.hint}>(e.g 5L or 10L)</span></h4>
                 <input maxLength="3" className={styles.input} value={currentCTC} onChange={(e) => {handleCurrentCTC(e)}} type="text" />
+                <span className={styles.suffix}>{currentCTC===""?"":"LPA"}</span>
               </label>
 
               {/* <label className={styles.inputName}>
@@ -1466,14 +1468,16 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                 <input maxLength="6" className={styles.Mobileinput} value={NoticePeriod} onChange={(e) => { handleNoticePeriod(e) }} type="text" />
               </label>
 
-              <label className={styles.MobileinputName}>
-                <h4 className={styles.MobileName}>Expected Salary: &nbsp;<span className={styles.hint}>(e.g 5L or 10L)</span></h4>
+              <label className={styles.MobileinputName} style={{position:"relative"}}>
+                <h4 className={styles.MobileName}>Expected Salarys: &nbsp;<span className={styles.hint}>(e.g 5L or 10L)</span></h4>
                 <input maxLength="3" className={styles.Mobileinput} value={ExpectedSalary} onChange={(e) => { handleexpectedSalary(e) }} type="nmber" />
+                <span className={styles.suffixExpMob}>{ExpectedSalary===""?"":"LPA"}</span>
               </label>
 
-              <label className={styles.MobileinputName}>
+              <label className={styles.MobileinputName} style={{position:"relative"}}>
                 <h4 className={styles.MobileName}>Current CTC: &nbsp;<span className={styles.hint}>(e.g 5L or 10L)</span></h4>
                 <input maxLength="3" className={styles.Mobileinput} value={currentCTC} onChange={(e) => { handleCurrentCTC(e) }} type="text" />
+                <span className={styles.suffixCTCMob }>{currentCTC===""?"":"LPA"}</span>
               </label>
 
               {/* <label className={styles.MobileinputName}>

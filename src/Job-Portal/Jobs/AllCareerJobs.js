@@ -894,7 +894,7 @@ const responsive = {
                               jobseeker.jobSeekerId == jobSeekerId
                             )
                           }) ?
-                            <button className={styles.Appliedbutton} title='HR will get in touch with you, Once they will check Your Profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
+                            <button className={styles.Appliedbutton} title='HR will reach out to you after reviewing your profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
                             :
                             
                             items.SourceLink ?
