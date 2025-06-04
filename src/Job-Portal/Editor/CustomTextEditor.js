@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -72,7 +72,7 @@ const CustomToolbar = ({ onYouTubeClick }) => (
         </span>
         <span className="ql-formats">
           <button onClick={onYouTubeClick} type="button">
-          <i className="fab fa-youtube" style={{ color: "#FF0000", marginRight: 5 , fontSize:"20px"}}></i>
+            <i className="fab fa-youtube" style={{ color: "#FF0000", marginRight: 5, fontSize: "20px" }}></i>
           </button>
         </span>
       </div>
@@ -80,15 +80,12 @@ const CustomToolbar = ({ onYouTubeClick }) => (
   </>
 );
 
-export default function CustomTextEditor() {
-  const [value, setValue] = useState("");
+export default function CustomTextEditor({ value, onChange }) {
   const [showModal, setShowModal] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
   const quillRef = useRef(null);
 
-  useEffect(() => {
-    console.log(value);
-  }, [value]);
+
 
   const extractVideoId = (url) => {
     const regExp = /(?:youtube\.com\/(?:[^/]+\/.+|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/;
@@ -113,20 +110,20 @@ export default function CustomTextEditor() {
   };
 
   return (
-    <div style={{ padding: "20px", width: "100%" ,marginLeft:"-20px", marginTop:"-20px"}}>
+    <div style={{ padding: "20px", width: "100%", marginLeft: "-20px", marginTop: "-20px" }}>
       <CustomToolbar onYouTubeClick={() => setShowModal(true)} />
       <ReactQuill
         ref={quillRef}
         theme="snow"
         value={value}
-        onChange={setValue}
+        onChange={onChange}
         modules={CustomTextEditor.modules}
         formats={CustomTextEditor.formats}
         style={{ height: "200px" }}
         placeholder="Start writing..."
       />
 
-      {/* URL Modal */}
+      {/* YouTube Modal */}
       {showModal && (
         <div style={{
           position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
