@@ -1625,7 +1625,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
     onChange={(e) => setTenth(e.target.value)}
     className={styles.input}
     style={{ width: "81%", marginLeft: "18px" }}
-    placeholder="Search your 10th college"
+    placeholder="Search your 10th School"
   />
 </label>
 
@@ -1638,7 +1638,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
     onChange={(e) => setTwelfth(e.target.value)}
     className={styles.input}
     style={{ width: "81%", marginLeft: "18px" }}
-    placeholder="Search your 12th college"
+    placeholder="Search your 12th School/College"
   />
 </label>
 

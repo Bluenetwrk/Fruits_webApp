@@ -228,7 +228,7 @@ function SidebarNav(props) {
        
         <p onClick={()=>{navigate("/TermsAndCondition"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Terms & Conditions</p>
        
-         <p className={`${Styles.textinMobileSodeBar} `}>Version 3.0</p>
+         <p className={`${Styles.textinMobileSodeBar} `} style={{marginBottom:"100px"}}>Release Version : v3.0</p>
         </div>
       </div>
       </>
