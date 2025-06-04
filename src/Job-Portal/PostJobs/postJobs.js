@@ -128,7 +128,7 @@ function PostJobs(props) {
     async function postJob() {
         let userid = JSON.parse(localStorage.getItem("EmpIdG"))
         const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
-
+        // console.log("hdh",jobDescription)
         let jobTitle = jobtitle.toLowerCase()
         let jobLocation = joblocation.toLowerCase()
         await axios.post("/jobpost/jobpost/", {
@@ -292,9 +292,13 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
                                             className={Style.inputbox}
                                             onChange={(e) => { setJobDescription(e.blocks) }}
                                         /> */}
-<JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} />
+{/* <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} /> */}
 {/* <CustomTextEditor ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}}/> */}
-
+<CustomTextEditor
+ ref={editor} className={Style.inputbox} 
+        value={jobDescription}
+        onChange={setJobDescription}
+      />
                                         <p className={Style.jobHeadline}>Job Tags <span className={Style.hint}>(Select multiple Tags to reach the best Matching Candidates)</span></p>
 
 <div className={Style.JobtitleFilterWrapper}>
@@ -389,7 +393,7 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
 <p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>
 I have read and understood the <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}>terms and conditions</span> of ITwalkin.com, and I 
 fully agree to them before posting help-related questions.</p>
-    
+
 
 
                                         {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
