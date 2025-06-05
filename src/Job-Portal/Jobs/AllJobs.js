@@ -857,7 +857,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                               )
                             })
                               ?
-                              <button className={styles.Appliedbutton} title='HR will get in touch with you, Once they will check Your Profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
+                              <button className={styles.Appliedbutton} title='HR will reach out to you after reviewing your profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
                               :
                               items.SourceLink ?
                                 // <button title='This will redirect to the source company webpage' className={styles.Applybutton} onClick={() => {
@@ -1046,7 +1046,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                               jobseeker.jobSeekerId == jobSeekerId
                             )
                           }) ?
-                          <button className={styles.Appliedbutton} title='HR will get in touch with you, Once they will check Your Profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
+                          <button className={styles.Appliedbutton} title='HR will reach out to you after reviewing your profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
                           
                           :
                           items.SourceLink ?
