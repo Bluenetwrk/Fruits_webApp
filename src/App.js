@@ -934,7 +934,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
       companyName: "xyz",
       jobType: "Contract",
       driveTime: "11:00 AM",
-      driveDate: "2025-06-05",
+      driveDate: "2025-06-25",
       location: "Mumbai",
       ctc: "6 LPA",
       experience: "1-2 years",

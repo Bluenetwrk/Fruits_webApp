@@ -895,8 +895,9 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                       </ul>          
                     )
                   })
-                : <p style={{ marginLeft: "47%", color: "red" }}>Loading......</p>
-            }
+                  : <p style={{ marginLeft: "47%", color: "red" }}>No Walkin Drives</p>
+                  }
+                  
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
