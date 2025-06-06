@@ -48,8 +48,8 @@ const CustomToolbar = ({ onYouTubeClick }) => (
           </select>
         </span>
       </div>
-      <div>
-        <span className="ql-formats">
+      {/* <div >  */}
+        <span className="ql-formats" style={{marginLeft:"-10px"}}>
           <select className="ql-size" defaultValue="medium">
             <option value="small" />
             <option value="medium" />
@@ -75,7 +75,7 @@ const CustomToolbar = ({ onYouTubeClick }) => (
             <i className="fab fa-youtube" style={{ color: "#FF0000", marginRight: 5, fontSize: "20px" }}></i>
           </button>
         </span>
-      </div>
+      {/* </div> */}
     </div>
   </>
 );
