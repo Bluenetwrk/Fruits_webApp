@@ -944,7 +944,20 @@ useEffect(() => {
         <strong style={{color:"red", textAlign:"center", fontSize:"14px"}}>NOTICE</strong><br></br>
           ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website.<br></br>
           <br></br>
-          You will be redirected to the career page of {items.Source}. 
+          You will be redirected to the career page of        {
+                          !items.Source ?
+
+                            <span>
+
+                              {items.companyName}</span>
+                            :
+                            <span>
+                             
+                              {items.Source}
+
+                            </span>
+
+                        }. 
           ITWalkin is not the authorised partner of this company
           {/* <strong>Notice:</strong> ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website. */}
 
@@ -1207,7 +1220,20 @@ useEffect(() => {
                                 <strong style={{color:"red", textAlign:"center", fontSize:"14px"}}>NOTICE</strong><br></br>
                                   ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website.<br></br>
                                   <br></br>
-                                  You will be redirected to the career page of {job.Source}. 
+                                  You will be redirected to the career page of {
+                          !job.Source ?
+
+                            <span>
+
+                              {job.companyName}</span>
+                            :
+                            <span>
+                             
+                              {job.Source}
+
+                            </span>
+
+                        }.  
                                   ITWalkin is not the authorised partner of this company
                                   {/* <strong>Notice:</strong> ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website. */}
 
