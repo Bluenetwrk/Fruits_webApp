@@ -835,7 +835,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
           {screenSize.width > 850 ?
 <>
    <div className={styles.EntireFullWrapperStd} >
-     <div className={styles.EntireWrapperStd} style={{height:"100%"}}>
+     <div className={styles.EntireWrapperStd} style={{height:"100%",marginBottom:"12px"}}>
         <div style={{display:"flex", justifyContent:"space-between"}}>
              <button class={styles.empRegBackButton} style={{cursor:"pointer",height:"40px"}} 
              onClick={()=>{navigate(-1)}}>Back</button>
@@ -896,6 +896,133 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
              </label>
 
+              <label className={styles.inputName}>
+                <h4>Current Employer:</h4>
+                 <input
+                   type="text"
+                   ref={currentEmpInputRef}  
+                   value={currentEmp}
+                   onChange={(e) => setCurrentEmp(e.target.value)}
+                   className={styles.input}
+                   style={{ width: "80%",}}
+                   placeholder="Search your Current Employer"
+                 />      
+               </label>
+
+               <label className={styles.inputName}>
+                <h4>Experience: &nbsp;<span className={styles.hint}>(e.g 3Y or 10Y)</span></h4>
+                <input maxLength="3" className={styles.input} value={Experiance} onChange={(e) => { handleExperiance(e) }} type="text" />
+              </label>
+
+
+              <div style={{display:"flex", flexDirection:"column", alignItems:"start", width:"100%", marginLeft: "3%"}}>        
+<div
+      style={{
+        maxWidth: "400px",
+        width: "40%",
+        padding: "10px",
+        display: "flex",
+        justifyContent: "flex-end",
+        flexDirection: "column",
+        marginTop:"20px"
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          gap: "16px",
+          justifyContent: "start",
+          marginleft:"2%"
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "13px",
+            marginBottom: "10px",
+            marginTop: "15px",
+          }}
+        >
+          Previous Employers
+        </h2>
+        <div style={{ display: "flex" }}>
+          {employers.length < 3 ? (
+            <button
+              onClick={addEmployer}
+              style={{
+                marginTop: "11px",
+                backgroundColor: "rgb(40,4,99)",
+                color: "white",
+                border: "none",
+                padding: "1px 6px",
+                borderRadius: "4px",
+                cursor: "pointer",
+                fontSize: "16px",
+                width: "30px",
+                height: "20px",
+              }}
+            >
+              +
+            </button>
+          ) : (
+            <div style={{ width: "36px", height: "36px", marginTop: "10px" }} />
+          )}
+
+          <div className={styles.tooltipWrapper}>
+            <span className={styles.tooltipIcon}>i</span>
+            <span className={styles.tooltipText}>
+              You can fill this field later.
+              <br /> It's not required during registration
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {employers.map((employer, index) => (
+        <div
+          key={index}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "4px",
+            marginBottom: "12px",
+            marginLeft:"-5%"
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "72px" }}>
+              <h4>Prev Emp {index + 1}:</h4>
+              <input
+                type="text"
+                placeholder={`Employer ${index + 1}`}
+                value={employer.name}
+                onChange={(e) =>
+                  handleEmployerChange(index, "name", e.target.value)
+                }
+                ref={(el) => (inputRefs.current[index] = el)}
+                style={{
+                  flex: 1,
+                  padding: "8px",
+                  border: "1px solid #ccc",
+                  borderRadius: "5px",
+                }}
+              />
+            </div>
+
+            <div style={{ marginLeft: "20px" }}>
+              <button
+                onClick={() => removeEmployer(index)}
+                className={styles.minusbtn}
+              >
+                -
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+       
+            </div>
               <label className={styles.inputName}>
                 <h4>Age:</h4>
                 <input maxLength="3" className={styles.input} value={age} onChange={(e) => { handleAge(e) }} type="number" />
@@ -1015,10 +1142,10 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
            <div style={{display:"flex", gap:"14px", marginLeft:"15px"}}>
 
              <div style={{width:"50%"}}>  
-              <label className={styles.inputName}>
+              {/* <label className={styles.inputName}>
                 <h4>Experience: &nbsp;<span className={styles.hint}>(e.g 3Y or 10Y)</span></h4>
                 <input maxLength="3" className={styles.input} value={Experiance} onChange={(e) => { handleExperiance(e) }} type="text" />
-              </label>
+              </label> */}
 
               <label className={styles.inputName}>
                 <h4>Skill Tags: </h4>
@@ -1221,7 +1348,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
         </div>
       ))}
     </div> */}
-     <div style={{display:"flex", alignItems:"center", marginLeft: "7px"}}>  
+     {/* <div style={{display:"flex", alignItems:"center", marginLeft: "7px"}}>  
                  <div><h4>Current Employer:</h4></div>
                 <label style={{marginLeft:"0"}}className={styles.inputName}>
                  <input
@@ -1233,7 +1360,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                    style={{ width: "80%",}}
                    placeholder="Search your Current Employer"
                  />      
-               </label>
+               </label> */}
                 {/* <div style={{display:"flex"}}>
                <label style={{ display: "flex", alignItems: "center", marginLeft:"27px" , marginTop:"0", width:"52%"}} className={styles.MobileinputName}>
                     <div> <h4 style={{ margin: 0 }}>No of Years:</h4> </div>
@@ -1252,10 +1379,10 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                  <span className={styles.tooltipText}>You can fill this field later.<br></br> It's not required during registration</span>
                </div>
              </div> */}
-         </div> 
+         {/* </div>  */}
 
 <div style={{display:"flex", flexDirection:"column", alignItems:"start", width:"100%"}}>        
-<div
+{/* <div
       style={{
         maxWidth: "400px",
         width: "40%",
@@ -1360,7 +1487,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
           </div>
         </div>
       ))}
-    </div>
+    </div> */}
 
         <div style={{display:"flex"}}>
 
@@ -1457,7 +1584,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               </label>
 
               <label className={styles.MobileinputName}>
-                <h4>City: </h4>
+                <h4 style={{marginTop:"-5px"}}>City: </h4>
                 {/* <div style={{ width:"88%", marginLeft:"10px"}}> */}
 
                 {/* <CreatableSelect  
@@ -1481,6 +1608,112 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               </select> */}
 
               </label>
+
+              <label className={styles.MobileinputName}>
+  <h4 style={{marginLeft:"13px"}}>Current Employer:</h4>
+  <input
+    type="text"
+    ref={currentEmpInputRef}
+    value={currentEmp}
+    onChange={(e) => setCurrentEmp(e.target.value)}
+    className={styles.input}
+    style={{ width: "86%", marginLeft: "12px",height:"32px" }}
+    placeholder="Search your current Employer"
+  />
+</label>
+
+<label className={styles.MobileinputName}>
+                <h4 className={styles.MobileName}>Experience: &nbsp;<span className={styles.hint}>(e.g 2Y or 10Y)</span> </h4>
+                <input maxLength="3" className={styles.Mobileinput} value={Experiance} onChange={(e) => { handleExperiance(e) }} type="text" />
+              </label>
+
+
+<div style={{ maxWidth: "400px", margin: "auto", padding: "10px" }}>
+  <div style={{ display: "flex", gap: "16px" }}>
+    <h2
+      style={{
+        fontSize: "13px",
+        marginBottom: "10px",
+        marginTop: "15px",
+        marginLeft: "10px",
+      }}
+    >
+      Previous Employers
+    </h2>
+    {employers.length < 3 && (
+      <button
+        onClick={addEmployer}
+        style={{
+          marginTop: "11px",
+          backgroundColor: "rgb(40,4,99)",
+          color: "white",
+          border: "none",
+          padding: "1px 0px",
+          borderRadius: "4px",
+          cursor: "pointer",
+          fontSize: "16px",
+          width: "26px",
+          height: "18px",
+        }}
+      >
+        +
+      </button>
+    )}
+  </div>
+
+  {employers.map((employer, index) => (
+    <div
+      key={index}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "4px",
+        marginBottom: "12px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "20px",
+            flex: 1,
+          }}
+        >
+          <h4>Prev Emp {index + 1}:</h4>
+          <input
+            type="text"
+            placeholder={`Employer ${index + 1}`}
+            value={employer.name}
+            onChange={(e) => handleEmployerChange(index, "name", e.target.value)}
+            ref={(el) => (inputRefs.current[index] = el)}
+            style={{
+              flex: 1,
+              padding: "8px",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+              marginLeft:"58px",
+              width:"0%"
+            }}
+          />
+        </div>
+        <button
+          onClick={() => removeEmployer(index)}
+          className={styles.minusbtn}
+        >
+          -
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
 
 
               <label className={styles.MobileinputName}>
@@ -1604,10 +1837,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                 <input maxLength="100" className={styles.Mobileinput}   type="text" />
               </label> */}
 
-              <label className={styles.MobileinputName}>
-                <h4 className={styles.MobileName}>Experience: &nbsp;<span className={styles.hint}>(e.g 2Y or 10Y)</span> </h4>
-                <input maxLength="3" className={styles.Mobileinput} value={Experiance} onChange={(e) => { handleExperiance(e) }} type="text" />
-              </label>
+             
                {/* <label className={styles.inputName}>
                 <h4 className={styles.MobileName}>Skill Tags:</h4>
                 <div style={{ width:"88%", marginLeft:"10px"}}>
@@ -1709,18 +1939,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 </label>
 
 
-<label className={styles.MobileinputName}>
-  <h4>Current Employer:</h4>
-  <input
-    type="text"
-    ref={currentEmpInputRef}
-    value={currentEmp}
-    onChange={(e) => setCurrentEmp(e.target.value)}
-    className={styles.input}
-    style={{ width: "81%", marginLeft: "18px" }}
-    placeholder="Search your current Employer"
-  />
-</label>
+
 
 {/* <label style={{ display: "flex", alignItems: "center", marginLeft:"19px" , marginTop:"10px"}} className={styles.MobileinputName}>
   <div> <h4 style={{ margin: 0 }}>No of Years:</h4> </div>
@@ -1740,92 +1959,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
 
 {/* <div style={{ maxWidth: "400px", margin: "auto", padding: "10px",marginleft:"10px" }}> */}
-<div style={{ maxWidth: "400px", margin: "auto", padding: "10px" }}>
-  <div style={{ display: "flex", gap: "16px" }}>
-    <h2
-      style={{
-        fontSize: "13px",
-        marginBottom: "10px",
-        marginTop: "15px",
-        marginLeft: "10px",
-      }}
-    >
-      Previous Employers
-    </h2>
-    {employers.length < 3 && (
-      <button
-        onClick={addEmployer}
-        style={{
-          marginTop: "11px",
-          backgroundColor: "rgb(40,4,99)",
-          color: "white",
-          border: "none",
-          padding: "1px 0px",
-          borderRadius: "4px",
-          cursor: "pointer",
-          fontSize: "16px",
-          width: "26px",
-          height: "18px",
-        }}
-      >
-        +
-      </button>
-    )}
-  </div>
 
-  {employers.map((employer, index) => (
-    <div
-      key={index}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "4px",
-        marginBottom: "12px",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "20px",
-            flex: 1,
-          }}
-        >
-          <h4>Prev Emp {index + 1}:</h4>
-          <input
-            type="text"
-            placeholder={`Employer ${index + 1}`}
-            value={employer.name}
-            onChange={(e) => handleEmployerChange(index, "name", e.target.value)}
-            ref={(el) => (inputRefs.current[index] = el)}
-            style={{
-              flex: 1,
-              padding: "8px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-              marginLeft:"58px",
-              width:"0%"
-            }}
-          />
-        </div>
-        <button
-          onClick={() => removeEmployer(index)}
-          className={styles.minusbtn}
-        >
-          -
-        </button>
-      </div>
-    </div>
-  ))}
-</div>
 
     
 
