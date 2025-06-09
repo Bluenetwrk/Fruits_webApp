@@ -145,8 +145,12 @@ function PostHelp(props) {
  <div style={{marginTop:"20px",display:"flex",flexDirection:"column"}}>  
     <h4 style={{marginLeft:"7PX"}}>Help Descriptions</h4> 
     <div className={`screen3`}>                                 
-   <JoditEditor  ref={editor} className={Style.inputbox} value={helpDescription.toString()} onChange={(e)=>{setHelpDescription(e)}} />
-   {/* <CustomTextEditor ref={editor} className={Style.inputbox} value={helpDescription.toString()} onChange={(e)=>{setHelpDescription(e)}}/> */}
+   {/* <JoditEditor  ref={editor} className={Style.inputbox} value={helpDescription.toString()} onChange={(e)=>{setHelpDescription(e)}} /> */}
+   <CustomTextEditor
+ ref={editor} className={Style.inputbox} 
+        value={helpDescription}
+        onChange={setHelpDescription}
+      />
    </div>
 </div>  
 <p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>

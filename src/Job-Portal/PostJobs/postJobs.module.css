@@ -1,3 +1,21 @@
+.suffix {
+    position: absolute;
+    left: 26px;
+    top: 67%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: black;
+    font-size: 16px;
+  }
+
+  .suffixCTCMob {
+    position: absolute;
+    right: 266px;
+    top: 90%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: black;
+  }
 /* ---------new drive beigns--------- */
 .dirveContainer {
     display: flex;
