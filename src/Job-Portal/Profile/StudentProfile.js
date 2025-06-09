@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import styles from "./StudentProfile.module.css"
@@ -60,6 +60,37 @@ let navigate = useNavigate()
         navigate("/Update-Profile")
       }
          
+
+      const [showTooltip, setShowTooltip] = useState(false);
+
+  const toggleTooltip = () => {
+    setShowTooltip((prev) => !prev);
+  };
+
+  const tooltipRef = useRef(null);
+  const consentRef = useRef(null);
+
+  // const toggleTooltip = () => setShowTooltip(prev => !prev);
+  // const toggleConsent = () => setShowConsent(prev => !prev);
+
+  // Detect outside click for both tooltip and consent
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        tooltipRef.current && !tooltipRef.current.contains(event.target)
+      ) {
+        setShowTooltip(false);
+      }
+      if (
+        consentRef.current && !consentRef.current.contains(event.target)
+      ) {
+        setShowConsent(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
     return (
         <>
         <div style={{display:"flex"}}>
@@ -71,8 +102,133 @@ let navigate = useNavigate()
 
         <h3 style={{color:"rgb(40, 4, 99)", marginLeft:"41%"}}>My Profile</h3>
         </div>
+
+        <div style={{display:"flex", justifyContent:"space-between", marginLeft:"3%", marginRight:"10%"}}>
+          <div>
+            {
+              profileData.map((item, i) => {
+               return (
+                 <div key={i}>
+                   <img className={styles.imageV} src={item.image?item.image : profileDp}/>
+                 </div>
+              )})
+             }
+         </div>
+         <div className={styles.updatebgvContainer}>
+          <div>
+            {
+            screenSize.width>800?
+
+             profileData.length>0?
+             <>
+             <button className={styles.updateProfileStd} onClick={updateprofile}>Update Profile</button><br></br>
+
+             </>
+
+             :""
+
+             :
+             profileData.length>0?<button className={styles.updateProfileStd} onClick={updateprofile}>Update Profile</button>:""
+          }
+          </div>
+          <div style={{position:"flex"}}>
+            <div style={{ position: "relative" }}>
+            <div
+        style={{
+          width: '22px',
+          height: '22px',
+          borderRadius: '50%',
+          backgroundColor: 'rgb(40,4,99)',
+          color: 'white',
+          display: 'inline-flex',
+          alignItems: 'center',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+          fontSize: '14px',
+          position:'absolute',
+          display:'flex',
+          justifyContent: 'center',
+          textAlign:"center",
+          right: "-15%",
+        }}
+        onClick={toggleTooltip}      >
+        i
+        {showTooltip && (
+        <div
+        ref={tooltipRef}
+          style={{
+            position: 'absolute',
+            top: '50px',
+            right: 0,
+            width: '260px',
+            backgroundColor: '#333',
+            color: '#fff',
+            padding: '10px',
+            borderRadius: '6px',
+            fontSize: '13px',
+            zIndex: 10,
+          }}
+        >
+          The background check feature in ITWALKIN enables employers to verify your profile based on the information you provide in the profile
+          section. By participating, you consent to ITWALKIN conducting a background verification using the details you have shared on the platform
+          and other relevant sources.
+        </div>
+      )}
+      </div>
+      
+            
+            <button onClick={toggleConsent} className={styles.updateProfileStd} >Background Check</button>
+            </div>
+      {showConsent && (
+        <div
+        ref={consentRef}
+          style={{
+            position:"absolute",
+            marginTop: '5px',
+            padding: '15px',
+            border: '1px solid #ccc',
+            borderRadius: '8px',
+            textAlign: 'left',
+            backgroundColor: '#f9f9f9',
+            fontSize: '14px',
+            marginBottom:"50px",
+            right: "81px",
+          }}
+        >
+          <p style={{ marginBottom: '10px' }}>
+             I consent to the background check and authorize the verification of my details.
+          </p>
+
+          <div style={{ marginBottom: '0px' }}>
+            <label>
+              <input
+                type="radio"
+                name="consent"
+                value="yes"
+                checked={consent === 'yes'}
+                onChange={() => setConsent('yes')}
+              />
+              {' '}Yes, I agree
+            </label>
+            <br />
+            <label>
+              <input
+                type="radio"
+                name="consent"
+                value="no"
+                checked={consent === 'no'}
+                onChange={() => setConsent('no')}
+              />
+              {' '}No, I decline
+            </label>
+          </div>
+        </div>
+      )}
+          </div>
+          </div>
+        </div>
         
-         {
+         {/* {
 
 profileData.map((item, i) => {
     return (
@@ -81,22 +237,9 @@ profileData.map((item, i) => {
         
         </div>
     )})
-    }
+    } */}
 
-    {screenSize.width>800?
-
-profileData.length>0?
-<>
-<button className={styles.updateProfile} onClick={updateprofile}>Update Profile</button><br></br>
-
-</>
-
-:""
-
-:
-profileData.length>0?<button className={styles.MobupdateProfile} onClick={updateprofile}>Update Profile</button>:""
-
-        }       
+           
             {screenSize.width>850?
       <>      
           
@@ -161,7 +304,7 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
          </div>
          <div style={{ marginTop: '20px', textAlign: 'center',}}>
       {/* Notch-style 'i' icon */}
-      <div
+      {/* <div
         onClick={toggleConsent}
         style={{
           width: '22px',
@@ -184,10 +327,10 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
         title="Consent Info"
       >
         i
-      </div>
+      </div> */}
         
       {/* Consent Box */}
-      <div style={{marginBottom:"90px"}}>
+      {/* <div style={{marginBottom:"90px"}}>
       {showConsent && (
         <div
           style={{
@@ -197,7 +340,6 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
             border: '1px solid #ccc',
             borderRadius: '8px',
             width: '90%',
-            // maxWidth: '350px',
             marginLeft: '60px',
             marginRight: 'auto',
             textAlign: 'left',
@@ -232,7 +374,7 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
               />
               {' '}No, I decline
             </label>
-          </div>
+          </div> */}
 
           {/* <p style={{ margin: '10px 0 5px' }}><strong>Jobseeker Signature:</strong></p> */}
 
@@ -267,9 +409,9 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
               />
             </label>
           </div> */}
-        </div>
+        {/* </div>
       )}
-      </div>
+      </div> */}
 
     </div>
     <div style={{marginBottom:"-5px"}}></div>
@@ -324,9 +466,9 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
                   <span className={styles.span}> HRs/Employer FeedBack : {job.Skills?<span style={{ color: "blue" }}>{job.Skills} </span>:<span style={{color:"red"}}>No FeedBack</span>}</span><br></br>
                   </div>
       </div>
-      <div style={{ marginTop: '20px', textAlign: 'center' }}>
+      {/* <div style={{ marginTop: '20px', textAlign: 'center' }}> */}
       {/* Notch-style 'i' icon */}
-      <div
+      {/* <div
         onClick={toggleConsent}
         style={{
           width: '22px',
@@ -349,10 +491,10 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
         title="Consent Info"
       >
         i
-      </div>
+      </div> */}
 
       {/* Consent Box */}
-      {showConsent && (
+      {/* {showConsent && (
         <div
           style={{
             position:"absolute",
@@ -433,7 +575,7 @@ profileData.length>0?<button className={styles.MobupdateProfile} onClick={update
           </div>
         </div>
       )}
-    </div>
+    </div> */}
     </>
   )
 })}

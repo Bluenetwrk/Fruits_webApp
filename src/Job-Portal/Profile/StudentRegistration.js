@@ -409,9 +409,15 @@ if(confirm){
     setpanCard(sanitizedValue);
   };
   function handleNoticePeriod(e){
+    // const value = e.target.value;
+    // const sanitizedValue = value.replace(/[^\w\s]/gi, ''); // Regex to remove special characters
+    // setNoticePeriod(sanitizedValue);
+
     const value = e.target.value;
-    const sanitizedValue = value.replace(/[^\w\s]/gi, ''); // Regex to remove special characters
-    setNoticePeriod(sanitizedValue);
+    if (/^\d{0,3}$/.test(value)) {
+      setNoticePeriod(value);
+
+    }
   }
   // function handleexpectedSalary(e){
   //   const value = e.target.value;
@@ -1040,7 +1046,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
               <label className={styles.inputName}>
                 <h4>Pan Card Number: &nbsp;<span className={styles.hint}>(Optional)</span></h4>
-                <input className={styles.input} value={panCard} onChange={(e) => { PanCardhandleChange(e) }} type="text" />
+                <input maxLength="10" className={styles.input} value={panCard} onChange={(e) => { PanCardhandleChange(e) }} type="text" />
               </label>
 
               <label className={styles.inputName}>
@@ -1733,17 +1739,17 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
               <label className={styles.MobileinputName}>
                 <h4 className={styles.MobileName}>Pan Card Number:</h4>
-                <input maxLength="16" className={styles.Mobileinput} value={panCard} onChange={(e) => { PanCardhandleChange(e) }} type="text" />
+                <input maxLength="10" className={styles.Mobileinput} value={panCard} onChange={(e) => { PanCardhandleChange(e) }} type="text" />
               </label>
 
               <label className={styles.MobileinputName}>
                 <h4 className={styles.MobileName}>Notice Period in days: </h4>
-                <input maxLength="6" className={styles.Mobileinput} value={NoticePeriod} onChange={(e) => { handleNoticePeriod(e) }} type="text" />
+                <input maxLength="6" className={styles.Mobileinput} value={NoticePeriod} onChange={(e) => { handleNoticePeriod(e) }} type="number" />
               </label>
 
               <label className={styles.MobileinputName} style={{position:"relative"}}>
                 <h4 className={styles.MobileName}>Expected Salarys: &nbsp;<span className={styles.hint}>(e.g 5L or 10L)</span></h4>
-                <input maxLength="3" className={styles.Mobileinput} value={ExpectedSalary} onChange={(e) => { handleexpectedSalary(e) }} type="nmber" />
+                <input maxLength="3" className={styles.Mobileinput} value={ExpectedSalary} onChange={(e) => { handleexpectedSalary(e) }} type="number" />
                 <span className={styles.suffixExpMob}>{ExpectedSalary===""?"":"LPA"}</span>
               </label>
 

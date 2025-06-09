@@ -134,6 +134,45 @@ margin-top: -30px;
      cursor: pointer;
 }
 
+.updateProfileStd{
+    /* background-color: rgb(40, 4, 99); */
+    background:rgb(242, 244, 245);
+     padding:12px;
+     border: 1px solid ;
+     color:rgb(40, 4, 99);;
+     font-weight: 600;
+     border-radius: 25px;
+     cursor: pointer;
+}
+
+
+.updatebgvContainer{
+   display:flex;
+   gap:5px;
+   align-items:center;
+   flex-wrap:wrap;
+}
+
+
+@media(max-width:475px){
+    .updatebgvContainer{
+        margin-left: 106px;
+     }
+}
+
+@media(max-width:376px){
+    .updatebgvContainer{
+        margin-left: 60px;
+     }
+}
+
+@media(max-width:320px){
+    .updatebgvContainer{
+        margin-left: 16px;
+     }
+}
+
+
 .updateProfile:hover{
     background:rgb(242, 244, 245);
 
