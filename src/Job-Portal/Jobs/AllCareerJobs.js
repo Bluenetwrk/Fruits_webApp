@@ -734,7 +734,7 @@ const responsive = {
                 </p>
               </li>
 
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.experiance}`}>Expereince
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.experiance}`}>Experiance
                 <p className={styles.arrowWrapper}>
                   <i onClick={EdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={EascendingOrder} className={`${styles.arrow} ${styles.down}`}></i>

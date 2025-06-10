@@ -22,6 +22,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import JoditEditor from 'jodit-react'
 import Style from "../PostJobs/postJobs.module.css"
 import CustomTextEditor from '../Editor/CustomTextEditor';
+import CustomAlert from '../Alert/customAlert';
 
 function EmployeeUpdateProfile(props) {
   const editor=useRef(null)
@@ -84,12 +85,14 @@ const [immage, setimmage] = useState()
       }, []);
   
   function NoEmailAlert(){
-      alert("primary email field must be filled")
+    alert("primary email field must be filled")
   }
   
  function InvalidEmailAlert(){
   alert("Invalid Primary email id")
  }
+
+ const [alertVisible, setAlertVisible] = useState(false);
 
   const login= useGoogleLogin({
     
@@ -125,7 +128,8 @@ const [immage, setimmage] = useState()
             let GuserId = result.id
             // console.log(result)
             if (result.action == "registered") {
-              alert("Registered Successfully")
+              // alert("Registered Successfully")
+              setAlertVisible(true)
               }else if(result.action == "login"){
                 alert("Primary email id is already registered please try different email id")
 
@@ -540,6 +544,12 @@ const helpData = [
 
  return (
     <>
+            <CustomAlert
+        show={alertVisible}
+        title="Registration successful!"
+        message="Start posting jobs and hiring top talent now"
+        onClose={() => setAlertVisible(false)}
+      />
 
       {/* <div className={styles.EntireFullWrapper}>
 

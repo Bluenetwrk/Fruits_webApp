@@ -392,8 +392,7 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
 // onChange={(e)=>{setSkills(e.target.value)}} 
 />
 <p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>
-I have read and understood the <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}>terms and conditions</span> of ITwalkin.com, and I 
-fully agree to them before posting help-related questions.</p>
+I have read and understood the  <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}>terms and conditions</span> IT Walkin , and I fully agree to them before posting jobs .</p>
 
 
 

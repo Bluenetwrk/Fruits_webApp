@@ -252,13 +252,16 @@ let question =true
                                         <p className={successMessage === "Success! successfully posted" ?
                                             Style.successmessage : Style.errormessage}>{successMessage} </p>
                                         {/* <p className={Style.errormessage}>{errorMessage} </p> */}
-                                        <h4 className={Style.jobHeadline}  >Ask Question**
-                                        <span className={Style.hint}> 
-                                            ( this  will be forwarded to the employers/consultants)</span></h4>
+                                        <div style={{display:"flex", alignItems:"center", gap:"90px", marginBottom:"14px"}}>
+                                           <h4 className={Style.jobHeadline}  >Ask Question**</h4>
+                                           <div className={Style.hint}> 
+                                            ( This  will be forwarded to the employers/consultants)
+                                            </div>
+                                        </div>
                                         <input maxLength="200" className={Style.inputbox} type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />
 
                                         <p className={Style.jobHeadline}>Blog Tags  
-                                            <span className={Style.hint}> (select the matching tag for ur question)</span></p>
+                                            <span className={Style.hint}> (select the matching tag for your question)</span></p>
 
                                         <div className={Style.JobtitleFilterWrapper}>
                                             {
@@ -287,13 +290,15 @@ let question =true
 
                                         <p><input type="checkbox" onChange={() => { setconcent((prev) => !prev) }} />
                                             I have read the terms and conditions of ITwalkin.com and I agree to all the
-                                            <span style={{ color: "blue", cursor: "pointer" }} onClick={() => (window.open("/TermsAndCondition"))}> terms and conditons</span> before posting the jobs </p>
+                                            <span style={{ color: "blue", cursor: "pointer" }} onClick={() => (window.open("/TermsAndCondition"))}> terms and conditons</span> before posting my question </p>
 
 
                                         {/* {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""} */}
-
-                                        <button disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit</button>
+                                        
                                     </div >
+                                    <div style={{display:"flex", justifyContent:"center"}}>   
+                                        <button style={{width:"25%"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit</button>
+                                        </div>
                                 </div >
                             </div>
              
