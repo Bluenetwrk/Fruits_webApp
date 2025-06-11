@@ -133,7 +133,7 @@ function PostHelp(props) {
                         items.isApproved ?
 
                             <div key={i}>
-                                  <h2  class={Style.helpHeading} >Post Help Questions</h2>   
+                                  <h2 style={{marginLeft:"10%"}}  class={Style.helpHeading} >Post Help Questions</h2>   
                                 <div className={Style.postJobPageWrapper} >
                                     <div className={Style.postJobWrapper} style={{marginBottom:"-220px"}}>
                                         <p className={successMessage === "Success! job successfully posted" ?
