@@ -135,6 +135,7 @@ function SidebarNav(props) {
 //    setQuery(tag);
 //    setSuggestions([]); 
 //  };
+let EmployeeAuth = localStorage.getItem("EmpLog")
 
 
   return (
@@ -209,7 +210,9 @@ function SidebarNav(props) {
 
         {/* <p onClick={()=>{navigate("/")}} className={`${Styles.p} `}>Home </p> */}
         <p onClick={()=>{navigate("/Blogs"); update("Blogs")}} className={`${Styles.textBigSodeBar} ${value==="Blogs"?Styles.active:""}`}>Blogs</p>
+       {!EmployeeAuth&&
         <p onClick={()=>{navigate("/AllCareerJobs"); update("AllCareerJobs")}} className={`${Styles.textBigSodeBar} ${value==="AllCareerJobs"?Styles.active:""}`}>ITwalkin Career</p>
+}   
         <p onClick={()=>{navigate("/Walkin-Drives"); update("AllWalkinDrive")}} className={`${Styles.textBigSodeBar} ${value==="AllWalkinDrive"?Styles.active:""} `}>Walkin Drives</p>
         <p onClick={()=>{navigate("/support/help"); update("AllHelps")}} className={`${Styles.textBigSodeBar} ${value==="AllHelps"?Styles.active:""} `}>Help/Support</p>
         <p onClick={()=>{navigate("/AboutUs"); update("AboutUs")}} className={`${Styles.textBigSodeBar} ${value==="AboutUs"?Styles.active:""} `}>About Us</p>
