@@ -501,7 +501,7 @@ function Nav(props) {
                             <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
                             <p className={Styles.text} ref={menuRef} onClick={mypostedjob}>My posted Jobs</p>
                             <p className={Styles.text} ref={menuRef} onClick={myposteddrive}>My posted Drives</p>
-                            <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>posted Articles</p>
+                            <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>Posted Articles</p>
                             <p className={Styles.text} ref={menuRef} onClick={PostBlogs}>Write Article</p>
                             <p className={Styles.text} ref={menuRef} onClick={logutEmp}>Logout</p>
                           </div>
@@ -936,8 +936,8 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                      <div  className={Styles.EmpMobDropdownwrapperMobile} ref={menuRef} >
                     <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
                     <NavLink to="/postedjobs" className={`${Styles.text} `} > Posted jobs</NavLink>
-                    <p className={Styles.text} ref={menuRef} onClick={myposteddrive}>posted Drives</p>
-                    <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>posted Articles</p>
+                    <p className={Styles.text} ref={menuRef} onClick={myposteddrive}>Posted Drives</p>
+                    <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>Posted Articles</p>
                     <p className={Styles.text} ref={menuRef} onClick={PostBlogs}>Write Article</p>
                     <p className={Styles.text} ref={menuRef} onClick={logutEmp}>Logout</p>
                     </div>
