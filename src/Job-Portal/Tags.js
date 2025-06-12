@@ -14,7 +14,7 @@ export const jobTags=[
     { value: 'Apache', label: 'Apache' }, { value: 'Lotus', label: 'Lotus' }, { value: 'Domino', label: 'Domino' },
     { value: 'MS IIS', label: 'MS IIS' }, { value: 'ColdFusion', label: 'ColdFusion' },
     { value: 'nginx', label: 'nginx' }, { value: 'Resin', label: 'Resin' },
-    { value: 'Selenium', label: 'Selenium' }, { value: 'Machine Learing', label: 'Machine Learing' },
+    { value: 'Selenium', label: 'Selenium' }, { value: 'Machine Learning', label: 'Machine Learning' },
     { value: 'Cybersecurity', label: 'Cybersecurity' }, { value: 'AI', label: 'AI' },
     { value: 'HTML-CSS', label: 'HTML-CSS' }, { value: 'MongoDB', label: 'MongoDB' },
     { value: 'MySql', label: 'MySql'}, { value:'Flutter', label: 'Flutter' },{ value: 'React Native', label: 'React Native' }, 

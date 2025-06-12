@@ -374,11 +374,14 @@ if(confirm){
   }
 
   function handlePhoneNumber(e){
-    if (e.target.value.length>10){
-      return false
-  }else{
-  setphoneNumber(e.target.value)
-  }
+    const value = e.target.value;
+
+    // Prevent removing "+91"
+    if (!value.startsWith('+91')) return;
+
+    // Only allow digits after +91
+    const digits = value.slice(3).replace(/\D/g, '');
+    setphoneNumber('+91' + digits);
   }
   function handlesetemail(email){
       // const email = event.target.value;
@@ -795,6 +798,8 @@ const qualifications = [
     console.log("employer",employers)
   })
 
+  
+
   return (
     <>
 
@@ -1036,7 +1041,19 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
               <label className={styles.inputName}>
                 <h4>Phone number:</h4>
-                <input maxLength="15" className={styles.input} value={phoneNumber} onChange={(e) => { handlePhoneNumber(e) }} type="number" />
+                <input
+        maxLength="13"
+        className={styles.input}
+        type="text"
+        value={phoneNumber}
+        onChange={handlePhoneNumber}
+        onFocus={(e) => {
+          if (!e.target.value.startsWith('+91')) {
+            setphoneNumber('+91');
+          }
+        }}
+      />
+                {/* <input maxLength="15" className={styles.input} value={phoneNumber} onChange={(e) => { handlePhoneNumber(e) }} type="number" /> */}
               </label>
 
               <label className={styles.inputName}>
@@ -1729,7 +1746,14 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
               <label className={styles.MobileinputName}>
                 <h4 className={styles.MobileName}>Phone number:</h4>
-                <input maxLength="15" className={styles.Mobileinput} value={phoneNumber} onChange={(e) => { handlePhoneNumber(e) }} type="text" />
+                <input maxLength="13" className={styles.Mobileinput}type="text"
+        value={phoneNumber}
+        onChange={handlePhoneNumber}
+        onFocus={(e) => {
+          if (!e.target.value.startsWith('+91')) {
+            setphoneNumber('+91');
+          }
+        }} />
               </label>
 
               <label className={styles.MobileinputName}>

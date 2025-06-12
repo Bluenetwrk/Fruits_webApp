@@ -17,6 +17,7 @@ import HTMLReactParser from 'html-react-parser'
 import StProfile from "../Profile/StudentProfile"
 import EMpProfile from "../Profile/EmployeeProfile"
 import JoditEditor from 'jodit-react'
+import CustomTextEditor from '../Editor/CustomTextEditor';
 // import HTMLReactParser from 'html-react-parser'
 
 
@@ -212,13 +213,19 @@ async function deletComment(id){
       }).length<1?<>
       {/* <input placeholder='Answer' maxLength={300} style={{height:"30px", marginLeft:"6px", width:"90%"}} type='text' 
       value={comments.comment} onChange={(e)=>{changeComments(e)}} /> */}
-<JoditEditor  ref={editor}   onChange={(e)=>{changeComments(e)}} />
+{/* <JoditEditor  ref={editor}   onChange={(e)=>{changeComments(e)}} /> */}
+<CustomTextEditor
+ ref={editor}
+ value={comments.comment} 
+        onChange={changeComments}
+      />
 
        <button class={styles.ansBtn} onClick={handleComment} style={{height:"30px", marginLeft:"6px"}}>Answer</button> 
        </>
        :""
       :""
 } 
+
 </div>
           </>
           :
@@ -272,8 +279,12 @@ async function deletComment(id){
         )
       }).length<1?<>
              
-<JoditEditor  ref={editor}   onChange={(e)=>{changeComments(e)}} />
-
+{/* <JoditEditor  ref={editor}   onChange={(e)=>{changeComments(e)}} /> */}
+<CustomTextEditor
+ ref={editor}
+ value={comments.comment} 
+        onChange={changeComments}
+      />
 
        <button onClick={handleComment} style={{height:"30px", marginLeft:"6px"}} class={styles.ansBtn}>Comment</button> 
        </>

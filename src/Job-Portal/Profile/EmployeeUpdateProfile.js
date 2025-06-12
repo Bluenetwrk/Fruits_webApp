@@ -484,7 +484,7 @@ const [immage, setimmage] = useState()
 
             <label className={styles.inputName}>
               <h4>Secondary user name : <span style={{fontWeight:800, fontSize:"medium"}} 
-            title='(secondary user will be able to post a job search candidates)'><i class="fa-solid fa-circle-info"></i></span></h4>
+            title='(The secondary user can post jobs and find candidates.)'><i class="fa-solid fa-circle-info"></i></span></h4>
               <input maxLength="90" className={styles.input} value={Secondaryusername} onChange={(e) => {handleSecondaryusername(e) }} type="text" />
             </label>
 
@@ -584,7 +584,7 @@ const [immage, setimmage] = useState()
 
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Secondary user name : <span style={{fontWeight:800, fontSize:"medium"}} 
-            title='(secondary user will be able to post a job search candidates)'><i class="fa-solid fa-circle-info"></i></span></h4>
+            title='(The secondary user can post jobs and find candidates.)'><i class="fa-solid fa-circle-info"></i></span></h4>
               <input maxLength="90" className={styles.Mobileinput} value={Secondaryusername} onChange={(e) => {handleSecondaryusername(e) }} type="text" />
             </label>
 
