@@ -184,7 +184,7 @@ function Nav(props) {
 
     const [isOpen, setIsOpen] = useState(false);
     const handleSelect = (option) => {
-      props.setSelectedlocationOption(option);
+      // props.setSelectedlocationOption(option);
       setIsOpen(false);
     };
     const dropdownRef = useRef(null);
@@ -299,6 +299,7 @@ function Nav(props) {
                                         padding: "10px",
                                         cursor: "pointer",
                                         borderRadius: "10px",
+                                        color: option.value !== "Bangalore" ? "gray" : "black",
                                       }}
                                     >
                                       <img
@@ -465,6 +466,7 @@ function Nav(props) {
                                         padding: "10px",
                                         cursor: "pointer",
                                         borderRadius: "10px",
+                                        color: option.value !== "Bangalore" ? "gray" : "black",
                                       }}
                                     >
                                       <img
@@ -685,6 +687,7 @@ function Nav(props) {
                                         padding: "10px",
                                         cursor: "pointer",
                                         borderRadius: "10px",
+                                        color: option.value !== "Bangalore" ? "gray" : "black",
                                       }}
                                     >
                                       <img
@@ -1071,6 +1074,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                                         padding: "10px",
                                         cursor: "pointer",
                                         borderRadius: "10px",
+                                        color: option.value !== "Bangalore" ? "gray" : "black",
                                       }}
                                     >
                                       <img

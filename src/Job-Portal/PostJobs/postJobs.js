@@ -375,8 +375,12 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
                                            <input maxLength="3" className={Style.inputbox} type="number" value={salaryRange} onChange={(e) => { handleSalary(e) }} />
                                            <span className={Style.suffix}>{salaryRange===""?"":"LPA"}</span>
                                         </div>
+
+                                        <div style={{position:"relative"}} >
                                         <h4 className={Style.jobHeadline}>Experience Needed** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
                                         <input maxLength="3" className={Style.inputbox} type="number" value={experiance} onChange={(e) => { handleExperiance(e) }} />
+                                        <span className={Style.suffix}>{experiance===""?"":"YRS"}</span>
+                                        </div>
                                         {/* <h4 className={Style.jobHeadline}>Skill Tags**</h4>
                                         <div>
                                             <CreatableSelect
