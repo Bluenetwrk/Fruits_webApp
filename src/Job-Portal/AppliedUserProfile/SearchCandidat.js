@@ -314,7 +314,7 @@ return(
         let sortedate = result.sort((a, b) => {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
-    
+        setJobTagsIds(sortedate)
       })
   }
 

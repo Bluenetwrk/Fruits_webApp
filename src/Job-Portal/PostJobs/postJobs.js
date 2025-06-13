@@ -278,7 +278,7 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
                                </>
                                 :""
                                     } */}
-                                        <p className={Style.jobHeadline}>Company Name** &nbsp;<span className={Style.hint}>(Update Company Name from your Profile)</span></p>
+                                        <p className={Style.jobHeadline}>Company Name** &nbsp;<span className={Style.hint}>(Company name cannot be edited ,taken automatically from the profile section)</span></p>
                                         <input maxLength="30" className={Style.inputbox} type="text" value={companyName} disabled />
 
 

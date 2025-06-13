@@ -623,7 +623,7 @@ const helpData = [
             </label>
 
             <div className={styles.inputName}>
-              <h4>Type of Organisation :  <span style={{color:"blue"}}>{TypeofOrganisation}</span></h4>
+              <h4>Type of Organisation : </h4>
               {/* <input className={styles.input} value={TypeofOrganisation} onChange={(e) => { setTypeofOrganisation(e.target.value) }} type="text" /> */}
            
             <select className={styles.input } style={{height:"35px"}}onChange={(e)=>{setTypeofOrganisation(e.target.value)}}>
@@ -916,7 +916,7 @@ const helpData = [
             </label>
             */}
             <div className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Type of Organisation :  <span style={{color:"blue"}}>{TypeofOrganisation}</span></h4>          
+              <h4 className={styles.MobileName}>Type of Organisation: </h4>          
             <select className={styles.Mobileinput } style={{height:"35px"}}onChange={(e)=>{setTypeofOrganisation(e.target.value)}}>
             {TypeofOrganisation? <option style={{color:"blue"}} >{TypeofOrganisation}</option>
             :<option value="" >Select Company type</option>
