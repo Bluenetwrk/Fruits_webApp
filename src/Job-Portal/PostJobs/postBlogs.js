@@ -285,7 +285,7 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
                                         <input maxLength="30" className={Style.inputbox} type="text" value={companyName} disabled /> */}
 
 
-                                        <h4 className={Style.jobHeadline}>Bolg**</h4>
+                                        <h4 className={Style.jobHeadline}>Blog**</h4>
                                         {/* <input maxLength="100" className={Style.inputbox} type="text" value={jobDescription} onChange={(e) => { setJobDescription(e.target.value) }} /> */}
                                         {/* <Editor
                                             toolbarClassName="toolbarClassName"

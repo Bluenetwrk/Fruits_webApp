@@ -918,7 +918,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
       companyName: "Abc",
       jobType: "Remote",
       driveTime: "10:00 AM",
-      driveDate: "2025-1-20",
+      driveDate: "2022-1-20",
       location: "WhiteField,Bengaluru",
       ctc: "8 LPA",
       experience: "1-3 years",
@@ -934,7 +934,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
       companyName: "xyz",
       jobType: "Contract",
       driveTime: "11:00 AM",
-      driveDate: "2025-06-25",
+      driveDate: "2026-06-25",
       location: "Mumbai",
       ctc: "6 LPA",
       experience: "1-2 years",
@@ -959,13 +959,13 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
       dateObj: new Date(job.driveDate),
     }));
 
-    jobs = jobs.filter((job) => !isNaN(job.dateObj));
+    // jobs = jobs.filter((job) => !isNaN(job.dateObj));
 
-    if (!EmployeeAuth) {
+    // if (!EmployeeAuth) {
       jobs = jobs.filter((job) => job.dateObj >= today);
-    }
+    // }
 
-    jobs.sort((a, b) => b.dateObj - a.dateObj);
+    // jobs.sort((a, b) => b.dateObj - a.dateObj);
 
     return jobs.map(({ dateObj, ...rest }) => rest);
   };
@@ -984,11 +984,9 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
       }))
       .filter((job) => !isNaN(job.dateObj));
   
-    // Update flashVisible only if changed
     const shouldShowFlash = jobs.some((job) => job.dateObj >= today);
     setFlashVisible((prev) => (prev !== shouldShowFlash ? shouldShowFlash : prev));
-  
-    // Avoid unnecessary setProcessedJobs if no real change
+
     const processed = processDriveJobs(driveJobs);
     setProcessedJobs((prev) => {
       return JSON.stringify(prev) !== JSON.stringify(processed) ? processed : prev;
@@ -996,8 +994,8 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
   }, [driveJobs]);
   
 
-  
-  
+
+
   const sortedFilteredDriveJobs = processDriveJobs(driveJobs);
      const options = [
       { value: "Bangalore", label: "Bangalore, India", country:"India", img:location},
