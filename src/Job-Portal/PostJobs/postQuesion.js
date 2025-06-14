@@ -124,6 +124,11 @@ function AskQuestion(props) {
 let question =true
         let jobTitle = jobtitle.toLowerCase()
         let jobLocation = joblocation.toLowerCase()
+
+        if(jobTitle==="" || jobDescription===""){
+            setErrorMessage("please fill all the fields")
+            return
+        }
         // await axios.post("/QuestionRoute/questionPost/", {
             await axios.post("/BlogRoutes/blogpost/", {
 
@@ -252,6 +257,9 @@ let question =true
                                         <p className={successMessage === "Success! successfully posted" ?
                                             Style.successmessage : Style.errormessage}>{successMessage} </p>
                                         {/* <p className={Style.errormessage}>{errorMessage} </p> */}
+                                        {errorMessage!==""&&
+                                        <p className={Style.errormessage}>{errorMessage} </p>
+                                       }
                                         <div style={{display:"flex", alignItems:"center", gap:"90px", marginBottom:"14px"}}>
                                            <h4 className={Style.jobHeadline}  >Ask Question**</h4>
                                            <div className={Style.hint}> 
@@ -261,7 +269,7 @@ let question =true
                                         <input maxLength="200" className={Style.inputbox} type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />
 
                                         <p className={Style.jobHeadline}>Blog Tags  
-                                            <span className={Style.hint}> (select the matching tag for your question)</span></p>
+                                            <span className={Style.hint}> (Select the matching tag for your question)</span></p>
 
                                         <div className={Style.JobtitleFilterWrapper}>
                                             {

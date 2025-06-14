@@ -183,7 +183,7 @@ async function deletComment(id){
         return(
           <>
           {/* <p> {com.name} : {com.comment}</p> */}
-          <p class={styles.submittedAnsdiv} style={{textAlign:"center",}}> 
+          <p class={styles.submittedAnsdiv} > 
              {/* {com.comment} */}
              <div class={styles.submittedAnsDetail}>
              {HTMLReactParser(com.comment.toString())} 

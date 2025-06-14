@@ -188,6 +188,7 @@ profileData.map((item, i) => {
                 <li className={styles.li}><b>Company Address</b></li>
                 <li className={styles.li}><b>Company Website</b></li>
                 {PageLoader ? (
+                  <div style={{display:"flex", justifyContent:"center", width:"100vw", marginLeft:"-140px"}}>
             <div style={{display:"flex", flexDirection:"column", marginLeft: "120px" }}>
   <Puff
   height="90"
@@ -199,10 +200,11 @@ profileData.map((item, i) => {
 
   <p style={{marginLeft:"-20px"}}>Verification in progress</p>
   </div>
+  </div>
 ) : (
   rating && (
     
-    <div style={{ marginTop: "20px", marginLeft: "90px",width:"318px" }}>
+    <div style={{ marginTop: "20px", marginLeft: "90px",width:"347px" }}>
       <p style={{display:"flex", alignItems:"center", gap:"10px"}}>
         Rating: {rating.rating}
         {" "}
