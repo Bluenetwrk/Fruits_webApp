@@ -50,7 +50,7 @@ const [profileData, setProfileData] = useState([])
 
   const generateUniqueCode = (driveId) => {
     const drive = dummyDrives.find(d => d.id === driveId);
-    if (!drive?.company) {
+    if (!drive?.companyName) {
         alert("Please Scan the QR code.");
         navigate("/"); 
         return; 
