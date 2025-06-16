@@ -310,7 +310,7 @@ function AppliedUserProfile() {
                         {nopageFilter ?
                             <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>{Filtereredjobs}</span> from All Jobs</p>
                             :
-                            <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest jobs</p>
+                            <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest candidates</p>
                         }
                         <div className={styles.navigationWrapper}>
                             <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
@@ -334,7 +334,7 @@ function AppliedUserProfile() {
                             <option selected={lastIndex === 25} value={25}>25</option>
                             <option selected={lastIndex === 50} value={50}>50</option>
                             <option selected={lastIndex === 100} value={100}>100</option>
-                        </select>  jobs per page
+                        </select>  candidates per page
                     </div>
                 <div className={styles.AllUiWrapper}>
 

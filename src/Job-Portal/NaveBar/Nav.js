@@ -212,6 +212,23 @@ function Nav(props) {
              }
           }
 
+          const [resumeAlert, setresumeAlert]=useState(false)
+          const alertRef = useRef(null);
+          useEffect(() => {
+            const handleClickOutside = (event) => {
+              // If clicked outside alert box and it's open
+              if (alertRef.current && !alertRef.current.contains(event.target)) {
+                setresumeAlert(false); // close the alert
+              }
+            };
+          
+            document.addEventListener('mousedown', handleClickOutside);
+          
+            return () => {
+              document.removeEventListener('mousedown', handleClickOutside);
+            };
+          }, []);
+
         return (
     <>
 
@@ -297,7 +314,7 @@ function Nav(props) {
                                         display: "flex",
                                         alignItems: "center",
                                         padding: "10px",
-                                        cursor: "pointer",
+                                        cursor: option.value === "Bangalore" ? "pointer" : "default",
                                         borderRadius: "10px",
                                         color: option.value !== "Bangalore" ? "gray" : "black",
                                       }}
@@ -464,7 +481,7 @@ function Nav(props) {
                                         display: "flex",
                                         alignItems: "center",
                                         padding: "10px",
-                                        cursor: "pointer",
+                                        cursor: option.value === "Bangalore" ? "pointer" : "default",
                                         borderRadius: "10px",
                                         color: option.value !== "Bangalore" ? "gray" : "black",
                                       }}
@@ -624,6 +641,66 @@ function Nav(props) {
                       <div>
                       <NavLink to="/" className={Styles.HomeJobs} style={navLinkStyles}><i style={{ marginLeft: 0, marginRight: "5px" }} class="fa-solid fa-house"></i>Home</NavLink>   
                       </div>
+                      <div ref={alertRef} style={{position:"relative"}}>
+                        <div onClick={()=>setresumeAlert((prev)=>prev=!prev)} className={Styles.AllJobJobSeeker} style={{cursor:"pointer"}}>AI Resume Builder </div>
+                         {resumeAlert&&
+                         <>
+                            <div
+        style={{
+          width: '300px',
+          padding: '20px',
+          backgroundColor: 'rgb(40,4,99)',
+          color: 'white',
+          fontSize: '12px',
+          borderRadius: '5px',
+          position: 'fixed',
+          top: '17%',
+          left: '32%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 9999,
+          boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+          textAlign: 'center',
+        }}
+        
+        > 
+        
+        Login as a Jobseeker to explore opportunities and create a strong resume!
+          <div  style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"5px" }}>
+            <button
+              onClick={() => {navigate("/JobSeekerLogin"); setresumeAlert(false)}}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              Ok
+            </button>
+            <button
+              onClick={()=> setresumeAlert(false)}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+                         </>
+
+                         }
+                        </div>
+            
 
                       <div ref={dropdownRef} style={{ position: "relative" }}>
                             
@@ -685,7 +762,7 @@ function Nav(props) {
                                         display: "flex",
                                         alignItems: "center",
                                         padding: "10px",
-                                        cursor: "pointer",
+                                        cursor: option.value === "Bangalore" ? "pointer" : "default",
                                         borderRadius: "10px",
                                         color: option.value !== "Bangalore" ? "gray" : "black",
                                       }}
@@ -1072,7 +1149,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                                         display: "flex",
                                         alignItems: "center",
                                         padding: "10px",
-                                        cursor: "pointer",
+                                        cursor: option.value === "Bangalore" ? "pointer" : "default",
                                         borderRadius: "10px",
                                         color: option.value !== "Bangalore" ? "gray" : "black",
                                       }}

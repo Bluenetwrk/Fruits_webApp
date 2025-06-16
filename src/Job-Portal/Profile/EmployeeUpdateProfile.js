@@ -14,6 +14,7 @@ import Arrowimage from '../img/icons8-arrow-left-48.png'
 import validator from "validator";
 import Footer from '../Footer/Footer';
 import JoditEditor from 'jodit-react'
+import CustomTextEditor from '../Editor/CustomTextEditor';
 
 
 function EmployeeUpdateProfile(props) {
@@ -434,7 +435,7 @@ const [immage, setimmage] = useState()
             </label>
             <label className={styles.inputName}>
               <h4>Company CIN Number:</h4>
-              <input maxLength="22" className={styles.input} value={CompanyCIN} onChange={(e) => {handleChangeCompanyCIN(e)} } type="text" />
+              <input maxLength="21" className={styles.input} value={CompanyCIN} onChange={(e) => {handleChangeCompanyCIN(e)} } type="text" />
             </label>
 
             <label className={styles.inputName}>
@@ -504,7 +505,13 @@ const [immage, setimmage] = useState()
             </label>
             <div className={styles.Editor}>
             <h4>About Company:</h4>
-<JoditEditor  ref={editor}  value={AboutCompany.toString()} onChange={(e)=>{setAboutCompany(e)}} />
+{/* <JoditEditor  ref={editor}  value={AboutCompany.toString()} onChange={(e)=>{setAboutCompany(e)}} /> */}
+<CustomTextEditor
+ ref={editor} 
+        value={AboutCompany.toString()}
+        onChange={setAboutCompany}
+      />
+             
 </div>
 
 <div style={{ display:"flex", margin:"10px 20px"}}>

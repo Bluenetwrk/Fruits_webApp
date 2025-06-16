@@ -113,9 +113,14 @@ function SidebarNav(props) {
 //  };
 
 
-
-
-
+let StudentAuth = localStorage.getItem("StudLog")
+const resumeRedirect=()=>{
+  if(StudentAuth)
+    navigate("/resumes")
+else{
+  navigate("/JobSeekerLogin")
+}
+}
   return (
   <>
   
@@ -222,6 +227,7 @@ function SidebarNav(props) {
         {!EmployeeAuth&&
         <>
         <p onClick={()=>{navigate("/AllCareerJobs"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>ITwalkin Career</p>
+        <p onClick={()=>{resumeRedirect(); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>AI Resume Builder</p>
         <p onClick={()=>{navigate("/Walkin-Drives"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Walkin Drive</p>
         </>
         }

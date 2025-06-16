@@ -287,6 +287,28 @@ const [selectedTime, setSelectedTime] = useState("");
       return () => clearInterval(interval);
     }, []);
     
+    const [showTooltip, setShowTooltip] = useState(false);
+    
+      const toggleTooltip = () => {
+        setShowTooltip((prev) => !prev);
+      };
+    
+      const tooltipRef = useRef(null);
+    
+      useEffect(() => {
+          const handleClickOutside = (event) => {
+            if (
+              tooltipRef.current && !tooltipRef.current.contains(event.target)
+            ) {
+              setShowTooltip(false);
+            }
+           
+          };
+      
+          document.addEventListener("mousedown", handleClickOutside);
+          return () => document.removeEventListener("mousedown", handleClickOutside);
+        }, []);
+    
 
     return (
         <>
@@ -362,10 +384,31 @@ const [selectedTime, setSelectedTime] = useState("");
                                      </div>
                                     </div>    
                                     <div style={{marginRight:"150px"}}>
+                                      <div style={{position:"relative"}}>
                                      <h4 className={Style.jobHeadline}>Job Location**</h4>
+                                     <div
+    ref={tooltipRef} // ⬅ attach ref to parent of both icon and tooltip
+    className={Style.driveAlerti}
+    onClick={toggleTooltip}
+  >
+    i
+    {showTooltip && (
+      <div
+        className={Style.driveIdesc}
+      >
+        Job Location: Bangalore Only. Kindly ensure that all applications align with this specified location.
+      </div>
+    )}
+  </div>
+</div>
+    
+
                                         <div style={{ marginTop: "-10px" }}>
                                             <label><input name="Location" type="radio" checked={joblocation === "Bangalore"} value="Bangalore" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} />Bangalore </label>
                                       </div>
+
+                                      
+
                                   </div> 
 
                                  
