@@ -124,8 +124,8 @@ function AskQuestion(props) {
 let question =true
         let jobTitle = jobtitle.toLowerCase()
         let jobLocation = joblocation.toLowerCase()
-
-        if(jobTitle==="" || jobDescription===""){
+        
+        if(jobTitle===""){ 
             setErrorMessage("please fill all the fields")
             return
         }
@@ -308,7 +308,7 @@ let question =true
                                     </div >
                                     <div className={Style.submitDeleteBtn}>   
                                         <button style={{width:"200px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit</button>
-                                        <button style={{width:"200px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Delete</button>
+                                        <button style={{width:"200px"}} disabled={concent} className={Style.disableButton} >Delete</button>
                                         </div>
                                 </div >
                             </div>
