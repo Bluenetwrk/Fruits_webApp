@@ -1,22 +1,120 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './gallery.css';
-import template1 from "../img/template1.png"
-import template2 from "../img/template2.png"
+import template1 from "../img/template1.png";
+import template2 from "../img/template2.png";
+
 const TemplateGallery = ({ onSelect }) => {
+  const [resumeAlert, setResumeAlert] = useState({ show: false, selected: null });
+  const alertRef = useRef(null);
+
+  // Close alert when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (alertRef.current && !alertRef.current.contains(event.target)) {
+        setResumeAlert({ show: false, selected: null });
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log(resumeAlert);
+  }, [resumeAlert]);
+
   return (
     <div className="template-gallery">
-      <div className="template-card" onClick={() => onSelect('one')}>
+      <div
+        style={{ position: "relative" }}
+        className="template-card"
+        onClick={() => setResumeAlert({ show: true, selected: 'one' })}
+      >
         <img src={template1} alt="Template One" className="blurred" />
         <p>Template 1</p>
       </div>
-      <div className="template-card" onClick={() => onSelect('two')}>
+
+      <div
+        style={{ position: "relative" }}
+        className="template-card"
+        onClick={() => setResumeAlert({ show: true, selected: 'two' })}
+      >
         <img src={template2} alt="Template Two" className="blurred" />
         <p>Template 2</p>
       </div>
+
+      {/* Alert Box */}
+      {resumeAlert.show && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+            zIndex: 9998,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <div
+            ref={alertRef}
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: '300px',
+              padding: '20px',
+              backgroundColor: 'rgb(40,4,99)',
+              color: 'white',
+              fontSize: '12px',
+              borderRadius: '5px',
+              zIndex: 9999,
+              boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+              textAlign: 'center',
+            }}
+          >
+            Complete your profile to let the AI Resume Builder generate a polished and professional resume for you
+            <div style={{ marginTop: '15px', display: "flex", justifyContent: "center", gap: "5px" }}>
+              <button
+                onClick={() => {
+                  onSelect(resumeAlert.selected);
+                  setResumeAlert({ show: false, selected: null });
+                }}
+                style={{
+                  padding: '8px 16px',
+                  backgroundColor: '#4CAF50',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '5px',
+                  fontSize: '12px',
+                  cursor: 'pointer',
+                }}
+              >
+                Ok
+              </button>
+              <button
+                onClick={() => setResumeAlert({ show: false, selected: null })}
+                style={{
+                  padding: '8px 16px',
+                  backgroundColor: '#f44336',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '5px',
+                  fontSize: '12px',
+                  cursor: 'pointer',
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default TemplateGallery;
-
-

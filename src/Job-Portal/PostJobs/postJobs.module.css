@@ -167,6 +167,103 @@
 
 }
 
+.JobAlerti {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: rgb(40, 4, 99);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  position: absolute;
+  text-align: center;
+  left: 8%;
+  top: -1%;
+}
+.driveAlerti {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: rgb(40, 4, 99);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  position: absolute;
+  text-align: center;
+  right: -21%;
+  top: -1%;
+}
+
+.jobIdesc {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 260px;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  z-index: 10;
+}
+.driveIdesc {
+  position: absolute;
+  top: 19px;
+    right: -128px;
+  width: 260px;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  z-index: 10;
+}
+.submitDeleteBtn {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+@media(max-width:475px){
+  .JobAlerti{
+    left: 28%;
+  }
+
+  .jobIdesc {
+  top: 18px;
+    left: -95px;
+  }
+  .driveIdesc {
+    top: 17px;
+    left: -96px;
+  }
+
+  .submitDeleteBtn {
+    gap:0px;
+    margin-left: -10%;
+  }
+}
+
+@media(max-width:376px){
+  .JobAlerti{
+    left: 33%;
+  }
+}
+
+@media(max-width:320px){
+  .JobAlerti{
+    left: 38%;
+  }
+}
 /* .JobLocationFilter:hover{
     cursor: pointer;
     margin-left: 10px;

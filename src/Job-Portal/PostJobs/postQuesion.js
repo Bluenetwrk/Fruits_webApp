@@ -275,7 +275,7 @@ let question =true
                                             {
                                                 jobTags.map((tags, i) => {
                                                     return (
-
+                                                          
                                                         <button disabled={tags.value === "TECHNOLOGIES" || tags.value === "EDUCATION" || tags.value === "COLLEGE TYPE" || tags.value === "NOTICE PERIOD" || tags.value === "SALARY" ||
                                                             tags.value === "EXPERIENCE" || tags.value === "Job Type" || tags.value === "INDUSTRY" || tags.value === "TOOLS/PROTOCOLS" || tags.value === "ROLE" || tags.value === "COMPANY TYPE"}
                                                             className={tags.value === "TECHNOLOGIES" || tags.value === "EDUCATION" || tags.value === "COLLEGE TYPE" || tags.value === "NOTICE PERIOD" || tags.value === "SALARY" ||
@@ -293,8 +293,10 @@ let question =true
 
                                                     )
                                                 })
+                                                
                                             }
                                         </div>
+                                        
 
                                         <p><input type="checkbox" onChange={() => { setconcent((prev) => !prev) }} />
                                             I have read the terms and conditions of ITwalkin.com and I agree to all the
@@ -304,8 +306,9 @@ let question =true
                                         {/* {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""} */}
                                         
                                     </div >
-                                    <div style={{display:"flex", justifyContent:"center"}}>   
-                                        <button style={{width:"25%"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit</button>
+                                    <div className={Style.submitDeleteBtn}>   
+                                        <button style={{width:"200px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit</button>
+                                        <button style={{width:"200px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Delete</button>
                                         </div>
                                 </div >
                             </div>
