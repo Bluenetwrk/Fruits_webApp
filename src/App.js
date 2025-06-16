@@ -73,6 +73,7 @@ import AllResumes from "./Job-Portal/Resumes/AllResumes";
 import PostFraudForm from "./Job-Portal/Jobs/PostFraudForm";
 import AppliedDrives from "./Job-Portal/Jobs/AppliedDrives";
 import MyPostedDrives from "./Job-Portal/Jobs/MyPostedDrives";
+import ScanDrive from "./Job-Portal/QRCode/ScanDrive";
 // import PostFraud from "./Job-Portal/Jobs/PostFraud";
 axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -1018,6 +1019,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
         {/* <div style={ShowSideNave && screenSize.width > 850 ? { marginLeft: "210px" } : { marginLeft: "-3px"}}> */}
       
           <Routes>
+          <Route path="/scan/drive/:driveId" element={<ScanDrive  />} />
             <Route path='/fraud-form' element={<PostFraudForm/>}></Route>
             <Route path="/" element={
               <Home 
@@ -1089,6 +1091,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               <Route path="/Updatepostedjobs" element={<UpdatePostedJobs url={axios.defaults.baseURL} />} />
             {/* ..........Employee Private component i,e can not search in URL......... */}
             <Route element={<EmpPrivate />}>
+            {/* <Route path="/scan/drive/:driveId" element={<ScanDrive  />} /> */}
               <Route path="/PostJobs" element={<PostJobs url={axios.defaults.baseURL} />} />
               <Route path="/Post-Help-Questions" element={<PostHelp url={axios.defaults.baseURL} />} />
               <Route path="/PostDrives" element={<PostWalkinDrive url={axios.defaults.baseURL}/>} />
@@ -1158,6 +1161,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               setCandidate={setCandidate}
               />} />
               <Route path="/AskQuestion" element={<AskQuestion  />} />
+              {/* <Route path="/scan/drive/:driveId" element={<ScanDrive  />} /> */}
               <Route path="/Update-Profile" element={<StudentUpdateProfile url={axios.defaults.baseURL} />} />
               <Route path="/My-Profile" element={<StudentProfile />} />
               <Route path="/My-Applied-Jobs" element={<MyAppliedJobs url={axios.defaults.baseURL} />} />

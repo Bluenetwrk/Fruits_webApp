@@ -11,6 +11,8 @@ import graduation from "../img/icons8-graduation-cap-40.png"
 import socketIO from 'socket.io-client';
 import Footer from '../Footer/Footer';
 import HTMLReactParser from 'html-react-parser'
+import { dummyDrives } from '../QRCode/dummyDrives';
+import QRCode from 'react-qr-code';
 
 
 
@@ -269,6 +271,18 @@ function handleRecordchange(e){
 }
 
 
+
+
+const [selectedDriveId, setSelectedDriveId] = useState(null);
+
+const handleGenerateQR = (driveId) => {
+  setSelectedDriveId(prevId => (prevId === driveId ? null : driveId));
+};
+
+  const generateQRUrl = (driveId) => {
+    return `${window.location.origin}/scan/drive/${driveId}`;
+  };
+
   return (
     <>
  
@@ -333,7 +347,7 @@ function handleRecordchange(e){
             <li className={styles.li}><b>Company Name</b></li>
             <li className={`${styles.li} ${styles.Jtitle}`}><b>Job Title</b></li>
             {/* <li className={`${styles.li} ${styles.liDescription}`}><b>Job description</b></li> */}
-            <li className={`${styles.li} ${styles.Pdate}`}><b>Posted Date</b>
+            <li className={`${styles.li} ${styles.Pdate}`}><b>Drive Date</b>
             <p className={styles.arrowWrapper}>
                <i onClick={sortbyNewjobs} className={`${styles.arrow} ${styles.up}`} ></i>
                 <i onClick={sortbyOldjobs} className={`${styles.arrow} ${styles.down}`}></i>
@@ -356,6 +370,8 @@ function handleRecordchange(e){
             </li>
             <li className={`${styles.li} ${styles.Skills}`}><b>Skills Required</b></li>
             <li className={`${styles.li} ${styles.Action}`}><b>Action</b></li>
+            <li className={`${styles.li} ${styles.Action}`}><b>Reception Table</b></li>
+            <li className={`${styles.li} ${styles.Action}`}><b>HR Table</b></li>
             <li className={`${styles.li} ${styles.NuApplied}`}><b>No of JobSeeker Applied</b></li>
 
           </ul>
@@ -366,9 +382,9 @@ function handleRecordchange(e){
               </div>
             </>: <>
           {
-            records.length < 0 ?
+            dummyDrives?.length > 0 ?
 
-            records.map((items, i) => {
+            dummyDrives.map((items, i) => {
                 return (
 
                   <ul className={styles.ul} key={i}>
@@ -379,38 +395,46 @@ function handleRecordchange(e){
                       {items.companyName}
                       </li>
 
-                    <li className={`${styles.li} ${styles.Jtitle}`} style={{ color: "blue", cursor:"pointer" }} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})}>{items.jobTitle.toUpperCase()}</li>
+                    <li className={`${styles.li} ${styles.Jtitle}`} style={{ color: "blue", cursor:"pointer" }} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})}>{items.jobTitle}</li>
                     {/* <li className={`${styles.li} ${styles.liDescription}`}> 
                     {items.jobDescription? HTMLReactParser(items.jobDescription.toString()) :""}
                       <span style={{ color: "blue", cursor:"pointer" }} onClick={() => { navigate(`/Jobdetails/${btoa(items._id)}`) }} >...see more</span>
                     </li> */}
                     <li className={`${styles.li} ${styles.Pdate}`}>
-                      {new Date(items.createdAt).toLocaleString(
-                        "en-US",
-                        {
-                          month: "short",
-                          day: "2-digit",
-                          year: "numeric",
-                        }
-                      )}
+                      { items.postedDate
+  
+                      }
                     </li>
-                    <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation.toUpperCase()}</li>
-                    <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
-                    <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
-                    <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li>
+                    <li className={`${styles.li} ${styles.Location}`}>{items.location}</li>
+                    <li className={`${styles.li} ${styles.Package}`}>{items.ctc}</li>
+                    <li className={`${styles.li} ${styles.experiance}`}>{items.experience}</li>
+                    <li className={`${styles.li} ${styles.Skills}`}>{items.skillsRequired}</li>
                     <li className={`${styles.li} ${styles.Action}`}>
                       <div className={styles.Acbuttons}>
                         <button onClick={() => { update(items._id) }} className={`${styles.Abutton} ${styles.update}`}>update</button>
                         <button onClick={() => { deletejob(items._id) }} className={`${styles.Abutton} ${styles.delete}`}>delete</button>
                       </div>
                     </li>
+                    <li style={{position:"relative"}} className={`${styles.li} ${styles.Action}`}>
+                        <button onClick={() => { handleGenerateQR(items.id) }} className={`${styles.Abutton} ${styles.update}`}>Generate QR</button>                 
+                          {selectedDriveId === items.id && (
+                            <div style={{ marginTop: "1rem" }}>
+                              <QRCode style={{height:"100px", width:"100px"}} value={generateQRUrl(items.id)} size={160} />
+                              {/* <p>{generateQRUrl(items.id)}</p> */}
+                            </div>
+                          )}
+                    </li>
+                    <li className={`${styles.li} ${styles.Action}`}>
+                        <button  className={`${styles.Abutton} ${styles.update}`}>Generate QR</button>
+                    </li>
                     <li className={`${styles.li} ${styles.NuApplied}`}>
-                      {items.jobSeekerId.length > 0 ?
-                        <button className={`${styles.viewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(items._id)) }}>{items.jobSeekerId.length}</button>
+                      {items.numberOfApplicants> 0 ?
+             
+                        <button className={`${styles.viewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(items._id)) }}>{items.numberOfApplicants}</button>
                         :
-                        <button className={`${styles.viewButton}`} >{items.jobSeekerId.length}</button>
+                        <button className={`${styles.viewButton}`} >{items.numberOfApplicants}</button>
 
-                      }
+                      } 
                     </li>
                   </ul>
                 )
@@ -482,7 +506,7 @@ myjobs.map((job, i) => {
   window.scrollTo({
     top:0
   })
-  navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {transferRecords, },})}} >{job.jobTitle.toUpperCase()} </p>                      
+  navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {transferRecords, },})}} >{job.jobTitle} </p>                      
         <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
           "en-US",
           {
