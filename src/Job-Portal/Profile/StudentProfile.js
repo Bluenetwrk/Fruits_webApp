@@ -169,9 +169,7 @@ let navigate = useNavigate()
             zIndex: 10,
           }}
         >
-          The background check feature in ITWALKIN enables employers to verify your profile based on the information you provide in the profile
-          section. By participating, you consent to ITWALKIN conducting a background verification using the details you have shared on the platform
-          and other relevant sources.
+         The background verification feature on ITWALKIN.COM allows employers to authenticate your profile using the details provided in the profile section. By opting in, you grant consent to ITWALKIN.COM to perform background checks based on the information shared on this platform and other relevant source.
         </div>
       )}
       </div>
