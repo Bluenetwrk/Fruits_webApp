@@ -1,109 +1,108 @@
-// logincheck-here
-// naviagte to be implemented if possible
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { dummyDrives } from "./dummyDrives";
 import axios from "axios";
-
-// Function to generate a 3-character alphanumeric code
-
+import styles from "../Jobs/Allobs.module.css"
 
 const ScanDrive = () => {
-    
-  const { driveId } = useParams(); 
+
+  const { driveId } = useParams();
   const navigate = useNavigate();
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(true);
+  const [profileData, setProfileData] = useState([]);
+  const empId = JSON.parse(localStorage.getItem("EmpIdG"));
 
-
-  let empId = JSON.parse(localStorage.getItem("EmpIdG"))
-const [profileData, setProfileData] = useState([])
-    async function getProfile() {
-        const headers = { authorization: 'BlueItImpulseWalkinIn'};
-       
-        await axios.get(`/EmpProfile/getProfile/${empId}`, {headers})
-            .then((res) => {
-                let result = res.data.result
-                setProfileData([result])
-
-
-            }).catch((err) => {
-                alert("some thing went wrong")
-            })
-    }
-
-    useEffect(() => {
-        getProfile()
-    }, [])
 
   useEffect(() => {
-//   const user = JSON.parse(localStorage.getItem("user"));
-
-  let StudentAuth = localStorage.getItem("StudLog")
-  let EmployeeAuth = localStorage.getItem("EmpLog")
-
-  if (!StudentAuth && !EmployeeAuth) {
-    alert("Please log in first.");
-    navigate("/");
-    return;
-  }
-
-  const generateUniqueCode = (driveId) => {
-    const drive = dummyDrives.find(d => d.id === driveId);
-    if (!drive?.companyName) {
-        alert("Please Scan the QR code.");
-        navigate("/"); 
-        return; 
+    const fetchProfile = async () => {
+      const headers = { authorization: "BlueItImpulseWalkinIn" };
+      try {
+        const res = await axios.get(`/EmpProfile/getProfile/${empId}`, { headers });
+        const result = res.data.result;
+        setProfileData([result]); // Save profile to state
+      } catch (err) {
+        alert("Something went wrong while fetching profile");
+        setLoading(false);
       }
-      
-      const companyCode = drive.companyName.substring(0, 2).toUpperCase();
-  
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    let randomPart = "";
-    for (let i = 0; i < 3; i++) {
-      randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
+    };
+
+    fetchProfile();
+  }, [empId]);
+
+
+  useEffect(() => {
+    if (profileData.length === 0) return;
+
+    const StudentAuth = localStorage.getItem("StudLog");
+    const EmployeeAuth = localStorage.getItem("EmpLog");
+
+    if (!StudentAuth && !EmployeeAuth) {
+      alert("Please log in first.");
+      navigate("/");
+      return;
     }
-  
-    return `${companyCode}${randomPart}`; 
-  };
 
-  const attendanceData = JSON.parse(localStorage.getItem("attendance")) || [];
+    const generateUniqueCode = (driveId) => {
+      const drive = dummyDrives.find((d) => d.id === driveId);
+      if (!drive?.companyName) {
+        alert("Please Scan the QR code.");
+        navigate("/");
+        return null;
+      }
 
-  const filteredData = attendanceData.filter(
-    (entry) => !(entry.userId === empId && entry.driveId === driveId)
-  );
+      const companyCode = drive.companyName.substring(0, 2).toUpperCase();
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let randomPart = "";
+      for (let i = 0; i < 3; i++) {
+        randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
 
-//   if (existingEntry) {
-//     setCode(existingEntry.code);
-//     setLoading(false);
-//   } else {
+      return `${companyCode}${randomPart}`;
+    };
+
+    const attendanceData = JSON.parse(localStorage.getItem("attendance")) || [];
+    const filteredData = attendanceData.filter(
+      (entry) => !(entry.userId === empId && entry.driveId === driveId)
+    );
+
     const newCode = generateUniqueCode(driveId);
+    // console.log("code:", newCode);
+    // console.log("Profile Data :", profileData);
+    if (!newCode) return;
 
-    const updatedData = [...filteredData, {
-      userId: empId,
-      driveId: driveId,
-      code: newCode,
-      timestamp: new Date().toISOString()
-    }];
+    const updatedData = [
+      ...filteredData,
+      {
+        userId: empId,
+        driveId,
+        code: newCode,
+        timestamp: new Date().toISOString(),
+      },
+    ];
 
     localStorage.setItem("attendance", JSON.stringify(updatedData));
     setCode(newCode);
     setLoading(false);
-//   }
-}, [driveId, navigate]);
-
+  }, [profileData, driveId, empId, navigate]);
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>QR Scanned for Drive: <span style={{ color: "#0077cc" }}>{driveId}</span></h2>
+    <div style={{ padding: "2rem", }}>
+      <h2>
+        {/* QR Scanned for Drive: <span style={{ color: "#0077cc" }}>{driveId}</span> */}
+        Token Allotment Display 
+      </h2>
       {loading ? (
         <p>Loading...</p>
       ) : (
         <>
-          <h3>Your Unique Attendance Code:</h3>
+          {/* <h3>Your Unique Attendance Code:</h3> */}
+          <div style={{ fontSize: "2rem", fontWeight: "bold", color: "black" }}>Welcome {profileData[0].name} !</div>
+          <div style={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}>Your token is </div>
           <div style={{ fontSize: "2rem", fontWeight: "bold", color: "#28a745" }}>{code}</div>
-          <button style={{ marginTop: "1.5rem" }} onClick={() => navigate("/profile")}>
-            Go to Profile
+          <div style={{ fontSize: "1rem", fontWeight: "bold", color: "#black" }}>Please Proceed to waiting area.<br></br>Watch the TV for your turn.</div>
+          <button className={styles.QRHomeBtn} style={{ marginTop: "1.5rem" }} onClick={() => navigate("/")}>
+            Go to Home
           </button>
         </>
       )}
