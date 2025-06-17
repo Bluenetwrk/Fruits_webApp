@@ -11,14 +11,15 @@ const ScanDrive = () => {
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(true);
   const [profileData, setProfileData] = useState([]);
-  const empId = JSON.parse(localStorage.getItem("EmpIdG"));
+  let studId = JSON.parse(localStorage.getItem("StudId"))
 
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const headers = { authorization: "BlueItImpulseWalkinIn" };
-      try {
-        const res = await axios.get(`/EmpProfile/getProfile/${empId}`, { headers });
+      let userid = JSON.parse(localStorage.getItem("StudId"))
+      const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("StudLog"))) };
+    try {
+        const res = await axios.get(`/StudentProfile/getProfile/${studId}`, {headers})
         const result = res.data.result;
         setProfileData([result]); // Save profile to state
       } catch (err) {
@@ -28,7 +29,7 @@ const ScanDrive = () => {
     };
 
     fetchProfile();
-  }, [empId]);
+  }, [studId]);
 
 
   useEffect(() => {
@@ -37,8 +38,8 @@ const ScanDrive = () => {
     const StudentAuth = localStorage.getItem("StudLog");
     const EmployeeAuth = localStorage.getItem("EmpLog");
 
-    if (!StudentAuth && !EmployeeAuth) {
-      alert("Please log in first.");
+    if (!StudentAuth) {
+      alert("Please log in as Jobseeker.");
       navigate("/");
       return;
     }
@@ -63,7 +64,7 @@ const ScanDrive = () => {
 
     const attendanceData = JSON.parse(localStorage.getItem("attendance")) || [];
     const filteredData = attendanceData.filter(
-      (entry) => !(entry.userId === empId && entry.driveId === driveId)
+      (entry) => !(entry.userId === studId && entry.driveId === driveId)
     );
 
     const newCode = generateUniqueCode(driveId);
@@ -74,7 +75,7 @@ const ScanDrive = () => {
     const updatedData = [
       ...filteredData,
       {
-        userId: empId,
+        userId: studId,
         driveId,
         code: newCode,
         timestamp: new Date().toISOString(),
@@ -84,7 +85,7 @@ const ScanDrive = () => {
     localStorage.setItem("attendance", JSON.stringify(updatedData));
     setCode(newCode);
     setLoading(false);
-  }, [profileData, driveId, empId, navigate]);
+  }, [profileData, driveId, studId, navigate]);
 
   return (
     <div style={{ padding: "2rem", }}>
