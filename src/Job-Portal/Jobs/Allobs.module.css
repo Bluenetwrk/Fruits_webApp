@@ -299,6 +299,24 @@
     justify-content: space-between;
 
 }
+
+.QRHomeBtn{
+    background-color: rgb(40, 4, 99);
+    color: white;
+    border: none;
+    padding: 0px 10px 0px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.0rem; 
+    margin-left: 5px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap:3px;
+
+}
 .jobdetailBackBtn{
     background-color: rgb(40, 4, 99);
     color: white;
