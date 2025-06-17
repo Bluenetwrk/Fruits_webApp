@@ -308,7 +308,7 @@ let question =true
                                     </div >
                                     <div className={Style.submitDeleteBtn}>   
                                         <button style={{width:"200px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit</button>
-                                        <button style={{width:"200px"}} disabled={concent} className={Style.disableButton} >Delete</button>
+                                        <button style={{width:"200px",backgroundColor:"red"}} disabled={concent} className={Style.disableButton} >Delete</button>
                                         </div>
                                 </div >
                             </div>

@@ -328,7 +328,7 @@ const [selectedTime, setSelectedTime] = useState("");
                                <div className={Style.dirvefirstRow}>
                                   <div className={Style.dirvesubContainer}>
                                     <h4 className={Style.heading}>Job title**</h4>
-                                    <input className={Style.driveinput} style={{width:"290px"}}maxLength="100"  type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />          
+                                    <input className={Style.driveinput} style={{width:"400px"}}maxLength="100"  type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />          
                                   </div>
                                  <div className={Style.dirvesubContainer}>
                                    <h4 className={Style.heading}>Company Name**</h4>
