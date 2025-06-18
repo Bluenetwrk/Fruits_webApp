@@ -76,7 +76,7 @@ const TemplateGallery = ({ onSelect }) => {
               textAlign: 'center',
             }}
           >
-            Complete your profile to let the AI Resume Builder generate a polished and professional resume for you
+           Complete your profile to let the AI Resume Builder generate a professional resume for you
             <div style={{ marginTop: '15px', display: "flex", justifyContent: "center", gap: "5px" }}>
               <button
                 onClick={() => {

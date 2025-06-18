@@ -501,7 +501,7 @@ const [selectedTime, setSelectedTime] = useState("");
      </div>
      {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
 <div style={{display:"flex", justifyContent:"center" }}>
-<button style={{width:"130px",}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit/Post</button>
+<button style={{width:"130px",}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit</button>
 </div>
                             {/* </div> */}
 
