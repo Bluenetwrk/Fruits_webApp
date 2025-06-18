@@ -243,7 +243,7 @@ let question =true
         <>
 
 
-
+            <h2 style={{marginLeft:"150px", fontWeight:"800", marginTop:"6px", marginBottom:"-15px"}}>Ask Questions </h2>
                             <div>
                                 <button className={Style.searchButton} onClick={() => {
                                     navigate(-1)
