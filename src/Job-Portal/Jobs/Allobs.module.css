@@ -237,7 +237,7 @@
     border-radius: 8px;
     width:92%;
     margin-left: 15px;
-    height:40px;
+    /* height:40px; */
     align-items: center;
 }
 
@@ -253,8 +253,8 @@
     
 }
 .copyButton{
-        background-color: rgb(40, 4, 99);
-        color: white;
+        background-color: white;
+        color:  rgb(40, 4, 99);
         border: none;
         padding: 2px 2px 2px 2px;
         cursor: pointer;
@@ -264,6 +264,8 @@
         width:100px;
         height:35px;
         margin-right:7px;
+        margin-top:6px;
+        margin-bottom: -6px;
     }
 
 /* ----------------share button ends--------------------------- */

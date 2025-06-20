@@ -4,7 +4,7 @@ import TemplateTwo from './TemplateTwo';
 import TemplateGallery from './TemplateGallery';
 import axios from 'axios';
 import styles from "../Jobs/Allobs.module.css"
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
   
 function AllResumes() {
@@ -43,6 +43,7 @@ function AllResumes() {
     getProfile();
   }, []);
 
+   const navigate = useNavigate()
   return (
     <div>
       {selectedTemplate===null?<h1 style={{ textAlign: 'center', marginTop: '20px' }}>Choose Your Resume Template</h1>
@@ -54,6 +55,7 @@ function AllResumes() {
 
       {selectedTemplate && profileData && (
         <div style={{ padding: '20px' }}>
+          <div style={{display:"flex"}}>
           <button
   class={styles.jobdetailBackBtn }
   onClick={() => {
@@ -61,8 +63,17 @@ function AllResumes() {
     
   }}
 >
-  <div style={{ fontSize: "12px", fontWeight: "800" }}>Back</div>
+  <div style={{ fontSize: "14px", fontWeight: "500" }}>Back</div>
 </button>
+
+<button
+  class={styles.jobdetailBackBtn }
+  onClick={() => {navigate("/My-Profile")}}
+>
+  <div style={{ fontSize: "14px", fontWeight: "500" }}>Update Profile</div>
+</button>
+ 
+</div>
 
           {selectedTemplate === 'one' && <TemplateOne data={profileData} />}
           {selectedTemplate === 'two' && <TemplateTwo data={profileData} />}

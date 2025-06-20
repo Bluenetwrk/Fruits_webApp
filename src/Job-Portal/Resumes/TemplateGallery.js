@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './gallery.css';
 import template1 from "../img/template1.png";
 import template2 from "../img/template2.png";
+import { useNavigate } from 'react-router-dom';
 
 const TemplateGallery = ({ onSelect }) => {
   const [resumeAlert, setResumeAlert] = useState({ show: false, selected: null });
@@ -25,6 +26,7 @@ const TemplateGallery = ({ onSelect }) => {
     console.log(resumeAlert);
   }, [resumeAlert]);
 
+    const navigate = useNavigate()
   return (
     <div className="template-gallery">
       <div
@@ -76,13 +78,11 @@ const TemplateGallery = ({ onSelect }) => {
               textAlign: 'center',
             }}
           >
-           Complete your profile to let the AI Resume Builder generate a professional resume for you
+           Ensure your profile is fully completed
             <div style={{ marginTop: '15px', display: "flex", justifyContent: "center", gap: "5px" }}>
               <button
-                onClick={() => {
-                  onSelect(resumeAlert.selected);
-                  setResumeAlert({ show: false, selected: null });
-                }}
+                
+                onClick={()=>{setResumeAlert({ show: false, selected: null });navigate("/My-Profile")}}
                 style={{
                   padding: '8px 16px',
                   backgroundColor: '#4CAF50',
@@ -93,10 +93,14 @@ const TemplateGallery = ({ onSelect }) => {
                   cursor: 'pointer',
                 }}
               >
-                Ok
+               Yes
               </button>
               <button
-                onClick={() => setResumeAlert({ show: false, selected: null })}
+                
+                onClick={() => {
+                  onSelect(resumeAlert.selected);
+                  setResumeAlert({ show: false, selected: null });
+                }}
                 style={{
                   padding: '8px 16px',
                   backgroundColor: '#f44336',
@@ -107,7 +111,7 @@ const TemplateGallery = ({ onSelect }) => {
                   cursor: 'pointer',
                 }}
               >
-                Cancel
+               Continue to Download
               </button>
             </div>
           </div>

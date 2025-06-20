@@ -23,6 +23,91 @@ function AppliedDrives(props) {
   }, [])
   let navigate = useNavigate()
 
+
+const dummyDrives = [
+  {
+    id: "drive1",
+    companyName: "Tata Consultancy Services",
+    jobTitle: "Software Engineer",
+    jobType: "Full Time",
+    postedDate: "2025-06-15",
+    appliedDate: "2025-06-16",
+    location: "Bangalore",
+    ctc: "6 LPA",
+    experience: "0-2 years",
+    qualification: "B.E/B.Tech - CS/IT",
+    skillsRequired: ["Java", "Spring Boot", ],
+    action: "Apply Now",
+    status: "Pending",
+    numberOfApplicants: 40
+  },
+  {
+    id: "drive2",
+    companyName: "Infosys",
+    jobTitle: "Frontend Developer",
+    jobType: "Contract",
+    postedDate: "2025-06-18",
+    appliedDate: "2025-06-19",
+    location: "Hyderabad",
+    ctc: "5.5 LPA",
+    experience: "1-2 years",
+    qualification: "B.Sc/BCA",
+    skillsRequired: ["HTML", "CSS", "JavaScript",],
+    action: "Apply Now",
+    status: "Shortlisted",
+    numberOfApplicants: 32
+  },
+  {
+    id: "drive3",
+    companyName: "Wipro",
+    jobTitle: "Backend Developer",
+    jobType: "Full Time",
+    postedDate: "2025-06-20",
+    appliedDate: "2025-06-21",
+    location: "Pune",
+    ctc: "6.5 LPA",
+    experience: "1-3 years",
+    qualification: "B.Tech/M.Tech - CS",
+    skillsRequired: ["Node.js", "MongoDB", ],
+    action: "Apply Now",
+    status: "Interview Scheduled",
+    numberOfApplicants: 28
+  },
+  {
+    id: "drive4",
+    companyName: "HCL Technologies",
+    jobTitle: "Full Stack Developer",
+    jobType: "Part Time",
+    postedDate: "2025-06-22",
+    appliedDate: "2025-06-23",
+    location: "Chennai",
+    ctc: "7 LPA",
+    experience: "2-4 years",
+    qualification: "MCA/M.Sc - CS",
+    skillsRequired: ["React", "Node.js",],
+    action: "Apply Now",
+    status: "Rejected",
+    numberOfApplicants: 37
+  },
+  {
+    id: "drive5",
+    companyName: "Accenture",
+    jobTitle: "DevOps Engineer",
+    jobType: "Internship",
+    postedDate: "2025-06-25",
+    appliedDate: "2025-06-26",
+    location: "Gurgaon",
+    ctc: "7.5 LPA",
+    experience: "1-3 years",
+    qualification: "B.E/B.Tech - Any Branch",
+    skillsRequired: ["Docker", "Kubernetes",],
+    action: "Apply Now",
+    status: "Offer Released",
+    numberOfApplicants: 42
+  }
+];
+
+
   const [MyAppliedjob, setMyAppliedjob] = useState([])
   const [PageLoader, setPageLoader] = useState(false)
   const [NoJobFound, setNoJobFound] = useState("")
@@ -270,6 +355,10 @@ function AppliedDrives(props) {
   }
 console.log(records)
 
+const handleStart = () => {
+  navigate("/scanner");
+};
+
   return (
     <>
 
@@ -358,21 +447,17 @@ console.log(records)
               </div>
               : 
             (
-              records.length < 0 ?
+              dummyDrives.length > 0 ?
 
-                records.map((items, i) => {
+                dummyDrives.map((items, i) => {
                   return (
                 
                     <ul className={styles.ul} key={i}>
-                      <li style={{ cursor: "pointer", textDecoration: "underline" }} className={styles.li} onClick={() => { navigate(`/CheckEmpHalfProfile/${btoa(items.empId)}`) }} >
-                        {/* {items.Logo ?
-                    < img style={{ width: "40%", height: "40px" }} src={items.Logo} />
-                    : ""}<br></br> */}
+                      <li style={{ cursor: "pointer", textDecoration: "underline" }} className={styles.li}  >
                         {items.companyName}</li>
 
-                      <li className={`${styles.li} ${styles.JtitleR}`}
-                      onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})}>{items.jobTitle.toUpperCase()}</li>
-                      <li className={`${styles.li} ${styles.JobType}`}>{items.jobtype}</li>
+                      <li className={`${styles.li} ${styles.JtitleR}`}>{items.jobTitle.toUpperCase()}</li>
+                      <li className={`${styles.li} ${styles.JobType}`}>{items.jobType}</li>
 
                       {/* <li className={`${styles.li} ${styles.Pdate}`}>
                         {new Date(items.createdAt).toLocaleString(
@@ -385,24 +470,7 @@ console.log(records)
                         )}
                       </li> */}
                       <li className={`${styles.li} ${styles.Pdate}`}>
-  {(() => {
-    const date = new Date(items.createdAt);
-    const day = date.getDate();
-    const month = date.toLocaleString('en-US', { month: 'short' });
-    const year = date.getFullYear();
-
-    const getOrdinal = (d) => {
-      if (d > 3 && d < 21) return 'th';
-      switch (d % 10) {
-        case 1: return 'st';
-        case 2: return 'nd';
-        case 3: return 'rd';
-        default: return 'th';
-      }
-    };
-
-    return `${day}${getOrdinal(day)} ${month}, ${year}`;
-  })()}
+  {items.postedDate}
 </li>
 
                       {/* <li className={`${styles.li} ${styles.Pdate}`}>
@@ -422,59 +490,22 @@ console.log(records)
                         )}
                       </li> */}
                       <li className={`${styles.li} ${styles.Pdate}`}>
-  {(() => {
-    const matched = items.jobSeekerId.find(id => id.jobSeekerId == jobSeekerId);
-    if (!matched || !matched.date) return '';
-
-    const date = new Date(matched.date);
-    const day = date.getDate();
-    const month = date.toLocaleString('en-US', { month: 'short' });
-    const year = date.getFullYear();
-
-    // Function to get ordinal suffix
-    const getOrdinal = (d) => {
-      if (d > 3 && d < 21) return 'th';
-      switch (d % 10) {
-        case 1: return 'st';
-        case 2: return 'nd';
-        case 3: return 'rd';
-        default: return 'th';
-      }
-    };
-
-    return `${day}${getOrdinal(day)} ${month}, ${year}`;
-  })()}
+  {items.appliedDate
+    }
 </li>
-                      <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() +
-                        items.jobLocation.slice(1)}</li>
-                      <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
-                      <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
+                      <li className={`${styles.li} ${styles.Location}`}>{items.location}</li>
+                      <li className={`${styles.li} ${styles.Package}`}>{items.ctc}L</li>
+                      <li className={`${styles.li} ${styles.experiance}`}>{items.experience}Y</li>
                       <li className={`${styles.li} ${styles.Qualif}`}>{items.qualification} </li>
 
-                      <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li>
+                      <li className={`${styles.li} ${styles.Skills}`}>{items.skillsRequired}</li>
                       <li className={`${styles.li} ${styles.DeleteAction}`}>
-                        <button className={styles.DeleteButton} onClick={() => { UndoApply(items._id) }}>Delete</button></li>
+                        <button className={styles.DeleteButton} >Delete</button>
+                        <button className={styles.qrButton}>QR Scanner</button>
+                        </li>
                       <li className={`${styles.li} ${styles.Status}`}>
 
-                        {items.onHoldJobseker.find((onholdProfile) => {
-                          return (
-                            onholdProfile == jobSeekerId
-                          )
-                        }) ? <p style={{ color: "blue" }}>Your Profile is on Hold</p> :
-
-                          items.slectedJobseker.find((SelectedProfile) => {
-                            return (
-                              SelectedProfile == jobSeekerId
-                            )
-                          }) ? <p style={{ color: "rgb(7, 161, 7)" }}> Congratulations! You've Been Shortlisted!.You’ll receive details about the interview soon.</p>
-                            :
-                            items.rejectedJobseker.find((rejectProfile) => {
-                              return (
-                                rejectProfile == jobSeekerId
-                              )
-                            }) ? <p style={{ color: "red" }}>Sorry! Your profile has not been Selected for this job</p>
-                              : "Your application is submitted.It will be reviewed and we will update you soon"
-                        }
+                       
 
                       </li>
 
@@ -501,51 +532,39 @@ console.log(records)
 ) : (
   <>
     <div id={styles.JobCardWrapper}>
-      {MyAppliedjob.length < 0 ? (
-        MyAppliedjob.map((job, i) => {
-          const matched = job.jobSeekerId.find(id => id.jobSeekerId == jobSeekerId);
-          const appliedDate = matched?.date ? new Date(matched.date) : null;
-          const formattedAppliedDate = appliedDate
-            ? `${appliedDate.getDate()}${(() => {
-                const d = appliedDate.getDate();
-                if (d > 3 && d < 21) return 'th';
-                switch (d % 10) {
-                  case 1: return 'st';
-                  case 2: return 'nd';
-                  case 3: return 'rd';
-                  default: return 'th';
-                }
-              })()} ${appliedDate.toLocaleString('en-US', { month: 'short' })}, ${appliedDate.getFullYear()}`
-            : '';
+      {dummyDrives.length > 0 ? (
+        dummyDrives.map((job, i) => {
+          // const matched = job.jobSeekerId.find(id => id.jobSeekerId == jobSeekerId);
+          // const appliedDate = matched?.date ? new Date(matched.date) : null;
+          // const formattedAppliedDate = appliedDate
+          //   ? `${appliedDate.getDate()}${(() => {
+          //       const d = appliedDate.getDate();
+          //       if (d > 3 && d < 21) return 'th';
+          //       switch (d % 10) {
+          //         case 1: return 'st';
+          //         case 2: return 'nd';
+          //         case 3: return 'rd';
+          //         default: return 'th';
+          //       }
+          //     })()} ${appliedDate.toLocaleString('en-US', { month: 'short' })}, ${appliedDate.getFullYear()}`
+          //   : '';
 
           return (
             <div className={styles.JobCard} key={i}>
               <div className={styles.JobTitleDateWrapper}>
                 <p
-                  className={styles.jobTitle}
-                  onClick={() => {
-                    window.scrollTo({ top: 0 });
-                    navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {
-                      state: { transferRecords },
-                    });
-                  }}
+                  className={styles.jobTitle}   
                 >
                   {job.jobTitle.toUpperCase()}
                 </p>
                 <p className={styles.Date}>
-                  {new Date(job.createdAt).toLocaleString('en-US', {
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric',
-                  })}
+                  {job.postedDate}
                 </p>
               </div>
 
               <div
                 className={styles.companyNameLocationWrapper}
-                onClick={() => {
-                  navigate(`/CheckEmpHalfProfile/${btoa(job.empId)}`);
-                }}
+                
               >
                 <img className={styles.logo} src={job.Logo} alt="Logo" />
                 <span className={styles.companyName}>{job.companyName}</span><br />
@@ -553,14 +572,23 @@ console.log(records)
 
               <img className={styles.jobLocationImage} src={location} alt="Location" />
               <span className={styles.jobLocation}>
-                {job.jobLocation[0].toUpperCase() + job.jobLocation.slice(1)},
+                {job.location},
               </span>
               <span className={styles.qualificationAndExperiance}>
                 <img className={styles.graduationImage} src={graduation} alt="Graduation" />
-                {job.qualification}, {job.experiance}Y Exp, {job.jobtype}
+                {job.qualification}  
               </span><br />
+              <span style={{ marginBottom: "3px", display: "inline" }}>
+                <span style={{ marginLeft: "15px", fontWeight: "450" }}>Experience: </span>
+                {job.experience}Y Exp,
+              </span><br/>
+              <span style={{ marginBottom: "-3px", display: "inline" }}>
+                <span style={{ marginLeft: "15px", fontWeight: "450" }}>Job Type: </span>
+                {job.jobType}
+              </span><br/>
+              
 
-              <span className={styles.jobtypeAndDate}>Source</span> :
+              {/* <span className={styles.jobtypeAndDate}>Source</span> :
               {job.Source ? (
                 <>
                   <a className={styles.skills} href={job.SourceLink} target="_blank" rel="noopener noreferrer">
@@ -569,54 +597,38 @@ console.log(records)
                 </>
               ) : (
                 <span className={styles.skills}>ItWalkin</span>
-              )}
+              )} */}
 
               <span style={{ marginBottom: "-3px", display: "inline" }}>
-                <span style={{ marginLeft: "5px", fontWeight: "450" }}>Applied Date: </span>
-                {formattedAppliedDate}
+                <span style={{ marginLeft: "14px", fontWeight: "450" }}>Applied Date: </span>
+                {job.appliedDate}
               </span>
 
               <div className={styles.skillWrapper}>
                 <span className={styles.skillsHeading}>Skills: </span>
-                <span className={styles.skills}>{job.skills}</span><br />
+                <span className={styles.skills}>{job.skillsRequired}</span><br />
               </div>
 
-              <div className={styles.ApplyPackage}>
+              <div className={styles.driveMobBtnContainer}>
                 <h3 style={{ marginLeft: "10px", marginTop: "23px" }}>
-                  <span>&#8377;</span>{job.salaryRange}L
+                  <span>&#8377;</span>{job.ctc}
                 </h3>
-                <button className={styles.MobileDelete} onClick={() => UndoApply(job._id)}>Delete</button>
+                <div style={{display:"flex"}}>
+                  <button className={styles.MobileDelete} style={{width:"100%"}} >Delete</button>
+                  <button className={styles.Mobileqr}  onClick={handleStart} >QR Scanner</button>
+                </div>
               </div>
 
               <p className={styles.MobileResult}>Result:</p>
               <span>
-                {job.onHoldJobseker.includes(jobSeekerId) ? (
-                  <p style={{ color: "blue" }} className={styles.MobileStatus}>
-                    HR has put Your Profile on Hold
-                  </p>
-                ) : job.slectedJobseker.includes(jobSeekerId) ? (
-                  <p style={{ color: "rgb(7, 161, 7)" }} className={styles.MobileStatus}>
-                    Congratulations! You've Been Shortlisted! You’ll receive details about the interview soon.
-                  </p>
-                ) : job.rejectedJobseker.includes(jobSeekerId) ? (
-                  <p style={{ color: "red" }} className={styles.MobileStatus}>
-                    Sorry! Your profile has not been Matched for this job
-                  </p>
-                ) : (
-                  <p className={styles.MobileStatus}>
-                    Your application is submitted. It will be reviewed and we will update you soon
-                  </p>
-                )}
+                
               </span>
 
               <p className={styles.jobDescriptionHeading}>Job Description:</p>
               <p className={styles.jobDescription}>
                 {job.jobDescription ? HTMLReactParser(job.jobDescription.slice(0, 70)) : ""}
                 <span
-                  onClick={() => {
-                    window.scrollTo({ top: 0 });
-                    navigate(`/Jobdetails/${btoa(job._id)}`);
-                  }}
+                  
                   className={styles.seeMore}
                   style={{ color: "blue" }}
                 >

@@ -452,7 +452,7 @@ const [PageLoader, setPageLoader] = useState(false)
            <div style={{fontSize:"12px", fontWeight:"800px"}}>Apply</div></button>
            {shareClicked && (
         <div ref={shareRef} class={styles.shareContainer}>
-          <div style={{fontSize:"12px", fontWeight:"800px" }}>Share</div>
+          <div style={{fontSize:"22px", fontWeight:"600", color:"white", textAlign:"center" }}>Share</div>
 
           <div class={styles.shareButtonsContainer}>
             <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
@@ -468,12 +468,16 @@ const [PageLoader, setPageLoader] = useState(false)
               </a>
           </div>
 
-          <div className={styles.copyLinkContainer}>
-            <input type="text" value={url} readOnly className={styles.urlInput} />
-            <button onClick={copyToClipboard} className={styles.copyButton}>
+          <div className={styles.copyLinkContainer} style={{display:"flex", flexDirection:"column"}}>
+            <div style={{wordBreak:"break-word", padding:"3px"}}>{url}</div>
+            {/* <textarea type="text" value={url} readOnly className={styles.urlInput} /> */}
+           
+          </div>
+          <div style={{display:"flex", justifyContent:"center"}}>
+          <button onClick={copyToClipboard} className={styles.copyButton}>
               {copied ? "Copied!" : "Copy Link"}
             </button>
-          </div>
+            </div>
 
           <div onClick={() => setShareClicked(false)} className={styles.closeButton} style={{position:"absolute", top:"8px", right:"13px",fontSize:"20px", color:"white", cursor:"pointer"}}>X</div>
         </div>
@@ -585,11 +589,15 @@ const [PageLoader, setPageLoader] = useState(false)
           </div>
 
           <div className={styles.copyLinkContainer} style={{marginTop:"16px"}}>
-            <input type="text" value={url} readOnly className={styles.urlInput} />
-            <button onClick={copyToClipboard} className={styles.copyButton}>
+          <div style={{wordBreak:"break-word", padding:"3px"}}>{url}</div>
+            {/* <input type="text" value={url} readOnly className={styles.urlInput} /> */}
+            
+          </div>
+          <div style={{display:"flex", justifyContent:"center"}}>
+          <button onClick={copyToClipboard} className={styles.copyButton}>
               {copied ? "Copied!" : "Copy Link"}
             </button>
-          </div>
+          </div>   
 
           <div onClick={() => setShareClicked(false)} className={styles.closeButton} style={{position:"absolute", top:"8px", right:"13px",fontSize:"20px", color:"white", cursor:"pointer"}}>X</div>
         </div>

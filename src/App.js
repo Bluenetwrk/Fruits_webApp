@@ -74,6 +74,7 @@ import PostFraudForm from "./Job-Portal/Jobs/PostFraudForm";
 import AppliedDrives from "./Job-Portal/Jobs/AppliedDrives";
 import MyPostedDrives from "./Job-Portal/Jobs/MyPostedDrives";
 import ScanDrive from "./Job-Portal/QRCode/ScanDrive";
+import QRScanner from "./Job-Portal/QRCode/QRScanner";
 // import PostFraud from "./Job-Portal/Jobs/PostFraud";
 axios.defaults.baseURL = "https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -1134,6 +1135,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             </Route>
             {/* ..........Jobseeker Private component i,e can not search in URL......... */}
             <Route element={<StudPrivate />}>
+            <Route path="/scanner" element={<QRScanner />} />
               <Route path="/resumes" element={<AllResumes url={axios.defaults.baseURL}/>}></Route> 
               <Route path="/alljobs" element={<Jobs url={axios.defaults.baseURL} 
                showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
