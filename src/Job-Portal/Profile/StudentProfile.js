@@ -69,28 +69,41 @@ let navigate = useNavigate()
 
   const tooltipRef = useRef(null);
   const consentRef = useRef(null);
-
+  const consentBtnRef = useRef(null); 
+  const tooltipBtnRef = useRef(null);
   // const toggleTooltip = () => setShowTooltip(prev => !prev);
   // const toggleConsent = () => setShowConsent(prev => !prev);
 
   // Detect outside click for both tooltip and consent
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // Tooltip: hide only if clicked outside BOTH the tooltip and the "i" button
       if (
-        tooltipRef.current && !tooltipRef.current.contains(event.target)
+        tooltipRef.current &&
+        !tooltipRef.current.contains(event.target) &&
+        tooltipBtnRef.current &&
+        !tooltipBtnRef.current.contains(event.target)
       ) {
         setShowTooltip(false);
       }
+  
+      // Consent: hide only if clicked outside BOTH the consent box and the button
       if (
-        consentRef.current && !consentRef.current.contains(event.target)
+        consentRef.current &&
+        !consentRef.current.contains(event.target) &&
+        consentBtnRef.current &&
+        !consentBtnRef.current.contains(event.target)
       ) {
         setShowConsent(false);
       }
     };
-
+  
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
+  
     return (
         <>
         <div style={{display:"flex"}}>
@@ -134,6 +147,7 @@ let navigate = useNavigate()
           <div style={{position:"flex"}}>
             <div style={{ position: "relative" }}>
             <div
+            ref={tooltipBtnRef}
         style={{
           width: '22px',
           height: '22px',
@@ -175,8 +189,8 @@ let navigate = useNavigate()
       </div>
       
             
-            <button onClick={toggleConsent} className={styles.updateProfileStd} >Background Check</button>
-            </div>
+            <button ref={consentBtnRef} onClick={toggleConsent} className={styles.updateProfileStd} style={{width:"150px"}} >Background Check</button>
+            
       {showConsent && (
         <div
         ref={consentRef}
@@ -190,7 +204,8 @@ let navigate = useNavigate()
             backgroundColor: '#f9f9f9',
             fontSize: '14px',
             marginBottom:"50px",
-            right: "81px",
+            right: "0px",
+            width:"244px"
           }}
         >
           <p style={{ marginBottom: '10px' }}>
@@ -222,6 +237,7 @@ let navigate = useNavigate()
           </div>
         </div>
       )}
+      </div>
           </div>
           </div>
         </div>

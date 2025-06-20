@@ -7,8 +7,12 @@ import { Link, useNavigate, NavLink, useLocation } from "react-router-dom";
 function SidebarNav(props) {
   const[show,setShow]=useState(false)
   let navigate = useNavigate()
+  function Linkedin(e){
+    window.open("https://www.linkedin.com/company/104886917/admin/dashboard/", '_blank');  
+  }
   const [empHome, setEmpHome] = useState(false);
   const location = useLocation(); 
+  
   // const[pathName,setPathName]=useState(location.pathname)
   // console.log("pathnameees",pathName)
 
@@ -21,10 +25,15 @@ function SidebarNav(props) {
       setEmpHome(false); 
     }
 
+    
+
     const inputField = document.querySelector(`.${Styles.blogInputboxsearch}`);
     if (inputField) {
       inputField.value = ""; 
       props.setShowMobileSearchIcon(true)
+
+
+      
 
     //   if(empHome){
     //     // props.searchs("")
@@ -153,7 +162,7 @@ else{
                                                                                                                                                                              else{
                                                                                                                                                                               props.search(e)
                                                                                                                                                                               console.log("s-screen else entered")   
-                                                                                                                                                                             } }} />
+                                                                                                                                             } }} />
            
             <i style={{marginLeft:"2px",fontSize:"16px",marginTop:"6px"}} class="fa fa-search" onClick={() => { props.searchIcon(props.searchKey);props.setShowSideNaveProps();props.setShowMobileSearchIcon(true)}}></i>
           </div>
@@ -237,7 +246,7 @@ else{
         <p onClick={()=>{navigate("/Contact"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Contact Us</p>
        
         <p onClick={()=>{navigate("/TermsAndCondition"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Terms & Conditions</p>
-       
+        <i onClick={()=>{Linkedin(); }} className={`${Styles.textBigSodeBar}  fa-brands fa-linkedin`} style={{ fontSize: "xx-large" }} ></i>
          <p className={`${Styles.textinMobileSodeBar} `} style={{marginBottom:"100px"}}>Release Version : v3.0</p>
         </div>
       </div>

@@ -1079,7 +1079,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-              </select>  jobs per page
+              </select>  jobs per page 
             </div>
 
             <div className={styles.navigationWrapper}>

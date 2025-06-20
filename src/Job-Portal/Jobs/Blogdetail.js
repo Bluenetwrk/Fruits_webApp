@@ -451,12 +451,15 @@ async function deletComment(id){
           </div>
 
           <div className={styles.copyLinkContainer}>
-            <input type="text" value={url} readOnly className={styles.urlInput} />
-            <button onClick={copyToClipboard} className={styles.copyButton}>
+            {/* <input type="text" value={url} readOnly className={styles.urlInput} /> */}
+            <div style={{wordBreak:"break-word", padding:"3px"}}>{url}</div>
+           
+          </div>
+          <div style={{display:"flex", justifyContent:"center"}}>
+          <button onClick={copyToClipboard} className={styles.copyButton}>
               {copied ? "Copied!" : "Copy Link"}
             </button>
-          </div>
-
+            </div>
           <div onClick={() => setShareClicked(false)} className={styles.closeButton} style={{position:"absolute", top:"8px", right:"13px",fontSize:"20px", color:"white", cursor:"pointer"}}>X</div>
         </div>
       )}
@@ -553,12 +556,15 @@ async function deletComment(id){
           </div>
 
           <div className={styles.copyLinkContainer} style={{marginTop:"16px"}}>
-            <input type="text" value={url} readOnly className={styles.urlInput} />
-            <button onClick={copyToClipboard} className={styles.copyButton}>
+            {/* <input type="text" value={url} readOnly className={styles.urlInput} /> */}
+            <div style={{wordBreak:"break-word", padding:"3px"}}>{url}</div>
+           
+          </div>
+          <div style={{display:"flex", justifyContent:"center"}}>
+          <button onClick={copyToClipboard} className={styles.copyButton}>
               {copied ? "Copied!" : "Copy Link"}
             </button>
-          </div>
-
+            </div>
           <div onClick={() => setShareClicked(false)} className={styles.closeButton} style={{position:"absolute", top:"8px", right:"13px",fontSize:"20px", color:"white", cursor:"pointer"}}>X</div>
         </div>
       )}

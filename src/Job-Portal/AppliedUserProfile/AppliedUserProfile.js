@@ -374,6 +374,7 @@ function AppliedUserProfile() {
                         </li>
                         {/* <li className={`${styles.li} ${styles.checkProfile}`}><b>View Profile</b> </li> */}
                         <li style={{ backgroundColor: " rgb(40, 4, 99)", color: "white" }} className={`${styles.li} ${styles.Status}`}><b>Status</b> </li>
+                        <li style={{ backgroundColor: " rgb(40, 4, 99)", color: "white" }} className={`${styles.li} ${styles.Status}`}><b>Background Check</b> </li>
 
                     </ul>
                     {PageLoader ?
@@ -471,6 +472,11 @@ function AppliedUserProfile() {
                                             }
                                         </div>
                                     </li>
+                                    <li className={`${styles.li} ${styles.Status}`}>
+                                      <button style={{marginLeft: "2%", background: "rgb(40, 4, 99)", color: "white", 
+                                      border: "solid", fontWeight: "600",}}>
+                                        Background Check</button>
+                                    </li>
 
                                 </ul>
 
@@ -558,11 +564,18 @@ function AppliedUserProfile() {
                                                                     jobseekerid == job._id
                                                                 )
                                                             }) ?
-                                                                <>
+                                                                <>  <div style={{display:"flex", marginLeft:"-27%"}}>
+                                                                    
                                                                     <button onClick={() => { UndoSelect(job._id, "selected") }} style={{
                                                                         marginLeft: "27%", background: "rgb(24, 175, 24)", color: "white",
                                                                         border: "solid", width: "31%", height: "30px", fontWeight: "bold"
-                                                                    }} title="Click to Undo Select">Selected<span style={{ fontSize: '16px' }} >&#10004;</span></button><br></br></>
+                                                                    }} title="Click to Undo Select">Selected<span style={{ fontSize: '16px' }} >&#10004;</span></button><br></br>
+                                                                    <button style={{marginLeft: "", background: "rgb(40, 4, 99)", color: "white", 
+                                      border: "solid", fontWeight: "600",}}>
+                                        Background Check</button>
+                                                                    </div>
+                                                                </>
+                                                                
                                                                 :
 
 
@@ -591,7 +604,7 @@ function AppliedUserProfile() {
                                                                             }} title="Click to Undo On Hold">OnHold<span style={{ fontSize: '16px' }} >&#10004;</span></button><br></br></>
                                                                         :
                                                                         <>
-                                                                            <div style={{ display: "flex", marginLeft: "5%" }}>
+                                                                            <div style={{ display: "flex", marginLeft: "-1%" }}>
                                                                                 <button style={{
                                                                                     marginLeft: "2%", background: "rgb(40, 4, 99)", color: "white", border: "solid",
                                                                                     width: "23%", height: "30px", fontWeight: "bold"
@@ -604,15 +617,22 @@ function AppliedUserProfile() {
                                                                                     marginLeft: "2%", background: "rgb(40, 4, 99)", color: "white", border: "solid",
                                                                                     width: "25%", height: "30px", fontWeight: "bold"
                                                                                 }} onClick={() => { onHold(job._id, "OhHold") }}>OnHold</button><br></br>
+                                                                                {/* <li className={`${styles.li} ${styles.Status}`} style={{border:"none"}}> */}
+                                      <button style={{marginLeft: "", background: "rgb(40, 4, 99)", color: "white", 
+                                      border: "solid", fontWeight: "600",}}>
+                                        Background Check</button>
+                                    {/* </li> */}
                                                                             </div>
+                                                                            
                                                                         </>
 
                                                         }
+                                                        
                                                     </>
                                                 )
                                             })
+                                            
                                         }
-
 
                                     </div>
                                 </>
