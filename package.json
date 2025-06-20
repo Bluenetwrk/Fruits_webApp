@@ -16,6 +16,7 @@
     "firebase": "^10.13.2",
     "html-react-parser": "^5.1.18",
     "html2canvas": "^1.4.1",
+    "html5-qrcode": "^2.3.8",
     "jodit-react": "^4.1.2",
     "jspdf": "^3.0.1",
     "jwt-decode": "^4.0.0",
