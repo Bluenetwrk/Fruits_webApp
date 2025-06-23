@@ -307,6 +307,7 @@ font-weight: 400;
         justify-content: space-between;
 }
 
+
 .logoWrapper {
     width: 14%;
     margin-left: 2%;
@@ -1192,10 +1193,25 @@ position: absolute;
        right:-163px;
     }    
 }
+.resumeMenuVisibleMob{
+    display: none;
+}
 @media (max-width :320px){
     .MobJobseekerDropdownwrapperlogin{
        right:-113px;
-    }    
+    }
+    
+    .resumeMenuVisible{
+        display: none;
+    }
+    .resumeMenuVisibleMob{
+        display: block;
+        margin-left: -69px;
+        margin-top:3px
+    }
+    .allJobMobspl{
+         margin-top: 14px;
+    }
 }
 /* 
 @media (min-width :460px){

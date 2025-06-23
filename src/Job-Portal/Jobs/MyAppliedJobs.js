@@ -273,9 +273,10 @@ console.log(records)
   return (
     <>
 
-<p className={styles.h3} style={{ textAlign: "center" }}><b>My applied Jobs</b></p>
+<p className={styles.h2} style={{ textAlign: "center",fontSize:"26px" }}><b>My applied Jobs</b></p>
+{MyAppliedjob.length>0&&
 <p className={styles.h3}><b>You’ve successfully submitted applications for {MyAppliedjob.length} positions.Stay tuned for updates.  </b></p>
-
+}
       {/* <button onClick={()=>{navigate("/MyCareer-Applied-Jobs")}} style={{ backgroundColor:"rgb(40, 4, 99)",
          marginLeft:"10px", fontWeight:600, color:"white", border:"none",
           cursor:"pointer", padding:"5px 10px"}}>Career Jobs
@@ -352,12 +353,12 @@ console.log(records)
               <li className={`${styles.li} ${styles.Status}`}><b>Status</b></li>
             </ul>
             {PageLoader ?
-              <div style={{display:"flex", justifyContent:"center"}}>
-              <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "100px" }} />
-              </div>
-              : ""
-            }
-            {
+            <>
+                                <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "47%", marginTop: "50px" }} />
+                                <h3 style={{color:"red",textAlign:"center"}}>Loading......</h3>
+                                </>
+              : 
+            (
               records.length > 0 ?
 
                 records.map((items, i) => {
@@ -485,20 +486,21 @@ console.log(records)
                 : 
                 // <p style={{ marginLeft: "42%", color: "red" }}> {NoJobFound} </p>
                 <div style={{display:"flex", justifyContent:"center"}}>
-                  <p style={{ color: "red" }}> Loading...</p>
+                  <p style={{ color: "red" }}> No Record Found</p>
                 </div>
-            }
+            )
+          }
 
           </div>
         </>
         :
         <>
           {PageLoader ?
-            <div style={{display:"flex", justifyContent:"center"}}>
-            <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "100px" }} />
-            </div>
-            : ""
-          }
+            <>
+                                <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "37%", marginTop: "50px" }} />
+                                <h3 style={{color:"red",textAlign:"center"}}>Loading......</h3>
+                                </>
+            : 
           <div id={styles.JobCardWrapper} >
 
             {MyAppliedjob.length > 0 ?
@@ -649,11 +651,12 @@ console.log(records)
               })
               : 
               <div style={{display:"flex", justifyContent:"center"}}>
-                <p style={{ marginLeft: "25%", color: "red" }}> Loading....</p>
+                <p style={{ marginLeft: "12%", color: "red" }}> No Record Found</p>
               </div>
             }
 
           </div>
+      }
           <div style={{ marginTop: "80px" }}>
             <Footer />
           </div>
