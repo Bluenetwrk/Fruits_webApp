@@ -890,8 +890,11 @@ function Nav(props) {
                 </div>
                  
                 <div className={Styles.fullnavewrapperRSMobile} style={{marginRight:"11px"}}>
-                 <div>
-                  <NavLink to="/alljobs" className={`${Styles.Moblink} ${Styles.AlllJobs}`} >All Jobs </NavLink>
+                <div className={Styles.resumeMenuVisible}><NavLink to="/resumes" className={Styles.AllJobJobSeeker}  >AI <br></br>Resume<br></br> Builder </NavLink></div>
+
+                 <div style={{display:"flex", flexDirection:"column"}}>
+                  <div className={Styles.allJobMobspl}> <NavLink to="/alljobs" className={`${Styles.Moblink} ${Styles.AlllJobs}`} >All Jobs </NavLink> </div>
+                  <div className={Styles.resumeMenuVisibleMob}><NavLink to="/resumes" className={Styles.AllJobJobSeeker}  >AI Resume Builder </NavLink></div>
                   </div>
                 <div>
                   
@@ -1097,6 +1100,70 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                       <div>
                         <img className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} />
                       </div>
+
+                      <div style={{display:"flex", flexDirection:"column"}}>
+
+                      <div ref={alertRef} style={{position:"relative", marginBottom: "-28px", zIndex:"999"}}>
+                        <div onClick={()=>setresumeAlert((prev)=>prev=!prev)} className={Styles.AllJobJobSeeker} style={{cursor:"pointer"}}>AI Resume Builder </div>
+                         {resumeAlert&&
+                         <>
+                            <div
+        style={{
+          width: '300px',
+          padding: '20px',
+          backgroundColor: 'rgb(40,4,99)',
+          color: 'white',
+          fontSize: '12px',
+          borderRadius: '5px',
+          position: 'fixed',
+          top: '20%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 9999,
+          boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+          textAlign: 'center',
+        }}
+        
+        > 
+        
+        Login as a Jobseeker to explore opportunities and create a strong resume!
+          <div  style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"5px" }}>
+            <button
+              onClick={() => {navigate("/JobSeekerLogin"); setresumeAlert(false)}}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              Ok
+            </button>
+            <button
+              onClick={()=> setresumeAlert(false)}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+                         </>
+
+                         }
+                        </div>
+            
+
                        <div ref={dropdownRef} style={{ position: "relative" }}>
                          <div style={{ display: "flex", marginTop: "11px"}}>
                               <button
@@ -1167,7 +1234,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                             )}
                           </div>
                     </div>
-
+                    </div>
                     <div className={Styles.fullnavewrapperLSMobile}>
                       <div>
                           {props.flashVisible && (

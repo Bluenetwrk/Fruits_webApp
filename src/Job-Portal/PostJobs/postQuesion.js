@@ -242,10 +242,11 @@ let question =true
     return (
         <>
 
-
-            <h2 style={{marginLeft:"150px", fontWeight:"800", marginTop:"6px", marginBottom:"-15px"}}>Ask Questions </h2>
+            <div style={{display:"flex",justifyContent:"center"}}>
+            <h1 style={{ fontWeight:"800", marginTop:"6px", marginBottom:"-15px"}}>Ask Questions </h1>
+            </div>
                             <div>
-                                <button className={Style.searchButton} onClick={() => {
+                                <button style={{width:"56px",fontSize:"10px",height:"24px"}} className={Style.searchButton} onClick={() => {
                                     navigate(-1)
                                 }}>Go Back</button>
                                 {/* {Logo ? <img className={Style.logo} src={Logo} /> :

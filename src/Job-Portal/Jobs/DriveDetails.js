@@ -152,6 +152,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
       const [copied, setCopied] = useState(false);
       const shareRef = useRef(null);
       const buttonRef = useRef(null);
+      const divRef = useRef(null);
     
       const updateClickStatus = () => {
         setShareClicked((prev) => !prev);
@@ -163,6 +164,10 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
         setCopied(true);
         setTimeout(() => setCopied(false), 1000);
       };
+      
+
+
+      
     
       useEffect(() => {
         const handleClickOutside = (event) => {
@@ -177,10 +182,16 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
           ) {
             return;
           }
+
+          if (
+            divRef.current && divRef.current.contains(event.target)
+          ) {
+            return;
+          }
     
           setTimeout(() => {
             setShareClicked(false);
-          }, 50);
+          }, 10);
         };
     
         if (shareClicked) {
@@ -212,18 +223,16 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
              }}>
                  Back
           </button>
-           <div style={{display:"flex"}}>
-           <button class={styles.jobdetailApplyBtn} style={{marginRight:"9px",display:"flex", gap:"5px",width:"80px"}}onClick={updateClickStatus}>
-           <i className="fa-solid fa-share" style={{ fontSize: "medium", cursor: "pointer", marginLeft:"-8px" }}></i>
-           <p style={{ margin: "0px",fontWeight:"400" }}>Share</p>
+          <div style={{display:"flex",position:"relative"}}>
+           <button ref={divRef} class={styles.jobdetailApplyBtn} style={{marginRight:"9px",display:"flex", gap:"5px",width:"65px",alignItems:"center", fontSize:"12px"}}onClick={updateClickStatus}>
+           <i className="fa-solid fa-share" style={{ fontSize: "small", cursor: "pointer", marginLeft:"-8px" }}></i>
+           <div style={{fontSize:"12px", fontWeight:"800px"}}>Share</div>
             </button>
-           <button class={styles.jobdetailApplyBtn} >Apply</button>
-           </div>
-        </div>
-
-        {shareClicked && (
-        <div ref={shareRef} class={styles.shareContainer} style={{left:"1030px", top:"160px"}}>
-          <h1 style={{textAlign:"center",color:"white"}}>Share</h1>
+           <button class={styles.jobdetailApplyBtn} >
+           <div style={{fontSize:"12px", fontWeight:"800px"}}>Apply</div></button>
+           {shareClicked && (
+        <div ref={shareRef} class={styles.shareContainer}>
+          <div style={{fontSize:"22px", fontWeight:"600", color:"white", textAlign:"center" }}>Share</div>
 
           <div class={styles.shareButtonsContainer}>
             <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
@@ -239,16 +248,22 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
               </a>
           </div>
 
-          <div className={styles.copyLinkContainer}>
-            <input type="text" value={url} readOnly className={styles.urlInput} />
-            <button onClick={copyToClipboard} className={styles.copyButton}>
+          <div className={styles.copyLinkContainer} style={{display:"flex", flexDirection:"column"}}>
+            <div style={{wordBreak:"break-word", padding:"3px"}}>{url}</div>
+            {/* <textarea type="text" value={url} readOnly className={styles.urlInput} /> */}
+           
+          </div>
+          <div style={{display:"flex", justifyContent:"center"}}>
+          <button onClick={copyToClipboard} className={styles.copyButton}>
               {copied ? "Copied!" : "Copy Link"}
             </button>
-          </div>
+            </div>
 
           <div onClick={() => setShareClicked(false)} className={styles.closeButton} style={{position:"absolute", top:"8px", right:"13px",fontSize:"20px", color:"white", cursor:"pointer"}}>X</div>
         </div>
       )}
+           </div>
+              </div>
 
         <div class={styles.jobDetailsHeading}>
              <div class={styles.jobDetailsImage}>
@@ -318,7 +333,7 @@ const[JobSeekerLogin,setJobSeekerLogin]=useState(false);
 <>
 <div style={{display:"flex",marginLeft:"8px",marginTop:"25px",marginRight:"-6px",alignItems:"center", justifyContent:"space-between"}}>
 {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
-<button className={styles.jobdetailBackBtnMobile} 
+<button  className={styles.jobdetailBackBtnMobile} 
 onClick={() => {
  if (window.history.length > 1) {
     navigate(-1);
@@ -329,39 +344,46 @@ onClick={() => {
    Back
 </button>
 <img style={{height:"24px"}}  onClick={()=>{goDown()}} src={Down}/>
-<div ref={buttonRef} onClick={updateClickStatus} style={{height:"35px", width:"76px"}} className={styles.shareBtnMobile}>
-<i className="fa-solid fa-share" style={{ fontSize: "medium", cursor: "pointer",marginLeft: "8px"}}></i>
-<p style={{ fontWeight:"400" }}>Share</p>
+<div ref={divRef}  style={{position:"relative"}}>
+              <div ref={buttonRef} onClick={updateClickStatus} className={styles.shareBtnMobile}>
+  <i className="fa-solid fa-share" style={{ fontSize: "small", cursor: "pointer",marginLeft: "8px"}}></i>
+  <p style={{ fontWeight:"400" }}>Share</p>
 </div>
+
 
 {shareClicked && (
-<div ref={shareRef} class={styles.shareContainerMob}>
-<h1 style={{textAlign:"center",color:"white"}}>Share</h1>
+        <div ref={shareRef} class={styles.shareContainerMob}>
+          <h1 style={{textAlign:"center",color:"white"}}>Share</h1>
 
-<div class={styles.shareButtonsContainer} style={{marginTop:"16px"}}>
-<a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
-<img src={Linkedin} style={{borderRadius:"50%",height:"45px",backgroundColor:"white" }}></img>
-</a>
+          <div class={styles.shareButtonsContainer} style={{marginTop:"16px"}}>
+            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+              <img src={Linkedin} style={{borderRadius:"50%",height:"45px",backgroundColor:"white" }}></img>
+            </a>
 
-<a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
-<img src={Whatsapp} style={{borderRadius:"50%", height:"46px",width:"48px"}}></img>
-</a>
+            <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+            <img src={Whatsapp} style={{borderRadius:"50%", height:"46px",width:"48px"}}></img>
+            </a>
 
-<a href={`https://mail.google.com/mail/?view=cm&fs=1&to=&su=Shared%20Link&body=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
-<img src={Email} style={{borderRadius:"70%", borderRadius:"50%", height:"45px"}}></img>
-</a>
+            <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=&su=Shared%20Link&body=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+            <img src={Email} style={{borderRadius:"70%", borderRadius:"50%", height:"45px"}}></img>
+              </a>
+          </div>
+
+          <div className={styles.copyLinkContainer} style={{marginTop:"16px"}}>
+          <div style={{wordBreak:"break-word", padding:"3px"}}>{url}</div>
+            {/* <input type="text" value={url} readOnly className={styles.urlInput} /> */}
+            
+          </div>
+          <div style={{display:"flex", justifyContent:"center"}}>
+          <button onClick={copyToClipboard} className={styles.copyButton}>
+              {copied ? "Copied!" : "Copy Link"}
+            </button>
+          </div>   
+
+          <div onClick={() => setShareClicked(false)} className={styles.closeButton} style={{position:"absolute", top:"8px", right:"13px",fontSize:"20px", color:"white", cursor:"pointer"}}>X</div>
+        </div>
+      )}
 </div>
-
-<div className={styles.copyLinkContainer} style={{marginTop:"16px"}}>
-<input type="text" value={url} readOnly className={styles.urlInput} />
-<button onClick={copyToClipboard} className={styles.copyButton}>
-{copied ? "Copied!" : "Copy Link"}
-</button>
-</div>
-
-<div onClick={() => setShareClicked(false)} className={styles.closeButton} style={{position:"absolute", top:"8px", right:"13px",fontSize:"20px", color:"white", cursor:"pointer"}}>X</div>
-</div>
-)}
 
 
 </div>

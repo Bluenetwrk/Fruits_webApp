@@ -44,13 +44,16 @@ function Footer() {
       navigate ("/Services")}}>Our Services</a></h4>
               
 
-              <h4>
-                <a onClick={()=>{
-      window.scrollTo({
-        top:0,
-        behavior:"smooth"
-      })
-      navigate ("/AboutUs")}}>About us</a></h4>
+              
+       <h4> 
+              <a
+              onClick={()=>{
+                window.scrollTo({
+                  top:0,
+                  // behavior:"smooth"
+                })
+                navigate ("/TermsAndCondition")}}>Terms and Conditions</a></h4>
+           
               
               <h4> <a
               onClick={()=>{
@@ -60,7 +63,7 @@ function Footer() {
                 })
                 navigate ("/Contact")}}>Contact Us</a></h4>
 </div>
-<div style={{marginLeft:"25%"}}>
+<div style={{marginLeft:"3%"}}>
               <h4> <a
               onClick={()=>{
                 window.scrollTo({
@@ -69,14 +72,13 @@ function Footer() {
                 })
                 navigate ("/AllCareerJobs")}}>Career</a></h4>
               
-              <h4> 
-              <a
-              onClick={()=>{
-                window.scrollTo({
-                  top:0,
-                  // behavior:"smooth"
-                })
-                navigate ("/TermsAndCondition")}}>Terms and Conditions</a></h4>
+              <h4>
+                <a onClick={()=>{
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      })
+      navigate ("/AboutUs")}}>About us</a></h4>
               <h4> 
               <a
               onClick={()=>{
