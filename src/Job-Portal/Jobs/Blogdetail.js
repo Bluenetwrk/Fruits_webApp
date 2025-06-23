@@ -550,9 +550,21 @@ async function deletComment(id){
             <img src={Whatsapp} style={{borderRadius:"50%", height:"46px",width:"48px"}}></img>
             </a>
 
-            <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=&su=Shared%20Link&body=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+            {/* <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=&su=Shared%20Link&body=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
             <img src={Email} style={{borderRadius:"70%", borderRadius:"50%", height:"45px"}}></img>
-              </a>
+              </a> */}
+              <a
+  href={`mailto:?subject=Shared Link&body=${encodeURIComponent(url)}`}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    src={Email}
+    style={{ borderRadius: "50%", height: "45px" }}
+    alt="Share via Email"
+  />
+</a>
+
           </div>
 
           <div className={styles.copyLinkContainer} style={{marginTop:"16px"}}>
