@@ -50,7 +50,7 @@ const [PageLoader, setPageLoader] = useState(false)
   const userTags = location.state?.selectedTag?location.state.selectedTag:"";
  const transferRecords=location.state?.transferRecords?location.state.transferRecords:"";
   const allJobs=useRef([])
-  // console.log("ut",userTags)
+  // console.log(indexing,userTags)
   let studentAuth = localStorage.getItem("StudLog")
 
  
@@ -416,6 +416,8 @@ const [PageLoader, setPageLoader] = useState(false)
              }}>
                 <div style={{fontSize:"12px", fontWeight:"800px"}}>Back</div>
           </button>
+
+          {index!==""&&
           <div style={{display:"flex",justifyContent:"space-between"}}>
           <button className={styles.jobdetailBackBtn} style={{padding: "0px 5px 0px 8px"}}
             onClick={descIndex}>
@@ -428,6 +430,7 @@ const [PageLoader, setPageLoader] = useState(false)
             <div style={{fontSize:"12px", fontWeight:"800px"}}>Next</div> <i class='fas fa-caret-square-right' style={{fontSize:"9px", color: "white",marginLeft:"0px", marginLeft:"-2px" }}></i>    
           </button>
           </div>
+          }
           {/* <div className={styles.navigationWrapperbtn}>
               <button onClick={descIndex} style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
               <i class='fas fa-caret-square-left' style={{ color: "rgb(40,4,99)" }}></i>Prev
@@ -583,9 +586,17 @@ const [PageLoader, setPageLoader] = useState(false)
             <img src={Whatsapp} style={{borderRadius:"50%", height:"46px",width:"48px"}}></img>
             </a>
 
-            <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=&su=Shared%20Link&body=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
-            <img src={Email} style={{borderRadius:"70%", borderRadius:"50%", height:"45px"}}></img>
-              </a>
+            <a
+  href={`mailto:?subject=Shared Link&body=${encodeURIComponent(url)}`}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    src={Email}
+    style={{ borderRadius: "50%", height: "45px" }}
+  />
+</a>
+
           </div>
 
           <div className={styles.copyLinkContainer} style={{marginTop:"16px"}}>
@@ -604,7 +615,8 @@ const [PageLoader, setPageLoader] = useState(false)
       )}
 </div>
               </div>
-
+              
+              {index!==""&&
               <div style={{display:"flex",marginLeft:"8px",marginTop:"12px",marginRight:"-6px",alignItems:"center", gap:"2px"}}>
               {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
               <button onClick={descIndex} className={styles.jobdetailBackBtnMobile} >
@@ -615,9 +627,8 @@ const [PageLoader, setPageLoader] = useState(false)
             >
             Next <i class='fas fa-caret-square-right' style={{ color: "white",marginLeft:"0px", marginLeft:"-2px" }}></i>    
           </button>
-              
-
               </div>
+               }
                <div style={{ display: "flex", justifyContent: "space-between", marginRight:"80px",marginBottom:"-14px" }}>
             {/* <div className={styles.navigationWrapperbtn}>
               <button onClick={descIndex} style={{ display: "flex",gap:"10px", alignItems:"center", padding: "6px", paddingLeft:"0px" }}className={styles.navigationbtn} >
