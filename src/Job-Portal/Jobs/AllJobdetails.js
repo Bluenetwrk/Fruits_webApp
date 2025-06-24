@@ -417,7 +417,7 @@ const [PageLoader, setPageLoader] = useState(false)
                 <div style={{fontSize:"12px", fontWeight:"800px"}}>Back</div>
           </button>
 
-          {index!==""&&
+          {!isNaN(index+1)&&
           <div style={{display:"flex",justifyContent:"space-between"}}>
           <button className={styles.jobdetailBackBtn} style={{padding: "0px 5px 0px 8px"}}
             onClick={descIndex}>
@@ -616,7 +616,7 @@ const [PageLoader, setPageLoader] = useState(false)
 </div>
               </div>
               
-              {index!==""&&
+              {!isNaN(index+1)&&
               <div style={{display:"flex",marginLeft:"8px",marginTop:"12px",marginRight:"-6px",alignItems:"center", gap:"2px"}}>
               {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
               <button onClick={descIndex} className={styles.jobdetailBackBtnMobile} >
