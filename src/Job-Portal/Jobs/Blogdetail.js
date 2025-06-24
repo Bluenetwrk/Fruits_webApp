@@ -411,7 +411,7 @@ async function deletComment(id){
                  <div style={{fontSize:"12px", fontWeight:"800px"}}>Back</div>
           </button>
 
-            {index!==""&&    
+             {!isNaN(index+1)&&    
           <div style={{display:"flex",height:"55px"}}>
           <button onClick={descIndex}  className={styles.readPageBackBtn}style={{padding: "0px 5px 0px 8px"}}>
           <i class='fas fa-caret-square-left' style={{fontSize:"9px",marginLeft:"-2px"}}></i>   
@@ -585,7 +585,7 @@ async function deletComment(id){
  </div>
  </div>
 
- {index!==""&&
+ {!isNaN(index+1)&&
  <div style={{display:"flex",marginLeft:"8px",marginTop:"11px",marginRight:"-6px",alignItems:"center", gap:"2px"}}>
               {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
               <button onClick={descIndex} className={styles.jobdetailBackBtnMobile} style={{fontWeight:"100"}} >
