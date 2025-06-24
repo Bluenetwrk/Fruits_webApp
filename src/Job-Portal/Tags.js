@@ -34,7 +34,7 @@ export const jobTags=[
      { value: 'Scrum Master', label: "Scrum Master" },
     { value: 'Product Owner', label: 'Product Owner' }, { value: 'Product Line Manager', label: 'Product Line Manager' },
     { value: 'Project Manager', label: 'Project Manager' }, { value: 'Automation Tester', label: 'Automation Tester' },
-    { value: 'QA Enginner', label: 'QA Enginner' }, { value: 'Senior Tester', label: 'Senior Tester' },
+    { value: 'QA Engineer', label: 'QA Engineer' }, { value: 'Senior Tester', label: 'Senior Tester' },
     { value: 'Manager', label: 'Manager' }, { value: 'Director', label: 'Director' },
     { value: 'Compliance Engineer', label: 'Compliance Engineer' },
     { value: 'Verification Engineer', label: 'Verification Engineer' },

@@ -411,6 +411,7 @@ async function deletComment(id){
                  <div style={{fontSize:"12px", fontWeight:"800px"}}>Back</div>
           </button>
 
+            {index!==""&&    
           <div style={{display:"flex",height:"55px"}}>
           <button onClick={descIndex}  className={styles.readPageBackBtn}style={{padding: "0px 5px 0px 8px"}}>
           <i class='fas fa-caret-square-left' style={{fontSize:"9px",marginLeft:"-2px"}}></i>   
@@ -421,6 +422,7 @@ async function deletComment(id){
           <div style={{fontSize:"12px", fontWeight:"800px"}}>Next</div> <i class='fas fa-caret-square-right' style={{fontSize:"9px",marginLeft:"4px"}}></i>
           </button>
           </div>
+          }
        </div>
        {PageLoader ?"":
        <h1 style={{textAlign:"center", fontSize:"40px", whiteSpace:"no", marginTop:"10px",marginRight:"0px"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading..."}</h1>
@@ -583,6 +585,7 @@ async function deletComment(id){
  </div>
  </div>
 
+ {index!==""&&
  <div style={{display:"flex",marginLeft:"8px",marginTop:"11px",marginRight:"-6px",alignItems:"center", gap:"2px"}}>
               {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
               <button onClick={descIndex} className={styles.jobdetailBackBtnMobile} style={{fontWeight:"100"}} >
@@ -594,6 +597,7 @@ async function deletComment(id){
              <i class='fas fa-caret-square-right' style={{ color: "white",marginLeft:"0px", marginLeft:"-2px" }}></i>    Next
           </button>
  </div>
+}
 
                 <div className={styles.JobCard} style={{marginTop:"8px"}} >
                 {/* <p className={`${styles.Date} ${styles.readPageDate}`}>{new Date(jobs.createdAt).toLocaleString(

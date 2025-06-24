@@ -106,14 +106,16 @@ let navigate = useNavigate()
   
     return (
         <>
-        <div style={{display:"flex"}}>
+         <div style={{display:"flex",justifyContent:"center"}}>
+        <h2 style={{color:"rgb(40, 4, 99)"}}>My Profile</h2>
+        </div>
+        <div style={{display:"flex",marginTop:"-50px"}}>
         {/* <button style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"40px", cursor:"pointer", width:"50px"}} onClick={()=>{
             navigate(-1)}} >back</button> */}
             
                         <img style={{ height:"25px", color:"grey", marginTop:"20px", marginLeft:"8%", cursor:"pointer",
              width:"28px"}} onClick={()=>{navigate(-1)}}  src={Arrowimage} />
-
-        <h3 style={{color:"rgb(40, 4, 99)", marginLeft:"41%"}}>My Profile</h3>
+       
         </div>
 
         <div style={{display:"flex", justifyContent:"space-between", marginLeft:"3%", marginRight:"10%"}}>
@@ -134,14 +136,14 @@ let navigate = useNavigate()
 
              profileData.length>0?
              <>
-             <button className={styles.updateProfileStd} onClick={updateprofile}>Update Profile</button><br></br>
+             <button style={{height:"31px",paddingTop:"7px"}}  className={styles.updateProfileStd} onClick={updateprofile}>Update Profile</button><br></br>
 
              </>
 
              :""
 
              :
-             profileData.length>0?<button className={styles.updateProfileStd} onClick={updateprofile}>Update Profile</button>:""
+             profileData.length>0?<button style={{height:"31px",paddingTop:"7px"}} className={styles.updateProfileStd} onClick={updateprofile}>Update Profile</button>:""
           }
           </div>
           <div style={{position:"flex"}}>
@@ -149,8 +151,8 @@ let navigate = useNavigate()
             <div
             ref={tooltipBtnRef}
         style={{
-          width: '22px',
-          height: '22px',
+          width: '13px',
+          height: '13px',
           borderRadius: '50%',
           backgroundColor: 'rgb(40,4,99)',
           color: 'white',
@@ -163,7 +165,7 @@ let navigate = useNavigate()
           display:'flex',
           justifyContent: 'center',
           textAlign:"center",
-          right: "-15%",
+          right: "-8%",
         }}
         onClick={toggleTooltip}      >
         i
@@ -189,7 +191,7 @@ let navigate = useNavigate()
       </div>
       
             
-            <button ref={consentBtnRef} onClick={toggleConsent} className={styles.updateProfileStd} style={{width:"150px"}} >Background Check</button>
+            <button ref={consentBtnRef} onClick={toggleConsent} className={styles.updateProfileStd} style={{width:"150px",height:"31px",paddingTop:"7px"}} >Background Check</button>
             
       {showConsent && (
         <div
@@ -477,7 +479,12 @@ profileData.map((item, i) => {
                   <span className={styles.span}> Skills : {job.Skills?<span style={{ color: "blue" }}>{job.Skills} </span>:<span style={{color:"red"}}>Not updated</span>}</span><br></br>
                   <span className={styles.span}> Account Status:  {job.isApproved ? <span style={{ color: "blue" }}> Congrats ! Your account has been Approved</span> : <span style={{ color: "red" }}>"Your account is under Verfication process"</span>}</span><br></br>
                   {job.message?<span style={{}} className={styles.span}> Message :<span style={{color:"red"}}> {job.message}! </span></span>:""}
-                  <span className={styles.span}> HRs/Employer FeedBack : {job.Skills?<span style={{ color: "blue" }}>{job.Skills} </span>:<span style={{color:"red"}}>No FeedBack</span>}</span><br></br>
+                  <>
+  <span className={styles.span}>
+    HRs/Employer FeedBack : <span style={{ color: "red" }}>No FeedBack</span>
+  </span>
+  <br />
+</>
                   </div>
       </div>
       {/* <div style={{ marginTop: '20px', textAlign: 'center' }}> */}

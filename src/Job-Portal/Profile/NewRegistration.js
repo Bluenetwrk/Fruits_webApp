@@ -254,8 +254,8 @@ const [immage, setimmage] = useState()
 
    function  handleCompanyname(e){    
     const value = e.target.value;
-    const sanitizedValue = value.replace(/[^\w\s.]|_/g, ''); // Regex to remove special characters
-    setCompanyName(sanitizedValue);
+    // const sanitizedValue = value.replace(/[^\w\s.]|_/g, ''); // Regex to remove special characters
+    setCompanyName(value);
 
    }
 
