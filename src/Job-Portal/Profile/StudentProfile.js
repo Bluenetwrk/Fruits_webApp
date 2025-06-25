@@ -191,7 +191,7 @@ let navigate = useNavigate()
       </div>
       
             
-            <button ref={consentBtnRef} onClick={toggleConsent} className={styles.updateProfileStd} style={{width:"150px",height:"31px",paddingTop:"7px"}} >Background Check</button>
+            <button ref={consentBtnRef} onClick={toggleConsent} className={`${styles.updateProfileStd} ${styles.bgvBtn}`}  >Enrol for Background Check</button>
             
       {showConsent && (
         <div

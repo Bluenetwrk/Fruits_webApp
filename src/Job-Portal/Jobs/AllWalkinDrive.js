@@ -1090,7 +1090,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                       
                           <div style={{marginTop:"-12px"}}>
                         <div className={styles.JobTitleDateWrapper} style={{display:"flex",gap:"16px"}}>
-                          <p className={styles.jobTitle} onClick={() => navigate(`/DriveDetails/${btoa(job.id)}`, { state: { driveItem: job } })} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" ,width:"100%", whiteSpace:"normal"}}>{job.jobTitle} </p>
+                          <p className={styles.jobTitle} onClick={() => navigate(`/DriveDetails/${btoa(job.id)}`, { state: { driveItem: job} })} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" ,width:"100%", whiteSpace:"normal"}}>{job.jobTitle} </p>
                            {/* <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
@@ -1135,7 +1135,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                         </div>
 
                         <div className={styles.skillWrapper}>
-                          <span className={styles.skillsHeading}>Job Type: </span><span className={styles.skills}>{job.skillsRequired}</span><br></br>
+                          <span className={styles.skillsHeading}>Job Type: </span><span className={styles.skills}>{job.jobType}</span><br></br>
                         </div>
                         <div className={styles.skillWrapper}>
                           <span className={styles.skillsHeading}>Experience: </span><span className={styles.skills}>{job.experience}</span><br></br>

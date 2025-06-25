@@ -492,7 +492,7 @@ function AppliedUserProfile() {
               <option selected = {lastIndex === 25} value={25}>25</option>
               <option selected = {lastIndex === 50} value={50}>50</option>
               <option selected = {lastIndex === 100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  candidates per page
             </div>
 
           <div className={styles.navigationWrapper}>

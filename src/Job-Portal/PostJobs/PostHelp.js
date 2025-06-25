@@ -160,7 +160,7 @@ function PostHelp(props) {
 
                                         {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
                                         <div style={{display:"flex", justifyContent:"center"}}>      
-                                        <button style={{width:"25%"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postHelp}>Submit</button>
+                                        <button style={{width:"132px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postHelp}>Submit</button>
                                         </div>
                                     </div >
                                 </div >

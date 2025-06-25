@@ -403,7 +403,7 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
 
                                          </div >
                                          <div style={{display:"flex",justifyContent:"center"}}>
-                                         <button style={{width:"200px",marginLeft:"-64px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Post Blog</button>
+                                         <button style={{width:"132px",marginLeft:"-64px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Post Blog</button>
                                          </div>
                                 </div >
                             </div>

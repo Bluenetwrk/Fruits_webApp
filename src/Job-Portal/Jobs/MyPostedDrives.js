@@ -430,7 +430,9 @@ const handleGenerateQR = (driveId) => {
                     <li className={`${styles.li} ${styles.NuApplied}`}>
                       {items.numberOfApplicants> 0 ?
              
-                        <button className={`${styles.viewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(items._id)) }}>{items.numberOfApplicants}</button>
+                        // <button className={`${styles.viewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(items._id)) }}>{items.numberOfApplicants}</button>
+                        <button className={`${styles.viewButton}`}>{items.numberOfApplicants}</button>
+
                         :
                         <button className={`${styles.viewButton}`} >{items.numberOfApplicants}</button>
 

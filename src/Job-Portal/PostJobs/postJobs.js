@@ -354,8 +354,8 @@ const [showTooltip, setShowTooltip] = useState(false);
                                         <label><input name="Job-Type" type="radio" checked={jobtype === "Part Time"} value="Part Time" onChange={(e) => { setJobtype(e.target.value) }} />Part Time  </label>
                                         <label><input name="Job-Type" type="radio" checked={jobtype === "Internship"} value="Internship" onChange={(e) => { setJobtype(e.target.value)}} />Internship </label>
                                         <label><input name="Job-Type" type="radio" checked={jobtype === "Contract"} value="Contract" onChange={(e) => { setJobtype(e.target.value) }} />Contract   </label>
-                                        <div style={{ position: "relative" }}>
-  <h4 className={Style.jobHeadline}>Job Location**</h4>
+                                        <div style={{ position: "relative", display:"flex",  alignItems:"center" }}>
+  <div><h4 className={Style.jobHeadline}>Job Location**</h4></div>
 
   <div
     ref={tooltipRef} // ⬅ attach ref to parent of both icon and tooltip
@@ -439,7 +439,7 @@ I have read and understood the  <span style={{color:"blue", cursor:"pointer"}} o
 
                                         {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
                                         <div style={{display:"flex", justifyContent:"center"}}>
-                                        <button style={{width:"210px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Post Job</button>
+                                        <button style={{width:"132px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Post Job</button>
                                         </div>
                                     </div >
                                 </div >
