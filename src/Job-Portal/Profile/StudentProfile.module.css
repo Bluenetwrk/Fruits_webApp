@@ -153,11 +153,13 @@ margin-top: -30px;
    flex-wrap:wrap;
 }
 
+.bgvBtn{height:31px;padding-top:7px;}
 
 @media(max-width:475px){
     .updatebgvContainer{
         margin-left: 106px;
      }
+     .bgvBtn{height:41px;padding-top:7px;}
 }
 
 @media(max-width:376px){

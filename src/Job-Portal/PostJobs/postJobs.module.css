@@ -170,8 +170,8 @@
 }
 
 .JobAlerti {
-  width: 16px;
-  height: 16px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
   background-color: rgb(40, 4, 99);
   color: white;
@@ -180,11 +180,11 @@
   justify-content: center;
   cursor: pointer;
   font-weight: bold;
-  font-size: 14px;
-  position: absolute;
+  font-size: 12px;
+  /* position: absolute; */
   text-align: center;
-  left: 8%;
-  top: -1%;
+  /* left: 8.5%;
+  top: -1%; */
 }
 .driveAlerti {
   width: 16px;
@@ -240,10 +240,10 @@
     left: 28%;
   }
 
-  .jobIdesc {
+  /* .jobIdesc {
   top: 18px;
     left: -95px;
-  }
+  } */
   .driveIdesc {
     top: 17px;
     left: -96px;
