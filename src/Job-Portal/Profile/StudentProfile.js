@@ -309,7 +309,8 @@ profileData.map((item, i) => {
                          {item.Experiance?       <li className={` ${styles.Hli}`}>{item.Experiance}</li>:  <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your experiance yet</li> }
                          {item.isApproved?   <li className={` ${styles.Hli}`} style={{color:"blue"}}> Congrats !  Your account has been Approved</li>: <li className={` ${styles.Hli} ${styles.Nli}`} style={{fontStyle:"italic"}}>"Your account is in under Verfication process"</li>}                        
                          {item.message?<p style={{width:"450%",  marginLeft:"-70%"}}><b> Message :</b><span style={{color:"red"}}> {item.message}! </span></p>:""}
-                         {item.Experiance?       <li className={` ${styles.Hli}`}>{item.Experiance}</li>:  <li className={` ${styles.Hli} ${styles.Nli}`}>No FeedBack</li> }
+                         {/* {item.Experiance?       <li className={` ${styles.Hli}`}>{item.Experiance}</li>:  <li className={` ${styles.Hli} ${styles.Nli}`}>No FeedBack</li> } */}
+                         { <li className={` ${styles.Hli} ${styles.Nli}`}>No FeedBack</li> }
                         </ul>
                     )
 
