@@ -63,14 +63,14 @@ function AllResumes() {
     
   }}
 >
-  <div style={{ fontSize: "14px", fontWeight: "500" }}>Back</div>
+  <div style={{ display:"flex", alignItems:"center", justifyContent:"center",marginTop:"0px", fontSize: "14px", fontWeight: "500" }}>Back</div>
 </button>
 
 <button
   class={styles.jobdetailBackBtn }
   onClick={() => {navigate("/My-Profile")}}
 >
-  <div style={{ fontSize: "14px", fontWeight: "500" }}>Update Profile</div>
+  <div style={{ display:"flex", alignItems:"center", justifyContent:"center",fontSize: "14px", fontWeight: "500" }}>Update Profile</div>
 </button>
  
 </div>

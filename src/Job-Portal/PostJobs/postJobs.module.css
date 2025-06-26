@@ -386,6 +386,22 @@
     display: inline;
 
 }
+
+
+.backButton1{
+  background-color: rgb(40, 4, 99);
+  color: white;
+  font-weight: bold;
+  height: 40px;
+  border:1px solid rgb(40, 4, 99);
+  margin-left: 10%;
+  border-radius: 5px;
+  cursor: pointer;
+  width:80px;
+  /* margin-top: 50px; */
+ /* display: inline; */
+
+}
 .GoBackButton{
     background-color: rgb(40, 4, 99);
     color: white;

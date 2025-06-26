@@ -390,7 +390,7 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
 />*/}
 <p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>
     I have read the terms and conditions of ITwalkin.com and I agree to all the 
-     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> terms and conditons</span> before posting the jobs </p> 
+     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> terms and conditons</span> before posting the blogs </p> 
 
      <p><input type="checkbox" onChange={()=>{setProfileConcent((prev)=>!prev)}}/>
      Show my company and designation</p>
