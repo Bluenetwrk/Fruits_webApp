@@ -433,7 +433,7 @@ const [showTooltip, setShowTooltip] = useState(false);
 // onChange={(e)=>{setSkills(e.target.value)}} 
 />
 <p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>
-I have read and understood the  <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}>terms and conditions</span> IT Walkin , and I fully agree to them before posting jobs .</p>
+I have read the terms and conditions of ITwalkin.com and I agree to all the  <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}>Terms and Conditions</span>  before posting the jobs  .</p>
 
 
 

@@ -139,11 +139,11 @@ function PostHelp(props) {
                                         <p className={successMessage === "Success! job successfully posted" ?
                                             Style.successmessage : Style.errormessage}>{successMessage} </p>
                                     
-                                        <h4 className={Style.jobHeadline}  >Help Question</h4>
+                                        <h4 className={Style.jobHeadline}  >Help Question**</h4>
                                         <input maxLength="100" className={Style.inputbox} type="text" value={helptitle} onChange={(e) => { handlehelptitle(e) }} />
                                         
  <div style={{marginTop:"20px",display:"flex",flexDirection:"column"}}>  
-    <h4 style={{marginLeft:"7PX"}}>Help Descriptions</h4> 
+    <h4 style={{marginLeft:"7PX"}}>Help Descriptions**</h4> 
     <div className={`screen3`}>                                 
    {/* <JoditEditor  ref={editor} className={Style.inputbox} value={helpDescription.toString()} onChange={(e)=>{setHelpDescription(e)}} /> */}
    <CustomTextEditor
@@ -155,7 +155,7 @@ function PostHelp(props) {
 </div>  
 <p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>
     I have read the terms and conditions of ITwalkin.com and I agree to all the 
-     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> terms and conditons</span> before posting the Help Questions </p>
+     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> Terms and Conditons</span> before posting the Help Questions </p>
 
 
                                         {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}

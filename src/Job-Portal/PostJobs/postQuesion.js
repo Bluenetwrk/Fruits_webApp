@@ -243,10 +243,10 @@ let question =true
         <>
 
             <div style={{display:"flex",justifyContent:"center"}}>
-            <h1 style={{ fontWeight:"800", marginTop:"6px", marginBottom:"-15px"}}>Ask Questions </h1>
+            <h2 style={{ fontWeight:"800", marginTop:"6px", marginBottom:"-15px"}}>Ask Questions </h2>
             </div>
                             <div>
-                                <button style={{width:"56px",fontSize:"10px",height:"24px"}} className={Style.searchButton} onClick={() => {
+                                <button style={{width:"56px",fontSize:"10px",height:"24px",display:"flex", alignItems:"center", justifyContent:"center"}} className={Style.backButton1} onClick={() => {
                                     navigate(-1)
                                 }}>Go Back</button>
                                 {/* {Logo ? <img className={Style.logo} src={Logo} /> :
