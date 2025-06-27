@@ -293,15 +293,18 @@ const [showTooltip, setShowTooltip] = useState(false);
                                        <h4 className={Style.jobHeadline}  >Source &nbsp;<span className={Style.hint}>(e.g Linkedin, Noukri, indeed etc.)</span></h4>
                                         <input maxLength="20" className={Style.inputbox} type="text" value={Source} onChange={(e) => { setSource(e.target.value) }} />
 
-                                        <h4 className={Style.jobHeadline}  >Source Link</h4>
-                                        <input className={Style.inputbox} type="text" value={SourceLink} onChange={(e) => { setSourceLink(e.target.value) }} />
+                                        // <h4 className={Style.jobHeadline}  >Source Link</h4>
+                                        // <input className={Style.inputbox} type="text" value={SourceLink} onChange={(e) => { setSourceLink(e.target.value) }} />
                                </>
                                 :""
                                     } */}
+                                    
                                         <p className={Style.jobHeadline}>Company Name** &nbsp;<span className={Style.hint}>(Company name cannot be edited ,taken automatically from the profile section)</span></p>
                                         <input maxLength="30" className={Style.inputbox} type="text" value={companyName} disabled />
 
-
+                                         <h4 className={Style.jobHeadline}  >Source Link</h4>
+                                         <input className={Style.inputbox} type="text" value={SourceLink} onChange={(e) => { setSourceLink(e.target.value) }} />
+                                         
                                         <h4 className={Style.jobHeadline}>Job Description**</h4>
                                         {/* <input maxLength="100" className={Style.inputbox} type="text" value={jobDescription} onChange={(e) => { setJobDescription(e.target.value) }} /> */}
                                         {/* <Editor

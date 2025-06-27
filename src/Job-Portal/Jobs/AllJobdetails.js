@@ -406,6 +406,7 @@ const [PageLoader, setPageLoader] = useState(false)
         <div class={styles.jobdetailBtnContainer} style={{display:"flex"}}>
            {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
            <div style={{display:"flex"}}>
+           {!isNaN(index+1)&&
            <button className={styles.jobdetailBackBtn} 
             onClick={() => {
                if (window.history.length > 1) {
@@ -416,6 +417,7 @@ const [PageLoader, setPageLoader] = useState(false)
              }}>
                 <div style={{fontSize:"12px", fontWeight:"800px"}}>Back</div>
           </button>
+}
 
           {!isNaN(index+1)&&
           <div style={{display:"flex",justifyContent:"space-between"}}>
@@ -555,6 +557,7 @@ const [PageLoader, setPageLoader] = useState(false)
               <>
               <div style={{display:"flex",marginLeft:"8px",marginTop:"25px",marginRight:"-6px",alignItems:"center", justifyContent:"space-between"}}>
               {/* <button class={styles.jobdetailBackBtn} onClick={()=>{navigate(-1)}}>Back</button> */}
+              {!isNaN(index+1)&&
               <button className={styles.jobdetailBackBtnMobile} 
             onClick={() => {
                if (window.history.length > 1) {
@@ -565,6 +568,7 @@ const [PageLoader, setPageLoader] = useState(false)
              }}>
                  Back
           </button>
+}
               <img style={{height:"24px"}}  onClick={()=>{goDown()}} src={Down}/>
               <div style={{position:"relative"}}>
               <div ref={buttonRef} onClick={updateClickStatus} className={styles.shareBtnMobile}>
