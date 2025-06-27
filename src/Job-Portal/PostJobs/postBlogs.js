@@ -295,8 +295,13 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
                                             className={Style.inputbox}
                                             onChange={(e) => { setJobDescription(e.blocks) }}
                                         /> */}
-<JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} />
+{/* <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} /> */}
 {/* <CustomTextEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}}></CustomTextEditor> */}
+<CustomTextEditor
+ ref={editor} className={Style.inputbox} 
+        value={jobDescription}
+        onChange={setJobDescription}
+      />
                                         <p className={Style.jobHeadline}>Blog Tags <span className={Style.hint}>(Select multiple Tags to reach the best Matching Blogs)</span></p>
 
 <div className={Style.JobtitleFilterWrapper}>
@@ -389,8 +394,8 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
 // onChange={(e)=>{setSkills(e.target.value)}} 
 />*/}
 <p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>
-    I have read the terms and conditions of ITwalkin.com and I agree to all the 
-     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> terms and conditons</span> before posting the blogs </p> 
+I have read the terms and conditions of ITwalkin.com and I agree to all the 
+     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> terms and conditions </span> before posting the Blogs </p> 
 
      <p><input type="checkbox" onChange={()=>{setProfileConcent((prev)=>!prev)}}/>
      Show my company and designation</p>

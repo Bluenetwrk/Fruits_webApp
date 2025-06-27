@@ -920,9 +920,12 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                  />      
                </label>
 
-               <label className={styles.inputName}>
-                <h4>Experience: &nbsp;<span className={styles.hint}>(e.g 3Y or 10Y)</span></h4>
+               <label className={styles.inputName} style={{position:"relative"}} >
+                <h4>Experience: </h4>
                 <input maxLength="3" className={styles.input} value={Experiance} onChange={(e) => { handleExperiance(e) }} type="text" />
+                <span className={styles.suffix}>{Experiance===""?"":"YRS"}</span>
+                
+                
               </label>
 
 
@@ -1072,13 +1075,13 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               </label>
 
               <label className={styles.inputName} style={{position:"relative"}} >
-                <h4>Expected Salary: &nbsp;<span className={styles.hint}>(e.g 5L or 10L)</span></h4>
+                <h4>Expected Salary:</h4>
                 <input maxLength="3" className={styles.input} value={ExpectedSalary} onChange={(e) => { handleexpectedSalary(e)}} type="text" inputMode="text" />
                 <span className={styles.suffix}>{ExpectedSalary===""?"":"LPA"}</span>
               </label>
 
               <label className={styles.inputName} style={{position:"relative"}} >
-                <h4>Current CTC: &nbsp;<span className={styles.hint}>(e.g 5L or 10L)</span></h4>
+                <h4>Current CTC:</h4>
                 <input maxLength="3" className={styles.input} value={currentCTC} onChange={(e) => {handleCurrentCTC(e)}} type="text" />
                 <span className={styles.suffix}>{currentCTC===""?"":"LPA"}</span>
               </label>
@@ -1212,7 +1215,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                    onChange={(e) => setTenth(e.target.value)}
                    className={styles.input}
                    style={{ width: "130%", marginLeft: "31px" }}
-                   placeholder="Search  your 10th School"
+                   placeholder="Search your School"
                  />
                  </label>
                </div>
@@ -1226,7 +1229,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                    onChange={(e) => setTwelfth(e.target.value)}
                    className={styles.input}
                    style={{ width: "130%", marginLeft: "31px" }}
-                   placeholder="Search your 12th School/College"
+                   placeholder="Search your School/College"
                  />
                  
                </label>
@@ -1645,9 +1648,10 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
   />
 </label>
 
-<label className={styles.MobileinputName}>
-                <h4 className={styles.MobileName}>Experience: &nbsp;<span className={styles.hint}>(e.g 2Y or 10Y)</span> </h4>
+              <label className={styles.MobileinputName} style={{position:"relative"}}>
+                <h4 className={styles.MobileName}>Experience: </h4>
                 <input maxLength="3" className={styles.Mobileinput} value={Experiance} onChange={(e) => { handleExperiance(e) }} type="text" />
+                <span className={styles.suffix}>{Experiance===""?"":"YRS"}</span>
               </label>
 
 
@@ -1772,13 +1776,13 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               </label>
 
               <label className={styles.MobileinputName} style={{position:"relative"}}>
-                <h4 className={styles.MobileName}>Expected Salarys: &nbsp;<span className={styles.hint}>(e.g 5L or 10L)</span></h4>
+                <h4 className={styles.MobileName}>Expected Salarys:</h4>
                 <input maxLength="3" className={styles.Mobileinput} value={ExpectedSalary} onChange={(e) => { handleexpectedSalary(e) }} type="number" />
                 <span className={styles.suffixExpMob}>{ExpectedSalary===""?"":"LPA"}</span>
               </label>
 
               <label className={styles.MobileinputName} style={{position:"relative"}}>
-                <h4 className={styles.MobileName}>Current CTC: &nbsp;<span className={styles.hint}>(e.g 5L or 10L)</span></h4>
+                <h4 className={styles.MobileName}>Current CTC:</h4>
                 <input maxLength="3" className={styles.Mobileinput} value={currentCTC} onChange={(e) => { handleCurrentCTC(e) }} type="text" />
                 <span className={styles.suffixCTCMob }>{currentCTC===""?"":"LPA"}</span>
               </label>
@@ -1925,7 +1929,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
     onChange={(e) => setTenth(e.target.value)}
     className={styles.input}
     style={{ width: "81%", marginLeft: "18px" }}
-    placeholder="Search your 10th School"
+    placeholder="Search your School"
   />
 </label>
 
@@ -1938,7 +1942,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
     onChange={(e) => setTwelfth(e.target.value)}
     className={styles.input}
     style={{ width: "81%", marginLeft: "18px" }}
-    placeholder="Search your 12th School/College"
+    placeholder="Search your School/College"
   />
 </label>
 

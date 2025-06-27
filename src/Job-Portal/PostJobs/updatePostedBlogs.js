@@ -10,6 +10,7 @@ import Footer from '../Footer/Footer';
 import useScreenSize from '../SizeHook';
 import {jobTags} from "../Tags"
 import JoditEditor from 'jodit-react'
+import CustomTextEditor from '../Editor/CustomTextEditor'
 
 
 import Style from "./postJobs.module.css"
@@ -164,14 +165,14 @@ window.addEventListener('keypress', function(event){
                 <p className={Style.successmessage}>{successMessage} </p>
                 <p className={Style.errormessage}>{errorMessage} </p>
 
-     <h4 className={Style.jobHeadline}>Job title</h4>
+     <h4 className={Style.jobHeadline}>Title**</h4>
     <input maxLength="100" className={Style.inputbox} type="text" value={jobtitle} onChange={(e) => { setJobTitle(e.target.value) }} />
 
 
                     {/* <h4 className={Style.jobHeadline}>Company Name**</h4>
                     <input maxLength="30" className={Style.inputbox} type="text" value={companyName} onChange={(e) => { setCompanyName(e.target.value) }} /> */}
 
-                    <h4 className={Style.jobHeadline}>Job Description</h4>
+                    <h4 className={Style.jobHeadline}>Blog**</h4>
                     {/* <input className={Style.inputbox} type="text" value={jobDescription} onChange={(e) => { setJobDescription(e.target.value) }} /> */}
                     {/* <Editor
          toolbarClassName="toolbarClassName"
@@ -181,10 +182,15 @@ window.addEventListener('keypress', function(event){
          className={Style.inputbox}
          onChange={(e)=>{ setJobDescription(e.blocks) }}
       /> */}
-<JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription?jobDescription.toString():""} onChange={(e)=>{setJobDescription(e)}} />
+{/* <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription?jobDescription.toString():""} onChange={(e)=>{setJobDescription(e)}} /> */}
+<CustomTextEditor
+ ref={editor} className={Style.inputbox} 
+        value={jobDescription}
+        onChange={setJobDescription}
+      ></CustomTextEditor>
 
 
-<h4 className={Style.jobHeadline}>Job Tags (Select multiple Tags to reach the best Matching Jobs)</h4>
+<h4 className={Style.jobHeadline}>Blog Tags (Select multiple Tags to reach the best Matching Blogs)</h4>
 
 <div className={Style.JobtitleFilterWrapper}>
             {/* <buton className={ Active.length===0? Style.active:Style.JobtitleFilter} onClick={() => { getjobs() }}>All</buton> */}
