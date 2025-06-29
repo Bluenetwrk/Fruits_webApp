@@ -36,6 +36,15 @@
   pointer-events: none;
   color: black;
   }
+
+  .experiencesuffix{
+    position: absolute;
+    right: 230px;
+    top: 90%;
+    /* transform: translateY(-50%); */
+    pointer-events: none;
+    color: black;
+    }
 .tooltipWrapper {
     position: relative;
     display: inline-block;
@@ -308,6 +317,15 @@
   .suffixExpMob {
   right: 307px;
   }
+
+  .experiencesuffix{
+    position: absolute;
+    right: 310px;
+    top: 81%;
+    /* transform: translateY(-50%); */
+    pointer-events: none;
+    color: black;
+    }
 }
 
 
@@ -332,6 +350,15 @@
       pointer-events: none;
       color: black;
       }
+
+      .experiencesuffix{
+        position: absolute;
+        right: 266px;
+        top: 81%;
+        /* transform: translateY(-50%); */
+        pointer-events: none;
+        color: black;
+        }
 }
 @media (max-width:320px){
     
@@ -345,6 +372,15 @@
       .suffixExpMob {
       right: 224px;
       }
+
+      .experiencesuffix{
+        position: absolute;
+        right: 226px;
+        top: 81%;
+        /* transform: translateY(-50%); */
+        pointer-events: none;
+        color: black;
+        }
 }
 
 .imageViewWrapper {

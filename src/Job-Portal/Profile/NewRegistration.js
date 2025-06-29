@@ -315,11 +315,20 @@ const [immage, setimmage] = useState()
 
    function handleCompanyPhoneNumber(e){
 
-    if (e.target.value.length > 10){
-      return false
-  }else{
-  setCompanyContact(e.target.value)
-  }
+    const value = e.target.value;
+
+    // Prevent removing "+91"
+    if (!value.startsWith('+91')) return;
+
+    // Only allow digits after +91
+    const digits = value.slice(3).replace(/\D/g, '');
+    setCompanyContact('+91' + digits);
+
+  //   if (e.target.value.length > 10){
+  //     return false
+  // }else{
+  // setCompanyContact(e.target.value)
+  // }
    }
 
    function handleGstn(e){
@@ -645,7 +654,13 @@ const helpData = [
 
             <label className={styles.inputName}>
               <h4>Company Contact No:</h4>
-              <input maxLength="15"  className={styles.input} value={CompanyContact} onChange={(e) => { handleCompanyPhoneNumber(e) }} type="number" />
+              <input maxLength="13"  className={styles.input} value={CompanyContact} onChange={(e) => { handleCompanyPhoneNumber(e) }} type="text" 
+               onFocus={(e) => {
+                if (!e.target.value.startsWith('+91')) {
+                  setCompanyContact('+91');
+                }
+              }}/>
+            
             </label>
 
             {/* <label className={styles.inputName}>
@@ -813,7 +828,12 @@ const helpData = [
 
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Company Contact No:</h4>
-              <input maxLength="15" className={styles.Mobileinput} value={CompanyContact} onChange={(e) => { handleCompanyPhoneNumber(e) }} type="number" />
+              <input maxLength="13" className={styles.Mobileinput} value={CompanyContact} onChange={(e) => { handleCompanyPhoneNumber(e) }} type="text" 
+              onFocus={(e) => {
+                if (!e.target.value.startsWith('+91')) {
+                  setCompanyContact('+91');
+                }
+              }}/>
             </label>
               
               

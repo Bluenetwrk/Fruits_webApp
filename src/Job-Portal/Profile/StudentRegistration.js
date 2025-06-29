@@ -1651,7 +1651,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               <label className={styles.MobileinputName} style={{position:"relative"}}>
                 <h4 className={styles.MobileName}>Experience: </h4>
                 <input maxLength="3" className={styles.Mobileinput} value={Experiance} onChange={(e) => { handleExperiance(e) }} type="text" />
-                <span className={styles.suffix}>{Experiance===""?"":"YRS"}</span>
+                <span className={styles.experiencesuffix}>{Experiance===""?"":"YRS"}</span>
               </label>
 
 
@@ -1783,7 +1783,8 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
               <label className={styles.MobileinputName} style={{position:"relative"}}>
                 <h4 className={styles.MobileName}>Current CTC:</h4>
-                <input maxLength="3" className={styles.Mobileinput} value={currentCTC} onChange={(e) => { handleCurrentCTC(e) }} type="text" />
+                <input maxLength="3" className={styles.Mobileinput} value={currentCTC} onChange={(e) => { handleCurrentCTC(e) }} type="text" 
+                />
                 <span className={styles.suffixCTCMob }>{currentCTC===""?"":"LPA"}</span>
               </label>
 

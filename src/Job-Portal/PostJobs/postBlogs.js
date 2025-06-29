@@ -129,12 +129,20 @@ function PostBlogs(props) {
 
 
     async function postJob() {
+
+        
         // let userid = JSON.parse(localStorage.getItem("EmpIdG"))
         // const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
         const headers = { authorization: 'BlueItImpulseWalkinIn' };
 
         let jobTitle = jobtitle.toLowerCase()
         let jobLocation = joblocation.toLowerCase()
+
+
+        if(jobTitle==="" || jobDescription===""){
+            setErrorMessage("Error ! Please fill all the fields")
+            return
+        }
         await axios.post("/BlogRoutes/blogpost/", {
             Logo, SourceLink, Source, empId, jobTitle, companyName,
             jobDescription, jobtype, salaryRange, jobLocation, qualification, experiance, skills, Tags, name
@@ -264,7 +272,9 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
                                     <div className={Style.postJobWrapper}>
                                         <p className={successMessage === "Success! successfully posted" ?
                                             Style.successmessage : Style.errormessage}>{successMessage} </p>
-                                        {/* <p className={Style.errormessage}>{errorMessage} </p> */}
+                                            {errorMessage&&
+                                         <p className={Style.errormessage}>{errorMessage} </p> 
+                                            }
                                         <h4 className={Style.jobHeadline}  >Title**</h4>
                                         <input maxLength="100" className={Style.inputbox} type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />
                                         {/* <div className={Style.jobHeadline}>
