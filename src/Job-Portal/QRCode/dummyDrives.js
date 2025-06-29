@@ -8,7 +8,7 @@ export const dummyDrives = [
       location: "Bangalore",
       ctc: "6 LPA",
       experience: "0-2 years",
-      skillsRequired: ["Java", "Spring Boot", "MySQL"],
+      skillsRequired: ["Java", "Spring Boot", "MySQL", "Java", "Spring Boot", "MySQL"],
       action: "Apply Now",
       numberOfApplicants: 40
     },

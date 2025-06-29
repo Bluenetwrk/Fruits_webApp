@@ -5,7 +5,7 @@ import axios from "axios";
 import Footer from '../Footer/Footer';
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { TailSpin, Puff } from "react-loader-spinner"
-import location from "../img/icons8-location-20.png" 
+import locationicon from "../img/icons8-location-20.png" 
 import Swal from "sweetalert2";
 import Styles from "./myPostedjobs.module.css"
 import graduation from "../img/icons8-graduation-cap-40.png"
@@ -685,7 +685,7 @@ const [PageLoader, setPageLoader] = useState(false)
 </div>
 
         </div>
-        <  img className={styles.jobLocationImage} src={location}  /> 
+        <  img className={styles.jobLocationImage} src={locationicon}  /> 
         <span className={styles.jobLocation}>
   {jobs.jobLocation ? jobs.jobLocation.charAt(0).toUpperCase() + jobs.jobLocation.substring(1) : ''}
 </span>
@@ -752,8 +752,8 @@ const [PageLoader, setPageLoader] = useState(false)
 
 }
                   </div>
-            <p className={styles.jobDescriptionHeading}>Job Description:</p>
-            <p className={styles.jobDescription}> 
+            <p className={styles.jobDescriptionHeading} style={{marginTop:"12px"}}>Job Description:</p>
+            <p className={styles.jobDescription} style={{marginTop:"2px"}}> 
             { 
     jobdescription? HTMLReactParser(jobdescription.toString()) :""
             }

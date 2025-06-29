@@ -408,7 +408,7 @@ const handleGenerateQR = (driveId) => {
                     <li className={`${styles.li} ${styles.Location}`}>{items.location}</li>
                     <li className={`${styles.li} ${styles.Package}`}>{items.ctc}</li>
                     <li className={`${styles.li} ${styles.experiance}`}>{items.experience}</li>
-                    <li className={`${styles.li} ${styles.Skills}`}>{items.skillsRequired}</li>
+                    <li className={`${styles.li} ${styles.Skills}`} style={{wordBreak:"break-word"}}>{items.skillsRequired}</li>
                     <li className={`${styles.li} ${styles.Action}`}>
                       <div className={styles.Acbuttons}>
                         <button onClick={() => { update(items._id) }} className={`${styles.Abutton} ${styles.update}`}>update</button>
