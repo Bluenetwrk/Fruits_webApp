@@ -1776,7 +1776,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               </label>
 
               <label className={styles.MobileinputName} style={{position:"relative"}}>
-                <h4 className={styles.MobileName}>Expected Salarys:</h4>
+                <h4 className={styles.MobileName}>Expected Salary:</h4>
                 <input maxLength="3" className={styles.Mobileinput} value={ExpectedSalary} onChange={(e) => { handleexpectedSalary(e) }} type="number" />
                 <span className={styles.suffixExpMob}>{ExpectedSalary===""?"":"LPA"}</span>
               </label>

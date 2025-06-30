@@ -370,7 +370,7 @@ const [showTooltip, setShowTooltip] = useState(false);
       <div
         className={Style.jobIdesc}
       >
-        Job Location: Bangalore Only. Kindly ensure that all applications align with this specified location.
+        We currently support job posting only in Bangalore.
       </div>
     )}
   </div>

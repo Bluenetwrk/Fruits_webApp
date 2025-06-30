@@ -396,7 +396,7 @@ const [selectedTime, setSelectedTime] = useState("");
       <div
         className={Style.driveIdesc}
       >
-        Job Location: Bangalore Only. Kindly ensure that all applications align with this specified location.
+       We currently support job posting only in Bangalore.
       </div>
     )}
   </div>
