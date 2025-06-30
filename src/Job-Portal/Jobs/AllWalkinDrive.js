@@ -88,8 +88,8 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
   const firstIndex = lastIndex - recordsPerPage //5
   const records = jobs.slice(firstIndex, lastIndex)//0,5
 
-  const npage = Math.ceil(totalCount / recordsPerPage) // last page
-  
+  // const npage = Math.ceil(totalCount / recordsPerPage) // last page
+  const npage=1;
 
   async function gettotalcount() {
     const headers = { authorization: 'BlueItImpulseWalkinIn' };

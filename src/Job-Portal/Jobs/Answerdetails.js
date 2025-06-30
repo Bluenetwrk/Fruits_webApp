@@ -80,15 +80,23 @@ const [Loader, setLoader] = useState(false)
 
   const [clickedJobId, setclickedJobId] = useState() //for single job loader
 
-function changeComments(e){
-  // setcomments(comments.comment=e.target.value)
-    setcomments({ ...comments, comment: e, name:CommentName})
-}
+  function changeComments(e) {
+    setcomments({ ...comments, comment: e, name: CommentName });
+  }
+
+  useEffect(() => {
+    if (comments.comment) {
+      localStorage.setItem('pendingComment', comments.comment);
+    }
+  }, [comments.comment]);
+ 
+  
 
 
 async function handleComment(){
   if(!userid){
-    alert("Sign in to join the discussion and comment on this question.")
+    setloginAlert(true)
+    // alert("Sign in to join the discussion and comment on this question.")
     return false
   }
   if(!comments.comment){
@@ -162,6 +170,36 @@ async function deletComment(id){
                 document.removeEventListener('mousedown', handleClickOutside);
               };
             }, []);
+
+
+
+            useEffect(() => {
+              const savedComment = localStorage.getItem('pendingComment');
+              console.log("cmnt name", CommentName)
+              if (savedComment) {
+                setcomments(prev => ({ ...prev, comment: savedComment , name:CommentName}));
+              }
+            }, [CommentName]);
+        
+            const [loginAlert, setloginAlert]=useState(false)
+                      const loginalertRef = useRef(null);
+                      useEffect(() => {
+                        const handleClickOutside = (event) => {
+                          // If clicked outside alert box and it's open
+                          if (loginalertRef.current && !loginalertRef.current.contains(event.target)) {
+                            setloginAlert(false); // close the alert
+                          }
+                        };
+                      
+                        document.addEventListener('mousedown', handleClickOutside);
+                      
+                        return () => {
+                          document.removeEventListener('mousedown', handleClickOutside);
+                        };
+                      }, []);
+    
+                      localStorage.setItem('ansLogin', window.location.pathname + window.location.search);
+                             
   
   return (
     <>
@@ -310,8 +348,36 @@ async function deletComment(id){
  value={comments.comment} 
         onChange={changeComments}
       />
-
+       <div ref={loginalertRef} style={{position:"relative"}}>
        <button class={styles.ansBtn} onClick={handleComment} style={{height:"30px", marginLeft:"6px"}}>Answer</button> 
+       {loginAlert&&
+                         <>
+                            <div
+        style={{
+          width: '300px',
+          padding: '20px',
+          backgroundColor: 'rgb(40,4,99)',
+          color: 'white',
+          fontSize: '12px',
+          borderRadius: '5px',
+          position: 'fixed',
+          top: '15%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 9999,
+          boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+          textAlign: 'center',
+        }}
+        
+        >   
+        <div style={{display:"flex"}}>  
+        <p>Please login to join discussion </p> <pre onClick={()=>{navigate("/JobSeeker-Login")}} style={{cursor:"pointer"}}> Jobseeker / </pre><p onClick={()=>{navigate("/Employee-Login")}} style={{cursor:"pointer"}}> Employer</p>
+        </div> 
+        </div>
+                         </>
+
+                         }
+       </div> 
        </>
        :""
       :""
@@ -443,8 +509,41 @@ async function deletComment(id){
  value={comments.comment} 
         onChange={changeComments}
       />
-
+      <div style={{position:"relative"}}ref={loginalertRef}>
        <button onClick={handleComment} style={{height:"30px", marginLeft:"6px"}} class={styles.ansBtn}>Comment</button> 
+       {loginAlert&&
+                         <>
+                            <div
+        style={{
+          width: '263px',
+          height:"31px",
+          padding: '20px',
+          backgroundColor: 'rgb(40,4,99)',
+          color: 'white',
+          fontSize: '12px',
+          borderRadius: '5px',
+          position: 'fixed',
+          top: '17%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 9999,
+          boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+          textAlign: 'center',
+        }}
+        
+        >   
+        <div style={{display:"flex",flexDirection:"column"}}>  
+
+        <p style={{marginTop:"-3px"}}>Please login to join discussion </p> 
+        <div style={{display:"flex", justifyContent:"center",marginTop:"-14px"}}>
+         <p onClick={()=>{navigate("/JobSeeker-Login")}} style={{cursor:"pointer", }}> Jobseeker / </p><p onClick={()=>{navigate("/Employee-Login")}} style={{cursor:"pointer"}}> Employer</p>
+        </div> 
+        </div>
+        </div>
+                         </>
+
+                         }
+                         </div>
        </>
        :""
       :""

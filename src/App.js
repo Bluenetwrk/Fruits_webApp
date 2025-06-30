@@ -75,6 +75,8 @@ import AppliedDrives from "./Job-Portal/Jobs/AppliedDrives";
 import MyPostedDrives from "./Job-Portal/Jobs/MyPostedDrives";
 import ScanDrive from "./Job-Portal/QRCode/ScanDrive";
 import QRScanner from "./Job-Portal/QRCode/QRScanner";
+import AnsEmpLogin from "./Job-Portal/Login/AnsEmpLogin";
+import AnsStdLogin from "./Job-Portal/Login/AnsStdLogin";
 // import PostFraud from "./Job-Portal/Jobs/PostFraud";
 axios.defaults.baseURL = " https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -1191,6 +1193,8 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             searchIcon={searchIcon}
             />} />
             <Route path="/JobSeekerLogin" element={<StudentLogin />} />
+            <Route path="/JobSeeker-Login" element={<AnsStdLogin />} />
+            <Route path="/Employee-Login" element={<AnsEmpLogin />} />
             <Route path="/New-Registration" element={<NewRegistered />} />
             <Route path="/Jobseeker-New-Registration" element={<StuNewRegistered selectedlocationOption={selectedlocationOption} />} />
             <Route path="/EmployeeLogin" element={<EmployeeLogin />} />
