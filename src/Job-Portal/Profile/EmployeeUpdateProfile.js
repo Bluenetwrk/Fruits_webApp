@@ -496,11 +496,11 @@ const [immage, setimmage] = useState()
             </label>
 
             
-            <label className={styles.inputName}>
+            <label className={styles.inputName} style={{zIndex:"999"}}>
               <h4>Secondary user email id:</h4>
               <input maxLength="90" className={styles.input} value={Secondaryuseremailid} onChange={(e) => {handleSecondaryuseremailid(e) }} type="text" />
             </label>
-            <label className={styles.inputName}>
+            <label className={styles.inputName} style={{zIndex:"999" }}>
               <h4>Secondary user contact number:</h4>
               <input maxLength="90" className={styles.input} value={Secondaryusercontactnumber} onChange={(e) => {handleSecondaryusercontactnumber(e) }} type="text" />
             </label>

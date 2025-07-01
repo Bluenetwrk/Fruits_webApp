@@ -77,6 +77,7 @@ import ScanDrive from "./Job-Portal/QRCode/ScanDrive";
 import QRScanner from "./Job-Portal/QRCode/QRScanner";
 import AnsEmpLogin from "./Job-Portal/Login/AnsEmpLogin";
 import AnsStdLogin from "./Job-Portal/Login/AnsStdLogin";
+import LiveTvDisplay from "./Job-Portal/QRCode/LiveTvDisplay";
 // import PostFraud from "./Job-Portal/Jobs/PostFraud";
 axios.defaults.baseURL = " https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -1096,6 +1097,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             <Route element={<EmpPrivate />}>
             {/* <Route path="/scan/drive/:driveId" element={<ScanDrive  />} /> */}
               <Route path="/PostJobs" element={<PostJobs url={axios.defaults.baseURL} />} />
+              <Route path="/live-tv-display" element={<LiveTvDisplay url={axios.defaults.baseURL} />} />
               <Route path="/Post-Help-Questions" element={<PostHelp url={axios.defaults.baseURL} />} />
               <Route path="/PostDrives" element={<PostWalkinDrive url={axios.defaults.baseURL}/>} />
               <Route path="/PostBlogs" element={<PostBlogs url={axios.defaults.baseURL} />} />
