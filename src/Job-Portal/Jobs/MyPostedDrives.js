@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styles from "./myPostedjobs.module.css"
 import { useEffect, useState } from 'react'
 import axios from "axios";
@@ -13,6 +13,7 @@ import Footer from '../Footer/Footer';
 import HTMLReactParser from 'html-react-parser'
 import { dummyDrives } from '../QRCode/dummyDrives';
 import QRCode from 'react-qr-code';
+import { toPng } from 'html-to-image';
 
 
 
@@ -283,6 +284,24 @@ const handleGenerateQR = (driveId) => {
     return `${window.location.origin}/scan/drive/${driveId}`;
   };
 
+  const qrRefs = useRef({});
+  const handleDownloadQR = (id) => {
+  const qrNode = qrRefs.current[id];
+  if (!qrNode) return;
+
+  toPng(qrNode, { pixelRatio: 5 })
+    .then((dataUrl) => {
+      const link = document.createElement("a");
+      link.download = `QR-${id}.png`;
+      link.href = dataUrl;
+      link.click();
+    })
+    .catch((err) => {
+      console.error("Failed to download QR code:", err);
+    });
+};
+
+  
   return (
     <>
  
@@ -418,12 +437,28 @@ const handleGenerateQR = (driveId) => {
                     </li>
                     <li style={{position:"relative"}} className={`${styles.li} ${styles.Action}`}>
                         <button onClick={() => { handleGenerateQR(items.id) }} className={`${styles.Abutton} ${styles.update}`}>Generate QR</button>                 
-                          {selectedDriveId === items.id && (
-                            <div style={{ marginTop: "1rem" }}>
-                              <QRCode style={{height:"100px", width:"100px"}} value={generateQRUrl(items.id)} size={160} />
-                              {/* <p>{generateQRUrl(items.id)}</p> */}
-                            </div>
-                          )}
+                        {selectedDriveId === items.id && (
+  <div style={{display:"flex", flexDirection:"column",alignItems:"center"}}>
+
+    <div
+      ref={(el) => (qrRefs.current[items.id] = el)}
+      style={{ background: "white", padding: "16px", display: "inline-block" ,width:"100px", height:"100px"}}
+    >
+      <QRCode style={{width:"100px", height:"100px"}} value={generateQRUrl(items.id)} size={160} />
+    </div>
+
+    <button
+      onClick={() => handleDownloadQR(items.id)}
+      style={{ marginTop: "0.5rem", display: "block" }}
+      className={`${styles.Abutton} ${styles.update}`}
+    >
+      Download QR
+    </button>
+  </div>
+)}
+
+
+
                     </li>
                     <li className={`${styles.li} ${styles.Action}`}>
                         <button  className={`${styles.Abutton} ${styles.update}`}>Generate QR</button>
