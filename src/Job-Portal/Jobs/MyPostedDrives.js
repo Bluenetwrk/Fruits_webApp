@@ -372,6 +372,7 @@ const handleGenerateQR = (driveId) => {
             <li className={`${styles.li} ${styles.Action}`}><b>Action</b></li>
             <li className={`${styles.li} ${styles.Action}`}><b>Reception Table</b></li>
             <li className={`${styles.li} ${styles.Action}`}><b>HR Table</b></li>
+            <li className={`${styles.li} ${styles.Action}`}><b>Launch Live Display</b></li>
             <li className={`${styles.li} ${styles.NuApplied}`}><b>No of JobSeeker Applied</b></li>
 
           </ul>
@@ -426,6 +427,9 @@ const handleGenerateQR = (driveId) => {
                     </li>
                     <li className={`${styles.li} ${styles.Action}`}>
                         <button  className={`${styles.Abutton} ${styles.update}`}>Generate QR</button>
+                    </li>
+                    <li className={`${styles.li} ${styles.Action}`}>
+                        <button onClick={()=>navigate("/live-tv-display")}  className={`${styles.Abutton} ${styles.update}`}>Launch Live Display</button>
                     </li>
                     <li className={`${styles.li} ${styles.NuApplied}`}>
                       {items.numberOfApplicants> 0 ?

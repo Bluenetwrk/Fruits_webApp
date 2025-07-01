@@ -494,7 +494,7 @@ const handleStart = () => {
     }
 </li>
                       <li className={`${styles.li} ${styles.Location}`}>{items.location}</li>
-                      <li className={`${styles.li} ${styles.Package}`}>{items.ctc}L</li>
+                      <li className={`${styles.li} ${styles.Package}`}>{items.ctc}</li>
                       <li className={`${styles.li} ${styles.experiance}`}>{items.experiences}Y</li>
                       <li className={`${styles.li} ${styles.Qualif}`}>{items.qualification} </li>
 
