@@ -201,6 +201,23 @@ function Nav(props) {
             document.removeEventListener("mousedown", handleClickOutside);
           };
         }, []);
+
+
+        const loginModalRef = useRef(null);
+      
+        useEffect(() => {
+          function handleClickOutside(event) {
+            if (loginModalRef.current && !loginModalRef.current.contains(event.target)) {
+              handleStuClose()
+              handleClose()
+            }
+          }
+       
+          document.addEventListener("mousedown", handleClickOutside);
+          return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+          };
+        }, []);
         // let StudentAuth = localStorage.getItem("StudLog")
         // let EmployeeAuth = localStorage.getItem("EmpLog")
           const bgvCheck=()=>{
@@ -844,8 +861,10 @@ function Nav(props) {
                   </div>
                   
                   <>
-                    <StuModal isStuOpen={Stuopen} onClose={() => { handleStuClose() }} />
+                  <div ref={loginModalRef}>
+                    <StuModal  isStuOpen={Stuopen} onClose={() => { handleStuClose() }} />
                     <Modal isOpen={open} onClose={() => { handleClose() }} />
+                    </div>
                   </>
 
 
