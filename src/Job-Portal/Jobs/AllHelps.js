@@ -163,7 +163,7 @@ function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageF
 
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             {nopageFilter ?
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>{helpData.length} </span>Help questions with following matching tags:
+              <p style={{ fontWeight: 400, marginLeft: "10px" }}><span style={{ color: "blue" }}></span>Showing 1 to 10 latest Help Questions
               <span style={{ color: "blue" }}>{Active.toString()}</span></p>
               :
               <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest Helps Questions</p>
@@ -224,6 +224,7 @@ function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageF
   ))}
            
      </div>
+     
      <div style={{display:"flex",marginTop:"30px",justifyContent:"space-between"}}>
      
       <div style={{ marginBottom: "5px", marginTop: "0px", marginLeft: "10px" }}>
@@ -277,6 +278,8 @@ function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageF
               })
             }
           </div>
+          <p style={{ fontWeight: 400, marginLeft: "10px" }}><span style={{ color: "blue" }}></span>Showing 1 to 10 latest Help Questions
+              <span style={{ color: "blue" }}>{Active.toString()}</span></p>
           <div style={{ marginBottom: "5px", marginTop: "10px", marginLeft: "10px" }}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
               

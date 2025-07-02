@@ -501,7 +501,7 @@ const handleStart = () => {
                       <li className={`${styles.li} ${styles.Skills}`}>{items.skillsRequired}</li>
                       <li className={`${styles.li} ${styles.DeleteAction}`}>
                         <button className={styles.DeleteButton} >Delete</button>
-                        <button className={styles.qrButton}>QR Scanner</button>
+                        {/* <button className={styles.qrButton}>QR Scanner</button> */}
                         </li>
                       <li className={`${styles.li} ${styles.Status}`}>
 
