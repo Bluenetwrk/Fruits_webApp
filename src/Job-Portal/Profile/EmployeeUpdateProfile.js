@@ -60,7 +60,6 @@ const [immage, setimmage] = useState()
   const [AboutCompany, setAboutCompany] = useState("");
 
 
-
   let navigate = useNavigate()
 
   let empId = JSON.parse(localStorage.getItem("EmpIdG"))
@@ -102,7 +101,7 @@ const [immage, setimmage] = useState()
   const [emailError, setEmailError] = useState("");
 
   async function saveUpdate(e) {
-    if(emailError==="Enter valid Email!"){
+    if(emailError==="Enter valid Email!" || emailError1==="Enter valid Email!" ){
       return false
     }
     let userid = JSON.parse(localStorage.getItem("EmpIdG"))
@@ -213,16 +212,16 @@ const [immage, setimmage] = useState()
     setCompanyName(value);
 
    }
-
+  const[emailError2,setEmailError2]=useState("");
    function handleCompanyEmail(event){
     const email = event.target.value;
     const sanitizedValue = email.replace(/[^\w\s.@]|_/g, ''); // Regex to remove special characters
     setCompanyEmail(sanitizedValue);
 
     if (validator.isEmail(email)) {
-      setEmailError("");
+      setEmailError2("");
   } else {
-      setEmailError("Enter valid Email!");
+    setEmailError2("Enter valid Email!");
   }
 
    }
@@ -239,17 +238,17 @@ const [immage, setimmage] = useState()
    
       }
    
-      function handleCompanyEmail(event){
-       const email = event.target.value;
-       const sanitizedValue = email.replace(/[^\w\s.@]|_/g, ''); // Regex to remove special characters
-       setCompanyEmail(sanitizedValue);
+    //   function handleCompanyEmail(event){
+    //    const email = event.target.value;
+    //    const sanitizedValue = email.replace(/[^\w\s.@]|_/g, ''); // Regex to remove special characters
+    //    setCompanyEmail(sanitizedValue);
    
-       if (validator.isEmail(email)) {
-         setCompEmailError("");
-     } else {
-       setCompEmailError("Enter valid Email!");
-     }
-      }
+    //    if (validator.isEmail(email)) {
+    //      setCompEmailError("");
+    //  } else {
+    //    setCompEmailError("Enter valid Email!");
+    //  }
+    //   }
    
       function handlesetemail(event){
        const email = event.target.value;
@@ -276,10 +275,17 @@ const [immage, setimmage] = useState()
        setSecondaryusername(e.target.value)
       }
    
+      const [emailError1,setEmailError1]=useState("");
       function handleSecondaryuseremailid(e){
        const email = e.target.value;
        const sanitizedValue = email.replace(/[^\w\s.@]|_/g, ''); // Regex to remove special characters
        setSecondaryuseremailid(sanitizedValue)
+   
+       if (validator.isEmail(email)) {
+        setEmailError1("");
+     } else {
+      setEmailError1("Enter valid Email!");
+     }
       }
       function handleSecondaryusercontactnumber(e){
    
@@ -421,8 +427,8 @@ const [immage, setimmage] = useState()
 
             <label className={styles.inputName}>
               <h4>Company Email id:</h4>
-              <input maxLength="25" className={styles.input} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" /><br></br>
-              <span style={{color:"red", marginLeft:"5%"}}>{compemailError}</span>
+              <input maxLength="35" className={styles.input} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" /><br></br>
+              <span style={{color:"red", marginLeft:"5%"}}>{emailError2}</span>
             </label>
 
             <label className={styles.inputName}>
@@ -461,9 +467,9 @@ const [immage, setimmage] = useState()
             </label>
 
             <label className={styles.inputName}>
-              <h4>Primary User Email Id:</h4>
-              <input maxLength="25" className={styles.input} value={email}  onChange={(e) => { handlesetemail(e) }} type="text" />
-              <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span>
+              <h4>User Email Id:</h4>
+              <input maxLength="35" className={styles.input} value={email}  onChange={(e) => { handlesetemail(e) }} type="text" />
+              <div style={{color:"red", marginLeft:"5%"}}>{emailError}</div>
             </label>
             
             <label className={styles.inputName}>
@@ -499,7 +505,9 @@ const [immage, setimmage] = useState()
             <label className={styles.inputName} style={{zIndex:"999"}}>
               <h4>Secondary user email id:</h4>
               <input maxLength="90" className={styles.input} value={Secondaryuseremailid} onChange={(e) => {handleSecondaryuseremailid(e) }} type="text" />
+              <div style={{color:"red", marginLeft:"5%"}}>{emailError1}</div>
             </label>
+            
             <label className={styles.inputName} style={{zIndex:"999" }}>
               <h4>Secondary user contact number:</h4>
               <input maxLength="90" className={styles.input} value={Secondaryusercontactnumber} onChange={(e) => {handleSecondaryusercontactnumber(e) }} type="text" />
@@ -536,8 +544,10 @@ const [immage, setimmage] = useState()
             </label>
 
             <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Primary User Email Id:</h4>
-              <input maxLength="25" className={styles.Mobileinput} value={email}  onChange={(e) => { setemail(e.target.value) }} type="text" />
+              <h4 className={styles.MobileName}>User Email Id</h4>
+              <input maxLength="35" className={styles.Mobileinput} value={email} onChange={(e) => { handlesetemail(e) }}  type="text" />
+              <div style={{color:"red", marginLeft:"5%"}}>{emailError}</div>
+
             </label>
             
             <label className={styles.MobileinputName}>
@@ -562,9 +572,9 @@ const [immage, setimmage] = useState()
 
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Company Email id:</h4>
-              <input maxLength="25" className={styles.Mobileinput} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" />
-           <br></br>
-           <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span>
+              <input maxLength="35" className={styles.Mobileinput} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" />
+           {/* <br></br> */}
+           <div style={{color:"red", marginLeft:"5%"}}>{emailError2}</div>
 
             </label>
 
@@ -607,6 +617,7 @@ const [immage, setimmage] = useState()
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Secondary user email id:</h4>
               <input maxLength="90" className={styles.Mobileinput} value={Secondaryuseremailid} onChange={(e) => {handleSecondaryuseremailid(e) }} type="text" />
+              <div style={{color:"red", marginLeft:"5%"}}>{emailError1}</div>
             </label>
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Secondary user contact number:</h4>

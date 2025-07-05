@@ -36,7 +36,7 @@ const dummyDrives = [
     ctc: "6 LPA",
     experience: "0-2 years",
     qualification: "B.E/B.Tech - CS/IT",
-    skillsRequired: ["Java", "Spring Boot", ],
+    skillsRequired: ["Java", "Spring Boot","Java", "Spring Boot","Java", "Spring Boot", ],
     action: "Apply Now",
     status: "Pending",
     numberOfApplicants: 40
@@ -376,7 +376,7 @@ const handleStart = () => {
             {nopageFilter ?
               <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>{Filtereredjobs}</span> from All Jobs</p>
               :
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest jobs</p>
+              <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest drives</p>
             }
             <div className={styles.navigationWrapper}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
@@ -400,7 +400,7 @@ const handleStart = () => {
               <option selected={lastIndex === 25} value={25}>25</option>
               <option selected={lastIndex === 50} value={50}>50</option>
               <option selected={lastIndex === 100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  drives per page
           </div>
 
           <div className={styles.Uiwarpper}>
@@ -493,12 +493,12 @@ const handleStart = () => {
   {items.appliedDate
     }
 </li>
-                      <li className={`${styles.li} ${styles.Location}`}>{items.location}</li>
+                      <li className={`${styles.li} ${styles.Location}`} style={{wordBreak:"break-word"}}>{items.location}</li>
                       <li className={`${styles.li} ${styles.Package}`}>{items.ctc}</li>
-                      <li className={`${styles.li} ${styles.experiance}`}>{items.experiences}Y</li>
-                      <li className={`${styles.li} ${styles.Qualif}`}>{items.qualification} </li>
+                      <li className={`${styles.li} ${styles.experiance}`} >{items.experiences}Y</li>
+                      <li className={`${styles.li} ${styles.Qualif}`} style={{wordBreak:"break-word"}}>{items.qualification} </li>
 
-                      <li className={`${styles.li} ${styles.Skills}`}>{items.skillsRequired}</li>
+                      <li className={`${styles.li} ${styles.Skills}`} style={{wordBreak:"break-word"}}>{items.skillsRequired}</li>
                       <li className={`${styles.li} ${styles.DeleteAction}`}>
                         <button className={styles.DeleteButton} >Delete</button>
                         {/* <button className={styles.qrButton}>QR Scanner</button> */}
@@ -520,6 +520,14 @@ const handleStart = () => {
                 </div>
             )
             }
+          </div>
+          <div style={{ marginBottom: "5px", marginTop: "0", marginLeft: "10px" }}>
+            Show  <select onChange={(e) => { handleRecordchange(e) }}>
+              <option selected={lastIndex === 10} value={10}>10</option>
+              <option selected={lastIndex === 25} value={25}>25</option>
+              <option selected={lastIndex === 50} value={50}>50</option>
+              <option selected={lastIndex === 100} value={100}>100</option>
+            </select>  drives per page
           </div>
         </>
         :

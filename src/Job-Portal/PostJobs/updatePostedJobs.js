@@ -27,7 +27,7 @@ function UpdatePostedJobs() {
   let adminLogin = localStorage.getItem("AdMLog")
 
 
- 
+  
     const [jobtitle, setJobTitle] = useState("")
     const [Source, setSource] = useState("")
     const [SourceLink, setSourceLink] = useState("")
@@ -56,24 +56,21 @@ function UpdatePostedJobs() {
     // })
 
     async function handleTags(key) {
-        setSkills((prev=>prev+" "+key))
-        const isIndex=Tags.findIndex((present)=>{
-            return(
-              present===key
-            )
-                })
-                if(isIndex<0){
-                    setTag([...Tags, key])
-                }else{
-                  const IndexId=Tags.filter((present)=>{
-                    return(
-                      present!==key
-                    )
-                        })
-                        setTag(IndexId)
-                        // Active.splice(IndexId,1)
+      const isIndex = Tags.findIndex((present) => present === key);
+    
+      if (isIndex < 0) {
+        // Tag not already present — add it
+        const updatedTags = [...Tags, key];
+        setTag(updatedTags);
+        setSkills(updatedTags.join(" "));
+      } else {
+        // Tag exists — remove it
+        const updatedTags = Tags.filter((present) => present !== key);
+        setTag(updatedTags);
+        setSkills(updatedTags.join(" "));
+      }
     }
-}
+    
 
     function handleChange(tag){
         setTag(tag)
@@ -140,7 +137,6 @@ function UpdatePostedJobs() {
         behavior: "smooth"
       });
 }
-
 
 window.addEventListener('keypress', function(event){
     
