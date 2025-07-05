@@ -209,34 +209,30 @@ function PostJobs(props) {
     const [count, setCount]=useState(1)
 
     async function handleTags(key) {
-if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Time'){
-    setJobtype(key)
-}
-        // setSkills((prev)=>prev ? prev + ", " + key : key)
-        // setSkills(Tags)
-        const isIndex=Tags.findIndex((present)=>{
-            return(
-              present===key
-            )
-                })
-                if(isIndex<0){
-                    setTag([...Tags, key])
-                    setSkills((prev)=>prev ? prev + ", " + key : key)
-                    // setSkills([...skills, key])
-                }else{
-                  const IndexId=Tags.filter((present)=>{
-                    return(
-                      present!==key
-                    )
-                        })
-                        setTag(IndexId)
-
-                      let str=IndexId.toString().split(",").join(", ")
-                        setSkills(str)
-
-                    // setSkills((prev)=>prev.length>=0 ?  IndexId : "," + IndexId)
-    }
-}
+        // Set job type if key matches known types
+        if (key === 'Full Time' || key === 'Contract' || key === 'Internship' || key === 'Part Time') {
+          setJobtype(key);
+        }
+      
+        // Check if the tag already exists
+        const isIndex = Tags.findIndex((present) => present === key);
+      
+        if (isIndex < 0) {
+          // Tag not found — add it
+          const updatedTags = [...Tags, key];
+          setTag(updatedTags);
+          setSkills((prev) => (prev ? prev + ", " + key : key));
+        } else {
+          // Tag exists — remove it
+          const updatedTags = Tags.filter((present) => present !== key);
+          setTag(updatedTags);
+      
+          // Update the skills string from updated tag list
+          const skillsString = updatedTags.join(", ");
+          setSkills(skillsString);
+        }
+      }
+      
 
 const [showTooltip, setShowTooltip] = useState(false);
 
