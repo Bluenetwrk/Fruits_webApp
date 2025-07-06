@@ -49,7 +49,7 @@ async function getEmpProfile() {
   await axios.get(`/EmpProfile/getProfile/${empId}`, {headers})
       .then((res) => {
           let result = res.data.result
-          // console.log(result.name)
+          console.log(result)
           setCommentName(result.name)
           // localStorage.setItem("Snm", JSON.stringify(btoa(result.name)))
 
@@ -138,7 +138,7 @@ async function deletComment(id){
     await axios.get(`/BlogRoutes/getjobs/${atob(params.id)}`, {headers})
       .then((res) => {
         let result = (res.data)
-        // console.log(result)
+        console.log(result)
         setJobs(result)
         setjobdescription(result.jobDescription)
         setjobSeekerId(result.jobSeekerId)
@@ -230,6 +230,19 @@ async function deletComment(id){
                     year: "numeric",
                   }
                 )}</span> . 
+                
+ <span>
+  Update At: {new Date(jobs.updatedAt).toLocaleString("en-US", {
+    timeZone: "Asia/Kolkata",
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  })}
+</span>
+
 </div>
   
 </div>
@@ -387,21 +400,46 @@ async function deletComment(id){
           </>
           :
           <>
+          <div style={{display:"flex", justifyContent:"end", marginTop:"-17px", marginBottom:"16px", marginRight:"22px", fontSize:"x-small"}}>
+  Update At: {new Date(jobs.updatedAt).toLocaleString("en-US", {
+    timeZone: "Asia/Kolkata",
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  })}
+</div>
     <div id={styles.JobCardWrapper} >
 
 
               <>
+              
                 <div className={styles.JobCard} >
                 <div className={styles.JobTitleDateWrapper}>
         <p className={styles.QuestionjobTitle} >{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading...."}</p>
-        <p className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
+       <div>
+        <p style={{marginTop:"-37px", marginRight:"21px", width:"100%"}} className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {
             month: "short",
             day: "2-digit",
             year: "numeric",
           }
-        )} </p></div>
+        )} </p>
+
+
+        </div>
+ 
+        </div>
+        
+
+
+
+
+
+        
      
      {jobs.comments &&
   jobs.comments.map((com) => {

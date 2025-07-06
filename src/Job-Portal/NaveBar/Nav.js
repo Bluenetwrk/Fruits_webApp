@@ -17,6 +17,7 @@ import StudentUpdateProfile from '../Profile/StudentUpdateProfile';
 import location from "../img/icons8-location-20.png"
 import Modal from "../Login/EmpLogModal";
 import StuModal from "../Login/StudLogModal";
+import { Puff } from 'react-loader-spinner';
 
 function Nav(props) {
 
@@ -220,6 +221,18 @@ function Nav(props) {
         }, []);
         // let StudentAuth = localStorage.getItem("StudLog")
         // let EmployeeAuth = localStorage.getItem("EmpLog")
+        const[PageLoader, setPageLoader]=useState(false)
+
+        const bgvCheckClick = () => {
+          setbgvAlert(false)
+          setPageLoader(true);
+          setTimeout(() => {
+            setPageLoader(false);
+            setbgvAlert(true)
+          }, 2000);
+        };
+        
+
           const bgvCheck=()=>{
              if(StudentAuth){
               navigate("/My-Applied-Jobs")
@@ -245,6 +258,24 @@ function Nav(props) {
               document.removeEventListener('mousedown', handleClickOutside);
             };
           }, []);
+
+          const [bgvAlert, setbgvAlert]=useState(false)
+          const alertbgvRef = useRef(null);
+          useEffect(() => {
+            const handleClickOutside = (event) => {
+              // If clicked outside alert box and it's open
+              if (alertbgvRef.current && !alertbgvRef.current.contains(event.target)) {
+                setbgvAlert(false); // close the alert
+              }
+            };
+          
+            document.addEventListener('mousedown', handleClickOutside);
+          
+            return () => {
+              document.removeEventListener('mousedown', handleClickOutside);
+            };
+          }, []);
+
 
         return (
     <>
@@ -352,8 +383,30 @@ function Nav(props) {
                 </div>
 
                 <div className={Styles.fullnavewrapperRS} >
-                <div>
-                      <NavLink to="/My-Applied-Jobs" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Background check</NavLink>
+                <div ref={alertbgvRef} style={{position:"relative"}}>
+                      <NavLink onClick={()=>setbgvAlert((prev)=>prev=!prev)} className={` ${Styles.HomeSearchCandidate}`}>Background check</NavLink>
+
+                      {bgvAlert&& (
+                       
+                       <div  style={{
+                         width: '350px',
+                         padding: '20px',
+                         backgroundColor: 'rgb(40,4,99)',
+                         color: 'white',
+                         fontSize: '12px',
+                         borderRadius: '5px',
+                         position: 'absolute',
+                         top: '45px',
+                         right: '-108%',
+                         zIndex: 9999,
+                         textAlign: 'center',
+                       }}>
+                          The background check feature on ITWalk.com  allows jobseekers to conduct background checks on companies to ensure credibility.
+
+                         </div>
+                       
+                     )
+                     }
                       </div>
                 <div>
                 <img className={`${Styles.Icon} ${Styles.JobSeekerprofileIcon
@@ -518,6 +571,31 @@ function Nav(props) {
                           }
                 </div>
                 <div className={Styles.empFullnavewrapperRS}>
+                <div ref={alertbgvRef} style={{position:"relative"}}>
+                      <NavLink onClick={()=>setbgvAlert((prev)=>prev=!prev)} className={` ${Styles.HomeSearchCandidate}`}>Background check</NavLink>
+
+                      {bgvAlert&& (
+                       
+                       <div  style={{
+                         width: '350px',
+                         padding: '20px',
+                         backgroundColor: 'rgb(40,4,99)',
+                         color: 'white',
+                         fontSize: '12px',
+                         borderRadius: '5px',
+                         position: 'absolute',
+                         top: '45px',
+                         right: '-108%',
+                         zIndex: 9999,
+                         textAlign: 'center',
+                       }}>
+                          The background check feature on ITWalk.com  allows jobseekers to conduct background checks on companies to ensure credibility.
+
+                         </div>
+                       
+                     )
+                     }
+                      </div>
                  <div>
                   <NavLink to="/Post-Help-Questions" className={Styles.PostHelpLink} style={navLinkStyles}>Post Help Questions</NavLink>
                  </div>
@@ -801,8 +879,126 @@ function Nav(props) {
                     {/* <div>
                       <NavLink to="/fraud-form" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Fraud </NavLink>
                       </div> */}
-                      <div>
-                      <NavLink to="/JobSeekerLogin" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Background check</NavLink>
+                      <div ref={alertbgvRef} style={{position:"relative"}}>
+                      <NavLink  onClick={bgvCheckClick}  className={` ${Styles.HomeSearchCandidate}`}  style={{ textDecoration: "none", border: "none", outline: "none" }}>Background check</NavLink>
+                      
+                      {PageLoader ?
+                                    <div style={{display:"flex", justifyContent:"center", position:"absolute", marginTop:"-30px", marginLeft:"30px"}}>
+                                    <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "50px" }} />
+                                    </div>: ""
+                                  } 
+
+                                  <div>
+                          {bgvAlert&& (
+                       
+                            <div  style={{
+                              width: '350px',
+                              padding: '20px',
+                              backgroundColor: 'rgb(40,4,99)',
+                              color: 'white',
+                              fontSize: '12px',
+                              borderRadius: '5px',
+                              position: 'absolute',
+                              top: '45px',
+                              left: '0%',
+                              zIndex: 9999,
+                              textAlign: 'center',
+                            }}>
+                               The background check feature on ITWalk.com allows both employers and jobseekers to verify profiles. Employers can assess a jobseeker’s background, while jobseekers can conduct background checks on companies to ensure credibility.<br></br><br></br>
+                               Are you a Jobseeker or an Employer?
+
+                               <div  style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"5px" }}>
+            <button
+              onClick={() => {navigate("/JobSeekerLogin");setbgvAlert(false)}}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+             JobSeeker
+            </button>
+            <button
+             onClick={() => {navigate("/EmployeeLogin");setbgvAlert(false)}}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              Employer
+            </button>
+          </div>
+                            </div>
+                            
+                          )
+                          }
+{/* {bgvAlert&&
+                         <>
+                            <div
+        style={{
+          width: '350px',
+          padding: '20px',
+          backgroundColor: 'rgb(40,4,99)',
+          color: 'white',
+          fontSize: '12px',
+          borderRadius: '5px',
+          position: 'fixed',
+          top: '22%',
+          left: '60%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 9999,
+          boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+          textAlign: 'center',
+        }}
+        
+        > 
+        
+        The background check feature on ITWalk.com allows both employers and jobseekers to verify profiles. Employers can assess a jobseeker’s background, while jobseekers can conduct background checks on companies to ensure credibility.<br></br><br></br>
+        Are you a Jobseeker or an Employer?
+          <div  style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"5px" }}>
+            <button
+              onClick={() => {navigate("/JobSeekerLogin");setbgvAlert(false)}}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+             JobSeeker
+            </button>
+            <button
+             onClick={() => {navigate("/EmployeeLogin");setbgvAlert(false)}}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              Employer
+            </button>
+          </div>
+        </div>
+                         </>
+
+                         } */}
+                          </div>        
                       </div>
                       <div>
                       <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Employer </NavLink>
