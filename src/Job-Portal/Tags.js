@@ -95,7 +95,7 @@ export const jobTags=[
   { value: 'EXPERIENCE', label: 'EXPERIENCE'},
 
   { value: '2 to 5 Yrs', label: '2 to 5 Yrs ' }, { value: '6 to 10 Yrs', label: '6 to 10 Yrs' },
-  { value: '11 to 15 Yrs', label: '11 to 15 Yrs' }, { value: '16 and above Yrs', label: '16 and above Yrs' },
+  { value: '11 to 15 Yrs', label: '11 to 15 Yrs' }, { value: '16 Yrs and above', label: '16 Yrs and above' },
   // let SALARY=[ 
     { value: 'SALARY', label: 'SALARY'},
 
