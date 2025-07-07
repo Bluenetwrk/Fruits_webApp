@@ -130,6 +130,28 @@ const [immage, setimmage] = useState()
             if (result.action == "registered") {
               // alert("Registered Successfully")
               setAlertVisible(true)
+
+               setname("");
+  setemail("");
+  setphoneNumber("");
+  setAadhar("");
+  setpanCard("");
+  setCompanyName("");
+  setCompanyContact("");
+  setCompanyGSTIN("");
+  setCompanyWebsite("");
+  setCompanyAddress("");
+  setCompanyEmail("");
+  setTypeofOrganisation("");
+  setPrimeryuserDesignation("");
+  setsecondaryuserDesignation("");
+  setSecondaryusername("");
+  setSecondaryuseremailid("");
+  setSecondaryusercontactnumber("");
+  setCompanyCIN("");
+  setAboutCompany("");
+  setEmailError("");
+  setCompEmailError("");
               }else if(result.action == "login"){
                 alert("Primary email id is already registered please try different email id")
 

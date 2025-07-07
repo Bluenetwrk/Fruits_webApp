@@ -1204,7 +1204,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                               year: "numeric",
                             }
                           )} </p> */}
-                        <div className={styles.JobTitleDateWrapper} style={{marginTop:"-16px", display:"flex",flexDirection:"column"}}>
+                        <div className={styles.JobTitleDateWrapper} style={{marginTop:"-16px", display:"flex",flexDirection:"row", alignItems:"center"}}>
                           <p className={styles.jobTitle} onClick={() => {
                             window.scrollTo({
                               top: 0
@@ -1401,10 +1401,9 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                         </div>
                         <p className={styles.jobDescriptionHeading}>Job Description:</p>
                         <p className={styles.jobDescription}>
-                          {
-    job.jobDescription? HTMLReactParser(job.jobDescription.slice(0,100).toString()) :""
-
-                          }
+                        {job.jobDescription 
+                              ? job.jobDescription.replace(/<[^>]+>/g, '').substring(0, 100) + "..." 
+                              : ""}
                           <span onClick={() => {
                             window.scrollTo({
                               top: 0

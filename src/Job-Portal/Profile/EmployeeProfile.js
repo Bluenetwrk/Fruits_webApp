@@ -10,6 +10,7 @@ import Arrowimage from '../img/icons8-arrow-left-48.png'
 import socketIO from 'socket.io-client';
 import Footer from '../Footer/Footer'
 import { Link, useNavigate, NavLink } from "react-router-dom";
+import HTMLReactParser from 'html-react-parser/lib/index'
 
 
 function EmployeeProfile(props) {
@@ -42,6 +43,7 @@ let navigate = useNavigate()
         await axios.get(`/EmpProfile/getProfile/${empId}`, {headers})
             .then((res) => {
                 let result = res.data.result
+                console.log("ll", result)
                 setProfileData([result])
         setPageLoader(false)
 
@@ -105,6 +107,8 @@ profileData.length>0?<button className={styles.updateProfile} onClick={updateEmp
                 <li className={styles.li}><b>Company Address</b></li>
                 <li className={styles.li}><b>Type of Organisation</b></li>
                 <li className={styles.li}><b>Account status</b></li>
+                <li className={styles.li}><b>About Company</b></li>
+                
                
             </ul>
     
@@ -132,9 +136,11 @@ profileData.length>0?<button className={styles.updateProfile} onClick={updateEmp
                          {item.CompanyGSTIN?     <li className={` ${styles.Hli}`}>{item.CompanyGSTIN}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated  CompanyGSTIN yet</li>}
                          {item.CompanyWebsite?   <li className={` ${styles.Hli}`}>{item.CompanyWebsite}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated  Company Website yet</li>}
                          {item.CompanyAddress?     <li className={` ${styles.Hli}`}>{item.CompanyAddress}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated CompanyAddress yet</li>}
-                         {item.TypeofOrganisation?   <li className={` ${styles.Hli}`}>{item.TypeofOrganisation}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated  Organisation Type yet</li>}                        
-                         {item.isApproved?   <li className={` ${styles.Hli}`} style={{color:"blue"}}>Congrats! Your account has been Approved, You can start posting Jobs</li>: <li className={` ${styles.Hli} ${styles.Nli}`} style={{fontStyle:"italic"}}>"Your account is in under Verfication process"</li>}                        
-                                                
+                         {item.TypeofOrganisation?   <li className={` ${styles.Hli}`}>{item.TypeofOrganisation}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated  Organisation Type yet</li>}  
+                                                 {item.isApproved?   <li className={` ${styles.Hli}`} style={{color:"blue"}}>Congrats! Your account has been Approved, You can start posting Jobs</li>: <li className={` ${styles.Hli} ${styles.Nli}`} style={{fontStyle:"italic"}}>"Your account is in under Verfication process"</li>}                        
+                                                 {item.AboutCompany?   <li className={` ${styles.Hli}`} style={{textAlign:"top"}}>{item.AboutCompany.replace(/<[^>]+>/g, '')}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated  Organisation Type yet</li>}                       
+                 
+
 {item.message?<p style={{width:"450%",  marginLeft:"-70%"}}><b> Message :</b><span style={{color:"red"}}> {item.message}! </span></p>:""}
                         
                        
@@ -170,6 +176,7 @@ profileData.length>0?<button className={styles.updateProfile} onClick={updateEmp
                                                 <span className={styles.span}> Company GSTIN: </span><br></br>
                                                 <span className={styles.span}> Company Website: </span><br></br>
                                                 <span className={styles.span}> Organisation Type: </span><br></br>
+                                                
                                             
                                             </div>
 
@@ -193,6 +200,7 @@ profileData.length>0?<button className={styles.updateProfile} onClick={updateEmp
                                         <span className={`${styles.span} ${styles.LastDown}`}> Company Address:  {job.CompanyAddress ? <span className={styles.span} style={{ color: "blue" }}  >{job.CompanyAddress} </span> : <span style={{ color: "red" }}>Not updated</span>}</span><br></br>
                                         <span className={`${styles.span} ${styles.LastDown}`}> Account Status:  {job.isApproved ? <span style={{ color: "blue" }}>Congrates! Your account has been Approved, Start posting Jobs</span> : <span style={{ color: "red" }}>"Your account is under Verfication process"</span>}</span><br></br>
                                         {job.message?<span style={{}} className={styles.span}> Message :<span style={{color:"red"}}> {job.message}! </span></span>:""}
+                                        <span className={`${styles.span} ${styles.LastDown}`}> About Company:  {job.AboutCompany ? <span className={styles.span} style={{ color: "blue" }}  >{item.AboutCompany.replace(/<[^>]+>/g, '')} </span> : <span style={{ color: "red" }}>Not updated</span>}</span><br></br>
                                         </div>
                                     </div>
                                 </>

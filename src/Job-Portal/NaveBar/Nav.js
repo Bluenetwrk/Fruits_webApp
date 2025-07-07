@@ -573,7 +573,7 @@ function Nav(props) {
                 <div className={Styles.empFullnavewrapperRS}>
                 <div ref={alertbgvRef} style={{position:"relative"}}>
                       <NavLink onClick={()=>setbgvAlert((prev)=>prev=!prev)} className={` ${Styles.HomeSearchCandidate}`}>Background check</NavLink>
-
+{/* 
                       {bgvAlert&& (
                        
                        <div  style={{
@@ -588,13 +588,13 @@ function Nav(props) {
                          right: '-108%',
                          zIndex: 9999,
                          textAlign: 'center',
-                       }}>
-                          The background check feature on ITWalk.com  allows jobseekers to conduct background checks on companies to ensure credibility.
+                       }}> */}
+                          {/* The background check feature on ITWalk.com  allows jobseekers to conduct background checks on companies to ensure credibility.
 
                          </div>
                        
                      )
-                     }
+                     } */}
                       </div>
                  <div>
                   <NavLink to="/Post-Help-Questions" className={Styles.PostHelpLink} style={navLinkStyles}>Post Help Questions</NavLink>

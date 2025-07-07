@@ -1134,7 +1134,7 @@ useEffect(() => {
                           )
                           } </p> */}
                           <div style={{marginTop:"-12px"}}>
-                        <div className={styles.JobTitleDateWrapper} style={{display:"flex", flexDirection:"column", gap:"1px"}}>
+                        <div className={styles.JobTitleDateWrapper} style={{display:"flex", flexDirection:"row", alignItems:"center", marginTop:"10px"}}>
                           <p className={styles.jobTitle} onClick={() => {
                             window.scrollTo({
                               top: 0
@@ -1275,9 +1275,11 @@ useEffect(() => {
 
                         <p className={styles.jobDescriptionHeading}>Job Description:</p>
                         <p className={styles.jobDescription}>
-                          {
-                            job.jobDescription ? HTMLReactParser(job.jobDescription.slice(0, 100).toString()) : ""
-                          }
+                          
+                             {job.jobDescription 
+                              ? job.jobDescription.replace(/<[^>]+>/g, '').substring(0, 100) + "..." 
+                              : ""}
+                          
                           <span onClick={() => {
                             window.scrollTo({
                               top: 0

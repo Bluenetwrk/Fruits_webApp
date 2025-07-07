@@ -620,7 +620,7 @@ const dropdownRef = useRef(null);
                 {jobs.length} </span>Jobs with following matching tags:
                 <span style={{ color: "blue" }}>{Active.toString()}</span></p>
               :
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest Candidates</p>
+              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Showing {firstIndex + 1} to {lastIndex} latest candidates</p>
             }
             <div className={styles.navigationWrapper}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
@@ -650,7 +650,7 @@ const dropdownRef = useRef(null);
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-              </select>  Candidates per page
+              </select>  candidates per page
             </div>
 
             
@@ -770,7 +770,7 @@ const dropdownRef = useRef(null);
               <option selected = {lastIndex === 25} value={25}>25</option>              
               <option selected = {lastIndex === 50} value={50}>50</option>              
               <option selected = {lastIndex === 100} value={100}>100</option>               */}
-            </select>  Candidates per page
+            </select>  candidates per page
           </div>
 
           <div className={styles.navigationWrapper}>
