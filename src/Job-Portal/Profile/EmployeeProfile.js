@@ -200,7 +200,7 @@ profileData.length>0?<button className={styles.updateProfile} onClick={updateEmp
                                         <span className={`${styles.span} ${styles.LastDown}`}> Company Address:  {job.CompanyAddress ? <span className={styles.span} style={{ color: "blue" }}  >{job.CompanyAddress} </span> : <span style={{ color: "red" }}>Not updated</span>}</span><br></br>
                                         <span className={`${styles.span} ${styles.LastDown}`}> Account Status:  {job.isApproved ? <span style={{ color: "blue" }}>Congrates! Your account has been Approved, Start posting Jobs</span> : <span style={{ color: "red" }}>"Your account is under Verfication process"</span>}</span><br></br>
                                         {job.message?<span style={{}} className={styles.span}> Message :<span style={{color:"red"}}> {job.message}! </span></span>:""}
-                                        <span className={`${styles.span} ${styles.LastDown}`}> About Company:  {job.AboutCompany ? <span className={styles.span} style={{ color: "blue" }}  >{item.AboutCompany.replace(/<[^>]+>/g, '')} </span> : <span style={{ color: "red" }}>Not updated</span>}</span><br></br>
+                                        <span className={`${styles.span} ${styles.LastDown}`}> About Company:  {job.AboutCompany ? <span className={styles.span} style={{ color: "blue" }}  >{job.AboutCompany.replace(/<[^>]+>/g, '')} </span> : <span style={{ color: "red" }}>Not updated</span>}</span><br></br>
                                         </div>
                                     </div>
                                 </>
