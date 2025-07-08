@@ -1141,7 +1141,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             {/* ..........Jobseeker Private component i,e can not search in URL......... */}
             <Route element={<StudPrivate />}>
             <Route path="/scanner" element={<QRScanner />} />
-            <Route path="/enter-cabin" element={<JobseekerEnterCabin />} />
+            <Route path="/enter-cabin/:driveId" element={<JobseekerEnterCabin />} />
               <Route path="/resumes" element={<AllResumes url={axios.defaults.baseURL}/>}></Route> 
               <Route path="/alljobs" element={<Jobs url={axios.defaults.baseURL} 
                showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
