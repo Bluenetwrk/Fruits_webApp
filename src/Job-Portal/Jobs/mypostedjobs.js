@@ -395,7 +395,7 @@ function handleRecordchange(e){
                       )}
                     </li>
                     <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation.toUpperCase()}</li>
-                    <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
+                    <li style={{wordBreak:"break-word"}} className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="Not disclosed" ||items.salaryRange===""  ? "Not Disclosed":<><span>&#8377;</span>{items.salaryRange} LPA</>}</li>
                     <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
                     <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li>
                     <li className={`${styles.li} ${styles.Action}`}>
@@ -527,8 +527,8 @@ myjobs.map((job, i) => {
         </span><br></br>
 
 
-        <div className={styles.ApplyPackage}>
-          <span className={styles.salaryRange} style={{ marginLeft: "10px" }}><span>&#8377;</span>{job.salaryRange}L</span>
+        <div className={styles.ApplyPackage}style={{width:"95%"}}>
+          <span className={styles.salaryRange} style={{ marginLeft: "10px" }}>{job.salaryRange==="Not disclosed" ||job.salaryRange===""  ? "Not Disclosed":<><span>&#8377;</span>{job.salaryRange} LPA</>}</span>
           <div className={styles.MobileAcbuttons}>
           <button onClick={() => { update(job._id) }} className={` ${styles.MobileUpdate}`}>update</button>
           <button onClick={() => { deletejob(job._id) }} className={` ${styles.MobileDelete}`}>delete</button>

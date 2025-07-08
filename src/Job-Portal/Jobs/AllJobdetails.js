@@ -522,7 +522,7 @@ const [PageLoader, setPageLoader] = useState(false)
   &nbsp;<span>Location : {jobs.jobLocation ? jobs.jobLocation.charAt(0).toUpperCase() + jobs.jobLocation.substring(1) : ''} &nbsp;|</span>
   &nbsp; <span>Job Type : {jobs.jobtype}</span>&nbsp; |  
   &nbsp; <span>Qualification : {jobs.qualification}</span>&nbsp; |  
-  &nbsp; <span>Salary :{jobs.salaryRange==="Not disclosed" ? "Not Disclosed":jobs.salaryRange+"LPA" }</span> 
+  &nbsp; <span>Salary :{jobs.salaryRange==="Not disclosed"||jobs.salaryRange==="" ? "Not Disclosed":jobs.salaryRange+"LPA" }</span> 
   
   
 <p>Skills : {jobs.skills} </p>
@@ -709,8 +709,8 @@ const [PageLoader, setPageLoader] = useState(false)
         </div>
 
             
-            <div className={styles.ApplyPackage}>
-            <p className={styles.salaryRange}><span>&#8377;</span>{jobs.salaryRange}LPA</p>        
+            <div className={styles.ApplyPackage} style={{justifyContent:"space-between"}}>
+            <p className={styles.salaryRange} style={{marginLeft:"16px"}} >{jobs.salaryRange==="Not disclosed" ||jobs.salaryRange===""  ? "Not Disclosed":<><span>&#8377;</span>{jobs.salaryRange} LPA</>}</p>        
 
 
             {
@@ -737,9 +737,9 @@ const [PageLoader, setPageLoader] = useState(false)
 
   // <div className={styles.ApplyPackage}>
   //      <span className={styles.salaryRange} style={{ marginLeft: "10px" }}><span>&#8377;</span>{job.salaryRange}</span>
-          <div className={Styles.MobileAcbuttons}>
+          <div className={Styles.MobileAcbuttons} style={{width:"auto", marginRight:"16px",marginLeft:"0px"}}>
           <button style={{marginTop:"-10px"}} onClick={() => { update(jobs._id) }} className={` ${Styles.MobileUpdate}`}>update</button>
-          <button style={{marginTop:"-10px"}} onClick={() => { deletejob(jobs._id) }} className={` ${Styles.MobileDelete}`}>delete</button>
+          <button style={{marginTop:"-10px",marginLeft:"4%"}} onClick={() => { deletejob(jobs._id) }} className={` ${Styles.MobileDelete}`}>delete</button>
                </div>
         // </div>
         :  jobs.SourceLink?
