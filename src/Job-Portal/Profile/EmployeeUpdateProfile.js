@@ -89,6 +89,7 @@ const [immage, setimmage] = useState()
           setCompanyAddress(result.CompanyAddress)
           setTypeofOrganisation(result.TypeofOrganisation)
           setCompanyEmail(result.CompanyEmail)
+          setAboutCompany(result.AboutCompany)
         }
       }).catch((err) => {
         alert("server issue occured", err)
@@ -592,10 +593,10 @@ const [immage, setimmage] = useState()
               <h4 className={styles.MobileName}>Company Website:</h4>
               <input maxLength="25" className={styles.Mobileinput} value={CompanyWebsite} onChange={(e) => { handleCompanyWebsite(e)}} type="text" />
             </label>
-            <label className={styles.MobileinputName}>
+            {/* <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>About us:</h4>
               <input maxLength="25" className={styles.Mobileinput} value={CompanyWebsite} onChange={(e) => { handleCompanyWebsite(e)}} type="text" />
-            </label>
+            </label> */}
 
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Company Address:</h4>
@@ -610,7 +611,7 @@ const [immage, setimmage] = useState()
 
             <label className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Secondary user Designation:</h4>
-              <input maxLength="90" className={styles.Mobileinput} value={PrimeryuserDesignation} onChange={(e) => {handleSecondaryuserDesignation(e) }} type="text" />
+              <input  maxLength="90" className={styles.Mobileinput} value={secondaryuserDesignation} onChange={(e) => {handleSecondaryuserDesignation(e) }} type="text" />
             </label>
 
             
@@ -637,6 +638,15 @@ const [immage, setimmage] = useState()
 
             </select>  
             {/* </div> */}
+
+            <div style={{margin:"10px"}}>
+            <label className={styles.MobileinputName}>
+              <h4 className={styles.MobileName}>About us:</h4>
+              <CustomTextEditor ref={editor} value={AboutCompany.toString()} onChange={setAboutCompany} />
+              {/* <input maxLength="25" className={styles.Mobileinput} value={CompanyWebsite} onChange={(e) => { handleCompanyWebsite(e)}} type="text" /> */}
+            </label>
+            </div>  
+
             <button className={styles.MobileSave} onClick={(e) => { saveUpdate(e) }}>Save</button>
             <button className={styles.Mobilecancel} onClick={() => { navigate(-1) }} >Cancel</button>                               
             </div>

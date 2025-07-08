@@ -905,7 +905,7 @@ useEffect(() => {
                         </li>
                         {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li> */}
                         <li className={`${styles.li} ${styles.Location}`}>{items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}</li>
-                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="Not disclosed" ? "Not Disclosed":items.salaryRange+"LPA" }</li>
+                        <li className={`${styles.li} ${styles.Package}`} style={{wordBreak:"break-word"}}>{items.salaryRange==="Not disclosed" ||items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"LPA" }</li>
                         {/* {console.log("Sdsd",items)} */}
                         <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Yrs</li>
                         {/* {console.log("qualifications - ",items)} */}
@@ -1190,7 +1190,7 @@ useEffect(() => {
                           <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skills}</span><br></br>
                         </div>
                         <div className={styles.homeApplyPackage}>
-                          <p className={styles.salaryRange}><span>&#8377;</span>{job.salaryRange==="Not disclosed" ? "Not Disclosed":job.salaryRange+"LPA"}</p>
+                          <p className={styles.salaryRange}>{job.salaryRange==="Not disclosed" ||job.salaryRange===""  ? "Not Disclosed":<><span>&#8377;</span>{job.salaryRange} LPA</>}</p>
                           {
                           
                             // <button className={styles.homeApplyMobileBtn} onClick={() => { applyforJob(job._id) }}><b>Apply</b></button>

@@ -276,16 +276,26 @@ function handleRecordchange(e){
 
 
 const [selectedDriveId, setSelectedDriveId] = useState(null);
+const [selectedHRDriveId, setSelectedHRDriveId] = useState(null);
 
 const handleGenerateQR = (driveId) => {
   setSelectedDriveId(prevId => (prevId === driveId ? null : driveId));
+};
+
+const handleHRGenerateQR = (driveId) => {
+  setSelectedHRDriveId(prevId => (prevId === driveId ? null : driveId));
 };
 
   const generateQRUrl = (driveId) => {
     return `${window.location.origin}/scan/drive/${driveId}`;
   };
 
+  const generateHRQRUrl = (driveId) => {
+    return `${window.location.origin}/enter-cabin/${driveId}`;
+  };
+
   const qrRefs = useRef({});
+
   const handleDownloadQR = (id) => {
   const qrNode = qrRefs.current[id];
   if (!qrNode) return;
@@ -301,6 +311,29 @@ const handleGenerateQR = (driveId) => {
       console.error("Failed to download QR code:", err);
     });
 };
+
+ const qrRef = useRef(null);
+  const [isQRVisible, setIsQRVisible] = useState(false);
+  const qrCodeValue = () =>{
+    return `${window.location.origin}/enter-cabin`;
+  }
+
+  const handleGenerateQRClick = () => {
+    setIsQRVisible(true);
+  };
+
+  const handleDownloadQRClick = async () => {
+    if (!qrRef.current) return;
+    try {
+      const dataUrl = await toPng(qrRef.current, { pixelRatio: 5 });
+      const link = document.createElement("a");
+      link.href = dataUrl;
+      link.download = "interview-qr.png";
+      link.click();
+    } catch (err) {
+      console.error("Failed to download QR code:", err);
+    }
+  };
 
   
   return (
@@ -459,11 +492,60 @@ const handleGenerateQR = (driveId) => {
 )}
 
 
+                    </li>
+                     <li className={`${styles.li} ${styles.Action}`}>
+      <button
+        className={`${styles.Abutton} ${styles.update}`}
+        onClick={() => { handleHRGenerateQR(items.id) }}
+      >
+        Generate QR
+      </button>
 
-                    </li>
-                    <li className={`${styles.li} ${styles.Action}`}>
-                        <button  className={`${styles.Abutton} ${styles.update}`}>Generate QR</button>
-                    </li>
+      {/* {isQRVisible && (
+        <div style={{ marginTop: "1rem",display:"flex", flexDirection:"column",alignItems:"center" }}>
+          <div
+            ref={qrRef}
+            style={{
+              background: "white",
+              padding: "16px",
+              display: "inline-block",
+              width: "100px",
+              height: "100px",
+            }}
+          >
+            <QRCode value={qrCodeValue()} size={160} style={{ width: "100px", height: "100px" }} />
+          </div>
+
+          <button
+            onClick={handleDownloadQRClick}
+            style={{ marginTop: "0.5rem", display: "block" }}
+            className={`${styles.Abutton} ${styles.update}`}
+          >
+            Download QR
+          </button>
+        </div>
+      )} */}
+
+{selectedHRDriveId === items.id && (
+  <div style={{display:"flex", flexDirection:"column",alignItems:"center"}}>
+
+    <div
+      ref={(el) => (qrRefs.current[items.id] = el)}
+      style={{ background: "white", padding: "16px", display: "inline-block" ,width:"100px", height:"100px"}}
+    >
+      <QRCode style={{width:"100px", height:"100px"}} value={generateHRQRUrl(items.id)} size={160} />
+    </div>
+
+    <button
+      onClick={() => handleDownloadQR(items.id)}
+      style={{ marginTop: "0.5rem", display: "block" }}
+      className={`${styles.Abutton} ${styles.update}`}
+    >
+      Download QR
+    </button>
+  </div>
+)}
+    </li>
                     <li className={`${styles.li} ${styles.Action}`}>
                         <button onClick={()=>navigate("/live-tv-display")}  className={`${styles.Abutton} ${styles.update}`}>Launch Live Display</button>
                     </li>
