@@ -22,12 +22,12 @@ export default function JobseekerEnterCabin() {
         return;
       }
 
-const drive = Databaseprofile.find((d) => d.id === driveId);
-      if (!drive?.companyName) {
-        alert("Please Scan the QR code.");
-        navigate("/");
-        return ;
-      }
+// const drive = Databaseprofile.find((d) => d.id === driveId);
+//       if (!drive?.companyName) {
+//         alert("Please Scan the QR code.");
+//         navigate("/");
+//         return ;
+//       }
 
 
     if (profile) {
