@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./LiveTvDisplay.css";
 import drivedesk from "../img/drivedesk.png";
+import { useNavigate } from "react-router-dom";
 
 const TOTAL_CABINS = 5;
 const TOTAL_TOKENS = 20;
@@ -67,9 +68,19 @@ const LiveTvDisplay = () => {
 
     return () => clearInterval(interval);
   }, [cabinQueues]);
-
+  const navigate = useNavigate()
   return (
     <div className="live-display">
+      <button className="jobdetailBackBtnMobile"
+            onClick={() => {
+               if (window.history.length > 1) {
+                  navigate(-1);
+                 } else {
+                    navigate('/'); 
+                  }
+             }}>
+                 Back
+          </button>
       <div className="header">
         <h1>LIVE TV DISPLAY</h1>
         <div className="date">{new Date().toLocaleString()}</div>

@@ -1043,7 +1043,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               </label>
 
               <label className={styles.inputName}>
-                <h4>Phone number:</h4>
+                <h4>Phone Number:</h4>
                 <input
         maxLength="13"
         className={styles.input}
@@ -1060,7 +1060,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               </label>
 
               <label className={styles.inputName}>
-                <h4>Aadhaar number: &nbsp;<span className={styles.hint}>(Optional)</span></h4>
+                <h4>Aadhaar Number: &nbsp;<span className={styles.hint}>(Optional)</span></h4>
                 <input maxLength="12" className={styles.input} value={Aadhar} onChange={(e) => { AadharhandleChange(e) }} type="number" />
               </label>
 
@@ -1749,7 +1749,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               </label>
 
               <label className={styles.MobileinputName}>
-                <h4 className={styles.MobileName}>Phone number:</h4>
+                <h4 className={styles.MobileName}>Phone Number:</h4>
                 <input maxLength="13" className={styles.Mobileinput}type="text"
         value={phoneNumber}
         onChange={handlePhoneNumber}
@@ -1761,7 +1761,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               </label>
 
               <label className={styles.MobileinputName}>
-                <h4 className={styles.MobileName}>Aadhaar number:</h4>
+                <h4 className={styles.MobileName}>Aadhaar Number:</h4>
                 <input maxLength="12" className={styles.Mobileinput} value={Aadhar} onChange={(e) => { AadharhandleChange(e) }} type="number" />
               </label>
 
