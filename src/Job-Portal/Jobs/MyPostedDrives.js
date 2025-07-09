@@ -361,14 +361,14 @@ const handleHRGenerateQR = (driveId) => {
     {/* <button className={styles.searchButton} onClick={() => {
           navigate("/Search-Candidate")
         }}>Search Candidate</button> */}
-        <p style={{marginLeft:"38%", marginTop:"30px", fontSize:"large", fontWeight:"bold"}}>My Posted Drives</p>
+        <p style={{marginLeft:"38%", marginTop:"30px", fontSize:"large", fontWeight:"bold"}}>My Registered WalkinDrives</p>
         </div>
 
         <div style={{display:"flex", justifyContent:"space-between"}}>
             {        nopageFilter?
     <p style={{fontWeight:400, marginLeft:"10px"}}>Displaying <span style={{color:"blue"}}>{Filtereredjobs}</span> from All Drives</p>
     :
-    <p style={{fontWeight:400, marginLeft:"10px"}}>showing {firstIndex+1} to {lastIndex} latest drives</p>
+    <p style={{fontWeight:400, marginLeft:"10px"}}>Showing {firstIndex+1} to {lastIndex} latest drives</p>
     }
 <div className={styles.navigationWrapper}>
   <button disabled={currentPage === 1} style={{display:"inline", margin:"5px"}} className={styles.navigation} onClick={firstPage}>
@@ -465,8 +465,8 @@ const handleHRGenerateQR = (driveId) => {
                     <li className={`${styles.li} ${styles.Skills}`} style={{wordBreak:"break-word"}}>{items.skillsRequired}</li>
                     <li className={`${styles.li} ${styles.Action}`}>
                       <div className={styles.Acbuttons}>
-                        <button onClick={() => { update(items._id) }} className={`${styles.Abutton} ${styles.update}`}>update</button>
-                        <button onClick={() => { deletejob(items._id) }} className={`${styles.Abutton} ${styles.delete}`}>delete</button>
+                        <button className={`${styles.Abutton} ${styles.update}`}>Update</button>
+                        <button className={`${styles.Abutton} ${styles.delete}`}>Delete</button>
                       </div>
                     </li>
                     <li style={{position:"relative"}} className={`${styles.li} ${styles.Action}`}>
@@ -603,7 +603,7 @@ const handleHRGenerateQR = (driveId) => {
       :
       <> 
 
-<p style={{marginLeft:"45%"}}>My Posted Drives</p>
+<p style={{marginLeft:"31%",fontWeight:"bold"}}>My Registered WalkinDrives</p>
 <button className={styles.searchButton} onClick={() => {
           navigate("/Search-Candidate")
         }}>Search Candidate</button>
@@ -678,8 +678,8 @@ myjobs.map((job, i) => {
         <div className={styles.ApplyPackage}>
           <span className={styles.salaryRange} style={{ marginLeft: "10px" }}><span>&#8377;</span>{job.salaryRange}L</span>
           <div className={styles.MobileAcbuttons}>
-          <button onClick={() => { update(job._id) }} className={` ${styles.MobileUpdate}`}>update</button>
-          <button onClick={() => { deletejob(job._id) }} className={` ${styles.MobileDelete}`}>delete</button>
+          <button className={` ${styles.MobileUpdate}`}>Update</button>
+          <button className={` ${styles.MobileDelete}`}>Delete</button>
                </div>
         </div>
     <p className={styles.jobDescriptionHeading}>Job Description:</p>
