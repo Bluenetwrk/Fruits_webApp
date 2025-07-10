@@ -122,7 +122,7 @@ function UpdatePostedBlogs() {
             // setQualification("")
             // setExperiance("")
             // setSkills("")
-            setSuccessMessage("Success!  successfully updated")
+            setSuccessMessage("Successfully Updated")
         }
         
     }).catch((err)=>{

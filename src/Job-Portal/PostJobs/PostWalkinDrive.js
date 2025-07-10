@@ -114,48 +114,49 @@ function PostWalkinDrive(props) {
 
 
     async function postJob() {
-        // let userid = JSON.parse(localStorage.getItem("EmpIdG"))
-        // const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
+        let userid = JSON.parse(localStorage.getItem("EmpIdG"))
+        const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
 
-        // let jobTitle = jobtitle.toLowerCase()
-        // let jobLocation = joblocation.toLowerCase()
-        // await axios.post("/jobpost/jobpost/", {
-        //     Logo, SourceLink, Source, empId, jobTitle, companyName,
-        //     jobDescription, jobtype, salaryRange, jobLocation, qualification, experiance, skills, Tags
-        // }, { headers })
-        //     .then((res) => {
-        //         let result = (res.data)
-        //         console.log(result)
-        //         if (result == "success") {
-        //             setJobTitle("")
-        //             setJobDescription("")
-        //             // setCompanyName("")
-        //             setJobtype("")
-        //             setJobLocation("")
-        //             setQualification("")
-        //             setSalaryRange("")
-        //             setJobLocation("")
-        //             setExperiance("")
-        //             setExperiance("")
-        //             setSkills("")
-        //             setTag([])
-        //             setSuccessMessage("Success! job successfully posted")
-        //         }
-        //         else if (result == "field are missing") {
-        //             setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")
-        //         }
-        //         // else if (result ==="server issue")
-        //         else
-        //             {
-        //             setSuccessMessage("something went wrong, Could not save your Jobs post")
-        //         }
-        //     }).catch((err) => {
-        //         alert("server issue occured", err)
-        //     })
-        // window.scrollTo({
-        //     top: 0,
-        //     behavior: "smooth"
-        // });
+      //  await axios.get("/walkinRoute/getwalkins",{headers})
+
+        await axios.post("walkinRoute/walkinpost", {
+           jobtitle, companyName, jobDescription,jobtype  ,jobTags, joblocation , qualification , salaryRange ,
+           experiance, skills , applyLink , selectedDate, venue  , selectedTime
+        },{headers})
+        
+            .then((res) => {
+                let result = (res.data)
+                console.log("result",result.data, res)
+                if (result == "success") {
+                    setJobTitle("")
+                    setJobDescription("")
+                    // setCompanyName("")
+                    setJobtype("")
+                    setJobLocation("")
+                    setQualification("")
+                    setSalaryRange("")
+                    setJobLocation("")
+                    setExperiance("")
+                    setExperiance("")
+                    setSkills("")
+                    setTag([])
+                    setSuccessMessage("Success! job successfully posted")
+                }
+                else if (result == "field are missing") {
+                    setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")
+                }
+                // else if (result ==="server issue")
+                else
+                    {
+                    setSuccessMessage("something went wrong, Could not save your Jobs post")
+                }
+            }).catch((err) => {
+                alert("server issue occured", err)
+            })
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     }
     
     function handlejobtitle(e){ 

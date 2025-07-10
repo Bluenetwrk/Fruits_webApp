@@ -361,7 +361,7 @@ const handleHRGenerateQR = (driveId) => {
     {/* <button className={styles.searchButton} onClick={() => {
           navigate("/Search-Candidate")
         }}>Search Candidate</button> */}
-        <p style={{marginLeft:"38%", marginTop:"30px", fontSize:"large", fontWeight:"bold"}}>My Registered WalkinDrives</p>
+        <p style={{marginLeft:"38%", marginTop:"30px", fontSize:"large", fontWeight:"bold"}}>My Posted Walkin Drives</p>
         </div>
 
         <div style={{display:"flex", justifyContent:"space-between"}}>
@@ -603,7 +603,7 @@ const handleHRGenerateQR = (driveId) => {
       :
       <> 
 
-<p style={{marginLeft:"31%",fontWeight:"bold"}}>My Registered WalkinDrives</p>
+<p style={{marginLeft:"31%",fontWeight:"bold"}}>My Posted Walkin Drives</p>
 <button className={styles.searchButton} onClick={() => {
           navigate("/Search-Candidate")
         }}>Search Candidate</button>

@@ -259,7 +259,48 @@
     min-height: 33px !important;
     height: 2px;
   }
+  .driveAlerti {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    margin-left:1px;
+    text-align: center;
+    right: -21%;
+    top: -1%;
+  }
   
+  .jobIdesc {
+    position: absolute;
+    top: 40px;
+    /* right: -128px; */
+    width: 89%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    z-index: 10;
+  }
+  .driveIdesc {
+    position: absolute;
+    top: 44px;
+      /* right: -128px; */
+    width:87%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    z-index: 10;
+  }
   .screen1 .jodit-placeholder {
     /* color: #d71212; */
     font-style: italic;
