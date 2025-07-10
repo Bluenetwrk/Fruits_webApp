@@ -163,7 +163,7 @@ function PostBlogs(props) {
                     setExperiance("")
                     setSkills("")
                     setTag([])
-                    setSuccessMessage("Success! successfully posted")
+                    setSuccessMessage("Successfully Posted")
                 }
                 else if (result == "field are missing") {
                     setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")

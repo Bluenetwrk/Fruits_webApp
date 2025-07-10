@@ -257,6 +257,11 @@ const [showTooltip, setShowTooltip] = useState(false);
       return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
+//     useEffect(()=>{
+// console.log(qualification)
+//     },[qualification])
+
+
     return (
         <>
                                         {/* <button className={Style.searchButton} onClick={() => {
@@ -396,17 +401,19 @@ const [showTooltip, setShowTooltip] = useState(false);
                                             <label><input name="Qualification" type="radio" checked={qualification === "B.E/Mech"} value="B.E/Mech" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(Mech) </label>
                                             <label><input name="Qualification" type="radio" checked={qualification === "B.E/ECE"} value="B.E/ECE" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(ECE) </label>
                                             <label><input name="Qualification" type="radio" checked={qualification === "B.E/IT"} value="B.E/IT" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(IT) </label>
+                                            <label><input name="Qualification" type="radio" checked={qualification === "Others"} value="Others" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />Others</label>
+
                                             {/* <label><input name="Qualification" type="radio" value="others" onClick={(e) => { setOthers((prev) => !prev); setQualification("") }} />others </label> */}
-                                            <label><input name="Qualification" type="radio" value="others" onChange={(e) => { setQualification(e.target.value); setOthers(true); }} />others </label>
+                                            {/* <label><input name="Qualification" type="radio" value="others" onChange={(e) => { setQualification(e.target.value); setOthers(true); }} />others </label> */}
                                              {/* {console.log("qualification",qualification)} */}
                                         </div>
-                                        {
+                                        {/* {
                                             others ?
                                                 <input className={Style.Otherinputbox} type="text" value={qualification} onChange={(e) => { setQualification(e.target.value) }} />
 
                                                 : ""
 
-                                        }
+                                        } */}
                                        <div style={{position:"relative"}} >
                                            <h4 className={Style.jobHeadline}>Salary Per Annum in Lakhs** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
                                            <input maxLength="3" className={Style.inputbox} type="number" value={salaryRange} onChange={(e) => { handleSalary(e) }} />

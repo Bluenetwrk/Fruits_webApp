@@ -417,6 +417,28 @@ const [immage, setimmage] = useState()
        );
      }, []);
 
+     const [showTooltip, setShowTooltip] = useState(false);
+         
+           const toggleTooltip = () => {
+             setShowTooltip((prev) => !prev);
+           };
+         
+           const tooltipRef = useRef(null);
+         
+           useEffect(() => {
+               const handleClickOutside = (event) => {
+                 if (
+                   tooltipRef.current && !tooltipRef.current.contains(event.target)
+                 ) {
+                   setShowTooltip(false);
+                 }
+                
+               };
+           
+               document.addEventListener("mousedown", handleClickOutside);
+               return () => document.removeEventListener("mousedown", handleClickOutside);
+             }, []);
+
   return (
     <>
 
@@ -517,13 +539,32 @@ const [immage, setimmage] = useState()
             </label>
 
             <label className={styles.inputName}>
-              <h4>Primary User Name : <span style={{fontWeight:800, fontSize:"medium"}} title='(primary user will have the admin right for your
-                company, primary user can add or remove multiple secondary user)'><i class="fa-solid fa-circle-info"></i></span></h4>
+              <div style={{position:"relative"}}>
+               <div style={{display:"flex", alignItems:"center"}}>
+              <div><h4>Primary User Name : </h4></div>
+                <div
+    ref={tooltipRef} // ⬅ attach ref to parent of both icon and tooltip
+    className={styles.driveAlerti}
+    onClick={toggleTooltip}
+  >
+    i
+    </div>
+    </div> 
+    {showTooltip && (
+      <div
+        className={styles.driveIdesc}
+      >
+       We primary user will have the admin right for your
+                company, primary user can add or remove multiple secondary user
+      </div>
+    )}
+    
+  </div>
               <input maxLength="40" className={styles.input}  value={name}  onChange={(e) => { setname(e.target.value) }} type="text" />
             </label>
 
             <label className={styles.inputName}>
-              <h4>User Email Id:</h4>
+              <h4> Primary User Email Id:</h4>
               <input maxLength="35" className={styles.input} value={email}  onChange={(e) => { handlesetemail(e) }} type="text" />
               <div style={{color:"red", marginLeft:"5%"}}>{emailError}</div>
             </label>
@@ -594,8 +635,26 @@ const [immage, setimmage] = useState()
           <>
            
            <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Primary User Name : <span style={{fontWeight:800, fontSize:"medium"}} title='(primary user will have the admin right for your
-                company, primary user can add or remove multiple secondary user)'><i class="fa-solid fa-circle-info"></i></span></h4>
+           <div style={{position:"relative"}}>
+           <div style={{display:"flex", alignItems:"center"}}>
+             <div><h4 className={styles.MobileName}>Primary User Name :</h4></div> 
+              <div
+    ref={tooltipRef} // ⬅ attach ref to parent of both icon and tooltip
+    className={styles.driveAlerti}
+    onClick={toggleTooltip}
+  >
+    i
+    </div>
+    </div> 
+    {showTooltip && (
+      <div
+        className={styles.driveIdesc} style={{left:"4px"}}
+      >
+       We primary user will have the admin right for your
+                company, primary user can add or remove multiple secondary user
+      </div>
+    )}
+     </div>
               <input maxLength="40" className={styles.Mobileinput}  value={name}  onChange={(e) => { setname(e.target.value) }} type="text" />
             </label>
 

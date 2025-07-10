@@ -362,7 +362,7 @@ const handleStart = () => {
   return (
     <>
 
-<p className={styles.h3} style={{ textAlign: "center" }}><b>My applied WalkinDrives</b></p>
+<p className={styles.h3} style={{ textAlign: "center" }}><b>My Registered WalkinDrives</b></p>
 {/* <p className={styles.h3}><b>You’ve successfully submitted applications for {MyAppliedjob.lengths} positions.Stay tuned for updates.  </b></p> */}
 
       {/* <button onClick={()=>{navigate("/MyCareer-Applied-Jobs")}} style={{ backgroundColor:"rgb(40, 4, 99)",
@@ -376,7 +376,7 @@ const handleStart = () => {
             {nopageFilter ?
               <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>{Filtereredjobs}</span> from All Jobs</p>
               :
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>showing {firstIndex + 1} to {lastIndex} latest drives</p>
+              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Showing {firstIndex + 1} to {lastIndex} latest drives</p>
             }
             <div className={styles.navigationWrapper}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
