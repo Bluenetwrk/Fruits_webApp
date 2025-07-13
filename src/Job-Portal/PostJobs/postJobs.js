@@ -301,7 +301,7 @@ const [showTooltip, setShowTooltip] = useState(false);
                                 :""
                                     } */}
                                     
-                                        <p className={Style.jobHeadline}>Company Name** &nbsp;<span className={Style.hint}>(Company name cannot be edited ,taken automatically from the profile section)</span></p>
+                                        <p className={Style.jobHeadline}>Company Name** &nbsp;<span className={Style.hint}>(The company name is auto-populated from your profile and cannot be changed.)</span></p>
                                         <input maxLength="30" className={Style.inputbox} type="text" value={companyName} disabled />
 
                                          <h4 className={Style.jobHeadline}  >Source Link</h4>
