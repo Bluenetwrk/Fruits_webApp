@@ -116,8 +116,12 @@ function PostWalkinDrive(props) {
     async function postJob() {
         let userid = JSON.parse(localStorage.getItem("EmpIdG"))
         const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
+       console.log("headers: ",headers)
+
 
       //  await axios.get("/walkinRoute/getwalkins",{headers})
+
+      //  let venues="banlgore"
 
         await axios.post("walkinRoute/walkinpost", {
            jobtitle, companyName, jobDescription,jobtype  ,jobTags, joblocation , qualification , salaryRange ,
@@ -125,8 +129,9 @@ function PostWalkinDrive(props) {
         },{headers})
         
             .then((res) => {
+              console.log("response", res)
                 let result = (res.data)
-                console.log("result",result.data, res)
+                
                 if (result == "success") {
                     setJobTitle("")
                     setJobDescription("")
@@ -438,11 +443,11 @@ const [selectedTime, setSelectedTime] = useState("");
                               <div className={Style.driveThirdRow}>
                                 <div className={Style.dirvesubContainer} >
                                     <h4 className={Style.heading}>Salary Per Annum in Lakhs** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
-                                    <input className={Style.driveinput} style={{width:"32px"}} maxLength="3" type="number" value={salaryRange} onChange={(e) => { handleSalary(e); handleRadioTags(e.target.value) }} />
+                                    <input className={Style.driveinput} style={{width:"32px"}} maxLength="3" type="number" value={salaryRange} onChange={(e) => { handleSalary(e); }} />
                                 </div>
                                 <div className={Style.dirvesubContainer}>
                                     <h4 className={Style.heading} >Experience Needed** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
-                                    <input className={Style.driveinput}style={{width:"32px"}} maxLength="3" type="number" value={experiance} onChange={(e) => { handleExperiance(e); handleExpButton(e.target.value) }} />
+                                    <input className={Style.driveinput}style={{width:"32px"}} maxLength="3" type="number" value={experiance} onChange={(e) => { handleExperiance(e); }} />
 
                                 </div>
                               </div>
