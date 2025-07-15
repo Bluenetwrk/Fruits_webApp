@@ -30,14 +30,14 @@ function PostWalkinDrive(props) {
     // }, [])
 
     let empId = JSON.parse(localStorage.getItem("EmpIdG"))
-    const [jobtitle, setJobTitle] = useState("")
+    const [jobTitle, setJobTitle] = useState("")
     const [Source, setSource] = useState("")
     const [SourceLink, setSourceLink] = useState("")
     const [companyName, setCompanyName] = useState("")
     const [jobDescription, setJobDescription] = useState("")
     const [jobtype, setJobtype] = useState("")
     const [salaryRange, setSalaryRange] = useState("")
-    const [joblocation, setJobLocation] = useState("")
+    const [jobLocation, setJobLocation] = useState("")
     const [qualification, setQualification] = useState("")
     const [experiance, setExperiance] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
@@ -122,10 +122,14 @@ function PostWalkinDrive(props) {
       //  await axios.get("/walkinRoute/getwalkins",{headers})
 
       //  let venues="banlgore"
+      // let time = new Date(`${selectedDate}T${selectedtime}:00`).toISOString();
+      const driveDate= selectedDate
+      const time=selectedtime
 
+console.log(jobDescription,companyName,experiance,jobLocation,venue,time)
         await axios.post("walkinRoute/walkinpost", {
-           jobtitle, companyName, jobDescription,jobtype  ,jobTags, joblocation , qualification , salaryRange ,
-           experiance, skills , applyLink , selectedDate, venue  , selectedTime
+           empId,jobTitle, companyName, jobDescription,jobtype  ,jobTags, jobLocation , qualification , salaryRange ,
+           experiance, skills , applyLink , selectedDate, venue  ,driveDate, time
         },{headers})
         
             .then((res) => {
@@ -145,7 +149,7 @@ function PostWalkinDrive(props) {
                     setExperiance("")
                     setSkills("")
                     setTag([])
-                    setSuccessMessage("Success! job successfully posted")
+                    setSuccessMessage("Success! Successfully posted")
                 }
                 else if (result == "field are missing") {
                     setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")
@@ -233,7 +237,7 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
 }
 
 const [selectedDate, setSelectedDate] = useState("");
-const [selectedTime, setSelectedTime] = useState("");
+const [selectedtime, setselectedtime] = useState("");
 
 
   const venueInputRef = useRef(null);
@@ -281,7 +285,7 @@ const [selectedTime, setSelectedTime] = useState("");
                   ? `${place.name}, ${place.formatted_address}`
                   : place.formatted_address;
     
-              setVenue(displayValue);
+              setVenue(place.formatted_address);
             }
           });
     
@@ -329,12 +333,12 @@ const [selectedTime, setSelectedTime] = useState("");
                                <h2  >Post Walkin Drive</h2> 
                                {/* <div className={Style.dirveContainer}> */}
 
-                               <p className={successMessage === "Success! job successfully posted" ?
+                               <p className={successMessage === "Success! job Successfully posted" ?
                                             Style.successmessage : Style.errormessage}>{successMessage} </p>
                                <div className={Style.dirvefirstRow}>
                                   <div className={Style.dirvesubContainer}>
                                     <h4 className={Style.heading}>Job title**</h4>
-                                    <input className={Style.driveinput} maxLength="100"  type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />          
+                                    <input className={Style.driveinput} maxLength="100"  type="text" value={jobTitle} onChange={(e) => { handlejobtitle(e) }} />          
                                   </div>
                                  <div className={Style.dirvesubContainer}>
                                    <h4 className={Style.heading}>Company Name**</h4>
@@ -410,7 +414,7 @@ const [selectedTime, setSelectedTime] = useState("");
     
 
                                         <div style={{ marginTop: "-10px" }}>
-                                            <label><input name="Location" type="radio" checked={joblocation === "Bangalore"} value="Bangalore" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} />Bangalore </label>
+                                            <label><input name="Location" type="radio" checked={jobLocation === "Bangalore"} value="Bangalore" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} />Bangalore </label>
                                       </div>
 
                                       
@@ -494,8 +498,8 @@ const [selectedTime, setSelectedTime] = useState("");
                                          <input
                                          className={Style.DriveDate} 
                                            type="time" 
-                                           value={selectedTime} 
-                                           onChange={(e) => setSelectedTime(e.target.value)} 
+                                           value={selectedtime} 
+                                           onChange={(e) => setselectedtime(e.target.value)} 
                                          />
                                          
                                        </div>

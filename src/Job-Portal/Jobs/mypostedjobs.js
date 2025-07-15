@@ -72,7 +72,7 @@ function JoppostedByEmp(props) {
   // .................delete function............
   async function deletejob(deleteid) {
     let userid = JSON.parse(localStorage.getItem("EmpIdG"))
-    const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("EmpLog"))) };
+    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
     Swal.fire({
       title: 'Are you sure?',
       // icon: 'warning',
