@@ -56,6 +56,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
 
   const [NotFound, setNotFound] = useState("")
   const screenSize = useScreenSize();
+  const [allWalkindrive,setAllWalkinDrive] = useState([])
 
   let JobLocationTags = ["Bangalore"]
 
@@ -103,31 +104,32 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
   }
 
   async function getjobs() {
-    setCount(1)
-    setActive([])
-    setJobTagsIds([])
-
     setPageLoader(true)
-    setNoPageFilter(false)
+    let userid = JSON.parse(localStorage.getItem("EmpIdG"))
+    // const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
     // await axios.get("/jobpost/getHomejobs", { headers })
-    await axios.get(`/jobpost/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
+    await axios.get("/walkinRoute/allactivewalkins",{headers})
       .then((res) => {
         let result = (res.data)
+        console.log(result)
         gettotalcount()
-
+// console.log(result)
         let sortedate = result.sort(function (a, b) {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
       
-        setJobs(sortedate)
-        setFilterjobs(sortedate)
+        setAllWalkinDrive(sortedate)
         setPageLoader(false)
       }).catch((err) => {
         console.log(err)
         alert("some thing went wrong")
       })
   }
+
+  useEffect(()=>{
+    console.log(allWalkindrive)
+  },[allWalkindrive])
 
   useEffect(() => {
     if (jobTagsIds.length < 1) {
@@ -828,16 +830,28 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
               : ""
             }
             {
-              sortedFilteredDriveJobs.length > 0 ?
-                sortedFilteredDriveJobs
+              allWalkindrive.length > 0 ?
+                allWalkindrive
                   .map((items, i) => {
                     return (
 
                       <ul className={styles.ul} key={i}>
                         {/* } */}
 
-                        <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/DriveDetails/${btoa(items.id)}`, { state: { driveItem: items } })} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}  >{items.jobTitle}</li>
-                        <li className={`${styles.li} ${styles.Source}`} style={{width:"9.5%"}} >{items.driveDate}/{items.driveTime}</li>
+                        <li className={`${styles.li} ${styles.Jtitle}`}  style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}  >{items.jobTitle}</li>
+                        <li className={`${styles.li} ${styles.Source}`} style={{width:"9.5%"}} >
+
+                        {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.time}
+                          {/* <p>
+  {new Date(items.time).toLocaleDateString("en-IN")} /{" "}
+  {new Date(items.time).toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true, 
+  })}
+</p> */}
+
+</li>
 
                         {
                           !items.Source ?
@@ -858,7 +872,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
 
                        
 
-                        <li className={`${styles.li} ${styles.JobType}`}>{items.jobType}</li>
+                        <li className={`${styles.li} ${styles.JobType}`}>{items.jobtype}</li>
 
                         
                         {/* <li className={`${styles.li} ${styles.date}`}> */}
@@ -873,11 +887,11 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                           {/* {items.driveDate}
                         </li> */}
                         {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocatin[0].toUpperCase() + items.jobLocation.slice(1)}</li> */}
-                        <li className={`${styles.li} ${styles.Location}`}>{items.location}</li>
-                        <li className={`${styles.li} ${styles.Package}`}>{items.ctc}</li>
-                        <li className={`${styles.li} ${styles.experiance}`}>{items.experience}</li>
+                        <li className={`${styles.li} ${styles.Location}`}>{items.venue}</li>
+                        <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="Not disclosed" ||items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"LPA" }</li>
+                        <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Yrs</li>
                         <li className={`${styles.li} ${styles.qualification}`}>{items.qualification}</li>
-                        <li className={`${styles.li} ${styles.Skills}`}>{items.skillsRequired}
+                        <li className={`${styles.li} ${styles.Skills}`}>{items.skills}
                         </li>
 
                         <li className={`${styles.li} ${styles.Apply}`}>
@@ -888,7 +902,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
 
                             //   : */}
                             
-                                <button className={styles.applyRegisterButton} onClick={()=>{applyForDrive(items.link)}}>Register</button>
+                                <button className={styles.applyRegisterButton}>Register</button>
 
                          
                         </li>

@@ -321,9 +321,10 @@
     color: white;
     font-weight: bold;
     font-size: medium;
-    width:40%;
-    border:1px solid rgb(40, 4, 99);
+    width: 62%;
+    border: 1px solid rgb(40, 4, 99);
     cursor: pointer;
+    height: 33px;
 }
 
 .text {

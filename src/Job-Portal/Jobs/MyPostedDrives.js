@@ -14,18 +14,19 @@ import HTMLReactParser from 'html-react-parser'
 import { dummyDrives } from '../QRCode/dummyDrives';
 import QRCode from 'react-qr-code';
 import { toPng } from 'html-to-image';
+import AllWalkinDrive from './AllWalkinDrive';
 
 
 
 
 function MyPostedDrives(props) {
-  useEffect( ()=>{    
-    const socket = socketIO.connect(props.url,{
-      auth:{
-        token: JSON.parse(localStorage.getItem("EmpIdG"))
-      }
-    });
-  },[])
+  // useEffect( ()=>{    
+  //   const socket = socketIO.connect(props.url,{
+  //     auth:{
+  //       token: JSON.parse(localStorage.getItem("EmpIdG"))
+  //     }
+  //   });
+  // },[])
 
   // let location = useLocation()
   // let empName= location.state.gserid 
@@ -46,19 +47,24 @@ function MyPostedDrives(props) {
 
   let empId = JSON.parse(localStorage.getItem("EmpIdG"))
 
+ const [allWalkindrive,setAllWalkinDrive] = useState([])
   async function getjobs() {
     let userid = JSON.parse(localStorage.getItem("EmpIdG"))
     const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("EmpLog"))) };
     setPageLoader(true)
     setTimeout(async () => {
-      await axios.get(`/jobpost/getPostedjobs/${empId}`, {headers})
+      await axios.get(`/walkinRoute/getPostedwalkins/${empId}`, {headers})
+
         .then((res) => {
           let result = (res.data)
+          // console.log(result)
+          
           let sortedate = result.sort(function (a, b) {
             return new Date(b.createdAt) - new Date(a.createdAt);
           });
-          setMyjobs(sortedate)
-          setmyjobsforFilter(sortedate)
+         
+   setAllWalkinDrive(sortedate)
+  // console.log(allWalkinDrive)
     setPageLoader(false)
           if (res.data.length == 0) {
             setNoJobFound("Loading....")
@@ -75,8 +81,8 @@ function MyPostedDrives(props) {
   }, [])
   // .................delete function............
   async function deletejob(deleteid) {
-    let userid = JSON.parse(localStorage.getItem("EmpIdG"))
-    const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("EmpLog"))) };
+    
+    const headers = { authorization: 'BlueItImpulseWalkinIn' };
     Swal.fire({
       title: 'Are you sure?',
       // icon: 'warning',
@@ -91,8 +97,9 @@ function MyPostedDrives(props) {
       confirmButtonText: 'delete!'
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`/jobpost/deleteProduct/${deleteid}`, {headers})
+        axios.delete(`/walkinRoute/deletewalkin/${deleteid}`, {headers})
           .then((res) => {
+            console.log(res)
             getjobs()
           })
           .catch((err) => { alert("server error occured") })
@@ -400,11 +407,11 @@ const handleHRGenerateQR = (driveId) => {
             <li className={styles.li}><b>Company Name</b></li>
             <li className={`${styles.li} ${styles.Jtitle}`}><b>Job Title</b></li>
             {/* <li className={`${styles.li} ${styles.liDescription}`}><b>Job description</b></li> */}
-            <li className={`${styles.li} ${styles.Pdate}`}><b>Drive Date</b>
-            <p className={styles.arrowWrapper}>
+            <li className={`${styles.li} ${styles.Pdate}`}><b>Drive Date/Drive Time</b>
+            {/* <p className={styles.arrowWrapper}>
                <i onClick={sortbyNewjobs} className={`${styles.arrow} ${styles.up}`} ></i>
                 <i onClick={sortbyOldjobs} className={`${styles.arrow} ${styles.down}`}></i>
-            </p>
+            </p> */}
             </li>
             <li className={`${styles.li} ${styles.Location}`}><b>Location</b></li>
 
@@ -436,9 +443,9 @@ const handleHRGenerateQR = (driveId) => {
               </div>
             </>: <>
           {
-            dummyDrives?.length > 0 ?
+            allWalkindrive?.length > 0 ?
 
-            dummyDrives.map((items, i) => {
+            allWalkindrive.map((items, i) => {
                 return (
 
                   <ul className={styles.ul} key={i}>
@@ -449,24 +456,30 @@ const handleHRGenerateQR = (driveId) => {
                       {items.companyName}
                       </li>
 
-                    <li className={`${styles.li} ${styles.Jtitle}`} style={{ color: "blue", cursor:"pointer" }} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})}>{items.jobTitle}</li>
+                    <li className={`${styles.li} ${styles.Jtitle}`} style={{ color: "blue", cursor:"pointer" }} >{items.jobTitle}</li>
                     {/* <li className={`${styles.li} ${styles.liDescription}`}> 
                     {items.jobDescription? HTMLReactParser(items.jobDescription.toString()) :""}
                       <span style={{ color: "blue", cursor:"pointer" }} onClick={() => { navigate(`/Jobdetails/${btoa(items._id)}`) }} >...see more</span>
                     </li> */}
                     <li className={`${styles.li} ${styles.Pdate}`}>
-                      { items.postedDate
-  
-                      }
+                    {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.time}
+                    {/* <p>
+  {new Date(items.time).toLocaleDateString("en-IN")} /{" "}
+  {new Date(items.time).toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true, 
+  })}
+</p> */}
                     </li>
-                    <li className={`${styles.li} ${styles.Location}`}>{items.location}</li>
-                    <li className={`${styles.li} ${styles.Package}`}>{items.ctc}</li>
-                    <li className={`${styles.li} ${styles.experiance}`}>{items.experience}</li>
-                    <li className={`${styles.li} ${styles.Skills}`} style={{wordBreak:"break-word"}}>{items.skillsRequired}</li>
+                    <li className={`${styles.li} ${styles.Location}`}>{items.venue}</li>
+                    <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}</li>
+                    <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}</li>
+                    <li className={`${styles.li} ${styles.Skills}`} style={{wordBreak:"break-word"}}>{items.skills}</li>
                     <li className={`${styles.li} ${styles.Action}`}>
                       <div className={styles.Acbuttons}>
                         <button className={`${styles.Abutton} ${styles.update}`}>Update</button>
-                        <button className={`${styles.Abutton} ${styles.delete}`}>Delete</button>
+                        <button onClick={()=>{deletejob(items._id)}} className={`${styles.Abutton} ${styles.delete}`}>Delete</button>
                       </div>
                     </li>
                     <li style={{position:"relative"}} className={`${styles.li} ${styles.Action}`}>
@@ -550,15 +563,15 @@ const handleHRGenerateQR = (driveId) => {
                         <button onClick={()=>navigate("/live-tv-display")}  className={`${styles.Abutton} ${styles.update}`}>Launch Live Display</button>
                     </li>
                     <li className={`${styles.li} ${styles.NuApplied}`}>
-                      {items.numberOfApplicants> 0 ?
+                      {/* {items.numberOfApplicants> 0 ?
              
                         // <button className={`${styles.viewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(items._id)) }}>{items.numberOfApplicants}</button>
-                        <button className={`${styles.viewButton}`}>{items.numberOfApplicants}</button>
+                        // <button className={`${styles.viewButton}`}>{items.numberOfApplicants}</button>
 
                         :
                         <button className={`${styles.viewButton}`} >{items.numberOfApplicants}</button>
 
-                      } 
+                      }  */}
                     </li>
                   </ul>
                 )
