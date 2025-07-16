@@ -478,7 +478,7 @@ const handleHRGenerateQR = (driveId) => {
                     <li className={`${styles.li} ${styles.Skills}`} style={{wordBreak:"break-word"}}>{items.skills}</li>
                     <li className={`${styles.li} ${styles.Action}`}>
                       <div className={styles.Acbuttons}>
-                        <button className={`${styles.Abutton} ${styles.update}`}>Update</button>
+                        <button onClick={()=>{navigate("/updatedposted-Drives", { state: { getId: items._id } })}} className={`${styles.Abutton} ${styles.update}`}>Update</button>
                         <button onClick={()=>{deletejob(items._id)}} className={`${styles.Abutton} ${styles.delete}`}>Delete</button>
                       </div>
                     </li>

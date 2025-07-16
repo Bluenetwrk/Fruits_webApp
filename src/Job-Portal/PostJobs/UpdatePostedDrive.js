@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { useEffect, useState } from 'react'
 import axios from "axios"
 import Companylogo from "../img/logo.png"
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Footer from '../Footer/Footer'
 import JoditEditor from 'jodit-react'
 import HTMLReactParser from 'html-react-parser'
@@ -17,7 +17,7 @@ import CustomTextEditor from '../Editor/CustomTextEditor'
 
 // import CreatableSelect  from 'react-select/creatable';
 
-function PostWalkinDrive(props) {
+function UpdatePostedDrive(props) {
     const screenSize = useScreenSize();
 
     const editor=useRef(null)
@@ -54,7 +54,7 @@ function PostWalkinDrive(props) {
 
     const [skills, setSkills] = useState("")
     const [applyLink, setApplyLink] = useState("")
-    const [concent, setconcent] = useState(true)
+    const [concent, setconcent] = useState(false)
 
     function handleSalary(e){
         const sanitizedValue = e.target.value.replace(/[A-Za-z]/g, '');
@@ -112,48 +112,74 @@ function PostWalkinDrive(props) {
         getLogo()
     }, [])
 
-
+ const location = useLocation()
+  let Jobid = location.state.getId
     async function postJob() {
-        let userid = JSON.parse(localStorage.getItem("EmpIdG"))
-        const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
-       console.log("headers: ",headers)
+        const headers = { authorization: 'BlueItImpulseWalkinIn' };
 
+        await axios.get(`walkinRoute/getwalkins/${Jobid}`,{headers})
+        
+            .then((res) => {
+              console.log("response", res, Jobid)
+                let result = (res.data)
+                console.log(result)
+                if (result) {
+                    setJobTitle(result.jobTitle)
 
-      //  await axios.get("/walkinRoute/getwalkins",{headers})
+                   setCompanyName(result.CompanyName)
+                   setJobDescription(result.jobDescription)
+                    setJobtype(result.jobtype)
+                    setJobLocation(result.jobLocation)
+                    setQualification(result.qualification)
+                    setSalaryRange(result.salaryRange)
+                    setExperiance(result.experiance)
+                    setSkills(result.skills)
+                    setVenue(result.venue)
+                    setSelectedDate(new Date(result.driveDate).toISOString().split('T')[0]);
 
-      //  let venues="banlgore"
-      // let time = new Date(`${selectedDate}T${selectedtime}:00`).toISOString();
-      const driveDate= selectedDate
-      const time=selectedtime
+                    setselectedtime(result.time)
 
-console.log(jobDescription,companyName,experiance,jobLocation,venue,time)
-        await axios.post("walkinRoute/walkinpost", {
-           empId,jobTitle, companyName, jobDescription,jobtype  ,jobTags, jobLocation , qualification , salaryRange ,
-           experiance, skills , applyLink , selectedDate, venue  ,driveDate, time
+                }
+                else if (result == "field are missing") {
+                    setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")
+                }
+                // else if (result ==="server issue")
+                else
+                    {
+                    setSuccessMessage("something went wrong, Could not save your Jobs post")
+                }
+            }).catch((err) => {
+                alert("server issue occured", err)
+            })
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    useEffect(()=>{
+        postJob()
+    },[])
+
+    async function updateDrive() {
+        const headers = { authorization: 'BlueItImpulseWalkinIn' };
+
+        const driveDate= selectedDate
+        const time=selectedtime
+
+        await axios.put(`walkinRoute/updatPostedwalkin/${Jobid}`,{
+             empId,jobTitle, companyName, jobDescription,jobtype  ,jobTags, jobLocation , qualification , salaryRange ,
+                       experiance, skills , applyLink , selectedDate, venue  ,driveDate, time
         },{headers})
         
             .then((res) => {
-              console.log("response", res)
+              console.log("response", res, Jobid)
                 let result = (res.data)
-                
-                if (result == "success") {
-                  setJobTitle("")
+                console.log(result)
+                if(result=="success"){
 
-                  setCompanyName("")
-                  setJobDescription("")
-                   setJobtype("")
-                   setJobLocation("")
-                   setQualification("")
-                   setSalaryRange("")
-                   setExperiance("")
-                   setSkills("")
-                   setVenue("")
-                   setSelectedDate("");
+                    setSuccessMessage("Successfully Updated")
 
-                   setselectedtime("")
-                    setTag([])
-                    // setconcent((prev)=>!prev)
-                    setSuccessMessage("Success! Successfully posted")
                 }
                 else if (result == "field are missing") {
                     setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")
@@ -245,7 +271,7 @@ const [selectedtime, setselectedtime] = useState("");
 
 
   const venueInputRef = useRef(null);
-  const[venue, setVenue]=useState("Banglore");
+  const[venue, setVenue]=useState("");
     // useEffect(() => {
     //   if (venueInputRef.current && !venueInputRef.current.autocomplete) {
     //     const autocomplete = new window.google.maps.places.Autocomplete(venueInputRef.current, {
@@ -334,11 +360,12 @@ const [selectedtime, setselectedtime] = useState("");
 
                             <div key={i} style={{display:"flex", justifyContent:"center"}}>
                                 <div className={Style.dirveContainer}>
-                               <h2  >Post Walkin Drive</h2> 
+                               <h2  >Update Walkin Drive</h2> 
                                {/* <div className={Style.dirveContainer}> */}
 
-                               <p className={successMessage === "Success! Successfully posted" ?
+                               <p className={successMessage === "Successfully Updated" ?
                                             Style.successmessage : Style.errormessage}>{successMessage} </p>
+
                                <div className={Style.dirvefirstRow}>
                                   <div className={Style.dirvesubContainer}>
                                     <h4 className={Style.heading}>Job title**</h4>
@@ -507,15 +534,15 @@ const [selectedtime, setselectedtime] = useState("");
                                          />
                                          
                                        </div>
-                                       <div>
-<p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>
+                                       {/* <div>
+        <p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>
     I have read the terms and conditions of ITwalkin.com and I agree to all the 
-     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> Terms and Conditions</span> before posting the jobs </p>
+     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> Terms and Conditions</span> before posting the jobs </p> */}
 
-     </div>
+     {/* </div> */}
      {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
 <div style={{display:"flex", justifyContent:"center" }}>
-<button style={{width:"130px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit</button>
+<button style={{width:"130px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={updateDrive}>Update</button>
 </div>
                             {/* </div> */}
 
@@ -539,4 +566,4 @@ const [selectedtime, setselectedtime] = useState("");
     )
 }
 
-export default PostWalkinDrive
+export default UpdatePostedDrive;
