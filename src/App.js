@@ -79,6 +79,7 @@ import AnsEmpLogin from "./Job-Portal/Login/AnsEmpLogin";
 import AnsStdLogin from "./Job-Portal/Login/AnsStdLogin";
 import LiveTvDisplay from "./Job-Portal/QRCode/LiveTvDisplay";
 import JobseekerEnterCabin from "./Job-Portal/QRCode/JobseekerEnterCabin";
+import UpdatePostedDrive from "./Job-Portal/PostJobs/UpdatePostedDrive";
 // import PostFraud from "./Job-Portal/Jobs/PostFraud";
 axios.defaults.baseURL = " https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -1104,6 +1105,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               <Route path="/PostBlogs" element={<PostBlogs url={axios.defaults.baseURL} />} />
               <Route path="/postedjobs" element={<PostedJobsbyEmp url={axios.defaults.baseURL} />} />
               <Route path="/posteddrives" element={<MyPostedDrives url={axios.defaults.baseURL} />} />
+              <Route path="/updatedposted-Drives" element={<UpdatePostedDrive url={axios.defaults.baseURL} />} />
               <Route path="/posted-Blogs" element={<BlogpostedByEmp url={axios.defaults.baseURL} />} />
               <Route path="/UpdatePosted-Blogs" element={<UpdatePostedBlogs url={axios.defaults.baseURL} />} />
               <Route path="/Applied-User-Profile/:jid" element={<AppliedUserProfile url={axios.defaults.baseURL} />} />
