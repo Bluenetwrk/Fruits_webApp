@@ -22,7 +22,7 @@ import Email from '../img/email.webp'
 import Whatsapp from '../img/whatsapp.png'
 import Share from '../img/share.jpg'
 
-function DriveDetails() {
+function  PostedDriveDetails() {
   const [jobs, setJobs] = useState([])
   // console.log("jobs are in ", jobs)
   const [jobdescription, setjobdescription] = useState([])
@@ -55,8 +55,9 @@ const [PageLoader, setPageLoader] = useState(false)
 
  
   async function getAllDrivejobs() {
-      const headers = { authorization: 'BlueItImpulseWalkinIn' };
-      await axios.get("/walkinRoute/allactivewalkins", { headers })
+    let userid = JSON.parse(localStorage.getItem("StudId"))
+    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+      await axios.get(`/walkinRoute/getMyAppliedwalkin/${userid}`, { headers })
        .then((res) => {
          let result = (res.data)
           // console.log(result)
@@ -769,4 +770,4 @@ const [PageLoader, setPageLoader] = useState(false)
   )
 }
 
-      export default DriveDetails
+      export default PostedDriveDetails;
