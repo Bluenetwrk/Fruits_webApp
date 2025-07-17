@@ -21,7 +21,9 @@ const ScanDrive = () => {
     try {
         const res = await axios.get(`/StudentProfile/getProfile/${studId}`, {headers})
         const result = res.data.result;
-        setProfileData([result]); // Save profile to state
+        console.log(result)
+        setProfileData([result]);
+        console.log(profileData) // Save profile to state
       } catch (err) {
         alert("Something went wrong while fetching profile");
         setLoading(false);
@@ -31,28 +33,54 @@ const ScanDrive = () => {
     fetchProfile();
   }, [studId]);
 
+const[allWalkinDrive, setAllWalkinDrive]=useState([])
+  async function getjobs() {
+
+    const headers = { authorization: 'BlueItImpulseWalkinIn' };
+    await axios.get("/walkinRoute/allactivewalkins",{headers})
+      .then((res) => {
+        let result = (res.data)
+        // console.log(result)
+        let sortedate = result.sort(function (a, b) {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+      
+        setAllWalkinDrive(sortedate)
+        // console.log("allWalkinDrive",allWalkinDrive)
+      }).catch((err) => {
+        console.log(err)
+        alert("some thing went wrong")
+      })
+  }
+
+  useEffect(()=>{
+    getjobs()
+    // console.log("companyName",allWalkinDrive)
+  },[])
+
 
   useEffect(() => {
+    if(allWalkinDrive.length>0){
     if (profileData.length === 0) return;
 
     const StudentAuth = localStorage.getItem("StudLog");
-    const EmployeeAuth = localStorage.getItem("EmpLog");
 
-    if (!StudentAuth) {
-      alert("Please log in as Jobseeker.");
-      navigate("/");
-      return;
-    }
+    // if (!StudentAuth) {
+    //   alert("Please log in as Jobseeker.");
+    //   navigate("/");
+    //   return;
+    // }
 
     const generateUniqueCode = (driveId) => {
-      const drive = dummyDrives.find((d) => d.id === driveId);
-      if (!drive?.companyName) {
-        alert("Please Scan the QR code.");
-        navigate("/");
-        return null;
-      }
+      const drive = allWalkinDrive.find((drive) => drive._id === driveId);
+      // if (!drive?.companyName) {
+      //   alert("Please Scan the QR code.");
+      //   navigate("/");
+      //   return null;
+      // }
 
       const companyCode = drive.companyName.substring(0, 2).toUpperCase();
+      // console.log("companyName",companyName)
       const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
       let randomPart = "";
       for (let i = 0; i < 3; i++) {
@@ -68,8 +96,6 @@ const ScanDrive = () => {
     );
 
     const newCode = generateUniqueCode(driveId);
-    // console.log("code:", newCode);
-    // console.log("Profile Data :", profileData);
     if (!newCode) return;
 
     const updatedData = [
@@ -85,7 +111,10 @@ const ScanDrive = () => {
     localStorage.setItem("attendance", JSON.stringify(updatedData));
     setCode(newCode);
     setLoading(false);
-  }, [profileData, driveId, studId, navigate]);
+  }
+  }, [profileData, driveId, studId, allWalkinDrive]);
+
+
 
   return (
     <div style={{ padding: "2rem", }}>
@@ -98,6 +127,7 @@ const ScanDrive = () => {
       ) : (
         <>
           {/* <h3>Your Unique Attendance Code:</h3> */}
+          {/* {console.log("kkkk",profileData)} */}
           <div style={{ fontSize: "2rem", fontWeight: "bold", color: "black" }}>Welcome {profileData[0].name} !</div>
           <div style={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}>Your token is </div>
           <div style={{ fontSize: "2rem", fontWeight: "bold", color: "#28a745" }}>{code}</div>
