@@ -65,19 +65,19 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
 
     const StudentAuth = localStorage.getItem("StudLog");
 
-    // if (!StudentAuth) {
-    //   alert("Please log in as Jobseeker.");
-    //   navigate("/");
-    //   return;
-    // }
+    if (!StudentAuth) {
+      alert("Please log in as Jobseeker.");
+      navigate("/");
+      return;
+    }
 
     const generateUniqueCode = (driveId) => {
       const drive = allWalkinDrive.find((drive) => drive._id === driveId);
-      // if (!drive?.companyName) {
-      //   alert("Please Scan the QR code.");
-      //   navigate("/");
-      //   return null;
-      // }
+      if (!drive?.companyName) {
+        alert("Please Scan the QR code.");
+        navigate("/");
+        return null;
+      }
 
       const companyCode = drive.companyName.substring(0, 2).toUpperCase();
       // console.log("companyName",companyName)
