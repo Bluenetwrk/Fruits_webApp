@@ -54,7 +54,7 @@ function PostWalkinDrive(props) {
 
     const [skills, setSkills] = useState("")
     const [applyLink, setApplyLink] = useState("")
-    const [concent, setconcent] = useState(true)
+    const [concent, setconcent] = useState(false)
 
     function handleSalary(e){
         const sanitizedValue = e.target.value.replace(/[A-Za-z]/g, '');
@@ -125,6 +125,7 @@ function PostWalkinDrive(props) {
       // let time = new Date(`${selectedDate}T${selectedtime}:00`).toISOString();
       const driveDate= selectedDate
       const time=selectedtime
+      console.log(time)
 
 console.log(jobDescription,companyName,experiance,jobLocation,venue,time)
         await axios.post("walkinRoute/walkinpost", {
@@ -152,7 +153,7 @@ console.log(jobDescription,companyName,experiance,jobLocation,venue,time)
 
                    setselectedtime("")
                     setTag([])
-                    // setconcent((prev)=>!prev)
+                    setconcent(false)
                     setSuccessMessage("Success! Successfully posted")
                 }
                 else if (result == "field are missing") {
@@ -497,6 +498,7 @@ const [selectedtime, setselectedtime] = useState("");
                                           </div> 
                             </div>
 
+
                                         <div class={Style.driveDateContainer}>
                                          <label>Select Time: </label>
                                          <input
@@ -508,14 +510,14 @@ const [selectedtime, setselectedtime] = useState("");
                                          
                                        </div>
                                        <div>
-<p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>
+<p><input type="checkbox" checked={concent} onChange={()=>{setconcent((prev)=>!prev)}}/>
     I have read the terms and conditions of ITwalkin.com and I agree to all the 
-     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> Terms and Conditions</span> before posting the jobs </p>
+     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> Terms and Conditions</span> before posting the walkin drives </p>
 
      </div>
      {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
 <div style={{display:"flex", justifyContent:"center" }}>
-<button style={{width:"130px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Submit</button>
+<button style={{width:"130px"}} disabled={!concent} className={concent?Style.button: Style.disableButton} onClick={postJob}>Submit</button>
 </div>
                             {/* </div> */}
 

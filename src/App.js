@@ -80,6 +80,8 @@ import AnsStdLogin from "./Job-Portal/Login/AnsStdLogin";
 import LiveTvDisplay from "./Job-Portal/QRCode/LiveTvDisplay";
 import JobseekerEnterCabin from "./Job-Portal/QRCode/JobseekerEnterCabin";
 import UpdatePostedDrive from "./Job-Portal/PostJobs/UpdatePostedDrive";
+import AppliedDriveDetails from "./Job-Portal/Jobs/AppliedDriveDetails";
+import PostedDriveDetails from "./Job-Portal/Jobs/PostedDriveDetails";
 // import PostFraud from "./Job-Portal/Jobs/PostFraud";
 axios.defaults.baseURL = " https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -1205,6 +1207,9 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             <Route path="/Jobseeker-New-Registration" element={<StuNewRegistered selectedlocationOption={selectedlocationOption} />} />
             <Route path="/EmployeeLogin" element={<EmployeeLogin />} />
             <Route path="/JobDetails/:id" element={<Jobdetails />} />
+            <Route path="/DriveDetails/:id" element={<DriveDetails />} />
+            <Route path="/AppliedDriveDetails/:id" element={<AppliedDriveDetails />} />
+            <Route path="/PostedDriveDetails/:id" element={<PostedDriveDetails />} />
             <Route path="/Blogdetails/:id" element={<Blogdetails />} />
             <Route path="/Answerdetails/:id" element={<Answerdetails />} />
             <Route path="/CareerJobdetails/:id" element={<CareerJobdetails />} />

@@ -342,7 +342,10 @@ const handleHRGenerateQR = (driveId) => {
     }
   };
 
-  
+  const selectedTag=useRef("")
+    const updateTag=(tag)=>{
+      selectedTag.current=tag
+    }
   return (
     <>
  
@@ -456,7 +459,7 @@ const handleHRGenerateQR = (driveId) => {
                       {items.companyName}
                       </li>
 
-                    <li className={`${styles.li} ${styles.Jtitle}`} style={{ color: "blue", cursor:"pointer" }} >{items.jobTitle}</li>
+                    <li onClick={() => navigate(`/AppliedDriveDetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} className={`${styles.li} ${styles.Jtitle}`} style={{ color: "blue", cursor:"pointer" }} >{items.jobTitle}</li>
                     {/* <li className={`${styles.li} ${styles.liDescription}`}> 
                     {items.jobDescription? HTMLReactParser(items.jobDescription.toString()) :""}
                       <span style={{ color: "blue", cursor:"pointer" }} onClick={() => { navigate(`/Jobdetails/${btoa(items._id)}`) }} >...see more</span>

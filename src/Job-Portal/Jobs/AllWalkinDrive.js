@@ -139,10 +139,38 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
     }
   }, [currentPage, recordsPerPage])
 
+  let jobSeekerId = JSON.parse(localStorage.getItem("StudId"))
+  async function applyforDrive(jobId) {
+       let date = new Date()
+    let userid = JSON.parse(localStorage.getItem("StudId"))
+    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+    // setclickedJobId(jobId)
+    // setLoader(true)
+
+      await axios.put(`/walkinRoute/updatforwalkinApply/${jobId}`, { jobSeekerId, date }, { headers })
+        .then((res) => {
+          
+          if (res.data) {
+            console.log(res.data)
+            // setLoader(false)
+            getjobs()
+          }
+        }).catch((err) => {
+          alert("server issue occured", err)
+        })
+  }
 
 
   async function applyforJob(id) {
+    if(StudentAuth){
+         applyforDrive(id)
+    }
+    else if(EmployeeAuth){
+
+    }
+    else{
     navigate("/JobSeekerLogin", { state: { Jid: id } })
+    }
    
   }
   async function applyforOtherJob(Link) {
@@ -613,7 +641,43 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
   }
 
 
+  const [activeAlertId, setActiveAlertId] = useState(null);
+  
+  const handleApplyClick = (id) => {
+    setActiveAlertId(id);
+  };
+  
+  const handleOkClick = (id) => {
+    setActiveAlertId(null); // close alert
+    applyforJob(id);
+  };
+  
+  const handlecancelClick = () => {
+    setActiveAlertId(null); 
+  };
+  
 
+  const alertRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // If clicked outside alert box and it's open
+      if (alertRef.current && !alertRef.current.contains(event.target)) {
+        setActiveAlertId(null); // close the alert
+      }
+    };
+  
+    document.addEventListener('mousedown', handleClickOutside);
+  
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+  
+
+  const selectedTag=useRef("")
+  const updateTag=(tag)=>{
+    selectedTag.current=tag
+  }
   
   return (
     <>
@@ -838,10 +902,11 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                       <ul className={styles.ul} key={i}>
                         {/* } */}
 
-                        <li className={`${styles.li} ${styles.Jtitle}`}  style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}  >{items.jobTitle}</li>
+                        <li className={`${styles.li} ${styles.Jtitle}`}  style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}  onClick={() => navigate(`/Drivedetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})}>{items.jobTitle}</li>
                         <li className={`${styles.li} ${styles.Source}`} style={{width:"9.5%"}} >
 
-                        {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.time}
+                        {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.time && `${((+items.time.split(":")[0] % 12) || 12)}:${items.time.split(":")[1]} ${+items.time.split(":")[0] >= 12 ? "PM" : "AM"}`}
+
                           {/* <p>
   {new Date(items.time).toLocaleDateString("en-IN")} /{" "}
   {new Date(items.time).toLocaleTimeString("en-IN", {
@@ -895,14 +960,93 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
                         </li>
 
                         <li className={`${styles.li} ${styles.Apply}`}>
-                        
-                            {/* // adminLogin ?
-                              
-                            //   <input type="checkbox" onClick={() => { checkBoxforDelete(items._id) }} />
+                        <div  ref={alertRef} style={{position:"relative"}}>
+        {    
+        items.jobSeekerId.find((jobseeker) => {
+          return (
+            jobseeker.jobSeekerId == jobSeekerId
+          )
+        })
+          ?
+          <button className={styles.Appliedbutton} title='HR will reach out to you after reviewing your profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
+:
+      <button className={styles.applyRegisterButton} onClick={() => applyforJob(items._id)}>
+      Register
+      </button>
+                  }
 
-                            //   : */}
+      {/* {activeAlertId === items._id && (
+        <div
+        style={{
+          width: '300px',
+          padding: '20px',
+          backgroundColor: 'rgb(40,4,99)',
+          color: 'white',
+          fontSize: '12px',
+          borderRadius: '5px',
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 9999,
+          boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+          textAlign: 'center',
+        }}
+        
+        > 
+        <strong style={{color:"red", textAlign:"center", fontSize:"14px"}}>NOTICE</strong><br></br>
+          ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website.<br></br>
+          <br></br>
+          You will be redirected to the career page of        {
+                          !items.Source ?
+
+                            <span>
+
+                              {items.companyName}</span>
+                            :
+                            <span>
+                             
+                              {items.Source}
+
+                            </span>
+
+                        }. 
+          ITWalkin is not the authorised partner of this company
+                <div ref={alertRef} style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"5px" }}>
+            <button
+              onClick={() => handleOkClick(items._id)}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              Ok
+            </button>
+            <button
+              onClick={handlecancelClick }
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )} */}
+    </div>
                             
-                                <button className={styles.applyRegisterButton}>Register</button>
+                                
 
                          
                         </li>

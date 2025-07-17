@@ -53,7 +53,7 @@ function PostJobs(props) {
     const [Tags, setTag] = useState([])
 
     const [skills, setSkills] = useState("")
-    const [concent, setconcent] = useState(true)
+    const [concent, setconcent] = useState(false)
 
     // function handleChange(tag) {
     //     setTag(tag)
@@ -152,7 +152,8 @@ function PostJobs(props) {
                     setExperiance("")
                     setSkills("")
                     setTag([])
-                    setSuccessMessage("Success! job successfully posted")
+                    setconcent(false)
+                    setSuccessMessage("job Successfully posted!")
                 }
                 else if (result == "field are missing") {
                     setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experience, JobLocation and Skills must be filled")
@@ -281,7 +282,7 @@ const [showTooltip, setShowTooltip] = useState(false);
 
                                 <div className={Style.postJobPageWrapper} >
                                     <div className={Style.postJobWrapper}>
-                                        <p className={successMessage === "Success! job successfully posted" ?
+                                        <p className={successMessage === "Job Successfully posted!" ?
                                             Style.successmessage : Style.errormessage}>{successMessage} </p>
                                         {/* <p className={Style.errormessage}>{errorMessage} </p> */}
                                         <h4 className={Style.jobHeadline}  >Job Title**</h4>
@@ -439,14 +440,15 @@ const [showTooltip, setShowTooltip] = useState(false);
 <input maxLength="100" value={skills} className={Style.inputbox} disabled type="text"
 // onChange={(e)=>{setSkills(e.target.value)}} 
 />
-<p><input type="checkbox" onChange={()=>{setconcent((prev)=>!prev)}}/>
-I have read and understood the <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}>Terms and Conditions</span> of IT Walkin , and I fully agree to them before posting jobs  .</p>
+<p><input type="checkbox" checked={concent} onChange={()=>{setconcent((prev)=>!prev)}}/>
+    I have read the terms and conditions of ITwalkin.com and I agree to all the 
+     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> Terms and Conditions</span> before posting the jobs </p>
 
 
 
                                         {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
                                         <div style={{display:"flex", justifyContent:"center"}}>
-                                        <button style={{width:"132px"}} disabled={concent} className={concent? Style.disableButton:Style.button} onClick={postJob}>Post Job</button>
+                                        <button style={{width:"132px"}} disabled={concent} className={concent?Style.button: Style.disableButton} onClick={postJob}>Post Job</button>
                                         </div>
                                     </div >
                                 </div >

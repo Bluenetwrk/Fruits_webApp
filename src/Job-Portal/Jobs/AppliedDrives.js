@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useEffect, useState } from 'react'
 import styles from "./MyAppliedJobs.module.css"
 import Swal from "sweetalert2";
@@ -14,13 +14,13 @@ import HTMLReactParser from 'html-react-parser'
 
 
 function AppliedDrives(props) {
-  useEffect(() => {
-    const socket = socketIO.connect(props.url, {
-      auth: {
-        token: JSON.parse(localStorage.getItem("StudId"))
-      }
-    });
-  }, [])
+  // useEffect(() => {
+  //   const socket = socketIO.connect(props.url, {
+  //     auth: {
+  //       token: JSON.parse(localStorage.getItem("StudId"))
+  //     }
+  //   });
+  // }, [])
   let navigate = useNavigate()
 
 
@@ -109,6 +109,7 @@ const dummyDrives = [
 
 
   const [MyAppliedjob, setMyAppliedjob] = useState([])
+  const [MyAppliedDrives, setMyAppliedDrives] = useState([])
   const [PageLoader, setPageLoader] = useState(false)
   const [NoJobFound, setNoJobFound] = useState("")
   const screenSize = useScreenSize();
@@ -170,13 +171,14 @@ const dummyDrives = [
     setPageLoader(true)
     setTimeout(async () => {
 
-      await axios.get(`/jobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
+      await axios.get(`/walkinRoute/getMyAppliedwalkin/${jobSeekerId}`, { headers })
         .then((res) => {
           let result = (res.data)
+          console.log(res.data)
           let sortedate = result.sort(function (a, b) {
             return new Date(b.createdAt) - new Date(a.createdAt);
           });
-          setMyAppliedjob(sortedate)
+          setMyAppliedDrives(sortedate)
           setPageLoader(false)
           if (res.data.length == 0) {
             setNoJobFound("You have not applied any jobs yet")
@@ -191,7 +193,7 @@ const dummyDrives = [
   useEffect(() => {
     getjobs()
 
-    getCareerjobs()
+    // getCareerjobs()
 
   }, [])
 
@@ -214,7 +216,7 @@ const dummyDrives = [
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.put(`/jobpost/DeleteJobApplied/${id}`, { jobSeekerId }, { headers })
+        axios.put(`/walkinRoute/DeleteWalkinApplied/${id}`, { jobSeekerId }, { headers })
           .then((res) => {
             if(res.data==="success"){
               getjobs()
@@ -359,10 +361,15 @@ const handleStart = () => {
   navigate("/scanner");
 };
 
+
+ const selectedTag=useRef("")
+  const updateTag=(tag)=>{
+    selectedTag.current=tag
+  }
   return (
     <>
 
-<p className={styles.h3} style={{ textAlign: "center" }}><b>My Registered WalkinDrives</b></p>
+<p style={{ textAlign: "center", }}className={styles.h3}><h2>My Registered WalkinDrives</h2></p>
 {/* <p className={styles.h3}><b>You’ve successfully submitted applications for {MyAppliedjob.lengths} positions.Stay tuned for updates.  </b></p> */}
 
       {/* <button onClick={()=>{navigate("/MyCareer-Applied-Jobs")}} style={{ backgroundColor:"rgb(40, 4, 99)",
@@ -411,7 +418,7 @@ const handleStart = () => {
               <li className={`${styles.li} ${styles.JobType}`}><b>JobType</b></li>
 
               {/* <li className={`${styles.li} ${styles.liDescription}`}><b>Job description</b></li> */}
-              <li className={`${styles.li} ${styles.Pdate}`}><b>Posted Date</b>
+              <li className={`${styles.li} ${styles.Pdate}`}><b>Drive Date</b>
                 <p className={styles.arrowWrapper} >
                   <i onClick={sortbyNewjobs} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={sortbyOldjobs} className={`${styles.arrow} ${styles.down}`}></i>
@@ -421,7 +428,7 @@ const handleStart = () => {
 
               </li>
 
-              <li className={`${styles.li} ${styles.Location}`}><b>Location</b></li>
+              <li className={`${styles.li} ${styles.Location}`}><b>Venue</b></li>
               <li className={`${styles.li} ${styles.Package}`}><b>CTC </b>
                 <p className={styles.arrowWrapper}>
                   <i onClick={SdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
@@ -447,17 +454,17 @@ const handleStart = () => {
               </div>
               : 
             (
-              dummyDrives.length > 0 ?
+              MyAppliedDrives.length > 0 ?
 
-                dummyDrives.map((items, i) => {
+              MyAppliedDrives.map((items, i) => {
                   return (
                 
                     <ul className={styles.ul} key={i}>
                       <li style={{ cursor: "pointer", textDecoration: "underline" }} className={styles.li}  >
                         {items.companyName}</li>
 
-                      <li className={`${styles.li} ${styles.JtitleR}`}>{items.jobTitle.toUpperCase()}</li>
-                      <li className={`${styles.li} ${styles.JobType}`}>{items.jobType}</li>
+                      <li onClick={() => navigate(`/AppliedDriveDetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} className={`${styles.li} ${styles.JtitleR}`}>{items.jobTitle.toUpperCase()}</li>
+                      <li className={`${styles.li} ${styles.JobType}`}>{items.jobtype}</li>
 
                       {/* <li className={`${styles.li} ${styles.Pdate}`}>
                         {new Date(items.createdAt).toLocaleString(
@@ -470,7 +477,7 @@ const handleStart = () => {
                         )}
                       </li> */}
                       <li className={`${styles.li} ${styles.Pdate}`}>
-  {items.postedDate}
+                      {new Date(items.driveDate).toLocaleDateString("en-IN")}
 </li>
 
                       {/* <li className={`${styles.li} ${styles.Pdate}`}>
@@ -490,17 +497,16 @@ const handleStart = () => {
                         )}
                       </li> */}
                       <li className={`${styles.li} ${styles.Pdate}`}>
-  {items.appliedDate
-    }
+                      {new Date(items.createdAt).toLocaleDateString("en-IN")}
 </li>
-                      <li className={`${styles.li} ${styles.Location}`} style={{wordBreak:"break-word"}}>{items.location}</li>
-                      <li className={`${styles.li} ${styles.Package}`}>{items.ctc}</li>
-                      <li className={`${styles.li} ${styles.experiance}`} >{items.experiences}Y</li>
+                      <li className={`${styles.li} ${styles.Location}`} style={{wordBreak:"break-word"}}>{items.venue}</li>
+                      <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="Not disclosed" ||items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"LPA" }</li>
+                      <li className={`${styles.li} ${styles.experiance}`} >{items.experiance}Yrs</li>
                       <li className={`${styles.li} ${styles.Qualif}`} style={{wordBreak:"break-word"}}>{items.qualification} </li>
 
-                      <li className={`${styles.li} ${styles.Skills}`} style={{wordBreak:"break-word"}}>{items.skillsRequired}</li>
+                      <li className={`${styles.li} ${styles.Skills}`} style={{wordBreak:"break-word"}}>{items.skills}</li>
                       <li className={`${styles.li} ${styles.DeleteAction}`}>
-                        <button className={styles.DeleteButton} >Delete</button>
+                        <button onClick={()=>{UndoApply(items._id)}} className={styles.DeleteButton} >Delete</button>
                         {/* <button className={styles.qrButton}>QR Scanner</button> */}
                         </li>
                       <li className={`${styles.li} ${styles.Status}`}>
