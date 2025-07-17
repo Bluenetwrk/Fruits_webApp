@@ -127,9 +127,9 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
       })
   }
 
-  useEffect(()=>{
-    console.log(allWalkindrive)
-  },[allWalkindrive])
+  // useEffect(()=>{
+  //   console.log(allWalkindrive)
+  // },[allWalkindrive])
 
   useEffect(() => {
     if (jobTagsIds.length < 1) {

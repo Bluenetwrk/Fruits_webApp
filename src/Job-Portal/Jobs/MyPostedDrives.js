@@ -486,19 +486,19 @@ const handleHRGenerateQR = (driveId) => {
                       </div>
                     </li>
                     <li style={{position:"relative"}} className={`${styles.li} ${styles.Action}`}>
-                        <button onClick={() => { handleGenerateQR(items.id) }} className={`${styles.Abutton} ${styles.update}`}>Generate QR</button>                 
-                        {selectedDriveId === items.id && (
+                        <button onClick={() => { handleGenerateQR(items._id) }} className={`${styles.Abutton} ${styles.update}`}>Generate QR</button>                 
+                        {selectedDriveId === items._id && (
   <div style={{display:"flex", flexDirection:"column",alignItems:"center"}}>
 
     <div
-      ref={(el) => (qrRefs.current[items.id] = el)}
+      ref={(el) => (qrRefs.current[items._id] = el)}
       style={{ background: "white", padding: "16px", display: "inline-block" ,width:"100px", height:"100px"}}
     >
-      <QRCode style={{width:"100px", height:"100px"}} value={generateQRUrl(items.id)} size={160} />
+      <QRCode style={{width:"100px", height:"100px"}} value={generateQRUrl(items._id)} size={160} />
     </div>
 
     <button
-      onClick={() => handleDownloadQR(items.id)}
+      onClick={() => handleDownloadQR(items._id)}
       style={{ marginTop: "0.5rem", display: "block" }}
       className={`${styles.Abutton} ${styles.update}`}
     >
@@ -512,48 +512,23 @@ const handleHRGenerateQR = (driveId) => {
                      <li className={`${styles.li} ${styles.Action}`}>
       <button
         className={`${styles.Abutton} ${styles.update}`}
-        onClick={() => { handleHRGenerateQR(items.id) }}
+        onClick={() => { handleHRGenerateQR(items._id) }}
       >
         Generate QR
       </button>
 
-      {/* {isQRVisible && (
-        <div style={{ marginTop: "1rem",display:"flex", flexDirection:"column",alignItems:"center" }}>
-          <div
-            ref={qrRef}
-            style={{
-              background: "white",
-              padding: "16px",
-              display: "inline-block",
-              width: "100px",
-              height: "100px",
-            }}
-          >
-            <QRCode value={qrCodeValue()} size={160} style={{ width: "100px", height: "100px" }} />
-          </div>
-
-          <button
-            onClick={handleDownloadQRClick}
-            style={{ marginTop: "0.5rem", display: "block" }}
-            className={`${styles.Abutton} ${styles.update}`}
-          >
-            Download QR
-          </button>
-        </div>
-      )} */}
-
-{selectedHRDriveId === items.id && (
+{selectedHRDriveId === items._id && (
   <div style={{display:"flex", flexDirection:"column",alignItems:"center"}}>
 
     <div
-      ref={(el) => (qrRefs.current[items.id] = el)}
+      ref={(el) => (qrRefs.current[items._id] = el)}
       style={{ background: "white", padding: "16px", display: "inline-block" ,width:"100px", height:"100px"}}
     >
-      <QRCode style={{width:"100px", height:"100px"}} value={generateHRQRUrl(items.id)} size={160} />
+      <QRCode style={{width:"100px", height:"100px"}} value={generateHRQRUrl(items._id)} size={160} />
     </div>
 
     <button
-      onClick={() => handleDownloadQR(items.id)}
+      onClick={() => handleDownloadQR(items._id)}
       style={{ marginTop: "0.5rem", display: "block" }}
       className={`${styles.Abutton} ${styles.update}`}
     >
