@@ -768,7 +768,7 @@ const selectedTag=useRef("")
             <ul className={styles.ul} style={{ color: 'white', fontWeight: "bold" }}>
 
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Jtitle}`}>Job Title</li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Source}`}>Source</li>
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Source}`}>Posted By</li>
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.CompanyName}`}>Company Name</li>
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.JobType}`}>JobType</li>
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.date}`}>Posted Date
@@ -1246,7 +1246,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                           {job.qualification},   {job.experiance}Yrs Exp, {job.jobtype}
                           {/* <span className={styles.jobtypeAndDate}> {job.jobtype}</span> */}
                         </span><br></br>
-                        <span className={styles.jobtypeAndDate}>Source</span> :
+                        <span className={styles.jobtypeAndDate}>Posted By</span> :
 
                         {/* {job.Source ?
                           <> <a className={`${styles.skills}`} href={job.SourceLink} target="_blank">{job.Source}</a><br></br> </>

@@ -152,7 +152,7 @@ function MyPostedDrives(props) {
   }
 
   function seeProfilejobSeekerId(id) {
-    window.open(`/Applied-User-Profile/${id}`, '_blank')
+    // window.open(`/Applied-User-Profile/${id}`, '_blank')
   }
 
   // ..........Sorting.......
@@ -541,15 +541,14 @@ const handleHRGenerateQR = (driveId) => {
                         <button onClick={()=>navigate("/live-tv-display")}  className={`${styles.Abutton} ${styles.update}`}>Launch Live Display</button>
                     </li>
                     <li className={`${styles.li} ${styles.NuApplied}`}>
-                      {/* {items.numberOfApplicants> 0 ?
+                      {items.jobSeekerId.length> 0 ?
              
-                        // <button className={`${styles.viewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(items._id)) }}>{items.numberOfApplicants}</button>
-                        // <button className={`${styles.viewButton}`}>{items.numberOfApplicants}</button>
-
+                        <button className={`${styles.viewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(items._id)) }}>{items.jobSeekerId.length}</button>
+                       
                         :
-                        <button className={`${styles.viewButton}`} >{items.numberOfApplicants}</button>
+                        <button className={`${styles.viewButton}`} >{items.jobSeekerId.length}</button>
 
-                      }  */}
+                      } 
                     </li>
                   </ul>
                 )

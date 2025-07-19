@@ -401,7 +401,8 @@ function Nav(props) {
                          zIndex: 9999,
                          textAlign: 'center',
                        }}>
-                          The background check feature on ITWalk.com  allows jobseekers to conduct background checks on companies to ensure credibility.<br></br>
+                          The background check feature on ITWalkin.com allows jobseekers to conduct background checks on companies to ensure credibility.
+                          <br></br>
                           {/* You must be logged in to our portal to access this feature. */}
                          </div>
 
