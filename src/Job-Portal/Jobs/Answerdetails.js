@@ -222,7 +222,7 @@ async function deletComment(id){
 <div style={{textAlign:"center"}}>
   <div class={styles.ansPostedDetails}>
   <span>By {jobs.name}</span>
-  <span> . {new Date(jobs.createdAt).toLocaleString(
+  <span> Posted on: {new Date(jobs.createdAt).toLocaleString(
                   "en-US",
                   {
                     month: "short",
@@ -232,7 +232,7 @@ async function deletComment(id){
                 )}</span> . 
                 
  <span>
-  Update At: {new Date(jobs.updatedAt).toLocaleString("en-US", {
+ Updated on: {new Date(jobs.updatedAt).toLocaleString("en-US", {
     timeZone: "Asia/Kolkata",
     day: "2-digit",
     month: "short",
@@ -401,7 +401,7 @@ async function deletComment(id){
           :
           <>
           <div style={{display:"flex", justifyContent:"end", marginTop:"-17px", marginBottom:"16px", marginRight:"22px", fontSize:"x-small"}}>
-  Update At: {new Date(jobs.updatedAt).toLocaleString("en-US", {
+  Updated on: {new Date(jobs.updatedAt).toLocaleString("en-US", {
     timeZone: "Asia/Kolkata",
     day: "2-digit",
     month: "short",
@@ -420,7 +420,8 @@ async function deletComment(id){
                 <div className={styles.JobTitleDateWrapper}>
         <p className={styles.QuestionjobTitle} >{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading...."}</p>
        <div>
-        <p style={{marginTop:"-37px", marginRight:"21px", width:"100%"}} className={styles.Date}>{new Date(jobs.createdAt).toLocaleString(
+        <p style={{marginTop:"-33px", marginRight:"49px", width:"100%"}} className={styles.Date}>
+        Posted on: {new Date(jobs.createdAt).toLocaleString(
           "en-US",
           {
             month: "short",

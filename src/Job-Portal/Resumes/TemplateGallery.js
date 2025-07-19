@@ -151,7 +151,7 @@ const TemplateGallery = ({ onSelect }) => {
                   cursor: 'pointer',
                 }}
               >
-                Yes
+               Continue to Edit profile
               </button>
               <button
                 onClick={() => {
@@ -168,7 +168,7 @@ const TemplateGallery = ({ onSelect }) => {
                   cursor: 'pointer',
                 }}
               >
-                Continue to Download
+                Continue to Download Resume
               </button>
             </div>
           </div>
