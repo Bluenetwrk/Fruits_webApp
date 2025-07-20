@@ -52,6 +52,7 @@ const [PageLoader, setPageLoader] = useState(false)
   const allJobs=useRef([])
   // console.log(transferRecords)
   let studentAuth = localStorage.getItem("StudLog")
+  let empAuth = localStorage.getItem("EmpIdG")
 
  
   async function getAllDrivejobs() {
@@ -72,7 +73,27 @@ const [PageLoader, setPageLoader] = useState(false)
          alert("some thing went wrong")
       })
     }
+   
 
+
+    async function getAllAppliedDrivejobs() {
+      let userid = JSON.parse(localStorage.getItem("StudId"))
+    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+      await axios.get(`/walkinRoute/getMyAppliedwalkin/${jobSeekerId}`, { headers })
+         .then((res) => {
+           let result = (res.data)
+            console.log("js",result)
+           let sortedate = result.sort(function (a, b) {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+           });
+           lastIndex.current=sortedate.length; 
+           allJobs.current=sortedate
+          //  console.log("jobs-",allJobs,"lastIndex",lastIndex)
+          }).catch((err) => {
+          //  console.log(err)
+           alert("some thing went wrong")
+        })
+      }
 
     async function getAllJobseekersjobs() {
       let userid = JSON.parse(localStorage.getItem("StudId"))
@@ -169,7 +190,8 @@ const [PageLoader, setPageLoader] = useState(false)
       
       useEffect(()=>{
           // console.log(userTags)
-        if(transferRecords===""){  
+        if(transferRecords===""&&empAuth){ 
+          console.log("f1") 
           if(userTags.current===""||userTags.current===undefined){
             getAllDrivejobs() 
           }
@@ -177,6 +199,15 @@ const [PageLoader, setPageLoader] = useState(false)
         //    getTagValue() 
         //  } 
       }
+      else if(transferRecords===""&&studentAuth){ 
+        console.log("f2")  
+        if(userTags.current===""||userTags.current===undefined){
+          getAllAppliedDrivejobs() 
+        }
+      //   else{ 
+      //    getTagValue() 
+      //  } 
+    }
       else{
         // console.log("executing else")
         // if(transferRecords==="AppliedJobs")
@@ -192,7 +223,7 @@ const [PageLoader, setPageLoader] = useState(false)
         const incIndex=()=>{
             if(index<lastIndex.current-1)
              setIndex((prev)=>prev+1)
-            // console.log("inc",index)
+            console.log("inc",index)
           }
           const descIndex=()=>{
             if(index>0)
@@ -211,7 +242,7 @@ const [PageLoader, setPageLoader] = useState(false)
               await axios.get(`/walkinRoute/getwalkins/${allJobs.current[index]._id}`, {headers})
                 .then((res) => {
                   let result = (res.data)
-                  // console.log(result)
+                  console.log(result)
                   setJobs(result)
                   setjobdescription(result.jobDescription)
                   setjobSeekerId(result.jobSeekerId)
@@ -454,7 +485,7 @@ const [PageLoader, setPageLoader] = useState(false)
            <i className="fa-solid fa-share" style={{ fontSize: "small", cursor: "pointer", marginLeft:"-8px" }}></i>
            <div style={{fontSize:"12px", fontWeight:"800px"}}>Share</div>
             </button>
-           <button class={styles.jobdetailApplyBtn} onClick={()=>applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>
+           <button class={styles.jobdetailApplyBtn} >
            <div style={{fontSize:"12px", fontWeight:"800px"}}>Apply</div></button>
            {shareClicked && (
         <div ref={shareRef} class={styles.shareContainer}>

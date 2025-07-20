@@ -3,7 +3,7 @@ import CompanyLogo from '../img/company-logo.png'
 import styles from "./Allobs.module.css"
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { Puff } from 'react-loader-spinner'
+import { Puff, TailSpin } from 'react-loader-spinner'
 import location from "../img/icons8-location-20.png"
 import graduation from "../img/icons8-graduation-cap-40.png"
 import useScreenSize from '../SizeHook';
@@ -57,6 +57,8 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
   const [NotFound, setNotFound] = useState("")
   const screenSize = useScreenSize();
   const [allWalkindrive,setAllWalkinDrive] = useState([])
+  const [Loader, setLoader] = useState(false)
+  const [clickedJobId, setclickedJobId] = useState() 
 
   let JobLocationTags = ["Bangalore"]
 
@@ -144,15 +146,15 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
        let date = new Date()
     let userid = JSON.parse(localStorage.getItem("StudId"))
     const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
-    // setclickedJobId(jobId)
-    // setLoader(true)
+    setclickedJobId(jobId)
+    setLoader(true)
 
       await axios.put(`/walkinRoute/updatforwalkinApply/${jobId}`, { jobSeekerId, date }, { headers })
         .then((res) => {
           
           if (res.data) {
             console.log(res.data)
-            // setLoader(false)
+            setLoader(false)
             getjobs()
           }
         }).catch((err) => {
@@ -970,9 +972,15 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
           ?
           <button className={styles.Appliedbutton} title='HR will reach out to you after reviewing your profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
 :
-      <button className={styles.applyRegisterButton} onClick={() => applyforJob(items._id)}>
-      Register
-      </button>
+<button className={styles.applyRegisterButton} onClick={() => applyforJob(items._id)}>
+<div style={{ display: "flex",width:"85px", alignItems: "center", justifyContent: "center", gap: "6px" }}>
+  Register
+  {Loader && items._id === clickedJobId && (
+    <TailSpin height={16} width={16} color="white" />
+  )}
+</div>
+</button>
+
                   }
 
       {/* {activeAlertId === items._id && (

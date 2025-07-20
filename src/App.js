@@ -82,6 +82,7 @@ import JobseekerEnterCabin from "./Job-Portal/QRCode/JobseekerEnterCabin";
 import UpdatePostedDrive from "./Job-Portal/PostJobs/UpdatePostedDrive";
 import AppliedDriveDetails from "./Job-Portal/Jobs/AppliedDriveDetails";
 import PostedDriveDetails from "./Job-Portal/Jobs/PostedDriveDetails";
+import AppliedDriveUserProfile from "./Job-Portal/AppliedUserProfile/AppliedDriveUserProfile";
 // import PostFraud from "./Job-Portal/Jobs/PostFraud";
 axios.defaults.baseURL = " https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -1111,6 +1112,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               <Route path="/posted-Blogs" element={<BlogpostedByEmp url={axios.defaults.baseURL} />} />
               <Route path="/UpdatePosted-Blogs" element={<UpdatePostedBlogs url={axios.defaults.baseURL} />} />
               <Route path="/Applied-User-Profile/:jid" element={<AppliedUserProfile url={axios.defaults.baseURL} />} />
+              <Route path="/Applied-DriveUser-Profile/:jid" element={<AppliedDriveUserProfile url={axios.defaults.baseURL} />} />
               <Route path="/Check-Profile/:CP" element={<CheckStudentProfiel url={axios.defaults.baseURL} />} />
               <Route path="/UpdateProfile" element={<EmployeeUpdateProfile url={axios.defaults.baseURL} />} />
               <Route path="/MyProfile" element={<EmployeeProfile url={axios.defaults.baseURL}/>} />
