@@ -301,21 +301,39 @@ const [PageLoader, setPageLoader] = useState(false)
   }
 
 
-  async function applyforJob(jobId) {
 
+  async function applyforDrive(jobId) {
+       let date = new Date()
+    let userid = JSON.parse(localStorage.getItem("StudId"))
+    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
     setclickedJobId(jobId)
     setLoader(true)
-    setTimeout(async () => {
 
-      await axios.put(`/jobpost/updatforJobApply/${jobId}`, { jobSeekerId })
+      await axios.put(`/walkinRoute/updatforwalkinApply/${jobId}`, { jobSeekerId, date }, { headers })
         .then((res) => {
-          setLoader(false)
-          getjobs()
-
+          
+          if (res.data) {
+            console.log(res.data)
+            setLoader(false)
+            getjobs()
+          }
         }).catch((err) => {
           alert("server issue occured", err)
         })
-    }, 1000)
+  }
+
+  let EmployeeAuth = localStorage.getItem("EmpLog")
+  async function applyforJob(id) {
+    if(studentAuth){
+         applyforDrive(id)
+    }
+    else if(EmployeeAuth){
+
+    }
+    else{
+    navigate("/JobSeekerLogin", { state: { Jid: id } })
+    }
+   
   }
 
   function goUp(){
@@ -453,8 +471,35 @@ const [PageLoader, setPageLoader] = useState(false)
            <i className="fa-solid fa-share" style={{ fontSize: "small", cursor: "pointer", marginLeft:"-8px" }}></i>
            <div style={{fontSize:"12px", fontWeight:"800px"}}>Share</div>
             </button>
-           <button class={styles.jobdetailApplyBtn} onClick={()=>applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>
-           <div style={{fontSize:"12px", fontWeight:"800px"}}>Apply</div></button>
+
+            {
+              jobs?.jobSeekerId?.find((jobseeker) => {
+                return (
+                  jobseeker.jobSeekerId == jobSeekerId
+                )
+              })?
+              <button class={styles.jobdetailApplyBtn} style={{backgroundColor:"green"}}>
+           <div style={{fontSize:"12px", fontWeight:"800px"}}>Applied <span style={{ fontSize: '15px' }}>&#10004;</span></div>
+           </button>
+           :        
+           <button className={styles.jobdetailApplyBtn} onClick={() => applyforJob(jobs._id)}>
+  <div style={{
+    fontSize: "12px",
+    fontWeight: 600,          // corrected "800px" to 800
+    display: "flex",
+    alignItems: "center",
+    gap: "6px"                // spacing between text and spinner
+  }}>
+    Apply
+    <span className={styles.Loader}>
+      {Loader && jobs._id === clickedJobId ? (
+        <TailSpin color="white" height={16} width={16} />
+      ) : null}
+    </span>
+  </div>
+</button>
+
+          }
            {shareClicked && (
         <div ref={shareRef} class={styles.shareContainer}>
           <div style={{fontSize:"22px", fontWeight:"600", color:"white", textAlign:"center" }}>Share</div>

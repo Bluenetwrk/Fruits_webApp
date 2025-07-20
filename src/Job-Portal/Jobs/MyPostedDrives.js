@@ -152,7 +152,7 @@ function MyPostedDrives(props) {
   }
 
   function seeProfilejobSeekerId(id) {
-    // window.open(`/Applied-User-Profile/${id}`, '_blank')
+    window.open(`/Applied-DriveUser-Profile/${id}`, '_blank')
   }
 
   // ..........Sorting.......
