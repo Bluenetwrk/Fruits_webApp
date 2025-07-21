@@ -335,8 +335,9 @@ const [selectedtime, setselectedtime] = useState("");
 
                             <div key={i} style={{display:"flex", justifyContent:"center"}}>
                                 <div className={Style.dirveContainer}>
-                               <h2  >Post Walkin Drive</h2> 
-                               {/* <div className={Style.dirveContainer}> */}
+                                  <div style={{display:"flex", justifyContent:"center"}}>
+                               <h2>Post Walkin Drive</h2> 
+                               </div>
 
                                <p className={successMessage === "Success! Successfully posted" ?
                                             Style.successmessage : Style.errormessage}>{successMessage} </p>
@@ -398,73 +399,93 @@ const [selectedtime, setselectedtime] = useState("");
                                      <label><input name="Job-Type" type="radio" checked={jobtype === "Contract"} value="Contract" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Contract   </label>
                                      </div>
                                     </div>    
-                                    <div style={{marginRight:"150px"}}>
-                                      <div style={{position:"relative"}}>
-                                     <h4 className={Style.jobHeadline}>Job Location**</h4>
-                                     <div
-    ref={tooltipRef} // ⬅ attach ref to parent of both icon and tooltip
-    className={Style.driveAlerti}
-    onClick={toggleTooltip}
-  >
-    i
-    {showTooltip && (
-      <div
-        className={Style.driveIdesc}
-      >
-       We currently support job posting only in Bangalore.
-      </div>
-    )}
-  </div>
-</div>
+                              </div>
+
+                                    <div style={{position:"relative", display:"flex", alignItems:"center"}}>
+                                    <div> <h4 className={Style.jobHeadline}>Job Location**</h4></div>
+                                     <div style={{position:"relative", }} ref={tooltipRef} className={Style.driveAlerti} onClick={toggleTooltip}>
+                                      <div>i</div>
+                                       {showTooltip && (
+                                         <div
+                                           className={Style.driveIdesc}
+                                         >
+                                          We currently support job posting only in Bangalore.
+                                         </div>
+                                       )}
+                                     </div>
+                                   </div>
     
 
-                                        <div style={{ marginTop: "-10px" }}>
+                                        <div style={{ marginTop: "-32px" }}>
                                             <label><input name="Location" type="radio" checked={jobLocation === "Bangalore"} value="Bangalore" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} />Bangalore </label>
                                       </div>
 
-                                      
 
-                                  </div> 
+                              <div>
+  <h4 className={Style.jobHeadline}>Qualification Needed *</h4>
+  <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
 
-                                 
-                              </div>
-                              <div>     
-                                  <h4 className={Style.jobHeadline}>Qualification Needed**</h4>
-                                       <div style={{ marginTop: "-10px" }}>
-                                           <label><input name="Qualification" type="radio" checked={qualification === "B.E/CSE"} value="B.E/CSE" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(CSE) </label>
-                                           <label><input name="Qualification" type="radio" checked={qualification === "B.E/Civil"} value="B.E/Civil" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(Civil) </label>
-                                           <label><input name="Qualification" type="radio" checked={qualification === "B.E/Mech"} value="B.E/Mech" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(Mech) </label>
-                                           <label><input name="Qualification" type="radio" checked={qualification === "B.E/ECE"} value="B.E/ECE" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(ECE) </label>
-                                           <label><input name="Qualification" type="radio" checked={qualification === "B.E/IT"} value="B.E/IT" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(IT) </label>
-                                           
-                                           <label><input name="Qualification" type="radio" value="others" onClick={(e) => { setOthers((prev) => !prev); setQualification("") }} />others </label>
-                                       </div>
-                                       {
-                                           others ?
-                                               <input className={Style.Otherinputbox} type="text" value={qualification} onChange={(e) => { setQualification(e.target.value) }} />
-                                       
-                                               : ""
-                                       
-                                       }
-                                  </div>
+    {/* B.E/B.TECH Group */}
+    <div style={{ border: '1px solid black', borderRadius:"2px", padding: '10px', minWidth: '140px' }}>
+      <strong>B.E/B.TECH</strong>
+      <div>
+        <label><input type="radio" name="Qualification" value="B.E/CSE" checked={qualification === "B.E/CSE"} onChange={(e) => { setQualification(e.target.value); setOthers(false); }} /> CSE</label><br />
+        <label><input type="radio" name="Qualification" value="B.E/E&C" checked={qualification === "B.E/E&C"} onChange={(e) => { setQualification(e.target.value); setOthers(false); }} /> E&C</label><br />
+        <label><input type="radio" name="Qualification" value="B.E/CS" checked={qualification === "B.E/CS"} onChange={(e) => { setQualification(e.target.value); setOthers(false); }} /> CS</label><br />
+        <label><input type="radio" name="Qualification" value="B.E/IT" checked={qualification === "B.E/IT"} onChange={(e) => { setQualification(e.target.value); setOthers(false); }} /> IT</label><br />
+        <label><input type="radio" name="Qualification" value="B.E/Others" checked={qualification === "B.E/Others"} onChange={(e) => { setQualification(e.target.value); setOthers(false); }} /> OTHERS</label>
+      </div>
+    </div>
+
+    {/* M.E/M.TECH Group */}
+    <div style={{ border: '1px solid black', padding: '10px', borderRadius:"2px", minWidth: '140px' }}>
+      <strong>M.E/M.TECH</strong>
+      <div>
+        <label><input type="radio" name="Qualification" value="M.E/CSE" checked={qualification === "M.E/CSE"} onChange={(e) => { setQualification(e.target.value); setOthers(false); }} /> CSE</label><br />
+        <label><input type="radio" name="Qualification" value="M.E/ECE" checked={qualification === "M.E/ECE"} onChange={(e) => { setQualification(e.target.value); setOthers(false); }} /> ECE</label><br />
+        <label><input type="radio" name="Qualification" value="M.E/CE" checked={qualification === "M.E/CE"} onChange={(e) => { setQualification(e.target.value); setOthers(false); }} /> CE</label><br />
+        <label><input type="radio" name="Qualification" value="M.E/AI&ML" checked={qualification === "M.E/AI&ML"} onChange={(e) => { setQualification(e.target.value); setOthers(false); }} /> AI&ML</label><br />
+        <label><input type="radio" name="Qualification" value="M.E/Others" checked={qualification === "M.E/Others"} onChange={(e) => { setQualification(e.target.value); setOthers(false); }} /> OTHERS</label>
+      </div>
+    </div>
+
+    {/* BCA/MCA */}
+    <div style={{ border: '1px solid black', padding: '10px',borderRadius:"2px", minWidth: '100px' }}>
+      <label>
+        <input type="radio" name="Qualification" value="BCA/MCA" checked={qualification === "BCA/MCA"} onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />
+        BCA/MCA
+      </label>
+    </div>
+
+    {/* OTHERS */}
+    <div style={{ border: '1px solid black', padding: '10px', borderRadius:"2px", minWidth: '100px' }}>
+      <label>
+        <input type="radio" name="Qualification" value="OTHERS" checked={others} onChange={(e) => { setOthers(true); setQualification(""); }} />
+        OTHERS
+      </label>
+    </div>
+
+  </div>
+</div>
+
                               
 
-                              <div className={Style.driveThirdRow}>
+                              {/* <div className={Style.driveThirdRow}> */}
                                 <div className={Style.dirvesubContainer} >
-                                    <h4 className={Style.heading}>Salary Per Annum in Lakhs** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
-                                    <input className={Style.driveinput} style={{width:"32px"}} maxLength="3" type="number" value={salaryRange} onChange={(e) => { handleSalary(e); }} />
+                                    <h4 className={Style.heading}>Salary Per Annum in Lakhs &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
+                                    <input className={Style.driveinput} style={{width:"210px"}} maxLength="3" type="number" value={salaryRange} onChange={(e) => { handleSalary(e); }} />
                                 </div>
                                 <div className={Style.dirvesubContainer}>
                                     <h4 className={Style.heading} >Experience Needed** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
-                                    <input className={Style.driveinput}style={{width:"32px"}} maxLength="3" type="number" value={experiance} onChange={(e) => { handleExperiance(e); }} />
-
+                                    <input className={Style.driveinput}style={{width:"210px"}} maxLength="3" type="number" value={experiance} onChange={(e) => { handleExperiance(e); }} />
+                                    <span className={Style.suffixExpMob}>{experiance===""?"":"LPA"}</span>
                                 </div>
-                              </div>
+                              {/* </div> */}
                               
                             <div className={Style.driveFourthRow}>
                                 <div className={Style.dirvesubContainer}>
                                 <h4 className={Style.heading}>Skills Needed**</h4>
-                                        <input className={Style.driveinput} style={{width:"220px"}}   maxLength="100" value={skills} type="text" onChange={(e)=>{setSkills(e.target.value)}} disabled />
+                                        <input className={Style.driveinput} style={{width:"210px"}}   maxLength="100" value={skills} type="text" onChange={(e)=>{setSkills(e.target.value)}} disabled />
 
                                 </div>
                                 {/* <div className={Style.dirvesubContainer}>
@@ -473,6 +494,19 @@ const [selectedtime, setselectedtime] = useState("");
                                          
                                 </div> */}
                             </div>
+
+                            <div style={{display:"flex", flexDirection:"column", gap:"2px",marginRight:"124px" }}> 
+                                          <label>Venue: </label>
+                                          <input
+                                            type="text"
+                                            ref={venueInputRef}
+                                            value={venue}
+                                            onChange={(e) => setVenue(e.target.value)}
+                                            className={Style.driveinput}
+                                            style={{ width: "200px", zIndex:"99"}}
+                                            placeholder="Search Venue"
+                                          />
+                             </div> 
                               
                             <div  class={Style.driveDateContainer1}>
                                 <div>
@@ -484,23 +518,23 @@ const [selectedtime, setselectedtime] = useState("");
                                             onChange={(e) => setSelectedDate(e.target.value)} 
                                           />
                                           </div>
-                                           <div style={{display:"flex", flexDirection:"column", gap:"2px",marginRight:"124px" }}> 
-                                          <label>Venue: </label>
-                                          <input
-                                            type="text"
-                                            ref={venueInputRef}
-                                            value={venue}
-                                            onChange={(e) => setVenue(e.target.value)}
-                                            className={Style.driveinput}
-                                            style={{ width: "110%", zIndex:"99"}}
-                                            placeholder="Search Venue"
-                                          />
-                                          </div> 
+                                           
                             </div>
 
 
                                         <div class={Style.driveDateContainer}>
-                                         <label>Select Time: </label>
+                                         <label>Drive Start Time: </label>
+                                         <input
+                                         className={Style.DriveDate} 
+                                           type="time" 
+                                           value={selectedtime} 
+                                           onChange={(e) => setselectedtime(e.target.value)} 
+                                         />
+                                         
+                                       </div>
+
+                                       <div class={Style.driveDateContainer}>
+                                         <label>Drive End Time: </label>
                                          <input
                                          className={Style.DriveDate} 
                                            type="time" 
