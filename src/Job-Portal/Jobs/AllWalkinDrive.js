@@ -680,6 +680,25 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
   const updateTag=(tag)=>{
     selectedTag.current=tag
   }
+
+
+  const deregister=async(id)=>{
+    let userid = JSON.parse(localStorage.getItem("StudId"))
+const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+setclickedJobId(id)
+setLoader(true)
+   await axios.put(`/walkinRoute/DeleteWalkinApplied/${id}`, { jobSeekerId }, { headers })
+     .then((res) => {
+       if(res.data==="success"){
+         getjobs()
+         setLoader(false)
+       }else{
+         alert("some thing wrong")
+       }
+     }).catch((err) => {
+       alert("server error occured")
+     })
+ }
   
   return (
     <>
@@ -888,7 +907,7 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
 
 
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Skills}`}>Skills Required</li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Apply}`}>Registered</li>
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Apply}`}>Register</li>
 
             </ul>
             {PageLoader ?
@@ -970,16 +989,35 @@ function AllWalkinDrive({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Fi
           )
         })
           ?
-          <button className={styles.Appliedbutton} title='Thanks for signing up. Check your email for walk-in drive details.' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
-:
-<button className={styles.applyRegisterButton} onClick={() => applyforJob(items._id)}>
-<div style={{ display: "flex",width:"81px", alignItems: "center", justifyContent: "center", gap: "6px",paddingRight:"0px" }}>
-Registered
-  {Loader && items._id === clickedJobId && (
-    <TailSpin height={16} width={16} color="white" />
-  )}
-</div>
-</button>
+
+          <button onClick={() => deregister(items._id)}  style={{fontSize:"12px", height:"30px"}} className={styles.Appliedbutton} title='Thanks for signing up. Check your email for walk-in drive details.' > Registered <span style={{ fontSize: '12px' }}>&#10004;</span>
+            <span className={styles.Loader}>
+             {Loader && items._id === clickedJobId ? (
+               <TailSpin color="white" height={16} width={16} />
+             ) : null}
+           </span>
+           </button>
+          :
+(
+  EmployeeAuth ? (
+    <button className={styles.applyRegisterButton} onClick={() => navigate(`/Drivedetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})}>
+      <div style={{ display: "flex", width: "81px", alignItems: "center", justifyContent: "center", gap: "6px", paddingRight: "0px" }}>
+        View
+      </div>
+    </button>
+  ) : (
+    <button style={{width:"84px"}} className={styles.applyRegisterButton} onClick={() => applyforJob(items._id)}>
+      <div style={{ display: "flex", width: "81px", alignItems: "center", justifyContent: "center", gap: "6px", paddingRight: "0px" }}>
+        Register
+        {Loader && items._id === clickedJobId && (
+          <TailSpin height={16} width={16} color="white" />
+        )}
+      </div>
+    </button>
+  )
+)
+
+
 
                   }
 
@@ -1318,7 +1356,7 @@ Registered
                           <p className={styles.salaryRange}><span>&#8377;</span>{job.ctc}</p>
                           {
                           
-                            <button className={styles.ApplyDriveMobile} style={{paddingLeft:"4px"}} onClick={()=>{applyForDrive(job.link)}}><b>Registered</b></button>
+                            <button className={styles.ApplyDriveMobile} style={{paddingLeft:"4px"}} onClick={()=>{applyForDrive(job.link)}}><b>Register</b></button>
                           }
                         </div>
                         </div> 

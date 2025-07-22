@@ -114,6 +114,10 @@ function PostWalkinDrive(props) {
 
 
     async function postJob() {
+        if(jobtype===""|| qualification==="") {
+          setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation ,qualification , jobtype and Skills must be filled")
+          return
+        }
         let userid = JSON.parse(localStorage.getItem("EmpIdG"))
         const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
        console.log("headers: ",headers)
@@ -154,7 +158,7 @@ console.log(jobDescription,companyName,experiance,jobLocation,venue,time)
                    setselectedtime("")
                     setTag([])
                     setconcent(false)
-                    setSuccessMessage("Success! Successfully posted")
+                    setSuccessMessage("Successfully posted!")
                 }
                 else if (result == "field are missing") {
                     setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")
@@ -339,7 +343,7 @@ const [selectedtime, setselectedtime] = useState("");
                                <h2>Post Walkin Drive</h2> 
                                </div>
 
-                               <p className={successMessage === "Success! Successfully posted" ?
+                               <p className={successMessage === "Successfully posted!" ?
                                             Style.successmessage : Style.errormessage}>{successMessage} </p>
                                <div className={Style.dirvefirstRow}>
                                   <div className={Style.dirvesubContainer}>
@@ -380,7 +384,7 @@ const [selectedtime, setselectedtime] = useState("");
                                           present===tags.value
                                         )
                                             }) >=0?
-                                       Style.active : Style.JobtitleFilter} 
+                                       Style.active : Style.JobtitleFilter}
                                        onClick={ () => {  handleTags(tags.value) }}
                                        >{tags.value} </button>
                                   
@@ -391,7 +395,7 @@ const [selectedtime, setselectedtime] = useState("");
                               </div>
                               <div class={Style.driveRadioRow}>
                                    <div>
-                                     <h4 className={Style.jobHeadline}>Job Type</h4>
+                                     <h4 className={Style.jobHeadline}>Job Type*</h4>
                                      <div style={{ marginTop: "-10px" }}>
                                      <label><input name="Job-Type" type="radio" checked={jobtype === "Full Time" || Tags.filter} value="Full Time" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Full Time  </label>
                                      <label><input name="Job-Type" type="radio" checked={jobtype === "Part Time"} value="Part Time" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Part Time  </label>
