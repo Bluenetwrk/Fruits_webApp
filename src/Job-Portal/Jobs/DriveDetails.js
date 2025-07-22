@@ -356,6 +356,7 @@ const [PageLoader, setPageLoader] = useState(false)
       const [copied, setCopied] = useState(false);
       const shareRef = useRef(null);
       const buttonRef = useRef(null);
+      
     
       const updateClickStatus = () => {
         setShareClicked((prev) => !prev);
@@ -396,6 +397,24 @@ const [PageLoader, setPageLoader] = useState(false)
           document.removeEventListener("mousedown", handleClickOutside);
         };
       }, [shareClicked]);
+
+      const deregister=async(id)=>{
+         let userid = JSON.parse(localStorage.getItem("StudId"))
+    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+    setclickedJobId(id)
+    setLoader(true)
+        await axios.put(`/walkinRoute/DeleteWalkinApplied/${id}`, { jobSeekerId }, { headers })
+          .then((res) => {
+            if(res.data==="success"){
+              getjobs()
+              setLoader(false)
+            }else{
+              alert("some thing wrong")
+            }
+          }).catch((err) => {
+            alert("server error occured")
+          })
+      }
 
      
 
@@ -478,10 +497,19 @@ const [PageLoader, setPageLoader] = useState(false)
                   jobseeker.jobSeekerId == jobSeekerId
                 )
               })?
-              <button class={styles.jobdetailApplyBtn} style={{backgroundColor:"green"}}>
-           <div style={{fontSize:"12px", fontWeight:"800px"}}>Applied <span style={{ fontSize: '15px' }}>&#10004;</span></div>
+              <button onClick={() => deregister(jobs._id)}  class={styles.jobdetailApplyBtn} style={{backgroundColor:"green"}}>
+           <div style={{fontSize:"12px", fontWeight:"800px"}}>Applied <span style={{ fontSize: '15px' }}>&#10004;</span>
+           <span className={styles.Loader}>
+      {Loader && jobs._id === clickedJobId ? (
+        <TailSpin color="white" height={16} width={16} />
+      ) : null}
+    </span>
+           </div>
            </button>
-           :        
+           :  
+           (
+            !EmployeeAuth&&
+               
            <button className={styles.jobdetailApplyBtn} onClick={() => applyforJob(jobs._id)}>
   <div style={{
     fontSize: "12px",
@@ -498,7 +526,7 @@ const [PageLoader, setPageLoader] = useState(false)
     </span>
   </div>
 </button>
-
+ ) 
           }
            {shareClicked && (
         <div ref={shareRef} class={styles.shareContainer}>
