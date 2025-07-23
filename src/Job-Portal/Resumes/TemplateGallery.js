@@ -35,8 +35,8 @@ const Magnifier = ({ src, alt, className }) => {
       position: 'absolute',
       top: `${top}px`,
       left: `${left}px`,
-      width: '200px',
-      height: '200px',
+      width: '400px',
+      height: '350px',
       backgroundImage: `url(${src})`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: '500% 500%',
@@ -96,7 +96,7 @@ const TemplateGallery = ({ onSelect }) => {
   return (
     <div className="template-gallery">
       <div
-        style={{ position: "relative" }}
+        style={{ position: "relative", }}
         className="template-card"
         onClick={() => setResumeAlert({ show: true, selected: 'one' })}
       >
@@ -166,6 +166,7 @@ const TemplateGallery = ({ onSelect }) => {
                   borderRadius: '5px',
                   fontSize: '12px',
                   cursor: 'pointer',
+                  
                 }}
               >
                 Continue to Download Resume
