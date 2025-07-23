@@ -404,10 +404,13 @@ function Nav(props) {
                          zIndex: 9999,
                          textAlign: 'center',
                        }}>
-                          The background check feature on ITWalkin.com allows jobseekers to conduct background checks on companies to ensure credibility.
+                          The background check feature on ITWalkin.com allows jobseekers to conduct background checks on companies to 
                           <br></br>
+                          ensure credibility. To access this feature you need to navigate to <span onClick={()=>navigate("/My-Applied-Jobs")} style={{backgroundColor:"green",cursor:"pointer"}}>My Applied Jobs</span> and click on the company Name 
                           {/* You must be logged in to our portal to access this feature. */}
+                          
                          </div>
+                        
 
                          
                        
@@ -915,7 +918,7 @@ function Nav(props) {
                               zIndex: 9999,
                               textAlign: 'center',
                             }}>
-                               The background check feature on ITWalk.com allows both employers and jobseekers to verify profiles. Employers can assess a jobseeker’s background, while jobseekers can conduct background checks on companies to ensure credibility.<br></br>
+                               The background check feature on ITWalkin.com allows both employers and jobseekers to verify profiles. Employers can assess a jobseeker’s background, while jobseekers can conduct background checks on companies to ensure credibility.<br></br>
                                You must be logged in to our portal to access this feature.<br></br>
                                Are you a Jobseeker or an Employer?
 
