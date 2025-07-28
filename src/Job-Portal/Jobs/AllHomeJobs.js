@@ -874,14 +874,14 @@ useEffect(() => {
                         {
                           !items.Source ?
 
-                            <li style={{ cursor: "pointer", textDecoration: "underline" }} className={`${styles.li} ${styles.CompanyName}`}
-                              onClick={(e) => { checkEmpHalf(btoa(items.empId)) }}  >
+                            <li className={`${styles.li} ${styles.CompanyName}`}>
+                              {/* onClick={(e) => { checkEmpHalf(btoa(items.empId)) }}  > */}
 
                              
                               {items.companyName}</li>
                             :
-                            <a style={{ cursor: "pointer", textDecoration: "underline" }} className={`${styles.li} ${styles.CompanyName}`} href={items.SourceLink} target="_blank" >
-                             
+                            // <a style={{ cursor: "pointer", textDecoration: "underline" }} className={`${styles.li} ${styles.CompanyName}`} href={items.SourceLink} target="_blank" >
+                            <a className={`${styles.li} ${styles.CompanyName}`}  target="_blank" >
                               {items.Source}
 
                             </a>
@@ -1162,10 +1162,14 @@ useEffect(() => {
                           <div class={styles.jobTitleCompanyName}>
                           {!job.Source ?
                             
-                            <> <span className={styles.companyName} onClick={() => { checkEmpHalf(btoa(job.empId)) }} >{job.companyName} </span><br></br></>
+                            // <> <span className={styles.companyName} onClick={() => { checkEmpHalf(btoa(job.empId)) }} >{job.companyName} </span><br></br></>
+                            <> <span style={{textDecoration:"none"}} className={styles.companyName} >{job.companyName} </span><br></br></>
+
                             :
                             
-                            <> <a className={`${styles.companyName}`} href={job.SourceLink} target="_blank">{job.Source}</a><br></br> </>
+                            // <> <a className={`${styles.companyName}`} href={job.SourceLink} target="_blank">{job.Source}</a><br></br> </>
+                            <> <a style={{textDecoration:"none"}}  className={`${styles.companyName}`}>{job.Source}</a><br></br> </>
+
                           }
                           </div>
                         </div>
