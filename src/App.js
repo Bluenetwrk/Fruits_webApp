@@ -83,6 +83,7 @@ import UpdatePostedDrive from "./Job-Portal/PostJobs/UpdatePostedDrive";
 import AppliedDriveDetails from "./Job-Portal/Jobs/AppliedDriveDetails";
 import PostedDriveDetails from "./Job-Portal/Jobs/PostedDriveDetails";
 import AppliedDriveUserProfile from "./Job-Portal/AppliedUserProfile/AppliedDriveUserProfile";
+import ResumeLogin from "./Job-Portal/Login/ResumeLogin";
 // import PostFraud from "./Job-Portal/Jobs/PostFraud";
 axios.defaults.baseURL = " https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -1203,6 +1204,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             searchIcon={searchIcon}
             />} />
             <Route path="/JobSeekerLogin" element={<StudentLogin />} />
+            <Route path="/Job-Seeker-Login" element={<ResumeLogin />} />
             <Route path="/JobSeeker-Login" element={<AnsStdLogin />} />
             <Route path="/Employee-Login" element={<AnsEmpLogin />} />
             <Route path="/New-Registration" element={<NewRegistered />} />
@@ -1216,6 +1218,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             <Route path="/Answerdetails/:id" element={<Answerdetails />} />
             <Route path="/CareerJobdetails/:id" element={<CareerJobdetails />} />
             <Route path="/CheckEmpHalfProfile/:empId" element={<CheckEmpHalfProfile />} />
+
             <Route path="/DriveDetails/:id" element={<DriveDetails />} />
 
             <Route path="/Search-Candidate-Home" element={<SearchCandHome url={axios.defaults.baseURL}

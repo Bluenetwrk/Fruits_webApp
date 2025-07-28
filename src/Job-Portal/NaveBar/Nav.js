@@ -774,7 +774,7 @@ function Nav(props) {
         Login as a Jobseeker to explore opportunities and create a strong resume!
           <div  style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"5px" }}>
             <button
-              onClick={() => {navigate("/JobSeekerLogin"); setresumeAlert(false)}}
+              onClick={() => {navigate("/Job-Seeker-Login"); setresumeAlert(false)}}
               style={{
                 padding: '8px 16px',
                 backgroundColor: '#4CAF50',
@@ -1364,7 +1364,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
         Login as a Jobseeker to explore opportunities and create a strong resume!
           <div  style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"5px" }}>
             <button
-              onClick={() => {navigate("/JobSeekerLogin"); setresumeAlert(false)}}
+              onClick={() => {navigate("/Job-Seeker-Login"); setresumeAlert(false)}}
               style={{
                 padding: '8px 16px',
                 backgroundColor: '#4CAF50',

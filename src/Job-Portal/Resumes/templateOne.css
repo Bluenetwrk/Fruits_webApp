@@ -1,69 +1,118 @@
 .resume-container {
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fff;
-  max-width: 800px;
-  margin: auto;
-  border: 1px solid #ccc;
+  padding: 40px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
 }
 
-.resume-section{
-  margin-left:20px;
+.template-one {
+  background: #fff;
+  max-width: 794px;
+  margin: auto;
+  padding: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-height: 1123px; /* A4 height */
 }
 
 .resume-header {
-  text-align: center;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
 }
 
 .resume-name {
-  font-size: 32px;
-  margin-bottom: 5px;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 8px;
 }
 
-.resume-contact {
+.summary {
   font-size: 14px;
-  color: #555;
+  margin-bottom: 0;
+  width:"430px"
 }
 
-.resume-section {
-  margin-bottom: 20px;
+.header-right {
+  text-align: right;
+  font-size: 13px;
+  max-width: 300px;
+  line-height: 1.4;
+}
+
+.resume-body {
+  display: flex;
+  gap: 40px;
+}
+
+.left-section {
+  flex: 2;
+}
+
+.right-section {
+  flex: 1;
 }
 
 .section-title {
   font-size: 20px;
-  border-bottom: 1px solid #000;
-  padding-bottom: 5px;
+  font-weight: 600;
   margin-bottom: 10px;
+  border-bottom: none;
 }
 
-.education-list {
-  list-style-type: none;
-  padding-left: 0;
+.experience h3 {
+  margin: 8px 0 4px;
+  font-size: 16px;
 }
 
-.education-item {
-  margin-bottom: 10px;
+.date {
+  font-size: 13px;
+  font-style: italic;
+  margin-bottom: 6px;
 }
 
-.skills-list {
+.experience ul {
+  padding-left: 18px;
+  margin-bottom: 20px;
+}
+
+.experience ul li {
+  margin-bottom: 4px;
   font-size: 14px;
-  margin-left: -20px;
+}
+
+.certification,
+.total-exp,
+.skills {
+  margin-bottom: 20px;
+  
+}
+
+.skills h5 {
+  margin: 6px 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.skills ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.skills ul li {
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .download-button {
-  margin-top: 20px;
+  margin: 20px auto;
+  display: block;
+  background-color: #007bff;
+  color: white;
   padding: 10px 20px;
-  background-color: rgb(40,4,99);
   border: none;
-  color: #fff;
   cursor: pointer;
-  font-size: 16px;
-  border-radius: 4px;
 }
 
 .download-button:hover {
-  background-color: rgb(40,4,99);
+  background-color: #0056b3;
 }
-
-
