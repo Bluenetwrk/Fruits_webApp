@@ -20,7 +20,7 @@ const TemplateOne = () => {
         console.log("mbb",profileData) // Save profile to state
       } catch (err) {
         alert("Something went wrong while fetching profile");
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
