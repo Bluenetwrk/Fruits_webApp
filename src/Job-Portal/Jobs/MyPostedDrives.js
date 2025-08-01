@@ -475,6 +475,7 @@ const handleHRGenerateQR = (driveId) => {
   })}
 </p> */}
                     </li>
+                    {console.log(items._id)}
                     <li className={`${styles.li} ${styles.Location}`}>{items.venue}</li>
                     <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}</li>
                     <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}</li>

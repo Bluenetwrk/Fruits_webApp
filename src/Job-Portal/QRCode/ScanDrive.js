@@ -73,13 +73,14 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
 
     const generateUniqueCode = (driveId) => {
       const drive = allWalkinDrive.find((drive) => drive._id === driveId);
-      if (!drive?.companyName) {
-        alert("Please Scan the QR code.");
-        navigate("/");
-        return null;
-      }
+      // console.log("drive", allWalkinDrive)
+      // if (!drive?.companyName) {
+      //   alert("Please Scan the QR code.");
+      //   navigate("/");
+      //   return null;
+      // }
 
-      const companyCode = drive.companyName.substring(0, 2).toUpperCase();
+      const companyCode = drive?.companyName?.substring(0, 2).toUpperCase();
       // console.log("companyName",companyName)
       const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
       let randomPart = "";
@@ -128,7 +129,7 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
         <>
           {/* <h3>Your Unique Attendance Code:</h3> */}
           {/* {console.log("kkkk",profileData)} */}
-          <div style={{ fontSize: "2rem", fontWeight: "bold", color: "black" }}>Welcome {profileData[0].name} !</div>
+          <div style={{ fontSize: "2rem", fontWeight: "bold", color: "black" }}>Welcome {profileData[0]?.name} !</div>
           <div style={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}>Your token is </div>
           <div style={{ fontSize: "2rem", fontWeight: "bold", color: "#28a745" }}>{code}</div>
           <div style={{ fontSize: "1rem", fontWeight: "bold", color: "#black" }}>Please Proceed to waiting area.<br></br>Watch the TV for your turn.</div>
