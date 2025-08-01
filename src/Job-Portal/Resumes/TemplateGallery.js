@@ -139,7 +139,7 @@ const TemplateGallery = ({ onSelect }) => {
               <button
                 onClick={() => {
                   setResumeAlert({ show: false, selected: null });
-                  navigate("/My-Profile");
+                  navigate("/resume-form");
                 }}
                 style={{
                   padding: '8px 16px',

@@ -84,6 +84,7 @@ import AppliedDriveDetails from "./Job-Portal/Jobs/AppliedDriveDetails";
 import PostedDriveDetails from "./Job-Portal/Jobs/PostedDriveDetails";
 import AppliedDriveUserProfile from "./Job-Portal/AppliedUserProfile/AppliedDriveUserProfile";
 import ResumeLogin from "./Job-Portal/Login/ResumeLogin";
+import ResumeForm from "./Job-Portal/Resumes/ResumeForm";
 // import PostFraud from "./Job-Portal/Jobs/PostFraud";
 axios.defaults.baseURL = " https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -1149,6 +1150,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             <Route element={<StudPrivate />}>
             <Route path="/scanner" element={<QRScanner />} />
             <Route path="/enter-cabin/:driveId" element={<JobseekerEnterCabin />} />
+             <Route path="resume-form" element={<ResumeForm />}></Route>
               <Route path="/resumes" element={<AllResumes url={axios.defaults.baseURL}/>}></Route> 
               <Route path="/alljobs" element={<Jobs url={axios.defaults.baseURL} 
                showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}

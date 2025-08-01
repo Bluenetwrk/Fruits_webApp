@@ -1,0 +1,219 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const ResumeForm = () => {
+  const initialState = {
+    name: '',
+    profileSummary: '',
+    address: '',
+    email: '',
+    totalExperience: '',
+    experiences: [
+      { company: '', role: '', startDate: '', endDate: '', descriptions: [''] },
+    ],
+    certifications: [''],
+    skills: [{ heading: '', items: [''] }],
+    languages: [''],
+  };
+
+  const [formData, setFormData] = useState(initialState);
+  const [profileData, setProfileData] = useState([]);
+
+  let studId = JSON.parse(localStorage.getItem("StudId"));
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const userid = JSON.parse(localStorage.getItem("StudId"));
+      const headers = {
+        authorization: `${userid} ${atob(JSON.parse(localStorage.getItem("StudLog")))}`,
+      };
+
+      try {
+        const res = await axios.get(`/StudentProfile/getProfile/${studId}`, { headers });
+        const result = res.data.result;
+        setProfileData([result]);
+        setFormData(prev => ({
+          ...prev,
+          name: result.name,
+          email: result.email,
+          totalExperience: result.Experiance,
+        }));
+      } catch (err) {
+        alert("Something went wrong while fetching profile");
+      }
+    };
+
+    fetchProfile();
+  }, [studId]);
+
+  const containerStyle = {
+    maxWidth: '900px',
+    margin: '0 auto',
+    padding: '20px',
+    fontFamily: 'Arial, sans-serif',
+  };
+
+  const sectionStyle = {
+    background: '#f8f8f8',
+    border: '1px solid #ddd',
+    padding: '15px',
+    marginBottom: '20px',
+    borderRadius: '5px',
+  };
+
+  const inputStyle = {
+    display: 'block',
+    width: '98%',
+    padding: '10px',
+    marginBottom: '10px',
+    border: '1px solid #ccc',
+    borderRadius: '4px',
+    resize: 'vertical',
+  };
+
+  const buttonStyle = {
+    marginTop: '5px',
+    padding: '8px 14px',
+    backgroundColor: 'rgb(40, 4, 99)',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+  };
+
+  const handleChange = (field, value) => setFormData({ ...formData, [field]: value });
+
+  const handleExperienceChange = (index, key, value) => {
+    const updated = [...formData.experiences];
+    updated[index][key] = value;
+    setFormData({ ...formData, experiences: updated });
+  };
+
+  const handleRoleDescriptionChange = (expIndex, descIndex, value) => {
+    const updated = [...formData.experiences];
+    updated[expIndex].descriptions[descIndex] = value;
+    setFormData({ ...formData, experiences: updated });
+  };
+
+  const addRoleDescription = (expIndex) => {
+    const updated = [...formData.experiences];
+    updated[expIndex].descriptions.push('');
+    setFormData({ ...formData, experiences: updated });
+  };
+
+  const addExperience = () => {
+    setFormData({
+      ...formData,
+      experiences: [...formData.experiences, {
+        company: '', role: '', startDate: '', endDate: '', descriptions: ['']
+      }],
+    });
+  };
+
+  const handleCertificationChange = (index, value) => {
+    const updated = [...formData.certifications];
+    updated[index] = value;
+    setFormData({ ...formData, certifications: updated });
+  };
+
+  const addCertification = () => {
+    setFormData({ ...formData, certifications: [...formData.certifications, ''] });
+  };
+
+  const handleSkillChange = (index, key, value) => {
+    const updated = [...formData.skills];
+    updated[index][key] = value;
+    setFormData({ ...formData, skills: updated });
+  };
+
+  const handleSkillItemChange = (sectionIndex, itemIndex, value) => {
+    const updated = [...formData.skills];
+    updated[sectionIndex].items[itemIndex] = value;
+    setFormData({ ...formData, skills: updated });
+  };
+
+  const addSkillItem = (index) => {
+    const updated = [...formData.skills];
+    updated[index].items.push('');
+    setFormData({ ...formData, skills: updated });
+  };
+
+  const addSkillSection = () => {
+    setFormData({ ...formData, skills: [...formData.skills, { heading: '', items: [''] }] });
+  };
+
+  const handleLanguageChange = (index, value) => {
+    const updated = [...formData.languages];
+    updated[index] = value;
+    setFormData({ ...formData, languages: updated });
+  };
+
+  const addLanguage = () => {
+    setFormData({ ...formData, languages: [...formData.languages, ''] });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Submitted Data:', formData);
+    setFormData(initialState);
+  };
+
+  return (
+    <div style={containerStyle}>
+      <h1>AI Resume Builder Form</h1>
+
+      <input style={inputStyle} placeholder="Name" value={formData.name} onChange={(e) => handleChange('name', e.target.value)} />
+      <textarea style={inputStyle} placeholder="Profile Summary" value={formData.profileSummary} onChange={(e) => handleChange('profileSummary', e.target.value)} />
+      <input style={inputStyle} placeholder="Full Address" value={formData.address} onChange={(e) => handleChange('address', e.target.value)} />
+      <input style={inputStyle} placeholder="Email" value={formData.email} onChange={(e) => handleChange('email', e.target.value)} />
+      <input style={inputStyle} placeholder="Total Experience" value={formData.totalExperience} onChange={(e) => handleChange('totalExperience', e.target.value)} />
+
+      <h2>Experience</h2>
+      {formData.experiences.map((exp, i) => (
+        <div key={i} style={sectionStyle}>
+          <input style={inputStyle} placeholder="Company" value={exp.company} onChange={(e) => handleExperienceChange(i, 'company', e.target.value)} />
+          <input style={inputStyle} placeholder="Role" value={exp.role} onChange={(e) => handleExperienceChange(i, 'role', e.target.value)} />
+          <div style={{ display: "flex", gap: '10px' }}>
+            <input style={{ ...inputStyle, width: '50%' }} type="date" value={exp.startDate} onChange={(e) => handleExperienceChange(i, 'startDate', e.target.value)} />
+            <input style={{ ...inputStyle, width: '50%' }} type="date" value={exp.endDate} onChange={(e) => handleExperienceChange(i, 'endDate', e.target.value)} />
+          </div>
+          {exp.descriptions.map((desc, j) => (
+            <textarea key={j} style={inputStyle} placeholder={`Role Description ${j + 1}`} value={desc} onChange={(e) => handleRoleDescriptionChange(i, j, e.target.value)} />
+          ))}
+          <button style={buttonStyle} type="button" onClick={() => addRoleDescription(i)}>Add Description</button>
+        </div>
+      ))}
+      <button style={buttonStyle} type="button" onClick={addExperience}>Add Experience</button>
+
+      <h2>Certifications</h2>
+      {formData.certifications.map((cert, i) => (
+        <input key={i} style={inputStyle} placeholder={`Certification ${i + 1}`} value={cert} onChange={(e) => handleCertificationChange(i, e.target.value)} />
+      ))}
+      <button style={buttonStyle} type="button" onClick={addCertification}>Add Certification</button>
+
+      <h2>Core Technical Skills</h2>
+      {formData.skills.map((skill, i) => (
+        <div key={i} style={sectionStyle}>
+          <input style={inputStyle} placeholder="Heading" value={skill.heading} onChange={(e) => handleSkillChange(i, 'heading', e.target.value)} />
+          {skill.items.map((item, j) => (
+            <input key={j} style={inputStyle} placeholder={`Skill ${j + 1}`} value={item} onChange={(e) => handleSkillItemChange(i, j, e.target.value)} />
+          ))}
+          <button style={buttonStyle} type="button" onClick={() => addSkillItem(i)}>Add Skill</button>
+        </div>
+      ))}
+      <button style={buttonStyle} type="button" onClick={addSkillSection}>Add Skill Section</button>
+
+      <h2>Languages</h2>
+      {formData.languages.map((lang, i) => (
+        <input key={i} style={inputStyle} placeholder={`Language ${i + 1}`} value={lang} onChange={(e) => handleLanguageChange(i, e.target.value)} />
+      ))}
+      <button style={buttonStyle} type="button" onClick={addLanguage}>Add Language</button>
+
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button style={{ ...buttonStyle, marginTop: '20px' }} type="submit" onClick={handleSubmit}>Submit</button>
+      </div>
+    </div>
+  );
+};
+
+export default ResumeForm;
