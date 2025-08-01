@@ -74,11 +74,11 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
     const generateUniqueCode = (driveId) => {
       const drive = allWalkinDrive.find((drive) => drive._id === driveId);
       // console.log("drive", allWalkinDrive)
-      // if (!drive?.companyName) {
-      //   alert("Please Scan the QR code.");
-      //   navigate("/");
-      //   return null;
-      // }
+      if (!drive?.companyName) {
+        alert("Please Scan the QR code.");
+        navigate("/");
+        return null;
+      }
 
       const companyCode = drive?.companyName?.substring(0, 2).toUpperCase();
       // console.log("companyName",companyName)
