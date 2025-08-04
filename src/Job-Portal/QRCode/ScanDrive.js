@@ -21,9 +21,9 @@ const ScanDrive = () => {
     try {
         const res = await axios.get(`/StudentProfile/getProfile/${studId}`, {headers})
         const result = res.data.result;
-        console.log(result)
+        // console.log(result)
         setProfileData([result]);
-        console.log(profileData) // Save profile to state
+        // console.log(profileData) // Save profile to state
       } catch (err) {
         alert("Something went wrong while fetching profile");
         setLoading(false);
@@ -37,10 +37,10 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
   async function getjobs() {
 
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
-    await axios.get("/walkinRoute/allactivewalkins",{headers})
+    await axios.get("/walkinRoute/getHomewalkins",{headers})
       .then((res) => {
         let result = (res.data)
-        // console.log(result)
+        // console.log("result - >",result)
         let sortedate = result.sort(function (a, b) {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
@@ -73,7 +73,8 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
 
     const generateUniqueCode = (driveId) => {
       const drive = allWalkinDrive.find((drive) => drive._id === driveId);
-      // console.log("drive", allWalkinDrive)
+      // console.log("drive", drive)
+      // console.log("profile", profileData[0])
       if (!drive?.companyName) {
         alert("Please Scan the QR code.");
         navigate("/");
