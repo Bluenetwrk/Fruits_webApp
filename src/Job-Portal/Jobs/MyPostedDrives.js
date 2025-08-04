@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import styles from "./myPostedjobs.module.css"
 import { useEffect, useState } from 'react'
-import axios from "axios";
+import axios, { all } from "axios";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Puff } from 'react-loader-spinner'
@@ -475,7 +475,7 @@ const handleHRGenerateQR = (driveId) => {
   })}
 </p> */}
                     </li>
-                    {console.log(items._id)}
+                    {/* {console.log(items._id)} */}
                     <li className={`${styles.li} ${styles.Location}`}>{items.venue}</li>
                     <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}</li>
                     <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}</li>
@@ -595,23 +595,35 @@ const handleHRGenerateQR = (driveId) => {
       <> 
 
 <p style={{marginLeft:"31%",fontWeight:"bold"}}>My Posted Walkin Drives</p>
-<button className={styles.searchButton} onClick={() => {
+{/* <button className={styles.searchButton} onClick={() => {
           navigate("/Search-Candidate")
-        }}>Search Candidate</button>
+        }}>Search Candidate</button> */}
 
-<p style={{ marginLeft: "4%", color: "blue", fontWeight:"bold" }}> Total {myjobs.length} jobs</p>
-        <div className={styles.searchBoth}>
+<p style={{ marginLeft: "4%", color: "blue", fontWeight:"bold" }}> Total {allWalkindrive.length} jobs</p>
+        {/* <div className={styles.searchBoth}>
           <p className={styles.p}>Search </p>
           <input className={styles.inputboxsearch} type="text" placeholder='search for a posted job' onChange={(e) => { search(e) }} />
         </div>
         {Result ?
             <h4 style={{ marginLeft: "34%", marginTop: "0px"}}> {myjobs.length} matching Result Found  </h4>
             : ""
-          }
+          } */}
+
+       {PageLoader ?
+                  <>
+                    <div style={{display:"flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}}>
+                    <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "50px" }} />
+                     <div style={{display:"flex",justifyContent:"center", color:"red"}}>
+                       <h3>Loading...</h3>
+                     </div>
+                    </div> 
+                  </>:
+                                     
+     
       <div id={styles.JobCardWrapper} >
 
-{myjobs.length<0?
-myjobs.map((job, i) => {
+{allWalkindrive?.length>0?
+allWalkindrive.map((job, i) => {
   return (
     <>
  <div className={styles.JobCard} key={i}>
@@ -621,16 +633,10 @@ myjobs.map((job, i) => {
   window.scrollTo({
     top:0
   })
-  navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {transferRecords, },})}} >{job.jobTitle} </p>                      
-        <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
-          "en-US",
-          {
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          }
-        )
-        } </p>       
+ navigate(`/AppliedDriveDetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})}}>{job.jobTitle} </p>                      
+        {/* <p className={styles.Date}>
+        {new Date(job.driveDate).toLocaleDateString("en-IN")}/{job.time}
+        </p>        */}
 
         </div>
         
@@ -638,41 +644,109 @@ myjobs.map((job, i) => {
         <div className={styles.companyNameLocationWrapper}  >
           <img className={styles.logo} src={job.Logo} />
           <span className={styles.companyName} >{job.companyName} </span><br></br>
-          </div>
-          
-        <  img className={styles.jobLocationImage} src={location}  /> 
-        <span className={styles.jobLocation}>{job.jobLocation[0].toUpperCase()+job.jobLocation.slice(1)} ,</span>
-        <span className={styles.qualificationAndExperiance}>
-        
-        <  img className={styles.graduationImage} src={graduation}  /> 
+        </div>
+        <div style={{display:"flex", alignItems:"center"}}> 
+          <img className={styles.jobLocationImage} src={location}  /> 
+          <div className={styles.jobLocation}>{job.venue}</div>
+        </div> 
 
+        <span style={{display:"flex", alignItems:"center", marginLeft:"5%", marginTop:"5px"}} >        
+         <img className={styles.graduationImage} src={graduation}  /> 
           {job.qualification}, {job.experiance}Y Exp ,   {job.jobtype}
-        {/* <span className={styles.jobtypeAndDate}> {job.jobtype}</span> */}
-        </span><br></br>
+        </span>
         
- 
-                                     
-                        <div className={styles.skillWrapper}>
-                          <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skills}</span><br></br>
-                        </div>
+        <br></br>
+         
+         <div style={{marginTop:"-8px"}} className={styles.skillWrapper}>
+            <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skills}</span><br></br>
+         </div>
 
         <span className={styles.NoOfJobSeekersApplied}> No. of Job Seekers Applied:
-        {job.jobSeekerId.length > 0 ?
-                          <button className={`${styles.MobileviewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(job._id)) }}>{job.jobSeekerId.length}</button>
-                          :
-                          <button className={`${styles.MobileZeroViewButton}`} >{job.jobSeekerId.length}</button>
+        {job.jobSeekerId.length> 0 ?
+             
+             <button className={`${styles.MobileviewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(job._id)) }}>{job.jobSeekerId.length}</button>
+            
+             :
+             <button className={`${styles.MobileviewButton}`} >{job.jobSeekerId.length}</button>
 
-                        }
+           }
         </span><br></br>
 
-
-        <div className={styles.ApplyPackage}>
+          <div className={styles.ApplyPackage} style={{width:"93%"}}>
           <span className={styles.salaryRange} style={{ marginLeft: "10px" }}><span>&#8377;</span>{job.salaryRange}L</span>
           <div className={styles.MobileAcbuttons}>
-          <button className={` ${styles.MobileUpdate}`}>Update</button>
-          <button className={` ${styles.MobileDelete}`}>Delete</button>
+          <button onClick={()=>{navigate("/updatedposted-Drives", { state: { getId: job._id } })}}  className={` ${styles.MobileUpdate}`}>Update</button>
+          <button onClick={()=>{deletejob(job._id)}} className={` ${styles.MobileDelete}`}>Delete</button>
                </div>
         </div>
+
+
+        {/* <div style={{display:"flex", justifyContent:"center", marginTop:"4px"}}> */}
+
+        <div style={{marginLeft:"4%"}}>
+
+        <li style={{position:"relative"}} className={`${styles.li} ${styles.Action}`}>
+                        <button style={{width:"144px"}} onClick={() => { handleGenerateQR(job._id) }} className={`${styles.Abutton} ${styles.update}`}>Generate Reception Table QR</button>                 
+                        {selectedDriveId === job._id && (
+  <div style={{display:"flex", flexDirection:"column",alignItems:"center", marginLeft:"74px"}}>
+
+    <div
+      ref={(el) => (qrRefs.current[job._id] = el)}
+      style={{ background: "white", padding: "16px", display: "inline-block" ,width:"100px", height:"100px"}}
+    >
+      <QRCode style={{width:"100px", height:"100px"}} value={generateQRUrl(job._id)} size={160} />
+    </div>
+
+    <button
+      onClick={() => handleDownloadQR(job._id)}
+      style={{ marginTop: "0.5rem", display: "block", width:"103px" }}
+      className={`${styles.Abutton} ${styles.update}`}
+    >
+      Download QR
+    </button>
+  </div>
+)}
+ </li>
+
+</div>
+
+{/* </div> */}
+
+<div style={{marginLeft:"4%"}}>
+<li className={`${styles.li} ${styles.Action}`}>
+      <button
+         style={{width:"144px"}}
+        className={`${styles.Abutton} ${styles.update}`}
+        onClick={() => { handleHRGenerateQR(job._id) }}
+      >
+        Generate HR Table QR
+      </button>
+
+{selectedHRDriveId === job._id && (
+  <div style={{display:"flex", flexDirection:"column",alignItems:"center", marginLeft:"74px"}}>
+
+    <div
+      ref={(el) => (qrRefs.current[job._id] = el)}
+      style={{ background: "white", padding: "16px", display: "inline-block" ,width:"100px", height:"100px"}}
+    >
+      <QRCode style={{width:"100px", height:"100px"}} value={generateHRQRUrl(job._id)} size={160} />
+    </div>
+
+    <button
+      onClick={() => handleDownloadQR(job._id)}
+      style={{ marginTop: "0.5rem", display: "block", width:"103px" }}
+      className={`${styles.Abutton} ${styles.update}`}
+    >
+      Download QR
+    </button>
+  </div>
+)}
+    </li>
+
+</div>
+
+
+
     <p className={styles.jobDescriptionHeading}>Job Description:</p>
 
         <p className={styles.jobDescription}> 
@@ -683,7 +757,7 @@ myjobs.map((job, i) => {
                     .toString())                    
                     :""                
                     }
-                  <span style={{ color: "blue", cursor:"pointer" }} onClick={() => { navigate(`/Jobdetails/${job._id}`) }} >...see more</span>
+                  <span style={{ color: "blue", cursor:"pointer" }} onClick={() => navigate(`/AppliedDriveDetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})} >...see more</span>
                    
           </p>
       </div>
@@ -694,6 +768,7 @@ myjobs.map((job, i) => {
 }
 
 </div>
+}
 <div style={{marginTop:"120px"}}>
           <Footer/>
         </div>
