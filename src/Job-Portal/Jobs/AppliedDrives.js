@@ -564,8 +564,8 @@ const handleStart = () => {
 ) : (
   <>
     <div id={styles.JobCardWrapper}>
-      {dummyDrives.length > 0 ? (
-        dummyDrives.map((job, i) => {
+      {MyAppliedDrives.length > 0 ? (
+      MyAppliedDrives.map((job, i) => {
           // const matched = job.jobSeekerId.find(id => id.jobSeekerId == jobSeekerId);
           // const appliedDate = matched?.date ? new Date(matched.date) : null;
           // const formattedAppliedDate = appliedDate
@@ -585,13 +585,14 @@ const handleStart = () => {
             <div className={styles.JobCard} key={i}>
               <div className={styles.JobTitleDateWrapper}>
                 <p
+                onClick={() => navigate(`/AppliedDriveDetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})}
                   className={styles.jobTitle}   
                 >
                   {job.jobTitle.toUpperCase()}
                 </p>
-                <p className={styles.Date}>
+                {/* <p className={styles.Date}>
                   {job.postedDate}
-                </p>
+                </p> */}
               </div>
 
               <div
@@ -601,22 +602,26 @@ const handleStart = () => {
                 <img className={styles.logo} src={job.Logo} alt="Logo" />
                 <span className={styles.companyName}>{job.companyName}</span><br />
               </div>
-
+              <div style={{display:"flex"}}> 
               <img className={styles.jobLocationImage} src={location} alt="Location" />
-              <span className={styles.jobLocation}>
-                {job.location},
-              </span>
-              <span className={styles.qualificationAndExperiance}>
+              <div className={styles.jobLocation}>
+                {job.venue},
+              </div>
+              </div>
+
+              
+              <div style={{display:"flex", marginLeft:"4%"}}> 
                 <img className={styles.graduationImage} src={graduation} alt="Graduation" />
-                {job.qualification}  
-              </span><br />
+                {job.qualification===""?"Not Defined":job.qualification}  
+              </div>
+              {/* {console.log(job)} */}
               <span style={{ marginBottom: "3px", display: "inline" }}>
                 <span style={{ marginLeft: "15px", fontWeight: "450" }}>Experience: </span>
-                {job.experience}Y Exp,
+                {job.experiance}Y Exp,
               </span><br/>
               <span style={{ marginBottom: "-3px", display: "inline" }}>
                 <span style={{ marginLeft: "15px", fontWeight: "450" }}>Job Type: </span>
-                {job.jobType}
+                {job.jobtype}
               </span><br/>
               
 
@@ -630,37 +635,65 @@ const handleStart = () => {
               ) : (
                 <span className={styles.skills}>ItWalkin</span>
               )} */}
-
+              <span style={{ marginBottom: "-3px", display: "inline" }}>
+                <span style={{ marginLeft: "14px", fontWeight: "450" }}>Drive Date: </span>
+                {new Date(job.driveDate).toLocaleDateString("en-IN")}
+              </span>
+ <br></br>
               <span style={{ marginBottom: "-3px", display: "inline" }}>
                 <span style={{ marginLeft: "14px", fontWeight: "450" }}>Applied Date: </span>
-                {job.appliedDate}
+                {new Date(job.createdAt).toLocaleDateString("en-IN")}
               </span>
 
               <div className={styles.skillWrapper}>
                 <span className={styles.skillsHeading}>Skills: </span>
-                <span className={styles.skills}>{job.skillsRequired}</span><br />
+                <span className={styles.skills}>{job.skills}</span><br />
               </div>
 
               <div className={styles.driveMobBtnContainer}>
                 <h3 style={{ marginLeft: "10px", marginTop: "23px" }}>
-                  <span>&#8377;</span>{job.ctc}
+                  <span>&#8377;</span>{job.salaryRange}LPA
                 </h3>
                 <div style={{display:"flex"}}>
-                  <button className={styles.MobileDelete} style={{width:"100%"}} >Delete</button>
+                  <button className={styles.MobileDelete} style={{width:"100%"}} onClick={()=>{UndoApply(job._id)}} >Delete</button>
                   <button className={styles.Mobileqr}  onClick={handleStart} >QR Scanner</button>
                 </div>
               </div>
-
+               
+               <div style={{display:"flex"}}>
               <p className={styles.MobileResult}>Result:</p>
               <span>
-                
+              <li style={{width:"100%", border:"none"}} className={`${styles.li} ${styles.Status}`}>
+
+{job.onHoldJobseker.find((onholdProfile) => {
+    return (
+      onholdProfile == jobSeekerId
+    )
+  }) ? <p style={{ color: "blue" }}>Your Profile is on Hold</p> :
+
+    job.slectedJobseker.find((SelectedProfile) => {
+      return (
+        SelectedProfile == jobSeekerId
+      )
+    }) ? <p style={{ color: "rgb(7, 161, 7)" }}> Congratulations! You've Been Shortlisted!.You’ll receive details about the interview soon.</p>
+      :
+      job.rejectedJobseker.find((rejectProfile) => {
+        return (
+          rejectProfile == jobSeekerId
+        )
+      }) ? <p style={{ color: "red" }}>Sorry, your profile doesn't match this job.</p>
+        : "Your application is submitted.It will be reviewed and we will update you soon"
+  }
+
+</li>
               </span>
+              </div>
 
               <p className={styles.jobDescriptionHeading}>Job Description:</p>
               <p className={styles.jobDescription}>
                 {job.jobDescription ? HTMLReactParser(job.jobDescription.slice(0, 70)) : ""}
                 <span
-                  
+                                  onClick={() => navigate(`/AppliedDriveDetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})}
                   className={styles.seeMore}
                   style={{ color: "blue" }}
                 >

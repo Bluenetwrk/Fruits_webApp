@@ -1,112 +1,106 @@
 import React, { useEffect, useState } from "react";
-import "./LiveTvDisplay.css";
-import drivedesk from "../img/drivedesk.png";
-import { useNavigate } from "react-router-dom";
-
-const TOTAL_CABINS = 5;
-const TOTAL_TOKENS = 20;
-const COMPANY_CODE = "AB";
-const UPDATE_INTERVAL = 3000;
-
-const generateAlphaNumeric = () => {
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  let result = "";
-  for (let i = 0; i < 3; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
-};
-
-const generateTokens = () => {
-  const tokens = new Set();
-  while (tokens.size < TOTAL_TOKENS) {
-    tokens.add(COMPANY_CODE + generateAlphaNumeric());
-  }
-  return Array.from(tokens);
-};
+import styles from "./LiveTvDisplay.module.css";
 
 const LiveTvDisplay = () => {
-  const [cabinQueues, setCabinQueues] = useState([]);
-  const [displayTokens, setDisplayTokens] = useState([]);
+  // Fixed 20 candidates
+  const allCandidates = [
+    { id: 1, name: "Anjali Sharma", token: "TKN001" },
+    { id: 2, name: "Rahul Mehta", token: "TKN002" },
+    { id: 3, name: "Nikita Kumari", token: "TKN003" },
+    { id: 4, name: "Arjun Verma", token: "TKN004" },
+    { id: 5, name: "Simran Kaur", token: "TKN005" },
+    { id: 6, name: "Ravi Shankar", token: "TKN006" },
+    { id: 7, name: "Kunal Yadav", token: "TKN007" },
+    { id: 8, name: "Pooja Singh", token: "TKN008" },
+    { id: 9, name: "Vikram Chauhan", token: "TKN009" },
+    { id: 10, name: "Meena Patel", token: "TKN010" },
+    { id: 11, name: "Dev Mishra", token: "TKN011" },
+    { id: 12, name: "Sana Sheikh", token: "TKN012" },
+    { id: 13, name: "Yash Jain", token: "TKN013" },
+    { id: 14, name: "Reema Rani", token: "TKN014" },
+    { id: 15, name: "Gaurav Das", token: "TKN015" },
+    { id: 16, name: "Ishita Roy", token: "TKN016" },
+    { id: 17, name: "Aditya Rao", token: "TKN017" },
+    { id: 18, name: "Kritika Joshi", token: "TKN018" },
+    { id: 19, name: "Mohit Singh", token: "TKN019" },
+    { id: 20, name: "Sneha Dubey", token: "TKN020" },
+  ];
 
-  // Step 1: Generate tokens and assign to queues
+  // Fixed Cabin Assignment (cabin 1 to 5, looped)
+  const allCabinAssignments = allCandidates.map((c, i) => ({
+    cabinNo: `Cabin ${(i % 5) + 1}`,
+    token: c.token,
+    name: c.name,
+  }));
+
+  const [waitingPage, setWaitingPage] = useState(0);
+  const [cabinPage, setCabinPage] = useState(0);
+  const rowsPerPage = 5;
+
   useEffect(() => {
-    const tokens = generateTokens();
-    const queues = Array.from({ length: TOTAL_CABINS }, () => []);
-    tokens.forEach((token, index) => {
-      queues[index % TOTAL_CABINS].push(token);
-    });
-    setCabinQueues(queues);
-
-    const initialDisplay = queues.map((queue, i) => ({
-      cabin: `Cabin-${101 + i}`,
-      token: queue[0],
-      index: 0,
-    }));
-    setDisplayTokens(initialDisplay);
+    const interval = setInterval(() => {
+      setWaitingPage((prev) => (prev + 1) % Math.ceil(allCandidates.length / rowsPerPage));
+      setCabinPage((prev) => (prev + 1) % Math.ceil(allCabinAssignments.length / rowsPerPage));
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
 
-  // Step 2: Rotate tokens after cabinQueues is ready
-  useEffect(() => {
-    if (cabinQueues.length === 0) return;
+  const getWaitingSlice = () => {
+    const start = waitingPage * rowsPerPage;
+    return allCandidates.slice(start, start + rowsPerPage);
+  };
 
-    const interval = setInterval(() => {
-      setDisplayTokens((prevDisplay) =>
-        prevDisplay.map(({ cabin, index }, i) => {
-          const queue = cabinQueues[i];
-          if (!queue) return { cabin, token: "N/A", index: 0 }; // safety check
+  const getCabinSlice = () => {
+    const start = cabinPage * rowsPerPage;
+    return allCabinAssignments.slice(start, start + rowsPerPage);
+  };
 
-          const nextIndex = (index + 1) % queue.length;
-          return {
-            cabin,
-            token: queue[nextIndex],
-            index: nextIndex,
-          };
-        })
-      );
-    }, UPDATE_INTERVAL);
-
-    return () => clearInterval(interval);
-  }, [cabinQueues]);
-  const navigate = useNavigate()
   return (
-    <div className="live-display">
-      <button className="jobdetailBackBtnMobile"
-            onClick={() => {
-               if (window.history.length > 1) {
-                  navigate(-1);
-                 } else {
-                    navigate('/'); 
-                  }
-             }}>
-                 Back
-          </button>
-      <div className="header">
-        <h1>LIVE TV DISPLAY</h1>
-        <div className="date">{new Date().toLocaleString()}</div>
+    <div className={styles.displayContainer}>
+      {/* Waiting Area */}
+      <div className={`${styles.panel} ${styles.waitingPanel}`}>
+        <h2>Waiting Area</h2>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Name</th>
+              <th>Token</th>
+            </tr>
+          </thead>
+          <tbody>
+            {getWaitingSlice().map((item, index) => (
+              <tr key={item.token}>
+                <td>{waitingPage * rowsPerPage + index + 1}</td>
+                <td>{item.name}</td>
+                <td>{item.token}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
-      <div className="screen">
-        <div className="video-placeholder">
-          <img src={drivedesk} alt="Reception Desk" className="reception-image" />
-        </div>
-
-        <div className="cabin-info">
-          <div className="row heading">
-            <span className="cabin">Cabin Number</span>
-            <span className="token">Token Number</span>
-          </div>
-          {displayTokens.map(({ cabin, token }, index) => (
-            <div className="row" key={index}>
-              <span className="cabin">{cabin}</span>
-              <span className="token">{token}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="footer">
-        <p>Live TV Display · Please proceed to your assigned cabin</p>
+      {/* HR Cabin Area */}
+      <div className={`${styles.panel} ${styles.cabinPanel}`}>
+        <h2>HR Cabins</h2>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Cabin No</th>
+              <th>Token</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {getCabinSlice().map((item, index) => (
+              <tr key={item.token}>
+                <td>{item.cabinNo}</td>
+                <td>{item.token}</td>
+                <td>{item.name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
