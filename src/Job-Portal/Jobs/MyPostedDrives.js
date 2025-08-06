@@ -436,7 +436,7 @@ const handleHRGenerateQR = (driveId) => {
             <li className={`${styles.li} ${styles.Action}`}><b>Reception Table</b></li>
             <li className={`${styles.li} ${styles.Action}`}><b>HR Table</b></li>
             <li className={`${styles.li} ${styles.Action}`}><b>Launch Live Display</b></li>
-            <li className={`${styles.li} ${styles.NuApplied}`}><b>No of JobSeeker Applied</b></li>
+            <li className={`${styles.li} ${styles.NuApplied}`}><b>No of JobSeekers Applied</b></li>
 
           </ul>
           {PageLoader ?
