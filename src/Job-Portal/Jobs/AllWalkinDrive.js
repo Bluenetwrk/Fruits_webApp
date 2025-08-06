@@ -959,20 +959,6 @@ setLoader(true)
                        
 
                         <li className={`${styles.li} ${styles.JobType}`}>{items.jobtype}</li>
-
-                        
-                        {/* <li className={`${styles.li} ${styles.date}`}> */}
-                          {/* {new Date(items.createdAt).toLocaleString(
-                            "en-US",
-                            {
-                              month: "short",
-                              day: "2-digit",
-                              year: "numeric",
-                            }
-                          )} */}
-                          {/* {items.driveDate}
-                        </li> */}
-                        {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocatin[0].toUpperCase() + items.jobLocation.slice(1)}</li> */}
                         <li className={`${styles.li} ${styles.Location}`}>{items.venue}</li>
                         <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="Not disclosed" ||items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"LPA" }</li>
                         <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Yrs</li>
@@ -1285,16 +1271,17 @@ setLoader(true)
           }
           <div id={styles.JobCardWrapper} >
             {
-              sortedFilteredDriveJobs.length > 0 ?
 
-                sortedFilteredDriveJobs.map((job, i) => {
+              allWalkindrive.length> 0 ?
+
+              allWalkindrive.map((job, i) => {
                   return (
                     <>
                       <div className={styles.JobCard} key={i}>
                       
                           <div style={{marginTop:"-12px"}}>
                         <div className={styles.JobTitleDateWrapper} style={{display:"flex",gap:"16px"}}>
-                          <p className={styles.jobTitle} onClick={() => navigate(`/DriveDetails/${btoa(job.id)}`, { state: { driveItem: job} })} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" ,width:"100%", whiteSpace:"normal"}}>{job.jobTitle} </p>
+                          <p className={styles.jobTitle} onClick={() => navigate(`/Drivedetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" ,width:"100%", whiteSpace:"normal"}}>{job.jobTitle} </p>
                            {/* <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
@@ -1316,71 +1303,103 @@ setLoader(true)
                           <div class={styles.jobTitleCompanyName}>
                           {!job.Source ?
                             
-                            <> <span className={styles.companyName}  >{job.companyName} </span><br></br></>
+                            <> <span style={{textDecoration:"none"}} className={styles.companyName}  >{job.companyName} </span><br></br></>
                             :
                             
-                            <> <a className={`${styles.companyName}`} target="_blank">{job.Source}</a><br></br> </>
+                            <> <a style={{textDecoration:"none"}} className={`${styles.companyName}`} target="_blank">{job.Source}</a><br></br> </>
                           }
                           </div>
                         </div>
 
                         <div style={{display:"flex" ,flexDirection:"column",gap:"10px"}}> 
                         
-                        <div style={{display:"flex"}}>
+                        {/* <div style={{display:"flex"}}> */}
                         <div style={{display:"flex",alignItems:"center"}}> 
                           < img className={styles.jobLocationImage} src={location} />
-                          <span className={styles.jobLocation}>{job.location} ,</span>
+                          <span className={styles.jobLocation}>{job.venue} </span>
                         </div>
 
-                        <div style={{display:"flex",marginLeft:"10px",alignItems:"center"}}>
+                        <div style={{display:"flex",marginLeft:"4%",alignItems:"center"}}>
                           <img style={{height:"24px" }} src={graduation} />
                           <div>{job.qualification}</div>
                         </div>
-                        </div>
-
+                        {/* </div> */}
+                        <div style={{display:"flex"}}>
                         <div className={styles.skillWrapper}>
-                          <span className={styles.skillsHeading}>Job Type: </span><span className={styles.skills}>{job.jobType}</span><br></br>
+                          <span className={styles.skillsHeading}>Job Type: </span><span className={styles.skills}>{job.jobtype}</span><br></br>
                         </div>
                         <div className={styles.skillWrapper}>
-                          <span className={styles.skillsHeading}>Experience: </span><span className={styles.skills}>{job.experience}</span><br></br>
+                          <span className={styles.skillsHeading}>Experience: </span><span className={styles.skills}>{job.experiance}</span><br></br>
                         </div>
-                        <span className={styles.jobtypeAndDate}>Drive Date : {job.driveDate}</span>
-                        <div className={styles.jobtypeAndDate}>Drive Time : {job.driveTime}</div>
-                      
+                        </div>
+                        <div style={{display:"flex"}}>
+                        <span className={styles.jobtypeAndDate}>Drive Date : {new Date(job.driveDate).toLocaleDateString("en-IN")}</span>
+                        <span className={styles.jobtypeAndDate}>Drive Time :{job.time && `${((+job.time.split(":")[0] % 12) || 12)}:${job.time.split(":")[1]} ${+job.time.split(":")[0] >= 12 ? "PM" : "AM"}`}</span>
+                        </div>
                         {/* } */}
 
                         <div className={styles.skillWrapper}>
-                          <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skillsRequired}</span><br></br>
+                          <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skills}</span><br></br>
                         </div>
                         <div className={styles.applyDrivePackage}>
-                          <p className={styles.salaryRange}><span>&#8377;</span>{job.ctc}</p>
-                          {
+                          <p className={styles.salaryRange}><span>&#8377;</span>{job.salaryRange} LPA</p>
                           
-                            <button className={styles.ApplyDriveMobile} style={{paddingLeft:"4px"}} onClick={()=>{applyForDrive(job.link)}}><b>Register</b></button>
-                          }
+                          <div ref={alertRef} style={{position:"relative"}}>
+        {    
+        job.jobSeekerId.find((jobseeker) => {
+          return (
+            jobseeker.jobSeekerId == jobSeekerId
+          )
+        })
+          ?
+
+          <button onClick={() => deregister(job._id)}  style={{fontSize:"12px", height:"30px", marginRight:"11px", width:"96px", backgroundColor:"green"}} className={styles.ApplyDriveMobile}  title='Thanks for signing up. Check your email for walk-in drive details.' > Registered <span style={{ fontSize: '12px' }}>&#10004;</span>
+            <span className={styles.Loader}>
+             {Loader && job._id === clickedJobId ? (
+               <TailSpin color="white" height={16} width={16} />
+             ) : null}
+           </span>
+           </button>
+          :
+(
+  EmployeeAuth ? (
+    <button style={{marginRight:"11px"}} className={styles.ApplyDriveMobile}  onClick={() => navigate(`/Drivedetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})}>
+      <div style={{ display: "flex", width: "81px", alignItems: "center", justifyContent: "center", gap: "6px", paddingRight: "0px" }}>
+        View
+      </div>
+    </button>
+  ) : (
+    <button style={{width:"84px",marginRight:"11px"}} className={styles.ApplyDriveMobile}  onClick={() => applyforJob(job._id)}>
+      <div style={{ display: "flex", width: "81px", alignItems: "center", justifyContent: "center", gap: "6px", paddingRight: "0px" }}>
+        Register
+        {Loader && job._id === clickedJobId && (
+          <TailSpin height={16} width={16} color="white" />
+        )}
+      </div>
+    </button>
+  )
+)
+              }
+</div>
+
+
                         </div>
                         </div> 
 
                         <p className={styles.jobDescriptionHeading}>Job Description:</p>
                         <p className={styles.jobDescription}>
-                          {/* {
-                            job.jobDescription ? HTMLReactParser(job.jobDescription.slice(0, 100).toString()) : ""
-                          } */}
                           {
-                            job.details.slice(0,100)
+                            job.jobDescription ? HTMLReactParser(job.jobDescription.slice(0, 100).toString()) : ""
                           }
+                          
                           <span 
-                          // onClick={() => {
-                          //   window.scrollTo({
-                          //     top: 0
-                          //   })
-                          //   navigate(`/Jobdetails/${btoa(job._id)}`)
-                          // }} 
-
                           onClick={() => {
-                            window.scrollTo({ top: 0 });
-                            navigate(`/DriveDetails/${btoa(job.id)}`, { state: { driveItem: job } });
-                          }}
+                            window.scrollTo({
+                              top: 0
+                            })
+                            navigate(`/Drivedetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
+                          }} 
+
                           className={styles.seeMore}>
                             ...read more
                           </span>
