@@ -250,7 +250,7 @@ const [selectedtime, setselectedtime] = useState("");
 
 
   const venueInputRef = useRef(null);
-  const[venue, setVenue]=useState("Banglore");
+  const[venue, setVenue]=useState("");
     // useEffect(() => {
     //   if (venueInputRef.current && !venueInputRef.current.autocomplete) {
     //     const autocomplete = new window.google.maps.places.Autocomplete(venueInputRef.current, {
@@ -397,10 +397,10 @@ const [selectedtime, setselectedtime] = useState("");
                                    <div>
                                      <h4 className={Style.jobHeadline}>Job Type*</h4>
                                      <div style={{ marginTop: "-10px" }}>
-                                     <label><input name="Job-Type" type="radio" checked={jobtype === "Full Time" || Tags.filter} value="Full Time" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Full Time  </label>
-                                     <label><input name="Job-Type" type="radio" checked={jobtype === "Part Time"} value="Part Time" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Part Time  </label>
-                                     <label><input name="Job-Type" type="radio" checked={jobtype === "Internship"} value="Internship" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Internship </label>
-                                     <label><input name="Job-Type" type="radio" checked={jobtype === "Contract"} value="Contract" onChange={(e) => { setJobtype(e.target.value); handleRadioTags(e.target.value) }} />Contract   </label>
+                                     <label><input name="Job-Type" type="radio" checked={jobtype === "Full Time" || Tags.filter} value="Full Time" onChange={(e) => { setJobtype(e.target.value)}} />Full Time  </label>
+                                     <label><input name="Job-Type" type="radio" checked={jobtype === "Part Time"} value="Part Time" onChange={(e) => { setJobtype(e.target.value)}} />Part Time  </label>
+                                     <label><input name="Job-Type" type="radio" checked={jobtype === "Internship"} value="Internship" onChange={(e) => { setJobtype(e.target.value)}} />Internship </label>
+                                     <label><input name="Job-Type" type="radio" checked={jobtype === "Contract"} value="Contract" onChange={(e) => { setJobtype(e.target.value)}} />Contract   </label>
                                      </div>
                                     </div>    
                               </div>

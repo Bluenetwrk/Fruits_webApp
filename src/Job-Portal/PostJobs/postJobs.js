@@ -126,6 +126,7 @@ function PostJobs(props) {
 // })
 
     async function postJob() {
+        console.log("hello here is executed ")
         let userid = JSON.parse(localStorage.getItem("EmpIdG"))
         const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
         // console.log("hdh",jobDescription)
@@ -448,7 +449,7 @@ const [showTooltip, setShowTooltip] = useState(false);
 
                                         {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
                                         <div style={{display:"flex", justifyContent:"center"}}>
-                                        <button style={{width:"132px"}} disabled={concent} className={concent?Style.button: Style.disableButton} onClick={postJob}>Post Job</button>
+                                        <button style={{width:"132px"}} disabled={!concent} className={concent?Style.button: Style.disableButton} onClick={postJob}>Post Job</button>
                                         </div>
                                     </div >
                                 </div >
