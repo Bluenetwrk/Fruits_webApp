@@ -59,7 +59,7 @@ const LiveTvDisplay = () => {
     <div className={styles.displayContainer}>
       {/* Waiting Area */}
       <div className={`${styles.panel} ${styles.waitingPanel}`}>
-        <h2>Waiting Area</h2>
+        <h2 className={styles.title}>Waiting Area</h2>
         <table className={styles.table}>
           <thead>
             <tr>
@@ -82,7 +82,7 @@ const LiveTvDisplay = () => {
 
       {/* HR Cabin Area */}
       <div className={`${styles.panel} ${styles.cabinPanel}`}>
-        <h2>HR Cabins</h2>
+        <h2 className={styles.title}>HR Cabins</h2>
         <table className={styles.table}>
           <thead>
             <tr>

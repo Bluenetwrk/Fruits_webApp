@@ -922,8 +922,12 @@ setLoader(true)
 
                       <ul className={styles.ul} key={i}>
                         {/* } */}
-
+                        {EmployeeAuth?
+                          <li className={`${styles.li} ${styles.Jtitle}`}>{items.jobTitle}</li>
+                          :       
                         <li className={`${styles.li} ${styles.Jtitle}`}  style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}  onClick={() => navigate(`/Drivedetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})}>{items.jobTitle}</li>
+                        
+                      } 
                         <li className={`${styles.li} ${styles.Source}`} style={{width:"9.5%"}} >
 
                         {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.time && `${((+items.time.split(":")[0] % 12) || 12)}:${items.time.split(":")[1]} ${+items.time.split(":")[0] >= 12 ? "PM" : "AM"}`}
@@ -1281,8 +1285,13 @@ setLoader(true)
                       
                           <div style={{marginTop:"-12px"}}>
                         <div className={styles.JobTitleDateWrapper} style={{display:"flex",gap:"16px"}}>
+                          {EmployeeAuth?
+                            <p className={styles.jobTitle} style={{textDecoration:"none", whiteSpace:"normal"}}>{job.jobTitle} </p>
+                              :
                           <p className={styles.jobTitle} onClick={() => navigate(`/Drivedetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" ,width:"100%", whiteSpace:"normal"}}>{job.jobTitle} </p>
-                           {/* <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
+                          
+                        }
+                          {/* <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
                             {
                               day: "2-digit",
