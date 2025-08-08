@@ -109,11 +109,24 @@ function UpdatePostedJobs() {
     },[])
 
     async function updateJob(){
+      setErrorMessage("")
+      setSuccessMessage("")
         // let userid = JSON.parse(localStorage.getItem("EmpIdG"))
         // const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("EmpLog"))) };
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
         let jobTitle = jobtitle
         let jobLocation = joblocation.toLowerCase()
+
+        if(jobTitle==""){
+          setErrorMessage("Job Title should be filled")
+          return;
+        }
+
+        if(jobDescription.replace(/<[^>]*>/g, '').trim()==""){
+          setErrorMessage("Job Description should be filled")
+          return;
+        }
+
     await axios.put(`/jobpost/updatPostedJob/${Jobid}`,{ jobTitle, SourceLink, Source, companyName,SourceCompanyLink,
          jobDescription, jobtype, salaryRange, jobLocation, qualification, experiance, skills, Tags},{headers})
     .then((res)=>{
@@ -158,6 +171,31 @@ window.addEventListener('keypress', function(event){
     }
   }); 
 
+
+  const [showTooltip, setShowTooltip] = useState(false);
+  
+    const toggleTooltip = () => {
+      setShowTooltip((prev) => !prev);
+    };
+  
+    const tooltipRef = useRef(null);
+  
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (
+            tooltipRef.current && !tooltipRef.current.contains(event.target)
+          ) {
+            setShowTooltip(false);
+          }
+         
+        };
+    
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+      }, []);
+
+      
+
     return (
         <>
             <div className={Style.postJobPageWrapper}>
@@ -168,7 +206,7 @@ window.addEventListener('keypress', function(event){
                 <p className={Style.successmessage}>{successMessage} </p>
                 <p className={Style.errormessage}>{errorMessage} </p>
 
-     <h4 className={Style.jobHeadline}>Job title</h4>
+     <h4 className={Style.jobHeadline}>Job Title**</h4>
     <input maxLength="100" className={Style.inputbox} type="text" value={jobtitle} onChange={(e) => { setJobTitle(e.target.value) }} />
 {adminLogin?
 <>
@@ -188,7 +226,7 @@ window.addEventListener('keypress', function(event){
                     <h4 className={Style.jobHeadline}>Company Name**</h4>
                     <input maxLength="30" className={Style.inputbox} type="text" value={companyName} onChange={(e) => { setCompanyName(e.target.value) }} />
 
-                    <h4 className={Style.jobHeadline}>Job Description</h4>
+                    <h4 className={Style.jobHeadline}>Job Description**</h4>
                     {/* <input className={Style.inputbox} type="text" value={jobDescription} onChange={(e) => { setJobDescription(e.target.value) }} /> */}
                     {/* <Editor
          toolbarClassName="toolbarClassName"
@@ -242,23 +280,50 @@ window.addEventListener('keypress', function(event){
 
 
                                  <h4 className={Style.jobHeadline}>Salary Per Annum in Lakhs** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
-                                 <input maxLength="3" className={Style.inputbox} type="number" value={salaryRange} onChange={(e) => { setSalaryRange(e.target.value) }} />
+                                 {/* <div style={{position:"relative"}}> */}
+                                 <input maxLength="3" className={Style.inputbox} type="number" value={salaryRange} 
+                                 onChange={(e) => {
+                                  const input = e.target.value;
+                                  if (input.length <= 3) {
+                                    setSalaryRange(input);
+                                  }
+                                }} />
+                                 {/* <p className={tyle.lpaSuffix}>LPA</p> */}
+                                 {/* </div> */}
+                                 <div style={{ position: "relative", display:"flex",  alignItems:"center" }}>
+                                    <div><h4 className={Style.jobHeadline}>Job Location**</h4></div>
+                                    <div
+                                          ref={tooltipRef} // ⬅ attach ref to parent of both icon and tooltip
+                                          className={Style.JobAlerti}
+                                          onClick={toggleTooltip}
+                                        >
+                                          i
+                                          {showTooltip && (
+                                            <div
+                                              className={Style.jobIdesc}
+                                            >
+                                              We currently support job posting only in Bangalore.
+                                            </div>
+                                          )}
+                                        </div>
+                                 </div>
 
-                                 <h4 className={Style.jobHeadline}>Job Location**</h4>
+
+
                                  <div style={{marginTop:"-10px"}}>
                                  <label><input name="Location" type="radio" checked={joblocation==="Bangalore"} value="Bangalore" onChange={(e) => { setJobLocation(e.target.value) }} />Bangalore </label>
-                                 <label><input name="Location" type="radio" checked={joblocation==="Hyderabad"} value="Hyderabad" onChange={(e) => { setJobLocation(e.target.value) }} />Hyderabad </label>
+                                 {/* <label><input name="Location" type="radio" checked={joblocation==="Hyderabad"} value="Hyderabad" onChange={(e) => { setJobLocation(e.target.value) }} />Hyderabad </label>
                                  <label><input name="Location" type="radio" checked={joblocation==="Chennai"} value="Chennai" onChange={(e) => { setJobLocation(e.target.value) }} />Chennai </label>
                                  <label><input name="Location" type="radio" checked={joblocation==="Mumbai"} value="Mumbai" onChange={(e) => { setJobLocation(e.target.value) }} />Mumbai </label>
                                  <label><input name="Location" type="radio" checked={joblocation==="Delhi"} value="Delhi" onChange={(e) => { setJobLocation(e.target.value) }} />Delhi </label>
-                                 <label><input name="Location" type="radio" value="others" onClick={(e) => { setotherJobLocation((prev)=>!prev) }} />others </label>
+                                 <label><input name="Location" type="radio" value="others" onClick={(e) => { setotherJobLocation((prev)=>!prev) }} />others </label> */}
                                  </div>
-                                 {
+                                 {/* {
                                      otherJobLocation?
                                  <input maxLength="10" className={Style.Otherinputbox} type="text" value={joblocation} onChange={(e) => { setJobLocation(e.target.value) }} />
                                  :
                                  ""
-                                 }
+                                 } */}
 
                                  <h4 className={Style.jobHeadline}>Qualification Needed**</h4>
 

@@ -125,6 +125,12 @@
 
   }
   
+  .lpaSuffix{
+    position:absolute;
+    top:-12px;
+    left:3%;
+    
+  }
   
   
 /* --------------new drive ends-------- */

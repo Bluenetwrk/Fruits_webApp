@@ -126,7 +126,7 @@ function PostJobs(props) {
 // })
 
     async function postJob() {
-        console.log("hello here is executed ")
+        // console.log("hello here is executed ")
         let userid = JSON.parse(localStorage.getItem("EmpIdG"))
         const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
         // console.log("hdh",jobDescription)
