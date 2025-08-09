@@ -873,11 +873,14 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
               <label className={styles.inputName}>
                 <h4>Email Address:</h4>
+                
                 <input placeholder='Enter gmail address' maxLength="30" className={styles.input} value={email}  
                 onChange={(e) => { handlesetemail(e.target.value) }} type="text" />
                 <br></br> <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span>           
-             
+                ( only gmail or microsoft outlook accepted for account creation)
               </label>
+
+              
               <label className={styles.inputName}>
                 <h4>City: 
                   {/* <span style={{color:"blue"}}>{city}</span> */}
@@ -921,7 +924,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                </label>
 
                <label className={styles.inputName} style={{position:"relative"}} >
-                <h4>Experience: </h4>
+                <h4>Total years of Experience: </h4>
                 <input maxLength="3" className={styles.input} value={Experiance} onChange={(e) => { handleExperiance(e) }} type="text" />
                 <span className={styles.suffix}>{Experiance===""?"":"YRS"}</span>
                 
@@ -1606,7 +1609,10 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
                 <h4 className={styles.MobileName}>Email Address:</h4>
                 <input maxLength="25" className={styles.Mobileinput}  value={email}
                  onChange={(e) => { handlesetemail(e.target.value) }} type="text" />
-                 <br></br> <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span>           
+                 <br></br> <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span> 
+                 <div style={{marginBottom:"11px"}}>
+                 ( only gmail or microsoft outlook accepted for account creation)    
+                 </div>      
               </label>
 
               <label className={styles.MobileinputName}>
@@ -1649,7 +1655,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 </label>
 
               <label className={styles.MobileinputName} style={{position:"relative"}}>
-                <h4 className={styles.MobileName}>Experience: </h4>
+                <h4 className={styles.MobileName}>Total years of Experience: </h4>
                 <input maxLength="3" className={styles.Mobileinput} value={Experiance} onChange={(e) => { handleExperiance(e) }} type="text" />
                 <span className={styles.experiencesuffix}>{Experiance===""?"":"YRS"}</span>
               </label>
