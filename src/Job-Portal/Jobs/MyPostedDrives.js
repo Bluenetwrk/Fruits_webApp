@@ -417,19 +417,22 @@ const handleHRGenerateQR = (driveId) => {
             </p> */}
             </li>
             <li className={`${styles.li} ${styles.Location}`}><b>Location</b></li>
+            <li className={`${styles.li} ${styles.Location}`}><b>Qualification</b></li>
+            <li className={`${styles.li} ${styles.Location}`}><b>Job Type</b></li>
+
 
             <li className={`${styles.li} ${styles.Package}`}><b>CTC </b>
-            <p className={styles.arrowWrapper}>
+            {/* <p className={styles.arrowWrapper}>
                   <i onClick={SdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={SascendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-            </p>
+            </p> */}
             </li>
 
             <li className={`${styles.li} ${styles.experiance}`}><b>Experience </b>
-            <p className={styles.arrowWrapper}>
+            {/* <p className={styles.arrowWrapper}>
                   <i onClick={EdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={EascendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-            </p>
+            </p> */}
             </li>
             <li className={`${styles.li} ${styles.Skills}`}><b>Skills Required</b></li>
             <li className={`${styles.li} ${styles.Action}`}><b>Action</b></li>
@@ -465,7 +468,7 @@ const handleHRGenerateQR = (driveId) => {
                       <span style={{ color: "blue", cursor:"pointer" }} onClick={() => { navigate(`/Jobdetails/${btoa(items._id)}`) }} >...see more</span>
                     </li> */}
                     <li className={`${styles.li} ${styles.Pdate}`}>
-                    {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.time}
+                    {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.time && `${((+items.time.split(":")[0] % 12) || 12)}:${items.time.split(":")[1]} ${+items.time.split(":")[0] >= 12 ? "PM" : "AM"}`}
                     {/* <p>
   {new Date(items.time).toLocaleDateString("en-IN")} /{" "}
   {new Date(items.time).toLocaleTimeString("en-IN", {
@@ -477,6 +480,9 @@ const handleHRGenerateQR = (driveId) => {
                     </li>
                     {/* {console.log(items._id)} */}
                     <li className={`${styles.li} ${styles.Location}`}>{items.venue}</li>
+                    <li className={`${styles.li} ${styles.Location}`}>{items.qualification}</li>
+                    <li className={`${styles.li} ${styles.Location}`}>{items.jobtype}</li>
+
                     <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}</li>
                     <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}</li>
                     <li className={`${styles.li} ${styles.Skills}`} style={{wordBreak:"break-word"}}>{items.skills}</li>
@@ -661,6 +667,11 @@ allWalkindrive.map((job, i) => {
             <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skills}</span><br></br>
          </div>
 
+         <div style={{display:"flex", gap:"6px",marginLeft:"4%"}}>
+            <span className={styles.skillsHeading}>Drive Date: </span><span className={styles.skills}>{new Date(job.driveDate).toLocaleDateString("en-IN")}</span>
+            <span className={styles.skillsHeading}>Drive Time: </span><span className={styles.skills}>{job.time && `${((+job.time.split(":")[0] % 12) || 12)}:${job.time.split(":")[1]} ${job.time.split(":")[0] >= 12 ? "PM" : "AM"}`}</span>
+         </div>
+
         <span className={styles.NoOfJobSeekersApplied}> No. of Job Seekers Applied:
         {job.jobSeekerId.length> 0 ?
              
@@ -704,10 +715,13 @@ allWalkindrive.map((job, i) => {
     >
       Download QR
     </button>
+
+    
   </div>
 )}
  </li>
 
+ 
 </div>
 
 {/* </div> */}
@@ -741,6 +755,14 @@ allWalkindrive.map((job, i) => {
     </button>
   </div>
 )}
+    </li>
+
+</div>
+
+
+<div style={{marginLeft:"4%"}}>
+    <li className={`${styles.li} ${styles.Action}`}>
+        <button style={{width:"145px"}} onClick={()=>navigate("/live-tv-display")}  className={`${styles.Abutton} ${styles.update}`}>Launch Live Display</button>
     </li>
 
 </div>

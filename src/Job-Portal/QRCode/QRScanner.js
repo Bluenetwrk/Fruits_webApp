@@ -56,6 +56,33 @@ const QRScanner = () => {
   }, [navigate]);
 
   return (
+    <>
+    <button  style={{
+    backgroundColor: 'rgb(40, 4, 99)',
+    color: 'white',
+    border: 'none',
+    padding: '0px 10px',
+    cursor: 'pointer',
+    borderRadius: '5px',
+    marginTop: '10px',
+    fontWeight: 500,
+    fontSize: '1.0rem',
+    marginLeft: '20px',
+    height: '30px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '3px',
+    marginBottom:"2px"
+  }}
+            onClick={() => {
+               if (window.history.length > 1) {
+                  navigate(-1);
+                 } else {
+                    navigate('/'); 
+                  }
+             }}>
+                <div style={{fontSize:"12px", fontWeight:"800px"}}>Back</div>
+          </button>
     <div
       id="reader"
       style={{
@@ -64,6 +91,7 @@ const QRScanner = () => {
         backgroundColor: "#000",
       }}
     ></div>
+    </>
   );
 };
 
