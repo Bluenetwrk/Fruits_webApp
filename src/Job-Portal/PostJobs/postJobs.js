@@ -33,6 +33,7 @@ function PostJobs(props) {
     const [jobtitle, setJobTitle] = useState("")
     const [Source, setSource] = useState("")
     const [SourceLink, setSourceLink] = useState("")
+    const [companyHomeLink, setCompanyHomeLink] = useState("")
     const [companyName, setCompanyName] = useState("")
     const [jobDescription, setJobDescription] = useState("")
     const [jobtype, setJobtype] = useState("")
@@ -297,14 +298,18 @@ const [showTooltip, setShowTooltip] = useState(false);
                                        <h4 className={Style.jobHeadline}  >Source &nbsp;<span className={Style.hint}>(e.g Linkedin, Noukri, indeed etc.)</span></h4>
                                         <input maxLength="20" className={Style.inputbox} type="text" value={Source} onChange={(e) => { setSource(e.target.value) }} />
 
-                                        // <h4 className={Style.jobHeadline}  >Source Link</h4>
-                                        // <input className={Style.inputbox} type="text" value={SourceLink} onChange={(e) => { setSourceLink(e.target.value) }} />
+                                        <h4 className={Style.jobHeadline}  >Source Link</h4>
+                                        <input className={Style.inputbox} type="text" value={SourceLink} onChange={(e) => { setSourceLink(e.target.value) }} />
                                </>
                                 :""
                                     } */}
                                     
                                         <p className={Style.jobHeadline}>Company Name** &nbsp;<span className={Style.hint}>(The company name is auto-populated from your profile and cannot be changed.)</span></p>
                                         <input maxLength="30" className={Style.inputbox} type="text" value={companyName} disabled />
+
+                                        <h4 className={Style.jobHeadline}  >Company Home Page Link</h4>
+                                         <input className={Style.inputbox} type="text" value={companyHomeLink} onChange={(e) => { setCompanyHomeLink(e.target.value) }} />
+
 
                                          <h4 className={Style.jobHeadline}  >Source Link</h4>
                                          <input className={Style.inputbox} type="text" value={SourceLink} onChange={(e) => { setSourceLink(e.target.value) }} />

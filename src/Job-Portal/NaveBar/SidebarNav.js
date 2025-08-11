@@ -62,6 +62,7 @@ function SidebarNav(props) {
     }
   }, [location.pathname]); 
   let EmployeeAuth = localStorage.getItem("EmpLog")
+  
 
 // const [query, setQuery] = useState("");
 // const [suggestions, setSuggestions] = useState([]);
@@ -216,7 +217,10 @@ else{
 
        }
                 <p onClick={()=>{navigate("/support/help"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Help/Support </p>
+       {!(EmployeeAuth||StudentAuth)&&
         <p onClick={()=>{setShow(prev=>!prev)}} className={`${Styles.textinMobileSodeBar} `}>Open an account
+       
+
        {
         show?
         <i  className={`${Styles.arrow} ${Styles.down}`} ></i>
@@ -224,6 +228,7 @@ else{
         <i  className={`${Styles.arrow} ${Styles.up}`} ></i>     
        }
         </p>
+      }
        {
         show?
         <div style={{marginLeft:"10px"}}>
@@ -232,6 +237,7 @@ else{
         </div>
         :""
        }
+       
         <p onClick={()=>{navigate("/Blogs"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Blogs </p>
         {!EmployeeAuth&&
         <>
