@@ -299,14 +299,14 @@ profileData.map((item, i) => {
                          {item.Aadhar?           <li className={` ${styles.Hli}`}>{item.Aadhar}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your Aadhar Id yet</li>}
                          {item.panCard?          <li className={` ${styles.Hli}`}>{item.panCard}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your pan Id yet</li>}
                          {item.age?              <li className={` ${styles.Hli}`}>{item.age}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your age yet</li>}
-                         {item.NoticePeriod?     <li className={` ${styles.Hli}`}>{item.NoticePeriod}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your NoticePeriod yet</li>}
-                         {item.ExpectedSalary?  <li className={` ${styles.Hli}`}>{item.ExpectedSalary}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your Expected Salary yet</li>}
-                         {item.currentCTC?       <li className={` ${styles.Hli}`}>{item.currentCTC}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your current CTC yet</li>}
+                         {item.NoticePeriod?     <li className={` ${styles.Hli}`}>{item.NoticePeriod} Days</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your NoticePeriod yet</li>}
+                         {item.ExpectedSalary?  <li className={` ${styles.Hli}`}>{item.ExpectedSalary} LPA</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your Expected Salary yet</li>}
+                         {item.currentCTC?       <li className={` ${styles.Hli}`}>{item.currentCTC} LPA</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your current CTC yet</li>}
                          {item.Qualification?    <li className={` ${styles.Hli}`}>{item.Qualification}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your Qualification yet</li>}
                          {item.Skills?           <li className={` ${styles.Hli}`}>{item.Skills}&nbsp;
                          {/* => typeof e === 'string' */}
                          </li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your Skills yet</li>}
-                         {item.Experiance?       <li className={` ${styles.Hli}`}>{item.Experiance}</li>:  <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your experiance yet</li> }
+                         {item.Experiance?       <li className={` ${styles.Hli}`}>{item.Experiance} {item.Experiance>1?"Years":"Year"}</li>:  <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your experiance yet</li> }
                          {item.isApproved?   <li className={` ${styles.Hli}`} style={{color:"blue"}}> Congrats !  Your account has been Approved</li>: <li className={` ${styles.Hli} ${styles.Nli}`} style={{fontStyle:"italic"}}>"Your account is in under Verfication process"</li>}                        
                          {item.message?<p style={{width:"450%",  marginLeft:"-70%"}}><b> Message :</b><span style={{color:"red"}}> {item.message}! </span></p>:""}
                          {/* {item.Experiance?       <li className={` ${styles.Hli}`}>{item.Experiance}</li>:  <li className={` ${styles.Hli} ${styles.Nli}`}>No FeedBack</li> } */}
