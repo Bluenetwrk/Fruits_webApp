@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import styles from "./StudentProfile.module.css"
@@ -71,6 +71,20 @@ const onSubmit=()=>{
     setSaveComment("")
 }
 
+const skillsHeadingRef = useRef(null);
+const skillsValueRef = useRef(null);
+useEffect(() => {
+    if (skillsHeadingRef.current && skillsValueRef.current) {
+      const headingHeight = skillsHeadingRef.current.offsetHeight;
+      const valueHeight = skillsValueRef.current.offsetHeight;
+      const maxHeight = Math.max(headingHeight, valueHeight);
+  
+      skillsHeadingRef.current.style.height = `${maxHeight}px`;
+      skillsValueRef.current.style.height = `${maxHeight}px`;
+    }
+  }, [profileData]); // runs again when data changes
+  
+
     return (
         <>
 <div style={{display:"flex"}}>
@@ -105,7 +119,7 @@ profileData.map((item, i) => {
                 <li className={styles.li}><b>Expected  Salary</b></li>
                 <li className={styles.li}><b>Current  CTC</b></li>
                 <li className={styles.li}><b>Qualification</b></li>
-                <li className={styles.li}><b>Skills</b></li>
+                <li ref={skillsHeadingRef} className={`${styles.li} ${styles.skillsHeading}`}><b>Skills</b></li>
                 <li className={styles.li}><b>Experience</b></li>
                 <li className={styles.li}><b>HRs/Employer FeedBack</b></li>
 
@@ -130,7 +144,7 @@ profileData.map((item, i) => {
                        <li className={` ${styles.Hli}`}>{item.ExpectedSalary?item.ExpectedSalary:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.currentCTC?item.currentCTC:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.Qualification?item.Qualification:<li className={styles.Nli}>Not Updated</li>}</li>
-                       <li className={` ${styles.Hli}`}>{item.Skills?item.Skills:<li className={styles.Nli}>Not Updated</li>}</li>
+                       <li style={{marginLeft:"26%", height:"auto", width:"324%"}} ref={skillsValueRef} className={`${styles.Hli} ${styles.skillsValue}`}>{item.Skills?item.Skills:<li className={styles.Nli} style={{marginLeft:"-8%"}}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.Experiance?item.Experiance:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.Experiance?item.Experiance:<li className={styles.Nli}>No FeedBack</li>}</li>
                         </ul>

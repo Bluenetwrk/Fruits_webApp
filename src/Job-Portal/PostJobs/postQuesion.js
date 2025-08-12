@@ -243,7 +243,7 @@ let question =true
         <>
 
             <div style={{display:"flex",justifyContent:"center"}}>
-            <h2 style={{ fontWeight:"800", marginTop:"6px", marginBottom:"-15px"}}>Ask Questions </h2>
+            <h2 style={{ fontWeight:"800", marginTop:"6px", marginBottom:"-15px"}}>Ask a question </h2>
             </div>
                             <div>
                                 <button style={{width:"56px",fontSize:"10px",height:"24px",display:"flex", alignItems:"center", justifyContent:"center"}} className={Style.backButton1} onClick={() => {
@@ -262,15 +262,15 @@ let question =true
                                         <p className={Style.errormessage}>{errorMessage} </p>
                                        }
                                         <div style={{display:"flex", alignItems:"center", gap:"90px", marginBottom:"14px"}}>
-                                           <h4 className={Style.jobHeadline}  >Ask Question**</h4>
+                                           <h4 className={Style.jobHeadline}  >Ask a question**</h4>
                                            <div className={Style.hint}> 
-                                            ( This  will be forwarded to the employers/consultants)
+                                            ( This question will be shared with the employers or consultants)
                                             </div>
                                         </div>
                                         <input maxLength="200" className={Style.inputbox} type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />
 
                                         <p className={Style.jobHeadline}>Blog Tags  
-                                            <span className={Style.hint}> (Select the matching tag for your question)</span></p>
+                                            <span className={Style.hint}> (Select multiple tags that matches your question)</span></p>
 
                                         <div className={Style.JobtitleFilterWrapper}>
                                             {
@@ -301,7 +301,7 @@ let question =true
 
                                         <p><input type="checkbox" onChange={() => { setconcent((prev) => !prev) }} />
                                             I have read the terms and conditions of ITwalkin.com and I agree to all the
-                                            <span style={{ color: "blue", cursor: "pointer" }} onClick={() => (window.open("/TermsAndCondition"))}> terms and conditons</span> before posting my question </p>
+                                            <span style={{ color: "blue", cursor: "pointer" }} onClick={() => (window.open("/TermsAndCondition"))}> Terms and Conditions</span> before posting my question </p>
 
 
                                         {/* {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""} */}

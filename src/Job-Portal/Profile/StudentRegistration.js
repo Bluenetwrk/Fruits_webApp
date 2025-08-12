@@ -22,6 +22,7 @@ import GoogleImage from "../img/icons8-google-48.png"
 
 import {jobTags} from '../Tags'
 import { use } from 'react';
+import { signOut } from 'firebase/auth';
 
 function StudentUpdateProfile(props) {
   useEffect(() => {
@@ -396,7 +397,7 @@ if(confirm){
      }
 
   const AadharhandleChange = (event) => {
-    if (event.target.value.length>12){
+    if (event.target.value.length>14){
       return false
   }else{
    
@@ -404,6 +405,7 @@ if(confirm){
     const sanitizedValue = value.replace(/[^\w\s]/gi, ''); // Regex to remove special characters
     setAadhar(sanitizedValue);
   }
+  // console.log(Aadhar);
   };
 
   const PanCardhandleChange = (event) => {
@@ -1064,7 +1066,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
 
               <label className={styles.inputName}>
                 <h4>Aadhaar Number: &nbsp;<span className={styles.hint}>(Optional)</span></h4>
-                <input maxLength="12" className={styles.input} value={Aadhar} onChange={(e) => { AadharhandleChange(e) }} type="number" />
+                <input maxLength="14" className={styles.input}   value={Aadhar.replace(/(\d{4})(?=\d)/g, "$1 ").trim()} onChange={(e) => { AadharhandleChange(e) }} type="text" />
               </label>
 
               <label className={styles.inputName}>

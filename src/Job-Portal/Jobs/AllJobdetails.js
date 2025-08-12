@@ -456,7 +456,7 @@ const [PageLoader, setPageLoader] = useState(false)
            <button class={styles.jobdetailApplyBtn} onClick={()=>applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>
            <div style={{fontSize:"12px", fontWeight:"800px"}}>Apply</div></button>
            {shareClicked && (
-        <div ref={shareRef} class={styles.shareContainer}>
+        <div style={{zIndex:"999"}} ref={shareRef} class={styles.shareContainer}>
           <div style={{fontSize:"22px", fontWeight:"600", color:"white", textAlign:"center" }}>Share</div>
 
           <div class={styles.shareButtonsContainer}>
