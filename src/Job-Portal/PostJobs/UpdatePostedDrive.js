@@ -352,7 +352,16 @@ const [selectedtime, setselectedtime] = useState("");
 
     return (
         <>
-
+<button className={Style.jobdetailBackBtn} 
+            onClick={() => {
+               if (window.history.length > 1) {
+                  navigate(-1);
+                 } else {
+                    navigate('/'); 
+                  }
+             }}>
+                <div style={{fontSize:"12px", fontWeight:"800px"}}>Back</div>
+          </button>
             {
                 profileData.map((items, i) => {
                     return (

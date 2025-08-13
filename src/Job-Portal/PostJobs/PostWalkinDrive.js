@@ -128,13 +128,13 @@ function PostWalkinDrive(props) {
       //  let venues="banlgore"
       // let time = new Date(`${selectedDate}T${selectedtime}:00`).toISOString();
       const driveDate= selectedDate
-      const time=selectedtime
-      console.log(time)
+      const time=StartTime
+      // console.log(time)
 
-console.log(jobDescription,companyName,experiance,jobLocation,venue,time)
+// console.log(jobDescription,companyName,experiance,jobLocation,venue,time)
         await axios.post("walkinRoute/walkinpost", {
            empId,jobTitle, companyName, jobDescription,jobtype  ,jobTags, jobLocation , qualification , salaryRange ,
-           experiance, skills , applyLink , selectedDate, venue  ,driveDate, time
+           experiance, skills , applyLink , selectedDate, venue  ,driveDate, StartTime, EndTime, time
         },{headers})
         
             .then((res) => {
@@ -154,8 +154,8 @@ console.log(jobDescription,companyName,experiance,jobLocation,venue,time)
                    setSkills("")
                    setVenue("")
                    setSelectedDate("");
-
-                   setselectedtime("")
+                    setStartTime("")
+                    setEndTime("")
                     setTag([])
                     setconcent(false)
                     setSuccessMessage("Successfully posted!")
@@ -246,11 +246,11 @@ if(key==='Full Time' ||key=== 'Contract' || key==='Internship' || key==='Part Ti
 }
 
 const [selectedDate, setSelectedDate] = useState("");
-const [selectedtime, setselectedtime] = useState("");
-
+const [StartTime, setStartTime] = useState("");
+const [EndTime, setEndTime] = useState("");
 
   const venueInputRef = useRef(null);
-  const[venue, setVenue]=useState("");
+  const[venue, setVenue]=useState("Banglore");
     // useEffect(() => {
     //   if (venueInputRef.current && !venueInputRef.current.autocomplete) {
     //     const autocomplete = new window.google.maps.places.Autocomplete(venueInputRef.current, {
@@ -531,8 +531,8 @@ const [selectedtime, setselectedtime] = useState("");
                                          <input
                                          className={Style.DriveDate} 
                                            type="time" 
-                                           value={selectedtime} 
-                                           onChange={(e) => setselectedtime(e.target.value)} 
+                                           value={StartTime} 
+                                           onChange={(e) => setStartTime(e.target.value)} 
                                          />
                                          
                                        </div>
@@ -542,8 +542,8 @@ const [selectedtime, setselectedtime] = useState("");
                                          <input
                                          className={Style.DriveDate} 
                                            type="time" 
-                                           value={selectedtime} 
-                                           onChange={(e) => setselectedtime(e.target.value)} 
+                                           value={EndTime} 
+                                           onChange={(e) => setEndTime(e.target.value)} 
                                          />
                                          
                                        </div>
