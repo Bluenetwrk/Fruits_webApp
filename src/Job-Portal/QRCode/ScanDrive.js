@@ -21,8 +21,9 @@ const ScanDrive = () => {
     try {
         const res = await axios.get(`/StudentProfile/getProfile/${studId}`, {headers})
         const result = res.data.result;
-        // console.log(result)
+        console.log(result)
         setProfileData([result]);
+        setLoading(false);
         // console.log(profileData) // Save profile to state
       } catch (err) {
         alert("Something went wrong while fetching profile");
@@ -58,6 +59,7 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
     // console.log("companyName",allWalkinDrive)
   },[])
 
+  const[tokenNo, setTokenNo]=useState("")
 
   useEffect(() => {
     if(allWalkinDrive.length>0){
@@ -73,7 +75,7 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
 
     const generateUniqueCode = (driveId) => {
       const drive = allWalkinDrive.find((drive) => drive._id === driveId);
-      // console.log("drive", drive)
+      console.log("drive", driveId, allWalkinDrive)
       // console.log("profile", profileData[0])
       if (!drive?.companyName) {
         alert("Please Scan the QR code.");
@@ -97,26 +99,57 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
       (entry) => !(entry.userId === studId && entry.driveId === driveId)
     );
 
-    const newCode = generateUniqueCode(driveId);
-    if (!newCode) return;
+    setTokenNo(generateUniqueCode(driveId));
+    if (! tokenNo) return;
 
     const updatedData = [
       ...filteredData,
       {
         userId: studId,
         driveId,
-        code: newCode,
+        code: tokenNo,
         timestamp: new Date().toISOString(),
       },
     ];
 
     localStorage.setItem("attendance", JSON.stringify(updatedData));
-    setCode(newCode);
+    setCode( tokenNo);
     setLoading(false);
   }
   }, [profileData, driveId, studId, allWalkinDrive]);
 
 
+
+  async function postQRData() {
+     console.log("executed")
+
+    let jobSeekerId = JSON.parse(localStorage.getItem("StudId"))
+    const headers = { authorization: jobSeekerId + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+    const profile_data=profileData
+    await axios.post("/QRscannerRoutes/scanQRcode", {
+        tokenNo, jobSeekerId, profile_data }, { headers })
+      .then((res) => {
+          let result = (res.data)
+          console.log(result)
+          if (result == "success") {
+              console.log("data saved successfully")
+          }
+          else {
+            console.log("failed to save data")
+          }
+      }).catch((err) => {
+          alert("server issue occured", err)
+      })
+  window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+  });
+  }
+
+
+  useEffect(()=>{
+    postQRData()
+  },[tokenNo])
 
   return (
     <div style={{ padding: "2rem", }}>
@@ -132,7 +165,7 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
           {/* {console.log("kkkk",profileData)} */}
           <div style={{ fontSize: "2rem", fontWeight: "bold", color: "black" }}>Welcome {profileData[0]?.name} !</div>
           <div style={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}>Your token is </div>
-          <div style={{ fontSize: "2rem", fontWeight: "bold", color: "#28a745" }}>{code}</div>
+          <div style={{ fontSize: "2rem", fontWeight: "bold", color: "#28a745" }}>{tokenNo}</div>
           <div style={{ fontSize: "1rem", fontWeight: "bold", color: "#black" }}>Please Proceed to waiting area.<br></br>Watch the TV for your turn.</div>
           <button className={styles.QRHomeBtn} style={{ marginTop: "1.5rem" }} onClick={() => navigate("/")}>
             Go to Home

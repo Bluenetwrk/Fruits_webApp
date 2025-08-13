@@ -57,7 +57,7 @@ function MyPostedDrives(props) {
 
         .then((res) => {
           let result = (res.data)
-          // console.log(result)
+          console.log(result)
           
           let sortedate = result.sort(function (a, b) {
             return new Date(b.createdAt) - new Date(a.createdAt);
