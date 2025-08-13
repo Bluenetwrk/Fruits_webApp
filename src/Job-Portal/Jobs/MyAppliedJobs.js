@@ -618,7 +618,7 @@ console.log(records)
                                 return (
                                   rejectProfile == jobSeekerId
                                 )
-                              }) ? <p style={{ color: "red" }} className={styles.MobileStatus}>Sorry! Your profile has not been Matched for this job</p>
+                              }) ? <p style={{ color: "red" }} className={styles.MobileStatus}>Sorry, your profile doesn't match this job.</p>
                                 : <p className={styles.MobileStatus}>Your application is submitted.It will be reviewed and we will update you soon</p>
 
                         }
