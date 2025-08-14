@@ -26,6 +26,7 @@ function PostHelp(props) {
     let empId = JSON.parse(localStorage.getItem("EmpIdG"))
     const [helptitle, setHelpTitle] = useState("")
     const [companyName, setCompanyName] = useState("")
+    const[name,setName]=useState("")
     const [helpDescription, setHelpDescription] = useState("")
     const [successMessage, setSuccessMessage] = useState("")
     const [Logo, setLogo] = useState()
@@ -43,8 +44,10 @@ function PostHelp(props) {
             .then((res) => {
                 let result = res.data.result
                 let companyName = res.data.result.CompanyName
+                let name = res.data.result.name
                 setProfileData([result])
                 setCompanyName(companyName)
+                setName(name)
             }).catch((err) => {
                 alert("some thing went wrong")
             })
@@ -70,53 +73,40 @@ function PostHelp(props) {
         getLogo()
     }, [])
 
+  
     async function postHelp() {
-        // console.log(helptitle)
-        // console.log(helpDescription)
-    }
-    async function postJob() {
-        // let userid = JSON.parse(localStorage.getItem("EmpIdG"))
-        // const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
+        console.log("executed")
+        let userid = JSON.parse(localStorage.getItem("EmpIdG"))
+        const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
 
-        // let jobTitle = jobtitle.toLowerCase()
-        // let jobLocation = joblocation.toLowerCase()
-        // await axios.post("/jobpost/jobpost/", {
-        //     Logo, SourceLink, Source, empId, jobTitle, companyName,
-        //     jobDescription, jobtype, salaryRange, jobLocation, qualification, experiance, skills, Tags
-        // }, { headers })
-        //     .then((res) => {
-        //         let result = (res.data)
-        //         console.log(result)
-        //         if (result == "success") {
-        //             setJobTitle("")
-        //             setJobDescription("")
-                    // setCompanyName("")
-                //     setJobtype("")
-                //     setJobLocation("")
-                //     setQualification("")
-                //     setSalaryRange("")
-                //     setJobLocation("")
-                //     setExperiance("")
-                //     setExperiance("")
-                //     setSkills("")
-                //     setTag([])
-                //     setSuccessMessage("Success! job successfully posted")
-                // }
-                // else if (result == "field are missing") {
-                //     setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")
-                // }
-                // else if (result ==="server issue")
-                // else
-                //     {
-                //     setSuccessMessage("something went wrong, Could not save your Jobs post")
-                // }
-        //     }).catch((err) => {
-        //         alert("server issue occured", err)
-        //     })
-        // window.scrollTo({
-        //     top: 0,
-        //     behavior: "smooth"
-        // });
+        const jobTitle = helptitle
+        const jobDescription=helpDescription;
+        console.log("title",jobTitle," comna",companyName,"empid",empId , "jd",jobDescription , "postedby",name)
+        await axios.post("/QuestionRoute/postQuestion", {
+            Logo, empId, name, jobTitle, companyName, jobDescription, 
+        }, { headers })
+            .then((res) => {
+                let result = (res.data)
+                console.log(result)
+                if (result == "success") {
+                    setHelpTitle("")
+                    setHelpDescription("")  
+                    setSuccessMessage("Success! job successfully posted")
+                }
+                else if (result == "field are missing") {
+                    setSuccessMessage("Alert!... HelpTitle, HelpDescription, must be filled")
+                }
+                else
+                    {
+                    setSuccessMessage("something went wrong, Could not save your Jobs post")
+                }
+            }).catch((err) => {
+                alert("server issue occured", err)
+            })
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     }
     
     function handlehelptitle(e){ 
