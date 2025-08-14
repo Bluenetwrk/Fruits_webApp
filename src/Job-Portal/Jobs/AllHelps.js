@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import HTMLReactParser from "html-react-parser";
@@ -7,6 +7,7 @@ import useScreenSize from "../SizeHook";
 import styles from "./Allobs.module.css"
 import { useNavigate } from "react-router-dom";
 import {jobTags} from '../Tags'
+import { Puff } from "react-loader-spinner";
 
 function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageFilter,setNoPageFilter
 }) {
@@ -66,28 +67,34 @@ function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageF
     getContact();
   }, []);
 
-  const helpData = [
-    { 
-      id: 1, 
-      question: "How to Register as an Employer?", 
-      source: "ITWalkin", 
-      companyName: "ITWalkin", 
-      postedby: "ITWalkin", 
-      postedDate: "20-03-2025", 
-      view: "View",
-      details: "1. To register as an employer, follow these steps:\n2. Click on the 'Open an Account' menu in the navigation bar.\n3. A submenu will appear—select 'Employer Registration' from the list.\n4. The Employer Registration Form will open in a new window.\n5. Fill in all the required details in the given fields.\n6. Choose to register using either Microsoft or Google.\n7. Once completed, your registration will be successful."
-  },
-  { 
-    id: 2, 
-    question: "How to Register as a Jobseeker?", 
-    source: "ITWalkin", 
-    companyName: "ITWalkin", 
-    postedby: "ITWalkin", 
-    postedDate: "20-03-2025", 
-    view: "View",
-    details: "1. To register as a Jobseeker, follow these steps:\n2. Click on the 'Open an Account' menu in the navigation bar.\n3. A submenu will appear—select 'Jobseeker Registration' from the list.\n4. The jobseeker Registration Form will open in a new window.\n5. Fill in all the required details in the given fields.\n6. Choose to register using either Microsoft or Google.\n7. Once completed, your registration will be successful."
-},
-     ];
+
+  const[helpData, setHelpData]=useState([])
+    const [PageLoader, setPageLoader] = useState(false)
+     async function getjobs() {
+      setPageLoader(true)
+      await axios.get("/QuestionRoute/getQuestions")
+        .then((res) => {
+          let result = (res.data)
+          let sortedate = result.sort(function (a, b) {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+          });
+        
+          setHelpData(sortedate);
+          setPageLoader(false)
+        }).catch((err) => {
+          console.log(err)
+          alert("some thing went wrong")
+        })
+    }
+  
+    useEffect(()=>{
+      getjobs()
+    },[]) 
+
+
+
+
+
 
      async function filterByJobTitle(key) {
 
@@ -129,6 +136,10 @@ function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageF
       
     }
 
+    const selectedTag=useRef("")
+      const updateTag=(tag)=>{
+        selectedTag.current=tag
+      }
 
   return (
     <>
@@ -206,22 +217,30 @@ function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageF
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.BlogApply}`}>View Answer</li>
 
             </ul>
-
-            {helpData.map((item) => (
-             <ul key={item.id} className={styles.ul}>
-               <li className={`${styles.li} ${styles.BlogJtitle}`} >{item.question}</li>
-               <li className={`${styles.li} ${styles.BlogSource}`}>{item.source}</li>
+              
+             {PageLoader ?
+                           <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+                           <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "50px" }} />
+                           <div><p style={{color:"red"}}>Loading...</p></div>
+                           </div>
+                           : 
+            (helpData.map((item,i) => (
+             <ul key={item.id} className={styles.ul}>  
+               <li className={`${styles.li} ${styles.BlogJtitle}`} >{item.jobTitle}</li>
+               <li className={`${styles.li} ${styles.BlogSource}`}>ITwalkin</li>
                <li className={`${styles.li} ${styles.BlogCompanyName}`}>{item.companyName}</li>
-               <li className={`${styles.li} ${styles.BlogCompanyName}`}>{item.postedby}</li>
-               <li className={`${styles.li} ${styles.Blogdate}`}>{item.postedDate}</li>
+               <li className={`${styles.li} ${styles.BlogCompanyName}`}>{item.name}</li>
+               <li className={`${styles.li} ${styles.Blogdate}`}>{new Date(item.createdAt).toLocaleDateString("en-IN")}</li>
                <li className={`${styles.li} ${styles.BlogApply}`}>
-                 <button   onClick={() => navigate(`/support/help/${btoa(item.id)}`, { state: { helpItem: item } })
-}  style={{ cursor: "pointer", padding: "5px 10px", background: "#280463", color: "white", border: "none", borderRadius: "4px" }}>
-                   {item.view}
+                 <button 
+                 onClick={() => navigate(`/support/help/${btoa(item._id)}?index=${i}`, {state: {selectedTag, },})}
+                 style={{ cursor: "pointer", padding: "5px 10px", background: "#280463", color: "white", border: "none", borderRadius: "4px" }}>
+                   View
                  </button>
               </li>
          </ul>
-  ))}
+           )))
+        }
            
      </div>
      
