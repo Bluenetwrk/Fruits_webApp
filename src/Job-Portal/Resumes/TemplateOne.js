@@ -16,6 +16,7 @@ const TemplateOne = () => {
       try {
         const res = await axios.get(`/StudentProfile/getProfile/${studId}`, { headers });
         setProfileData(res.data.result);
+        console.log("pd",profileData)
       } catch (err) {
         alert("Something went wrong while fetching profile");
       }

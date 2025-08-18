@@ -1,67 +1,71 @@
 import React, { useState } from 'react';
-import styles from "./Allobs.module.css";
+import styles from "./PostFraudForm.module.css";
 
 const PostFraudForm = () => {
   const [misuseType, setMisuseType] = useState('');
-  const [description, setDescription] = useState('');
-  const [evidence, setEvidence] = useState(null);
-  const [email, setEmail] = useState('');
+  const [selectedOption, setSelectedOption] = useState('');
+  const [issues, setIssues] = useState(['']);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-
-  const handleFileChange = (e) => {
-    setEvidence(e.target.files[0]);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!description || !misuseType) {
+    if (!selectedOption || issues.length === 0 || issues.some(issue => issue.trim() === '')) {
       alert('Please fill in all required fields.');
       return;
     }
 
-    const formData = new FormData();
-    formData.append('misuseType', misuseType);
-    formData.append('description', description);
-    if (evidence) formData.append('evidence', evidence);
-    if (email) formData.append('email', email);
+    const formData = {
+      misuseType,
+      issueOption: selectedOption,
+      issues
+    };
 
-    // Simulate form submission
-    console.log('Submitted Data:', Object.fromEntries(formData.entries()));
+    console.log("Submitted Data:", formData);
 
-    // Clear form fields
+    // Reset
     setMisuseType('');
-    setDescription('');
-    setEvidence(null);
-    setEmail('');
+    setSelectedOption('');
+    setIssues(['']);
 
-    // Show success message
     setShowSuccessMessage(true);
-
-    // Optionally hide message after a few seconds
     setTimeout(() => setShowSuccessMessage(false), 3000);
   };
 
   const handleCancel = () => {
     setMisuseType('');
-    setDescription('');
-    setEvidence(null);
-    setEmail('');
+    setSelectedOption('');
+    setIssues(['']);
     setShowSuccessMessage(false);
+  };
+
+  const handleIssueChange = (index, value) => {
+    const updatedIssues = [...issues];
+    updatedIssues[index] = value;
+    setIssues(updatedIssues);
+  };
+
+  const addIssue = () => {
+    if (issues.length < 5) {
+      setIssues([...issues, '']);
+    }
+  };
+
+  const removeIssue = (index) => {
+    const updatedIssues = issues.filter((_, i) => i !== index);
+    setIssues(updatedIssues);
   };
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}> Report Misuse of ITWalkin</h2>
-      
+      <h2 className={styles.title}>Report Misuse of ITWalkin</h2>
+
       {showSuccessMessage && (
-        <div className={styles.successMessage}>
-          ✅ Successfully submitted!
-        </div>
+        <div className={styles.successMessage}>✅ Successfully submitted!</div>
       )}
 
       <form onSubmit={handleSubmit} className={styles.form}>
         <label className={styles.label}>
-           Select Type of Misuse:
+          Select Type of Misuse:
           <select
             value={misuseType}
             onChange={(e) => setMisuseType(e.target.value)}
@@ -75,33 +79,94 @@ const PostFraudForm = () => {
           </select>
         </label>
 
-        <label className={styles.label}>
-           Describe the Issue (Required)
-          <textarea
-          style={{fontFamily:"serif"}}
-            placeholder="Provide details of the misuse..."
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-            className={styles.textarea}
-          />
-        </label>
+        <fieldset className={styles.label}>
+          <legend>Describe the Issue (Required)</legend>
 
-        {/* <label className={styles.label}>
-          📎 Upload Evidence (Optional)
-          <input type="file" onChange={handleFileChange} />
-        </label> */}
+          <div>
+            <label className={styles.radioLabel}>
+              <input
+                type="radio"
+                name="issue"
+                value="1–5"
+                checked={selectedOption === "1–5"}
+                onChange={(e) => {
+                  setSelectedOption(e.target.value);
+                  setIssues(['']);
+                }}
+                required
+              /> 1–5
+            </label>
+          </div>
 
-        <label className={styles.label}>
-           Your Contact Email (Optional)
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="example@email.com"
-            className={styles.input}
-          />
-        </label>
+          <div>
+            <label className={styles.radioLabel}>
+              <input
+                type="radio"
+                name="issue"
+                value="5–10"
+                checked={selectedOption === "5–10"}
+                onChange={(e) => {
+                  setSelectedOption(e.target.value);
+                  setIssues(['']);
+                }}
+              /> 5–10
+            </label>
+          </div>
+
+          <div>
+            <label className={styles.radioLabel}>
+              <input
+                type="radio"
+                name="issue"
+                value="Other"
+                checked={selectedOption === "Other"}
+                onChange={(e) => {
+                  setSelectedOption(e.target.value);
+                  setIssues(['']);
+                }}
+              /> Other
+            </label>
+          </div>
+        </fieldset>
+
+        {/* Dynamic Issue Fields */}
+        {selectedOption && (
+          <div className={styles.issueContainer}>
+            {issues.map((issue, index) => (
+              <div key={index} className={styles.issueRow}>
+                <textarea
+                  placeholder={`Enter details (Issue ${index + 1})`}
+                  value={issue}
+                  onChange={(e) => handleIssueChange(index, e.target.value)}
+                  className={styles.textarea}
+                  required
+                />
+                {issues.length > 1 && (
+                  <button
+                   style={{marginTop:"12px"}}
+                    type="button"
+                    onClick={() => removeIssue(index)}
+                    className={styles.removeButton}
+                  >
+                   <div style={{display:"flex"}}>
+                    <div>❌</div> 
+                    <div>Remove</div> 
+                   </div>
+                  </button>
+                )}
+              </div>
+            ))}
+            {issues.length < 5 && (
+              <button
+                type="button"
+                onClick={addIssue}
+                className={styles.addButton}
+              >
+                ➕ Add Issue
+              </button>
+            )}
+          </div>
+        )}
 
         <div className={styles.buttonContainer}>
           <button type="submit" className={styles.submitButton}>✅ Submit Report</button>

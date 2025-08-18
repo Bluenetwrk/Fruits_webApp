@@ -32,6 +32,7 @@ const ResumeForm = () => {
         const res = await axios.get(`/StudentProfile/getProfile/${studId}`, { headers });
         const result = res.data.result;
         setProfileData([result]);
+       
         setFormData(prev => ({
           ...prev,
           name: result.name,
@@ -45,6 +46,11 @@ const ResumeForm = () => {
 
     fetchProfile();
   }, [studId]);
+
+
+  useEffect(()=>{
+    console.log("profile",profileData)
+  },[profileData])
 
   const containerStyle = {
     maxWidth: '900px',
@@ -152,10 +158,51 @@ const ResumeForm = () => {
     setFormData({ ...formData, languages: [...formData.languages, ''] });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Submitted Data:', formData);
-    setFormData(initialState);
+  const handleSubmit = async () => {
+    // e.preventDefault();
+    // console.log('Submitted Data:', formData);
+    let userid = JSON.parse(localStorage.getItem("StudId"))
+    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+    
+    const profileSummary=formData.profileSummary;
+    const address=formData.address;
+    const experiences = formData.experiences;
+    const certifications= formData.certifications;
+    const skills=formData.skills;
+    const languages=formData.languages;
+
+    console.log("Form Data Check:");
+console.log("Profile Summary:", profileSummary);
+console.log("Address:", address);
+console.log("Experiences:", experiences);
+console.log("Certifications:", certifications);
+console.log("Skills:", skills);
+console.log("Languages:", languages);
+
+    await axios.put(`/StudentProfile/updatProfile/${studId}`, {
+      profileSummary, address, experiences, certifications, skills, languages
+    }, { headers })
+          .then((res) => {
+              let result = (res.data)
+              console.log(result)
+              if (result == "success") {             
+                  setSuccessMessage("Success! job successfully posted")
+              }
+              else if (result == "field are missing") {
+                  setSuccessMessage("Alert!... all fields must be filled")
+              }
+              else
+                  {
+                  setSuccessMessage("something went wrong, Could not save your Jobs post")
+              }
+          }).catch((err) => {
+              alert("server issue occured", err)
+          })
+      window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+      });
+
   };
 
   return (

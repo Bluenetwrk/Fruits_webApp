@@ -75,13 +75,13 @@ function PostHelp(props) {
 
   
     async function postHelp() {
-        console.log("executed")
+        // console.log("executed")
         let userid = JSON.parse(localStorage.getItem("EmpIdG"))
         const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
 
         const jobTitle = helptitle
         const jobDescription=helpDescription;
-        console.log("title",jobTitle," comna",companyName,"empid",empId , "jd",jobDescription , "postedby",name)
+        // console.log("title",jobTitle," comna",companyName,"empid",empId , "jd",jobDescription , "postedby",name)
         await axios.post("/QuestionRoute/postQuestion", {
             Logo, empId, name, jobTitle, companyName, jobDescription, 
         }, { headers })
