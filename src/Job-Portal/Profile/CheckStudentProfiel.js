@@ -111,16 +111,19 @@ profileData.map((item, i) => {
             <ul className={styles.ul}>
                 <li className={styles.li}><b>Name </b></li>
                 <li className={styles.li}><b>Email  Address</b></li>
+                <li className={styles.li}><b>City</b></li> 
                 <li className={styles.li}><b>Phone  Number</b></li>
-                <li className={styles.li}><b>Aadhar</b></li>
-                <li className={styles.li}><b>Pan  Card</b></li>
-                <li className={styles.li}><b>Age</b></li>
-                <li className={styles.li}><b>Notice  Period</b></li>
-                <li className={styles.li}><b>Expected  Salary</b></li>
-                <li className={styles.li}><b>Current  CTC</b></li>
                 <li className={styles.li}><b>Qualification</b></li>
                 <li ref={skillsHeadingRef} className={`${styles.li} ${styles.skillsHeading}`}><b>Skills</b></li>
+                <li className={styles.li}><b>Notice  Period</b></li>
                 <li className={styles.li}><b>Experience</b></li>
+                <li className={styles.li}><b>Current  CTC</b></li>
+                <li className={styles.li}><b>Expected  Salary</b></li>
+                <li className={styles.li}><b>Previous Company Name</b></li>
+                <li className={styles.li}><b>Present Company Name</b></li>
+                <li className={styles.li}><b>Aadhar</b></li>
+                <li className={styles.li}><b>Pan  Card</b></li>
+                <li className={styles.li}><b>Account Status</b></li>
                 <li className={styles.li}><b>HRs/Employer FeedBack</b></li>
 
             </ul>
@@ -134,18 +137,26 @@ profileData.map((item, i) => {
                 profileData.map((item, i) => {
                     return (
                         <ul className={styles.ulR} key={i}>
+                            {/* {console.log(item)} */}
                             <li className={`${styles.Hli}`}>{item.name?item.name:<li className={styles.Nli}>Not Updated</li>}</li>
                             <li className={`${styles.Hli}`}>{approved?item.email?item.email:<li className={styles.Nli}>Not Updated</li>:<li className={styles.Nli}>please wait for your account Approval</li>}</li>
+                            <li className={`${styles.Hli}`}>{item.city?item.city:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{approved?item.phoneNumber?item.phoneNumber:<li className={styles.Nli}>Not Updated</li> : <li className={styles.Nli}>please wait for your account Approval</li>}</li>
+                       
+                       <li className={` ${styles.Hli}`}>{item.Qualification?item.Qualification:<li className={styles.Nli}>Not Updated</li>}</li>
+                       <li style={{marginLeft:"26%", height:"auto", width:"324%"}} ref={skillsValueRef} className={`${styles.Hli} ${styles.skillsValue}`}>{item.Skills?item.Skills:<li className={styles.Nli} style={{marginLeft:"-8%"}}>Not Updated</li>}</li>
+                       <li className={` ${styles.Hli}`}>{item.NoticePeriod?item.NoticePeriod:<li className={styles.Nli}>Not Updated</li>}</li>
+                       <li className={` ${styles.Hli}`}>{item.Experiance?item.Experiance:<li className={styles.Nli}>Not Updated</li>}</li>
+                       <li className={` ${styles.Hli}`}>{item.currentCTC?item.currentCTC:<li className={styles.Nli}>Not Updated</li>}</li>
+                       <li className={` ${styles.Hli}`}>{item.ExpectedSalary?item.ExpectedSalary:<li className={styles.Nli}>Not Updated</li>}</li>
+                        
+                       <li className={` ${styles.Hli}`}>{item.previousCompany?item.previousCompany:<li className={styles.Nli}>No FeedBack</li>}</li>
+                       <li className={` ${styles.Hli}`}>{item.currentCompany?item.currentCompany:<li className={styles.Nli}>No FeedBack</li>}</li>
+
+
                        <li className={` ${styles.Hli}`}>{item.Aadhar?<li className={styles.Nli}>###########</li>:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.panCard?<li className={styles.Nli}>###########</li>:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.age?item.age:<li className={styles.Nli}>Not Updated</li>}</li>
-                       <li className={` ${styles.Hli}`}>{item.NoticePeriod?item.NoticePeriod:<li className={styles.Nli}>Not Updated</li>}</li>
-                       <li className={` ${styles.Hli}`}>{item.ExpectedSalary?item.ExpectedSalary:<li className={styles.Nli}>Not Updated</li>}</li>
-                       <li className={` ${styles.Hli}`}>{item.currentCTC?item.currentCTC:<li className={styles.Nli}>Not Updated</li>}</li>
-                       <li className={` ${styles.Hli}`}>{item.Qualification?item.Qualification:<li className={styles.Nli}>Not Updated</li>}</li>
-                       <li style={{marginLeft:"26%", height:"auto", width:"324%"}} ref={skillsValueRef} className={`${styles.Hli} ${styles.skillsValue}`}>{item.Skills?item.Skills:<li className={styles.Nli} style={{marginLeft:"-8%"}}>Not Updated</li>}</li>
-                       <li className={` ${styles.Hli}`}>{item.Experiance?item.Experiance:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.Experiance?item.Experiance:<li className={styles.Nli}>No FeedBack</li>}</li>
                         </ul>
                     )

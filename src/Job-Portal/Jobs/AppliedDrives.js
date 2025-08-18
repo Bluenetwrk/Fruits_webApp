@@ -369,7 +369,7 @@ const handleStart = () => {
   return (
     <>
 
-<p style={{ textAlign: "center", }}className={styles.h3}><h2>My Registered WalkinDrives</h2></p>
+<p style={{ textAlign: "center", }}className={styles.h3}><h2>My Registered Walkin Drives</h2></p>
 {/* <p className={styles.h3}><b>You’ve successfully submitted applications for {MyAppliedjob.lengths} positions.Stay tuned for updates.  </b></p> */}
 
       {/* <button onClick={()=>{navigate("/MyCareer-Applied-Jobs")}} style={{ backgroundColor:"rgb(40, 4, 99)",

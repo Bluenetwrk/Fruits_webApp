@@ -232,10 +232,10 @@ const [PageLoader, setPageLoader] = useState(false)
       // behavior:"smooth"
     })
     const headers = { authorization: 'BlueItImpulseWalkinIn'};
-    await axios.get(`/walkinRoute/getwalkins/${atob(params.id)}`, {headers})
+    await axios.get(`/walkinRoute/walkindetails/${atob(params.id)}`, {headers})
       .then((res) => {
         let result = (res.data)
-        // console.log(result)
+        console.log(result)
         setJobs(result)
         setjobdescription(result.jobDescription)
         setjobSeekerId(result.jobSeekerId)
