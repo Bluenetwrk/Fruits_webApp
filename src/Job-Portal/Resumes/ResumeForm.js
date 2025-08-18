@@ -18,7 +18,7 @@ const ResumeForm = () => {
 
   const [formData, setFormData] = useState(initialState);
   const [profileData, setProfileData] = useState([]);
-
+const [successMessage, setSuccessMessage] = useState("")
   let studId = JSON.parse(localStorage.getItem("StudId"));
 
   useEffect(() => {
