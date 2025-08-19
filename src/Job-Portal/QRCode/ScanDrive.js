@@ -77,11 +77,11 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
       const drive = allWalkinDrive.find((drive) => drive._id === driveId);
       console.log("drive", driveId, allWalkinDrive)
       // console.log("profile", profileData[0])
-      if (!drive?.companyName) {
-        alert("Please Scan the QR code.");
-        navigate("/");
-        return null;
-      }
+      // if (!drive?.companyName) {
+      //   alert("Please Scan the QR code.");
+      //   navigate("/");
+      //   return null;
+      // }
 
       const companyCode = drive?.companyName?.substring(0, 2).toUpperCase();
       // console.log("companyName",companyName)
@@ -121,29 +121,33 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
 
 
   async function postQRData() {
-     console.log("executed")
-
+     console.log("toke:",tokenNo)
     let jobSeekerId = JSON.parse(localStorage.getItem("StudId"))
-    const headers = { authorization: jobSeekerId + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
-    const profile_data=profileData
-    await axios.post("/QRscannerRoutes/scanQRcode", {
-        tokenNo, jobSeekerId, profile_data }, { headers })
-      .then((res) => {
-          let result = (res.data)
-          console.log(result)
-          if (result == "success") {
-              console.log("data saved successfully")
-          }
-          else {
-            console.log("failed to save data")
-          }
+    const headers = { authorization: 'BlueItImpulseWalkinIn' };
+    // e.preventDefault()
+    await axios.put(`/walkinRoute/updatPostedwalkin/${driveId}`, {
+      tokenNo , jobSeekerId
+    }, { headers })
+      .then(async (res) => {
+        let result = res.data
+        console.log("result",result)
+        if (result == "success") {
+          console.log("Success! Profile updated successfully")
+          // settopMessage("Success! Profile updated successfully")
+        } else if (result == "feilds are missing") {
+          console.log("warning! Profile failed updated successfully")
+          // settopMessage("Alert!..name, emailAddress, NoticePeriod, phoneNumber, Qualification, Skills and Experiance should not be empty")
+        }
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+
       }).catch((err) => {
-          alert("server issue occured", err)
+        alert("some thing went wrong")
       })
-  window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-  });
   }
 
 

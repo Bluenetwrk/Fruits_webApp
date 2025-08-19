@@ -207,7 +207,7 @@ const [PageLoader, setPageLoader] = useState(false)
               })
               // console.log("aal jobs current",allJobs.current[index]._id)
               const headers = { authorization: 'BlueItImpulseWalkinIn'};
-              await axios.get(`/walkinRoute/getwalkins/${allJobs.current[index]._id}`, {headers})
+              await axios.get(`/walkinRoute/walkindetails/${allJobs.current[index]._id}`, {headers})
                 .then((res) => {
                   let result = (res.data)
                   // console.log(result)

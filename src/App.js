@@ -85,6 +85,7 @@ import PostedDriveDetails from "./Job-Portal/Jobs/PostedDriveDetails";
 import AppliedDriveUserProfile from "./Job-Portal/AppliedUserProfile/AppliedDriveUserProfile";
 import ResumeLogin from "./Job-Portal/Login/ResumeLogin";
 import ResumeForm from "./Job-Portal/Resumes/ResumeForm";
+import InterviewScreen from "./Job-Portal/QRCode/InterviewScreen";
 // import PostFraud from "./Job-Portal/Jobs/PostFraud";
 axios.defaults.baseURL = " https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -1108,6 +1109,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               <Route path="/Post-Help-Questions" element={<PostHelp url={axios.defaults.baseURL} />} />
               <Route path="/PostDrives" element={<PostWalkinDrive url={axios.defaults.baseURL}/>} />
               <Route path="/PostBlogs" element={<PostBlogs url={axios.defaults.baseURL} />} />
+              <Route path="/interview-screen" element={<InterviewScreen url={axios.defaults.baseURL} />} />
               <Route path="/postedjobs" element={<PostedJobsbyEmp url={axios.defaults.baseURL} />} />
               <Route path="/posteddrives" element={<MyPostedDrives url={axios.defaults.baseURL} />} />
               <Route path="/updatedposted-Drives" element={<UpdatePostedDrive url={axios.defaults.baseURL} />} />

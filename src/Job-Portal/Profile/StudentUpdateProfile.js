@@ -276,6 +276,7 @@ function StudentUpdateProfile(props) {
     } catch (error) {
     }
   }
+  
   async function deletePic() {
     await axios.put(`/StudentProfile/deleteImage/${studId}`, { image })
       .then((res) => {

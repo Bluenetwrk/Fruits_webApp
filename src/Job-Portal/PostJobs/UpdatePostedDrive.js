@@ -117,7 +117,8 @@ function UpdatePostedDrive(props) {
     async function postJob() {
         const headers = { authorization: 'BlueItImpulseWalkinIn' };
 
-        await axios.get(`walkinRoute/getwalkins/${Jobid}`,{headers})
+
+        await axios.get(`walkinRoute/walkindetails/${Jobid}`,{headers})
         
             .then((res) => {
               console.log("response", res, Jobid)
