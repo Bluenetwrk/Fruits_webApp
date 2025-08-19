@@ -1,0 +1,149 @@
+.container {
+    display: flex;
+    width: 95%;
+    /* height: 91vh;  <-- REMOVE THIS */
+    min-height: 91vh; /* instead use min-height */
+    background: #fff;
+    font-family: Arial, sans-serif;
+    margin-top: 15px;
+    margin-left: 30px;
+    align-items: stretch; /* make children stretch equally */
+  }
+  
+  .leftBox {
+    flex: 3;
+    padding: 20px;
+    background: #98d9a8; /* green */
+    border: 2px solid #666;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;  /* align content to top */
+  }
+  
+  .rightBox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #e6fff2;
+    /* Let it auto-expand with content */
+  }
+  
+  
+  /* Profile table styling */
+  .profileTableWrapper {
+    width: 90%;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Header with image + heading */
+  .profileHeader {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+  }
+  
+  .profileImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #007bff;
+    margin-left:5%;
+  }
+  
+  .profileHeading {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .profileTable {
+    width: 97%;
+    border-collapse: collapse;
+  }
+  
+  .profileTable td {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+  }
+ 
+  
+  /* Button common */
+  .scanBtn,
+  .endBtn {
+    width: 90%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Scan button */
+  .scanBtn {
+    background: #007bff;
+    color: #fff;
+  }
+  .scanBtn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  
+  /* End button */
+  .endBtn {
+    background: #ff4d4f;
+    color: #fff;
+  }
+  
+  .scanBtn:hover:not(:disabled),
+  .endBtn:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Loading Spinner */
+  .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .commentBox {
+    width: 100%;
+    min-height: 80px;
+    resize: vertical;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #ccc;
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+  }
+  
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

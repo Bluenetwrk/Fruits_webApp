@@ -70,26 +70,26 @@ function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageF
 
   const[helpData, setHelpData]=useState([])
     const [PageLoader, setPageLoader] = useState(false)
-     async function getjobs() {
-      setPageLoader(true)
-      await axios.get("/QuestionRoute/getQuestions")
-        .then((res) => {
-          let result = (res.data)
-          let sortedate = result.sort(function (a, b) {
-            return new Date(b.createdAt) - new Date(a.createdAt);
-          });
+    //  async function getjobs() {
+    //   setPageLoader(true)
+    //   await axios.get("/QuestionRoute/getQuestions")
+    //     .then((res) => {
+    //       let result = (res.data)
+    //       let sortedate = result.sort(function (a, b) {
+    //         return new Date(b.createdAt) - new Date(a.createdAt);
+    //       });
         
-          setHelpData(sortedate);
-          setPageLoader(false)
-        }).catch((err) => {
-          console.log(err)
-          alert("some thing went wrong")
-        })
-    }
+    //       setHelpData(sortedate);
+    //       setPageLoader(false)
+    //     }).catch((err) => {
+    //       console.log(err)
+    //       alert("some thing went wrong")
+    //     })
+    // }
   
-    useEffect(()=>{
-      getjobs()
-    },[]) 
+    // useEffect(()=>{
+    //   getjobs()
+    // },[]) 
 
 
 
@@ -218,29 +218,50 @@ function AllHelps({ Active, getjobs, setJobs, setActive, count, setCount,nopageF
 
             </ul>
               
-             {PageLoader ?
-                           <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-                           <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "50px" }} />
-                           <div><p style={{color:"red"}}>Loading...</p></div>
-                           </div>
-                           : 
-            (helpData.map((item,i) => (
-             <ul key={item.id} className={styles.ul}>  
-               <li className={`${styles.li} ${styles.BlogJtitle}`} >{item.jobTitle}</li>
-               <li className={`${styles.li} ${styles.BlogSource}`}>ITwalkin</li>
-               <li className={`${styles.li} ${styles.BlogCompanyName}`}>{item.companyName}</li>
-               <li className={`${styles.li} ${styles.BlogCompanyName}`}>{item.name}</li>
-               <li className={`${styles.li} ${styles.Blogdate}`}>{new Date(item.createdAt).toLocaleDateString("en-IN")}</li>
-               <li className={`${styles.li} ${styles.BlogApply}`}>
-                 <button 
-                 onClick={() => navigate(`/support/help/${btoa(item._id)}?index=${i}`, {state: {selectedTag, },})}
-                 style={{ cursor: "pointer", padding: "5px 10px", background: "#280463", color: "white", border: "none", borderRadius: "4px" }}>
-                   View
-                 </button>
-              </li>
-         </ul>
-           )))
-        }
+            {PageLoader ? (
+        <p>Loading...</p>
+      ) : helpData.length > 0 ? (
+        helpData.map((item, i) => (
+          <ul key={item._id || i} className={styles.ul}>
+            <li className={`${styles.li} ${styles.BlogJtitle}`}>
+              {item.jobTitle}
+            </li>
+            <li className={`${styles.li} ${styles.BlogSource}`}>ITwalkin</li>
+            <li className={`${styles.li} ${styles.BlogCompanyName}`}>
+              {item.companyName}
+            </li>
+            <li className={`${styles.li} ${styles.BlogCompanyName}`}>
+              {item.name}
+            </li>
+            <li className={`${styles.li} ${styles.Blogdate}`}>
+              {new Date(item.createdAt).toLocaleDateString("en-IN")}
+            </li>
+            <li className={`${styles.li} ${styles.BlogApply}`}>
+              <button
+                onClick={() =>
+                  navigate(`/support/help/${btoa(item._id)}?index=${i}`, {
+                    state: { selectedTag: null },
+                  })
+                }
+                style={{
+                  cursor: "pointer",
+                  padding: "5px 10px",
+                  background: "#280463",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                }}
+              >
+                View
+              </button>
+            </li>
+          </ul>
+        ))
+      ) : (
+        <div style={{display:"flex", justifyContent:"center"}}>
+        <p style={{color:"red"}}>No Record Found...</p>
+        </div>
+      )}
            
      </div>
      
