@@ -115,7 +115,7 @@ function PostWalkinDrive(props) {
 
     async function postJob() {
         if(jobtype===""|| qualification==="") {
-          setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation ,qualification , jobtype and Skills must be filled")
+          setSuccessMessage("Please complete all required fields: Job Title, Company Name, Description, Experience, Location, Qualification, Job Type, and Skills.")
           return
         }
         let userid = JSON.parse(localStorage.getItem("EmpIdG"))
