@@ -332,7 +332,7 @@ const [PageLoader, setPageLoader] = useState(false)
     window.scrollTo(50,5000000)
 
     }
-          // const url = "https://www.itwalkin.com/";
+          // const url = "https://www.ITwalkin.com/";
           // const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
       // const location = useLocation();
       const url = window.location.origin + location.pathname; // Dynamic URL
@@ -701,7 +701,7 @@ const [PageLoader, setPageLoader] = useState(false)
 {/* {jobs.Source ?
   <> <a className={`${styles.skills}`} href={jobs.SourceLink} target="_blank">{jobs.Source}</a><br></br> </>
   : */}
-  <> <span className={styles.skills}>ItWalkin</span><br></br></>
+  <> <span className={styles.skills}>ITwalkin</span><br></br></>
 {/* } */}
 
 <div className={styles.skillWrapper}>

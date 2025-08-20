@@ -869,7 +869,7 @@ useEffect(() => {
                        {/* <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li> */}
                        
                        <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li>
-                        <li className={`${styles.li} ${styles.Source}`} >Itwalkin</li>
+                        <li className={`${styles.li} ${styles.Source}`} >ITwalkin</li>
 
                         {
                           !items.Source ?
@@ -958,7 +958,7 @@ useEffect(() => {
                             </span>
 
                         }. 
-          ITWalkin is not the authorised partner of this company
+          ITwalkin is not the authorised partner of this company
           {/* <strong>Notice:</strong> ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website. */}
 
           <div ref={alertRef} style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"5px" }}>
@@ -1187,7 +1187,7 @@ useEffect(() => {
 
                         <span className={styles.jobtypeAndDate}>Posted By</span> :
 
-                        <> <span className={styles.skills}>ItWalkin</span><br></br></>
+                        <> <span className={styles.skills}>ITwalkin</span><br></br></>
                         {/* } */}
 
                         <div className={styles.skillWrapper}>

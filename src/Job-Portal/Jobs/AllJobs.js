@@ -811,7 +811,7 @@ const selectedTag=useRef("")
 
 <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} 
 style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li>
-                          <li className={`${styles.li} ${styles.Source}`} >Itwalkin</li>
+                          <li className={`${styles.li} ${styles.Source}`} >ITwalkin</li>
                         {
                           !items.Source ?
 
@@ -894,7 +894,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
           ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website.<br></br>
           <br></br>
           You will be redirected to the career page of {items.Source}. 
-          ITWalkin is not the authorised partner of this company
+          ITwalkin is not the authorised partner of this company
           {/* <strong>Notice:</strong> ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website. */}
 
           <div ref={alertRef} style={{ marginTop: '15px', display:"flex", gap:"4px", justifyContent:"center" }}>
@@ -1003,7 +1003,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
             //  style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.toUpperCase()}</li>
             style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items?.jobTitle?.toUpperCase()}</li>
             
-                       <li className={`${styles.li} ${styles.Source}`} >Itwalkin</li>
+                       <li className={`${styles.li} ${styles.Source}`} >ITwalkin</li>
 
 
                         {
@@ -1262,7 +1262,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                         {/* {job.Source ?
                           <> <a className={`${styles.skills}`} href={job.SourceLink} target="_blank">{job.Source}</a><br></br> </>
                           : */}
-                        <> <span className={styles.skills}>ItWalkin</span><br></br></>
+                        <> <span className={styles.skills}>ITwalkin</span><br></br></>
                         {/* } */}
 
                         {/* </div> */}
@@ -1318,7 +1318,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                                   ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website.<br></br>
                                   <br></br>
                                   You will be redirected to the career page of {job.Source}. 
-                                  ITWalkin is not the authorised partner of this company
+                                  ITwalkin is not the authorised partner of this company
                                   {/* <strong>Notice:</strong> ITWALKIN.com never charges fees for job applications. If you encounter misuse or payment requests, report it through our website. */}
 
                                   <div ref={alertRef} style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"4px" }}>

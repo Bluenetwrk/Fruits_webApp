@@ -700,7 +700,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                           <li className={`${styles.li} ${styles.BlogJtitle}`} onClick={() => navigate(`/Blogdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li>
                         }                  
                       
-                       <li className={`${styles.li} ${styles.BlogSource}`} >Iwalkin</li>
+                       <li className={`${styles.li} ${styles.BlogSource}`} >ITwalkin</li>
                      
                           <li style={{ cursor: "pointer", textDecoration: "underline" }} className={`${styles.li} ${styles.BlogCompanyName}`}
                             onClick={(e) => { checkEmpHalf(btoa(items.empId)) }}  >

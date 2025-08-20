@@ -779,7 +779,7 @@ const responsive = {
                         }
 
                         
-                        <li className={`${styles.li} ${styles.Source}`} >Itwalkin</li>
+                        <li className={`${styles.li} ${styles.Source}`} >ITwalkin</li>
 
                         {/* } */}
 
@@ -865,7 +865,7 @@ const responsive = {
                         }
 
                         
-                        <li className={`${styles.li} ${styles.Source}`} >Itwalkin</li>
+                        <li className={`${styles.li} ${styles.Source}`} >ITwalkin</li>
 
                         <li className={`${styles.li} ${styles.JobType}`}>{items.jobtype}</li>
                         <li className={`${styles.li} ${styles.date}`}>
@@ -1114,7 +1114,7 @@ const responsive = {
                         <span className={styles.jobtypeAndDate}>Source</span> :
 
                         
-                        <> <span className={styles.skills}>ItWalkin</span><br></br></>
+                        <> <span className={styles.skills}>ITwalkin</span><br></br></>
                         <div className={styles.skillWrapper}>
                           <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skills}</span><br></br>
                         </div>
