@@ -143,10 +143,10 @@ const TemplateOne = () => {
         <div className="resume-header">
           <div className="header-left">
             <h1 className="resume-name">{profileData ? profileData.name : "Loading..."}</h1>
-            <p className="summary">{data.summary}</p>
+            <p className="summary">{profileData ? profileData.profileSummary : "Loading..."}</p>
           </div>
           <div className="header-right">
-            <p>{data.address}</p>
+            <p>{profileData ? profileData.address : "Loading..."}</p>
             <p className="email">{profileData ? profileData.email : "Loading..."}</p>
             <p>{profileData ? profileData.phoneNumber : "Loading..."}</p>
           </div>
@@ -157,24 +157,49 @@ const TemplateOne = () => {
           {/* Left Section */}
           <div className="left-section">
             <h2 className="section-title">EXPERIENCE</h2>
-            {data.experience.map((exp, index) => (
-              <div className="experience" key={index}>
-                <h3>{exp.company}, {exp.location} — <strong>{exp.title}</strong></h3>
-                <p className="date">{exp.date}</p>
-                <ul>
-                  {exp.details.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {profileData && profileData.experiences && profileData.experiences.length > 0 ? (
+  profileData.experiences.map((exp, index) => (
+    <div className="experience" key={index}>
+      <h3>{exp.company}, {exp.location} — <strong>{exp.role}</strong></h3>
+      <div style={{display:"flex"}}>
+      <p className="date">
+  {new Date(exp.startDate).toLocaleString("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  })}
+</p>
+
+{exp.endDate && (
+  <>
+    <pre> - </pre>
+    <p className="date">
+      {new Date(exp.endDate).toLocaleString("en-US", {
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+      })}
+    </p>
+  </>
+)}  
+      </div>        
+      <ul>
+        {exp.descriptions && exp.descriptions.map((item, i) => (
+          <li key={i}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  ))
+) : (
+  <p>Loading...</p>
+)}
           </div>
 
           {/* Right Section */}
           <div className="right-section">
             <div className="certification">
               <h4>Certification</h4>
-              <p>{data.certification}</p>
+              <p>{profileData ? profileData.certifications: "Loading..."}</p>
             </div>
 
             <div className="total-exp">
@@ -184,16 +209,21 @@ const TemplateOne = () => {
 
             <div className="skills">
               <h4>CORE TECHNICAL SKILLS</h4>
-              {data.technicalSkills.map((group, i) => (
-                <div className="skill-section" key={i}>
-                  <h5>{group.title}</h5>
-                  <ul>
-                    {group.skills.map((skill, j) => (
-                      <li key={j}>{skill}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+              {profileData && profileData.skills && profileData.skills.length > 0 ? (
+  profileData.skills.map((group, i) => (
+    <div className="skill-section" key={i}>
+      <h5>{group.heading}</h5>
+      <ul>
+        {group.items&& group.items.map((skill, j) => (
+          <li key={j}>{skill}</li>
+        ))}
+      </ul>
+    </div>
+  ))
+) : (
+  <p>Loading..</p>
+)}
+
             </div>
           </div>
         </div>

@@ -125,7 +125,8 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
     let jobSeekerId = JSON.parse(localStorage.getItem("StudId"))
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
     // e.preventDefault()
-    await axios.put(`/walkinRoute/updatPostedwalkin/${driveId}`, {
+    console.log(driveId)
+    await axios.put(`/walkinRoute/getwalkinForUpdate/${driveId}`, {
       tokenNo , jobSeekerId
     }, { headers })
       .then(async (res) => {
