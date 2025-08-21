@@ -41,7 +41,7 @@ let navigate = useNavigate()
         let userid = JSON.parse(localStorage.getItem("StudId"))
         const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("StudLog"))) };
         setPageLoader(true)
-        await axios.get(`/StudentProfile/getProfile/${studId}`, {headers})
+        await axios.get(`/StudentProfile/viewProfile/${studId}`)
             .then((res) => {
                 let result = res.data.result
                 setProfileData([result])

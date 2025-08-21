@@ -185,7 +185,7 @@ function StudentUpdateProfile(props) {
   async function getUser() {
     let userid = JSON.parse(localStorage.getItem("StudId"))
     const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
-    await axios.get(`/StudentProfile/getProfile/${studId}`, { headers })
+    await axios.get(`/StudentProfile/viewProfile/${studId}`)
       .then((res) => {
         let result = res.data.result
         if (result) {

@@ -318,7 +318,7 @@ const ResumeForm = () => {
       };
 
       try {
-        const res = await axios.get(`/StudentProfile/getProfile/${studId}`, { headers });
+        const res =   await axios.get(`/StudentProfile/viewProfile/${studId}`)
         const result = res.data.result;
         setProfileData([result]);
 

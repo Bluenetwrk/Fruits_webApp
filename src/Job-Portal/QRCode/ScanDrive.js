@@ -126,9 +126,18 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
     // e.preventDefault()
     console.log(driveId)
-    await axios.put(`/walkinRoute/getwalkinForUpdate/${driveId}`, {
-      tokenNo , jobSeekerId
-    }, { headers })
+    await axios.put(`walkinRoute/updatPostedwalkin/${driveId}`,
+      {
+        WaitingArea: [
+          {
+            jobSeekerId: [{ jobSeekerId: jobSeekerId }],  // <-- wrap properly
+            tokenNo: [tokenNo],
+            createdDateTime:new Date(),
+            updatedDateTime: new Date()
+          }
+        ]
+      }, 
+    { headers })
       .then(async (res) => {
         let result = res.data
         console.log("result",result)
@@ -153,6 +162,7 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
 
 
   useEffect(()=>{
+    console.log("tokenn0-",tokenNo)
     postQRData()
   },[tokenNo])
 

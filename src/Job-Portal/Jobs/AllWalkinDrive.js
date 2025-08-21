@@ -973,7 +973,7 @@ setLoader(true)
                         <li className={`${styles.li} ${styles.Apply}`}>
                         <div  ref={alertRef} style={{position:"relative"}}>
         {    
-        items.jobSeekerId.find((jobseeker) => {
+        items.jobSeekerId?.find((jobseeker) => {
           return (
             jobseeker.jobSeekerId == jobSeekerId
           )
@@ -1355,7 +1355,7 @@ setLoader(true)
                           
                           <div ref={alertRef} style={{position:"relative"}}>
         {    
-        job.jobSeekerId.find((jobseeker) => {
+        job.jobSeekerId?.find((jobseeker) => {
           return (
             jobseeker.jobSeekerId == jobSeekerId
           )
