@@ -19,7 +19,7 @@ function AllResumes() {
     };
 
     try {
-      const res = await axios.get(`/StudentProfile/getProfile/${studId}`, { headers });
+      const res =   await axios.get(`/StudentProfile/viewProfile/${studId}`)
       const result = res.data.result;
      console.log(result)
       setProfileData({

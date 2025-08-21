@@ -128,13 +128,13 @@ function PostWalkinDrive(props) {
       //  let venues="banlgore"
       // let time = new Date(`${selectedDate}T${selectedtime}:00`).toISOString();
       const driveDate= selectedDate
-      const time=StartTime
+      const tTags=jobTags
       // console.log(time)
 
 // console.log(jobDescription,companyName,experiance,jobLocation,venue,time)
         await axios.post("walkinRoute/walkinpost", {
-           empId,jobTitle, companyName, jobDescription,jobtype  ,jobTags, jobLocation , qualification , salaryRange ,
-           experiance, skills , applyLink , selectedDate, venue  ,driveDate, StartTime, EndTime, time
+           empId,jobTitle, companyName, jobDescription,jobtype ,Tags, jobLocation , qualification , salaryRange ,
+           experiance, skills , applyLink , selectedDate, venue  ,driveDate, StartTime, EndTime
         },{headers})
         
             .then((res) => {

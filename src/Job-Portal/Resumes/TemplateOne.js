@@ -14,9 +14,9 @@ const TemplateOne = () => {
         authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog")))
       };
       try {
-        const res = await axios.get(`/StudentProfile/getProfile/${studId}`, { headers });
+        const res =await axios.get(`/StudentProfile/viewProfile/${studId}`)
         setProfileData(res.data.result);
-        console.log("pd",profileData)
+        console.log(res.data.result)
       } catch (err) {
         alert("Something went wrong while fetching profile");
       }

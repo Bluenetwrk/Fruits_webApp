@@ -121,7 +121,7 @@ function UpdatePostedDrive(props) {
         await axios.get(`walkinRoute/walkindetails/${Jobid}`,{headers})
         
             .then((res) => {
-              console.log("response", res, Jobid)
+              console.log("response",Jobid, res, Jobid)
                 let result = (res.data)
                 console.log(result)
                 if (result) {

@@ -1,30 +1,42 @@
 import React, { useEffect, useState } from "react";
 import styles from "./LiveTvDisplay.module.css";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const LiveTvDisplay = () => {
-  // Fixed 20 candidates
-  const allCandidates = [
-    { id: 1, name: "Anjali Sharma", token: "TKN001" },
-    { id: 2, name: "Rahul Mehta", token: "TKN002" },
-    { id: 3, name: "Nikita Kumari", token: "TKN003" },
-    { id: 4, name: "Arjun Verma", token: "TKN004" },
-    { id: 5, name: "Simran Kaur", token: "TKN005" },
-    { id: 6, name: "Ravi Shankar", token: "TKN006" },
-    { id: 7, name: "Kunal Yadav", token: "TKN007" },
-    { id: 8, name: "Pooja Singh", token: "TKN008" },
-    { id: 9, name: "Vikram Chauhan", token: "TKN009" },
-    { id: 10, name: "Meena Patel", token: "TKN010" },
-    { id: 11, name: "Dev Mishra", token: "TKN011" },
-    { id: 12, name: "Sana Sheikh", token: "TKN012" },
-    { id: 13, name: "Yash Jain", token: "TKN013" },
-    { id: 14, name: "Reema Rani", token: "TKN014" },
-    { id: 15, name: "Gaurav Das", token: "TKN015" },
-    { id: 16, name: "Ishita Roy", token: "TKN016" },
-    { id: 17, name: "Aditya Rao", token: "TKN017" },
-    { id: 18, name: "Kritika Joshi", token: "TKN018" },
-    { id: 19, name: "Mohit Singh", token: "TKN019" },
-    { id: 20, name: "Sneha Dubey", token: "TKN020" },
-  ];
+  const [allCandidates, setAllCandidates] =useState([]);
+  const[jobSeekerId, setJobSeekerIds]=useState([]);
+let params = useParams();
+
+  async function postJob() {
+    const headers = { authorization: 'BlueItImpulseWalkinIn' };
+    await axios.get(`/walkinRoute/walkindetails/${atob(params.id)}`,{headers}) 
+        .then((res) => {
+            let result = (res.data)
+            console.log(result)
+            // if (result) {
+                
+            //   setSuccessMessage("success")
+            // }
+            // else if (result == "field are missing") {
+            //     setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")
+            // }
+            // // else if (result ==="server issue")
+            // else
+            //     {
+            //     setSuccessMessage("something went wrong, Could not save your Jobs post")
+            // }
+        }).catch((err) => {
+            alert("server issue occured", err)
+        })
+
+}
+
+useEffect(()=>{
+    postJob()
+},[])
+
+ 
 
   // Fixed Cabin Assignment (cabin 1 to 5, looped)
   const allCabinAssignments = allCandidates.map((c, i) => ({

@@ -1105,7 +1105,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             <Route element={<EmpPrivate />}>
             {/* <Route path="/scan/drive/:driveId" element={<ScanDrive  />} /> */}
               <Route path="/PostJobs" element={<PostJobs url={axios.defaults.baseURL} />} />
-              <Route path="/live-tv-display" element={<LiveTvDisplay url={axios.defaults.baseURL} />} />
+              <Route path="/live-tv-display/:id" element={<LiveTvDisplay url={axios.defaults.baseURL} />} />
               <Route path="/Post-Help-Questions" element={<PostHelp url={axios.defaults.baseURL} />} />
               <Route path="/PostDrives" element={<PostWalkinDrive url={axios.defaults.baseURL}/>} />
               <Route path="/PostBlogs" element={<PostBlogs url={axios.defaults.baseURL} />} />

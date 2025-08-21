@@ -449,7 +449,7 @@ const handleHRGenerateQR = (driveId) => {
               </div>
             </>: <>
           {
-            allWalkindrive?.length > 0 ?
+           allWalkindrive&& allWalkindrive?.length > 0 ?
 
             allWalkindrive.map((items, i) => {
                 return (
@@ -545,15 +545,16 @@ const handleHRGenerateQR = (driveId) => {
 )}
     </li>
                     <li className={`${styles.li} ${styles.Action}`}>
-                        <button onClick={()=>navigate("/live-tv-display")}  className={`${styles.Abutton} ${styles.update}`}>Launch Live Display</button>
+                        <button  onClick={() => navigate(`/live-tv-display/${btoa(items._id)}`)}
+                        className={`${styles.Abutton} ${styles.update}`}>Launch Live Display</button>
                     </li>
                     <li className={`${styles.li} ${styles.NuApplied}`}>
-                      {items.jobSeekerId.length> 0 ?
+                      {items.jobSeekerId?.length> 0 ?
              
-                        <button className={`${styles.viewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(items._id)) }}>{items.jobSeekerId.length}</button>
+                        <button className={`${styles.viewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(items._id)) }}>{items.jobSeekerId?.length}</button>
                        
                         :
-                        <button className={`${styles.viewButton}`} >{items.jobSeekerId.length}</button>
+                        <button className={`${styles.viewButton}`} >{items.jobSeekerId?.length}</button>
 
                       } 
                     </li>
