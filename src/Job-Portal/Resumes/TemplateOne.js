@@ -5,10 +5,12 @@ import axios from 'axios';
 
 const TemplateOne = () => {
   const [profileData, setProfileData] = useState(null);
+  const[pageLoader, setPageLoader]= useState(false)
   const studId = JSON.parse(localStorage.getItem("StudId"));
 
   useEffect(() => {
     const fetchProfile = async () => {
+      setPageLoader(true)
       const userid = JSON.parse(localStorage.getItem("StudId"));
       const headers = {
         authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog")))
@@ -17,6 +19,7 @@ const TemplateOne = () => {
         const res =await axios.get(`/StudentProfile/viewProfile/${studId}`)
         setProfileData(res.data.result);
         console.log(res.data.result)
+        setPageLoader(false)
       } catch (err) {
         alert("Something went wrong while fetching profile");
       }
@@ -143,12 +146,12 @@ const TemplateOne = () => {
         <div className="resume-header">
           <div className="header-left">
             <h1 className="resume-name">{profileData ? profileData.name : "Loading..."}</h1>
-            <p className="summary">{profileData ? profileData.profileSummary : "Loading..."}</p>
+            <p className="summary">{pageLoader?<p>Loading...</p>:(profileData ? profileData.profileSummary : "No profile summary added")}</p>
           </div>
           <div className="header-right">
-            <p>{profileData ? profileData.address : "Loading..."}</p>
-            <p className="email">{profileData ? profileData.email : "Loading..."}</p>
-            <p>{profileData ? profileData.phoneNumber : "Loading..."}</p>
+            <p>{pageLoader?<p>Loading...</p>:(profileData ? profileData.address : "No Address added")}</p>
+            <p className="email">{pageLoader?<p>Loading...</p>:(profileData ? profileData.email : "No email added")}</p>
+            <p>{pageLoader?<p>Loading...</p>:(profileData ? profileData.phoneNumber : "No phone added")}</p>
           </div>
         </div>
 
@@ -157,49 +160,67 @@ const TemplateOne = () => {
           {/* Left Section */}
           <div className="left-section">
             <h2 className="section-title">EXPERIENCE</h2>
-            {profileData && profileData.experiences && profileData.experiences.length > 0 ? (
-  profileData.experiences.map((exp, index) => (
-    <div className="experience" key={index}>
-      <h3>{exp.company}, {exp.location} — <strong>{exp.role}</strong></h3>
-      <div style={{display:"flex"}}>
-      <p className="date">
-  {new Date(exp.startDate).toLocaleString("en-US", {
-    month: "short",
-    day: "2-digit",
-    year: "numeric",
-  })}
-</p>
-
-{exp.endDate && (
-  <>
-    <pre> - </pre>
-    <p className="date">
-      {new Date(exp.endDate).toLocaleString("en-US", {
-        month: "short",
-        day: "2-digit",
-        year: "numeric",
-      })}
-    </p>
-  </>
-)}  
-      </div>        
-      <ul>
-        {exp.descriptions && exp.descriptions.map((item, i) => (
-          <li key={i}>{item}</li>
-        ))}
-      </ul>
-    </div>
-  ))
-) : (
+            {pageLoader ? (
   <p>Loading...</p>
+) : (
+  profileData?.experiences?.length > 0 ? (
+    profileData.experiences.map((exp, index) => (
+      <div className="experience" key={index}>
+        <h3>
+          {exp.company}{exp.location && `, ${exp.location}`} — <strong>{exp.role}</strong>
+        </h3>
+
+        <div style={{ display: "flex", gap: "4px" }}>
+          <p className="date">
+            {exp.startDate &&
+              new Date(exp.startDate).toLocaleDateString("en-US", {
+                month: "short",
+                day: "2-digit",
+                year: "numeric",
+              })}
+          </p>
+
+          {exp.endDate && (
+            <>
+              <span>-</span>
+              <p className="date">
+                {new Date(exp.endDate).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "2-digit",
+                  year: "numeric",
+                })}
+              </p>
+            </>
+          )}
+        </div>
+
+        {exp.descriptions?.length > 0 && (
+          <ul>
+            {exp.descriptions.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    ))
+  ) : (
+    <p>No experiences added</p>
+  )
 )}
+
           </div>
 
           {/* Right Section */}
           <div className="right-section">
             <div className="certification">
               <h4>Certification</h4>
-              <p>{profileData ? profileData.certifications: "Loading..."}</p>
+              {pageLoader ? (
+  <p>Loading...</p>
+) : profileData ? (
+  <p>{profileData.certifications}</p>
+) : (
+  <p>No certification added</p>
+)}
             </div>
 
             <div className="total-exp">
@@ -209,7 +230,7 @@ const TemplateOne = () => {
 
             <div className="skills">
               <h4>CORE TECHNICAL SKILLS</h4>
-              {profileData && profileData.skills && profileData.skills.length > 0 ? (
+              {pageLoader?<p>Loading...</p>:(profileData && profileData.skills && profileData.skills.length > 0 ? (
   profileData.skills.map((group, i) => (
     <div className="skill-section" key={i}>
       <h5>{group.heading}</h5>
@@ -221,8 +242,8 @@ const TemplateOne = () => {
     </div>
   ))
 ) : (
-  <p>Loading..</p>
-)}
+  <p>No skills added</p>
+))}
 
             </div>
           </div>

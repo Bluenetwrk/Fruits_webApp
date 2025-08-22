@@ -162,7 +162,7 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
 
 
   useEffect(()=>{
-    console.log("tokenn0-",tokenNo)
+    if(tokenNo)
     postQRData()
   },[tokenNo])
 
