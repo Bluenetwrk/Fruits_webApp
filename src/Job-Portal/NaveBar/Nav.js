@@ -263,6 +263,24 @@ function Nav(props) {
             };
           }, []);
 
+
+          const [fraudAlert, setfraudAlert]=useState(false)
+          const fraudalertRef = useRef(null);
+          useEffect(() => {
+            const handleClickOutside = (event) => {
+              // If clicked outside alert box and it's open
+              if (fraudalertRef.current && !fraudalertRef.current.contains(event.target)) {
+                setfraudAlert(false); // close the alert
+              }
+            };
+          
+            document.addEventListener('mousedown', handleClickOutside);
+          
+            return () => {
+              document.removeEventListener('mousedown', handleClickOutside);
+            };
+          }, []);
+
           const [bgvAlert, setbgvAlert]=useState(false)
           const alertbgvRef = useRef(null);
           useEffect(() => {
@@ -1064,15 +1082,80 @@ function Nav(props) {
                       </div>
                       <div>
                       {
-                       <div className={Styles.blast}>
+                        <div ref={fraudalertRef} style={{position:"relative"}}>
+                       <div style={{position:"relative"}} className={Styles.blast}>
                          <img
-                           onClick={reDirecttoFraud}
+                           onClick={()=>setfraudAlert((prev)=>prev=!prev)}
                            src="/report-fraud.png"
                            alt="Walk-in Drive"
                            ref={driveImgRef}
                            style={{ width: "60px", borderRadius: "5px", marginTop: "-10px" }}
                          />
                        </div>
+                       {fraudAlert&&
+                         <>
+                            <div
+        style={{
+          width: '300px',
+          padding: '20px',
+          backgroundColor: 'rgb(40,4,99)',
+          color: 'white',
+          fontSize: '12px',
+          borderRadius: '5px',
+          position: 'fixed',
+          top: '17%',
+          right: '0%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 9999,
+          boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+          textAlign: 'center',
+        }}
+        
+        > 
+        
+        Login to  fill Fraud report from!
+          <div  style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"5px" }}>
+            <button
+              onClick={() => {navigate("/JobSeekerLogin"); setfraudAlert(false)}}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              JobSeeker Login
+            </button>
+            <button
+             onClick={() => {navigate("/EmployeeLogin"); setfraudAlert(false)}}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+             Employer Login
+            </button>
+          </div>
+        </div>
+                         </>
+
+                         }
+
+
+
+
+
+
+                       </div>
+                       
                      }
                       </div>
                     </div>                                     
@@ -1345,62 +1428,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                         <div onClick={()=>setresumeAlert((prev)=>prev=!prev)} className={Styles.AllJobJobSeeker} style={{cursor:"pointer"}}>AI Resume Builder 
                         <sup style={{border:"2px solid white",borderRadius:"25px",padding:"2px"}}>Beta</sup>
                         </div>
-                         {resumeAlert&&
-                         <>
-                            <div
-        style={{
-          width: '300px',
-          padding: '20px',
-          backgroundColor: 'rgb(40,4,99)',
-          color: 'white',
-          fontSize: '12px',
-          borderRadius: '5px',
-          position: 'fixed',
-          top: '20%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          zIndex: 9999,
-          boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-          textAlign: 'center',
-        }}
-        
-        > 
-        
-        Login as a Jobseeker to explore opportunities and create a strong resume!
-          <div  style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"5px" }}>
-            <button
-              onClick={() => {navigate("/Job-Seeker-Login"); setresumeAlert(false)}}
-              style={{
-                padding: '8px 16px',
-                backgroundColor: '#4CAF50',
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px',
-                fontSize: '12px',
-                cursor: 'pointer',
-              }}
-            >
-              Ok
-            </button>
-            <button
-              onClick={()=> setresumeAlert(false)}
-              style={{
-                padding: '8px 16px',
-                backgroundColor: '#4CAF50',
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px',
-                fontSize: '12px',
-                cursor: 'pointer',
-              }}
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-                         </>
-
-                         }
+                        
                         </div>
             
 
