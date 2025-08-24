@@ -22,17 +22,9 @@ export default function JobseekerEnterCabin() {
         return;
       }
 
-// const drive = Databaseprofile.find((d) => d.id === driveId);
-//       if (!drive?.companyName) {
-//         alert("Please Scan the QR code.");
-//         navigate("/");
-//         return ;
-//       }
-
-
     if (profile) {
       setCurrentInCabin(profile); 
-    //   alert("You have entered the cabin. HR has been notified.");
+    //   alert("You have entered the cabin. HR has beenl notified.");
     } else {
     //   alert("No profile found. Please log in again.");
     }
