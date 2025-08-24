@@ -606,7 +606,7 @@ const handleHRGenerateQR = (driveId) => {
           navigate("/Search-Candidate")
         }}>Search Candidate</button> */}
 
-<p style={{ marginLeft: "4%", color: "blue", fontWeight:"bold" }}> Total {allWalkindrive.length} jobs</p>
+<p style={{ marginLeft: "4%", color: "blue", fontWeight:"bold" }}> Total {allWalkindrive?.length} jobs</p>
         {/* <div className={styles.searchBoth}>
           <p className={styles.p}>Search </p>
           <input className={styles.inputboxsearch} type="text" placeholder='search for a posted job' onChange={(e) => { search(e) }} />
@@ -674,12 +674,12 @@ allWalkindrive.map((job, i) => {
          </div>
 
         <span className={styles.NoOfJobSeekersApplied}> No. of Job Seekers Applied:
-        {job.jobSeekerId.length> 0 ?
+        {job.jobSeekerId?.length> 0 ?
              
              <button className={`${styles.MobileviewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(job._id)) }}>{job.jobSeekerId.length}</button>
             
              :
-             <button className={`${styles.MobileviewButton}`} >{job.jobSeekerId.length}</button>
+             <button className={`${styles.MobileviewButton}`} >{job.jobSeekerId?.length}</button>
 
            }
         </span><br></br>
