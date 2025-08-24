@@ -174,7 +174,7 @@ const dummyDrives = [
       await axios.get(`/walkinRoute/getMyAppliedwalkin/${jobSeekerId}`, { headers })
         .then((res) => {
           let result = (res.data)
-          console.log(res.data)
+          console.log(res)
           let sortedate = result.sort(function (a, b) {
             return new Date(b.createdAt) - new Date(a.createdAt);
           });

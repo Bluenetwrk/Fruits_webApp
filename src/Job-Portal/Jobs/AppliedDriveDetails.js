@@ -151,12 +151,16 @@ const [PageLoader, setPageLoader] = useState(false)
       }
 
       async function getMyPostedjobs() {
+        console.log("my psoted")
         let userid = JSON.parse(localStorage.getItem("EmpIdG"))
         const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("EmpLog"))) };
+        // setPageLoader(true)
         setTimeout(async () => {
-          await axios.get(`/jobpost/getPostedjobs/${empId}`, {headers})
+          await axios.get(`/walkinRoute/getPostedwalkins/${empId}`, {headers})
+    
             .then((res) => {
               let result = (res.data)
+              console.log(result)     
               let sortedate = result.sort(function (a, b) {
                 return new Date(b.createdAt) - new Date(a.createdAt);
               });
@@ -189,7 +193,7 @@ const [PageLoader, setPageLoader] = useState(false)
       }
       
       useEffect(()=>{
-          // console.log(userTags)
+          console.log(transferRecords)
         if(transferRecords===""&&empAuth){ 
           console.log("f1") 
           if(userTags.current===""||userTags.current===undefined){
@@ -212,8 +216,8 @@ const [PageLoader, setPageLoader] = useState(false)
         // console.log("executing else")
         // if(transferRecords==="AppliedJobs")
         //  getMyAppliedjobs()
-        // else if(transferRecords==="PostedJobs")
-        //   getMyPostedjobs()
+         if(transferRecords==="PostedJobs")
+          getMyPostedjobs()
         // else if(transferRecords==="CarrerAppliedJobs")
         //   getMyCarrerAppliedjobs()        
       }
@@ -239,7 +243,7 @@ const [PageLoader, setPageLoader] = useState(false)
               })
               // console.log("aal jobs current",allJobs.current[index]._id)
               const headers = { authorization: 'BlueItImpulseWalkinIn'};
-              await axios.get(`/walkinRoute/getwalkins/${allJobs.current[index]._id}`, {headers})
+              await axios.get(`/walkinRoute/walkindetails/${allJobs.current[index]._id}`, {headers})
                 .then((res) => {
                   let result = (res.data)
                   console.log(result)
@@ -264,7 +268,7 @@ const [PageLoader, setPageLoader] = useState(false)
       // behavior:"smooth"
     })
     const headers = { authorization: 'BlueItImpulseWalkinIn'};
-    await axios.get(`/walkinRoute/getwalkins/${atob(params.id)}`, {headers})
+    await axios.get(`/walkinRoute/walkindetails/${atob(params.id)}`, {headers})
       .then((res) => {
         let result = (res.data)
         // console.log(result)
