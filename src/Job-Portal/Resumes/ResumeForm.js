@@ -643,7 +643,7 @@ const ResumeForm = () => {
       <button style={buttonStyle} type="button" onClick={addLanguage}>Add Language</button>
 
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <button style={{ ...buttonStyle, marginTop: '20px' }} type="submit" onClick={handleSubmit}>Submit</button>
+        <button style={{ ...buttonStyle, marginTop: '20px',width:'156px' }} type="submit" onClick={handleSubmit}>Submit</button>
       </div>
     </div>
   );

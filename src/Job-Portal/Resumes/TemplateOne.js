@@ -160,6 +160,11 @@ const TemplateOne = () => {
           {/* Left Section */}
           <div className="left-section">
             <h2 className="section-title">EXPERIENCE</h2>
+            <div className="total-exp" style={{display:"flex", alignItems:"center"}}>
+            <div><h4>Total Experience</h4></div>
+            <span> - </span>
+              <div><p>{profileData ? `${profileData.Experiance} Years` : "Loading..."}</p></div>
+            </div>
             {pageLoader ? (
   <p>Loading...</p>
 ) : (
@@ -172,15 +177,17 @@ const TemplateOne = () => {
 
         <div style={{ display: "flex", gap: "4px" }}>
           <p className="date">
-            {exp.startDate &&
-              new Date(exp.startDate).toLocaleDateString("en-US", {
+            {exp.startDate?
+            <>
+              {new Date(exp.startDate).toLocaleDateString("en-US", {
                 month: "short",
                 day: "2-digit",
                 year: "numeric",
-              })}
+              })}</> :<p>No Date Added</p>
+            }
           </p>
 
-          {exp.endDate && (
+          {exp.endDate ? (
             <>
               <span>-</span>
               <p className="date">
@@ -191,7 +198,7 @@ const TemplateOne = () => {
                 })}
               </p>
             </>
-          )}
+          ):<><span>-</span><p className="date">Present</p></>}
         </div>
 
         {exp.descriptions?.length > 0 && (
@@ -223,10 +230,10 @@ const TemplateOne = () => {
 )}
             </div>
 
-            <div className="total-exp">
+            {/* <div className="total-exp">
               <h4>Total Experience</h4>
               <p>{profileData ? `${profileData.Experiance} Years` : "Loading..."}</p>
-            </div>
+            </div> */}
 
             <div className="skills">
               <h4>CORE TECHNICAL SKILLS</h4>

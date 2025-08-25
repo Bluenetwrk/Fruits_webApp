@@ -646,7 +646,7 @@ function Nav(props) {
                             <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
                             <p className={Styles.text} ref={menuRef} onClick={mypostedjob}>My posted Jobs</p>
                             <p className={Styles.text} ref={menuRef} onClick={myposteddrive}>My posted Drives</p>
-                            <p className={Styles.text} ref={menuRef} onClick={hrDashboard}>HR/Employer<br></br> Dashboard</p>
+                            {/* <p className={Styles.text} ref={menuRef} onClick={hrDashboard}>HR/Employer<br></br> Dashboard</p> */}
                             <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>Posted Articles</p>
                             <p className={Styles.text} ref={menuRef} onClick={PostBlogs}>Write Article</p>
                             <p className={Styles.text} ref={menuRef} onClick={logutEmp}>Logout</p>
