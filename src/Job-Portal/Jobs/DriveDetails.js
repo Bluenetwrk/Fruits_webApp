@@ -114,7 +114,7 @@ const [PageLoader, setPageLoader] = useState(false)
         const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
         setTimeout(async () => {
     
-          await axios.get(`/jobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
+          await axios.get(`/walkinRoute/getMyAppliedjobs/${jobSeekerId}`, { headers })
             .then((res) => {
               let result = (res.data)
               let sortedate = result.sort(function (a, b) {

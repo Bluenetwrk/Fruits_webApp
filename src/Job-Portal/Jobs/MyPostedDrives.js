@@ -298,7 +298,7 @@ const handleHRGenerateQR = (driveId) => {
   };
 
   const generateHRQRUrl = (driveId) => {
-    return `${window.location.origin}/enter-cabin/${driveId}`;
+    return `${window.location.origin}/enter-cabin`;
   };
 
   const qrRefs = useRef({});
@@ -545,9 +545,12 @@ const handleHRGenerateQR = (driveId) => {
   </div>
 )}
     </li>
-                    <li className={`${styles.li} ${styles.Action}`}>
+    
+                    <li style={{display:"flex", flexDirection:"column", gap:"4px"}} className={`${styles.li} ${styles.Action}`}>
                         <button  onClick={() => navigate(`/live-tv-display/${btoa(items._id)}`)}
-                        className={`${styles.Abutton} ${styles.update}`}>Launch Live Display</button>
+                        className={`${styles.Abutton} ${styles.update}`}>Live Tv Display</button>
+                        <button  onClick={() => navigate(`/interview-screen/${btoa(items._id)}`)}
+                        className={`${styles.Abutton} ${styles.update}`}>HR Dashboard</button>
                     </li>
                     <li className={`${styles.li} ${styles.NuApplied}`}>
                       {items.jobSeekerId?.length> 0 ?

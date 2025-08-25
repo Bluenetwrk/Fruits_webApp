@@ -161,9 +161,44 @@ const[allWalkinDrive, setAllWalkinDrive]=useState([])
   }
 
 
+  async function saveUpdate() {
+    let userid = JSON.parse(localStorage.getItem("StudId"))
+    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+    await axios.put(`/StudentProfile/updatProfile/${studId}`, {
+      interview: [
+        {
+          tokenNo: tokenNo,
+          driveId: driveId,
+          scannedDateTime: new Date()
+        }
+      ]
+    }, { headers })
+      .then(async (res) => {
+        let result = res.data
+        if (result == "success") {
+          console.log("Success! Profile updated successfully")
+          // settopMessage("Success! Profile updated successfully")
+        } else if (result == "feilds are missing") {
+          console.log("warning! Profile failed updated successfully")
+          // settopMessage("Alert!..name, emailAddress, NoticePeriod, phoneNumber, Qualification, Skills and Experiance should not be empty")
+        }
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+
+      }).catch((err) => {
+        alert("some thing went wrong")
+      })
+  }
+
   useEffect(()=>{
-    if(tokenNo)
+    if(tokenNo){
     postQRData()
+    saveUpdate()
+    }
   },[tokenNo])
 
   return (

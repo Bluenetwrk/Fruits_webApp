@@ -1109,7 +1109,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               <Route path="/Post-Help-Questions" element={<PostHelp url={axios.defaults.baseURL} />} />
               <Route path="/PostDrives" element={<PostWalkinDrive url={axios.defaults.baseURL}/>} />
               <Route path="/PostBlogs" element={<PostBlogs url={axios.defaults.baseURL} />} />
-              <Route path="/interview-screen" element={<InterviewScreen url={axios.defaults.baseURL} />} />
+              <Route path="/interview-screen/:id" element={<InterviewScreen url={axios.defaults.baseURL} />} />
               <Route path="/postedjobs" element={<PostedJobsbyEmp url={axios.defaults.baseURL} />} />
               <Route path="/posteddrives" element={<MyPostedDrives url={axios.defaults.baseURL} />} />
               <Route path="/updatedposted-Drives" element={<UpdatePostedDrive url={axios.defaults.baseURL} />} />
@@ -1151,7 +1151,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             {/* ..........Jobseeker Private component i,e can not search in URL......... */}
             <Route element={<StudPrivate />}>
             <Route path="/scanner" element={<QRScanner />} />
-            <Route path="/enter-cabin/:driveId" element={<JobseekerEnterCabin />} />
+            <Route path="/enter-cabin" element={<JobseekerEnterCabin />} />
              <Route path="resume-form" element={<ResumeForm />}></Route>
               <Route path="/resumes" element={<AllResumes url={axios.defaults.baseURL}/>}></Route> 
               <Route path="/alljobs" element={<Jobs url={axios.defaults.baseURL} 
