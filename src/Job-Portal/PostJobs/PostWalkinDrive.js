@@ -368,7 +368,7 @@ const [EndTime, setEndTime] = useState("");
                                 </div>
 
                                <div style={{display:"flex",flexDirection:"column"}}>
-                               <h4 style={{alignContent:"start"}}>Job Tags <span className={Style.hint}>(Select multiple Tags to reach the best Matching Candidates)</span></h4>
+                               <h4 style={{alignContent:"start"}}>Job Tags <span className={Style.hint}>(Use multiple tags to identify top-matching candidates)</span></h4>
                                <div className={Style.driveJobtitleFilterWrapper}>
                                    {
                                      jobTags.map((tags, i) => {

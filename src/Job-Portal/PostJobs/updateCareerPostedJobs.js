@@ -185,7 +185,7 @@ window.addEventListener('keypress', function(event){
 <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription?jobDescription.toString():""} onChange={(e)=>{setJobDescription(e)}} />
 
 
-<h4 className={Style.jobHeadline}>Job Tags (Select multiple Tags to reach the best Matching Jobs)</h4>
+<h4 className={Style.jobHeadline}>Job Tags (Use multiple tags to identify top-matching candidates)</h4>
 
 <div className={Style.JobtitleFilterWrapper}>
             {/* <buton className={ Active.length===0? Style.active:Style.JobtitleFilter} onClick={() => { getjobs() }}>All</buton> */}

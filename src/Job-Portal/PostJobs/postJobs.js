@@ -331,7 +331,7 @@ const [showTooltip, setShowTooltip] = useState(false);
         value={jobDescription}
         onChange={setJobDescription}
       />
-                                        <p className={Style.jobHeadline}>Job Tags <span className={Style.hint}>(Select multiple Tags to reach the best Matching Candidates)</span></p>
+                                        <p className={Style.jobHeadline}>Job Tags <span className={Style.hint}>(Use multiple tags to identify top-matching candidates)</span></p>
 
 <div className={Style.JobtitleFilterWrapper}>
             {/* <buton className={ Active.length===0? Style.active:Style.JobtitleFilter} onClick={() => { getjobs() }}>All</buton> */}

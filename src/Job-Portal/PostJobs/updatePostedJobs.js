@@ -243,7 +243,7 @@ window.addEventListener('keypress', function(event){
         onChange={setJobDescription}
       />
 
-<h4 className={Style.jobHeadline}>Job Tags (Select multiple Tags to reach the best Matching Jobs)</h4>
+<h4 className={Style.jobHeadline}>Job Tags (Use multiple tags to identify top-matching candidates)</h4>
 
 <div className={Style.JobtitleFilterWrapper}>
             {/* <buton className={ Active.length===0? Style.active:Style.JobtitleFilter} onClick={() => { getjobs() }}>All</buton> */}
