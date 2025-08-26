@@ -114,6 +114,45 @@ function UpdatePostedDrive(props) {
 
  const location = useLocation()
   let Jobid = location.state.getId
+  const convertTo24Hour = (time12h) => {
+    if (!time12h) return "";
+    const [time, modifier] = time12h.split(" ");
+    let [hours, minutes] = time.split(":");
+  
+    hours = parseInt(hours, 10);
+  
+    if (modifier === "PM" && hours !== 12) {
+      hours += 12;
+    }
+    if (modifier === "AM" && hours === 12) {
+      hours = 0;
+    }
+  
+    return `${hours.toString().padStart(2, "0")}:${minutes}`;
+  };
+
+  const[stime,setstime]=useState("");
+          const[etime,setetime]=useState("");
+  
+          const handleStartTimeChange = (e) => {
+            
+            let [hours, minutes] = e.target.value.split(":");
+            let suffix = hours >= 12 ? "PM" : "AM";
+            hours = (hours % 12) || 12; // convert to 12hr
+            setstime(e.target.value);
+            setStartTime(`${hours}:${minutes} ${suffix}`);
+            console.log("dsds",StartTime)
+          };
+  
+          const handleEndTimeChange = (e) => {
+            let [hours, minutes] = e.target.value.split(":");
+            let suffix = hours >= 12 ? "PM" : "AM";
+            hours = (hours % 12) || 12; // convert to 12hr
+            setetime(e.target.value)
+            setEndTime(`${hours}:${minutes} ${suffix}`);
+            console.log("ww",EndTime)
+          };
+
     async function postJob() {
         const headers = { authorization: 'BlueItImpulseWalkinIn' };
 
@@ -137,9 +176,10 @@ function UpdatePostedDrive(props) {
                     setSkills(result.skills)
                     setVenue(result.venue)
                     setSelectedDate(new Date(result.driveDate).toISOString().split('T')[0]);
-
-                    setStartTime(result.StartTime)
-                     setEndTime(result.EndTime)
+                    setStartTime(result.StartTime) 
+                    setEndTime(result.EndTime)
+                    setstime(convertTo24Hour(result.StartTime));
+                    setetime(convertTo24Hour(result.EndTime));
                 }
                 else if (result == "field are missing") {
                     setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")
@@ -167,7 +207,7 @@ function UpdatePostedDrive(props) {
 
         const driveDate= selectedDate
         const Tags=jobTags
-
+console.log(StartTime , EndTime)
         await axios.put(`walkinRoute/updatPostedwalkin/${Jobid}`,{
              empId,jobTitle, companyName, jobDescription,jobtype  ,jobTags, jobLocation , qualification , salaryRange ,
                        experiance, skills , applyLink , selectedDate, venue  ,driveDate, StartTime, EndTime
@@ -563,8 +603,8 @@ const [EndTime, setEndTime] = useState("");
                                          <input
                                          className={Style.DriveDate} 
                                            type="time" 
-                                           value={StartTime} 
-                                           onChange={(e) => setStartTime(e.target.value)} 
+                                           value={stime} 
+                                           onChange={handleStartTimeChange} 
                                          />
                                          
                                        </div>
@@ -574,8 +614,8 @@ const [EndTime, setEndTime] = useState("");
                                          <input
                                          className={Style.DriveDate} 
                                            type="time" 
-                                           value={EndTime} 
-                                           onChange={(e) => setEndTime(e.target.value)} 
+                                           value={etime} 
+                                           onChange={handleEndTimeChange} 
                                          />
                                          
                                        </div>

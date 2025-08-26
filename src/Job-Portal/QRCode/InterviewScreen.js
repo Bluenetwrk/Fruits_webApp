@@ -225,6 +225,7 @@ const InterviewScreen = () => {
               <h2 className={styles.profileHeading}>Jobseeker Profile</h2>
               </div>
             {/* Heading + Image */}
+            <div style={{display:"flex", justifyContent:"start"}}>
             <div className={styles.profileHeader}>
               <img
                 // src={}
@@ -232,6 +233,7 @@ const InterviewScreen = () => {
                 className={styles.profileImage}
               />
               
+            </div>
             </div>
 
             {/* Profile Table */}

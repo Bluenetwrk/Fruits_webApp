@@ -532,7 +532,7 @@ const ResumeForm = () => {
       skills.length === 0 ||
       languages.length === 0
     ) {
-      setSuccessMessage("Please fill all the fields - name,email, total experience, profileSummary, address, experiences, certifications, skills, languages");
+      setSuccessMessage("Please provide all the required details: Name, Email, Experience, Profile Summary, Address, Certifications, Skills, and Languages.");
       return;
     }
     

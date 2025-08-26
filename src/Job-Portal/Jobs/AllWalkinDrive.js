@@ -930,7 +930,8 @@ setLoader(true)
                       } 
                         <li className={`${styles.li} ${styles.Source}`} style={{width:"9.5%"}} >
 
-                        {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.time && `${((+items.time.split(":")[0] % 12) || 12)}:${items.time.split(":")[1]} ${+items.time.split(":")[0] >= 12 ? "PM" : "AM"}`}
+                        {/* {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.time && `${((+items.time.split(":")[0] % 12) || 12)}:${items.time.split(":")[1]} ${+items.time.split(":")[0] >= 12 ? "PM" : "AM"}`} */}
+                        {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.StartTime}
 
                           {/* <p>
   {new Date(items.time).toLocaleDateString("en-IN")} /{" "}
@@ -1338,12 +1339,14 @@ setLoader(true)
                           <span className={styles.skillsHeading}>Job Type: </span><span className={styles.skills}>{job.jobtype}</span><br></br>
                         </div>
                         <div className={styles.skillWrapper}>
-                          <span className={styles.skillsHeading}>Experience: </span><span className={styles.skills}>{job.experiance}</span><br></br>
+                          <span className={styles.skillsHeading}>Experience: </span><span className={styles.skills}>{job.experiance} Yrs</span><br></br>
                         </div>
                         </div>
                         <div style={{display:"flex"}}>
                         <span className={styles.jobtypeAndDate}>Drive Date : {new Date(job.driveDate).toLocaleDateString("en-IN")}</span>
-                        <span className={styles.jobtypeAndDate}>Drive Time :{job.time && `${((+job.time.split(":")[0] % 12) || 12)}:${job.time.split(":")[1]} ${+job.time.split(":")[0] >= 12 ? "PM" : "AM"}`}</span>
+                        {/* <span className={styles.jobtypeAndDate}>Drive Time :{job.time && `${((+job.time.split(":")[0] % 12) || 12)}:${job.time.split(":")[1]} ${+job.time.split(":")[0] >= 12 ? "PM" : "AM"}`}</span> */}
+                        <span className={styles.jobtypeAndDate}>Drive Time :{job.StartTime}</span>
+
                         </div>
                         {/* } */}
 

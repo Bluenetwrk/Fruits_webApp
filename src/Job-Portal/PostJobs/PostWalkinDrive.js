@@ -129,7 +129,7 @@ function PostWalkinDrive(props) {
       // let time = new Date(`${selectedDate}T${selectedtime}:00`).toISOString();
       const driveDate= selectedDate
       const tTags=jobTags
-      // console.log(time)
+      console.log("sd",StartTime)
 
 // console.log(jobDescription,companyName,experiance,jobLocation,venue,time)
         await axios.post("walkinRoute/walkinpost", {
@@ -156,6 +156,8 @@ function PostWalkinDrive(props) {
                    setSelectedDate("");
                     setStartTime("")
                     setEndTime("")
+                    stime("")
+                    etime("")
                     setTag([])
                     setconcent(false)
                     setSuccessMessage("Successfully posted!")
@@ -327,7 +329,27 @@ const [EndTime, setEndTime] = useState("");
           document.addEventListener("mousedown", handleClickOutside);
           return () => document.removeEventListener("mousedown", handleClickOutside);
         }, []);
-    
+
+        const[stime,setstime]=useState("");
+        const[etime,setetime]=useState("");
+
+        const handleStartTimeChange = (e) => {
+          
+          let [hours, minutes] = e.target.value.split(":");
+          let suffix = hours >= 12 ? "PM" : "AM";
+          hours = (hours % 12) || 12; // convert to 12hr
+          setstime(e.target.value);
+          setStartTime(`${hours}:${minutes} ${suffix}`);
+        };
+
+        const handleEndTimeChange = (e) => {
+          let [hours, minutes] = e.target.value.split(":");
+          let suffix = hours >= 12 ? "PM" : "AM";
+          hours = (hours % 12) || 12; // convert to 12hr
+          setetime(e.target.value)
+          setEndTime(`${hours}:${minutes} ${suffix}`);
+        };
+        
 
     return (
         <>
@@ -531,8 +553,8 @@ const [EndTime, setEndTime] = useState("");
                                          <input
                                          className={Style.DriveDate} 
                                            type="time" 
-                                           value={StartTime} 
-                                           onChange={(e) => setStartTime(e.target.value)} 
+                                           value={stime} 
+                                           onChange={handleStartTimeChange} 
                                          />
                                          
                                        </div>
@@ -542,8 +564,8 @@ const [EndTime, setEndTime] = useState("");
                                          <input
                                          className={Style.DriveDate} 
                                            type="time" 
-                                           value={EndTime} 
-                                           onChange={(e) => setEndTime(e.target.value)} 
+                                           value={etime} 
+                                           onChange={handleEndTimeChange} 
                                          />
                                          
                                        </div>
