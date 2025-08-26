@@ -511,19 +511,19 @@ const handleStart = () => {
                         </li>
                       <li className={`${styles.li} ${styles.Status}`}>
 
-                      {items.onHoldJobseker.find((onholdProfile) => {
+                      {items.onHoldJobseker?.find((onholdProfile) => {
                           return (
                             onholdProfile == jobSeekerId
                           )
                         }) ? <p style={{ color: "blue" }}>Your Profile is on Hold</p> :
 
-                          items.slectedJobseker.find((SelectedProfile) => {
+                          items.slectedJobseker?.find((SelectedProfile) => {
                             return (
                               SelectedProfile == jobSeekerId
                             )
                           }) ? <p style={{ color: "rgb(7, 161, 7)" }}> Congratulations! You've Been Shortlisted!.You’ll receive details about the interview soon.</p>
                             :
-                            items.rejectedJobseker.find((rejectProfile) => {
+                            items.rejectedJobseker?.find((rejectProfile) => {
                               return (
                                 rejectProfile == jobSeekerId
                               )
@@ -665,19 +665,19 @@ const handleStart = () => {
               <span>
               <li style={{width:"100%", border:"none"}} className={`${styles.li} ${styles.Status}`}>
 
-{job.onHoldJobseker.find((onholdProfile) => {
+{job.onHoldJobseker?.find((onholdProfile) => {
     return (
       onholdProfile == jobSeekerId
     )
   }) ? <p style={{ color: "blue" }}>Your Profile is on Hold</p> :
 
-    job.slectedJobseker.find((SelectedProfile) => {
+    job.slectedJobseker?.find((SelectedProfile) => {
       return (
         SelectedProfile == jobSeekerId
       )
     }) ? <p style={{ color: "rgb(7, 161, 7)" }}> Congratulations! You've Been Shortlisted!.You’ll receive details about the interview soon.</p>
       :
-      job.rejectedJobseker.find((rejectProfile) => {
+      job.rejectedJobseker?.find((rejectProfile) => {
         return (
           rejectProfile == jobSeekerId
         )

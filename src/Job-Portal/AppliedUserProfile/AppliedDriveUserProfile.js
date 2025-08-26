@@ -12,7 +12,7 @@ import Footer from '../Footer/Footer';
 function AppliedDriveUserProfile() {
     let params = useParams()
     let JobId = atob(params.jid)
-
+console.log(JobId)
     let navigate = useNavigate()
 
     const [AppliedUser, setAppliedUser] = useState([])
@@ -30,18 +30,21 @@ function AppliedDriveUserProfile() {
 
         const headers = { authorization: 'BlueItImpulseWalkinIn' };
 
-        await axios.get(`walkinRoute/getwalkins/${OId}`,{headers})
+        await axios.get(`walkinRoute/walkindetails/${OId}`,{headers})
             .then(async (res) => {
-                console.log(res.data)
+                console.log("jid",res.data.jobSeekerId)
                 let AppliedUserIds = res.data.jobSeekerId
+                console.log("abapid",AppliedUserIds)
                 let appliedUserIds = AppliedUserIds.map((ids) => {
                     return (
                         ids.jobSeekerId
                     )
                 })
+                console.log("apids-",appliedUserIds)
                 setOperationalAppliedUser([res.data])
                 await axios.get(`/StudentProfile/getAppliedProfileByIds/${appliedUserIds}`)
                     .then((res) => {
+                        console.log("response",res)
                         setAppliedUser(res.data)
                         setPageLoader(false)
                     }).catch((err) => {
@@ -271,7 +274,7 @@ function AppliedDriveUserProfile() {
     const [recordsPerPage, setrecordsPerPage] = useState(recordsperpage ? recordsperpage : 10)
     const lastIndex = currentPage * recordsPerPage //10
     const firstIndex = lastIndex - recordsPerPage //5
-    const records = AppliedUser.slice(firstIndex, lastIndex)//0,5
+    const records =  Array.isArray(AppliedUser) ? AppliedUser.slice(firstIndex, lastIndex) : [] //5
     const npage = Math.ceil(AppliedUser.length / recordsPerPage) // last page
     const number = [...Array(npage + 1).keys()].slice(1)
 
@@ -386,7 +389,7 @@ function AppliedDriveUserProfile() {
                     }
 
                     {
-                        records.map((Applieduser, i) => {
+                        records?.map((Applieduser, i) => {
                             return (
                                 <ul className={styles.ul} key={i}>
 
@@ -411,11 +414,11 @@ function AppliedDriveUserProfile() {
                                     <li className={`${styles.li} ${styles.Status}`}>
                                         <div style={{ marginLeft: "-3%" }}>
                                             {
-                                                OperationalAppliedUser.map((operationl, it) => {
+                                                OperationalAppliedUser?.map((operationl, it) => {
                                                     return (
                                                         <div key={it}>
                                                             {
-                                                                operationl.slectedJobseker.find((jobseekerid) => {
+                                                                operationl.slectedJobseker?.find((jobseekerid) => {
                                                                     return (
                                                                         jobseekerid == Applieduser._id
                                                                     )
@@ -428,7 +431,7 @@ function AppliedDriveUserProfile() {
                                                                     :
 
 
-                                                                    (operationl.rejectedJobseker.find((jobseekerid) => {
+                                                                    (operationl.rejectedJobseker?.find((jobseekerid) => {
                                                                         return (
                                                                             jobseekerid == Applieduser._id
                                                                         )
@@ -441,7 +444,7 @@ function AppliedDriveUserProfile() {
                                                                         :
 
 
-                                                                        (operationl.onHoldJobseker.find((jobseekerid) => {
+                                                                        (operationl.onHoldJobseker?.find((jobseekerid) => {
                                                                             return (
                                                                                 jobseekerid == Applieduser._id
                                                                             )
@@ -523,7 +526,7 @@ function AppliedDriveUserProfile() {
                     }
                     <div id={styles.JobCardWrapper} >
 
-                        {AppliedUser.map((job, i) => {
+                        {AppliedUser?.map((job, i) => {
                             return (
                                 <>
                                     <div className={styles.JobCard} key={i}>
@@ -558,11 +561,11 @@ function AppliedDriveUserProfile() {
                                         </div>
 
                                         {
-                                            OperationalAppliedUser.map((operationl) => {
+                                            OperationalAppliedUser?.map((operationl) => {
                                                 return (
                                                     <>
                                                         {
-                                                            operationl.slectedJobseker.find((jobseekerid) => {
+                                                            operationl.slectedJobseker?.find((jobseekerid) => {
                                                                 return (
                                                                     jobseekerid == job._id
                                                                 )
@@ -582,7 +585,7 @@ function AppliedDriveUserProfile() {
                                                                 :
 
 
-                                                                (operationl.rejectedJobseker.find((jobseekerid) => {
+                                                                (operationl.rejectedJobseker?.find((jobseekerid) => {
                                                                     return (
                                                                         jobseekerid == job._id
                                                                     )
@@ -595,7 +598,7 @@ function AppliedDriveUserProfile() {
                                                                     :
 
 
-                                                                    (operationl.onHoldJobseker.find((jobseekerid) => {
+                                                                    (operationl.onHoldJobseker?.find((jobseekerid) => {
                                                                         return (
                                                                             jobseekerid == job._id
                                                                         )

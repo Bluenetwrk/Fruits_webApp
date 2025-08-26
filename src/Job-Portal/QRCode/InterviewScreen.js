@@ -45,13 +45,14 @@ const InterviewScreen = () => {
   if (profileData.length > 0) {
     console.log("Submitting profile:", profileData);
     sendMessage();
-    
+    updateQRData();
   }
 };
 
   const [jobseeker, setJobseeker] = useState(null);
   const [pageLoader, setPageLoader]=useState(false);
-  const[profileData,setProfileData]=useState([])
+  const[profileData,setProfileData]=useState([]);
+  const [noData, setNoData] = useState(false);
    let params = useParams();
   async function getJobseekerId() {
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
@@ -67,15 +68,24 @@ const InterviewScreen = () => {
           createdDateTime: new Date(item.createdDateTime),
           updatedDateTime: new Date(item.updatedDateTime),
         }));
+        
+
   
         if (list.length > 0) {
           // Find the latest record by createdDateTime
           const latestRecord = list.reduce((latest, current) =>
-            current.createdDateTime > latest.createdDateTime ? current : latest
+            current.updatedDateTime > latest.updatedDateTime ? current : latest
           );
-  
-          setJobseeker(latestRecord); // store only the latest object
+          console.log("latest-",latestRecord)
+          // if (latestRecord.createdDateTime && !isNaN(new Date(latestRecord.createdDateTime).getTime())) {
+            setJobseeker(latestRecord);
+          //   setNoData(false)
+          // } else {
+          //   setNoData(true);
+          // }
+          
         }
+       
       } else if (result === "field are missing") {
         console.log("failed to fetch data");
       }
@@ -85,14 +95,17 @@ const InterviewScreen = () => {
     }
   }
   
-  
-  
+ 
   useEffect(()=>{
       getJobseekerId()
   },[])
 
-  const [noData, setNoData] = useState(false);
+  
     async function getProfile() {
+      if( !(jobseeker.createdDateTime && !isNaN(new Date(jobseeker.createdDateTime).getTime()))) {
+             setNoData(true);
+             return
+      }
       setInterviewstarted(true);
   setInterviewEnded(false);
       const studId=jobseeker?.jobSeekerId;
@@ -106,10 +119,11 @@ const InterviewScreen = () => {
         await axios.get(`/StudentProfile/viewProfile/${studId}`)
             .then((res) => {
                 let result = res.data.result
-                console.log("profile",result)
+                console.log("profile",result.message)
                 
                 setProfileData([result])
-        setLoading(false)
+                setLoading(false)
+                setComments(result.message)
 
             }).catch((err) => {
                 alert("some thing went wrong")
@@ -135,8 +149,9 @@ const InterviewScreen = () => {
     setInterviewEnded(true); 
     setInterviewstarted(false) // mark as ended
     // setComments("");
+    setNoData(false)
           alert("interview completed Successfully and feedback has been submitted");
-          window.location.reload();
+          // window.location.reload();
         }
       })
       .catch((err) => {
@@ -145,7 +160,45 @@ const InterviewScreen = () => {
       });
   }
   
-
+  async function updateQRData() {
+  
+    const jobSeekerId=jobseeker?.jobSeekerId;
+    const tokenNo=jobseeker.tokenNo;
+    const headers = { authorization: 'BlueItImpulseWalkinIn' };
+    console.log()
+    await axios.put(`walkinRoute/updatPostedwalkin/${atob(params.id)}`,
+      {
+       HRCabin: [
+          {
+            jobSeekerId: [{ jobSeekerId: jobSeekerId }],  // <-- wrap properly
+            tokenNo: [tokenNo],
+            updatedDateTime: new Date()
+          }
+        ]
+       
+      }, 
+    { headers })
+      .then(async (res) => {
+        let result = res.data
+        console.log("result",result)
+        if (result == "success") {
+          console.log("Success! drive updated successfully")
+          // settopMessage("Success! Profile updated successfully")
+        } else if (result == "feilds are missing") {
+          console.log("warning! drive failed updated ")
+          // settopMessage("Alert!..name, emailAddress, NoticePeriod, phoneNumber, Qualification, Skills and Experiance should not be empty")
+        }
+ 
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+ 
+ 
+      }).catch((err) => {
+        alert("some thing went wrong")
+      })
+  }
 
 
 
@@ -160,11 +213,11 @@ const InterviewScreen = () => {
           </div>
         )}
 
-{!loading && noData && (
-    <div style={{ textAlign: "center", color: "red", marginTop: "20px" }}>
-      No Jobseeker has Scanned the QR Code
-    </div>
-  )}
+{!loading && noData && !interviewEnded && (
+  <div style={{ textAlign: "center", color: "red", marginTop: "20px" }}>
+    No Jobseeker has Scanned the QR Code
+  </div>
+)}
 
         {!loading && profileData.length>0 &&  !interviewEnded &&(
           <div className={styles.profileTableWrapper}>
@@ -234,3 +287,5 @@ const InterviewScreen = () => {
 };
 
 export default InterviewScreen;
+
+
