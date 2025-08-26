@@ -19,7 +19,7 @@ const ScanDrive = () => {
       let userid = JSON.parse(localStorage.getItem("StudId"))
       const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("StudLog"))) };
     try {
-        const res = await axios.get(`/StudentProfile/getProfile/${studId}`, {headers})
+        const res = await axios.get(`/StudentProfile/viewProfile/${studId}`)
         const result = res.data.result;
         console.log(result)
         setProfileData([result]);

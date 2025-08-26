@@ -469,7 +469,9 @@ const handleHRGenerateQR = (driveId) => {
                       <span style={{ color: "blue", cursor:"pointer" }} onClick={() => { navigate(`/Jobdetails/${btoa(items._id)}`) }} >...see more</span>
                     </li> */}
                     <li className={`${styles.li} ${styles.Pdate}`}>
-                    {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.time && `${((+items.time.split(":")[0] % 12) || 12)}:${items.time.split(":")[1]} ${+items.time.split(":")[0] >= 12 ? "PM" : "AM"}`}
+                    {/* {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.time && `${((+items.time.split(":")[0] % 12) || 12)}:${items.time.split(":")[1]} ${+items.time.split(":")[0] >= 12 ? "PM" : "AM"}`} */}
+                    {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.StartTime}
+
                     {/* <p>
   {new Date(items.time).toLocaleDateString("en-IN")} /{" "}
   {new Date(items.time).toLocaleTimeString("en-IN", {
@@ -674,7 +676,9 @@ allWalkindrive.map((job, i) => {
 
          <div style={{display:"flex", gap:"6px",marginLeft:"4%"}}>
             <span className={styles.skillsHeading}>Drive Date: </span><span className={styles.skills}>{new Date(job.driveDate).toLocaleDateString("en-IN")}</span>
-            <span className={styles.skillsHeading}>Drive Time: </span><span className={styles.skills}>{job.time && `${((+job.time.split(":")[0] % 12) || 12)}:${job.time.split(":")[1]} ${job.time.split(":")[0] >= 12 ? "PM" : "AM"}`}</span>
+            {/* <span className={styles.skillsHeading}>Drive Time: </span><span className={styles.skills}>{job.time && `${((+job.time.split(":")[0] % 12) || 12)}:${job.time.split(":")[1]} ${job.time.split(":")[0] >= 12 ? "PM" : "AM"}`}</span> */}
+            <span className={styles.skillsHeading}>Drive Time: </span><span className={styles.skills}>{job.StartTime}</span>
+
          </div>
 
         <span className={styles.NoOfJobSeekersApplied}> No. of Job Seekers Applied:
@@ -740,6 +744,7 @@ allWalkindrive.map((job, i) => {
       >
         Generate HR Table QR
       </button>
+      
 
 {selectedHRDriveId === job._id && (
   <div style={{display:"flex", flexDirection:"column",alignItems:"center", marginLeft:"74px"}}>
@@ -767,7 +772,14 @@ allWalkindrive.map((job, i) => {
 
 <div style={{marginLeft:"4%"}}>
     <li className={`${styles.li} ${styles.Action}`}>
-        <button style={{width:"145px"}} onClick={()=>navigate("/live-tv-display")}  className={`${styles.Abutton} ${styles.update}`}>Launch Live Display</button>
+        <button style={{width:"145px"}} onClick={() => navigate(`/live-tv-display/${btoa(job._id)}`)} className={`${styles.Abutton} ${styles.update}`}>Live Tv Display</button>
+    </li>
+
+</div>
+
+<div style={{marginLeft:"4%"}}>
+    <li className={`${styles.li} ${styles.Action}`}>
+        <button style={{width:"145px"}} onClick={() => navigate(`/interview-screen/${btoa(job._id)}`)} className={`${styles.Abutton} ${styles.update}`}>HR Dashboard</button>
     </li>
 
 </div>
