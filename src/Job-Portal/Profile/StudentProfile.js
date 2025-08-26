@@ -480,11 +480,11 @@ profileData.map((item, i) => {
                   <div className={styles.Down} style={{marginLeft:"6px"}}>
                   <span className={styles.span}> Skills : {job.Skills?<span style={{ color: "blue" }}>{job.Skills} </span>:<span style={{color:"red"}}>Not updated</span>}</span><br></br>
                   <span className={styles.span}> Account Status:  {job.isApproved ? <span style={{ color: "blue" }}> Congrats ! Your account has been Approved</span> : <span style={{ color: "red" }}>"Your account is under Verfication process"</span>}</span><br></br>
-                  {job.message?<span style={{}} className={styles.span}> Message :<span style={{color:"red"}}> {job.message}! </span></span>:""}
+                  {job.message?<span style={{}} className={styles.span}> HR/Employer Feedback :<span style={{color:"red"}}> {job.message}! </span></span>:""}
                   <>
-  <span className={styles.span}>
+  {/* <span className={styles.span}>
     HRs/Employer FeedBack : <span style={{ color: "red" }}>No FeedBack</span>
-  </span>
+  </span> */}
   <br />
 </>
                   </div>
