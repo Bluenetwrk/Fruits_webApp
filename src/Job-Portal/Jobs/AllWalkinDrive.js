@@ -981,7 +981,7 @@ setLoader(true)
         })
           ?
 
-          <button onClick={() => deregister(items._id)}  style={{fontSize:"12px", height:"30px"}} className={styles.Appliedbutton} title='Thanks for signing up. Check your email for walk-in drive details.' > Registered <span style={{ fontSize: '12px' }}>&#10004;</span>
+          <button onClick={() => deregister(items._id)}  style={{fontSize:"12px", height:"30px"}} className={styles.Appliedbutton} title='Thanks for Registering. Check your email for walk-in drive details' > Registered <span style={{ fontSize: '12px' }}>&#10004;</span>
             <span className={styles.Loader}>
              {Loader && items._id === clickedJobId ? (
                <TailSpin color="white" height={16} width={16} />

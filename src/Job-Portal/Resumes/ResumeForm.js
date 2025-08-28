@@ -532,7 +532,7 @@ const ResumeForm = () => {
       skills.length === 0 ||
       languages.length === 0
     ) {
-      setSuccessMessage("Please provide all the required details: Name, Email, Experience, Profile Summary, Address, Certifications, Skills, and Languages.");
+      setSuccessMessage("Please complete all required fields, including name, email, experience, summary, address, work history, certifications, skills, and languages.Please provide all the required details: Name, Email, Experience, Profile Summary, Address, Certifications, Skills, and Languages");
       return;
     }
     
@@ -543,7 +543,7 @@ const ResumeForm = () => {
       .then((res) => {
         let result = (res.data)
         if (result === "success") {
-          setSuccessMessage("Success! AI Resume Form successfully submitted")
+          setSuccessMessage("Success!Resume Form successfully submitted")
         }
         else if (result === "field are missing") {
           setSuccessMessage("Alert!... all fields must be filled")
@@ -563,10 +563,10 @@ const ResumeForm = () => {
 
   return (
     <div style={containerStyle}>
-      <h1>AI Resume Builder Form</h1>
+      <h1> Resume Builder Form</h1>
        {successMessage!=""?
         <p>
-          {successMessage==="Success! AI Resume Form successfully submitted"?
+          {successMessage==="Success!Resume Form successfully submitted"?
             <p style={{color:"green"}}>{successMessage}</p>:
             <p style={{color:"red"}}>{successMessage}</p>
           }

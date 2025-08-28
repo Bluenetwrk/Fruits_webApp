@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styles from "./LiveTvDisplay.module.css";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { use } from "react";
 
 const LiveTvDisplay = () => {
+  const navigate = useNavigate();
   const [allCandidates, setAllCandidates] =useState([]);
   const [jobSeekerList, setJobSeekerList] = useState([]);
   const [pageLoader, setPageLoader]=useState(true);
@@ -63,7 +64,9 @@ async function postJob() {
 
       // Convert map back to array
       const uniqueList = Array.from(uniqueMap.values());
-
+      if (uniqueList.length === 0) {
+        setPageLoader(false);
+      }
       setJobSeekerList(uniqueList);
     } else if (result === "field are missing") {
       console.log("failed to fetch data");
@@ -79,6 +82,9 @@ useEffect(()=>{
     postJob()
 },[])
 
+useEffect(()=>{
+  console.log("jsl",jobSeekerList)
+},[jobSeekerList])
 
 async function findList() {
   setPageLoader(true)
@@ -105,6 +111,7 @@ async function findList() {
     setPageLoader(false)
   } catch (err) {
     console.error("Error fetching names:", err);
+    setPageLoader(false)
   }
 }
 
@@ -115,6 +122,7 @@ useEffect(() => {
   if (jobSeekerList.length > 0) {
     findList();
   }
+
 }, [jobSeekerList]);
 
  
@@ -165,6 +173,22 @@ useEffect(()=>{
     <div className={styles.displayContainer}>
       {/* Waiting Area */}
       <div className={`${styles.panel} ${styles.waitingPanel}`}>
+      <div style={{ width: "100%" }}>
+  <button
+    className={styles.tvbackbtn}
+    onClick={() => {
+      if (window.history.length > 1) {
+        navigate(-1);
+      } else {
+        navigate("/");
+      }
+    }}
+  >
+    <div style={{ fontSize: "12px", fontWeight: "800" }}>Back</div>
+  </button>
+</div>
+
+
         <h2 className={styles.title}>Waiting Area</h2>
         <table className={styles.table}>
           <thead>

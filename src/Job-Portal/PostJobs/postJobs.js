@@ -279,12 +279,12 @@ const [showTooltip, setShowTooltip] = useState(false);
                             <div key={i}>
 
                                 {Logo ? <img className={Style.logo} src={Logo} /> :
-                                    <p style={{ color: "red", marginLeft: "5%", fontStyle: "italic" }}> Reminder! Your Company logo is missing,Kindly upload it to complete your profile.</p>}
+                                    <p style={{ color: "green", marginLeft: "5%", fontStyle: "italic" }}>  Your Company logo is missing,Kindly upload it to complete your profile.</p>}
                                 {/* <h3 style={{ color: "blue", marginLeft: "15%" }}>Welcome to Post job Page, Post a Job and get Connected with Job Seekers</h3> */}
 
                                 <div className={Style.postJobPageWrapper} >
                                     <div className={Style.postJobWrapper}>
-                                        <p className={successMessage === "Job Successfully posted!" ?
+                                    <p className={successMessage === "Successfully posted!" ?
                                             Style.successmessage : Style.errormessage}>{successMessage} </p>
                                         {/* <p className={Style.errormessage}>{errorMessage} </p> */}
                                         <h4 className={Style.jobHeadline}  >Job Title**</h4>
@@ -428,7 +428,7 @@ const [showTooltip, setShowTooltip] = useState(false);
                                         </div>
 
                                         <div style={{position:"relative"}} >
-                                        <h4 className={Style.jobHeadline}>Experience Needed** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
+                                        <h4 className={Style.jobHeadline}>Experience** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
                                         <input maxLength="3" className={Style.inputbox} type="number" value={experiance} onChange={(e) => { handleExperiance(e) }} />
                                         <span className={Style.suffix}>{experiance===""?"":"YRS"}</span>
                                         </div>
@@ -441,7 +441,7 @@ const [showTooltip, setShowTooltip] = useState(false);
                                                 onChange={handleChange}
                                             />
                                         </div> */}
-                                        <h4 className={Style.jobHeadline}>Skills Needed**</h4>
+                                        <h4 className={Style.jobHeadline}>Skills**</h4>
 
 <input maxLength="100" value={skills} className={Style.inputbox} disabled type="text"
 // onChange={(e)=>{setSkills(e.target.value)}} 

@@ -498,7 +498,7 @@ const [PageLoader, setPageLoader] = useState(false)
                 )
               })?
               <button onClick={() => deregister(jobs._id)}  class={styles.jobdetailApplyBtn} style={{backgroundColor:"green", height:"32px"}}>
-           <div style={{fontSize:"12px", fontWeight:"800px"}}>Applied <span style={{ fontSize: '15px' }}>&#10004;</span>
+           <div style={{fontSize:"12px", fontWeight:"800px"}}>Registered <span style={{ fontSize: '15px' }}>&#10004;</span>
            <span className={styles.Loader}>
       {Loader && jobs._id === clickedJobId ? (
         <TailSpin color="white" height={16} width={16} />
@@ -518,7 +518,7 @@ const [PageLoader, setPageLoader] = useState(false)
     alignItems: "center",
     gap: "6px"                // spacing between text and spinner
   }}>
-    Apply
+   Register
     <span className={styles.Loader}>
       {Loader && jobs._id === clickedJobId ? (
         <TailSpin color="white" height={16} width={16} />
@@ -785,7 +785,7 @@ const [PageLoader, setPageLoader] = useState(false)
                 )
               })?
               <button onClick={() => deregister(jobs._id)}  class={styles.jobdetailApplyBtn} style={{backgroundColor:"green", height:"32px"}}>
-           <div style={{fontSize:"12px", fontWeight:"800px"}}>Applied <span style={{ fontSize: '15px' }}>&#10004;</span>
+           <div style={{fontSize:"12px", fontWeight:"800px"}}>Registered <span style={{ fontSize: '15px' }}>&#10004;</span>
            <span className={styles.Loader}>
       {Loader && jobs._id === clickedJobId ? (
         <TailSpin color="white" height={16} width={16} />
