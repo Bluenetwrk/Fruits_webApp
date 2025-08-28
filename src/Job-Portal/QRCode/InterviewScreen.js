@@ -108,6 +108,7 @@ const InterviewScreen = () => {
       }
       setInterviewstarted(true);
   setInterviewEnded(false);
+  setinterviewStatusmessage("")
       const studId=jobseeker?.jobSeekerId;
       if (!studId) {
         setNoData(true); 
@@ -136,7 +137,7 @@ const InterviewScreen = () => {
  
   },[profileData])
   
- 
+ const[interviewStatusmessage, setinterviewStatusmessage]=useState("")
   async function sendMessage() {
     const message=comments;
     const id=jobseeker?.jobSeekerId;
@@ -150,12 +151,13 @@ const InterviewScreen = () => {
     setInterviewstarted(false) // mark as ended
     // setComments("");
     setNoData(false)
-          alert("interview completed Successfully and feedback has been submitted");
+    setinterviewStatusmessage("Interview completed Successfully and feedback has been submitted")
+          // alert("Interview completed Successfully and feedback has been submitted");
           // window.location.reload();
         }
       })
       .catch((err) => {
-        alert("something went wrong");
+        setinterviewStatusmessage("something went wrong");
         console.error(err);
       });
   }
@@ -205,7 +207,16 @@ const InterviewScreen = () => {
   return (
     <div className={styles.container}>
       {/* Left Section */}
+      
       <div className={styles.leftBox}>
+      {interviewStatusmessage&&<>
+        {interviewStatusmessage==="some thing went wrong"?
+            <p style={{color:"red"}}>{interviewStatusmessage}</p>    :
+            <p style={{color:"green"}}>{interviewStatusmessage}</p>                          
+        }
+      </>
+
+      }
         {loading && (
           <div className={styles.loading}>
             <div className={styles.spinner}></div>

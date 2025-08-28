@@ -168,7 +168,7 @@ function PostWalkinDrive(props) {
                 // else if (result ==="server issue")
                 else
                     {
-                    setSuccessMessage("something went wrong, Could not save your Jobs post")
+                    setSuccessMessage("something went wrong, Could not save your walk-in drive post")
                 }
             }).catch((err) => {
                 alert("server issue occured", err)
@@ -369,7 +369,7 @@ const [EndTime, setEndTime] = useState("");
                                             Style.successmessage : Style.errormessage}>{successMessage} </p>
                                <div className={Style.dirvefirstRow}>
                                   <div className={Style.dirvesubContainer}>
-                                    <h4 className={Style.heading}>Job Title**</h4>
+                                    <h4 className={Style.heading}>Walk-in Drive Title**</h4>
                                     <input className={Style.driveinput} maxLength="100"  type="text" value={jobTitle} onChange={(e) => { handlejobtitle(e) }} />          
                                   </div>
                                  <div className={Style.dirvesubContainer}>
@@ -379,7 +379,7 @@ const [EndTime, setEndTime] = useState("");
                                </div> 
 
                                 <div>
-                                   <h4 className={Style.jobHeadline}>Job Description**</h4>      
+                                   <h4 className={Style.jobHeadline}>Walk-in Drive Description**</h4>      
                                     {/* <JoditEditor  ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}} /> */}
                                  {/* <CustomTextEditor ref={editor} className={Style.inputbox} value={jobDescription.toString()} onChange={(e)=>{setJobDescription(e)}}/> */}
                                  <CustomTextEditor
@@ -435,7 +435,7 @@ const [EndTime, setEndTime] = useState("");
                                          <div
                                            className={Style.driveIdesc}
                                          >
-                                          We currently support job posting only in Bangalore.
+                                          We currently support walk-in drive posting only in Bangalore.
                                          </div>
                                        )}
                                      </div>
@@ -448,7 +448,7 @@ const [EndTime, setEndTime] = useState("");
 
 
                               <div>
-  <h4 className={Style.jobHeadline}>Qualification Needed *</h4>
+  <h4 className={Style.jobHeadline}>Qualification**</h4>
   <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
 
     {/* B.E/B.TECH Group */}
@@ -502,7 +502,7 @@ const [EndTime, setEndTime] = useState("");
                                     <input className={Style.driveinput} style={{width:"210px"}} maxLength="3" type="number" value={salaryRange} onChange={(e) => { handleSalary(e); }} />
                                 </div>
                                 <div className={Style.dirvesubContainer}>
-                                    <h4 className={Style.heading} >Experience Needed** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
+                                    <h4 className={Style.heading} >Experience** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
                                     <input className={Style.driveinput}style={{width:"210px"}} maxLength="3" type="number" value={experiance} onChange={(e) => { handleExperiance(e); }} />
                                     <span className={Style.suffixExpMob}>{experiance===""?"":"LPA"}</span>
                                 </div>
@@ -510,7 +510,7 @@ const [EndTime, setEndTime] = useState("");
                               
                             <div className={Style.driveFourthRow}>
                                 <div className={Style.dirvesubContainer}>
-                                <h4 className={Style.heading}>Skills Needed**</h4>
+                                <h4 className={Style.heading}>Skills**</h4>
                                         <input className={Style.driveinput} style={{width:"210px"}}   maxLength="100" value={skills} type="text" onChange={(e)=>{setSkills(e.target.value)}} disabled />
 
                                 </div>

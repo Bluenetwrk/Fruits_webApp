@@ -874,7 +874,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               </label>
 
               <label className={styles.inputName}>
-                <h4>Email Address:</h4>
+                <h4>Email Address:**</h4>
                 
                 <input placeholder='Enter gmail address' maxLength="30" className={styles.input} value={email}  
                 onChange={(e) => { handlesetemail(e.target.value) }} type="text" />
@@ -1608,7 +1608,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               </label>
 
               <label className={styles.MobileinputName}>
-                <h4 className={styles.MobileName}>Email Address:</h4>
+                <h4 className={styles.MobileName}>Email Address:**</h4>
                 <input maxLength="25" className={styles.Mobileinput}  value={email}
                  onChange={(e) => { handlesetemail(e.target.value) }} type="text" />
                  <br></br> <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span> 
