@@ -12,7 +12,7 @@ import Footer from '../Footer/Footer';
 function AppliedDriveUserProfile() {
     let params = useParams()
     let JobId = atob(params.jid)
-console.log(JobId)
+
     let navigate = useNavigate()
 
     const [AppliedUser, setAppliedUser] = useState([])
@@ -28,23 +28,20 @@ console.log(JobId)
     async function getAppliedUserIds(OId) {
         setPageLoader(true)
 
-        const headers = { authorization: 'BlueItImpulseWalkinIn' };
-
-        await axios.get(`walkinRoute/walkindetails/${OId}`,{headers})
+        await axios.get(`/walkinRoute/getAppliedUserIds/${OId}`)
             .then(async (res) => {
-                console.log("jid",res.data.jobSeekerId)
                 let AppliedUserIds = res.data.jobSeekerId
-                console.log("abapid",AppliedUserIds)
                 let appliedUserIds = AppliedUserIds.map((ids) => {
                     return (
                         ids.jobSeekerId
                     )
                 })
-                console.log("apids-",appliedUserIds)
+              
                 setOperationalAppliedUser([res.data])
+                
                 await axios.get(`/StudentProfile/getAppliedProfileByIds/${appliedUserIds}`)
                     .then((res) => {
-                        console.log("response",res)
+                        // console.log("asss",res.data)
                         setAppliedUser(res.data)
                         setPageLoader(false)
                     }).catch((err) => {
@@ -85,9 +82,11 @@ console.log(JobId)
             })
     }
     async function onHold(id, status) {
+        console.log("onhold")
         let onHoldJobseker = id
         await axios.put(`walkinRoute/status/${JobId}`, { onHoldJobseker })
             .then((res) => {
+                console.log("abc",res)
                 getAppliedUserIds(JobId)
 
             }).catch((err) => {
@@ -415,6 +414,7 @@ console.log(JobId)
                                         <div style={{ marginLeft: "-3%" }}>
                                             {
                                                 OperationalAppliedUser?.map((operationl, it) => {
+                                                    // {console.log("drive-obj",operationl)}
                                                     return (
                                                         <div key={it}>
                                                             {

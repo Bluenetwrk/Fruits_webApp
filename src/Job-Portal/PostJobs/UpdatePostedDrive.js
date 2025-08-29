@@ -165,7 +165,7 @@ function UpdatePostedDrive(props) {
                 console.log(result)
                 if (result) {
                     setJobTitle(result.jobTitle)
-
+                    setTag(result.Tags)
                    setCompanyName(result.CompanyName)
                    setJobDescription(result.jobDescription)
                     setJobtype(result.jobtype)
@@ -206,10 +206,10 @@ function UpdatePostedDrive(props) {
         const headers = { authorization: 'BlueItImpulseWalkinIn' };
 
         const driveDate= selectedDate
-        const Tags=jobTags
-console.log(StartTime , EndTime)
+        // const Tags=jobTags
+// console.log(StartTime , EndTime)
         await axios.put(`walkinRoute/updatPostedwalkin/${Jobid}`,{
-             empId,jobTitle, companyName, jobDescription,jobtype  ,jobTags, jobLocation , qualification , salaryRange ,
+             empId,jobTitle, companyName, jobDescription,jobtype  ,Tags, jobLocation , qualification , salaryRange ,
                        experiance, skills , applyLink , selectedDate, venue  ,driveDate, StartTime, EndTime
         },{headers})
         

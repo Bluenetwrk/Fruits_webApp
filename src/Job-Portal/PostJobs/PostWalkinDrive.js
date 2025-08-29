@@ -120,18 +120,9 @@ function PostWalkinDrive(props) {
         }
         let userid = JSON.parse(localStorage.getItem("EmpIdG"))
         const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
-       console.log("headers: ",headers)
 
-
-      //  await axios.get("/walkinRoute/getwalkins",{headers})
-
-      //  let venues="banlgore"
-      // let time = new Date(`${selectedDate}T${selectedtime}:00`).toISOString();
       const driveDate= selectedDate
-      const tTags=jobTags
-      console.log("sd",StartTime)
-
-// console.log(jobDescription,companyName,experiance,jobLocation,venue,time)
+      
         await axios.post("walkinRoute/walkinpost", {
            empId,jobTitle, companyName, jobDescription,jobtype ,Tags, jobLocation , qualification , salaryRange ,
            experiance, skills , applyLink , selectedDate, venue  ,driveDate, StartTime, EndTime
