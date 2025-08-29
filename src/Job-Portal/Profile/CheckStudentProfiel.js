@@ -68,9 +68,9 @@ const comment=(e)=>{
    setMessage(e.target.value)
 }
 
-const onSubmit=()=>{
-    setSaveComment("")
-}
+// const onSubmit=()=>{
+//     setSaveComment("")
+// }
 
 const skillsHeadingRef = useRef(null);
 const skillsValueRef = useRef(null);
@@ -243,15 +243,15 @@ profileData.map((item, i) => {
 
                   <div className={styles.Down}>
                   <span className={styles.span}> Skills : {job.Skills?<span style={{ color: "blue" }}>{job.Skills} </span>:<span style={{color:"red"}}>Not updated</span>}</span><br></br>
-                  <span className={styles.span}> HRs/Employer FeedBack : {job.Skills?<span style={{ color: "blue" }}>{job.Skills} </span>:<span style={{color:"red"}}>No FeedBack</span>}</span><br></br>
+                  <span className={styles.span}> HRs/Employer FeedBack : {job.message?<span style={{ color: "blue" }}>{job.message} </span>:<span style={{color:"red"}}>No FeedBack</span>}</span><br></br>
                   </div>
 
       </div>
       <div style={{marginLeft:"16px", marginBottom:"20px"}}>
                 <h2>Comment</h2>
-                   <textarea onChange={(e)=>comment(e)} value={saveComent} style={{width:"99%",height:"80px"}}></textarea>
+                   <textarea onChange={(e)=>comment(e)} value={message} style={{width:"99%",height:"80px"}}></textarea>
                    <div>
-                     <button onClick={onSubmit} className={styles.jobdetailBackBtn} style={{padding: "0px 5px 0px 8px", marginLeft:"2px"}} >Submit</button>
+                     <button onClick={sendMessage} className={styles.jobdetailBackBtn} style={{padding: "0px 5px 0px 8px", marginLeft:"2px"}} >Submit</button>
                     </div>
             </div>
     </>
