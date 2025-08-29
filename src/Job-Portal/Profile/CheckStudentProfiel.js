@@ -31,13 +31,14 @@ let navigate = useNavigate()
             .then((res) => {
                 let result = res.data.result
         console.log(result)
-
+                setMessage(result.message)
                 setProfileData([result])
         setPageLoader(false)
 
             }).catch((err) => {
                 alert("some thing went wrong")
             })
+            
     }
 
     useEffect(() => {
@@ -62,9 +63,9 @@ let navigate = useNavigate()
             })
     }
 
- const[saveComent, setSaveComment]=useState("")   
+ const[message, setMessage]=useState("")   
 const comment=(e)=>{
-   setSaveComment(e.target.value)
+   setMessage(e.target.value)
 }
 
 const onSubmit=()=>{
@@ -83,8 +84,26 @@ useEffect(() => {
       skillsValueRef.current.style.height = `${maxHeight}px`;
     }
   }, [profileData]); // runs again when data changes
+  const [commentmessage,setCommentmessage]=useState("");
   
 
+  async function sendMessage() {
+    const id=profileData[0]._id
+    await axios.put(`/StudentProfile/sendMessage/${id}`, { message })
+      .then((res) => {
+        if (res.data) {         
+            setCommentmessage("feedback has been submitted Successfully")
+        }
+      })
+      .catch((err) => {
+        setCommentmessage("something went wrong");
+        console.error(err);
+      })
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+  }
     return (
         <>
 <div style={{display:"flex"}}>
@@ -92,6 +111,17 @@ useEffect(() => {
              width:"28px"}} onClick={()=>{navigate("/Search-Candidate")}}  src={Arrowimage} />
     <p style={{marginLeft:"40%"}}><b>JobSeeker Profile </b></p>
     </div>
+    <div style={{marginLeft:"4%"}}>
+    {commentmessage&&
+    <>
+        {commentmessage==="some thing went wrong"?
+            <p style={{color:"red"}}>{commentmessage}</p>    :
+            <p style={{color:"green"}}>{commentmessage}</p>                          
+        }
+      </>
+
+      }
+   </div>
  {
 profileData.map((item, i) => {
     return (
@@ -157,7 +187,7 @@ profileData.map((item, i) => {
                        <li className={` ${styles.Hli}`}>{item.Aadhar?<li className={styles.Nli}>###########</li>:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.panCard?<li className={styles.Nli}>###########</li>:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{item.age?item.age:<li className={styles.Nli}>Not Updated</li>}</li>
-                       <li className={` ${styles.Hli}`}>{item.Experiance?item.Experiance:<li className={styles.Nli}>No FeedBack</li>}</li>
+                       <li className={` ${styles.Hli}`}>{item.message?item.message:<li className={styles.Nli}>No FeedBack</li>}</li>
                         </ul>
                     )
                 })
@@ -168,9 +198,9 @@ profileData.map((item, i) => {
             <div style={{marginLeft:"70px", marginBottom:"20px"}}>
                 <h2>Comment</h2>
                 <div style={{display:"flex"}}>
-                   <textarea onChange={(e)=>comment(e)} value={saveComent} style={{width:"30%",height:"80px"}}></textarea>
+                   <textarea onChange={(e)=>comment(e)} value={message} style={{width:"30%",height:"80px"}}></textarea>
                    <div style={{display:"flex", alignItems:"end",}}>
-                     <button onClick={onSubmit} className={styles.jobdetailBackBtn} style={{padding: "0px 5px 0px 8px"}} >Submit</button>
+                     <button onClick={sendMessage} className={styles.jobdetailBackBtn} style={{padding: "0px 5px 0px 8px"}} >Submit</button>
                     </div>
                 </div>
             </div>

@@ -150,6 +150,7 @@ const dummyDrives = [
             return new Date(b.createdAt) - new Date(a.createdAt);
           });
           setMyAppliedjob(oldData=>oldData.concat(sortedate))
+          
           setPageLoader(false)
           if (res.data.length == 0) {
             setNoJobFound("You have not applied any jobs yet")
@@ -161,8 +162,9 @@ const dummyDrives = [
     }, 1000)
   }
 
-  // useEffect(() => {
-  // }, [])
+  useEffect(() => {
+    console.log("df",MyAppliedDrives)
+  }, [MyAppliedDrives])
 
 
   async function getjobs() {
