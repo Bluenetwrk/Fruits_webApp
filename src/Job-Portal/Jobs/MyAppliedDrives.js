@@ -13,7 +13,7 @@ import Footer from '../Footer/Footer';
 import HTMLReactParser from 'html-react-parser'
 
 
-function AppliedDrives(props) {
+function MyAppliedDrives(props) {
   // useEffect(() => {
   //   const socket = socketIO.connect(props.url, {
   //     auth: {
@@ -23,93 +23,7 @@ function AppliedDrives(props) {
   // }, [])
   let navigate = useNavigate()
 
-
-const dummyDrives = [
-  {
-    id: "drive1",
-    companyName: "Tata Consultancy Services",
-    jobTitle: "Software Engineer",
-    jobType: "Full Time",
-    postedDate: "2025-06-15",
-    appliedDate: "2025-06-16",
-    location: "Bangalore",
-    ctc: "6 LPA",
-    experience: "0-2 years",
-    qualification: "B.E/B.Tech - CS/IT",
-    skillsRequired: ["Java", "Spring Boot","Java", "Spring Boot","Java", "Spring Boot", ],
-    action: "Apply Now",
-    status: "Pending",
-    numberOfApplicants: 40
-  },
-  {
-    id: "drive2",
-    companyName: "Infosys",
-    jobTitle: "Frontend Developer",
-    jobType: "Contract",
-    postedDate: "2025-06-18",
-    appliedDate: "2025-06-19",
-    location: "Hyderabad",
-    ctc: "5.5 LPA",
-    experience: "1-2 years",
-    qualification: "B.Sc/BCA",
-    skillsRequired: ["HTML", "CSS", "JavaScript",],
-    action: "Apply Now",
-    status: "Shortlisted",
-    numberOfApplicants: 32
-  },
-  {
-    id: "drive3",
-    companyName: "Wipro",
-    jobTitle: "Backend Developer",
-    jobType: "Full Time",
-    postedDate: "2025-06-20",
-    appliedDate: "2025-06-21",
-    location: "Pune",
-    ctc: "6.5 LPA",
-    experience: "1-3 years",
-    qualification: "B.Tech/M.Tech - CS",
-    skillsRequired: ["Node.js", "MongoDB", ],
-    action: "Apply Now",
-    status: "Interview Scheduled",
-    numberOfApplicants: 28
-  },
-  {
-    id: "drive4",
-    companyName: "HCL Technologies",
-    jobTitle: "Full Stack Developer",
-    jobType: "Part Time",
-    postedDate: "2025-06-22",
-    appliedDate: "2025-06-23",
-    location: "Chennai",
-    ctc: "7 LPA",
-    experience: "2-4 years",
-    qualification: "MCA/M.Sc - CS",
-    skillsRequired: ["React", "Node.js",],
-    action: "Apply Now",
-    status: "Rejected",
-    numberOfApplicants: 37
-  },
-  {
-    id: "drive5",
-    companyName: "Accenture",
-    jobTitle: "DevOps Engineer",
-    jobType: "Internship",
-    postedDate: "2025-06-25",
-    appliedDate: "2025-06-26",
-    location: "Gurgaon",
-    ctc: "7.5 LPA",
-    experience: "1-3 years",
-    qualification: "B.E/B.Tech - Any Branch",
-    skillsRequired: ["Docker", "Kubernetes",],
-    action: "Apply Now",
-    status: "Offer Released",
-    numberOfApplicants: 42
-  }
-];
-
-
   const [MyAppliedjob, setMyAppliedjob] = useState([])
-  const [MyAppliedDrives, setMyAppliedDrives] = useState([])
   const [PageLoader, setPageLoader] = useState(false)
   const [NoJobFound, setNoJobFound] = useState("")
   const screenSize = useScreenSize();
@@ -137,34 +51,32 @@ const dummyDrives = [
 
 
   
-  async function getCareerjobs() {
-    let userid = JSON.parse(localStorage.getItem("StudId"))
-    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
-    setPageLoader(true)
-    setTimeout(async () => {
+//   async function getCareerjobs() {
+//     let userid = JSON.parse(localStorage.getItem("StudId"))
+//     const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+//     setPageLoader(true)
+//     setTimeout(async () => {
 
-      await axios.get(`/Careerjobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
-        .then((res) => {
-          let result = res.data
-          let sortedate = result.sort(function (a, b) {
-            return new Date(b.createdAt) - new Date(a.createdAt);
-          });
-          setMyAppliedjob(oldData=>oldData.concat(sortedate))
-          
-          setPageLoader(false)
-          if (res.data.length == 0) {
-            setNoJobFound("You have not applied any jobs yet")
-          }
+//       await axios.get(`/Careerjobpost/getMyAppliedjobs/${jobSeekerId}`, { headers })
+//         .then((res) => {
+//           let result = res.data
+//           let sortedate = result.sort(function (a, b) {
+//             return new Date(b.createdAt) - new Date(a.createdAt);
+//           });
+//           setMyAppliedjob(oldData=>oldData.concat(sortedate))
+//           setPageLoader(false)
+//           if (res.data.length == 0) {
+//             setNoJobFound("You have not applied any jobs yet")
+//           }
 
-        }).catch((err) => {
-          alert("backend arror occured")
-        })
-    }, 1000)
-  }
+//         }).catch((err) => {
+//           alert("backend arror occured")
+//         })
+//     }, 1000)
+//   }
 
-  useEffect(() => {
-    console.log("df",MyAppliedDrives)
-  }, [MyAppliedDrives])
+  // useEffect(() => {
+  // }, [])
 
 
   async function getjobs() {
@@ -176,11 +88,10 @@ const dummyDrives = [
       await axios.get(`/walkinRoute/getMyAppliedwalkin/${jobSeekerId}`, { headers })
         .then((res) => {
           let result = (res.data)
-          console.log(res)
           let sortedate = result.sort(function (a, b) {
             return new Date(b.createdAt) - new Date(a.createdAt);
           });
-          setMyAppliedDrives(sortedate)
+          setMyAppliedjob(sortedate)
           setPageLoader(false)
           if (res.data.length == 0) {
             setNoJobFound("You have not applied any jobs yet")
@@ -222,7 +133,7 @@ const dummyDrives = [
           .then((res) => {
             if(res.data==="success"){
               getjobs()
-              getCareerjobs()
+            //   getCareerjobs()
             }else{
               alert("some thing wrong")
             }
@@ -358,12 +269,6 @@ const dummyDrives = [
     setCurrentPage(1)
   }
 console.log(records)
-
-const handleStart = () => {
-  navigate("/scanner");
-};
-
-
  const selectedTag=useRef("")
   const updateTag=(tag)=>{
     selectedTag.current=tag
@@ -371,9 +276,10 @@ const handleStart = () => {
   return (
     <>
 
-<p style={{ textAlign: "center", }}className={styles.h3}><h2>My Registered Walkin Drives</h2></p>
-{/* <p className={styles.h3}><b>You’ve successfully submitted applications for {MyAppliedjob.lengths} positions.Stay tuned for updates.  </b></p> */}
-
+<p className={styles.h2} style={{ textAlign: "center",fontSize:"26px" }}><b>My Registered Walkin Drives</b></p>
+{MyAppliedjob.length>0&&
+<p className={styles.h3}><b>You’ve successfully submitted applications for {MyAppliedjob.length} positions.Stay tuned for updates.  </b></p>
+}
       {/* <button onClick={()=>{navigate("/MyCareer-Applied-Jobs")}} style={{ backgroundColor:"rgb(40, 4, 99)",
          marginLeft:"10px", fontWeight:600, color:"white", border:"none",
           cursor:"pointer", padding:"5px 10px"}}>Career Jobs
@@ -385,7 +291,7 @@ const handleStart = () => {
             {nopageFilter ?
               <p style={{ fontWeight: 400, marginLeft: "10px" }}>Displaying <span style={{ color: "blue" }}>{Filtereredjobs}</span> from All Jobs</p>
               :
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Showing {firstIndex + 1} to {lastIndex} latest drives</p>
+              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Showing {firstIndex + 1} to {lastIndex} latest jobs</p>
             }
             <div className={styles.navigationWrapper}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
@@ -409,7 +315,7 @@ const handleStart = () => {
               <option selected={lastIndex === 25} value={25}>25</option>
               <option selected={lastIndex === 50} value={50}>50</option>
               <option selected={lastIndex === 100} value={100}>100</option>
-            </select>  drives per page
+            </select>  jobs per page
           </div>
 
           <div className={styles.Uiwarpper}>
@@ -420,7 +326,7 @@ const handleStart = () => {
               <li className={`${styles.li} ${styles.JobType}`}><b>JobType</b></li>
 
               {/* <li className={`${styles.li} ${styles.liDescription}`}><b>Job description</b></li> */}
-              <li className={`${styles.li} ${styles.Pdate}`}><b>Drive Date</b>
+              <li className={`${styles.li} ${styles.Pdate}`}><b>Drive Date/Time</b>
                 <p className={styles.arrowWrapper} >
                   <i onClick={sortbyNewjobs} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={sortbyOldjobs} className={`${styles.arrow} ${styles.down}`}></i>
@@ -450,22 +356,26 @@ const handleStart = () => {
               <li className={`${styles.li} ${styles.Status}`}><b>Status</b></li>
             </ul>
             {PageLoader ?
-              <div style={{display:"flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}}>
-              <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "100px" }} />
-              <p style={{color:"red"}}>Loading...</p>
-              </div>
+            <>
+                                <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "47%", marginTop: "50px" }} />
+                                <h3 style={{color:"red",textAlign:"center"}}>Loading......</h3>
+                                </>
               : 
             (
-              MyAppliedDrives.length > 0 ?
+              records.length > 0 ?
 
-              MyAppliedDrives.map((items, i) => {
+                records.map((items, i) => {
                   return (
                 
                     <ul className={styles.ul} key={i}>
-                      <li style={{ cursor: "pointer", textDecoration: "underline" }} className={styles.li}  >
+                      <li style={{ cursor: "pointer", textDecoration: "underline" }} className={styles.li} onClick={() => navigate(`/DriveDetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, transferRecords },})} >
+                        {/* {items.Logo ?
+                    < img style={{ width: "40%", height: "40px" }} src={items.Logo} />
+                    : ""}<br></br> */}
                         {items.companyName}</li>
 
-                      <li onClick={() => navigate(`/AppliedDriveDetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} className={`${styles.li} ${styles.JtitleR}`}>{items.jobTitle.toUpperCase()}</li>
+                      <li className={`${styles.li} ${styles.JtitleR}`}
+                      onClick={() => navigate(`/DriveDetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag,transferRecords },})}>{items.jobTitle.toUpperCase()}</li>
                       <li className={`${styles.li} ${styles.JobType}`}>{items.jobtype}</li>
 
                       {/* <li className={`${styles.li} ${styles.Pdate}`}>
@@ -479,7 +389,24 @@ const handleStart = () => {
                         )}
                       </li> */}
                       <li className={`${styles.li} ${styles.Pdate}`}>
-                      {new Date(items.driveDate).toLocaleDateString("en-IN")}
+  {(() => {
+    const date = new Date(items.createdAt);
+    const day = date.getDate();
+    const month = date.toLocaleString('en-US', { month: 'short' });
+    const year = date.getFullYear();
+
+    const getOrdinal = (d) => {
+      if (d > 3 && d < 21) return 'th';
+      switch (d % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+      }
+    };
+
+    return `${day}${getOrdinal(day)} ${month}, ${year}`;
+  })()}/{items.StartTime}
 </li>
 
                       {/* <li className={`${styles.li} ${styles.Pdate}`}>
@@ -499,33 +426,53 @@ const handleStart = () => {
                         )}
                       </li> */}
                       <li className={`${styles.li} ${styles.Pdate}`}>
-                      {new Date(items.createdAt).toLocaleDateString("en-IN")}
-</li>
-                      <li className={`${styles.li} ${styles.Location}`} style={{wordBreak:"break-word"}}>{items.venue}</li>
-                      <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="Not disclosed" ||items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"LPA" }</li>
-                      <li className={`${styles.li} ${styles.experiance}`} >{items.experiance}Yrs</li>
-                      <li className={`${styles.li} ${styles.Qualif}`} style={{wordBreak:"break-word"}}>{items.qualification} </li>
+  {(() => {
+    const matched = items.jobSeekerId.find(id => id.jobSeekerId == jobSeekerId);
+    if (!matched || !matched.date) return '';
 
-                      <li className={`${styles.li} ${styles.Skills}`} style={{wordBreak:"break-word"}}>{items.skills}</li>
+    const date = new Date(matched.date);
+    const day = date.getDate();
+    const month = date.toLocaleString('en-US', { month: 'short' });
+    const year = date.getFullYear();
+
+    // Function to get ordinal suffix
+    const getOrdinal = (d) => {
+      if (d > 3 && d < 21) return 'th';
+      switch (d % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+      }
+    };
+
+    return `${day}${getOrdinal(day)} ${month}, ${year}`;
+  })()}
+</li>
+                      <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() +
+                        items.jobLocation.slice(1)}</li>
+                      <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
+                      <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
+                      <li className={`${styles.li} ${styles.Qualif}`}>{items.qualification} </li>
+
+                      <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li>
                       <li className={`${styles.li} ${styles.DeleteAction}`}>
-                        <button onClick={()=>{UndoApply(items._id)}} className={styles.DeleteButton} >Delete</button>
-                        {/* <button className={styles.qrButton}>QR Scanner</button> */}
-                        </li>
+                        <button className={styles.DeleteButton} onClick={() => { UndoApply(items._id) }}>Delete</button></li>
                       <li className={`${styles.li} ${styles.Status}`}>
 
-                      {items.onHoldJobseker?.find((onholdProfile) => {
+                        {items.onHoldJobseker.find((onholdProfile) => {
                           return (
                             onholdProfile == jobSeekerId
                           )
                         }) ? <p style={{ color: "blue" }}>Your Profile is on Hold</p> :
 
-                          items.slectedJobseker?.find((SelectedProfile) => {
+                          items.slectedJobseker.find((SelectedProfile) => {
                             return (
                               SelectedProfile == jobSeekerId
                             )
                           }) ? <p style={{ color: "rgb(7, 161, 7)" }}> Congratulations! You've Been Shortlisted!.You’ll receive details about the interview soon.</p>
                             :
-                            items.rejectedJobseker?.find((rejectProfile) => {
+                            items.rejectedJobseker.find((rejectProfile) => {
                               return (
                                 rejectProfile == jobSeekerId
                               )
@@ -542,186 +489,184 @@ const handleStart = () => {
                 : 
                 // <p style={{ marginLeft: "42%", color: "red" }}> {NoJobFound} </p>
                 <div style={{display:"flex", justifyContent:"center"}}>
-                  <p style={{ color: "red" }}> No records found</p>
+                  <p style={{ color: "red" }}> No Record Found</p>
                 </div>
             )
-            }
-          </div>
-          <div style={{ marginBottom: "5px", marginTop: "0", marginLeft: "10px" }}>
-            Show  <select onChange={(e) => { handleRecordchange(e) }}>
-              <option selected={lastIndex === 10} value={10}>10</option>
-              <option selected={lastIndex === 25} value={25}>25</option>
-              <option selected={lastIndex === 50} value={50}>50</option>
-              <option selected={lastIndex === 100} value={100}>100</option>
-            </select>  drives per page
+          }
+
           </div>
         </>
         :
         <>
-        {PageLoader ? (
-  <div style={{ display: "flex", justifyContent: "center", alignItems:"center", flexDirection:"column" }}>
-    <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "100px" }} />
-    <p style={{color:"red"}}>Loading....</p>
-  </div>
-) : (
-  <>
-    <div id={styles.JobCardWrapper}>
-      {MyAppliedDrives.length > 0 ? (
-      MyAppliedDrives.map((job, i) => {
-          // const matched = job.jobSeekerId.find(id => id.jobSeekerId == jobSeekerId);
-          // const appliedDate = matched?.date ? new Date(matched.date) : null;
-          // const formattedAppliedDate = appliedDate
-          //   ? `${appliedDate.getDate()}${(() => {
-          //       const d = appliedDate.getDate();
-          //       if (d > 3 && d < 21) return 'th';
-          //       switch (d % 10) {
-          //         case 1: return 'st';
-          //         case 2: return 'nd';
-          //         case 3: return 'rd';
-          //         default: return 'th';
-          //       }
-          //     })()} ${appliedDate.toLocaleString('en-US', { month: 'short' })}, ${appliedDate.getFullYear()}`
-          //   : '';
+          {PageLoader ?
+            <>
+                                <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginLeft: "37%", marginTop: "50px" }} />
+                                <h3 style={{color:"red",textAlign:"center"}}>Loading......</h3>
+                                </>
+            : 
+          <div id={styles.JobCardWrapper} >
 
-          return (
-            <div className={styles.JobCard} key={i}>
-              <div className={styles.JobTitleDateWrapper}>
-                <p
-                onClick={() => navigate(`/AppliedDriveDetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})}
-                  className={styles.jobTitle}   
-                >
-                  {job.jobTitle.toUpperCase()}
-                </p>
-                {/* <p className={styles.Date}>
-                  {job.postedDate}
-                </p> */}
+            {MyAppliedjob.length > 0 ?
+              MyAppliedjob.map((job, i) => {
+                return (
+                  <>
+
+                    <div className={styles.JobCard} key={i}>
+
+                      <div className={styles.JobTitleDateWrapper}>
+                        <p className={styles.jobTitle} onClick={() => {
+                          window.scrollTo({
+                            top: 0
+                          })
+                        navigate(`/DriveDetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, transferRecords},})
+                        }} >{job.jobTitle.toUpperCase()} </p>
+                        <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
+                          "en-US",
+                          {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
+                          }
+                        )
+                        } </p>
+
+                      </div>
+
+                      {/* <br></br> */}
+
+                      <div className={styles.companyNameLocationWrapper} onClick={() => { navigate(`/CheckEmpHalfProfile/${btoa(job.empId)}`) }} >
+                        <img className={styles.logo} src={job.Logo} />
+                        <span className={styles.companyName} >{job.companyName} </span><br></br>
+                      </div>
+
+                      <  img className={styles.jobLocationImage} src={location} />
+                      <span className={styles.jobLocation}>{job.jobLocation[0].toUpperCase() + job.jobLocation.slice(1)} ,</span>
+                      <span className={styles.qualificationAndExperiance}>
+
+                        <  img className={styles.graduationImage} src={graduation} />
+
+                        {job.qualification}, {job.experiance}Y Exp ,   {job.jobtype}
+                        {/* <span className={styles.jobtypeAndDate}> {job.jobtype}</span> */}
+                      </span><br></br>
+
+                      <span className={styles.jobtypeAndDate}>Source</span> :
+
+                      {job.Source ?
+                        <> <a className={`${styles.skills}`} href={job.SourceLink} target="_blank">{job.Source}</a><br></br> </>
+                        :
+                        <> <span className={styles.skills}>ItWalkin </span></>
+                      }
+                      <span style={{ marginBottom: "-3px", display: "inline" }}><span style={{ marginLeft: "5px", fontWeight: "450" }}>Applied Date: </span>
+                        {/* {new Date(
+                          job.jobSeekerId.find((id) => {
+                            return (
+                              id.jobSeekerId == jobSeekerId
+                            )
+                          }).date
+                        ).toLocaleString(
+                          "en-US",
+                          {
+                            month: "short",
+                            day: "2-digit",
+                            year: "2-digit",
+                          }
+                        )} */}
+                        {(() => {
+    const matched = job.jobSeekerId.find(id => id.jobSeekerId == jobSeekerId);
+    if (!matched || !matched.date) return '';
+
+    const date = new Date(matched.date);
+    const day = date.getDate();
+    const month = date.toLocaleString('en-US', { month: 'short' });
+    const year = date.getFullYear();
+
+    const getOrdinal = (d) => {
+      if (d > 3 && d < 21) return 'th';
+      switch (d % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+      }
+    };
+    return `${day}${getOrdinal(day)} ${month}, ${year}`;
+  })()}
+                      </span>
+
+                      <div className={styles.skillWrapper}>
+                        <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skills}</span><br></br>
+                      </div>
+
+                      <div className={styles.ApplyPackage}>
+                        <h3 style={{ marginLeft: "10px", marginTop: "23px" }}><span>&#8377;</span>{job.salaryRange}L</h3>
+                        <button className={styles.MobileDelete} onClick={() => { UndoApply(job._id) }}>Delete</button>
+                      </div>
+                      <p className={styles.MobileResult}>Result:</p><span >
+                        {
+                          job.onHoldJobseker.find((onholdProfile) => {
+                            return (
+                              onholdProfile == jobSeekerId
+                            )
+                          }) ? <p style={{ color: "blue" }} className={styles.MobileStatus}>HR has put Your Profile on Hold</p>
+                            :
+
+                            job.slectedJobseker.find((SelectedProfile) => {
+                              return (
+                                SelectedProfile == jobSeekerId
+                              )
+                            }) ? <p style={{ color: "rgb(7, 161, 7)" }} className={styles.MobileStatus}> Congratulations! You've Been Shortlisted!.You’ll receive details about the interview soon.</p>
+                              :
+
+                              job.rejectedJobseker.find((rejectProfile) => {
+                                return (
+                                  rejectProfile == jobSeekerId
+                                )
+                              }) ? <p style={{ color: "red" }} className={styles.MobileStatus}>Sorry, your profile doesn't match this job.</p>
+                                : <p className={styles.MobileStatus}>Your application is submitted.It will be reviewed and we will update you soon</p>
+
+                        }
+
+                      </span>
+
+                      <p className={styles.jobDescriptionHeading}>Job Description:</p>
+                      <p className={styles.jobDescription}>
+                        {/* {job.jobDescription} */}
+                        {
+    job.jobDescription? HTMLReactParser(job.jobDescription.slice(0,70).toString()) :""
+
+                          }
+                          <span onClick={() => {
+                            window.scrollTo({
+                              top: 0
+                            })
+                            navigate(`/DriveDetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, transferRecords },})
+                          }} className={styles.seeMore} style={{color:"blue"}}>
+                            ...read more
+                          </span>
+
+                       
+                      </p>
+
+
+                    </div>
+                  </>
+                )
+              })
+              : 
+              <div style={{display:"flex", justifyContent:"center"}}>
+                <p style={{ marginLeft: "12%", color: "red" }}> No Record Found</p>
               </div>
+            }
 
-              <div
-                className={styles.companyNameLocationWrapper}
-                
-              >
-                <img className={styles.logo} src={job.Logo} alt="Logo" />
-                <span className={styles.companyName}>{job.companyName}</span><br />
-              </div>
-              <div style={{display:"flex"}}> 
-              <img className={styles.jobLocationImage} src={location} alt="Location" />
-              <div className={styles.jobLocation}>
-                {job.venue},
-              </div>
-              </div>
-
-              
-              <div style={{display:"flex", marginLeft:"4%"}}> 
-                <img className={styles.graduationImage} src={graduation} alt="Graduation" />
-                {job.qualification===""?"Not Defined":job.qualification}  
-              </div>
-              {/* {console.log(job)} */}
-              <span style={{ marginBottom: "3px", display: "inline" }}>
-                <span style={{ marginLeft: "15px", fontWeight: "450" }}>Experience: </span>
-                {job.experiance}Y Exp,
-              </span><br/>
-              <span style={{ marginBottom: "-3px", display: "inline" }}>
-                <span style={{ marginLeft: "15px", fontWeight: "450" }}>Job Type: </span>
-                {job.jobtype}
-              </span><br/>
-              
-
-              {/* <span className={styles.jobtypeAndDate}>Source</span> :
-              {job.Source ? (
-                <>
-                  <a className={styles.skills} href={job.SourceLink} target="_blank" rel="noopener noreferrer">
-                    {job.Source}
-                  </a><br />
-                </>
-              ) : (
-                <span className={styles.skills}>ItWalkin</span>
-              )} */}
-              <span style={{ marginBottom: "-3px", display: "inline" }}>
-                <span style={{ marginLeft: "14px", fontWeight: "450" }}>Drive Date: </span>
-                {new Date(job.driveDate).toLocaleDateString("en-IN")}
-              </span>
- <br></br>
-              <span style={{ marginBottom: "-3px", display: "inline" }}>
-                <span style={{ marginLeft: "14px", fontWeight: "450" }}>Applied Date: </span>
-                {new Date(job.createdAt).toLocaleDateString("en-IN")}
-              </span>
-
-              <div className={styles.skillWrapper}>
-                <span className={styles.skillsHeading}>Skills: </span>
-                <span className={styles.skills}>{job.skills}</span><br />
-              </div>
-
-              <div className={styles.driveMobBtnContainer}>
-                <h3 style={{ marginLeft: "10px", marginTop: "23px" }}>
-                  <span>&#8377;</span>{job.salaryRange}LPA
-                </h3>
-                <div style={{display:"flex"}}>
-                  <button className={styles.MobileDelete} style={{width:"100%"}} onClick={()=>{UndoApply(job._id)}} >Delete</button>
-                  <button className={styles.Mobileqr}  onClick={handleStart} >QR Scanner</button>
-                </div>
-              </div>
-               
-               <div style={{display:"flex"}}>
-              <p className={styles.MobileResult}>Result:</p>
-              <span>
-              <li style={{width:"100%", border:"none"}} className={`${styles.li} ${styles.Status}`}>
-
-{job.onHoldJobseker?.find((onholdProfile) => {
-    return (
-      onholdProfile == jobSeekerId
-    )
-  }) ? <p style={{ color: "blue" }}>Your Profile is on Hold</p> :
-
-    job.slectedJobseker?.find((SelectedProfile) => {
-      return (
-        SelectedProfile == jobSeekerId
-      )
-    }) ? <p style={{ color: "rgb(7, 161, 7)" }}> Congratulations! You've Been Shortlisted!.You’ll receive details about the interview soon.</p>
-      :
-      job.rejectedJobseker?.find((rejectProfile) => {
-        return (
-          rejectProfile == jobSeekerId
-        )
-      }) ? <p style={{ color: "red" }}>Sorry, your profile doesn't match this job.</p>
-        : "Your application is submitted.It will be reviewed and we will update you soon"
-  }
-
-</li>
-              </span>
-              </div>
-
-              <p className={styles.jobDescriptionHeading}>Job Description:</p>
-              <p className={styles.jobDescription}>
-                {job.jobDescription ? HTMLReactParser(job.jobDescription.slice(0, 70)) : ""}
-                <span
-                                  onClick={() => navigate(`/AppliedDriveDetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})}
-                  className={styles.seeMore}
-                  style={{ color: "blue" }}
-                >
-                  ...read more
-                </span>
-              </p>
-            </div>
-          );
-        })
-      ) : (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <p style={{ marginLeft: "25%", color: "red" }}>No Record Found</p>
-        </div>
-      )}
-    </div>
-
-    <div style={{ marginTop: "80px" }}>
-      <Footer />
-    </div>
-  </>
-)}
-
+          </div>
+      }
+          <div style={{ marginTop: "80px" }}>
+            <Footer />
+          </div>
         </>
-}
-</>
+      }
+    </>
   )
 }
 
-export default AppliedDrives
+export default MyAppliedDrives

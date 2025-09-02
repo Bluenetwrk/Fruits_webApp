@@ -35,7 +35,8 @@ const [PageLoader, setPageLoader] = useState(false)
   const [clickedJobId, setclickedJobId] = useState() //for single job loader
   let jobSeekerId = JSON.parse(localStorage.getItem("StudId"))
   let empId = JSON.parse(localStorage.getItem("EmpIdG"))
-
+  let StudentAuth = localStorage.getItem("StudLog")
+  let EmployeeAuth = localStorage.getItem("EmpLog")
 
 
   const navigate = useNavigate()
@@ -50,11 +51,11 @@ const [PageLoader, setPageLoader] = useState(false)
   const userTags = location.state?.selectedTag?location.state.selectedTag:"";
  const transferRecords=location.state?.transferRecords?location.state.transferRecords:"";
   const allJobs=useRef([])
-  // console.log(transferRecords)
+  console.log("transfer",transferRecords)
   let studentAuth = localStorage.getItem("StudLog")
 
  
-  async function getAllDrivejobs() {
+  async function getAllHomejobs() {
       const headers = { authorization: 'BlueItImpulseWalkinIn' };
       await axios.get("/walkinRoute/allactivewalkins", { headers })
        .then((res) => {
@@ -73,10 +74,10 @@ const [PageLoader, setPageLoader] = useState(false)
     }
 
 
+    
     async function getAllJobseekersjobs() {
-      let userid = JSON.parse(localStorage.getItem("StudId"))
-       const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
-       await axios.get("/jobpost/getjobs", { headers })
+      const headers = { authorization: 'BlueItImpulseWalkinIn' };
+      await axios.get("/walkinRoute/allactivewalkins", { headers })
        .then((res) => {
          let result = (res.data)
           // console.log(result)
@@ -95,7 +96,7 @@ const [PageLoader, setPageLoader] = useState(false)
 
     async function getTagValue(){
         // console.log("executing-->",userTags.current)
-        await axios.get(`/jobpost/getTagsJobs/${userTags.current}`)
+        await axios.get(`/walkinRoute/getTagsWalkins/${userTags.current}`)
           .then((res) => {
             let result = (res.data)
             
@@ -114,7 +115,7 @@ const [PageLoader, setPageLoader] = useState(false)
         const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
         setTimeout(async () => {
     
-          await axios.get(`/walkinRoute/getMyAppliedjobs/${jobSeekerId}`, { headers })
+          await axios.get(`/walkinRoute/getMyAppliedwalkin/${jobSeekerId}`, { headers })
             .then((res) => {
               let result = (res.data)
               let sortedate = result.sort(function (a, b) {
@@ -132,7 +133,7 @@ const [PageLoader, setPageLoader] = useState(false)
         let userid = JSON.parse(localStorage.getItem("EmpIdG"))
         const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("EmpLog"))) };
         setTimeout(async () => {
-          await axios.get(`/jobpost/getPostedjobs/${empId}`, {headers})
+          await axios.get(`/walkinRoute/getPostedwalkins/${empId}`, {headers})
             .then((res) => {
               let result = (res.data)
               let sortedate = result.sort(function (a, b) {
@@ -167,23 +168,33 @@ const [PageLoader, setPageLoader] = useState(false)
       }
       
       useEffect(()=>{
-          // console.log(userTags)
+          console.log("use state executed")
         if(transferRecords===""){  
           if(userTags.current===""||userTags.current===undefined){
-            getAllDrivejobs() 
+            if(studentAuth){
+              getAllJobseekersjobs()
+              console.log("jobseeker  executed")
+            }
+            else{
+             getAllHomejobs()
+             console.log("home executed")
+                 }
+          
           }
-        //   else{ 
-        //    getTagValue() 
-        //  } 
+          else{ 
+           getTagValue() 
+         } 
       }
       else{
         // console.log("executing else")
-        // if(transferRecords==="AppliedJobs")
-        //  getMyAppliedjobs()
-        // else if(transferRecords==="PostedJobs")
-        //   getMyPostedjobs()
-        // else if(transferRecords==="CarrerAppliedJobs")
-        //   getMyCarrerAppliedjobs()        
+        if(transferRecords==="AppliedJobs"){
+         getMyAppliedjobs()
+         console.log("applied executed")
+        }
+        else if(transferRecords==="PostedJobs")
+          getMyPostedjobs()
+        else if(transferRecords==="CarrerAppliedJobs")
+          getMyCarrerAppliedjobs()        
       }
   },[])   
 
@@ -235,7 +246,7 @@ const [PageLoader, setPageLoader] = useState(false)
     await axios.get(`/walkinRoute/walkindetails/${atob(params.id)}`, {headers})
       .then((res) => {
         let result = (res.data)
-        console.log(result)
+        // console.log(result)
         setJobs(result)
         setjobdescription(result.jobDescription)
         setjobSeekerId(result.jobSeekerId)
@@ -259,7 +270,7 @@ const [PageLoader, setPageLoader] = useState(false)
 
   async function applyforJobasjobseeker(id,link) {
     if(JobSeekerLogin)
-      window.open(`${link}`)
+      applyforJob(id)
     else
      navigate("/JobSeekerLogin", { state: { Jid: id } })
    
@@ -300,40 +311,36 @@ const [PageLoader, setPageLoader] = useState(false)
     navigate("/Updatepostedjobs", { state: { getId: id } })
   }
 
-
-
-  async function applyforDrive(jobId) {
-       let date = new Date()
-    let userid = JSON.parse(localStorage.getItem("StudId"))
-    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
-    setclickedJobId(jobId)
-    setLoader(true)
-
-      await axios.put(`/walkinRoute/updatforwalkinApply/${jobId}`, { jobSeekerId, date }, { headers })
-        .then((res) => {
-          
-          if (res.data) {
-            console.log(res.data)
-            setLoader(false)
-            getjobs()
-          }
-        }).catch((err) => {
-          alert("server issue occured", err)
-        })
-  }
-
-  let EmployeeAuth = localStorage.getItem("EmpLog")
   async function applyforJob(id) {
     if(studentAuth){
          applyforDrive(id)
     }
-    else if(EmployeeAuth){
-
-    }
+   
     else{
     navigate("/JobSeekerLogin", { state: { Jid: id } })
     }
    
+  }
+
+
+  async function applyforDrive(jobId) {
+    let date = new Date()
+    let userid = JSON.parse(localStorage.getItem("StudId"))
+    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+
+    setclickedJobId(jobId)
+    setLoader(true)
+    setTimeout(async () => {
+
+      await axios.put(`/walkinRoute/updatforwalkinApply/${jobId}`, { jobSeekerId, date }, { headers })
+        .then((res) => {
+          setLoader(false)
+          getjobs()
+
+        }).catch((err) => {
+          alert("server issue occured", err)
+        })
+    }, 1000)
   }
 
   function goUp(){
@@ -346,7 +353,7 @@ const [PageLoader, setPageLoader] = useState(false)
     window.scrollTo(50,5000000)
 
     }
-          // const url = "https://www.itwalkin.com/";
+          // const url = "https://www.ITwalkin.com/";
           // const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
       // const location = useLocation();
       const url = window.location.origin + location.pathname; // Dynamic URL
@@ -356,7 +363,6 @@ const [PageLoader, setPageLoader] = useState(false)
       const [copied, setCopied] = useState(false);
       const shareRef = useRef(null);
       const buttonRef = useRef(null);
-      
     
       const updateClickStatus = () => {
         setShareClicked((prev) => !prev);
@@ -399,25 +405,22 @@ const [PageLoader, setPageLoader] = useState(false)
       }, [shareClicked]);
 
       const deregister=async(id)=>{
-         let userid = JSON.parse(localStorage.getItem("StudId"))
-    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
-    setclickedJobId(id)
-    setLoader(true)
-        await axios.put(`/walkinRoute/DeleteWalkinApplied/${id}`, { jobSeekerId }, { headers })
-          .then((res) => {
-            if(res.data==="success"){
-              getjobs()
-              setLoader(false)
-            }else{
-              alert("some thing wrong")
-            }
-          }).catch((err) => {
-            alert("server error occured")
-          })
-      }
-
-     
-
+        let userid = JSON.parse(localStorage.getItem("StudId"))
+   const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("StudLog"))) };
+   setclickedJobId(id)
+   setLoader(true)
+       await axios.put(`/walkinRoute/DeleteWalkinApplied/${id}`, { jobSeekerId }, { headers })
+         .then((res) => {
+           if(res.data==="success"){
+             getjobs()
+             setLoader(false)
+           }else{
+             alert("some thing wrong")
+           }
+         }).catch((err) => {
+           alert("server error occured")
+         })
+     }
 
   return (
     <>
@@ -486,12 +489,13 @@ const [PageLoader, setPageLoader] = useState(false)
 
 
            <div style={{display:"flex",position:"relative"}}>
-           <button class={styles.jobdetailApplyBtn} style={{height:"32px",marginRight:"9px",display:"flex", gap:"5px",width:"65px",alignItems:"center", fontSize:"12px"}}onClick={updateClickStatus}>
+           <button class={styles.jobdetailApplyBtn} style={{marginRight:"9px",display:"flex", gap:"5px",width:"65px",alignItems:"center", fontSize:"12px"}}onClick={updateClickStatus}>
            <i className="fa-solid fa-share" style={{ fontSize: "small", cursor: "pointer", marginLeft:"-8px" }}></i>
            <div style={{fontSize:"12px", fontWeight:"800px"}}>Share</div>
             </button>
-
-            {
+           {/* <button class={styles.jobdetailApplyBtn} onClick={()=>applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>
+           <div style={{fontSize:"12px", fontWeight:"800px"}}>Apply</div></button> */}
+             {
               jobs?.jobSeekerId?.find((jobseeker) => {
                 return (
                   jobseeker.jobSeekerId == jobSeekerId
@@ -529,7 +533,7 @@ const [PageLoader, setPageLoader] = useState(false)
  ) 
           }
            {shareClicked && (
-        <div ref={shareRef} class={styles.shareContainer}>
+        <div style={{zIndex:"999"}} ref={shareRef} class={styles.shareContainer}>
           <div style={{fontSize:"22px", fontWeight:"600", color:"white", textAlign:"center" }}>Share</div>
 
           <div class={styles.shareButtonsContainer}>
@@ -583,9 +587,16 @@ const [PageLoader, setPageLoader] = useState(false)
 <h1 style={{marginLeft:"80px",width:"75%",textAlign:"center", fontSize:"xx-large"}}>{jobs?.jobTitle?jobs.jobTitle.charAt(0).toUpperCase()+jobs.jobTitle.substring(1):"Loading...."}</h1>
 <div style={{marginLeft:"30px"}}>
   <span>Posted by : {jobs.companyName}</span> &nbsp;|  
-  &nbsp; <span> Drive Date : {new Date(jobs.driveDate).toLocaleDateString("en-IN")}</span> &nbsp; |
+  &nbsp; <span> Posted on : {new Date(jobs.createdAt).toLocaleString(
+                  "en-US",
+                  {
+                    month: "short",
+                    day: "2-digit",
+                    year: "numeric",
+                  }
+                )}</span> &nbsp; |
   &nbsp; <span>Experience : {jobs.experiance}Yrs</span> &nbsp;|  
-  &nbsp;<span>Venue: {jobs.venue ? jobs.venue.charAt(0).toUpperCase() + jobs.venue.substring(1) : ''} &nbsp;|</span>
+  &nbsp;<span>Location : {jobs.jobLocation ? jobs.jobLocation.charAt(0).toUpperCase() + jobs.jobLocation.substring(1) : ''} &nbsp;|</span>
   &nbsp; <span>Job Type : {jobs.jobtype}</span>&nbsp; |  
   &nbsp; <span>Qualification : {jobs.qualification}</span>&nbsp; |  
   &nbsp; <span>Salary :{jobs.salaryRange==="Not disclosed"||jobs.salaryRange==="" ? "Not Disclosed":jobs.salaryRange+"LPA" }</span> 
@@ -767,7 +778,7 @@ const [PageLoader, setPageLoader] = useState(false)
 {/* {jobs.Source ?
   <> <a className={`${styles.skills}`} href={jobs.SourceLink} target="_blank">{jobs.Source}</a><br></br> </>
   : */}
-  <> <span className={styles.skills}>ItWalkin</span><br></br></>
+  <> <span className={styles.skills}>ITwalkin</span><br></br></>
 {/* } */}
 
 <div className={styles.skillWrapper}>
@@ -778,44 +789,8 @@ const [PageLoader, setPageLoader] = useState(false)
             <div className={styles.ApplyPackage} style={{justifyContent:"space-between"}}>
             <p className={styles.salaryRange} style={{marginLeft:"16px"}} >{jobs.salaryRange==="Not disclosed" ||jobs.salaryRange===""  ? "Not Disclosed":<><span>&#8377;</span>{jobs.salaryRange} LPA</>}</p>        
 
+
             {
-              jobs?.jobSeekerId?.find((jobseeker) => {
-                return (
-                  jobseeker.jobSeekerId == jobSeekerId
-                )
-              })?
-              <button onClick={() => deregister(jobs._id)}  class={styles.jobdetailApplyBtn} style={{backgroundColor:"green", height:"32px"}}>
-           <div style={{fontSize:"12px", fontWeight:"800px"}}>Registered <span style={{ fontSize: '15px' }}>&#10004;</span>
-           <span className={styles.Loader}>
-      {Loader && jobs._id === clickedJobId ? (
-        <TailSpin color="white" height={16} width={16} />
-      ) : null}
-    </span>
-           </div>
-           </button>
-           :  
-           (
-            !EmployeeAuth&&
-               
-           <button style={{height:"32px"}} className={styles.jobdetailApplyBtn} onClick={() => applyforJob(jobs._id)}>
-  <div style={{
-    fontSize: "12px",
-    fontWeight: 600,          // corrected "800px" to 800
-    display: "flex",
-    alignItems: "center",
-    gap: "6px"                // spacing between text and spinner
-  }}>
-    Apply
-    <span className={styles.Loader}>
-      {Loader && jobs._id === clickedJobId ? (
-        <TailSpin color="white" height={16} width={16} />
-      ) : null}
-    </span>
-  </div>
-</button>
- ) 
-          }
-            {/* {
     jobSeekerId?
 (
             jobseekerid.find((jobseeker) => {
@@ -825,7 +800,10 @@ const [PageLoader, setPageLoader] = useState(false)
 }) ?
   <button className={styles.MobileAppliedButton}  > Applied <span style={{ fontSize: '13.8px', marginBottom:"3px", marginLeft:"2px" }}>&#10004;</span></button>
   
+  // job .isApproved?
+
     :
+  // <button className={styles.ApplyMobile} onClick={() => { applyforJob(jobs._id) }}>Apply
   <button className={styles.ApplyMobile} onClick={()=>applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>Apply
     <span className={styles.Loader} >{Loader && jobs._id == clickedJobId ?
       <TailSpin color="white" height={20} />
@@ -833,11 +811,14 @@ const [PageLoader, setPageLoader] = useState(false)
 )
       :
       empId?
+
+  // <div className={styles.ApplyPackage}>
+  //      <span className={styles.salaryRange} style={{ marginLeft: "10px" }}><span>&#8377;</span>{job.salaryRange}</span>
           <div className={Styles.MobileAcbuttons} style={{width:"auto", marginRight:"16px",marginLeft:"0px"}}>
           <button style={{marginTop:"-10px"}} onClick={() => { update(jobs._id) }} className={` ${Styles.MobileUpdate}`}>update</button>
           <button style={{marginTop:"-10px",marginLeft:"4%"}} onClick={() => { deletejob(jobs._id) }} className={` ${Styles.MobileDelete}`}>delete</button>
                </div>
-
+        // </div>
         :  jobs.SourceLink?
         <button  className={styles.ApplyMobile} onClick={() =>
           applyforJobasjobseeker(jobs._id,jobs.SourceLink)}>Apply</button>
@@ -846,7 +827,7 @@ const [PageLoader, setPageLoader] = useState(false)
    
       
 
-} */}
+}
                   </div>
             <p className={styles.jobDescriptionHeading} style={{marginTop:"12px"}}>Job Description:</p>
             <p className={styles.jobDescription} style={{marginTop:"2px"}}> 
@@ -872,4 +853,4 @@ const [PageLoader, setPageLoader] = useState(false)
   )
 }
 
-      export default DriveDetails
+export default DriveDetails
