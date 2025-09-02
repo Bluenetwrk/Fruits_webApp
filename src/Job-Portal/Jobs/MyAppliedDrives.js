@@ -518,7 +518,7 @@ console.log(records)
                           window.scrollTo({
                             top: 0
                           })
-                        navigate(`/DriveDetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, transferRecords},})
+                        navigate(`/DriveDetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, transferRecords},})
                         }} >{job.jobTitle.toUpperCase()} </p>
                         <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                           "en-US",
