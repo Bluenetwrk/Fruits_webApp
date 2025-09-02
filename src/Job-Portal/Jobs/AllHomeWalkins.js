@@ -1159,7 +1159,7 @@ let EmployeeAuth = localStorage.getItem("EmpLog")
                             window.scrollTo({
                               top: 0
                             })
-                            navigate(`/Drivedetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})
+                            navigate(`/Drivedetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
                           }} style={{width:"100%", whiteSpace:"normal"}}>{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
                            <p style={{marginTop:"-11px"}} className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
