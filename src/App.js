@@ -71,7 +71,7 @@ import DriveDetails from "./Job-Portal/Jobs/DriveDetails";
 import location from "./Job-Portal/img/icons8-location-20.png"
 import AllResumes from "./Job-Portal/Resumes/AllResumes";
 import PostFraudForm from "./Job-Portal/Jobs/PostFraudForm";
-import AppliedDrives from "./Job-Portal/Jobs/AppliedDrives";
+// import AppliedDrives from "./Job-Portal/Jobs/AppliedDrives";
 import MyPostedDrives from "./Job-Portal/Jobs/MyPostedDrives";
 import ScanDrive from "./Job-Portal/QRCode/ScanDrive";
 import QRScanner from "./Job-Portal/QRCode/QRScanner";
@@ -80,12 +80,15 @@ import AnsStdLogin from "./Job-Portal/Login/AnsStdLogin";
 import LiveTvDisplay from "./Job-Portal/QRCode/LiveTvDisplay";
 import JobseekerEnterCabin from "./Job-Portal/QRCode/JobseekerEnterCabin";
 import UpdatePostedDrive from "./Job-Portal/PostJobs/UpdatePostedDrive";
-import AppliedDriveDetails from "./Job-Portal/Jobs/AppliedDriveDetails";
+// import AppliedDriveDetails from "./Job-Portal/Jobs/AppliedDriveDetails";
 import PostedDriveDetails from "./Job-Portal/Jobs/PostedDriveDetails";
 import AppliedDriveUserProfile from "./Job-Portal/AppliedUserProfile/AppliedDriveUserProfile";
 import ResumeLogin from "./Job-Portal/Login/ResumeLogin";
 import ResumeForm from "./Job-Portal/Resumes/ResumeForm";
 import InterviewScreen from "./Job-Portal/QRCode/InterviewScreen";
+// import Test from "./Job-Portal/Jobs/Test";
+import MyAppliedDrives from "./Job-Portal/Jobs/MyAppliedDrives";
+import HomeWalkin from "./Job-Portal/Jobs/AllHomeWalkins";
 // import PostFraud from "./Job-Portal/Jobs/PostFraud";
 axios.defaults.baseURL = " https://itwalkin-backend-testrelease-2-0-1-0824-ns0g.onrender.com" // Render Test
 
@@ -1057,7 +1060,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               />
             } />
             <Route path="/Walkin-Drives" element={
-              <AllWalkinDrive 
+              <HomeWalkin
               sortedFilteredDriveJobs={sortedFilteredDriveJobs}
               showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
               ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
@@ -1079,6 +1082,31 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               searchIcon={searchIcon}
               />
             } />
+
+{/* <Route path="/test" element={
+              <Test
+              sortedFilteredDriveJobs={sortedFilteredDriveJobs}
+              showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
+              ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
+              searchClick={searchClick} setSearchClick={setSearchClick}
+              nopageFilter={nopageFilter} setNoPageFilter={setNoPageFilter} 
+              searchKey={searchKey} setsearchKey={setsearchKey}
+              Filtereredjobs={Filtereredjobs} setFiltereredjobs={setFiltereredjobs}
+              Result={Result} setResult={setResult}
+              Filterjobs={Filterjobs} setFilterjobs={setFilterjobs}
+              jobs={jobs} setJobs={setJobs}
+              count={count} setCount={setCount}
+              Active={Active} setActive={setActive}
+              jobTagsIds={jobTagsIds} setJobTagsIds={setJobTagsIds}
+              PageLoader={PageLoader} setPageLoader={setPageLoader}
+              totalCount={totalCount} settotalCount={settotalCount}
+              search={search}
+              getjobs={getjobs}
+              gettotalcount={gettotalcount}
+              searchIcon={searchIcon}
+              />
+            } /> */}
+
             <Route path="/Blogs" element={<Blogs 
             showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
             ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
@@ -1179,12 +1207,38 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
               Candidate={Candidate}
               setCandidate={setCandidate}
               />} />
+              <Route path="/alldrives" element={<AllWalkinDrive url={axios.defaults.baseURL} 
+               showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
+               ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
+               searchClick={searchClick} setSearchClick={setSearchClick}
+              nopageFilter={nopageFilter} setNoPageFilter={setNoPageFilter} 
+              searchKey={searchKey} setsearchKey={setsearchKey}
+              Filtereredjobs={Filtereredjobs} setFiltereredjobs={setFiltereredjobs}
+              Result={Result} setResult={setResult}
+              Filterjobs={Filterjobs} setFilterjobs={setFilterjobs}
+              jobs={jobs} setJobs={setJobs}
+              count={count} setCount={setCount}
+              Active={Active} setActive={setActive}
+              jobTagsIds={jobTagsIds} setJobTagsIds={setJobTagsIds}
+              PageLoader={PageLoader} setPageLoader={setPageLoader}
+              totalCount={totalCount} settotalCount={settotalCount}
+              searchs={searchs}
+              getjobs={getjobs}
+              gettotalcount={gettotalcount}
+              searchIcon={searchIcon}
+              FilCandidate={FilCandidate}
+              setFilCandidate={setFilCandidate}
+              getAllJobSeekers={getAllJobSeekers}
+              Candidate={Candidate}
+              setCandidate={setCandidate}
+              />} />
               <Route path="/AskQuestion" element={<AskQuestion  />} />
               {/* <Route path="/scan/drive/:driveId" element={<ScanDrive  />} /> */}
               <Route path="/Update-Profile" element={<StudentUpdateProfile url={axios.defaults.baseURL} />} />
               <Route path="/My-Profile" element={<StudentProfile />} />
               <Route path="/My-Applied-Jobs" element={<MyAppliedJobs url={axios.defaults.baseURL} />} />
-              <Route path="/My-Applied-Drives" element={<AppliedDrives url={axios.defaults.baseURL} />} />
+              <Route path="/My-Applied-Drives" element={<MyAppliedDrives url={axios.defaults.baseURL} />} />
+              {/* <Route path="/My-Applied-Drives" element={<AppliedDrives url={axios.defaults.baseURL} />} /> */}
               <Route path="/MyCareer-Applied-Jobs" element={<CareerAppliedJobs url={axios.defaults.baseURL} />} />
             </Route>
             <Route path="/AllCareerJobs" element={<AllCareerJobs 
@@ -1216,14 +1270,14 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             <Route path="/EmployeeLogin" element={<EmployeeLogin />} />
             <Route path="/JobDetails/:id" element={<Jobdetails />} />
             <Route path="/DriveDetails/:id" element={<DriveDetails />} />
-            <Route path="/AppliedDriveDetails/:id" element={<AppliedDriveDetails />} />
+            {/* <Route path="/AppliedDriveDetails/:id" element={<AppliedDriveDetails />} /> */}
             <Route path="/PostedDriveDetails/:id" element={<PostedDriveDetails />} />
             <Route path="/Blogdetails/:id" element={<Blogdetails />} />
             <Route path="/Answerdetails/:id" element={<Answerdetails />} />
             <Route path="/CareerJobdetails/:id" element={<CareerJobdetails />} />
             <Route path="/CheckEmpHalfProfile/:empId" element={<CheckEmpHalfProfile />} />
 
-            <Route path="/DriveDetails/:id" element={<DriveDetails />} />
+            {/* <Route path="/DriveDetails/:id" element={<DriveDetails />} /> */}
 
             <Route path="/Search-Candidate-Home" element={<SearchCandHome url={axios.defaults.baseURL}
             FilCandidate={FilCandidate} setFilCandidate={setFilCandidate}

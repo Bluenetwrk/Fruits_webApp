@@ -40,7 +40,7 @@ const responsive = {
 };
 
 
-function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
+function HomeWalkin({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjobs, setFiltereredjobs
   ,Result,setResult,Filterjobs, setFilterjobs,jobs, setJobs,count,setCount, Active,setActive,
   PageLoader,setPageLoader,totalCount,settotalCount,search,getjobs,gettotalcount,searchIcon
   ,searchClick,setSearchClick,ShowSideNave,setShowSideNave,showMobileSearchIcon,setShowMobileSearchIcon,selectedlocationOption
@@ -72,17 +72,17 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
 
   let adminLogin = localStorage.getItem("AdMLog")
 
-  useEffect(() => {
-    let EmployeeAuth = localStorage.getItem("EmpLog")
-    if (EmployeeAuth) {
-      navigate("/Search-Candidate")
-    }
-  }, [])
+//   useEffect(() => {
+//     let EmployeeAuth = localStorage.getItem("EmpLog")
+//     if (EmployeeAuth) {
+//       navigate("/Search-Candidate")
+//     }
+//   }, [])
 
   useEffect(() => {
     let studentAuth = localStorage.getItem("StudLog")
     if (studentAuth) {
-      navigate("/alljobs")
+      navigate("/alldrives")
     }
   }, [])
 
@@ -102,16 +102,15 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
 
   async function gettotalcount() {
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
-    await axios.get("/jobpost/getTotalCount", { headers })
+    await axios.get("/walkinRoute/getTotalCount")
       .then((res) => {
-        // console.log(res.data.result)
+        console.log("res.data.result",res.data.result)
         settotalCount(res.data.result)
       }).catch((err) => {
         alert("something went wrong")
       })
   }
 
-  
   async function getjobs() {
     setCount(1)
     setActive([])
@@ -121,8 +120,9 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
     setNoPageFilter(false)
     const headers = { authorization: 'BlueItImpulseWalkinIn' };
     // await axios.get("/jobpost/getHomejobs", { headers })
-    await axios.get(`/jobpost/getLimitJobs/${recordsPerPage}`, { params: { currentPage }, headers })
+    await axios.get(`/walkinRoute/getLimitWalkins/${recordsPerPage}`, { params: { currentPage }, headers })
       .then((res) => {
+        console.log("result",res)
         let result = (res.data)
         gettotalcount()
 
@@ -439,7 +439,7 @@ useEffect(() => {
   const uniqueList = [...new Set(ids)];
   async function getTagId() {
     settotalCount(uniqueList.length)
-    await axios.get(`/jobpost/jobTagsIds/${uniqueList}`, {
+    await axios.get(`/walkinRoute/walkinTagsIds/${uniqueList}`, {
       params: { currentPage, recordsPerPage }
     })
       .then((res) => {
@@ -499,7 +499,7 @@ useEffect(() => {
 
     setNoPageFilter(true)
     setFiltereredjobs(key)
-    await axios.get(`/jobpost/getTagsJobs/${Active}`)
+    await axios.get(`/walkinRoute/getTagsWalkins/${Active}`)
       .then((res) => {
         let result = (res.data)
         
@@ -517,7 +517,7 @@ useEffect(() => {
     setFiltereredjobs(jobLocation)
     setNoPageFilter(true)
 
-    await axios.get(`/jobpost/getjobLocation/${jobLocation}`)
+    await axios.get(`/walkinRoute/getjobLocation/${jobLocation}`)
       .then((res) => {
         let result = (res.data)
         let sortedate = result.sort(function (a, b) {
@@ -537,7 +537,7 @@ useEffect(() => {
   async function ArchiveCheckBoxArray() {
     let userid = atob(JSON.parse(localStorage.getItem("IdLog")))
     const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("AdMLog"))) };
-    await axios.delete(`/jobpost/ArchiveCheckBoxArray/${checkBoxValue}`, { headers })
+    await axios.delete(`/walkinRoute/ArchiveCheckBoxArray/${checkBoxValue}`, { headers })
       .then((res) => {
         if (res.data === "success") {
           getjobs()
@@ -551,7 +551,7 @@ useEffect(() => {
   async function deleteCheckedJobs() {
     let userid = atob(JSON.parse(localStorage.getItem("IdLog")))
     const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("AdMLog"))) };
-    await axios.delete(`/jobpost/deleteCheckBoxArray/${checkBoxValue}`, { headers })
+    await axios.delete(`/walkinRoute/deleteCheckBoxArray/${checkBoxValue}`, { headers })
       .then((res) => {
         if (res.data === "success") {
           getjobs()
@@ -610,10 +610,12 @@ useEffect(() => {
     selectedTag.current=tag
   }
 
-  useEffect(()=>{
-       console.log("location",selectedOption)
-  },[selectedlocationOption])
-
+//   useEffect(()=>{
+//        console.log("location",selectedOption)
+//   },[selectedlocationOption])
+  
+let StudentAuth = localStorage.getItem("StudLog")
+let EmployeeAuth = localStorage.getItem("EmpLog")
 
   return (
     <>
@@ -821,14 +823,14 @@ useEffect(() => {
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.JobType}`}>JobType</li>
 
               {/* <li className={`${styles.li} ${styles.HliDescription}`}><b>Job description</b></li> */}
-              <li style={{ backgroundColor: " rgb(40, 4, 99)", }} className={`${styles.li} ${styles.date}`}>Posted Date
+              <li style={{ backgroundColor: " rgb(40, 4, 99)", }} className={`${styles.li} ${styles.date}`}>Drive Date/Time
                 <p className={styles.arrowWrapper} >
                   <i onClick={sortbyNewjobs} className={`${styles.arrow} ${styles.up}`} ></i>
                   <i onClick={sortbyOldjobs} className={`${styles.arrow} ${styles.down}`}></i>
                 </p>
               </li>
               
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Location}`}>Location</li>
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Location}`}>Venue</li>
 
               <li style={{ backgroundColor: " rgb(40, 4, 99)", }} className={`${styles.li} ${styles.Package}`}>CTC
                 <p className={styles.arrowWrapper}>
@@ -849,7 +851,7 @@ useEffect(() => {
 
 
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Skills}`}>Skills Required</li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Apply}`}>Apply</li>
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Apply}`}>Register</li>
 
             </ul>
             {PageLoader ?
@@ -869,8 +871,13 @@ useEffect(() => {
                        
                        {/* <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}`)} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li> */}
                        
-                       <li className={`${styles.li} ${styles.Jtitle}`} onClick={() => navigate(`/Jobdetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})} style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items.jobTitle.charAt(0).toUpperCase()+items.jobTitle.substring(1)}</li>
-                        <li className={`${styles.li} ${styles.Source}`} >ITwalkin</li>
+                       {EmployeeAuth?
+                          <li className={`${styles.li} ${styles.Jtitle}`}>{items.jobTitle}</li>
+                          :       
+                        <li className={`${styles.li} ${styles.Jtitle}`}  style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}  onClick={() => navigate(`/Drivedetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})}>{items.jobTitle}</li>
+                        
+                      } 
+                      <li className={`${styles.li} ${styles.Source}`} >ITwalkin</li>
 
                         {
                           !items.Source ?
@@ -895,14 +902,15 @@ useEffect(() => {
 
                         
                         <li className={`${styles.li} ${styles.date}`}>
-                          {new Date(items.createdAt).toLocaleString(
+                        
+                          {new Date(items.driveDate).toLocaleString(
                             "en-US",
                             {
                               month: "short",
                               day: "2-digit",
                               year: "numeric",
                             }
-                          )}
+                          )}/{items.StartTime}
                         </li>
                         {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li> */}
                         <li className={`${styles.li} ${styles.Location}`}>{items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}</li>
@@ -917,10 +925,20 @@ useEffect(() => {
                         <li className={`${styles.li} ${styles.Apply}`}>
   {adminLogin ? (
     <input type="checkbox" onClick={() => checkBoxforDelete(items._id)} />
-  ) : (
+  ) :
+  (
+  EmployeeAuth ? (
+    <button className={styles.Applybutton}  onClick={() => navigate(`/Drivedetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})}>
+      <div style={{ display: "flex", width: "81px", alignItems: "center", justifyContent: "center", gap: "6px", paddingRight: "0px" }}>
+        View
+      </div>
+    </button>
+  ) :
+  
+  (
     <div  ref={alertRef} style={{position:"relative"}}>
       <button className={styles.Applybutton} onClick={() => handleApplyClick(items._id)}>
-        Apply
+        Register
       </button>
 
       {activeAlertId === items._id && (
@@ -995,6 +1013,7 @@ useEffect(() => {
         </div>
       )}
     </div>
+  )
   )}
 </li>
 
@@ -1140,7 +1159,7 @@ useEffect(() => {
                             window.scrollTo({
                               top: 0
                             })
-                            navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
+                            navigate(`/Drivedetails/${btoa(items._id)}?index=${i}`, {state: {selectedTag, },})
                           }} style={{width:"100%", whiteSpace:"normal"}}>{job.jobTitle.charAt(0).toUpperCase()+job.jobTitle.substring(1)} </p>
                            <p style={{marginTop:"-11px"}} className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
@@ -1150,7 +1169,8 @@ useEffect(() => {
                               year: "numeric",
                             }
                           )
-                          } </p> 
+                          } 
+                          </p> 
 
                         </div>
                          
@@ -1190,7 +1210,16 @@ useEffect(() => {
 
                         <> <span className={styles.skills}>ITwalkin</span><br></br></>
                         {/* } */}
-
+                        <div className={styles.skillWrapper}>
+                          <span className={styles.skillsHeading}>Drive Date/Time: </span><span className={styles.skills}>{new Date(job.driveDate).toLocaleString(
+                            "en-US",
+                            {
+                              month: "short",
+                              day: "2-digit",
+                              year: "numeric",
+                            }
+                          )}/{job.StartTime}</span><br></br>
+                        </div>
                         <div className={styles.skillWrapper}>
                           <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skills}</span><br></br>
                         </div>
@@ -1199,9 +1228,9 @@ useEffect(() => {
                           {
                           
                             // <button className={styles.homeApplyMobileBtn} onClick={() => { applyforJob(job._id) }}><b>Apply</b></button>
-                            <div  ref={alertRef} style={{position:"relative"}}>
-                            <button className={styles.homeApplyMobileBtn} onClick={() => handleApplyClick(job._id)}>
-                              Apply
+                            <div  ref={alertRef} style={{position:"relative",marginRight:"3%"}}>
+                            <button className={styles.walkinhomeapplybtn} onClick={() => handleApplyClick(job._id)}>
+                              Register
                             </button>
                       
                             {activeAlertId === job._id && (
@@ -1289,7 +1318,7 @@ useEffect(() => {
                             window.scrollTo({
                               top: 0
                             })
-                            navigate(`/Jobdetails/${btoa(job._id)}`)
+                            navigate(`/Drivedetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
                           }} className={styles.seeMore}>
                             ...read more
                           </span>
@@ -1351,4 +1380,4 @@ useEffect(() => {
   )
 }
 
-export default Home
+export default HomeWalkin

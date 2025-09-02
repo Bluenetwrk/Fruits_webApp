@@ -223,7 +223,7 @@ useEffect(()=>{
 
       {/* HR Cabin Area */}
       <div className={`${styles.panel} ${styles.cabinPanel}`}>
-        <h2 className={styles.title}>HR Cabins</h2>
+        <h2 className={styles.title}>HR Cabin</h2>
         <table className={styles.table}>
           <thead>
             <tr>

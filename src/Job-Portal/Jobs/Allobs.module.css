@@ -351,6 +351,24 @@
     padding: 7px;
 }
 
+.walkinhomeapplybtn{
+    border: 1px solid rgb(40, 4, 99);
+    background-color: rgb(40, 4, 99);
+    display: flex
+;
+    color: white;
+    font-weight: bold;
+    width: 70px;
+    height: 35px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    margin-top: 9px;
+    border-radius: 5px;
+    padding-left: 8px;
+    margin-right: 1%;
+    justify-content: center;
+}
 /* .jobdetailBackBtn:hover{
     background-color: white;
     color: rgb(40, 4, 99);
@@ -1182,7 +1200,7 @@ background: rgb(202, 202, 202);
     color: white;
     /* font-weight: bold; */
     width:70px;
-    padding-left: 15px;
+    padding-left: 11px;
     /* padding-right: 1px; */
     height: 25px;
     align-items: center;
@@ -1239,8 +1257,8 @@ background: rgb(202, 202, 202);
     background-color:green;    
     color: white;
     /* font-weight: bold; */
-    width:75px;
-    height: 25px;    
+    width: 80px;
+    height: 34px;   
     /* margin-left: -5%; */
     cursor:pointer;
 

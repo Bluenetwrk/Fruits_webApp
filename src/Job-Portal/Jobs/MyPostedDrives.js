@@ -463,7 +463,7 @@ const handleHRGenerateQR = (driveId) => {
                       {items.companyName}
                       </li>
 
-                    <li onClick={() => navigate(`/AppliedDriveDetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})} className={`${styles.li} ${styles.Jtitle}`} style={{ color: "blue", cursor:"pointer" }} >{items.jobTitle}</li>
+                    <li onClick={() => navigate(`/DriveDetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})} className={`${styles.li} ${styles.Jtitle}`} style={{ color: "blue", cursor:"pointer" }} >{items.jobTitle}</li>
                     {/* <li className={`${styles.li} ${styles.liDescription}`}> 
                     {items.jobDescription? HTMLReactParser(items.jobDescription.toString()) :""}
                       <span style={{ color: "blue", cursor:"pointer" }} onClick={() => { navigate(`/Jobdetails/${btoa(items._id)}`) }} >...see more</span>
@@ -646,7 +646,7 @@ allWalkindrive.map((job, i) => {
   window.scrollTo({
     top:0
   })
- navigate(`/AppliedDriveDetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})}}>{job.jobTitle} </p>                      
+ navigate(`/DriveDetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})}}>{job.jobTitle} </p>                      
         {/* <p className={styles.Date}>
         {new Date(job.driveDate).toLocaleDateString("en-IN")}/{job.time}
         </p>        */}
@@ -796,7 +796,7 @@ allWalkindrive.map((job, i) => {
                     .toString())                    
                     :""                
                     }
-                  <span style={{ color: "blue", cursor:"pointer" }} onClick={() => navigate(`/AppliedDriveDetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})} >...see more</span>
+                  <span style={{ color: "blue", cursor:"pointer" }} onClick={() => navigate(`/DriveDetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})} >...see more</span>
                    
           </p>
       </div>

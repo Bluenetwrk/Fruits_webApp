@@ -743,6 +743,7 @@ const [PageLoader, setPageLoader] = useState(false)
       <button className={styles.ApplyMobile} onClick={() => { navigate("/JobSeekerLogin") }}><b>Apply</b></button>
    
       
+      
 
 }
                   </div>
