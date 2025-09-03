@@ -273,6 +273,10 @@ console.log(records)
   const updateTag=(tag)=>{
     selectedTag.current=tag
   }
+
+  const handleStart = () => {
+    navigate("/scanner");
+  };
   return (
     <>
 
@@ -599,7 +603,10 @@ console.log(records)
 
                       <div className={styles.ApplyPackage}>
                         <h3 style={{ marginLeft: "10px", marginTop: "23px" }}><span>&#8377;</span>{job.salaryRange}L</h3>
-                        <button className={styles.MobileDelete} onClick={() => { UndoApply(job._id) }}>Delete</button>
+                        <div style={{display:"flex"}}>
+                        <button style={{width:"40%"}} className={styles.MobileDelete} onClick={() => { UndoApply(job._id) }}>Delete</button>
+                        <button className={styles.Mobileqr}  onClick={handleStart} >QR Scanner</button>
+                        </div>
                       </div>
                       <p className={styles.MobileResult}>Result:</p><span >
                         {

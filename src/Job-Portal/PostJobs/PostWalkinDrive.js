@@ -147,8 +147,8 @@ function PostWalkinDrive(props) {
                    setSelectedDate("");
                     setStartTime("")
                     setEndTime("")
-                    stime("")
-                    etime("")
+                    setstime("")
+                    setetime("")
                     setTag([])
                     setconcent(false)
                     setSuccessMessage("Successfully posted!")
