@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import styles from "./myPostedjobs.module.css"
 import { useEffect, useState } from 'react'
-import axios, { all } from "axios";
+import axios from "axios";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Puff } from 'react-loader-spinner'
@@ -11,22 +11,18 @@ import graduation from "../img/icons8-graduation-cap-40.png"
 import socketIO from 'socket.io-client';
 import Footer from '../Footer/Footer';
 import HTMLReactParser from 'html-react-parser'
-import { dummyDrives } from '../QRCode/dummyDrives';
 import QRCode from 'react-qr-code';
 import { toPng } from 'html-to-image';
-import AllWalkinDrive from './AllWalkinDrive';
-
-
 
 
 function MyPostedDrives(props) {
-  // useEffect( ()=>{    
-  //   const socket = socketIO.connect(props.url,{
-  //     auth:{
-  //       token: JSON.parse(localStorage.getItem("EmpIdG"))
-  //     }
-  //   });
-  // },[])
+  useEffect( ()=>{    
+    const socket = socketIO.connect(props.url,{
+      auth:{
+        token: JSON.parse(localStorage.getItem("EmpIdG"))
+      }
+    });
+  },[])
 
   // let location = useLocation()
   // let empName= location.state.gserid 
@@ -47,24 +43,19 @@ function MyPostedDrives(props) {
 
   let empId = JSON.parse(localStorage.getItem("EmpIdG"))
 
- const [allWalkindrive,setAllWalkinDrive] = useState([])
   async function getjobs() {
     let userid = JSON.parse(localStorage.getItem("EmpIdG"))
     const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("EmpLog"))) };
     setPageLoader(true)
     setTimeout(async () => {
       await axios.get(`/walkinRoute/getPostedwalkins/${empId}`, {headers})
-
         .then((res) => {
           let result = (res.data)
-          console.log(result)
-          
           let sortedate = result.sort(function (a, b) {
             return new Date(b.createdAt) - new Date(a.createdAt);
           });
-         
-   setAllWalkinDrive(sortedate)
-  // console.log(allWalkinDrive)
+          setMyjobs(sortedate)
+          setmyjobsforFilter(sortedate)
     setPageLoader(false)
           if (res.data.length == 0) {
             setNoJobFound("Loading....")
@@ -81,8 +72,8 @@ function MyPostedDrives(props) {
   }, [])
   // .................delete function............
   async function deletejob(deleteid) {
-    
-    const headers = { authorization: 'BlueItImpulseWalkinIn' };
+    let userid = JSON.parse(localStorage.getItem("EmpIdG"))
+    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
     Swal.fire({
       title: 'Are you sure?',
       // icon: 'warning',
@@ -99,7 +90,6 @@ function MyPostedDrives(props) {
       if (result.isConfirmed) {
         axios.delete(`/walkinRoute/deletewalkin/${deleteid}`, {headers})
           .then((res) => {
-            console.log(res)
             getjobs()
           })
           .catch((err) => { alert("server error occured") })
@@ -107,7 +97,8 @@ function MyPostedDrives(props) {
     })
   }
   function update(id) {
-    navigate("/Updatepostedjobs", { state: { getId: id } })
+    // navigate("/Updatepostedjobs", { state: { getId: id } })
+    navigate("/updatedposted-Drives", { state: { getId:id } })
   }
 
   // ........search ........................search...........................
@@ -152,7 +143,8 @@ function MyPostedDrives(props) {
   }
 
   function seeProfilejobSeekerId(id) {
-    window.open(`/Applied-DriveUser-Profile/${id}`, '_blank')
+    // window.open(`/Applied-User-Profile/${id}`, '_blank')
+        window.open(`/Applied-DriveUser-Profile/${id}`, '_blank')
   }
 
   // ..........Sorting.......
@@ -280,8 +272,6 @@ function handleRecordchange(e){
 }
 
 
-
-
 const [selectedDriveId, setSelectedDriveId] = useState(null);
 const [selectedHRDriveId, setSelectedHRDriveId] = useState(null);
 
@@ -343,10 +333,10 @@ const handleHRGenerateQR = (driveId) => {
   };
 
   const selectedTag=useRef("")
-    const updateTag=(tag)=>{
-      selectedTag.current=tag
-    }
-    
+      const updateTag=(tag)=>{
+        selectedTag.current=tag
+      }
+
   return (
     <>
  
@@ -377,9 +367,9 @@ const handleHRGenerateQR = (driveId) => {
 
         <div style={{display:"flex", justifyContent:"space-between"}}>
             {        nopageFilter?
-    <p style={{fontWeight:400, marginLeft:"10px"}}>Displaying <span style={{color:"blue"}}>{Filtereredjobs}</span> from All Drives</p>
+    <p style={{fontWeight:400, marginLeft:"10px"}}>Displaying <span style={{color:"blue"}}>{Filtereredjobs}</span> from All Jobs</p>
     :
-    <p style={{fontWeight:400, marginLeft:"10px"}}>Showing {firstIndex+1} to {lastIndex} latest drives</p>
+    <p style={{fontWeight:400, marginLeft:"10px"}}>Showing {firstIndex+1} to {lastIndex} latest jobs</p>
     }
 <div className={styles.navigationWrapper}>
   <button disabled={currentPage === 1} style={{display:"inline", margin:"5px"}} className={styles.navigation} onClick={firstPage}>
@@ -403,7 +393,7 @@ const handleHRGenerateQR = (driveId) => {
               <option selected = {lastIndex === 25} value={25}>25</option>
               <option selected = {lastIndex === 50} value={50}>50</option>
               <option selected = {lastIndex === 100} value={100}>100</option>
-            </select>  drives per page
+            </select>  jobs per page
             </div>
       
    <div className={styles.Uiwarpper}>
@@ -411,36 +401,33 @@ const handleHRGenerateQR = (driveId) => {
             <li className={styles.li}><b>Company Name</b></li>
             <li className={`${styles.li} ${styles.Jtitle}`}><b>Job Title</b></li>
             {/* <li className={`${styles.li} ${styles.liDescription}`}><b>Job description</b></li> */}
-            <li className={`${styles.li} ${styles.Pdate}`}><b>Drive Date/Drive Time</b>
-            {/* <p className={styles.arrowWrapper}>
+            <li className={`${styles.li} ${styles.Pdate}`}><b>Posted Date</b>
+            <p className={styles.arrowWrapper}>
                <i onClick={sortbyNewjobs} className={`${styles.arrow} ${styles.up}`} ></i>
                 <i onClick={sortbyOldjobs} className={`${styles.arrow} ${styles.down}`}></i>
-            </p> */}
+            </p>
             </li>
             <li className={`${styles.li} ${styles.Location}`}><b>Location</b></li>
-            <li className={`${styles.li} ${styles.Location}`}><b>Qualification</b></li>
-            <li className={`${styles.li} ${styles.Location}`}><b>Job Type</b></li>
-
 
             <li className={`${styles.li} ${styles.Package}`}><b>CTC </b>
-            {/* <p className={styles.arrowWrapper}>
+            <p className={styles.arrowWrapper}>
                   <i onClick={SdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={SascendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-            </p> */}
+            </p>
             </li>
 
             <li className={`${styles.li} ${styles.experiance}`}><b>Experience </b>
-            {/* <p className={styles.arrowWrapper}>
+            <p className={styles.arrowWrapper}>
                   <i onClick={EdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={EascendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
-            </p> */}
+            </p>
             </li>
             <li className={`${styles.li} ${styles.Skills}`}><b>Skills Required</b></li>
             <li className={`${styles.li} ${styles.Action}`}><b>Action</b></li>
             <li className={`${styles.li} ${styles.Action}`}><b>Reception Table</b></li>
             <li className={`${styles.li} ${styles.Action}`}><b>HR Table</b></li>
             <li className={`${styles.li} ${styles.Action}`}><b>Launch Live Display</b></li>
-            <li className={`${styles.li} ${styles.NuApplied}`}><b>No of JobSeekers Applied</b></li>
+            <li className={`${styles.li} ${styles.NuApplied}`}><b>No of JobSeeker Applied</b></li>
 
           </ul>
           {PageLoader ?
@@ -450,9 +437,9 @@ const handleHRGenerateQR = (driveId) => {
               </div>
             </>: <>
           {
-           allWalkindrive&& allWalkindrive?.length > 0 ?
+            records.length > 0 ?
 
-            allWalkindrive.map((items, i) => {
+            records.map((items, i) => {
                 return (
 
                   <ul className={styles.ul} key={i}>
@@ -463,38 +450,32 @@ const handleHRGenerateQR = (driveId) => {
                       {items.companyName}
                       </li>
 
-                    <li onClick={() => navigate(`/DriveDetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})} className={`${styles.li} ${styles.Jtitle}`} style={{ color: "blue", cursor:"pointer" }} >{items.jobTitle}</li>
+                    <li className={`${styles.li} ${styles.Jtitle}`} style={{ color: "blue", cursor:"pointer" }} onClick={() => navigate(`/DriveDetails/${btoa(items._id)}?index=${i}`, {state: {transferRecords, },})}>{items.jobTitle.toUpperCase()}</li>
                     {/* <li className={`${styles.li} ${styles.liDescription}`}> 
-                    {items.jobDescription? HTMLReactParser(items.jobDescription.toString()) :""}
+                    { items.jobDescription? HTMLReactParser(items.jobDescription.toString()) :""}
                       <span style={{ color: "blue", cursor:"pointer" }} onClick={() => { navigate(`/Jobdetails/${btoa(items._id)}`) }} >...see more</span>
                     </li> */}
                     <li className={`${styles.li} ${styles.Pdate}`}>
-                    {/* {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.time && `${((+items.time.split(":")[0] % 12) || 12)}:${items.time.split(":")[1]} ${+items.time.split(":")[0] >= 12 ? "PM" : "AM"}`} */}
-                    {new Date(items.driveDate).toLocaleDateString("en-IN")}/{items.StartTime}
-
-                    {/* <p>
-  {new Date(items.time).toLocaleDateString("en-IN")} /{" "}
-  {new Date(items.time).toLocaleTimeString("en-IN", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true, 
-  })}
-</p> */}
+                      {new Date(items.createdAt).toLocaleString(
+                        "en-US",
+                        {
+                          month: "short",
+                          day: "2-digit",
+                          year: "numeric",
+                        }
+                      )}
                     </li>
-                    {/* {console.log(items._id)} */}
-                    <li className={`${styles.li} ${styles.Location}`}>{items.venue}</li>
-                    <li className={`${styles.li} ${styles.Location}`}>{items.qualification}</li>
-                    <li className={`${styles.li} ${styles.Location}`}>{items.jobtype}</li>
-
-                    <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}</li>
-                    <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}</li>
-                    <li className={`${styles.li} ${styles.Skills}`} style={{wordBreak:"break-word"}}>{items.skills}</li>
+                    <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation.toUpperCase()}</li>
+                    <li style={{wordBreak:"break-word"}} className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="Not disclosed" ||items.salaryRange===""  ? "Not Disclosed":<><span>&#8377;</span>{items.salaryRange} LPA</>}</li>
+                    <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
+                    <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li>
                     <li className={`${styles.li} ${styles.Action}`}>
                       <div className={styles.Acbuttons}>
-                        <button onClick={()=>{navigate("/updatedposted-Drives", { state: { getId: items._id } })}} className={`${styles.Abutton} ${styles.update}`}>Update</button>
-                        <button onClick={()=>{deletejob(items._id)}} className={`${styles.Abutton} ${styles.delete}`}>Delete</button>
+                        <button onClick={() => { update(items._id) }} className={`${styles.Abutton} ${styles.update}`}>update</button>
+                        <button onClick={() => { deletejob(items._id) }} className={`${styles.Abutton} ${styles.delete}`}>delete</button>
                       </div>
                     </li>
+                  
                     <li style={{position:"relative"}} className={`${styles.li} ${styles.Action}`}>
                         <button onClick={() => { handleGenerateQR(items._id) }} className={`${styles.Abutton} ${styles.update}`}>Generate QR</button>                 
                         {selectedDriveId === items._id && (
@@ -516,10 +497,9 @@ const handleHRGenerateQR = (driveId) => {
     </button>
   </div>
 )}
-
-
                     </li>
-                     <li className={`${styles.li} ${styles.Action}`}>
+
+                    <li className={`${styles.li} ${styles.Action}`}>
       <button
         className={`${styles.Abutton} ${styles.update}`}
         onClick={() => { handleHRGenerateQR(items._id) }}
@@ -536,7 +516,6 @@ const handleHRGenerateQR = (driveId) => {
     >
       <QRCode style={{width:"100px", height:"100px"}} value={generateHRQRUrl(items._id)} size={160} />
     </div>
-
     <button
       onClick={() => handleDownloadQR(items._id)}
       style={{ marginTop: "0.5rem", display: "block" }}
@@ -547,22 +526,21 @@ const handleHRGenerateQR = (driveId) => {
   </div>
 )}
     </li>
-    
-                    <li style={{display:"flex", flexDirection:"column", gap:"4px"}} className={`${styles.li} ${styles.Action}`}>
+
+    <li style={{display:"flex", flexDirection:"column", gap:"4px"}} className={`${styles.li} ${styles.Action}`}>
                         <button  onClick={() => navigate(`/live-tv-display/${btoa(items._id)}`)}
                         className={`${styles.Abutton} ${styles.update}`}>Live Tv Display</button>
                         <button  onClick={() => navigate(`/interview-screen/${btoa(items._id)}`)}
                         className={`${styles.Abutton} ${styles.update}`}>HR Dashboard</button>
-                    </li>
-                    <li className={`${styles.li} ${styles.NuApplied}`}>
-                      {items.jobSeekerId?.length> 0 ?
-             
-                        <button className={`${styles.viewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(items._id)) }}>{items.jobSeekerId?.length}</button>
-                       
-                        :
-                        <button className={`${styles.viewButton}`} >{items.jobSeekerId?.length}</button>
+    </li>
 
-                      } 
+                    <li className={`${styles.li} ${styles.NuApplied}`}>
+                      {items.jobSeekerId.length > 0 ?
+                        <button className={`${styles.viewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(items._id)) }}>{items.jobSeekerId.length}</button>
+                        :
+                        <button className={`${styles.viewButton}`} >{items.jobSeekerId.length}</button>
+
+                      }
                     </li>
                   </ul>
                 )
@@ -581,7 +559,7 @@ const handleHRGenerateQR = (driveId) => {
               <option selected = {lastIndex === 25} value={25}>25</option>
               <option selected = {lastIndex === 50} value={50}>50</option>
               <option selected = {lastIndex === 100} value={100}>100</option>
-            </select>  drives per page
+            </select>  jobs per page
             </div>
 
           <div className={styles.navigationWrapper}>
@@ -607,36 +585,24 @@ const handleHRGenerateQR = (driveId) => {
       :
       <> 
 
-<p style={{marginLeft:"31%",fontWeight:"bold"}}>My Posted Walkin Drives</p>
+<p style={{marginLeft:"45%"}}>My Posted Walkin Drives</p>
 {/* <button className={styles.searchButton} onClick={() => {
           navigate("/Search-Candidate")
         }}>Search Candidate</button> */}
 
-<p style={{ marginLeft: "4%", color: "blue", fontWeight:"bold" }}> Total {allWalkindrive?.length} jobs</p>
-        {/* <div className={styles.searchBoth}>
-          <p className={styles.p}>Search </p>
-          <input className={styles.inputboxsearch} type="text" placeholder='search for a posted job' onChange={(e) => { search(e) }} />
+<p style={{ marginLeft: "4%", color: "blue", fontWeight:"bold" }}> Total {myjobs.length} jobs</p>
+        <div className={styles.searchBoth}>
+          {/* <p className={styles.p}>Search </p> */}
+          {/* <input className={styles.inputboxsearch} type="text" placeholder='search for a posted job' onChange={(e) => { search(e) }} /> */}
         </div>
         {Result ?
             <h4 style={{ marginLeft: "34%", marginTop: "0px"}}> {myjobs.length} matching Result Found  </h4>
             : ""
-          } */}
-
-       {PageLoader ?
-                  <>
-                    <div style={{display:"flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}}>
-                    <Puff height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" wrapperStyle={{ marginTop: "50px" }} />
-                     <div style={{display:"flex",justifyContent:"center", color:"red"}}>
-                       <h3>Loading...</h3>
-                     </div>
-                    </div> 
-                  </>:
-                                     
-     
+          }
       <div id={styles.JobCardWrapper} >
 
-{allWalkindrive?.length>0?
-allWalkindrive.map((job, i) => {
+{myjobs.length>0?
+myjobs.map((job, i) => {
   return (
     <>
  <div className={styles.JobCard} key={i}>
@@ -646,10 +612,16 @@ allWalkindrive.map((job, i) => {
   window.scrollTo({
     top:0
   })
- navigate(`/DriveDetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})}}>{job.jobTitle} </p>                      
-        {/* <p className={styles.Date}>
-        {new Date(job.driveDate).toLocaleDateString("en-IN")}/{job.time}
-        </p>        */}
+  navigate(`/DriveDetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})}}>{job.jobTitle.toUpperCase()} </p>                      
+        <p className={styles.Date}>{new Date(job.createdAt).toLocaleString(
+          "en-US",
+          {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          }
+        )
+        } </p>       
 
         </div>
         
@@ -657,132 +629,129 @@ allWalkindrive.map((job, i) => {
         <div className={styles.companyNameLocationWrapper}  >
           <img className={styles.logo} src={job.Logo} />
           <span className={styles.companyName} >{job.companyName} </span><br></br>
-        </div>
-        <div style={{display:"flex", alignItems:"center"}}> 
-          <img className={styles.jobLocationImage} src={location}  /> 
-          <div className={styles.jobLocation}>{job.venue}</div>
-        </div> 
-
-        <span style={{display:"flex", alignItems:"center", marginLeft:"5%", marginTop:"5px"}} >        
-         <img className={styles.graduationImage} src={graduation}  /> 
-          {job.qualification}, {job.experiance}Y Exp ,   {job.jobtype}
-        </span>
+          </div>
+          
+        <  img className={styles.jobLocationImage} src={location}  /> 
+        <span className={styles.jobLocation}>{job.jobLocation[0].toUpperCase()+job.jobLocation.slice(1)} ,</span>
+        <span className={styles.qualificationAndExperiance}>
         
-        <br></br>
-         
-         <div style={{marginTop:"-8px"}} className={styles.skillWrapper}>
-            <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skills}</span><br></br>
-         </div>
+        <  img className={styles.graduationImage} src={graduation}  /> 
 
-         <div style={{display:"flex", gap:"6px",marginLeft:"4%"}}>
+          {job.qualification}, {job.experiance}Y Exp ,   {job.jobtype}
+        {/* <span className={styles.jobtypeAndDate}> {job.jobtype}</span> */}
+        </span><br></br>
+        
+ 
+                                     
+                        <div className={styles.skillWrapper}>
+                          <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skills}</span><br></br>
+                        </div>
+                        <div style={{display:"flex", gap:"6px",marginLeft:"4%"}}>
             <span className={styles.skillsHeading}>Drive Date: </span><span className={styles.skills}>{new Date(job.driveDate).toLocaleDateString("en-IN")}</span>
             {/* <span className={styles.skillsHeading}>Drive Time: </span><span className={styles.skills}>{job.time && `${((+job.time.split(":")[0] % 12) || 12)}:${job.time.split(":")[1]} ${job.time.split(":")[0] >= 12 ? "PM" : "AM"}`}</span> */}
             <span className={styles.skillsHeading}>Drive Time: </span><span className={styles.skills}>{job.StartTime}</span>
 
          </div>
-
         <span className={styles.NoOfJobSeekersApplied}> No. of Job Seekers Applied:
-        {job.jobSeekerId?.length> 0 ?
-             
-             <button className={`${styles.MobileviewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(job._id)) }}>{job.jobSeekerId.length}</button>
-            
-             :
-             <button className={`${styles.MobileviewButton}`} >{job.jobSeekerId?.length}</button>
+        {job.jobSeekerId.length > 0 ?
+                          <button className={`${styles.MobileviewButton}`} onClick={() => { seeProfilejobSeekerId(btoa(job._id)) }}>{job.jobSeekerId.length}</button>
+                          :
+                          <button className={`${styles.MobileZeroViewButton}`} >{job.jobSeekerId.length}</button>
 
-           }
+                        }
         </span><br></br>
 
-          <div className={styles.ApplyPackage} style={{width:"93%"}}>
-          <span className={styles.salaryRange} style={{ marginLeft: "10px" }}><span>&#8377;</span>{job.salaryRange}L</span>
+
+        <div className={styles.ApplyPackage}style={{width:"95%"}}>
+          <span className={styles.salaryRange} style={{ marginLeft: "10px" }}>{job.salaryRange==="Not disclosed" ||job.salaryRange===""  ? "Not Disclosed":<><span>&#8377;</span>{job.salaryRange} LPA</>}</span>
           <div className={styles.MobileAcbuttons}>
-          <button onClick={()=>{navigate("/updatedposted-Drives", { state: { getId: job._id } })}}  className={` ${styles.MobileUpdate}`}>Update</button>
-          <button onClick={()=>{deletejob(job._id)}} className={` ${styles.MobileDelete}`}>Delete</button>
+          <button onClick={() => { update(job._id) }} className={` ${styles.MobileUpdate}`}>update</button>
+          <button onClick={() => { deletejob(job._id) }} className={` ${styles.MobileDelete}`}>delete</button>
                </div>
         </div>
 
 
-        {/* <div style={{display:"flex", justifyContent:"center", marginTop:"4px"}}> */}
-
         <div style={{marginLeft:"4%"}}>
 
-        <li style={{position:"relative"}} className={`${styles.li} ${styles.Action}`}>
-                        <button style={{width:"144px"}} onClick={() => { handleGenerateQR(job._id) }} className={`${styles.Abutton} ${styles.update}`}>Generate Reception Table QR</button>                 
-                        {selectedDriveId === job._id && (
-  <div style={{display:"flex", flexDirection:"column",alignItems:"center", marginLeft:"74px"}}>
+<li style={{position:"relative"}} className={`${styles.li} ${styles.Action}`}>
+                <button style={{width:"144px"}} onClick={() => { handleGenerateQR(job._id) }} className={`${styles.Abutton} ${styles.update}`}>Generate Reception Table QR</button>                 
+                {selectedDriveId === job._id && (
+<div style={{display:"flex", flexDirection:"column",alignItems:"center", marginLeft:"74px"}}>
 
-    <div
-      ref={(el) => (qrRefs.current[job._id] = el)}
-      style={{ background: "white", padding: "16px", display: "inline-block" ,width:"100px", height:"100px"}}
-    >
-      <QRCode style={{width:"100px", height:"100px"}} value={generateQRUrl(job._id)} size={160} />
-    </div>
+<div
+ref={(el) => (qrRefs.current[job._id] = el)}
+style={{ background: "white", padding: "16px", display: "inline-block" ,width:"100px", height:"100px"}}
+>
+<QRCode style={{width:"100px", height:"100px"}} value={generateQRUrl(job._id)} size={160} />
+</div>
 
-    <button
-      onClick={() => handleDownloadQR(job._id)}
-      style={{ marginTop: "0.5rem", display: "block", width:"103px" }}
-      className={`${styles.Abutton} ${styles.update}`}
-    >
-      Download QR
-    </button>
+<button
+onClick={() => handleDownloadQR(job._id)}
+style={{ marginTop: "0.5rem", display: "block", width:"103px" }}
+className={`${styles.Abutton} ${styles.update}`}
+>
+Download QR
+</button>
 
-    
-  </div>
+
+</div>
 )}
- </li>
+</li>
 
- 
+
 </div>
 
 {/* </div> */}
 
 <div style={{marginLeft:"4%"}}>
 <li className={`${styles.li} ${styles.Action}`}>
-      <button
-         style={{width:"144px"}}
-        className={`${styles.Abutton} ${styles.update}`}
-        onClick={() => { handleHRGenerateQR(job._id) }}
-      >
-        Generate HR Table QR
-      </button>
-      
+<button
+ style={{width:"144px"}}
+className={`${styles.Abutton} ${styles.update}`}
+onClick={() => { handleHRGenerateQR(job._id) }}
+>
+Generate HR Table QR
+</button>
+
 
 {selectedHRDriveId === job._id && (
-  <div style={{display:"flex", flexDirection:"column",alignItems:"center", marginLeft:"74px"}}>
+<div style={{display:"flex", flexDirection:"column",alignItems:"center", marginLeft:"74px"}}>
 
-    <div
-      ref={(el) => (qrRefs.current[job._id] = el)}
-      style={{ background: "white", padding: "16px", display: "inline-block" ,width:"100px", height:"100px"}}
-    >
-      <QRCode style={{width:"100px", height:"100px"}} value={generateHRQRUrl(job._id)} size={160} />
-    </div>
+<div
+ref={(el) => (qrRefs.current[job._id] = el)}
+style={{ background: "white", padding: "16px", display: "inline-block" ,width:"100px", height:"100px"}}
+>
+<QRCode style={{width:"100px", height:"100px"}} value={generateHRQRUrl(job._id)} size={160} />
+</div>
 
-    <button
-      onClick={() => handleDownloadQR(job._id)}
-      style={{ marginTop: "0.5rem", display: "block", width:"103px" }}
-      className={`${styles.Abutton} ${styles.update}`}
-    >
-      Download QR
-    </button>
-  </div>
+<button
+onClick={() => handleDownloadQR(job._id)}
+style={{ marginTop: "0.5rem", display: "block", width:"103px" }}
+className={`${styles.Abutton} ${styles.update}`}
+>
+Download QR
+</button>
+</div>
 )}
-    </li>
+</li>
 
 </div>
 
 
 <div style={{marginLeft:"4%"}}>
-    <li className={`${styles.li} ${styles.Action}`}>
-        <button style={{width:"145px"}} onClick={() => navigate(`/live-tv-display/${btoa(job._id)}`)} className={`${styles.Abutton} ${styles.update}`}>Live Tv Display</button>
-    </li>
+<li className={`${styles.li} ${styles.Action}`}>
+<button style={{width:"145px"}} onClick={() => navigate(`/live-tv-display/${btoa(job._id)}`)} className={`${styles.Abutton} ${styles.update}`}>Live Tv Display</button>
+</li>
 
 </div>
 
 <div style={{marginLeft:"4%"}}>
-    <li className={`${styles.li} ${styles.Action}`}>
-        <button style={{width:"145px"}} onClick={() => navigate(`/interview-screen/${btoa(job._id)}`)} className={`${styles.Abutton} ${styles.update}`}>HR Dashboard</button>
-    </li>
+<li className={`${styles.li} ${styles.Action}`}>
+<button style={{width:"145px"}} onClick={() => navigate(`/interview-screen/${btoa(job._id)}`)} className={`${styles.Abutton} ${styles.update}`}>HR Dashboard</button>
+</li>
 
 </div>
+
 
 
 
@@ -807,7 +776,6 @@ allWalkindrive.map((job, i) => {
 }
 
 </div>
-}
 <div style={{marginTop:"120px"}}>
           <Footer/>
         </div>

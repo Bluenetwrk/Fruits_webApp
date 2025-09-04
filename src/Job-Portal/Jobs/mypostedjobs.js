@@ -456,14 +456,14 @@ function handleRecordchange(e){
       <> 
 
 <p style={{marginLeft:"45%"}}>My Posted Jobs</p>
-<button className={styles.searchButton} onClick={() => {
+{/* <button className={styles.searchButton} onClick={() => {
           navigate("/Search-Candidate")
-        }}>Search Candidate</button>
+        }}>Search Candidate</button> */}
 
 <p style={{ marginLeft: "4%", color: "blue", fontWeight:"bold" }}> Total {myjobs.length} jobs</p>
         <div className={styles.searchBoth}>
-          <p className={styles.p}>Search </p>
-          <input className={styles.inputboxsearch} type="text" placeholder='search for a posted job' onChange={(e) => { search(e) }} />
+          {/* <p className={styles.p}>Search </p>
+          <input className={styles.inputboxsearch} type="text" placeholder='search for a posted job' onChange={(e) => { search(e) }} /> */}
         </div>
         {Result ?
             <h4 style={{ marginLeft: "34%", marginTop: "0px"}}> {myjobs.length} matching Result Found  </h4>
