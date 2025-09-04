@@ -485,7 +485,7 @@ const [EndTime, setEndTime] = useState("");
                                    </div>
     
 
-                                        <div style={{ marginTop: "-32px" }}>
+                                        <div style={{ marginTop: "-32px",zIndex:"999" }}>
                                             <label><input name="Location" type="radio" checked={jobLocation === "Bangalore"} value="Bangalore" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} />Bangalore </label>
                                       </div>
 
