@@ -340,6 +340,58 @@ const [EndTime, setEndTime] = useState("");
           setetime(e.target.value)
           setEndTime(`${hours}:${minutes} ${suffix}`);
         };
+
+
+
+        const qualifications = [
+          {
+            main: "BE / B.Tech",
+            subs: ["CSE","E&C","CS","IT","OTHERS"],
+          },
+          {
+            main: "ME / M.Tech",
+            subs: ["CSE","ECE","CE","AI&ML","OTHERS"],
+          },
+          {
+            main: "BCA/MCA",
+            subs: ["BCA/MCA"],
+          },
+          {
+            main: "OTHERS",
+            subs: ["OTHERS"],
+          },
+        ];
+        
+          const [menuOpen, setMenuOpen] = useState(false);
+          const [openIndex, setOpenIndex] = useState(null);
+          const containerRef = useRef(null);
+        
+          const toggleMain = (index) => {
+            setOpenIndex(openIndex === index ? null : index);
+          };
+        
+          const handleSelect = (value) => {
+            // setSelected(value);
+            setQualification(value)
+            setMenuOpen(false);
+            setOpenIndex(null);
+          };
+
+          useEffect(()=>{
+                   console.log("qualification",qualification)
+          },[qualification])
+        
+          // Handle outside click
+          useEffect(() => {
+            const handleClickOutside = (e) => {
+              if (containerRef.current && !containerRef.current.contains(e.target)) {
+                setMenuOpen(false);
+                setOpenIndex(null);
+              }
+            };
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => document.removeEventListener("mousedown", handleClickOutside);
+          }, []);
         
 
     return (
@@ -437,12 +489,86 @@ const [EndTime, setEndTime] = useState("");
                                             <label><input name="Location" type="radio" checked={jobLocation === "Bangalore"} value="Bangalore" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} />Bangalore </label>
                                       </div>
 
+                                      <div ref={containerRef} style={{ position: "relative",}} className={Style.inputName} >
+                                      <div><h4 className={Style.jobHeadline}>Qualification**</h4></div>
+                 {/* Clickable Select Box */}
+                  <div  onClick={() => setMenuOpen((prev) => !prev)} style={{cursor: "pointer", marginTop:"-10px", display:"flex", alignItems:"center"}} className={Style.inputName}>
+                     <div style={{padding:"4px",border:"2px solid #ccc",borderRadius:"5px"}}>
+                     {qualification? `${qualification}` : "Select your qualification"}
+                  </div>
+                 </div>
 
-                              <div>
+                {/* Menu Dropdown */}
+                 {menuOpen && (
+                    <div
+                      style={{
+                        marginTop: "10px",
+                        marginLeft:"7px",
+                        border: "1px solid #ddd",
+                        borderRadius: "6px",
+                        padding: "10px",
+                        background: "#fff",
+                        position: "absolute",
+                        width: "81%",
+                        zIndex: 10,
+                        maxHeight:"200px",
+                        overflowY: "auto",
+                      }}
+                    >
+                   {qualifications.map((item, index) => (
+                     <div key={index} style={{ marginBottom: "10px" }}>
+                       <button
+                         onClick={() => toggleMain(index)}
+                         style={{
+                           width: "100%",
+                           padding: "10px",
+                           textAlign: "left",
+                           background: "#f0f0f0",
+                           border: "none",
+                           borderRadius: "6px",
+                           cursor: "pointer",
+                           display: "flex",
+                           justifyContent: "space-between",
+                           fontSize: "16px",
+                         }}
+                       >
+                       <span>{item.main}</span>
+                           </button>
+
+                   {openIndex === index && (
+                     <div style={{ marginTop: "6px", marginLeft: "16px" }}>
+                       {item.subs.map((sub, i) => (
+                         <div
+                           key={i}
+                           onClick={() => handleSelect(`${item.main} - ${sub}`)}
+                           style={{
+                             padding: "8px 12px",
+                             cursor: "pointer",
+                             background: "#e9f3ff",
+                             borderRadius: "4px",
+                             marginBottom: "4px",
+                             fontSize: "15px",
+                           }}
+                           onMouseEnter={(e) => (e.target.style.background = "#cde6ff")}
+                           onMouseLeave={(e) => (e.target.style.background = "#e9f3ff")}
+                         >
+                           {sub}
+                         </div>
+                       ))}
+                     </div>
+                     )}
+                 </div>
+                ))}
+            </div>
+            )}
+          </div>
+
+
+
+                              {/* <div>
   <h4 className={Style.jobHeadline}>Qualification**</h4>
   <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
 
-    {/* B.E/B.TECH Group */}
     <div style={{ border: '1px solid black', borderRadius:"2px", padding: '10px', minWidth: '140px' }}>
       <strong>B.E/B.TECH</strong>
       <div>
@@ -454,7 +580,6 @@ const [EndTime, setEndTime] = useState("");
       </div>
     </div>
 
-    {/* M.E/M.TECH Group */}
     <div style={{ border: '1px solid black', padding: '10px', borderRadius:"2px", minWidth: '140px' }}>
       <strong>M.E/M.TECH</strong>
       <div>
@@ -466,7 +591,6 @@ const [EndTime, setEndTime] = useState("");
       </div>
     </div>
 
-    {/* BCA/MCA */}
     <div style={{ border: '1px solid black', padding: '10px',borderRadius:"2px", minWidth: '100px' }}>
       <label>
         <input type="radio" name="Qualification" value="BCA/MCA" checked={qualification === "BCA/MCA"} onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />
@@ -474,7 +598,6 @@ const [EndTime, setEndTime] = useState("");
       </label>
     </div>
 
-    {/* OTHERS */}
     <div style={{ border: '1px solid black', padding: '10px', borderRadius:"2px", minWidth: '100px' }}>
       <label>
         <input type="radio" name="Qualification" value="OTHERS" checked={others} onChange={(e) => { setOthers(true); setQualification(""); }} />
@@ -483,7 +606,7 @@ const [EndTime, setEndTime] = useState("");
     </div>
 
   </div>
-</div>
+</div> */}
 
                               
 

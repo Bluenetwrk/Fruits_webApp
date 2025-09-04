@@ -751,7 +751,7 @@ setLoader(true)
                 <span style={{ color: "blue" }}>{Active.toString()}</span></p>
     
               :
-              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Showing {firstIndex + 1} to {lastIndex} latest jobs</p>
+              <p style={{ fontWeight: 400, marginLeft: "10px" }}>Showing {firstIndex + 1} to {lastIndex} latest drives</p>
             }
             <div className={styles.navigationWrapper}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
@@ -779,7 +779,7 @@ setLoader(true)
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  drives per page
           </div>
 
           <div className={styles.Uiwarpper}>
@@ -1004,6 +1004,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
       )}
     </div>
                           }
+                          
                         </li>
                       </ul>
                     )
@@ -1072,7 +1073,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                               jobseeker.jobSeekerId == jobSeekerId
                             )
                           }) ?
-                          <button className={styles.Appliedbutton} title='HR will reach out to you after reviewing your profile' > Applied <span style={{ fontSize: '15px' }}>&#10004;</span></button>
+                          <button onClick={() => deregister(items._id)} className={styles.Appliedbutton} title='HR will reach out to you after reviewing your profile' > Registered<span style={{ fontSize: '15px' }}>&#10004;</span></button>
                           
                           :
                           items.SourceLink ?
@@ -1081,7 +1082,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                           }}>Apply</button>
                           :
                               
-                              <button className={styles.Applybutton} onClick={() => { applyforJob(items._id) }}>Apply
+                              <button className={styles.Applybutton} onClick={() => { applyforJob(items._id) }}>Register
                                 <span className={styles.Loader} >{Loader && items._id == clickedJobId ?
                                   <TailSpin color="white" height={20} />
                                   : ""}</span></button>
@@ -1105,7 +1106,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-              </select>  jobs per page 
+              </select>  drives per page 
             </div>
 
             <div className={styles.navigationWrapper}>
@@ -1189,7 +1190,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  drives per page
           </div>
           <div className={styles.navigationWrapper} style={{textAlign:"left"}}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
@@ -1302,7 +1303,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                               jobseeker.jobSeekerId == jobSeekerId
                             )
                           }) ?
-                            <button className={styles.MobileAppliedButton} > Applied <span style={{ fontSize: '13.8px', marginBottom: "3px", marginLeft: "2px" }}>&#10004;</span></button>
+                            <button onClick={() => deregister(job._id)} className={styles.MobileAppliedButton} > Registered <span style={{ fontSize: '13.8px', marginBottom: "3px", marginLeft: "2px" }}>&#10004;</span></button>
                             :
                             // job .isApproved?
                             job.SourceLink ?
@@ -1311,7 +1312,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                               // }}>Apply</button>
                               <div  ref={alertRef} style={{position:"relative"}}>
                               <button style={{marginRight: "13px"}} className={styles.ApplyMobileJobseeker} onClick={() => handleApplyClick(job._id)}>
-                                Apply
+                                Register
                               </button>
                         
                               {activeAlertId === job._id && (
@@ -1381,7 +1382,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                             // :      <button className={styles.ApplyMobile} onClick={()=>{alert("You can not Apply for the job, Your account is under Approval Process")}} > Apply </button>
 <div  ref={alertRef} style={{position:"relative"}}>
       <button style={{marginRight: "13px"}} className={styles.ApplyMobileJobseeker}  onClick={() => handleApplyClick(job._id)}>
-        Apply
+        Register
         <span className={styles.Loader} >{Loader && job._id == clickedJobId ?
                                     <TailSpin color="white" height={20} />
                                     : ""}</span>
@@ -1462,7 +1463,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  drives per page
           </div>
           <div className={styles.navigationWrapper} style={{textAlign:"left"}}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
