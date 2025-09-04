@@ -391,7 +391,6 @@ function AppliedDriveUserProfile() {
                         records?.map((Applieduser, i) => {
                             return (
                                 <ul className={styles.ul} key={i}>
-
                                     <li className={`${styles.li} ${styles.name} ${styles.onclick}`} onClick={() => { CheckProfile(btoa(Applieduser._id)) }} >
                                         {Applieduser.name ? <a className={styles.namelink} title="Click to check the Contact Details">
                                             {Applieduser.name}</a> : <li className={styles.Nli}>N/A</li>} </li>

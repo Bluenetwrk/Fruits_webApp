@@ -395,8 +395,22 @@ const ResumeForm = () => {
     cursor: 'pointer',
   };
 
-  const handleChange = (field, value) => setFormData({ ...formData, [field]: value });
-
+  // const handleChange = (field, value) => setFormData({ ...formData, [field]: value });
+  const handleChange = (field, value) => {
+    let charLimit = null;
+  
+    if (field === "profileSummary") charLimit = 200;   
+    if (field === "address") charLimit = 200;      
+    if (field === "name") charLimit = 50;    
+    if (field === "email") charLimit = 200;
+  
+    if (charLimit && value.length > charLimit) {
+      return; 
+    }
+  
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+  
   // ---------- EXPERIENCE ----------
   const handleExperienceChange = (index, key, value) => {
     const updated = [...formData.experiences];

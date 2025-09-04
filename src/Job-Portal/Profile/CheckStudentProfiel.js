@@ -30,7 +30,7 @@ let navigate = useNavigate()
         await axios.get(`/StudentProfile/viewProfile/${atob(params.CP)}`,{headers})
             .then((res) => {
                 let result = res.data.result
-        console.log(result)
+        console.log("result->",result)
                 setMessage(result.message)
                 setProfileData([result])
         setPageLoader(false)
@@ -167,10 +167,10 @@ profileData.map((item, i) => {
                 profileData.map((item, i) => {
                     return (
                         <ul className={styles.ulR} key={i}>
-                            {/* {console.log(item)} */}
+                            {console.log(item.city.value)}
                             <li className={`${styles.Hli}`}>{item.name?item.name:<li className={styles.Nli}>Not Updated</li>}</li>
                             <li className={`${styles.Hli}`}>{approved?item.email?item.email:<li className={styles.Nli}>Not Updated</li>:<li className={styles.Nli}>please wait for your account Approval</li>}</li>
-                            <li className={`${styles.Hli}`}>{item.city?item.city:<li className={styles.Nli}>Not Updated</li>}</li>
+                            <li className={`${styles.Hli}`}>{item.city?item.city.value:<li className={styles.Nli}>Not Updated</li>}</li>
                        <li className={` ${styles.Hli}`}>{approved?item.phoneNumber?item.phoneNumber:<li className={styles.Nli}>Not Updated</li> : <li className={styles.Nli}>please wait for your account Approval</li>}</li>
                        
                        <li className={` ${styles.Hli}`}>{item.Qualification?item.Qualification:<li className={styles.Nli}>Not Updated</li>}</li>
