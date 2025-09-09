@@ -287,7 +287,7 @@
 // export default ResumeForm;
 
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
 const ResumeForm = () => {
@@ -575,9 +575,46 @@ const ResumeForm = () => {
 
   };
 
+  const venueInputRef = useRef(null);
+useEffect(() => {
+      const interval = setInterval(() => {
+        if (
+          window.google &&
+  window.google.maps &&
+  window.google.maps.places &&
+  venueInputRef.current &&
+  !venueInputRef.current.autocomplete
+) {
+  const autocomplete = new window.google.maps.places.Autocomplete(venueInputRef.current, {
+    fields: ["formatted_address", "geometry", "address_components", "place_id", "name"],
+  });
+
+  autocomplete.addListener("place_changed", () => {
+    const place = autocomplete.getPlace();
+    if (place && place.formatted_address) {
+      const displayValue =
+        place.name && place.name !== place.formatted_address
+          ? `${place.name}, ${place.formatted_address}`
+          : place.formatted_address;
+          handleChange('address', place.formatted_address)
+    }
+  });
+
+  venueInputRef.current.autocomplete = autocomplete;
+  clearInterval(interval); // stop checking once loaded
+}
+}, 300); // check every 300ms
+
+return () => clearInterval(interval);
+}, []);
+
+
+
   return (
     <div style={containerStyle}>
-      <h1> Resume Builder Form</h1>
+      <div style={{display:"flex",justifyContent:"center"}}>
+            <div><h1>AI Resume Builder Form</h1></div>
+      </div>
        {successMessage!=""?
         <p>
           {successMessage==="Success!Resume Form successfully submitted"?
@@ -589,7 +626,17 @@ const ResumeForm = () => {
        }
       <input style={inputStyle} placeholder="Name" value={formData.name} onChange={(e) => handleChange('name', e.target.value)} />
       <textarea style={inputStyle} placeholder="Profile Summary" value={formData.profileSummary} onChange={(e) => handleChange('profileSummary', e.target.value)} />
-      <input style={inputStyle} placeholder="Full Address" value={formData.address} onChange={(e) => handleChange('address', e.target.value)} />
+      {/* <input style={inputStyle} placeholder="Full Address" value={formData.address} 
+      onChange={(e) => handleChange('address', e.target.value)} /> */}
+      <input
+                                            type="text"
+                                            ref={venueInputRef}
+                                            value={formData.address} 
+                                            onChange={(e) => handleChange('address', e.target.value)}
+                                            style={inputStyle}
+                                            // style={{ width: "200px", zIndex:"99"}}
+                                            placeholder="Search Address"
+                                          />
       <input style={inputStyle} placeholder="Email" value={formData.email} onChange={(e) => handleChange('email', e.target.value)} />
       <input style={inputStyle} placeholder="Total Experience" value={formData.totalExperience} onChange={(e) => handleChange('totalExperience', e.target.value)} />
 

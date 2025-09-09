@@ -134,7 +134,7 @@ function PostJobs(props) {
         let jobTitle = jobtitle 
         let jobLocation = joblocation.toLowerCase()
         await axios.post("/jobpost/jobpost/", {
-            Logo, SourceLink, Source, empId, jobTitle, companyName,
+            Logo, SourceLink, Source, empId, jobTitle, companyName,companyHomeLink,
             jobDescription, jobtype, salaryRange, jobLocation, qualification, experiance, skills, Tags
         }, { headers })
             .then((res) => {
@@ -143,6 +143,8 @@ function PostJobs(props) {
                 if (result == "success") {
                     setJobTitle("")
                     setJobDescription("")
+                    setSourceLink("")
+                    setCompanyHomeLink("")
                     // setCompanyName("")
                     setJobtype("")
                     setSource("")
@@ -155,8 +157,21 @@ function PostJobs(props) {
                     setSkills("")
                     setTag([])
                     setconcent(false)
-                    setSuccessMessage("job Successfully posted!")
+                    setSuccessMessage(
+                        <span
+                          style={{
+                            color: "green",
+                            fontWeight: "700",   
+                            fontStyle: "normal", 
+                            fontFamily: "Courier New, Courier, monospace" 
+                          }}
+                        >
+                          Job Successfully Posted!
+                        </span>
+                      );
+                      
                 }
+                
                 else if (result == "field are missing") {
                     setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experience, JobLocation and Skills must be filled")
                 }

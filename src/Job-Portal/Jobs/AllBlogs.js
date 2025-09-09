@@ -1212,7 +1212,7 @@ await axios.delete(`/BlogRoutes/deleteCheckBoxArray/${checkBoxValue}`, {headers}
                 })
                 : 
                 <div style={{display:"flex", justifyContent:"center"}}>
-                <p style={{ color: "red" }}>Loading......</p>
+                <p style={{ color: "green" }}>Loading......</p>
                 </div>
 
             }

@@ -716,7 +716,7 @@ const helpData = [
             </label>
 
             <label className={styles.inputName}>
-              <h4>Primary User Email Id:</h4>
+              <h4>Primary User Email Id:**</h4>
               <input className={styles.input} value={email}  onChange={(e) => { handlesetemail(e) }} type="text" />
              <br></br> <span style={{color:"red", marginLeft:"5%"}}>{emailError}</span>           
             </label>
@@ -871,7 +871,7 @@ const helpData = [
             </label>
 
             <label className={styles.MobileinputName}>
-              <h4 className={styles.MobileName}>Primary User Email Id:</h4>
+              <h4 className={styles.MobileName}>Primary User Email Id:**</h4>
               <input className={styles.Mobileinput} value={email}  onChange={(e) => { setemail(e.target.value) }} type="text" />
             </label>
             

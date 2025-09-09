@@ -122,7 +122,16 @@ function UpdateCareerPostedJobs() {
             // setQualification("")
             // setExperiance("")
             // setSkills("")
-            setSuccessMessage("Success!  successfully updated")
+            <span
+                        style={{
+                          color: "green",
+                          fontWeight: "800",   
+                          fontStyle: "normal", 
+                          fontFamily: "Courier New, Courier, monospace" 
+                        }}
+                      >
+                        Successfully Updated
+                      </span>
         }
         
     }).catch((err)=>{
