@@ -1676,6 +1676,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
     >
       Previous Employers
     </h2>
+    <div style={{display:"flex"}}>
     {employers.length < 3 && (
       <button
         onClick={addEmployer}
@@ -1695,6 +1696,14 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
         +
       </button>
     )}
+    <div className={styles.tooltipWrapper}>
+            <span className={styles.tooltipIcon}>i</span>
+            <span className={styles.tooltipText}>
+              You can fill this field later.
+              <br /> It's not required during registration
+            </span>
+          </div>
+          </div>
   </div>
 
   {employers.map((employer, index) => (

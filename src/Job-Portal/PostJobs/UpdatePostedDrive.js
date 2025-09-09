@@ -182,7 +182,19 @@ function UpdatePostedDrive(props) {
                     setetime(convertTo24Hour(result.EndTime));
                 }
                 else if (result == "field are missing") {
-                    setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")
+                  setSuccessMessage(
+                    <span
+                      style={{
+                        color: "green",
+                        fontWeight: "800",   
+                        fontStyle: "normal", 
+                        fontFamily: "Courier New, Courier, monospace" 
+                      }}
+                    >
+                      Alert!... Job Title, Company Name, Job Description, Experience, Job Location and Skills must be filled
+                      </span>
+                  );
+                  
                 }
                 // else if (result ==="server issue")
                 else
@@ -678,12 +690,17 @@ const [EndTime, setEndTime] = useState("");
                               
                                 <div className={Style.dirvesubContainer} >
                                     <h4 className={Style.heading}>Salary Per Annum in Lakhs** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
+                                    <div style={{position:"relative"}}>
                                     <input className={Style.driveinput} style={{width:"210px"}} maxLength="3" type="number" value={salaryRange} onChange={(e) => { handleSalary(e); }} />
+                                    <span className={Style.suffixExpMob}>{salaryRange===""?"":"LPA"}</span>
+                                   </div>         
                                 </div>
                                 <div className={Style.dirvesubContainer}>
                                     <h4 className={Style.heading} >Experience Needed** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
+                                    <div style={{position:"relative"}}>
                                     <input className={Style.driveinput}style={{width:"210px"}} maxLength="3" type="number" value={experiance} onChange={(e) => { handleExperiance(e); }} />
-
+                                    <span className={Style.suffixExpMob}>{experiance===""?"":"YRS"}</span>
+                                    </div>
                                 </div>
                               
                               

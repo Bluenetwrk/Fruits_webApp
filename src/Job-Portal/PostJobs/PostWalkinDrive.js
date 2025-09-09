@@ -37,7 +37,7 @@ function PostWalkinDrive(props) {
     const [jobDescription, setJobDescription] = useState("")
     const [jobtype, setJobtype] = useState("")
     const [salaryRange, setSalaryRange] = useState("")
-    const [jobLocation, setJobLocation] = useState("")
+    const [jobLocation, setJobLocation] = useState("Bangalore")
     const [qualification, setQualification] = useState("")
     const [experiance, setExperiance] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
@@ -151,7 +151,19 @@ function PostWalkinDrive(props) {
                     setetime("")
                     setTag([])
                     setconcent(false)
-                    setSuccessMessage("Successfully posted!")
+                    setSuccessMessage(
+                      <span
+                        style={{
+                          color: "green",
+                          fontWeight: "800",   
+                          fontStyle: "normal", 
+                          fontFamily: "Courier New, Courier, monospace" 
+                        }}
+                      >
+                        Successfully Posted 
+                      </span>
+                    );
+                    
                 }
                 else if (result == "field are missing") {
                     setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")
@@ -470,8 +482,8 @@ const [EndTime, setEndTime] = useState("");
                                     </div>    
                               </div>
 
-                                    <div style={{position:"relative", display:"flex", alignItems:"center"}}>
-                                    <div> <h4 className={Style.jobHeadline}>Job Location**</h4></div>
+                                    <div style={{position:"relative", display:"flex", alignItems:"center",height:"23px"}}>
+                                    <div style={{height:"23px"}}> <h4 style={{marginTop:"4px"}} className={Style.jobHeadline}>Job Location**</h4></div>
                                      <div style={{position:"relative", }} ref={tooltipRef} className={Style.driveAlerti} onClick={toggleTooltip}>
                                       <div>i</div>
                                        {showTooltip && (
@@ -485,7 +497,7 @@ const [EndTime, setEndTime] = useState("");
                                    </div>
     
 
-                                        <div style={{ marginTop: "-32px",zIndex:"999" }}>
+                                        <div style={{ marginTop: "-21px" }}>
                                             <label><input name="Location" type="radio" checked={jobLocation === "Bangalore"} value="Bangalore" onChange={(e) => { setJobLocation(e.target.value); setotherJobLocation(false) }} />Bangalore </label>
                                       </div>
 
@@ -613,12 +625,17 @@ const [EndTime, setEndTime] = useState("");
                               {/* <div className={Style.driveThirdRow}> */}
                                 <div className={Style.dirvesubContainer} >
                                     <h4 className={Style.heading}>Salary Per Annum in Lakhs &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
+                                    <div style={{position:"relative"}}>
                                     <input className={Style.driveinput} style={{width:"210px"}} maxLength="3" type="number" value={salaryRange} onChange={(e) => { handleSalary(e); }} />
+                                    <span className={Style.suffixExpMob}>{salaryRange===""?"":"LPA"}</span>
+                                    </div>
                                 </div>
                                 <div className={Style.dirvesubContainer}>
                                     <h4 className={Style.heading} >Experience** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
+                                    <div style={{position:"relative"}}>
                                     <input className={Style.driveinput}style={{width:"210px"}} maxLength="3" type="number" value={experiance} onChange={(e) => { handleExperiance(e); }} />
-                                    <span className={Style.suffixExpMob}>{experiance===""?"":"LPA"}</span>
+                                    <span className={Style.suffixExpMob}>{experiance===""?"":"YRS"}</span>
+                                    </div>
                                 </div>
                               {/* </div> */}
                               

@@ -1236,7 +1236,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                             window.scrollTo({
                               top: 0
                             })
-                            navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
+                             navigate(`/Drivedetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
                           }}style={{ width:"100%",whiteSpace:"normal"}} >{job?.jobTitle?.charAt(0).toUpperCase()+job.jobTitle.substring(1)}</p>
                           <p style={{marginTop:"-5px"}} className={styles.Date}>{new Date(job.createdAt).toLocaleString(
                             "en-US",
@@ -1439,7 +1439,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
                             window.scrollTo({
                               top: 0
                             })
-                            navigate(`/Jobdetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
+                            navigate(`/Drivedetails/${btoa(job._id)}?index=${i}`, {state: {selectedTag, },})
                           }} className={styles.seeMore}>
                             ...read more
                           </span>

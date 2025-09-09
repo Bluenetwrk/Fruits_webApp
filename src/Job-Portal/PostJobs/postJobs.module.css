@@ -512,6 +512,11 @@
 
 }
 
+.suffixExpMob{
+  left: 26px;
+  position: absolute;
+  top: 6px;
+}
 .disableButton{
     border-radius:8px;
     background-color: rgb(83, 77, 94);

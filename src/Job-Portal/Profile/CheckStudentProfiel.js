@@ -31,7 +31,7 @@ let navigate = useNavigate()
             .then((res) => {
                 let result = res.data.result
         console.log("result->",result)
-                setMessage(result.message)
+                // setMessage(result.message)
                 setProfileData([result])
         setPageLoader(false)
 
@@ -88,11 +88,20 @@ useEffect(() => {
   
 
   async function sendMessage() {
+    if(message==""){
+      setCommentmessage("Empty feedback cannot be submitted")
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+          return
+    }
     const id=profileData[0]._id
     await axios.put(`/StudentProfile/sendMessage/${id}`, { message })
       .then((res) => {
         if (res.data) {         
             setCommentmessage("feedback has been submitted Successfully")
+            setMessage("")
         }
       })
       .catch((err) => {
@@ -114,9 +123,9 @@ useEffect(() => {
     <div style={{marginLeft:"4%"}}>
     {commentmessage&&
     <>
-        {commentmessage==="some thing went wrong"?
-            <p style={{color:"red"}}>{commentmessage}</p>    :
-            <p style={{color:"green"}}>{commentmessage}</p>                          
+        {commentmessage==="feedback has been submitted Successfully"?
+            <p style={{color:"green"}}>{commentmessage}</p>    :
+            <p style={{color:"red"}}>{commentmessage}</p>                          
         }
       </>
 

@@ -1099,7 +1099,7 @@ let EmployeeAuth = localStorage.getItem("EmpLog")
               })
             }
           </div>
-
+          <p style={{ fontWeight: 400, marginLeft: "10px" }}>Showing {firstIndex + 1} to {lastIndex} latest drives</p>
           <div class={styles.homeMobileNextPrevBtn} style={{ diplay:"flex",flexDirection:"column",marginTop:"15px"}}>
           <div style={{ marginBottom: "5px", marginTop: "0", marginLeft: "10px" }}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
@@ -1114,7 +1114,7 @@ let EmployeeAuth = localStorage.getItem("EmpLog")
               <option selected={jobsPerPageValue==100} value={100}>100</option>
             </select>  drives per page
           </div>
-          
+
           <div className={styles.navigationWrapper} style={{textAlign:"left",marginLeft:"6px"}}>
               <button disabled={currentPage === 1} style={{ display: "inline", marginLeft: "5px" }} className={styles.navigation} onClick={firstPage}>
                 <i class='fas fa-step-backward' ></i>
@@ -1202,7 +1202,7 @@ let EmployeeAuth = localStorage.getItem("EmpLog")
 
                           <  img className={styles.graduationImage} src={graduation} />
 
-                          {job.qualification}, {job.experiance}Y Exp ,   {job.jobtype}
+                          {job.qualification}, {job.experiance}Yrs Exp ,   {job.jobtype}
                           {/* <span className={styles.jobtypeAndDate}> {job.jobtype}</span> */}
                         </span><br></br>
 

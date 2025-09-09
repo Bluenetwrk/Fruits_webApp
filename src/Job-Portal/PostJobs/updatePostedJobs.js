@@ -139,7 +139,22 @@ function UpdatePostedJobs() {
             // setQualification("")
             // setExperiance("")
             // setSkills("")
-            setSuccessMessage("Job Listing Updated Successfully")
+            setSuccessMessage(
+              <span
+                style={{
+                  color: "green",
+                  fontWeight: "800",   
+                  fontStyle: "normal", 
+                  fontFamily: "Courier New, Courier, monospace" 
+                }}
+              >
+                Job Listing Updated Successfully
+              </span>
+            );
+            
+            
+            
+
         }
         
     }).catch((err)=>{
