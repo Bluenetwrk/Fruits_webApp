@@ -273,7 +273,7 @@ console.log(records)
   return (
     <>
 
-<p className={styles.h2} style={{ textAlign: "center",fontSize:"26px" }}><b>My applied Jobs</b></p>
+<p className={styles.h2} style={{ textAlign: "center",fontSize:"26px" }}><b>My Applied Jobs</b></p>
 {MyAppliedjob.length>0&&
 <p className={styles.h3}><b>You’ve successfully submitted applications for {MyAppliedjob.length} positions.Stay tuned for updates.  </b></p>
 }
@@ -448,8 +448,8 @@ console.log(records)
 </li>
                       <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() +
                         items.jobLocation.slice(1)}</li>
-                      <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}L</li>
-                      <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
+                      <li className={`${styles.li} ${styles.Package}`}>{items.salaryRange}LPA</li>
+                      <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Yrs</li>
                       <li className={`${styles.li} ${styles.Qualif}`}>{items.qualification} </li>
 
                       <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li>
@@ -542,7 +542,7 @@ console.log(records)
 
                         <  img className={styles.graduationImage} src={graduation} />
 
-                        {job.qualification}, {job.experiance}Y Exp ,   {job.jobtype}
+                        {job.qualification}, {job.experiance}Yrs Exp ,   {job.jobtype}
                         {/* <span className={styles.jobtypeAndDate}> {job.jobtype}</span> */}
                       </span><br></br>
 

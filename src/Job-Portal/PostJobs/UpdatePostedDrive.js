@@ -231,9 +231,20 @@ function UpdatePostedDrive(props) {
                 console.log(result)
                 if(result=="success"){
 
-                    setSuccessMessage("Successfully Updated")
-
-                }
+                  setSuccessMessage(
+                    <span
+                      style={{
+                        color: "green",
+                        fontWeight: "800",   
+                        fontStyle: "normal", 
+                        fontFamily: "Courier New, Courier, monospace" 
+                      }}
+                    >
+                      Successfully Updated
+                    </span>
+                    
+                  );
+            }
                 else if (result == "field are missing") {
                     setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")
                 }

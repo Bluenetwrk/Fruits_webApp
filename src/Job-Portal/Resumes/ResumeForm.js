@@ -289,6 +289,8 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import styles from "./ResumeForm.module.css";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ResumeForm = () => {
   const initialState = {
@@ -304,7 +306,7 @@ const ResumeForm = () => {
     skills: [{ heading: '', items: [''] }],
     languages: [''],
   };
-
+  const navigate  = useNavigate();
   const [formData, setFormData] = useState(initialState);
   const [profileData, setProfileData] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
@@ -611,6 +613,20 @@ return () => clearInterval(interval);
 
 
   return (
+    <div className={styles.container}>
+    {/* Left Section */}
+    <button
+  className={styles.tvbackbtn}
+  onClick={() => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate("/");
+    }
+  }}
+>
+  <div style={{ fontSize: "12px", fontWeight: "800" }}>Back</div>
+</button>
     <div style={containerStyle}>
       <div style={{display:"flex",justifyContent:"center"}}>
             <div><h1>AI Resume Builder Form</h1></div>
@@ -706,6 +722,7 @@ return () => clearInterval(interval);
       <div style={{ display: "flex", justifyContent: "center" }}>
         <button style={{ ...buttonStyle, marginTop: '20px',width:'156px' }} type="submit" onClick={handleSubmit}>Submit</button>
       </div>
+    </div>
     </div>
   );
 };

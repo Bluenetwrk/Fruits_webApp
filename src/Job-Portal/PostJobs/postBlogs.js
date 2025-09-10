@@ -174,6 +174,7 @@ function PostBlogs(props) {
                         >
                           Successfully Posted
                         </span>
+                        
                       );
                 }
                 else if (result == "field are missing") {

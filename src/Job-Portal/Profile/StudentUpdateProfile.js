@@ -242,7 +242,17 @@ function StudentUpdateProfile(props) {
         let result = res.data
         if (result == "success") {
 
-          settopMessage("Success! Profile updated successfully")
+          settopMessage(
+            <span style={{
+              color: "green",
+                            fontWeight: "800",   
+                            fontStyle: "normal", 
+                            fontFamily: "Courier New, Courier, monospace" 
+            }}>
+             Profile updated successfully
+            </span>
+          );
+          
         } else if (result == "feilds are missing") {
           settopMessage("Alert!..name, emailAddress, NoticePeriod, phoneNumber, Qualification, Skills and Experiance should not be empty")
         }

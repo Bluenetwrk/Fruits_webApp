@@ -140,6 +140,7 @@ profileData.length>0?<button className={styles.updateProfile} onClick={updateEmp
                                                  {item.isApproved?   <li className={` ${styles.Hli}`} style={{color:"blue"}}>Congrats! Your account has been Approved, You can start posting Jobs</li>: <li className={` ${styles.Hli} ${styles.Nli}`} style={{fontStyle:"italic"}}>"Your account is in under Verfication process"</li>}                        
                                                  {item.AboutCompany?   <li className={` ${styles.Hli}`} style={{textAlign:"top"}}>{item.AboutCompany.replace(/<[^>]+>/g, '')}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated  Organisation Type yet</li>}                       
                  
+                 
 
 {item.message?<p style={{width:"450%",  marginLeft:"-70%"}}><b> Message :</b><span style={{color:"red"}}> {item.message}! </span></p>:""}
                         

@@ -186,7 +186,7 @@ useEffect(()=>{
   >
     <div style={{ fontSize: "12px", fontWeight: "800" }}>Back</div>
   </button>
-</div>
+</div> 
 
 
         <h2 className={styles.title}>Waiting Area</h2>

@@ -91,7 +91,19 @@ function PostHelp(props) {
                 if (result == "success") {
                     setHelpTitle("")
                     setHelpDescription("")  
-                    setSuccessMessage("Success! job successfully posted")
+                    setSuccessMessage(
+                        <span
+                          style={{
+                            color: "green",
+                            fontWeight: "800",   
+                            fontStyle: "normal", 
+                            fontFamily: "Courier New, Courier, monospace" 
+                          }}
+                        >
+                          Successfully Posted
+                        </span>
+                        
+                      );
                 }
                 else if (result == "field are missing") {
                     setSuccessMessage("Alert!... HelpTitle, HelpDescription, must be filled")

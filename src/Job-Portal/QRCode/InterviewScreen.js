@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styles from "./InterviewScreen.module.css";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 
 const InterviewScreen = () => {
+   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState(null);
   const [comments, setComments] = useState("");
@@ -206,8 +208,22 @@ const InterviewScreen = () => {
 
 
   return (
+    
+    
     <div className={styles.container}>
       {/* Left Section */}
+      <button
+    className={styles.tvbackbtn}
+    onClick={() => {
+      if (window.history.length > 1) {
+        navigate(-1);
+      } else {
+        navigate("/");
+      }
+    }}
+  >
+    <div style={{ fontSize: "12px", fontWeight: "800" }}>Back</div>
+  </button>
       
       <div className={styles.leftBox}>
       {interviewStatusmessage&&<>
