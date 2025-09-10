@@ -173,7 +173,17 @@ function PostJobs(props) {
                 }
                 
                 else if (result == "field are missing") {
-                    setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experience, JobLocation and Skills must be filled")
+                    setSuccessMessage(
+                        <span style={{
+                          color: "red",
+                          fontWeight: "bold",
+                          fontStyle: "normal",  // ensures no italic
+                          fontFamily: "Arial, sans-serif"
+                        }}>
+                          Alert!... JobTitle, CompanyName, JobDescription, Experience, JobLocation and Skills must be filled
+                        </span>
+                      );
+                      
                 }
                 // else if (result ==="server issue")
                 else
@@ -294,7 +304,16 @@ const [showTooltip, setShowTooltip] = useState(false);
                             <div key={i}>
 
                                 {Logo ? <img className={Style.logo} src={Logo} /> :
-                                    <p style={{ color: "green", marginLeft: "5%", fontStyle: "italic" }}>  Your Company logo is missing,Kindly upload it to complete your profile.</p>}
+                                    // <p style={{ color: "red", marginLeft: "5%",}}>  Your Company logo is missing,Kindly upload it to complete your profile.</p>}
+                                    <p style={{
+  color: "red",
+  marginLeft: "5%",
+  fontWeight: "bold",
+  fontStyle: "normal", // ensures no italics
+  fontFamily: "Arial, sans-serif"
+}}>
+  Your Company logo is missing. Kindly upload it to complete your profile.
+</p>}
                                 {/* <h3 style={{ color: "blue", marginLeft: "15%" }}>Welcome to Post job Page, Post a Job and get Connected with Job Seekers</h3> */}
 
                                 <div className={Style.postJobPageWrapper} >

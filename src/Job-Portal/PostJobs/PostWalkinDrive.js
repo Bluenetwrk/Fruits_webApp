@@ -115,7 +115,17 @@ function PostWalkinDrive(props) {
 
     async function postJob() {
         if(jobtype===""|| qualification==="") {
-          setSuccessMessage("Please complete all required fields: Job Title, Company Name, Description, Experience, Location, Qualification, Job Type, and Skills.")
+          setSuccessMessage(
+            <span style={{
+              color: "red",
+              fontWeight: "bold",
+              fontStyle: "normal",  // ensures no italic
+              fontFamily: "Arial, sans-serif"
+            }}>
+              Please complete all required fields: Job Title, Company Name, Description, Experience, Location, Qualification, Job Type, and Skills.
+            </span>
+          );
+          
           return
         }
         let userid = JSON.parse(localStorage.getItem("EmpIdG"))
@@ -255,7 +265,7 @@ const [StartTime, setStartTime] = useState("");
 const [EndTime, setEndTime] = useState("");
 
   const venueInputRef = useRef(null);
-  const[venue, setVenue]=useState("Banglore");
+  const[venue, setVenue]=useState("");
     // useEffect(() => {
     //   if (venueInputRef.current && !venueInputRef.current.autocomplete) {
     //     const autocomplete = new window.google.maps.places.Autocomplete(venueInputRef.current, {

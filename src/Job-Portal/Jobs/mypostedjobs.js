@@ -396,7 +396,7 @@ function handleRecordchange(e){
                     </li>
                     <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation.toUpperCase()}</li>
                     <li style={{wordBreak:"break-word"}} className={`${styles.li} ${styles.Package}`}>{items.salaryRange==="Not disclosed" ||items.salaryRange===""  ? "Not Disclosed":<><span>&#8377;</span>{items.salaryRange} LPA</>}</li>
-                    <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Y</li>
+                    <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Yrs</li>
                     <li className={`${styles.li} ${styles.Skills}`}>{items.skills}</li>
                     <li className={`${styles.li} ${styles.Action}`}>
                       <div className={styles.Acbuttons}>
@@ -507,7 +507,7 @@ myjobs.map((job, i) => {
         
         <  img className={styles.graduationImage} src={graduation}  /> 
 
-          {job.qualification}, {job.experiance}Y Exp ,   {job.jobtype}
+          {job.qualification}, {job.experiance}Yrs Exp ,   {job.jobtype}
         {/* <span className={styles.jobtypeAndDate}> {job.jobtype}</span> */}
         </span><br></br>
         

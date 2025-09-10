@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from "./Allobs.module.css";
+import axios from 'axios';
 
 const PostFraudForm = () => {
   const [misuseType, setMisuseType] = useState('');
@@ -12,34 +13,50 @@ const PostFraudForm = () => {
     setEvidence(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+      const [successMessage, setSuccessMessage] = useState("")
+  
+  async function handleSubmit(e) {
+    e.preventDefault(); 
     if (!description || !misuseType) {
-      alert('Please fill in all required fields.');
+      setSuccessMessage("Alert!... Misuse Type and Misuse Description must be filled")
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
       return;
     }
 
-    const formData = new FormData();
-    formData.append('misuseType', misuseType);
-    formData.append('description', description);
-    if (evidence) formData.append('evidence', evidence);
-    if (email) formData.append('email', email);
-
-    // Simulate form submission
-    console.log('Submitted Data:', Object.fromEntries(formData.entries()));
-
-    // Clear form fields
-    setMisuseType('');
-    setDescription('');
-    setEvidence(null);
-    setEmail('');
-
-    // Show success message
-    setShowSuccessMessage(true);
-
-    // Optionally hide message after a few seconds
-    setTimeout(() => setShowSuccessMessage(false), 3000);
-  };
+    let userid = JSON.parse(localStorage.getItem("EmpIdG"))
+    const headers = { authorization: userid + " " + atob(JSON.parse(localStorage.getItem("EmpLog"))) };
+    const issues=description     
+    await axios.post("/QuestionRoute/postQuestion", {
+        misuseType, issues
+    }, { headers })
+        .then((res) => {
+            let result = (res.data)
+            console.log(result)
+            if (result == "success") {
+                setMisuseType('');
+                setDescription('');
+                // setEvidence(null);
+                // setEmail('');           
+                setSuccessMessage("Success! fraud report successfully posted")
+            }
+            else if (result == "field are missing") {
+                setSuccessMessage("Alert!... Misuse Type and Misuse Description must be filled")
+            }
+            else
+                {
+                setSuccessMessage("something went wrong, Could not save your Jobs post")
+            }
+        }).catch((err) => {
+            alert("server issue occured", err)
+        })
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
 
   const handleCancel = () => {
     setMisuseType('');
@@ -53,11 +70,15 @@ const PostFraudForm = () => {
     <div className={styles.container}>
       <h2 className={styles.title}> Report Misuse of ITWalkin</h2>
       
-      {showSuccessMessage && (
+      {/* {showSuccessMessage && (
         <div className={styles.successMessage}>
           ✅ Successfully submitted!
         </div>
-      )}
+      )} */}
+      {successMessage=="Success! fraud report successfully posted"?
+           <p style={{color:"green"}}>{successMessage}</p>:
+           <p style={{color:"red"}}>{successMessage}</p>
+      }
 
       <form onSubmit={handleSubmit} className={styles.form}>
         <label className={styles.label}>
@@ -65,7 +86,7 @@ const PostFraudForm = () => {
           <select
             value={misuseType}
             onChange={(e) => setMisuseType(e.target.value)}
-            required
+            // required
             className={styles.select}
           >
             <option value="">-- Select --</option>
@@ -82,7 +103,7 @@ const PostFraudForm = () => {
             placeholder="Provide details of the misuse..."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            required
+            // required
             className={styles.textarea}
           />
         </label>
@@ -92,7 +113,7 @@ const PostFraudForm = () => {
           <input type="file" onChange={handleFileChange} />
         </label> */}
 
-        <label className={styles.label}>
+        {/* <label className={styles.label}>
            Your Contact Email (Optional)
           <input
             type="email"
@@ -101,7 +122,7 @@ const PostFraudForm = () => {
             placeholder="example@email.com"
             className={styles.input}
           />
-        </label>
+        </label> */}
 
         <div className={styles.buttonContainer}>
           <button type="submit" className={styles.submitButton}>✅ Submit Report</button>

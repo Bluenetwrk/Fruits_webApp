@@ -73,6 +73,7 @@ const [immage, setimmage] = useState()
     await axios.get(`/EmpProfile/getProfile/${empId}`, {headers})
       .then((res) => {
         let result = res.data.result
+        console.log(result)
         if (result) {
           setname(result.name)
           setemail(result.email)
@@ -90,6 +91,12 @@ const [immage, setimmage] = useState()
           setTypeofOrganisation(result.TypeofOrganisation)
           setCompanyEmail(result.CompanyEmail)
           setAboutCompany(result.AboutCompany)
+          setCompanyCIN(result.CompanyCIN)
+          setPrimeryuserDesignation(result.PrimeryuserDesignation)
+          setSecondaryusername(result.Secondaryusername)
+          setsecondaryuserDesignation(result.secondaryuserDesignation)
+          setSecondaryuseremailid(result.Secondaryuseremailid)
+          setSecondaryusercontactnumber(result.Secondaryusercontactnumber)
         }
       }).catch((err) => {
         alert("server issue occured", err)
@@ -108,17 +115,24 @@ const [immage, setimmage] = useState()
     let userid = JSON.parse(localStorage.getItem("EmpIdG"))
     const headers = { authorization: userid +" "+ atob(JSON.parse(localStorage.getItem("EmpLog"))) };
     // e.preventDefault()
-    // console.log("before saving", empId,
-    //   name, email, phoneNumber, Aadhar, panCard,CompanyName,CompanyContact, CompanyGSTIN, CompanyWebsite, CompanyAddress,
-    //   CompanyEmail, TypeofOrganisation 
-    // )
+    // console.log("before saving", TypeofOrganisation
+    // ) 
     await axios.put(`/EmpProfile/updatProfile/${empId}`, { PrimeryuserDesignation, secondaryuserDesignation, Secondaryusername,
       Secondaryuseremailid, Secondaryusercontactnumber, CompanyCIN, AboutCompany, name, email, phoneNumber, Aadhar, panCard, 
       CompanyName, CompanyContact, CompanyGSTIN, CompanyWebsite, CompanyAddress, CompanyEmail, TypeofOrganisation}, {headers})
       .then(async (res) => {
         let result = res.data
         if (result == "success") {
-          settopMessage("Success! Profile updated successfully")
+          settopMessage(
+            <span style={{
+              color: "green",
+                            fontWeight: "800",   
+                            fontStyle: "normal", 
+                            fontFamily: "Courier New, Courier, monospace" 
+            }}>
+             Profile updated successfully
+            </span>
+          );
         } else if (result == "feilds are missing") {
           settopMessage("Alert!..name, emailAddress, NoticePeriod, phoneNumber, Qualification, Skills and Experiance should not be empty")
         }
@@ -492,7 +506,7 @@ const [immage, setimmage] = useState()
               <h4>Type of Organisation:</h4>
               {/* <input className={styles.input} value={TypeofOrganisation} onChange={(e) => { setTypeofOrganisation(e.target.value) }} type="text" /> */}
            
-            <select className={styles.input } style={{height:"35px"}}onChange={(e)=>{setTypeofOrganisation(e.target.value)}}>
+            <select className={styles.input }  value={TypeofOrganisation} style={{height:"35px"}}onChange={(e)=>{setTypeofOrganisation(e.target.value)}}>
             {/* {TypeofOrganisation? <option style={{color:"blue"}} >{TypeofOrganisation}</option>
             :<option value="" >Select Company type</option>
             } */}
@@ -741,7 +755,7 @@ const [immage, setimmage] = useState()
            
             <div className={styles.MobileinputName}>
               <h4 className={styles.MobileName}>Type of Organisation :</h4>          
-            <select className={styles.Mobileinput } style={{height:"35px"}}onChange={(e)=>{setTypeofOrganisation(e.target.value)}}>
+            <select className={styles.Mobileinput }  value={TypeofOrganisation} style={{height:"35px"}}onChange={(e)=>{setTypeofOrganisation(e.target.value)}}>
             {/* {TypeofOrganisation? <option style={{color:"blue"}} >{TypeofOrganisation}</option>
             :<option value="" >Select Company type</option>
             } */}
