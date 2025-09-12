@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./InterviewScreen.module.css";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { setIn } from "immutable";
 
 
 const InterviewScreen = () => {
@@ -81,6 +82,7 @@ const InterviewScreen = () => {
           console.log("latest-",latestRecord)
           // if (latestRecord.createdDateTime && !isNaN(new Date(latestRecord.createdDateTime).getTime())) {
             setJobseeker(latestRecord);
+            return latestRecord
           //   setNoData(false)
           // } else {
           //   setNoData(true);
@@ -98,20 +100,49 @@ const InterviewScreen = () => {
   }
   
  
-  useEffect(()=>{
-      getJobseekerId()
-  },[])
-
+  const handleStartInterview = async () => {
+    setNoData(false);
+    const latestJobseeker = await getJobseekerId();
+    console.log("jst",latestJobseeker)
+    if (
+      !latestJobseeker ||
+      !latestJobseeker.createdDateTime ||
+      isNaN(new Date(latestJobseeker.createdDateTime).getTime())
+    ) {
+      console.log("1");
+      setNoData(true);
+      setLoading(false);
+      setinterviewStatusmessage("")
+      setInterviewEnded(false)
+      return;
+    }
+    
+    await getProfile(latestJobseeker);
   
-    async function getProfile() {
-      if( !(jobseeker.createdDateTime && !isNaN(new Date(jobseeker.createdDateTime).getTime()))) {
-             setNoData(true);
-             return
+    setLoading(false);
+  };
+  
+  
+    async function getProfile(latestJobseeker) {
+     
+      if (!latestJobseeker) {
+        console.log("js",latestJobseeker)
+        setNoData(true);
+        setInterviewstarted(false);
+        return;
       }
+    
+
+      if (!(latestJobseeker.createdDateTime && !isNaN(new Date(latestJobseeker.createdDateTime).getTime()))) {
+        setNoData(true);
+        setInterviewstarted(false);
+        return;
+      }
+    
       setInterviewstarted(true);
   setInterviewEnded(false);
   setinterviewStatusmessage("")
-      const studId=jobseeker?.jobSeekerId;
+      const studId=latestJobseeker?.jobSeekerId;
       if (!studId) {
         setNoData(true); 
         setInterviewstarted(false)  // 👈 no studId = no data
@@ -302,7 +333,7 @@ const InterviewScreen = () => {
       <div className={styles.rightBox}>
         <button
           className={styles.scanBtn}
-          onClick={getProfile}
+          onClick={handleStartInterview}
           disabled={interviewstated}
         >
           {profile ? "Scan Resume (disabled)" : "Scan Progress"}

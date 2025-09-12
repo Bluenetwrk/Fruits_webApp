@@ -151,19 +151,9 @@ let question =true
                     setExperiance("")
                     setSkills("")
                     setTag([])
-                    setSuccessMessage(
-                        <span
-                          style={{
-                            color: "green",
-                            fontWeight: "800",   
-                            fontStyle: "normal", 
-                            fontFamily: "Courier New, Courier, monospace" 
-                          }}
-                        >
-                          Successfully Posted
-                        </span>
-                        
-                      );
+                    
+                  setSuccessMessage("Successfully Updated")
+                  
                 }
                 else if (result == "field are missing") {
                     setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")

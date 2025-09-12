@@ -518,7 +518,7 @@ const [immage, setimmage] = useState()
             </div>  
 
             <label className={styles.inputName}>
-              <h4>Company Email Id:</h4>
+              <h4>Company Email Id:**</h4>
               <input maxLength="35" className={styles.input} value={CompanyEmail} onChange={(e) => { handleCompanyEmail(e) }} type="text" /><br></br>
               <span style={{color:"red", marginLeft:"5%"}}>{emailError2}</span>
             </label>
@@ -578,7 +578,7 @@ const [immage, setimmage] = useState()
             </label>
 
             <label className={styles.inputName}>
-              <h4> Primary User Email Id:</h4>
+              <h4> Primary User Email Id:**</h4>
               <input maxLength="35" className={styles.input} value={email}  onChange={(e) => { handlesetemail(e) }} type="text" />
               <div style={{color:"red", marginLeft:"5%"}}>{emailError}</div>
             </label>
