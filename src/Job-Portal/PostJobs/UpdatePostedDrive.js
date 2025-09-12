@@ -231,19 +231,8 @@ function UpdatePostedDrive(props) {
                 console.log(result)
                 if(result=="success"){
 
-                  setSuccessMessage(
-                    <span
-                      style={{
-                        color: "green",
-                        fontWeight: "800",   
-                        fontStyle: "normal", 
-                        fontFamily: "Courier New, Courier, monospace" 
-                      }}
-                    >
-                      Successfully Updated
-                    </span>
-                    
-                  );
+                  setSuccessMessage("Successfully Updated")
+                  
             }
                 else if (result == "field are missing") {
                     setSuccessMessage("Alert!... JobTitle, CompanyName JobDescription, Experiance, JobLocation and Skills must be filled")
@@ -627,7 +616,13 @@ const [EndTime, setEndTime] = useState("");
                        {item.subs.map((sub, i) => (
                          <div
                            key={i}
-                           onClick={() => handleSelect(`${item.main} - ${sub}`)}
+                           onClick={() => {
+                            if (item.main === sub) {
+                              handleSelect(item.main);
+                            } else {
+                              handleSelect(`${item.main} - ${sub}`);
+                            }
+                          }}
                            style={{
                              padding: "8px 12px",
                              cursor: "pointer",

@@ -399,9 +399,9 @@ const [EndTime, setEndTime] = useState("");
             setOpenIndex(null);
           };
 
-          useEffect(()=>{
-                   console.log("qualification",qualification)
-          },[qualification])
+          // useEffect(()=>{
+          //          console.log("qualification",qualification)
+          // },[qualification])
         
           // Handle outside click
           useEffect(() => {
@@ -562,7 +562,13 @@ const [EndTime, setEndTime] = useState("");
                        {item.subs.map((sub, i) => (
                          <div
                            key={i}
-                           onClick={() => handleSelect(`${item.main} - ${sub}`)}
+                           onClick={() => {
+                            if (item.main === sub) {
+                              handleSelect(item.main);
+                            } else {
+                              handleSelect(`${item.main} - ${sub}`);
+                            }
+                          }}
                            style={{
                              padding: "8px 12px",
                              cursor: "pointer",
@@ -652,7 +658,7 @@ const [EndTime, setEndTime] = useState("");
                             <div className={Style.driveFourthRow}>
                                 <div className={Style.dirvesubContainer}>
                                 <h4 className={Style.heading}>Skills**</h4>
-                                        <input className={Style.driveinput} style={{width:"210px"}}   maxLength="100" value={skills} type="text" onChange={(e)=>{setSkills(e.target.value)}} disabled />
+                                        <input className={Style.driveinput} style={{width:"300px"}}   maxLength="100" value={skills} type="text" onChange={(e)=>{setSkills(e.target.value)}} disabled />
 
                                 </div>
                                 {/* <div className={Style.dirvesubContainer}>
@@ -670,7 +676,7 @@ const [EndTime, setEndTime] = useState("");
                                             value={venue}
                                             onChange={(e) => setVenue(e.target.value)}
                                             className={Style.driveinput}
-                                            style={{ width: "200px", zIndex:"99"}}
+                                            style={{ width: "300px", zIndex:"99"}}
                                             placeholder="Search Venue"
                                           />
                              </div> 

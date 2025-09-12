@@ -426,7 +426,7 @@ border:"none",padding: "4px 8px"}} onClick={DeleteProfile}>Delete</button>
               </label>
 
               <label className={styles.inputName}>
-                <h4>Email Address:</h4>
+                <h4>Email Address:**</h4>
                 <input maxLength="25" className={styles.input} value={email} disabled onChange={(e) => { setemail(e.target.value) }} type="text" />
               </label>
               <label className={styles.inputName}>

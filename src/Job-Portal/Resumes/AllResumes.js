@@ -48,7 +48,7 @@ function AllResumes() {
     <div>
       {selectedTemplate===null?<h1 style={{ textAlign: 'center', marginTop: '20px' }}>Choose Your Resume Template</h1>
        :
-       <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Your Resume Template</h1>}
+       <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Your resume preview</h1>}
       {!selectedTemplate && (
         <TemplateGallery onSelect={setSelectedTemplate} />
       )}

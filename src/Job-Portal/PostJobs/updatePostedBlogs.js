@@ -122,16 +122,7 @@ function UpdatePostedBlogs() {
             // setQualification("")
             // setExperiance("")
             // setSkills("")
-            <span
-            style={{
-              color: "green",
-              fontWeight: "800",   
-              fontStyle: "normal", 
-              fontFamily: "Courier New, Courier, monospace" 
-            }}
-          >
-            Successfully Updated
-          </span>
+            setSuccessMessage("Successfully Updated")
         }
         
     }).catch((err)=>{

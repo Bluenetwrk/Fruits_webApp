@@ -551,12 +551,12 @@
         }
         .successmessage{
             color: rgb(85, 156, 85);
-            font-style: italic;
+            /* font-style: italic; */
             margin-left: 68px;
             }
         .errormessage{
             color : red;
-            font-style: italic;
+            /* font-style: italic; */
             margin-left: 4px;
         }
 

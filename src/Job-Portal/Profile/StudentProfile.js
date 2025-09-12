@@ -293,17 +293,17 @@ profileData.map((item, i) => {
                           
                             {/* <li className={`${styles.Hli}`}>{item.name}</li>
                             <li className={`${styles.Hli}`}>{item.email}</li> */}
-                      {item.name?         <li className={` ${styles.Hli}`}>{item.name}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your phone Name yet</li>}
-                      {item.email?         <li className={` ${styles.Hli}`}>{item.email}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your Email yet</li>}
-                      {item.city?         <li className={` ${styles.Hli}`}>{item.city.value}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your City yet</li>}
-                      {item.phoneNumber?         <li className={` ${styles.Hli}`}>{item.phoneNumber}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your phone Number yet</li>}
-                         {item.Aadhar?           <li className={` ${styles.Hli}`}>{item.Aadhar}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your Aadhar Id yet</li>}
-                         {item.panCard?          <li className={` ${styles.Hli}`}>{item.panCard}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your pan Id yet</li>}
-                         {item.age?              <li className={` ${styles.Hli}`}>{item.age}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your age yet</li>}
-                         {item.NoticePeriod?     <li className={` ${styles.Hli}`}>{item.NoticePeriod} Days</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your NoticePeriod yet</li>}
-                         {item.ExpectedSalary?  <li className={` ${styles.Hli}`}>{item.ExpectedSalary} LPA</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your Expected Salary yet</li>}
-                         {item.currentCTC?       <li className={` ${styles.Hli}`}>{item.currentCTC} LPA</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your current CTC yet</li>}
-                         {item.Qualification?    <li className={` ${styles.Hli}`}>{item.Qualification}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your Qualification yet</li>}
+                      {item.name?         <li className={` ${styles.Hli}`}>{item.name}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>########</li>}
+                      {item.email?         <li className={` ${styles.Hli}`}>{item.email}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>########</li>}
+                      {item.city?         <li className={` ${styles.Hli}`}>{item.city.value}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>########</li>}
+                      {item.phoneNumber?         <li className={` ${styles.Hli}`}>{item.phoneNumber}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>########</li>}
+                         {item.Aadhar?           <li className={` ${styles.Hli}`}>{item.Aadhar}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>########</li>}
+                         {item.panCard?          <li className={` ${styles.Hli}`}>{item.panCard}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>########</li>}
+                         {item.age?              <li className={` ${styles.Hli}`}>{item.age}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>########</li>}
+                         {item.NoticePeriod?     <li className={` ${styles.Hli}`}>{item.NoticePeriod} Days</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>########</li>}
+                         {item.ExpectedSalary?  <li className={` ${styles.Hli}`}>{item.ExpectedSalary} LPA</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>########</li>}
+                         {item.currentCTC?       <li className={` ${styles.Hli}`}>{item.currentCTC} LPA</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>########</li>}
+                         {item.Qualification?    <li className={` ${styles.Hli}`}>{item.Qualification}</li>: <li className={` ${styles.Hli} ${styles.Nli}`}>########</li>}
                          {item.Skills?           <li className={` ${styles.Hli}`}>{item.Skills}&nbsp;
                          {/* => typeof e === 'string' */}
                          </li>: <li className={` ${styles.Hli} ${styles.Nli}`}>you have not updated your Skills yet</li>}

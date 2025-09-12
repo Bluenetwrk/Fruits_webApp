@@ -1159,7 +1159,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
             }
           </div>
 
-          
+          <p style={{ fontWeight: 400, marginLeft: "10px" }}>Showing {firstIndex + 1} to {lastIndex} latest jobs</p>
           <div style={{ marginBottom: "5px", marginTop: "10px", marginLeft: "10px" }}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
               {/* <option selected={lastIndex === 10} value={10}>10</option>
@@ -1170,7 +1170,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
               <option selected={jobsPerPageValue==25} value={25}>25</option>
               <option selected={jobsPerPageValue==50} value={50}>50</option>
               <option selected={jobsPerPageValue==100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  jobs per pages
           </div>
           <div className={styles.navigationWrapper} style={{textAlign:"left"}}>
               <button disabled={currentPage === 1} style={{ display: "inline", margin: "5px" }} className={styles.navigation} onClick={firstPage}>
@@ -1433,6 +1433,7 @@ style={{ cursor: "pointer", textDecoration: "underline", color: "blue" }}>{items
             }
 
           </div>
+
           <div style={{ marginBottom: "5px", marginTop: "10px", marginLeft: "10px" }}>
             Show  <select onChange={(e) => { handleRecordchange(e) }}>
               {/* <option selected={lastIndex === 10} value={10}>10</option>
