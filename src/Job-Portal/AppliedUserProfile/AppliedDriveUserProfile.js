@@ -36,12 +36,12 @@ function AppliedDriveUserProfile() {
                         ids.jobSeekerId
                     )
                 })
-              
+              console.log("applied user ids",appliedUserIds)
                 setOperationalAppliedUser([res.data])
                 
                 await axios.get(`/StudentProfile/getAppliedProfileByIds/${appliedUserIds}`)
                     .then((res) => {
-                        // console.log("asss",res.data)
+                        console.log("total profile fetched",res.data)
                         setAppliedUser(res.data)
                         setPageLoader(false)
                     }).catch((err) => {

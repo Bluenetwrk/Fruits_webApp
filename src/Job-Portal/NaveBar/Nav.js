@@ -407,9 +407,9 @@ function Nav(props) {
 
                 <div className={Styles.fullnavewrapperRS} >
                 <div ref={alertbgvRef} style={{position:"relative"}}>
-                      <NavLink onClick={()=>setbgvAlert((prev)=>prev=!prev)} className={` ${Styles.HomeSearchCandidate}`}>Background check
-                      <sup style={{border:"2px solid white",borderRadius:"25px",padding:"2px"}}>Beta</sup>
-                      </NavLink>
+                      {/* <NavLink onClick={()=>setbgvAlert((prev)=>prev=!prev)} className={` ${Styles.HomeSearchCandidate}`}>Background check */}
+                      {/* <sup style={{border:"2px solid white",borderRadius:"25px",padding:"2px"}}>Beta</sup>
+                      </NavLink> */}
 
                       {bgvAlert&& (
                        
@@ -603,9 +603,9 @@ function Nav(props) {
                 </div>
                 <div className={Styles.empFullnavewrapperRS}>
                 <div ref={alertbgvRef} style={{position:"relative"}}>
-                      <NavLink onClick={()=>setbgvAlert((prev)=>prev=!prev)} className={` ${Styles.HomeSearchCandidate}`}>Background check
+                      {/* <NavLink onClick={()=>setbgvAlert((prev)=>prev=!prev)} className={` ${Styles.HomeSearchCandidate}`}>Background check
                       <sup style={{border:"2px solid white",borderRadius:"25px",padding:"2px"}}>Beta</sup>
-                      </NavLink>
+                      </NavLink> */}
 {/* 
                       {bgvAlert&& (
                        
@@ -915,9 +915,9 @@ function Nav(props) {
                       <NavLink to="/fraud-form" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Fraud </NavLink>
                       </div> */}
                       <div ref={alertbgvRef} style={{position:"relative"}}>
-                      <NavLink  onClick={bgvCheckClick}  className={` ${Styles.HomeSearchCandidate}`}  style={{ textDecoration: "none", border: "none", outline: "none" }}>Background check
+                      {/* <NavLink  onClick={bgvCheckClick}  className={` ${Styles.HomeSearchCandidate}`}  style={{ textDecoration: "none", border: "none", outline: "none" }}>Background check
                       <sup style={{border:"2px solid white",borderRadius:"25px",padding:"2px"}}>Beta</sup>
-                      </NavLink>
+                      </NavLink> */}
                       
                       {PageLoader ?
                                     <div style={{display:"flex", justifyContent:"center", position:"absolute", marginTop:"-30px", marginLeft:"30px"}}>
@@ -1428,7 +1428,62 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                         <div onClick={()=>setresumeAlert((prev)=>prev=!prev)} className={Styles.AllJobJobSeeker} style={{cursor:"pointer"}}> Resume Builder 
                         <sup style={{border:"2px solid white",borderRadius:"25px",padding:"2px"}}>Beta</sup>
                         </div>
-                        
+                        {resumeAlert&&
+                         <>
+                            <div
+        style={{
+          width: '75%',
+          padding: '20px',
+          backgroundColor: 'rgb(40,4,99)',
+          color: 'white',
+          fontSize: '12px',
+          borderRadius: '5px',
+          position: 'fixed',
+          top: '20%',
+          left: '47%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 9999,
+          boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+          textAlign: 'center',
+        }}
+        
+        > 
+        
+        Login as a Jobseeker to explore opportunities and create a strong resume!
+          <div  style={{ marginTop: '15px', display:"flex", justifyContent:"center", gap:"5px" }}>
+          <button
+              onClick={() => {navigate("/Job-Seeker-Login"); setresumeAlert(false)}}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              Ok
+            </button>
+            <button
+              onClick={()=> setresumeAlert(false)}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+                         </>
+
+                         }
                         </div>
             
 

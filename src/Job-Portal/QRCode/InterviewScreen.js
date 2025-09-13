@@ -165,10 +165,10 @@ const InterviewScreen = () => {
     }
   
 
-  useEffect(()=>{
-  console.log(profileData)
+  // useEffect(()=>{
+  // console.log(profileData)
  
-  },[profileData])
+  // },[profileData])
   
  const[interviewStatusmessage, setinterviewStatusmessage]=useState("")
   async function sendMessage() {
@@ -336,7 +336,7 @@ const InterviewScreen = () => {
           onClick={handleStartInterview}
           disabled={interviewstated}
         >
-          {profile ? "Scan Resume (disabled)" : "Scan Progress"}
+          {profileData.length>0 ? "Scan Progress" : "Scan"}
         </button>
 
         <button className={styles.endBtn} onClick={handleEndInterview}>

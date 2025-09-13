@@ -351,7 +351,7 @@ return () => clearInterval(interval);
         </p>
          :""
        }
-      <input style={inputStyle} placeholder="Name" value={formData.name} onChange={(e) => handleChange('name', e.target.value)} />
+      <input style={inputStyle} disabled placeholder="Name" value={formData.name} onChange={(e) => handleChange('name', e.target.value)} />
       <textarea style={inputStyle} placeholder="Profile Summary" value={formData.profileSummary} onChange={(e) => handleChange('profileSummary', e.target.value)} />
       {/* <input style={inputStyle} placeholder="Full Address" value={formData.address} 
       onChange={(e) => handleChange('address', e.target.value)} /> */}
@@ -364,8 +364,8 @@ return () => clearInterval(interval);
                                             // style={{ width: "200px", zIndex:"99"}}
                                             placeholder="Search Address"
                                           />
-      <input style={inputStyle} placeholder="Email" value={formData.email} onChange={(e) => handleChange('email', e.target.value)} />
-      <input style={inputStyle} placeholder="Total Experience" value={formData.totalExperience} onChange={(e) => handleChange('totalExperience', e.target.value)} />
+      <input style={inputStyle} disabled placeholder="Email" value={formData.email} onChange={(e) => handleChange('email', e.target.value)} />
+      <input style={inputStyle} disabled placeholder="Total Experience" value={formData.totalExperience} onChange={(e) => handleChange('totalExperience', e.target.value)} />
 
       {/* EXPERIENCES */}
       <h2>Experience</h2>
