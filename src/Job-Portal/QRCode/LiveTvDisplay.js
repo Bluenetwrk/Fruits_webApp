@@ -36,6 +36,7 @@ let params = useParams();
 //         })
 
 // }
+  const [jobseeker, setJobseeker] = useState(null);
 
 async function postJob() {
   const headers = { authorization: 'BlueItImpulseWalkinIn' };
@@ -68,6 +69,29 @@ async function postJob() {
         setPageLoader(false);
       }
       setJobSeekerList(uniqueList);
+
+      //---------------hr table details--------------
+        const listofhrscanned  = result.HRCabin.map(item => ({
+          jobSeekerId: item.jobSeekerId[0]?.jobSeekerId,
+          tokenNo: item.tokenNo[0],
+          createdDateTime: new Date(item.createdDateTime),
+          updatedDateTime: new Date(item.updatedDateTime),
+        }));
+        
+
+  
+        if (listofhrscanned.length > 0) {
+          // Find the latest record by createdDateTime
+          const latestRecord = listofhrscanned.reduce((latest, current) =>
+            current.updatedDateTime > latest.updatedDateTime ? current : latest
+          );
+          console.log("latest-",latestRecord)
+          // if (latestRecord.createdDateTime && !isNaN(new Date(latestRecord.createdDateTime).getTime())) {
+            setJobseeker(latestRecord);
+            return latestRecord
+        }
+
+
     } else if (result === "field are missing") {
       console.log("failed to fetch data");
     }
@@ -85,6 +109,64 @@ useEffect(()=>{
 useEffect(()=>{
   console.log("jsl",jobSeekerList)
 },[jobSeekerList])
+
+const[pageLoader1,setPageLoader1]=useState(true)
+
+useEffect(()=>{
+   console.log("scanned hr qr code ids", jobseeker)
+   if (
+    !jobseeker ||
+    !jobseeker.createdDateTime ||
+    isNaN(new Date(jobseeker.createdDateTime).getTime())
+  ) {
+    setPageLoader1(false)  
+    return;
+  }
+   getProfileHRQR();
+},[jobseeker])
+
+const[profileData1,setProfileData1]=useState([])
+async function getProfileHRQR() {
+     
+  // if (!latestJobseeker) {
+  //   console.log("js",latestJobseeker)
+  //   setNoData(true);
+  //   setInterviewstarted(false);
+  //   return;
+  // }
+
+
+  if (!(jobseeker.createdDateTime && !isNaN(new Date(jobseeker.createdDateTime).getTime()))) {
+    setPageLoader1(false)
+    return;
+  }
+
+const studId=jobseeker?.jobSeekerId;
+if (!studId) {
+  setPageLoader1(false)
+  return;
+}
+
+  await axios.get(`/StudentProfile/viewProfile/${studId}`)
+      .then((res) => {
+          let result = res.data.result
+          console.log("profile",result.message)
+          
+          setProfileData1([result])
+          setPageLoader1(false)
+
+      }).catch((err) => {
+          alert("some thing went wrong")
+      })
+}
+
+useEffect(()=>{
+console.log("fetching succesful",profileData1)
+},[profileData1])
+
+
+
+
 
 async function findList() {
   setPageLoader(true)
@@ -114,6 +196,7 @@ async function findList() {
     setPageLoader(false)
   }
 }
+
 
 
 
@@ -237,16 +320,18 @@ useEffect(()=>{
     <tr>
       <td colSpan="3" style={{ textAlign: "center" }}>Data Loading...</td>
     </tr>
-  ) :getCabinSlice().length>0?
-            getCabinSlice().map((item, index) => (
+  ) :profileData1.length>0?
+            // getCabinSlice().map((item, index) => (
                
-              <tr key={item.token}>
-                {console.log(item)}
-                <td>{item.cabinNo}</td>
-                <td>{item.token}</td>
-                <td>{item.name}</td>
-              </tr>
-            )): (
+              <tr >
+
+        <td>CabinNo 1</td>
+        <td>{profileData1[0]?profileData1[0].name:"name not found"}</td>
+        <td>{jobseeker.tokenNo?jobseeker.tokenNo:"no token found"}</td>
+      </tr>
+ 
+            // ))
+            : (
               <tr>
                 <td colSpan="3" style={{ textAlign: "center" }}>No data found</td>
               </tr>

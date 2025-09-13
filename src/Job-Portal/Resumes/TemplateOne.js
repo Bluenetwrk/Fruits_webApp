@@ -162,8 +162,8 @@ const TemplateOne = () => {
             <h2 className="section-title">EXPERIENCE</h2>
             <div className="total-exp" style={{display:"flex", alignItems:"center"}}>
             <div><h4>Total Experience</h4></div>
-            <span> - </span>
-              <div><p>{profileData ? `${profileData.Experiance} Years` : "Loading..."}</p></div>
+            <span><pre> - </pre> </span>
+              <div><pre>{profileData ? `${profileData.Experiance}Years` : "Loading..."}</pre></div>
             </div>
             {pageLoader ? (
   <p>Loading...</p>
@@ -175,7 +175,7 @@ const TemplateOne = () => {
           {exp.company}{exp.location && `, ${exp.location}`} — <strong>{exp.role}</strong>
         </h3>
 
-        <div style={{ display: "flex", gap: "4px" }}>
+        <div style={{ display: "flex", gap: "4px", alignItems:"center" }}>
           <p className="date">
             {exp.startDate?
             <>
@@ -189,7 +189,7 @@ const TemplateOne = () => {
 
           {exp.endDate ? (
             <>
-              <span>-</span>
+              <span style={{marginTop:"4px"}}>-</span>
               <p className="date">
                 {new Date(exp.endDate).toLocaleDateString("en-US", {
                   month: "short",
@@ -198,7 +198,7 @@ const TemplateOne = () => {
                 })}
               </p>
             </>
-          ):<><span>-</span><p className="date">Present</p></>}
+          ):<><div style={{marginTop:"4px"}}>-</div><p className="date">Present</p></>}
         </div>
 
         {exp.descriptions?.length > 0 && (

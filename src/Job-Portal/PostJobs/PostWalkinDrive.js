@@ -718,8 +718,8 @@ const [EndTime, setEndTime] = useState("");
                                        </div>
                                        <div>
 <p><input type="checkbox" checked={concent} onChange={()=>{setconcent((prev)=>!prev)}}/>
-    I have read the terms and conditions of ITwalkin.com and I agree to all the 
-     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> Terms and Conditions</span> before posting the walkin drives </p>
+I acknowledge that I have read and agreed to the
+     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> Terms and Conditions</span> of ITwalkin.com prior to posting any walk-in drives</p>
 
      </div>
      {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
