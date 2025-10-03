@@ -849,7 +849,7 @@ useEffect(() => {
 
 
               <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Skills}`}>Skills Required</li>
-              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Apply}`}>Apply</li>
+              <li style={{ backgroundColor: " rgb(40, 4, 99)" }} className={`${styles.li} ${styles.Apply}`}>Action</li>
 
             </ul>
             {PageLoader ?
@@ -906,7 +906,7 @@ useEffect(() => {
                         </li>
                         {/* <li className={`${styles.li} ${styles.Location}`}>{items.jobLocation[0].toUpperCase() + items.jobLocation.slice(1)}</li> */}
                         <li className={`${styles.li} ${styles.Location}`}>{items?.jobLocation[0]?.toUpperCase() + items.jobLocation.slice(1)}</li>
-                        <li className={`${styles.li} ${styles.Package}`} style={{wordBreak:"break-word"}}>{items.salaryRange==="Not disclosed" ||items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"LPA" }</li>
+                        <li className={`${styles.li} ${styles.Package}`} style={{wordBreak:"break-word"}}>{items.salaryRange==="Not disclosed" ||items.salaryRange==="" ? "Not Disclosed":items.salaryRange+"Rate/Kg" }</li>
                         {/* {console.log("Sdsd",items)} */}
                         <li className={`${styles.li} ${styles.experiance}`}>{items.experiance}Yrs</li>
                         {/* {console.log("qualifications - ",items)} */}
@@ -920,7 +920,7 @@ useEffect(() => {
   ) : (
     <div  ref={alertRef} style={{position:"relative"}}>
       <button className={styles.Applybutton} onClick={() => handleApplyClick(items._id)}>
-        Apply
+        Buy
       </button>
 
       {activeAlertId === items._id && (
@@ -1195,13 +1195,13 @@ useEffect(() => {
                           <span className={styles.skillsHeading}>Skills: </span><span className={styles.skills}>{job.skills}</span><br></br>
                         </div>
                         <div className={styles.homeApplyPackage}>
-                          <p className={styles.salaryRange}>{job.salaryRange==="Not disclosed" ||job.salaryRange===""  ? "Not Disclosed":<><span>&#8377;</span>{job.salaryRange} LPA</>}</p>
+                          <p className={styles.salaryRange}>{job.salaryRange==="Not disclosed" ||job.salaryRange===""  ? "Not Disclosed":<><span>&#8377;</span>{job.salaryRange}Rate/Kg</>}</p>
                           {
                           
-                            // <button className={styles.homeApplyMobileBtn} onClick={() => { applyforJob(job._id) }}><b>Apply</b></button>
+                            // <button className={styles.homeApplyMobileBtn} onClick={() => { applyforJob(job._id) }}><b>Buy</b></button>
                             <div  ref={alertRef} style={{position:"relative"}}>
                             <button className={styles.homeApplyMobileBtn} onClick={() => handleApplyClick(job._id)}>
-                              Apply
+                              Buy
                             </button>
                       
                             {activeAlertId === job._id && (

@@ -1,0 +1,69 @@
+.tag-box {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+  margin: 5px;
+}
+
+/* 🎨 Category Colors */
+.APPLES {
+  background-color: #e33a4b; /* light red */
+}
+
+.banana {
+  background-color: #fff59d; /* yellow */
+}
+
+.mango {
+  background-color: #ffe082; /* orange */
+}
+
+.orange {
+  background-color: #ffe0b2; /* light orange */
+}
+
+.grape {
+  background-color: #d1c4e9; /* purple */
+}
+
+.berry {
+  background-color: #f8bbd0; /* pink */
+}
+
+.melon {
+  background-color: #c8e6c9; /* light green */
+}
+
+.exotic {
+  background-color: #b2dfdb; /* teal */
+}
+
+.seasonal {
+  background-color: #b3e5fc; /* light blue */
+}
+
+.organic {
+  background-color: #dcedc8; /* pale green */
+}
+
+.cut {
+  background-color: #ffecb3; /* amber */
+}
+
+.dried {
+  background-color: #d7ccc8; /* brown */
+}
+
+.juice {
+  background-color: #f48fb1; /* rose */
+}
+
+.vitamin {
+  background-color: #81d4fa; /* sky blue */
+}
+
+.general {
+  background-color: #e0e0e0; /* grey */
+}

@@ -636,7 +636,7 @@ function Nav(props) {
                  <NavLink to="/PostDrives" className={Styles.PostDriveLink} style={navLinkStyles}>Post Walkin Drive</NavLink>
                  </div>
                  <div> 
-                  <NavLink to="/Search-Candidate" className={Styles.SearchCandidates} style={navLinkStyles}>Employer Home</NavLink>
+                  <NavLink to="/Search-Candidate" className={Styles.SearchCandidates} style={navLinkStyles}>Vendor Home</NavLink>
                   </div>
                  <div>
                     <img className={`${Styles.Icon} ${Styles.EmpProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />       
@@ -974,7 +974,7 @@ function Nav(props) {
                 cursor: 'pointer',
               }}
             >
-              Employer
+              Vendor
             </button>
           </div>
                             </div>
@@ -1031,7 +1031,7 @@ function Nav(props) {
                 cursor: 'pointer',
               }}
             >
-              Employer
+              Vendor
             </button>
           </div>
         </div>
@@ -1041,14 +1041,14 @@ function Nav(props) {
                           </div>        
                       </div>
                       <div>
-                      <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Employer </NavLink>
+                      <NavLink to="/Search-Candidate-Home" className={` ${Styles.HomeSearchCandidate}`} style={navLinkStyles}>Vendor </NavLink>
                       </div>
                       <div>
                          <p className={` ${Styles.openAccount}`} onClick={handleOpenAccont} ref={Reg} >Open an Account</p>
                          {
                            ShowRegister?
                            <div className={Styles.dropdownwrapperHomeRegistration} ref={newReg} >
-                           <p onClick={()=>{navigate("/New-Registration");setShowRegister(false)}}>Employer Registration</p>
+                           //<p onClick={()=>{navigate("/New-Registration");setShowRegister(false)}}>Employer Registration</p>
                            <p onClick={()=>{navigate("/Jobseeker-New-Registration");setShowRegister(false)}}>JobSeeker Registration</p>
                            </div>
                            :""
@@ -1060,8 +1060,8 @@ function Nav(props) {
                     <div className={Styles.Alldownwrapper} >
 
                       <div style={{  }} className={Styles.dropdownwrapperHome} ref={menuRef} >
-                        <p onClick={() => { handleEmpOpen(); handleStuClose() }}>Employer Login</p>
-                        <p onClick={() => { handleStuOpen(); handleClose() }}>Job Seeker Login</p>
+                        <p onClick={() => { handleEmpOpen(); handleStuClose() }}>Vendor Login</p>
+                        <p onClick={() => { handleStuOpen(); handleClose() }}>Customer Login</p>
                       </div>
                     </div>
 
@@ -1141,7 +1141,7 @@ function Nav(props) {
                 cursor: 'pointer',
               }}
             >
-             Employer Login
+             Vendor Login
             </button>
           </div>
         </div>
@@ -1326,7 +1326,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                      <img style={{width:"80%"}}  className={Styles.MobIwalkinLogologo} src={Itwalkinlogo} />
                     </div>
                     <div>
-                    <NavLink to="/PostJobs" style={{marginLeft:"-24%"}}className={`${Styles.Moblink} ${Styles.PostJob}`} >Post a Job</NavLink>
+                    <NavLink to="/PostJobs" style={{marginLeft:"-24%"}}className={`${Styles.Moblink} ${Styles.PostJob}`} >Post an Item</NavLink>
                     </div>
                   </div>
 
@@ -1336,7 +1336,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                       {showprofile ?
                      <div  className={Styles.EmpMobDropdownwrapperMobile} ref={menuRef} >
                     <p className={Styles.text} ref={menuRef} onClick={EmployeeProfile} >My profile</p>
-                    <NavLink to="/postedjobs" className={`${Styles.text} `} > Posted jobs</NavLink>
+                    <NavLink to="/postedjobs" className={`${Styles.text} `} > Posted items</NavLink>
                     <p className={Styles.text} ref={menuRef} onClick={myposteddrive}>Posted Drives</p>
                     <p className={Styles.text} ref={menuRef} onClick={mypostedArticle}>Posted Articles</p>
                     <p className={Styles.text} ref={menuRef} onClick={PostBlogs}>Write Article</p>
@@ -1385,8 +1385,8 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                     <div className={Styles.linkWrapper}>
                       <NavLink to="/BIAddmin@Profile" className={`${Styles.link} ${Styles.All}`} style={navLinkStyles}>All </NavLink>
                       <NavLink to="/BIAddmin@AllJobs" style={navLinkStyles} className={`${Styles.AllJobs} ${Styles.link}`}>AllJobs </NavLink>
-                      <NavLink to="BIAddmin@AllEmployees" className={`${Styles.link} ${Styles.AllEmploy}`} style={navLinkStyles}> Employer</NavLink>
-                      <NavLink to="BIAddmin@AllJobSeekers" className={`${Styles.link} ${Styles.AllJobseeker}`} style={navLinkStyles}> Jobseekers</NavLink>
+                      <NavLink to="BIAddmin@AllEmployees" className={`${Styles.link} ${Styles.AllEmploy}`} style={navLinkStyles}> Vendor</NavLink>
+                      <NavLink to="BIAddmin@AllJobSeekers" className={`${Styles.link} ${Styles.AllJobseeker}`} style={navLinkStyles}> Customers</NavLink>
 
                       <div className={`${Styles.link} ${Styles.IconeWrapper} ${Styles.AdminUser}`}>
                         <img className={`${Styles.Icon} ${Styles.profileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
@@ -1570,7 +1570,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                          <img className={`${Styles.MobloginLogo} `} src={logIn} ref={imgRef} onClick={() =>    setShowprofile((prev) => !prev)} />
                          {showprofile ?
                            <div className={Styles.MobHomeDropdownwrapper} ref={menuRef} >
-                             <p onClick={() => { navigate("/EmployeeLogin") }}>Employer Login </p>
+                             <p onClick={() => { navigate("/EmployeeLogin") }}>Vendor Login </p>
                              <p onClick={() => { navigate("/JobSeekerLogin") }}>Job Seeker Login</p>
                            </div>
                            : ""}
@@ -1611,7 +1611,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                       <img className={`${Styles.MobloginLogo} `} src={logIn} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
                       {showprofile ?
                         <div className={Styles.MobHomeDropdownwrapper} ref={menuRef} >
-                          <p onClick={() => { navigate("/EmployeeLogin") }}>Employer Login </p>
+                          <p onClick={() => { navigate("/EmployeeLogin") }}>Vendor Login </p>
                           <p onClick={() => { navigate("/JobSeekerLogin") }}>Job Seeker Login</p>
                         </div>
                         : ""}

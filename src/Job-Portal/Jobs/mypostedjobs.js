@@ -294,14 +294,14 @@ function handleRecordchange(e){
     {/* <button className={styles.searchButton} onClick={() => {
           navigate("/Search-Candidate")
         }}>Search Candidate</button> */}
-        <p style={{marginLeft:"38%", marginTop:"30px", fontSize:"large", fontWeight:"bold"}}>My Posted Jobs</p>
+        <p style={{marginLeft:"38%", marginTop:"30px", fontSize:"large", fontWeight:"bold"}}>My Posted Items</p>
         </div>
 
         <div style={{display:"flex", justifyContent:"space-between"}}>
             {        nopageFilter?
     <p style={{fontWeight:400, marginLeft:"10px"}}>Displaying <span style={{color:"blue"}}>{Filtereredjobs}</span> from All Jobs</p>
     :
-    <p style={{fontWeight:400, marginLeft:"10px"}}>Showing {firstIndex+1} to {lastIndex} latest jobs</p>
+    <p style={{fontWeight:400, marginLeft:"10px"}}>Showing {firstIndex+1} to {lastIndex} latest items</p>
     }
 <div className={styles.navigationWrapper}>
   <button disabled={currentPage === 1} style={{display:"inline", margin:"5px"}} className={styles.navigation} onClick={firstPage}>
@@ -325,13 +325,13 @@ function handleRecordchange(e){
               <option selected = {lastIndex === 25} value={25}>25</option>
               <option selected = {lastIndex === 50} value={50}>50</option>
               <option selected = {lastIndex === 100} value={100}>100</option>
-            </select>  jobs per page
+            </select> items per page
             </div>
       
    <div className={styles.Uiwarpper}>
           <ul className={styles.ul}>
-            <li className={styles.li}><b>Company Name</b></li>
-            <li className={`${styles.li} ${styles.Jtitle}`}><b>Job Title</b></li>
+            <li className={styles.li}><b>Item Name</b></li>
+            <li className={`${styles.li} ${styles.Jtitle}`}><b>Item Title</b></li>
             {/* <li className={`${styles.li} ${styles.liDescription}`}><b>Job description</b></li> */}
             <li className={`${styles.li} ${styles.Pdate}`}><b>Posted Date</b>
             <p className={styles.arrowWrapper}>
@@ -339,21 +339,21 @@ function handleRecordchange(e){
                 <i onClick={sortbyOldjobs} className={`${styles.arrow} ${styles.down}`}></i>
             </p>
             </li>
-            <li className={`${styles.li} ${styles.Location}`}><b>Location</b></li>
+            <li className={`${styles.li} ${styles.Location}`}><b>Apartment Name</b></li>
 
-            <li className={`${styles.li} ${styles.Package}`}><b>CTC </b>
+            <li className={`${styles.li} ${styles.Package}`}><b>Rate/Kg </b>
             <p className={styles.arrowWrapper}>
                   <i onClick={SdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={SascendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
             </p>
             </li>
 
-            <li className={`${styles.li} ${styles.experiance}`}><b>Experience </b>
+           {/*} <li className={`${styles.li} ${styles.experiance}`}><b>Experience </b>
             <p className={styles.arrowWrapper}>
                   <i onClick={EdescendingOrder} className={`${styles.arrow} ${styles.up}`}> </i>
                   <i onClick={EascendingOrder} className={`${styles.arrow} ${styles.down}`}></i>
             </p>
-            </li>
+            </li>*/}
             <li className={`${styles.li} ${styles.Skills}`}><b>Skills Required</b></li>
             <li className={`${styles.li} ${styles.Action}`}><b>Action</b></li>
             <li className={`${styles.li} ${styles.NuApplied}`}><b>No of JobSeeker Applied</b></li>
@@ -429,7 +429,7 @@ function handleRecordchange(e){
               <option selected = {lastIndex === 25} value={25}>25</option>
               <option selected = {lastIndex === 50} value={50}>50</option>
               <option selected = {lastIndex === 100} value={100}>100</option>
-            </select>  jobs per page
+            </select>  items per page
             </div>
 
           <div className={styles.navigationWrapper}>
@@ -455,7 +455,7 @@ function handleRecordchange(e){
       :
       <> 
 
-<p style={{marginLeft:"45%"}}>My Posted Jobs</p>
+<p style={{marginLeft:"45%"}}>My Posted Items</p>
 {/* <button className={styles.searchButton} onClick={() => {
           navigate("/Search-Candidate")
         }}>Search Candidate</button> */}

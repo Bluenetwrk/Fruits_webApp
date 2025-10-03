@@ -321,7 +321,7 @@ const [showTooltip, setShowTooltip] = useState(false);
                                     <p className={successMessage === "Successfully posted!" ?
                                             Style.successmessage : Style.errormessage}>{successMessage} </p>
                                         {/* <p className={Style.errormessage}>{errorMessage} </p> */}
-                                        <h4 className={Style.jobHeadline}  >Job Title**</h4>
+                                        <h4 className={Style.jobHeadline}  >Item Title**</h4>
                                         <input maxLength="100" className={Style.inputbox} type="text" value={jobtitle} onChange={(e) => { handlejobtitle(e) }} />
                                         {/* <div className={Style.jobHeadline}>
                                         <label><input name="Job-Type" type="radio" value={other}  onClick={(e) => { setother((prev)=>!prev)} } />Select, if Job Source is from other Job Portal Site </label>
@@ -338,7 +338,7 @@ const [showTooltip, setShowTooltip] = useState(false);
                                 :""
                                     } */}
                                     
-                                        <p className={Style.jobHeadline}>Company Name** &nbsp;<span className={Style.hint}>(The company name is auto-populated from your profile and cannot be changed.)</span></p>
+                                        <p className={Style.jobHeadline}>Apartment Name** &nbsp;<span className={Style.hint}>(The company name is auto-populated from your profile and cannot be changed.)</span></p>
                                         <input maxLength="30" className={Style.inputbox} type="text" value={companyName} disabled />
 
                                         <h4 className={Style.jobHeadline}  >Company Home Page Link</h4>
@@ -348,7 +348,7 @@ const [showTooltip, setShowTooltip] = useState(false);
                                          <h4 className={Style.jobHeadline}  >Source Link</h4>
                                          <input className={Style.inputbox} type="text" value={SourceLink} onChange={(e) => { setSourceLink(e.target.value) }} />
                                          
-                                        <h4 className={Style.jobHeadline}>Job Description**</h4>
+                                        <h4 className={Style.jobHeadline}>Item Description**</h4>
                                         {/* <input maxLength="100" className={Style.inputbox} type="text" value={jobDescription} onChange={(e) => { setJobDescription(e.target.value) }} /> */}
                                         {/* <Editor
                                             toolbarClassName="toolbarClassName"
@@ -365,7 +365,7 @@ const [showTooltip, setShowTooltip] = useState(false);
         value={jobDescription}
         onChange={setJobDescription}
       />
-                                        <p className={Style.jobHeadline}>Job Tags <span className={Style.hint}>(Use multiple tags to identify top-matching candidates)</span></p>
+                                        <p className={Style.jobHeadline}> Tags <span className={Style.hint}>(Use multiple tags to identify top-matching candidates)</span></p>
 
 <div className={Style.JobtitleFilterWrapper}>
             {/* <buton className={ Active.length===0? Style.active:Style.JobtitleFilter} onClick={() => { getjobs() }}>All</buton> */}
@@ -456,7 +456,7 @@ const [showTooltip, setShowTooltip] = useState(false);
 
                                         } */}
                                        <div style={{position:"relative"}} >
-                                           <h4 className={Style.jobHeadline}>Salary Per Annum in Lakhs** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
+                                           <h4 className={Style.jobHeadline}>Rate per Kg in Rupees** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
                                            <input maxLength="3" className={Style.inputbox} type="number" value={salaryRange} onChange={(e) => { handleSalary(e) }} />
                                            <span className={Style.suffix}>{salaryRange===""?"":"LPA"}</span>
                                         </div>
