@@ -69,7 +69,7 @@ import AllWalkinDrive from "./Job-Portal/Jobs/AllWalkinDrive";
 import PostWalkinDrive from "./Job-Portal/PostJobs/PostWalkinDrive";
 import DriveDetails from "./Job-Portal/Jobs/DriveDetails";
 import location from "./Job-Portal/img/icons8-location-20.png"
-import AllResumes from "./Job-Portal/Resumes/AllResumes";
+// import AllResumes from "./Job-Portal/Resumes/AllResumes";
 import PostFraudForm from "./Job-Portal/Jobs/PostFraudForm";
 // import AppliedDrives from "./Job-Portal/Jobs/AppliedDrives";
 import MyPostedDrives from "./Job-Portal/Jobs/MyPostedDrives";
@@ -83,8 +83,8 @@ import UpdatePostedDrive from "./Job-Portal/PostJobs/UpdatePostedDrive";
 // import AppliedDriveDetails from "./Job-Portal/Jobs/AppliedDriveDetails";
 import PostedDriveDetails from "./Job-Portal/Jobs/PostedDriveDetails";
 import AppliedDriveUserProfile from "./Job-Portal/AppliedUserProfile/AppliedDriveUserProfile";
-import ResumeLogin from "./Job-Portal/Login/ResumeLogin";
-import ResumeForm from "./Job-Portal/Resumes/ResumeForm";
+// import ResumeLogin from "./Job-Portal/Login/ResumeLogin";
+// import ResumeForm from "./Job-Portal/Resumes/ResumeForm";
 import InterviewScreen from "./Job-Portal/QRCode/InterviewScreen";
 // import Test from "./Job-Portal/Jobs/Test";
 import MyAppliedDrives from "./Job-Portal/Jobs/MyAppliedDrives";
@@ -1180,8 +1180,6 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             <Route element={<StudPrivate />}>
             <Route path="/scanner" element={<QRScanner />} />
             <Route path="/enter-cabin" element={<JobseekerEnterCabin />} />
-             <Route path="resume-form" element={<ResumeForm />}></Route>
-              <Route path="/resumes" element={<AllResumes url={axios.defaults.baseURL}/>}></Route> 
               <Route path="/alljobs" element={<Jobs url={axios.defaults.baseURL} 
                showMobileSearchIcon={showMobileSearchIcon} setShowMobileSearchIcon={setShowMobileSearchIcon}
                ShowSideNave={ShowSideNave} setShowSideNave={setShowSideNave}
@@ -1262,7 +1260,7 @@ const [showMobileSearchIcon, setShowMobileSearchIcon]= useState(true)
             searchIcon={searchIcon}
             />} />
             <Route path="/JobSeekerLogin" element={<StudentLogin />} />
-            <Route path="/Job-Seeker-Login" element={<ResumeLogin />} />
+            {/* <Route path="/Job-Seeker-Login" element={<ResumeLogin />} /> */}
             <Route path="/JobSeeker-Login" element={<AnsStdLogin />} />
             <Route path="/Employee-Login" element={<AnsEmpLogin />} />
             <Route path="/New-Registration" element={<NewRegistered />} />
