@@ -431,7 +431,7 @@ console.log(records)
                       </li> */}
                       <li className={`${styles.li} ${styles.Pdate}`}>
   {(() => {
-    const matched = items.jobSeekerId.find(id => id.jobSeekerId == jobSeekerId);
+    const matched = items.jobSeekerId.find(id => id.jobSeekerId === jobSeekerId);
     if (!matched || !matched.date) return '';
 
     const date = new Date(matched.date);
@@ -466,19 +466,19 @@ console.log(records)
 
                         {items.onHoldJobseker.find((onholdProfile) => {
                           return (
-                            onholdProfile == jobSeekerId
+                            onholdProfile === jobSeekerId
                           )
                         }) ? <p style={{ color: "blue" }}>Your Profile is on Hold</p> :
 
                           items.slectedJobseker.find((SelectedProfile) => {
                             return (
-                              SelectedProfile == jobSeekerId
+                              SelectedProfile === jobSeekerId
                             )
                           }) ? <p style={{ color: "rgb(7, 161, 7)" }}> Congratulations! You've Been Shortlisted!.You’ll receive details about the interview soon.</p>
                             :
                             items.rejectedJobseker.find((rejectProfile) => {
                               return (
-                                rejectProfile == jobSeekerId
+                                rejectProfile === jobSeekerId
                               )
                             }) ? <p style={{ color: "red" }}>Sorry, your profile doesn't match this job.</p>
                               : "Your application is submitted.It will be reviewed and we will update you soon"
@@ -539,15 +539,15 @@ console.log(records)
                       {/* <br></br> */}
 
                       <div className={styles.companyNameLocationWrapper} onClick={() => { navigate(`/CheckEmpHalfProfile/${btoa(job.empId)}`) }} >
-                        <img className={styles.logo} src={job.Logo} />
+                        <img className={styles.logo} src={job.Logo} alt='image' />
                         <span className={styles.companyName} >{job.companyName} </span><br></br>
                       </div>
 
-                      <  img className={styles.jobLocationImage} src={location} />
+                      <  img className={styles.jobLocationImage} src={location}  alt='image' />
                       <span className={styles.jobLocation}>{job.jobLocation[0].toUpperCase() + job.jobLocation.slice(1)} ,</span>
                       <span className={styles.qualificationAndExperiance}>
 
-                        <  img className={styles.graduationImage} src={graduation} />
+                        <  img className={styles.graduationImage} src={graduation} alt='image'  />
 
                         {job.qualification}, {job.experiance}Yrs Exp ,   {job.jobtype}
                         {/* <span className={styles.jobtypeAndDate}> {job.jobtype}</span> */}
@@ -556,7 +556,7 @@ console.log(records)
                       <span className={styles.jobtypeAndDate}>Source</span> :
 
                       {job.Source ?
-                        <> <a className={`${styles.skills}`} href={job.SourceLink} target="_blank">{job.Source}</a><br></br> </>
+                        <> <a className={`${styles.skills}`} href={job.SourceLink} target="_blank" rel='noreferrer'>{job.Source}</a><br></br> </>
                         :
                         <> <span className={styles.skills}>ItWalkin </span></>
                       }
@@ -576,7 +576,7 @@ console.log(records)
                           }
                         )} */}
                         {(() => {
-    const matched = job.jobSeekerId.find(id => id.jobSeekerId == jobSeekerId);
+    const matched = job.jobSeekerId.find(id => id.jobSeekerId === jobSeekerId);
     if (!matched || !matched.date) return '';
 
     const date = new Date(matched.date);
