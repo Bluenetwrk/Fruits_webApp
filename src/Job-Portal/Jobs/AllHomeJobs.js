@@ -135,7 +135,7 @@ function Home({nopageFilter,setNoPageFilter,searchKey, setsearchKey,Filtereredjo
         setPageLoader(false)
       }).catch((err) => {
         console.log(err)
-        alert("some thing went wrong")
+        alert("something went wrong")
       })
   }
 
@@ -349,7 +349,7 @@ useEffect(() => {
         setJobs(sortedate)
         
       }).catch((err) => {
-        alert("some thing went wrong")
+        alert("something went wrong")
       })
   }
 
@@ -365,7 +365,7 @@ useEffect(() => {
         setJobs(sortedate)
         
       }).catch((err) => {
-        alert("some thing went wrong")
+        alert("something went wrong")
       })
   }
 
@@ -526,7 +526,7 @@ useEffect(() => {
         setJobs(sortedate)
       
       }).catch((err) => {
-        alert("some thing went wrong")
+        alert("something went wrong")
       })
   }
 
@@ -545,7 +545,7 @@ useEffect(() => {
           window.location.reload()
         }
       }).catch((err) => {
-        alert("some thing went wrong")
+        alert("something went wrong")
       })
   }
   async function deleteCheckedJobs() {
@@ -559,7 +559,7 @@ useEffect(() => {
           window.location.reload()
         }
       }).catch((err) => {
-        alert("some thing went wrong")
+        alert("something went wrong")
       })
   }
 
