@@ -326,6 +326,7 @@ function Nav(props) {
                   {/* <div><NavLink to="/resumes" className={Styles.AllJobJobSeeker}  style={navLinkStyles}>
                    Resume Builder <sup style={{border:"2px solid white",borderRadius:"25px",padding:"2px"}}>Beta</sup> </NavLink></div> */}
                   <div ref={dropdownRef} style={{ position: "relative" }}>
+                  
                             
                             <div style={{ display: "flex", marginTop: "-5px" }}>
                               <button
