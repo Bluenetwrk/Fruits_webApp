@@ -451,7 +451,7 @@ function Nav(props) {
     <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
 
     <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>Jobs Applied</p>
-    <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p>
+    {/* <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p> */}
     <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
     <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
 
@@ -459,7 +459,7 @@ function Nav(props) {
 </div>
 : ""}      
                 </div>
-                <div>
+                {/* <div>
                 {props.flashVisible && (
                        <div className={Styles.blast}>
                          <img
@@ -470,7 +470,7 @@ function Nav(props) {
                          />
                        </div>
                      )}
-                </div>
+                </div> */}
                 <div>
                       {
                        <div className={Styles.blast}>
@@ -520,7 +520,7 @@ function Nav(props) {
                       <img className={Styles.IwalkinLogologo} src={Itwalkinlogo} />
                    </div>
                    <div>
-                      <NavLink to="/PostJobs" className={Styles.PostJobLink} style={navLinkStyles}>Post a Job</NavLink>
+                      <NavLink to="/PostJobs" className={Styles.PostJobLink} style={navLinkStyles}>Post a Item</NavLink>
                    </div>
                    {screenSize.width > 850 && 
                    <div ref={dropdownRef} style={{ position: "relative" }}>
@@ -633,9 +633,9 @@ function Nav(props) {
                  <div>
                   <NavLink to="/Post-Help-Questions" className={Styles.PostHelpLink} style={navLinkStyles}>Post Help Questions</NavLink>
                  </div>
-                 <div>
+                 {/* <div>
                  <NavLink to="/PostDrives" className={Styles.PostDriveLink} style={navLinkStyles}>Post Walkin Drive</NavLink>
-                 </div>
+                 </div> */}
                  <div> 
                   <NavLink to="/Search-Candidate" className={Styles.SearchCandidates} style={navLinkStyles}>Vendor Home</NavLink>
                   </div>
@@ -655,7 +655,7 @@ function Nav(props) {
                         </div>
                         : ""}
                  </div> 
-                 <div>
+                 {/* <div>
                  {props.flashVisible && (
                        <div className={Styles.blast}>
                          <img
@@ -667,7 +667,7 @@ function Nav(props) {
                          />
                        </div>
                      )}
-                 </div> 
+                 </div>  */}
                  <div>
                       {
                        <div className={Styles.blast}>
@@ -1068,7 +1068,7 @@ function Nav(props) {
 
                     : ""}
                       </div>
-                      <div>
+                      {/* <div>
                       {props.flashVisible && (
                        <div className={Styles.blast}>
                          <img
@@ -1080,7 +1080,7 @@ function Nav(props) {
                          />
                        </div>
                      )}
-                      </div>
+                      </div> */}
                       <div>
                       {
                         <div ref={fraudalertRef} style={{position:"relative"}}>
@@ -1198,7 +1198,7 @@ function Nav(props) {
                   <div className={Styles.MobJobseekerDropdownwrapperlogin} ref={menuRef} >
                     <p className={Styles.text} ref={menuRef} onClick={myprofile}>My profile</p>
                     <p className={Styles.text} ref={menuRef} onClick={MyJobApplied}>Jobs Applied</p>
-                    <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p>
+                    {/* <p className={Styles.text} ref={menuRef} onClick={MyDrivesApplied}>Registered <br></br>Walkin Drives</p> */}
                     <p className={Styles.text} ref={menuRef} onClick={AskQuestion}>Ask Question</p>
 
                     <p className={Styles.text} ref={menuRef} onClick={StudlogOut}>Logout</p>
@@ -1223,7 +1223,7 @@ function Nav(props) {
                 <img className={`${Styles.Icon} ${Styles.MobJobseekerProfileIcon}`} src={loginuser} ref={imgRef} onClick={() => setShowprofile((prev) => !prev)} />
 
                 </div>
-                <div>
+                {/* <div>
                 {props.flashVisible && (
                        <div className={Styles.blast} style={{cursor:"pointer"}}>
                          <img
@@ -1234,7 +1234,7 @@ function Nav(props) {
                          />
                        </div>
                      )}
-                </div>
+                </div> */}
                 </div>
                  </div>
 
@@ -1345,7 +1345,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                     </div>
                      : ""}
                     </div>
-                    <div>
+                    {/* <div>
                     {props.flashVisible && (
                        <div className={Styles.blast} style={{cursor:"pointer",marginLeft:"21%"}}>
                          <img
@@ -1356,7 +1356,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                          />
                        </div>
                      )}
-                    </div>
+                    </div> */}
                   </div>
                   
                   </div>
@@ -1563,7 +1563,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                       <div>
                           {props.flashVisible && (
                          <div className={Styles.blast} style={{cursor:"pointer"}}>
-                          <img onClick={reDirecttoDrive} src="/drive.png" alt="Walk-in Drive" ref={driveImgRef} class={Styles.flashDriveHome}/>
+                          {/* <img onClick={reDirecttoDrive} src="/drive.png" alt="Walk-in Drive" ref={driveImgRef} class={Styles.flashDriveHome}/> */}
                          </div>
                           )}
                       </div>
@@ -1572,7 +1572,7 @@ className={props.ShowSideNave ? "fas fa-times" : "fas fa-bars"} ref={SimgRef} on
                          {showprofile ?
                            <div className={Styles.MobHomeDropdownwrapper} ref={menuRef} >
                              <p onClick={() => { navigate("/EmployeeLogin") }}>Vendor Login </p>
-                             <p onClick={() => { navigate("/JobSeekerLogin") }}>Job Seeker Login</p>
+                             <p onClick={() => { navigate("/JobSeekerLogin") }}>Customer Login</p>
                            </div>
                            : ""}
                        </div>           

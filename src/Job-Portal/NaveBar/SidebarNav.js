@@ -210,12 +210,12 @@ else{
        )
 
        }
-           {EmployeeAuth&&(
+           {/* {EmployeeAuth&&(
         <p onClick={()=>{navigate("/PostDrives"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Post Walkin Drive </p>
         
        )
 
-       }
+       } */}
                 <p onClick={()=>{navigate("/support/help"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Help/Support </p>
        {!(EmployeeAuth||StudentAuth)&&
         <p onClick={()=>{setShow(prev=>!prev)}} className={`${Styles.textinMobileSodeBar} `}>Open an account
@@ -242,8 +242,8 @@ else{
         {!EmployeeAuth&&
         <>
         <p onClick={()=>{navigate("/AllCareerJobs"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>ITwalkin Career</p>
-        <p onClick={()=>{resumeRedirect(); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>AI Resume Builder</p>
-        <p onClick={()=>{navigate("/Walkin-Drives"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Walkin Drive</p>
+        {/* <p onClick={()=>{resumeRedirect(); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>AI Resume Builder</p> */}
+        {/* <p onClick={()=>{navigate("/Walkin-Drives"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Walkin Drive</p> */}
         </>
         }
         <p onClick={()=>{navigate("/fraud-form"); props.setShowSideNaveProps(false);props.setShowMobileSearchIcon(true)}} className={`${Styles.textinMobileSodeBar} `}>Report Fraud</p>

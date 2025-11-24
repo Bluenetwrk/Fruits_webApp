@@ -341,12 +341,12 @@ const [showTooltip, setShowTooltip] = useState(false);
                                         <p className={Style.jobHeadline}>Apartment Name** &nbsp;<span className={Style.hint}>(The company name is auto-populated from your profile and cannot be changed.)</span></p>
                                         <input maxLength="30" className={Style.inputbox} type="text" value={companyName} disabled />
 
-                                        <h4 className={Style.jobHeadline}  >Company Home Page Link</h4>
-                                         <input className={Style.inputbox} type="text" value={companyHomeLink} onChange={(e) => { setCompanyHomeLink(e.target.value) }} />
+                                        {/* <h4 className={Style.jobHeadline}  >Company Home Page Link</h4>
+                                         <input className={Style.inputbox} type="text" value={companyHomeLink} onChange={(e) => { setCompanyHomeLink(e.target.value) }} /> */}
 
 
-                                         <h4 className={Style.jobHeadline}  >Source Link</h4>
-                                         <input className={Style.inputbox} type="text" value={SourceLink} onChange={(e) => { setSourceLink(e.target.value) }} />
+                                         {/* <h4 className={Style.jobHeadline}  >Source Link</h4>
+                                         <input className={Style.inputbox} type="text" value={SourceLink} onChange={(e) => { setSourceLink(e.target.value) }} /> */}
                                          
                                         <h4 className={Style.jobHeadline}>Item Description**</h4>
                                         {/* <input maxLength="100" className={Style.inputbox} type="text" value={jobDescription} onChange={(e) => { setJobDescription(e.target.value) }} /> */}
@@ -394,12 +394,12 @@ const [showTooltip, setShowTooltip] = useState(false);
           </div>
 
 
-                                        <h4 className={Style.jobHeadline}>Job Type</h4>
+                                        {/* <h4 className={Style.jobHeadline}>Job Type</h4> */}
 
-                                        <label><input name="Job-Type" type="radio" checked={jobtype === "Full Time" || Tags.filter} value="Full Time" onChange={(e) => { setJobtype(e.target.value) }} />Full Time  </label>
-                                        <label><input name="Job-Type" type="radio" checked={jobtype === "Part Time"} value="Part Time" onChange={(e) => { setJobtype(e.target.value) }} />Part Time  </label>
-                                        <label><input name="Job-Type" type="radio" checked={jobtype === "Internship"} value="Internship" onChange={(e) => { setJobtype(e.target.value)}} />Internship </label>
-                                        <label><input name="Job-Type" type="radio" checked={jobtype === "Contract"} value="Contract" onChange={(e) => { setJobtype(e.target.value) }} />Contract   </label>
+                                        {/* <label><input name="Job-Type" type="radio" checked={jobtype === "Full Time" || Tags.filter} value="Full Time" onChange={(e) => { setJobtype(e.target.value) }} />Full Time  </label> */}
+                                        {/* <label><input name="Job-Type" type="radio" checked={jobtype === "Part Time"} value="Part Time" onChange={(e) => { setJobtype(e.target.value) }} />Part Time  </label> */}
+                                        {/* <label><input name="Job-Type" type="radio" checked={jobtype === "Internship"} value="Internship" onChange={(e) => { setJobtype(e.target.value)}} />Internship </label> */}
+                                        {/* <label><input name="Job-Type" type="radio" checked={jobtype === "Contract"} value="Contract" onChange={(e) => { setJobtype(e.target.value) }} />Contract   </label> */}
                                         <div style={{ position: "relative", display:"flex",  alignItems:"center" }}>
   <div><h4 className={Style.jobHeadline}>Job Location**</h4></div>
 
@@ -434,20 +434,20 @@ const [showTooltip, setShowTooltip] = useState(false);
                                                 ""
                                         }
 
-                                        <h4 className={Style.jobHeadline}>Qualification Needed**</h4>
+                                        {/* <h4 className={Style.jobHeadline}>Qualification Needed**</h4> */}
 
-                                        <div style={{ marginTop: "-10px" }}>
-                                            <label><input name="Qualification" type="radio" checked={qualification === "B.E/CSE"} value="B.E/CSE" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(CSE) </label>
+                                        {/* <div style={{ marginTop: "-10px" }}> */}
+                                            {/* <label><input name="Qualification" type="radio" checked={qualification === "B.E/CSE"} value="B.E/CSE" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(CSE) </label>
                                             <label><input name="Qualification" type="radio" checked={qualification === "B.E/Civil"} value="B.E/Civil" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(Civil) </label>
                                             <label><input name="Qualification" type="radio" checked={qualification === "B.E/Mech"} value="B.E/Mech" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(Mech) </label>
                                             <label><input name="Qualification" type="radio" checked={qualification === "B.E/ECE"} value="B.E/ECE" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(ECE) </label>
                                             <label><input name="Qualification" type="radio" checked={qualification === "B.E/IT"} value="B.E/IT" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />B.E(IT) </label>
-                                            <label><input name="Qualification" type="radio" checked={qualification === "Others"} value="Others" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />Others</label>
+                                            <label><input name="Qualification" type="radio" checked={qualification === "Others"} value="Others" onChange={(e) => { setQualification(e.target.value); setOthers(false); }} />Others</label> */}
 
                                             {/* <label><input name="Qualification" type="radio" value="others" onClick={(e) => { setOthers((prev) => !prev); setQualification("") }} />others </label> */}
                                             {/* <label><input name="Qualification" type="radio" value="others" onChange={(e) => { setQualification(e.target.value); setOthers(true); }} />others </label> */}
                                              {/* {console.log("qualification",qualification)} */}
-                                        </div>
+                                        {/* </div> */}
                                         {/* {
                                             others ?
                                                 <input className={Style.Otherinputbox} type="text" value={qualification} onChange={(e) => { setQualification(e.target.value) }} />
@@ -462,8 +462,8 @@ const [showTooltip, setShowTooltip] = useState(false);
                                         </div>
 
                                         <div style={{position:"relative"}} >
-                                        <h4 className={Style.jobHeadline}>Experience** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
-                                        <input maxLength="3" className={Style.inputbox} type="number" value={experiance} onChange={(e) => { handleExperiance(e) }} />
+                                        {/* <h4 className={Style.jobHeadline}>Experience** &nbsp;<span className={Style.hint}>(e.g 5 or 10)</span></h4>
+                                        <input maxLength="3" className={Style.inputbox} type="number" value={experiance} onChange={(e) => { handleExperiance(e) }} /> */}
                                         <span className={Style.suffix}>{experiance===""?"":"YRS"}</span>
                                         </div>
                                         {/* <h4 className={Style.jobHeadline}>Skill Tags**</h4>
@@ -475,20 +475,20 @@ const [showTooltip, setShowTooltip] = useState(false);
                                                 onChange={handleChange}
                                             />
                                         </div> */}
-                                        <h4 className={Style.jobHeadline}>Skills**</h4>
+                                        {/* <h4 className={Style.jobHeadline}>Skills**</h4>
 
 <input maxLength="100" value={skills} className={Style.inputbox} disabled type="text"
 // onChange={(e)=>{setSkills(e.target.value)}} 
-/>
+/> */}
 <p><input type="checkbox" checked={concent} onChange={()=>{setconcent((prev)=>!prev)}}/>
-    I have read the terms and conditions of ITwalkin.com and I agree to all the 
-     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> Terms and Conditions</span> before posting the jobs </p>
+    I have read the terms and conditions of bluenetworks.in  and I agree to all the 
+     <span style={{color:"blue", cursor:"pointer"}} onClick={()=>(window.open("/TermsAndCondition"))}> Terms and Conditions</span> before posting the Items </p>
 
 
 
                                         {Logo ? <p ><span style={{ color: "blue" }}>Note** :</span> Logo will also be posted with the Job</p> : ""}
                                         <div style={{display:"flex", justifyContent:"center"}}>
-                                        <button style={{width:"132px"}} disabled={!concent} className={concent?Style.button: Style.disableButton} onClick={postJob}>Post Job</button>
+                                        <button style={{width:"132px"}} disabled={!concent} className={concent?Style.button: Style.disableButton} onClick={postJob}>Post Item</button>
                                         </div>
                                     </div >
                                 </div >
